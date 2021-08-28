@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/character_creation_nav"
+    app:startDestination="@id/charCreation_firstFrag">
+
+    <fragment
+        android:id="@+id/charCreation_firstFrag"
+        android:name="com.example.thewitcherrpg.characterCreation.CharCreationFirstFrag"
+        android:label="fragment_char_creation_first"
+        tools:layout="@layout/fragment_char_creation_first" >
+        <action
+            android:id="@+id/action_charCreation_firstFrag_to_charCreation_secFrag"
+            app:destination="@id/charCreation_secFrag"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/charCreation_secFrag"
+        android:name="com.example.thewitcherrpg.characterCreation.CharCreationSecFrag"
+        android:label="fragment_char_creation_sec"
+        tools:layout="@layout/fragment_char_creation_sec" >
+        <action
+            android:id="@+id/action_charCreation_secFrag_to_charCreation_thirdFrag2"
+            app:destination="@id/charCreation_thirdFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/charCreation_thirdFrag"
+        android:name="com.example.thewitcherrpg.characterCreation.CharCreationThirdFrag"
+        android:label="fragment_char_creation_third"
+        tools:layout="@layout/fragment_char_creation_third" />
+</navigation>

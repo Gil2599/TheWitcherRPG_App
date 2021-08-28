@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="sharedViewModel"
+            type="com.example.thewitcherrpg.characterSheet.SharedViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/TopConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".characterSheet.StatsFragment">
+
+        <TextView
+            android:id="@+id/textIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Improvement Points:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="@+id/editIP"
+            app:layout_constraintEnd_toStartOf="@+id/editIP"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editIP" />
+
+        <EditText
+            android:id="@+id/editIP"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:text='@{`` + sharedViewModel.IP}'
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:inputType="numberSigned"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textIP"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/outline_bkg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editIP"
+            app:layout_constraintWidth_percent="0.007" />
+
+
+        <Button
+            android:id="@+id/buttonPlus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/outline_bkg"
+            android:text="+"
+            app:layout_constraintBottom_toBottomOf="@id/TopConstraintLayout"
+            app:layout_constraintEnd_toEndOf="@id/TopConstraintLayout"
+            app:layout_constraintStart_toEndOf="@+id/buttonMinus"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <Button
+            android:id="@+id/buttonMinus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/outline_bkg"
+            android:text="-"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonPlus"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonPlus" />
+
+        <EditText
+            android:id="@+id/editTextEMP"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"EMP: " + sharedViewModel.emp}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextCRA"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSPD" />
+
+        <EditText
+            android:id="@+id/editTextCRA"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"CRA: " + sharedViewModel.cra}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextWILL"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEMP" />
+
+        <EditText
+            android:id="@+id/editTextWILL"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"WILL: " + sharedViewModel.will}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextLUCK"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCRA" />
+
+        <EditText
+            android:id="@+id/editTextLUCK"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"LUCK: " + sharedViewModel.luck}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextWILL" />
+
+        <EditText
+            android:id="@+id/editTextREF"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"REF: " + sharedViewModel.ref}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDEX"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextINT" />
+
+        <EditText
+            android:id="@+id/editTextDEX"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"DEX: " + sharedViewModel.dex}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextBODY"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextREF" />
+
+        <EditText
+            android:id="@+id/editTextBODY"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"BODY: " + sharedViewModel.body}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextSPD"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDEX" />
+
+        <EditText
+            android:id="@+id/editTextSPD"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"SPD: " + sharedViewModel.spd}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEMP"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextBODY" />
+
+        <EditText
+            android:id="@+id/editTextINT"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"INT: " + sharedViewModel.intelligence}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextREF"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <EditText
+            android:id="@+id/editTextSTUN"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"STUN: " + sharedViewModel.stun}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextRUN"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <EditText
+            android:id="@+id/editTextRUN"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"RUN: " + sharedViewModel.run}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextLEAP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSTUN" />
+
+        <EditText
+            android:id="@+id/editTextLEAP"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"LEAP: " + sharedViewModel.leap}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextMaxHP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextRUN" />
+
+        <EditText
+            android:id="@+id/editTextMaxHP"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"MAX HP: " + sharedViewModel.maxHp}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextMaxSTA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextLEAP" />
+
+        <EditText
+            android:id="@+id/editTextMaxSTA"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"MAX STA: " + sharedViewModel.maxSta}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextENC"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMaxHP" />
+
+        <EditText
+            android:id="@+id/editTextENC"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"ENC: " + sharedViewModel.enc}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextREC"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMaxSTA" />
+
+        <EditText
+            android:id="@+id/editTextREC"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"REC: " + sharedViewModel.rec}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPunch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextENC" />
+
+        <EditText
+            android:id="@+id/editTextPunch"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"Punch: " + sharedViewModel.punch}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextKick"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextREC" />
+
+        <EditText
+            android:id="@+id/editTextKick"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unfocused_outline_bkg"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text='@{"Kick: " + sharedViewModel.kick}'
+            android:textStyle="bold"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPunch" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

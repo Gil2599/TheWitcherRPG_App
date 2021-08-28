@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="races_array">
+        <item>Human</item>
+        <item>Dwarf</item>
+        <item>Elf</item>
+        <item>Witcher</item>
+        <item>Halfling</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Non-Binary</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>Bard</item>
+        <item>Criminal</item>
+        <item>Craftsman</item>
+        <item>Doctor</item>
+        <item>Mage</item>
+        <item>Man At Arms</item>
+        <item>Priest</item>
+        <item>Witcher</item>
+        <item>Merchant</item>
+        <item>Noble</item>
+        <item>Peasant</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>Equal</item>
+        <item>Tolerated</item>
+        <item>Feared</item>
+        <item>Hated</item>
+    </string-array>
+</resources>

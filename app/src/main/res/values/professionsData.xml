@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="professions_defSkills_array">
+        <item>Bard:Busking</item>
+        <item>Criminal:Practiced Paranoia</item>
+        <item>Craftsman:Patch Job</item>
+        <item>Doctor:Healing Hands</item>
+        <item>Mage:Magic Training</item>
+        <item>Man At Arms:Tough As Nails</item>
+        <item>Priest:Initiate of the Gods</item>
+        <item>Witcher:Witcher Training</item>
+        <item>Merchant:Well Traveled</item>
+        <item>Noble:N/A</item>
+        <item>Peasant:N/A</item>
+    </string-array>
+
+    <string-array name="defSkills_data_array">
+
+        <item>Busking:A Bard is a wonderful thing to have around,
+            especially when the party’s low on money. A
+            Bard can take an hour and make a Busking
+            roll in the nearest town center. The total of
+            this roll is the amount of money raked in by
+            the Bard while they perform on the street. A
+            fumble can lower the roll, and a negative value
+            means that not only do you fail to make any
+            coin but you are also harassed by the locals
+            for your poor performance, resulting in a -2
+            to Charisma with anyone in the town for the
+            rest of the day</item>
+
+        <item>Practiced Paranoia:Whether they’re an assassin, a thief,
+            a counterfeiter, or a smuggler, criminals all share a practiced
+            paranoia that keeps them out of trouble.
+            Whenever a Criminal comes within 10m of a
+            trap (this includes experimental traps, Man at
+            Arms booby traps, and ambushes) they immediately can make a Practiced Paranoia roll at
+            either the DC to spot the trap, the ambushing
+            party’s Stealth roll, or a DC set by the GM.
+            Even if they don’t succeed in spotting the trap,
+            they are still aware that something is wrong</item>
+
+        <item>Patch Job:A skilled craftsman can patch a weapon or
+            armor well enough to keep it working and
+            keep its wearer/wielder in the fight, whether
+            that be by tying a bowstring back together, sharpening the edge of a broken blade or
+            nailing a plate over a cracked shield. By taking
+            a turn to roll Patch Job at a DC equal to the
+            item’s Crafting DC -3 a Craftsman can restore
+            a broken shield or armor to 1/2 its full SP or
+            restore a broken weapon to 1/2 its durability.
+            Until fixed at a forge, a patched weapon does
+            half its normal damage.</item>
+
+        <item>Healing Hands:Anyone can apply some ointment and wrap
+            a bandage around a cut, but a Doctor has
+            true medical training which allows them to
+            perform complex surgeries. A Doctor with
+            Healing Hands is the only person who can
+            heal a critical wound. To heal critical wounds
+            a doctor must make a number of successful
+            Healing Hands rolls based on the severity of
+            the critical wound. The DC of the roll is based
+            on the severity of the critical wound as well.
+            Healing Hands can also be used for any First
+            Aid task.</item>
+
+        <item>Magic Training:To qualify as a Mage a magically
+            adept person must pass through the halls of one of the
+            world’s magical academies and learn the
+            fundamentals of the magical arts. A Mage can roll
+            Magical Training whenever they encounter
+            a magical phenomenon, an unknown spell,
+            or a question of magical theory. The DC is set
+            by the GM, and a success allows the Mage to
+            learn everything there is to know about the
+            phenomenon. Magical Training can also
+            be rolled as a form of Awareness that detects
+            magic that is in use, or specters.</item>
+
+        <item>Tough As Nails:True Men At Arms like the Blue
+            Stripes of Temeria and the Impera Brigade of Nilfgaard are
+            hardened soldiers who never give in or surrender.
+            When a Man At Arms falls to or below 0 Health, they can roll Tough As Nails at
+            a DC equal to the number of negative Health
+            times 2 to keep fighting. If they fail, they fall
+            into death state as per usual. If they succeed
+            they can keep fighting as if they were only at
+            their Wound Threshold. Any damage forces
+            them to make another roll against a DC based
+            on their Health.</item>
+
+        <item>Initiate of the Gods:The churches of the world are often warm
+            and inviting places, helping their communities and welcoming new converts. A Priest
+            can roll Initiate of the Gods at a DC set by
+            the GM at churches of the same faith to get
+            free lodging, healing, and other services at
+            the GM’s discretion. Initiate of the Gods also
+            works when dealing with members of the
+            same faith, though they will likely be able to
+            offer less than a fully supplied church. Keep in
+            mind that Initiate of the Gods does not work
+            with members of other faiths.</item>
+
+        <item>Witcher Training:Most of a Witcher’s early life is spent within
+            the walls of their keep, studying huge, dusty
+            tomes and going through hellish combat
+            training. Many have argued that the Witcher’s
+            greatest weapon is their knowledge of monsters
+            and their adaptability in any situation.
+            When in a hostile environment or difficult
+            terrain, a Witcher can lessen the penalties by
+            half their Witcher Training value (minimum
+            1). Witcher Training can also be used in any
+            situation that you would normally use Monster Lore for</item>
+
+        <item>Well Traveled:Your average merchant makes a living from
+            trade and that trade brings in customers
+            from all around. But a traveling merchant
+            goes to their customers, wandering the roads
+            of the world, and learning from it’s people.
+            A Merchant can make a Well Traveled roll
+            anytime they want to know a fact about a
+            specific item, culture, or area. The DC is set
+            by the GM and if the roll is successful the
+            Merchant remembers the answer to that
+            question, calling on memories of the last time
+            they travelled through the applicable area.</item>
+
+        <item>N/A:No defining skill information.</item>
+        <item>N/A:No defining skill information.</item>
+
+    </string-array>
+
+    <string-array name="profession_indices_array">
+
+        <item>Bard:36,29,28,33,35,9,30,37,8,4,5,6</item>
+        <item>Criminal:0,22,29,42,47,43,24,18,25,9</item>
+        <item>Craftsman:22,38,1,39,3,27,30,35,26,9</item>
+        <item>Doctor:38,1,28,45,2,33,50,18,8,12</item>
+        <item>Mage:3,32,46,33,49,51,37,8,48,19</item>
+        <item>Man At Arms:45,14,47,26,12,10,13,15,18,19,20,21,22,23</item>
+        <item>Merchant:1,28,3,31,33,4,5,6,35,50,18,9</item>
+        <item>Merchant:1,28,3,31,33,4,5,6,35,50,18,9</item>
+        <item>Priest:28,45,41,46,33,34,51,48,11,12</item>
+        <item>Witcher:38,22,0,2,14,16,48,25,20,12</item>
+        <item>Noble:1</item>
+
+
+    </string-array>
+</resources>
