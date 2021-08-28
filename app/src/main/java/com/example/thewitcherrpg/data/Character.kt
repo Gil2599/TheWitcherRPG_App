@@ -17,6 +17,7 @@ data class Character(
     var age: Int,
     var profession: String,
     var definingSkill: String,
+    var crowns: Int,
 
     //Stats
     var intelligence: Int,

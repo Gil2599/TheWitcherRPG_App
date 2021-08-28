@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharInfoBinding
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import kotlinx.android.synthetic.main.custom_dialog_hp.*
+import kotlinx.android.synthetic.main.custom_dialog_edit_stats.*
 
 
 
@@ -34,10 +35,13 @@ class CharInfoFragment : Fragment() {
         binding.sharedViewModel = sharedViewModel
 
         binding.buttonHP.setOnClickListener(){
-            /*val dialog = CustomDialogClass(requireContext())
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.show()*/
             showDialogHP()
+        }
+        binding.buttonSTA.setOnClickListener(){
+            showDialogSTA()
+        }
+        binding.buttonCROWNS.setOnClickListener(){
+
         }
 
         return view
@@ -54,23 +58,72 @@ class CharInfoFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_hp)
+        dialog.setContentView(R.layout.custom_dialog_edit_stats)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        dialog.textViewHP.text = sharedViewModel.hp.value.toString()
+        dialog.textView.text = sharedViewModel.hp.value.toString()
 
-        dialog.buttonHeal.setOnClickListener(){
-            sharedViewModel.onHealthChange(dialog.editTextHP.text.toString().toInt())
+        dialog.buttonPlus.setOnClickListener(){
+            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+            sharedViewModel.onHealthChange(value)
             dialog.dismiss()
         }
 
-        dialog.buttonDamage.setOnClickListener {
-            sharedViewModel.onHealthChange(-kotlin.math.abs(dialog.editTextHP.text.toString().toInt()
-            )
+        dialog.buttonMinus.setOnClickListener {
+            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+            sharedViewModel.onHealthChange(-kotlin.math.abs(value)
             )
             dialog.dismiss() }
         dialog.show()
-
     }
 
+    private fun showDialogSTA() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.custom_dialog_edit_stats)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialog.textViewCurrent.text = "CURRENT STAMINA"
+
+        dialog.textView.text = sharedViewModel.sta.value.toString()
+
+        dialog.buttonPlus.setOnClickListener(){
+            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+            sharedViewModel.onStaminaChange(value)
+            dialog.dismiss()
+        }
+
+        dialog.buttonMinus.setOnClickListener {
+            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+            sharedViewModel.onStaminaChange(-kotlin.math.abs(value)
+            )
+            dialog.dismiss() }
+        dialog.show()
+    }
+
+    private fun showDialogCrowns() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.custom_dialog_edit_stats)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialog.textViewCurrent.text = "CURRENT CROWNS"
+
+        dialog.textView.text = sharedViewModel.crowns.value.toString()
+
+        dialog.buttonPlus.setOnClickListener(){
+            sharedViewModel.onCrownsChange(dialog.editText.text.toString().toInt())
+            dialog.dismiss()
+        }
+
+        dialog.buttonMinus.setOnClickListener {
+            sharedViewModel.onCrownsChange(-kotlin.math.abs(dialog.editText.text.toString().toInt())
+            )
+            dialog.dismiss() }
+        dialog.show()
+    }
 }

@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#6E6E6E</color>
     <color name="dark_gray">#111111</color>
+    <color name="red">#FF7B7B</color>
+    <color name="green">#C5FFA6</color>
+    <color name="gold">#F9FD7D</color>
+    <color name="grayText">#C5C5C5</color>
 </resources>

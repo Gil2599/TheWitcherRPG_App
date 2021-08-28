@@ -1,10 +1,13 @@
 package com.example.thewitcherrpg.characterSheet
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.characterSheet.charFrags.ViewPagerAdapter
 import com.example.thewitcherrpg.databinding.FragmentCharBinding
@@ -25,6 +28,15 @@ class CharFragment : Fragment() {
         // Inflate the layout for this fragment
         _bindind = FragmentCharBinding.inflate(inflater, container, false)
         val view = binding.root
+
+
+        if (ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(context, "Permission Granted!", Toast.LENGTH_SHORT).show()
+        }
+        else Toast.makeText(context, "Permission Not Granted!", Toast.LENGTH_SHORT).show()
+
+
 
         val numTabs = 5
         val tabTitles = listOf<String>("Character", "Stats", "Armor", "Equipment", "Profession")

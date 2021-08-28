@@ -33,8 +33,6 @@ class SkillsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sharedViewModel = sharedViewModel
 
-        //iP = if (!inCharCreation) sharedViewModel.iP.value.toString().toInt() else 44 //Random IP value, Determined by the GM
-
         skillsInit()
 
         binding.editIP.setOnEditorActionListener { _, actionId, _ ->
@@ -52,8 +50,6 @@ class SkillsFragment : Fragment() {
         binding.buttonMinus.setOnClickListener(){
             decreaseButton()
         }
-
-        //professionSkills()
 
         return view
     }
@@ -185,6 +181,11 @@ class SkillsFragment : Fragment() {
     private fun skillsInit(){
 
         //Initialize all EditTexts
+        binding.editIP.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) { sharedViewModel.setIP(binding.editIP.text.toString().toInt())
+            }
+        }
+
         binding.editText1.setRawInputType(0)
         binding.editText1.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) { focusedView = binding.editText1 } }

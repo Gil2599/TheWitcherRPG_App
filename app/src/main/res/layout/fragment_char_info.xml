@@ -20,61 +20,113 @@
         tools:context=".characterSheet.charFrags.CharInfoFragment">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutHP"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.33"
             android:background="@drawable/outline_bkg"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/textView55"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView60"
+                android:id="@+id/textViewHP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/HP"
+                android:layout_height="0dp"
+                android:layout_weight= "0.5"
                 android:gravity="center"
-                android:textSize="22sp" />
+                android:text="@string/HP"
+                android:textColor="@color/grayText"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/buttonHP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight= "0.5"
+                android:background="@drawable/transparent_bkg"
                 android:text='@{sharedViewModel.hp + "/" + sharedViewModel.maxHp}'
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:textColor="@color/teal_200"
-                android:background="@drawable/transparent_bkg" />
+                android:textSize="25sp"
+                android:gravity="center|top"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView55"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HP"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <LinearLayout
+            android:id="@+id/linearLayoutSTA"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.33"
+            android:background="@drawable/outline_bkg"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutHP">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            <TextView
+                android:id="@+id/textViewSTA"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight= "0.5"
+                android:gravity="center"
+                android:paddingHorizontal="8dp"
+                android:text="@string/Stamina"
+                android:textColor="@color/grayText"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/buttonSTA"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight= "0.5"
+                android:background="@drawable/transparent_bkg"
+                android:text='@{sharedViewModel.sta + "/" + sharedViewModel.maxSta}'
+                android:textColor="@color/teal_200"
+                android:textSize="25sp"
+                android:gravity="center|top"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutCROWNS"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.33"
             android:background="@drawable/outline_bkg"
-            android:text="23/30"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/textView55"
-            app:layout_constraintHorizontal_bias="0.507"
-            app:layout_constraintStart_toStartOf="@+id/textView55"
-            app:layout_constraintTop_toBottomOf="@+id/textView55" />
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutSTA">
+
+            <TextView
+                android:id="@+id/textViewCROWNS"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight= "0.5"
+                android:gravity="center"
+                android:paddingHorizontal="8dp"
+                android:text="@string/Crowns"
+                android:textColor="@color/grayText"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/buttonCROWNS"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight= "0.5"
+                android:background="@drawable/transparent_bkg"
+                android:text='@{`` + sharedViewModel.crowns}'
+                android:textColor="@color/teal_200"
+                android:textSize="25sp"
+                android:gravity="center|top"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

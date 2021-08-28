@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_editStats.xml" value="0.4888268156424581" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_hp.xml" value="0.5363636363636364" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_info.xml" value="0.264" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_skills.xml" value="0.30254184748915064" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/layout/custom_dialog_hp.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/layout/fragment_char_creation_first.xml" value="0.1" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/layout/fragment_char_creation_sec.xml" value="0.1" />

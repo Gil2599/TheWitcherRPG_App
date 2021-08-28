@@ -31,6 +31,9 @@ class SharedViewModel: ViewModel() {
     private var _definingSkill = MutableLiveData("")
     val definingSkill: LiveData<String> = _definingSkill
 
+    private var _crowns = MutableLiveData(0)
+    val crowns: LiveData<Int> = _crowns
+
 
     //Stats
     private var _intelligence = MutableLiveData(0)
@@ -278,6 +281,10 @@ class SharedViewModel: ViewModel() {
 
     fun setDefiningSkill(defSkill: String){
         _definingSkill.value = defSkill
+    }
+
+    fun setCrowns(crowns: Int){
+        _crowns.value = crowns
     }
 
     fun setIntelligence(intelligence: Int){
@@ -660,6 +667,7 @@ class SharedViewModel: ViewModel() {
         val age = age.value!!
         val profession = profession.value!!
         val definingSkill = definingSkill.value!!
+        val crowns = _crowns.value!!
 
 
         //Stats
@@ -676,9 +684,9 @@ class SharedViewModel: ViewModel() {
         val run = _run.value!!
         val leap = _leap.value!!
         val maxHp = _maxHP.value!!
-        val hp = _hp.value!!
+        val hp = if (!inCharacterCreation) _hp.value!! else _maxHP.value!!
         val maxSta = _maxSta.value!!
-        val sta = _sta.value!!
+        val sta = if (!inCharacterCreation) _sta.value!! else _maxSta.value!!
         val enc = _enc.value!!
         val rec = _rec.value!!
         val punch = _punch.value!!
@@ -738,7 +746,7 @@ class SharedViewModel: ViewModel() {
         val resistCoercion = _resistCoercion.value!!
         val ritualCrafting = _ritualCrafting.value!!
 
-        return Character(0, name, ip, race, gender, age, profession, definingSkill,
+        return Character(0, name, ip, race, gender, age, profession, definingSkill, crowns,
             inte, ref, dex, body, spd, emp, cra, will, luck, stun, run, leap, maxHp, hp, maxSta, sta, enc, rec, punch, kick,
             awareness, business, deduction, education, commonSpeech, elderSpeech, dwarven, monsterLore, socialEtiquette,
             streetwise, tactics, teaching, wildernessSurvival, brawling, dodgeEscape, melee, riding, sailing, smallBlades,
@@ -797,7 +805,7 @@ class SharedViewModel: ViewModel() {
         when (stat){
             1 -> _awareness.value = if(onSkillChange(_awareness.value!!, true)) _awareness.value!!.plus(1) else _awareness.value
             2 -> _business.value = if(onSkillChange(_business.value!!, true)) _business.value!!.plus(1) else _business.value
-            3 -> _deduction.value = if(onStatChange(_deduction.value!!, true)) _deduction.value!!.plus(1) else _deduction.value
+            3 -> _deduction.value = if(onSkillChange(_deduction.value!!, true)) _deduction.value!!.plus(1) else _deduction.value
             4 -> _education.value = if(onSkillChange(_education.value!!, true)) _education.value!!.plus(1) else _education.value
             5 -> _commonSpeech.value = if(onSkillChange(_commonSpeech.value!!, true)) _commonSpeech.value!!.plus(1) else _commonSpeech.value
             6 -> _elderSpeech.value = if(onSkillChange(_elderSpeech.value!!, true)) _elderSpeech.value!!.plus(1) else _elderSpeech.value
@@ -855,7 +863,7 @@ class SharedViewModel: ViewModel() {
         when (stat){
             1 -> _awareness.value = if(onSkillChange(_awareness.value!!, false)) _awareness.value!!.minus(1) else _awareness.value
             2 -> _business.value = if(onSkillChange(_business.value!!, false)) _business.value!!.minus(1) else _business.value
-            3 -> _deduction.value = if(onStatChange(_deduction.value!!, false)) _deduction.value!!.minus(1) else _deduction.value
+            3 -> _deduction.value = if(onSkillChange(_deduction.value!!, false)) _deduction.value!!.minus(1) else _deduction.value
             4 -> _education.value = if(onSkillChange(_education.value!!, false)) _education.value!!.minus(1) else _education.value
             5 -> _commonSpeech.value = if(onSkillChange(_commonSpeech.value!!, false)) _commonSpeech.value!!.minus(1) else _commonSpeech.value
             6 -> _elderSpeech.value = if(onSkillChange(_elderSpeech.value!!, false)) _elderSpeech.value!!.minus(1) else _elderSpeech.value
@@ -940,6 +948,26 @@ class SharedViewModel: ViewModel() {
             else _hp.value = 0
         }
         else _hp.value = _hp.value?.plus(value)
+    }
+
+    fun onStaminaChange(value: Int){
+        if (value < 0){
+            if (value.absoluteValue < _sta.value!!) {
+                _sta.value = _sta.value?.plus(value)
+            }
+            else _sta.value = 0
+        }
+        else _sta.value = _sta.value?.plus(value)
+    }
+
+    fun onCrownsChange(value: Int){
+        if (value < 0){
+            if (value.absoluteValue < _crowns.value!!) {
+                _crowns.value = _crowns.value?.plus(value)
+            }
+            else _crowns.value = 0
+        }
+        else _crowns.value = _crowns.value?.plus(value)
     }
 
 }
