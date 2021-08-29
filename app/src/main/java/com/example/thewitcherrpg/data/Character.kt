@@ -10,6 +10,7 @@ import kotlinx.android.parcel.Parcelize
 data class Character(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
+    var imagePath: String,
     var name: String,
     var iP: Int,
     var race: String,

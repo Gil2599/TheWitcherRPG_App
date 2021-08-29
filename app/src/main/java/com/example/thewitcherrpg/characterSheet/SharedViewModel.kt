@@ -10,6 +10,12 @@ class SharedViewModel: ViewModel() {
 
     var inCharacterCreation: Boolean = false
 
+    private var _uniqueID = MutableLiveData(0)
+    val uniqueID: LiveData<Int> = _uniqueID
+
+    private var _image = MutableLiveData("")
+    val image: LiveData<String> = _image
+
     private var _name = MutableLiveData("")
     val name: LiveData<String> = _name
 
@@ -256,6 +262,14 @@ class SharedViewModel: ViewModel() {
 
 
     //Setter Functions
+    fun setID(id: Int){
+        _uniqueID.value = id
+    }
+
+    fun setImagePath(path: String){
+        _image.value = path
+    }
+
     fun setName(name: String){
         _name.value = name
     }
@@ -660,13 +674,14 @@ class SharedViewModel: ViewModel() {
 
     fun onSaveFinal(): Character{
 
-        val name = name.value!!
-        val ip = iP.value!!
-        val race = race.value!!
-        val gender = gender.value!!
-        val age = age.value!!
-        val profession = profession.value!!
-        val definingSkill = definingSkill.value!!
+        val imagePath = _image.value!!
+        val name = _name.value!!
+        val ip = _iP.value!!
+        val race = _race.value!!
+        val gender = _gender.value!!
+        val age = _age.value!!
+        val profession = _profession.value!!
+        val definingSkill = _definingSkill.value!!
         val crowns = _crowns.value!!
 
 
@@ -746,7 +761,7 @@ class SharedViewModel: ViewModel() {
         val resistCoercion = _resistCoercion.value!!
         val ritualCrafting = _ritualCrafting.value!!
 
-        return Character(0, name, ip, race, gender, age, profession, definingSkill, crowns,
+        return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             inte, ref, dex, body, spd, emp, cra, will, luck, stun, run, leap, maxHp, hp, maxSta, sta, enc, rec, punch, kick,
             awareness, business, deduction, education, commonSpeech, elderSpeech, dwarven, monsterLore, socialEtiquette,
             streetwise, tactics, teaching, wildernessSurvival, brawling, dodgeEscape, melee, riding, sailing, smallBlades,

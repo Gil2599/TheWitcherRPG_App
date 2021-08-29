@@ -31,7 +31,7 @@ class LauncherActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-        != PackageManager.PERMISSION_GRANTED){
+            != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 111)
         }
 
@@ -57,14 +57,4 @@ class LauncherActivity : AppCompatActivity() {
 
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResult: IntArray
-    ){
-        super.onRequestPermissionsResult(requestCode, permissions, grantResult)
-        if(requestCode == 111 && grantResult[0] == PackageManager.PERMISSION_GRANTED){
-
-        }
-    }
 }

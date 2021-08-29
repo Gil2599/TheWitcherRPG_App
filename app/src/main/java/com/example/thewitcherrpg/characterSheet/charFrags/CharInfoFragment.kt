@@ -41,7 +41,7 @@ class CharInfoFragment : Fragment() {
             showDialogSTA()
         }
         binding.buttonCROWNS.setOnClickListener(){
-
+            showDialogCrowns()
         }
 
         return view
