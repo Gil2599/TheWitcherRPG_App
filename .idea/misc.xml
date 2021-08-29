@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/gradient_bkg.xml" value="0.2703125" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/image_bkg.xml" value="0.2703125" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/img_bkg.xml" value="0.2703125" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/outline_bkg.xml" value="0.2703125" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/transparent_bkg.xml" value="0.2703125" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/unfocused_outline_bkg.xml" value="0.2703125" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_editStats.xml" value="0.4888268156424581" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_edit_stats.xml" value="0.4" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_hp.xml" value="0.5363636363636364" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char.xml" value="0.21403508771929824" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_info.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_skills.xml" value="0.30254184748915064" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/layout/custom_dialog_hp.xml" value="0.36666666666666664" />

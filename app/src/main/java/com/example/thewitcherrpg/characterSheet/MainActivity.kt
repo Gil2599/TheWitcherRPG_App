@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.characterSheet
 
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
@@ -13,6 +14,7 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.data.Character
 import com.example.thewitcherrpg.data.CharacterViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -91,6 +93,12 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setPositiveButton("Yes"){_, _ ->
             mCharViewModel.deleteChar(characterData)
+
+            //Deletes the character image associated with this character
+            val path = sharedViewModel.image.value.toString()
+            val f = File(path, sharedViewModel.uniqueID.value.toString() + ".jpeg")
+            f.delete()
+
             Toast.makeText(this, "Character Deleted", Toast.LENGTH_SHORT).show()
             finish()
         }
@@ -106,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         val charID = characterData.id
         updatedCharacter.id = charID
 
-        Toast.makeText(this, updatedCharacter.hp.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, updatedCharacter.crowns.toString(), Toast.LENGTH_SHORT).show()
 
         mCharViewModel.updateChar(updatedCharacter)
 
@@ -120,6 +128,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun charInit(){
 
+        sharedViewModel.setID(characterData.id)
+        sharedViewModel.setImagePath(characterData.imagePath)
         sharedViewModel.setName(characterData.name)
         sharedViewModel.setIP(characterData.iP)
         sharedViewModel.setRace(characterData.race)
@@ -127,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         sharedViewModel.setAge(characterData.age)
         sharedViewModel.setProfession(characterData.profession)
         sharedViewModel.setDefiningSkill(characterData.definingSkill)
+        sharedViewModel.setCrowns(characterData.crowns)
 
         //Stats
         sharedViewModel.setIntelligence(characterData.intelligence)
