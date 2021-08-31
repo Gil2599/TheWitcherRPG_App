@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.data.Character
@@ -21,12 +22,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mCharViewModel: CharacterViewModel
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var binding: ActivityMainBinding
-    lateinit var visibleFrag: Fragment
     lateinit var characterData: Character
 
-    private val charFragment = CharFragment()
-    private val statsFragment = StatsFragment()
-    private val skillsFragment = SkillsFragment()
+    private lateinit var  charFragment: CharFragment
+    private lateinit var statsFragment: StatsFragment
+    private lateinit var skillsFragment: SkillsFragment
 
     private val sharedViewModel: SharedViewModel by viewModels()
 
@@ -48,26 +48,26 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val fragmentManager = supportFragmentManager
 
-
-        fragmentManager.beginTransaction().add(R.id.fragmentContainerView3, charFragment).setReorderingAllowed(true).commit()
-        visibleFrag = charFragment
-        fragmentManager.beginTransaction().add(R.id.fragmentContainerView3, skillsFragment).hide(skillsFragment).commit()
-        fragmentManager.beginTransaction().add(R.id.fragmentContainerView3, statsFragment).hide(statsFragment).commit()
+        charFragment = CharFragment()
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, charFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
 
         binding.navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.Character -> {
-                    fragmentManager.beginTransaction().hide(visibleFrag).show(charFragment).commit()
-                    visibleFrag = charFragment }
+                    charFragment = CharFragment()
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, charFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
                 R.id.Skills -> {
-                    fragmentManager.beginTransaction().hide(visibleFrag).show(skillsFragment).commit()
-                    visibleFrag = skillsFragment }
+                    skillsFragment = SkillsFragment()
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, skillsFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
                 R.id.Stats -> {
-                    fragmentManager.beginTransaction().hide(visibleFrag).show(statsFragment).commit()
-                    visibleFrag = statsFragment
+                    statsFragment = StatsFragment()
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, statsFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }
-
             drawerLayout.closeDrawer(binding.navView)
             true
         }
