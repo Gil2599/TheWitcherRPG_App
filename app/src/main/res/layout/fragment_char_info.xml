@@ -17,7 +17,7 @@
         android:backgroundTint="@color/dark_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        tools:context=".characterSheet.charFrags.CharInfoFragment">
+        tools:context=".characterSheet.charFrags.QuickStatsFragment">
 
         <LinearLayout
             android:id="@+id/linearLayoutHP"

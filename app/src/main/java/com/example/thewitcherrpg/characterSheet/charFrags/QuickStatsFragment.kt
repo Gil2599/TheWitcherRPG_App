@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.custom_dialog_edit_stats.*
 
 
 
-class CharInfoFragment : Fragment() {
+class QuickStatsFragment : Fragment() {
     private var _bindind: FragmentCharInfoBinding? = null
     private val binding get() = _bindind!!
 

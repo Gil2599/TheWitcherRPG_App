@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="sharedViewModel"
+            type="com.example.thewitcherrpg.characterSheet.SharedViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".characterSheet.charFrags.professionFragment">
+
+        <TextView
+            android:id="@+id/textViewProfessionTitle"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.3"
+            android:layout_height="wrap_content"
+            android:text='@{sharedViewModel.profession}'
+            android:gravity="center"
+            android:textStyle="bold|italic"
+            android:textSize="25sp"
+            android:textColor="@color/grayText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.022" />
+
+        <TextView
+            android:id="@+id/textDefiningSkill"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/outline_bkg"
+            android:gravity="center"
+            android:text="Defining SKill: "
+            android:textColor="@color/teal_200"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewProfessionTitle"
+            app:layout_constraintVertical_bias="0.089" />
+
+        <Button
+            android:id="@+id/buttonHelp"
+            android:layout_width="34dp"
+            android:layout_height="33dp"
+            android:background="@drawable/ic_baseline_help_outline_24"
+            app:layout_constraintBottom_toTopOf="@+id/textDefiningSkill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.855"
+            app:layout_constraintStart_toEndOf="@+id/textViewProfessionTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.219" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

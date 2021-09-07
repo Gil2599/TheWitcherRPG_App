@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="profession_help">
+         1. Defining Skill\n
+        Each profession has a defining skill. This
+        one skill separates this profession from all
+        of the others—an ability that only a person
+        with years of training in that field can acquire.
+        The defining skill is counted in the
+        profession skill package when buying skills.\n\n
+
+        2. Vigor\n
+        Each profession has a starting allowance of
+        Vigor, which represents how much primal
+        chaos you can channel through your body
+        safely to cast spells, perform rituals, and
+        inflict hexes.\n\n
+
+        3. Magic Perks\n
+        Professions with inherent magic have magic
+        perks. These are spells, incantations, hexes,
+        rituals, and signs.\n\n
+
+        4. Skill Package\n
+        Each profession has a skill package which
+        represents general learning over the course
+        of an apprenticeship.\n\n
+
+        5. Starting Gear\n
+        Each profession has starting gear that you
+        can choose from. This are items that you
+        would probably have and use in your daily
+        life, working in that profession.\n\n
+
+    </string>
+
     <string-array name="professions_defSkills_array">
         <item>Bard:Busking</item>
         <item>Criminal:Practiced Paranoia</item>
@@ -145,7 +180,6 @@
         <item>Priest:28,45,41,46,33,34,51,48,11,12</item>
         <item>Witcher:38,22,0,2,14,16,48,25,20,12</item>
         <item>Noble:1</item>
-
 
     </string-array>
 </resources>

@@ -1,8 +1,6 @@
 package com.example.thewitcherrpg.characterSheet
 
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.characterSheet.charFrags.ViewPagerAdapter
 import com.example.thewitcherrpg.databinding.FragmentCharBinding
@@ -19,12 +16,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import android.graphics.Bitmap
 
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
-
 import android.content.ContextWrapper
-import androidx.test.core.app.ApplicationProvider
 import java.lang.Exception
-import android.R
 import android.annotation.SuppressLint
 
 import android.graphics.BitmapFactory
@@ -84,7 +77,7 @@ class CharFragment : Fragment() {
         }
 
         val numTabs = 5
-        val tabTitles = listOf<String>("Character", "Stats", "Armor", "Equipment", "Profession")
+        val tabTitles = listOf<String>("Quick Stats", "Profession", "Armor", "Equipment", "Profession")
 
         tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, numTabs)
 
