@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         val charID = characterData.id
         updatedCharacter.id = charID
 
-        //Toast.makeText(this, updatedCharacter.crowns.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, updatedCharacter.professionSkillA1.toString(), Toast.LENGTH_SHORT).show()
 
         mCharViewModel.updateChar(updatedCharacter)
 
@@ -141,6 +141,17 @@ class MainActivity : AppCompatActivity() {
         sharedViewModel.setProfession(characterData.profession)
         sharedViewModel.setDefiningSkill(characterData.definingSkill)
         sharedViewModel.setCrowns(characterData.crowns)
+
+        //Profession Skills
+        sharedViewModel.setProfessionSkillA1(characterData.professionSkillA1)
+        sharedViewModel.setProfessionSkillA2(characterData.professionSkillA2)
+        sharedViewModel.setProfessionSkillA3(characterData.professionSkillA3)
+        sharedViewModel.setProfessionSkillB1(characterData.professionSkillB1)
+        sharedViewModel.setProfessionSkillB2(characterData.professionSkillB2)
+        sharedViewModel.setProfessionSkillB3(characterData.professionSkillB3)
+        sharedViewModel.setProfessionSkillC1(characterData.professionSkillC1)
+        sharedViewModel.setProfessionSkillC2(characterData.professionSkillC2)
+        sharedViewModel.setProfessionSkillC3(characterData.professionSkillC3)
 
         //Stats
         sharedViewModel.setIntelligence(characterData.intelligence)

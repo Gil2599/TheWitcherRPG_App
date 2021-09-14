@@ -1062,5 +1062,96 @@ class SharedViewModel: ViewModel() {
         else _crowns.value = _crowns.value?.plus(value)
     }
 
+    fun increaseProfSkill(skill: Int){
+        when (skill){
+            1 -> _professionSkillA1.value = if(onProfessionSkillChange(_professionSkillA1.value!!, true, "a2"))
+                _professionSkillA1.value!!.plus(1) else _professionSkillA1.value
+
+            2 -> _professionSkillA2.value = if(onProfessionSkillChange(_professionSkillA2.value!!, true, "a3"))
+                _professionSkillA2.value!!.plus(1) else _professionSkillA2.value
+
+            3 -> _professionSkillA3.value = if(onProfessionSkillChange(_professionSkillA3.value!!, true, "-1"))
+                _professionSkillA3.value!!.plus(1) else _professionSkillA3.value
+
+            4 -> _professionSkillB1.value = if(onProfessionSkillChange(_professionSkillB1.value!!, true, "b2"))
+                _professionSkillB1.value!!.plus(1) else _professionSkillB1.value
+
+            5 -> _professionSkillB2.value = if(onProfessionSkillChange(_professionSkillB2.value!!, true, "b3"))
+                _professionSkillB2.value!!.plus(1) else _professionSkillB2.value
+
+            6 -> _professionSkillB3.value = if(onProfessionSkillChange(_professionSkillB3.value!!, true, "-1"))
+                _professionSkillB3.value!!.plus(1) else _professionSkillB3.value
+
+            7 -> _professionSkillC1.value = if(onProfessionSkillChange(_professionSkillC1.value!!, true, "c2"))
+                _professionSkillC1.value!!.plus(1) else _professionSkillC1.value
+
+            8 -> _professionSkillC2.value = if(onProfessionSkillChange(_professionSkillC2.value!!, true, "c3"))
+                _professionSkillC2.value!!.plus(1) else _professionSkillC2.value
+
+            9 -> _professionSkillC3.value = if(onProfessionSkillChange(_professionSkillC3.value!!, true, "-1"))
+                _professionSkillC3.value!!.plus(1) else _professionSkillC3.value
+        }
+    }
+
+    fun decreaseProfSkill(skill: Int){
+        when (skill){
+            1 -> _professionSkillA1.value = if(onProfessionSkillChange(_professionSkillA1.value!!, false, "a2"))
+                _professionSkillA1.value!!.minus(1) else _professionSkillA1.value
+
+            2 -> _professionSkillA2.value = if(onProfessionSkillChange(_professionSkillA2.value!!, false, "a3"))
+                _professionSkillA2.value!!.minus(1) else _professionSkillA2.value
+
+            3 -> _professionSkillA3.value = if(onProfessionSkillChange(_professionSkillA3.value!!, false, "-1"))
+                _professionSkillA3.value!!.minus(1) else _professionSkillA3.value
+
+            4 -> _professionSkillB1.value = if(onProfessionSkillChange(_professionSkillB1.value!!, false, "b2"))
+                _professionSkillB1.value!!.minus(1) else _professionSkillB1.value
+
+            5 -> _professionSkillB2.value = if(onProfessionSkillChange(_professionSkillB2.value!!, false, "b3"))
+                _professionSkillB2.value!!.minus(1) else _professionSkillB2.value
+
+            6 -> _professionSkillB3.value = if(onProfessionSkillChange(_professionSkillB3.value!!, false, "-1"))
+                _professionSkillB3.value!!.minus(1) else _professionSkillB3.value
+
+            7 -> _professionSkillC1.value = if(onProfessionSkillChange(_professionSkillC1.value!!, false, "c2"))
+                _professionSkillC1.value!!.minus(1) else _professionSkillC1.value
+
+            8 -> _professionSkillC2.value = if(onProfessionSkillChange(_professionSkillC2.value!!, false, "c3"))
+                _professionSkillC2.value!!.minus(1) else _professionSkillC2.value
+
+            9 -> _professionSkillC3.value = if(onProfessionSkillChange(_professionSkillC3.value!!, false, "-1"))
+                _professionSkillC3.value!!.minus(1) else _professionSkillC3.value
+        }
+    }
+
+    private fun onProfessionSkillChange(value: Int, increase: Boolean, nextSkill: String): Boolean{
+
+        var newIP = iP.value!!
+
+        if (increase) {
+            if (iP.value!! > 0 && value < 10) {
+                newIP -= 1
+            } else return false
+        }
+
+        if (!increase) {
+            if (value > 0) {
+                when (nextSkill){
+                    "a2" -> if (_professionSkillA2.value!! > 0) return false
+                    "a3" -> if (_professionSkillA3.value!! > 0) return false
+                    "b2" -> if (_professionSkillB2.value!! > 0) return false
+                    "b3" -> if (_professionSkillB3.value!! > 0) return false
+                    "c2" -> if (_professionSkillC2.value!! > 0) return false
+                    "c3" -> if (_professionSkillC3.value!! > 0) return false
+                }
+                newIP += 1
+            } else return false
+        }
+        _iP.value = newIP
+
+        return true
+
+    }
+
 }
 

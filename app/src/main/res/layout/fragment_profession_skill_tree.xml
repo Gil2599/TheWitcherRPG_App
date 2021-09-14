@@ -165,8 +165,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/purple_200"
-            android:clickable="true"
+            android:backgroundTint="@color/gray"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
             app:layout_constraintHeight_percent="0.13"
@@ -177,23 +176,59 @@
             <TextView
                 android:id="@+id/textViewSkillA3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/purple_200" />
+                android:textColor="@color/gray" />
 
-            <TextView
-                android:id="@+id/SkillA3"
+            <LinearLayout
+                android:id="@+id/linearLayoutA3Skill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text='@{`` + sharedViewModel.hp}'
-                android:textColor="@color/purple_200"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonA3Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillA3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.professionSkillA3}'
+                    android:textColor="@color/purple_200"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonA3Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -202,9 +237,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/purple_200"
-            android:clickable="true"
+            android:backgroundTint="@color/gray"
             android:orientation="vertical"
+            android:clickable="false"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
             app:layout_constraintHeight_percent="0.13"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
@@ -214,23 +249,59 @@
             <TextView
                 android:id="@+id/textViewSkillA2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/purple_200" />
+                android:textColor="@color/gray" />
 
-            <TextView
-                android:id="@+id/SkillA2"
+            <LinearLayout
+                android:id="@+id/linearLayoutA2Skill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text='@{`` + sharedViewModel.hp}'
-                android:textColor="@color/purple_200"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonA2Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillA2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.professionSkillA2}'
+                    android:textColor="@color/purple_200"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonA2Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -285,7 +356,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.hp}'
+                    android:text='@{`` + sharedViewModel.professionSkillA1}'
                     android:textColor="@color/purple_200"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -342,23 +413,59 @@
             <TextView
                 android:id="@+id/textViewSkillB3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/green" />
 
-            <TextView
-                android:id="@+id/SkillB3"
+            <LinearLayout
+                android:id="@+id/linearLayoutB3Skill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text='@{`` + sharedViewModel.hp}'
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonB3Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillB3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.professionSkillB3}'
+                    android:textColor="@color/purple_200"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonB3Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -379,23 +486,59 @@
             <TextView
                 android:id="@+id/textViewSkillB2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/green" />
 
-            <TextView
-                android:id="@+id/SkillB2"
+            <LinearLayout
+                android:id="@+id/linearLayoutB2Skill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text='@{`` + sharedViewModel.hp}'
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonB2Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillB2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.professionSkillB2}'
+                    android:textColor="@color/purple_200"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonB2Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -450,8 +593,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.hp}'
-                    android:textColor="@color/purple_200"
+                    android:text='@{`` + sharedViewModel.professionSkillB1}'
+                    android:textColor="@color/green"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -541,8 +684,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.hp}'
-                    android:textColor="@color/purple_200"
+                    android:text='@{`` + sharedViewModel.professionSkillC1}'
+                    android:textColor="@color/red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -580,23 +723,59 @@
             <TextView
                 android:id="@+id/textViewSkillC2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/red" />
 
-            <TextView
-                android:id="@+id/SkillC2"
+            <LinearLayout
+                android:id="@+id/linearLayoutC2Skill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text='@{`` + sharedViewModel.hp}'
-                android:textColor="@color/red"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonC2Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillC2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.professionSkillC2}'
+                    android:textColor="@color/red"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonC2Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -617,23 +796,59 @@
             <TextView
                 android:id="@+id/textViewSkillC3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/red" />
 
-            <TextView
-                android:id="@+id/SkillC3"
+            <LinearLayout
+                android:id="@+id/linearLayoutC3Skill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text='@{`` + sharedViewModel.hp}'
-                android:textColor="@color/red"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonC3Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillC3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.professionSkillC3}'
+                    android:textColor="@color/red"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonC3Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
