@@ -59,12 +59,15 @@ class MainActivity : AppCompatActivity() {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, charFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
                 R.id.Skills -> {
-                    skillsFragment = SkillsFragment()
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, skillsFragment)
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
                 R.id.Stats -> {
                     statsFragment = StatsFragment()
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, statsFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                }
+                R.id.ProfessionSkillTree -> {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, ProfessionSkillTree())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }

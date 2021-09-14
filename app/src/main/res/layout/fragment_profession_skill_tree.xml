@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="sharedViewModel"
+            type="com.example.thewitcherrpg.characterSheet.SharedViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".characterSheet.ProfessionSkillTree">
+
+        <ImageView
+            android:id="@+id/arrow9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutB2"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutB2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutB2"
+            app:tint="@color/green"/>
+
+        <ImageView
+            android:id="@+id/arrow8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutC1"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutC1"
+            app:tint="@color/red"/>
+
+        <ImageView
+            android:id="@+id/arrow7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutC2"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutC2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutC2"
+            app:tint="@color/red"/>
+
+        <ImageView
+            android:id="@+id/arrow6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutB1"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutB1"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutB1"
+            app:tint="@color/green"/>
+
+        <ImageView
+            android:id="@+id/arrow5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutA2"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutA2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutA2"
+            app:tint="@color/purple_200"/>
+
+        <ImageView
+            android:id="@+id/arrow4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutA1"
+            app:tint="@color/purple_200"/>
+
+        <ImageView
+            android:id="@+id/arrow3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/arrow2"
+            app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
+            app:tint="@color/red"/>
+
+        <ImageView
+            android:id="@+id/arrow2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/arrow3"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/arrow1"
+            app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
+            app:tint="@color/green"/>
+
+        <ImageView
+            android:id="@+id/arrow1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/arrow2"
+            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
+            app:tint="@color/purple_200" />
+
+        <Button
+            android:id="@+id/buttonDefiningSkill"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.1"
+            android:background="@drawable/outline_bkg"
+            android:text='@{sharedViewModel.definingSkill}'
+            android:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.047" />
+
+        <TextView
+            android:id="@+id/firstSkillTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
+            app:layout_constraintTop_toBottomOf="@+id/arrow1"
+            app:layout_constraintWidth_percent="0.27" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutA3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/purple_200"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
+            app:layout_constraintTop_toBottomOf="@+id/arrow5"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillA3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/purple_200" />
+
+            <TextView
+                android:id="@+id/SkillA3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text='@{`` + sharedViewModel.hp}'
+                android:textColor="@color/purple_200"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutA2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/purple_200"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
+            app:layout_constraintTop_toBottomOf="@+id/arrow4"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillA2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/purple_200" />
+
+            <TextView
+                android:id="@+id/SkillA2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text='@{`` + sharedViewModel.hp}'
+                android:textColor="@color/purple_200"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutA1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/purple_200"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutB1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstSkillTitle"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillA1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/purple_200" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutA1Skill"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonA1Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillA1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.hp}'
+                    android:textColor="@color/purple_200"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonA1Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/secondSkillTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:textColor="@color/green"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutB1"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutB1"
+            app:layout_constraintTop_toBottomOf="@+id/arrow2"
+            app:layout_constraintWidth_percent="0.27" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutB3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/green"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutB2"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutB2"
+            app:layout_constraintTop_toBottomOf="@+id/arrow9"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillB3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/green" />
+
+            <TextView
+                android:id="@+id/SkillB3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text='@{`` + sharedViewModel.hp}'
+                android:textColor="@color/green"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutB2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/green"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutB1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutB1"
+            app:layout_constraintTop_toBottomOf="@+id/arrow6"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillB2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/green" />
+
+            <TextView
+                android:id="@+id/SkillB2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text='@{`` + sharedViewModel.hp}'
+                android:textColor="@color/green"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutB1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/green"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutC1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutA1"
+            app:layout_constraintTop_toBottomOf="@+id/secondSkillTitle"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillB1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/green" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutB1Skill"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonB1Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillB1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.hp}'
+                    android:textColor="@color/purple_200"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonB1Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/thirdSkillTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.04"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="13sp"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutC1"
+            app:layout_constraintTop_toBottomOf="@+id/arrow3"
+            app:layout_constraintWidth_percent="0.27" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutC1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/red"
+            android:orientation="vertical"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutB1"
+            app:layout_constraintTop_toBottomOf="@+id/thirdSkillTitle"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillC1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/red" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutC1Skill"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/buttonC1Minus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/SkillC1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text='@{`` + sharedViewModel.hp}'
+                    android:textColor="@color/purple_200"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonC1Plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:clickable="true"
+                    android:background="@drawable/transparent_bkg"
+                    android:foreground="@drawable/ripple_bkg"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutC2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/red"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutC1"
+            app:layout_constraintTop_toBottomOf="@+id/arrow8"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillC2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/SkillC2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text='@{`` + sharedViewModel.hp}'
+                android:textColor="@color/red"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutC3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/outline_bkg"
+            android:backgroundTint="@color/red"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/arrow7"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintStart_toStartOf="@+id/arrow7"
+            app:layout_constraintTop_toBottomOf="@+id/arrow7"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/textViewSkillC3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/SkillC3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text='@{`` + sharedViewModel.hp}'
+                android:textColor="@color/red"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

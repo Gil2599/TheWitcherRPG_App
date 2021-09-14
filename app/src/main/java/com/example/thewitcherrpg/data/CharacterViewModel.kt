@@ -4,9 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.thewitcherrpg.data.Character
-import com.example.thewitcherrpg.data.CharacterDatabase
-import com.example.thewitcherrpg.data.CharacterRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

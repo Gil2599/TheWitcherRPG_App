@@ -63,6 +63,8 @@ class QuickStatsFragment : Fragment() {
 
         dialog.textView.text = sharedViewModel.hp.value.toString()
 
+        dialog.editText.requestFocus()
+
         dialog.buttonPlus.setOnClickListener(){
             val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
             sharedViewModel.onHealthChange(value)
@@ -89,6 +91,8 @@ class QuickStatsFragment : Fragment() {
 
         dialog.textView.text = sharedViewModel.sta.value.toString()
 
+        dialog.editText.requestFocus()
+
         dialog.buttonPlus.setOnClickListener(){
             val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
             sharedViewModel.onStaminaChange(value)
@@ -114,6 +118,8 @@ class QuickStatsFragment : Fragment() {
         dialog.textViewCurrent.text = "CURRENT CROWNS"
 
         dialog.textView.text = sharedViewModel.crowns.value.toString()
+
+        dialog.editText.requestFocus()
 
         dialog.buttonPlus.setOnClickListener(){
             sharedViewModel.onCrownsChange(dialog.editText.text.toString().toInt())

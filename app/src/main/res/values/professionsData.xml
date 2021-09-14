@@ -36,22 +36,22 @@
     </string>
 
     <string-array name="professions_defSkills_array">
-        <item>Bard:Busking</item>
-        <item>Criminal:Practiced Paranoia</item>
-        <item>Craftsman:Patch Job</item>
-        <item>Doctor:Healing Hands</item>
-        <item>Mage:Magic Training</item>
-        <item>Man At Arms:Tough As Nails</item>
-        <item>Priest:Initiate of the Gods</item>
-        <item>Witcher:Witcher Training</item>
-        <item>Merchant:Well Traveled</item>
+        <item>Bard:Busking (EMP)</item>
+        <item>Criminal:Practiced Paranoia (INT)</item>
+        <item>Craftsman:Patch Job (CRA)</item>
+        <item>Doctor:Healing Hands (CRA)</item>
+        <item>Mage:Magic Training (INT)</item>
+        <item>Man At Arms:Tough As Nails (BODY)</item>
+        <item>Priest:Initiate of the Gods (EMP)</item>
+        <item>Witcher:Witcher Training (INT)</item>
+        <item>Merchant:Well Traveled (INT)</item>
         <item>Noble:N/A</item>
         <item>Peasant:N/A</item>
     </string-array>
 
     <string-array name="defSkills_data_array">
 
-        <item>Busking:A Bard is a wonderful thing to have around,
+        <item>Busking (EMP):A Bard is a wonderful thing to have around,
             especially when the party’s low on money. A
             Bard can take an hour and make a Busking
             roll in the nearest town center. The total of
@@ -64,7 +64,7 @@
             to Charisma with anyone in the town for the
             rest of the day</item>
 
-        <item>Practiced Paranoia:Whether they’re an assassin, a thief,
+        <item>Practiced Paranoia (INT):Whether they’re an assassin, a thief,
             a counterfeiter, or a smuggler, criminals all share a practiced
             paranoia that keeps them out of trouble.
             Whenever a Criminal comes within 10m of a
@@ -75,7 +75,7 @@
             Even if they don’t succeed in spotting the trap,
             they are still aware that something is wrong</item>
 
-        <item>Patch Job:A skilled craftsman can patch a weapon or
+        <item>Patch Job (CRA):A skilled craftsman can patch a weapon or
             armor well enough to keep it working and
             keep its wearer/wielder in the fight, whether
             that be by tying a bowstring back together, sharpening the edge of a broken blade or
@@ -87,7 +87,7 @@
             Until fixed at a forge, a patched weapon does
             half its normal damage.</item>
 
-        <item>Healing Hands:Anyone can apply some ointment and wrap
+        <item>Healing Hands (CRA):Anyone can apply some ointment and wrap
             a bandage around a cut, but a Doctor has
             true medical training which allows them to
             perform complex surgeries. A Doctor with
@@ -100,7 +100,7 @@
             Healing Hands can also be used for any First
             Aid task.</item>
 
-        <item>Magic Training:To qualify as a Mage a magically
+        <item>Magic Training (INT):To qualify as a Mage a magically
             adept person must pass through the halls of one of the
             world’s magical academies and learn the
             fundamentals of the magical arts. A Mage can roll
@@ -113,7 +113,7 @@
             be rolled as a form of Awareness that detects
             magic that is in use, or specters.</item>
 
-        <item>Tough As Nails:True Men At Arms like the Blue
+        <item>Tough As Nails (BODY):True Men At Arms like the Blue
             Stripes of Temeria and the Impera Brigade of Nilfgaard are
             hardened soldiers who never give in or surrender.
             When a Man At Arms falls to or below 0 Health, they can roll Tough As Nails at
@@ -125,7 +125,7 @@
             them to make another roll against a DC based
             on their Health.</item>
 
-        <item>Initiate of the Gods:The churches of the world are often warm
+        <item>Initiate of the Gods (EMP):The churches of the world are often warm
             and inviting places, helping their communities and welcoming new converts. A Priest
             can roll Initiate of the Gods at a DC set by
             the GM at churches of the same faith to get
@@ -137,7 +137,7 @@
             mind that Initiate of the Gods does not work
             with members of other faiths.</item>
 
-        <item>Witcher Training:Most of a Witcher’s early life is spent within
+        <item>Witcher Training (INT):Most of a Witcher’s early life is spent within
             the walls of their keep, studying huge, dusty
             tomes and going through hellish combat
             training. Many have argued that the Witcher’s
@@ -149,7 +149,7 @@
             1). Witcher Training can also be used in any
             situation that you would normally use Monster Lore for</item>
 
-        <item>Well Traveled:Your average merchant makes a living from
+        <item>Well Traveled (INT):Your average merchant makes a living from
             trade and that trade brings in customers
             from all around. But a traveling merchant
             goes to their customers, wandering the roads
@@ -180,6 +180,60 @@
         <item>Priest:28,45,41,46,33,34,51,48,11,12</item>
         <item>Witcher:38,22,0,2,14,16,48,25,20,12</item>
         <item>Noble:1</item>
+    </string-array>
+    
+    <string-array name="profession_skill_trees">
+
+        <item>Busking (EMP):The Charmer,The Informant,The Manipulator,
+            Return Act (EMP),Raise A Crowd (EMP),Good Friend (EMP),
+            Fade (INT),Spread The Word (INT),Acclimatize (INT),
+            Poison The Well (EMP),Needling (EMP),Et Tu Brute (EMP)</item>
+
+        <item>Practiced Paranoia (INT):The Thief,The Gang Boss,The Assassin,
+            Case The Area (INT),Weak Spot (EMP),Careful Aim (DEX),
+            Mental Key (INT),Marked Man (WILL),Eye Gouge (DEX),
+            Go To Ground (INT),Rally (WILL),Assassin Strike (DEX)</item>
+
+        <item>Patch Job (CRA):The Forge Master,The Alchemist,The Improviser,
+            Extensive Catalogue (INT),Journeyman (CRA),Master Crafting (CRA),
+            Mental Pharmacy (INT),Double Dose (CRA),Adaptation (CRA),
+            Augmentation (CRA),Silver Coating (CRA),Pinpoint (CRA)</item>
+
+        <item>Healing Hands (CRA):The Surgeon,The Herbalist,The Anatomist,
+            Diagnose (INT),Analysis (INT),Effective Surgery (CRA),
+            Healing Tent (CRA),Improvisation (INT),Herbal Remedy (CRA),
+            Bleeding Wound (INT),Practical Carnage (INT),Crippling Wound (INT)</item>
+
+        <item>Magic Training (INT):The Politician,The Scientist,The Arch Mage,
+            Scheming (INT),Grape Vine (INT), Assets (INT),
+            Reverse Engineer (INT),Distillation (CRA),Mutate (INT),
+            In Touch,Immutable (WILL),Expanded Magic (WILL)</item>
+
+        <item>Tough As Nails (BODY):The Marksman,The Bounty Hunter,The Reaver,
+            Extreme Range (DEX),Twin Shot (DEX),Pin Point Aim (DEX),
+            Bloodhound (INT),Booby Trap (CRA),Tactical Awareness (INT),
+            Fury (WILL),Zweihand (BODY),Shrug It Off (BODY)</item>
+
+        <item>Initiate of the Gods (EMP):The Preacher,The Druid,The Fanatic,
+            Divine Power,Divine Authority (EMP),Precognition (WILL),
+            Nature Attunement,Read Nature (INT),Animal Compact (WILL),
+            Blood Rituals (WILL),Fervor (EMP),Word of God (EMP)</item>
+
+        <item>Witcher Training (INT):The Spellsword,The Mutant,The Slayer,
+            Meditation,Magical Source,Heliotrope (WILL),
+            Iron Stomach,Frenzy,Transmutation (BODY),
+            Parry Arrows (DEX),Quick Strike (REF),Whirl (REF)</item>
+
+        <item>Well Traveled (INT):The Broker,The Contact,The Havekar,
+            Options (INT),Hard Bargain (EMP),Promise (EMP),
+            Rookery (EMP),Insider (INT),Treasure Map (INT),
+            Well Connected (WILL),Fence (INT),Warrior Debt (EMP)</item>
+
+        <item>Noble:N/A</item>
+        <item>Peasant:N/A</item>
+
 
     </string-array>
+    
+    
 </resources>

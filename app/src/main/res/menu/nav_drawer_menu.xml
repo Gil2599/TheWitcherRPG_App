@@ -17,6 +17,11 @@
         android:icon="@drawable/ic_skills_icon"/>
 
     <item
+        android:id="@+id/ProfessionSkillTree"
+        android:title="Profession Skill Tree"
+        android:icon="@drawable/ic_baseline_tree_icon"/>
+
+    <item
         android:id="@+id/Spells"
         android:title="Magic"
         android:icon="@drawable/ic_magic_icon" />

@@ -41,6 +41,34 @@ class SharedViewModel: ViewModel() {
     val crowns: LiveData<Int> = _crowns
 
 
+    //Profession Skills
+    private var _professionSkillA1 = MutableLiveData(0)
+    val professionSkillA1: LiveData<Int> = _professionSkillA1
+
+    private var _professionSkillA2 = MutableLiveData(0)
+    val professionSkillA2: LiveData<Int> = _professionSkillA2
+
+    private var _professionSkillA3 = MutableLiveData(0)
+    val professionSkillA3: LiveData<Int> = _professionSkillA3
+
+    private var _professionSkillB1 = MutableLiveData(0)
+    val professionSkillB1: LiveData<Int> = _professionSkillB1
+
+    private var _professionSkillB2 = MutableLiveData(0)
+    val professionSkillB2: LiveData<Int> = _professionSkillB2
+
+    private var _professionSkillB3 = MutableLiveData(0)
+    val professionSkillB3: LiveData<Int> = _professionSkillB3
+
+    private var _professionSkillC1 = MutableLiveData(0)
+    val professionSkillC1: LiveData<Int> = _professionSkillC1
+
+    private var _professionSkillC2 = MutableLiveData(0)
+    val professionSkillC2: LiveData<Int> = _professionSkillC2
+
+    private var _professionSkillC3 = MutableLiveData(0)
+    val professionSkillC3: LiveData<Int> = _professionSkillC3
+
     //Stats
     private var _intelligence = MutableLiveData(0)
     val intelligence: LiveData<Int> = _intelligence
@@ -299,6 +327,42 @@ class SharedViewModel: ViewModel() {
 
     fun setCrowns(crowns: Int){
         _crowns.value = crowns
+    }
+
+    fun setProfessionSkillA1(value: Int){
+        _professionSkillA1.value = value
+    }
+
+    fun setProfessionSkillA2(value: Int){
+        _professionSkillA2.value = value
+    }
+
+    fun setProfessionSkillA3(value: Int){
+        _professionSkillA3.value = value
+    }
+
+    fun setProfessionSkillB1(value: Int){
+        _professionSkillB1.value = value
+    }
+
+    fun setProfessionSkillB2(value: Int){
+        _professionSkillB2.value = value
+    }
+
+    fun setProfessionSkillB3(value: Int){
+        _professionSkillB3.value = value
+    }
+
+    fun setProfessionSkillC1(value: Int){
+        _professionSkillC1.value = value
+    }
+
+    fun setProfessionSkillC2(value: Int){
+        _professionSkillC2.value = value
+    }
+
+    fun setProfessionSkillC3(value: Int){
+        _professionSkillC3.value = value
     }
 
     fun setIntelligence(intelligence: Int){
@@ -707,6 +771,17 @@ class SharedViewModel: ViewModel() {
         val punch = _punch.value!!
         val kick = _kick.value!!
 
+        //Profession Skills
+        val professionSkillA1 = _professionSkillA1.value!!
+        val professionSkillA2 = _professionSkillA2.value!!
+        val professionSkillA3 = _professionSkillA3.value!!
+        val professionSkillB1 = _professionSkillB1.value!!
+        val professionSkillB2 = _professionSkillB2.value!!
+        val professionSkillB3 = _professionSkillB3.value!!
+        val professionSkillC1 = _professionSkillC1.value!!
+        val professionSkillC2 = _professionSkillC2.value!!
+        val professionSkillC3 = _professionSkillC3.value!!
+
         //Skills
         val awareness = _awareness.value!!
         val business = _business.value!!
@@ -762,7 +837,9 @@ class SharedViewModel: ViewModel() {
         val ritualCrafting = _ritualCrafting.value!!
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
-            inte, ref, dex, body, spd, emp, cra, will, luck, stun, run, leap, maxHp, hp, maxSta, sta, enc, rec, punch, kick,
+            professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
+            professionSkillC1, professionSkillC2, professionSkillC3, inte, ref, dex, body, spd, emp, cra, will, luck,
+            stun, run, leap, maxHp, hp, maxSta, sta, enc, rec, punch, kick,
             awareness, business, deduction, education, commonSpeech, elderSpeech, dwarven, monsterLore, socialEtiquette,
             streetwise, tactics, teaching, wildernessSurvival, brawling, dodgeEscape, melee, riding, sailing, smallBlades,
             staffSpear, swordsmanship, archery, athletics, crossbow, sleightOfHand, stealth, physique, endurance, charisma,

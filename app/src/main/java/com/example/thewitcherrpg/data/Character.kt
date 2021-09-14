@@ -20,6 +20,17 @@ data class Character(
     var definingSkill: String,
     var crowns: Int,
 
+    //Profession Skills
+    var professionSkillA1: Int,
+    var professionSkillA2: Int,
+    var professionSkillA3: Int,
+    var professionSkillB1: Int,
+    var professionSkillB2: Int,
+    var professionSkillB3: Int,
+    var professionSkillC1: Int,
+    var professionSkillC2: Int,
+    var professionSkillC3: Int,
+
     //Stats
     var intelligence: Int,
     var reflex: Int,
