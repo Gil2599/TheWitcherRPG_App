@@ -14,8 +14,8 @@ import com.example.thewitcherrpg.R
 
 
 class SkillsFragment : Fragment() {
-    private var _bindind: FragmentSkillsBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentSkillsBinding? = null
+    private val binding get() = _binding!!
 
     private var focusedView: EditText? = null
 
@@ -27,7 +27,7 @@ class SkillsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = DataBindingUtil.inflate(inflater, R.layout.fragment_skills, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_skills, container, false)
         val view = binding.root
 
         binding.lifecycleOwner = this
@@ -403,7 +403,7 @@ class SkillsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _bindind = null
+        _binding = null
     }
 }
 

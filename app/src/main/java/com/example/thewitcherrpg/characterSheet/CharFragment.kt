@@ -28,8 +28,8 @@ import java.io.*
 
 
 class CharFragment : Fragment() {
-    private var _bindind: FragmentCharBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentCharBinding? = null
+    private val binding get() = _binding!!
     private lateinit var tabAdapter: ViewPagerAdapter
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -59,7 +59,7 @@ class CharFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = FragmentCharBinding.inflate(inflater, container, false)
+        _binding = FragmentCharBinding.inflate(inflater, container, false)
         val view = binding.root
 
         binding.lifecycleOwner = this
@@ -96,7 +96,7 @@ class CharFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _bindind = null
+        _binding = null
     }
 
     private fun saveToInternalStorage(bitmapImage: Bitmap): String? {

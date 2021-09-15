@@ -18,8 +18,8 @@ import com.example.thewitcherrpg.characterSheet.SharedViewModel
 
 
 class CharCreationFirstFrag : Fragment() {
-    private var _bindind: FragmentCharCreationFirstBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentCharCreationFirstBinding? = null
+    private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -31,7 +31,7 @@ class CharCreationFirstFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = FragmentCharCreationFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentCharCreationFirstBinding.inflate(inflater, container, false)
         val view = binding.root
 
         onInit()
@@ -230,6 +230,6 @@ class CharCreationFirstFrag : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _bindind = null
+        _binding = null
     }
 }

@@ -135,16 +135,28 @@
             android:id="@+id/buttonDefiningSkill"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.1"
+            android:autoSizeTextType="uniform"
             android:background="@drawable/outline_bkg"
             android:text='@{sharedViewModel.definingSkill}'
-            android:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.047" />
+            app:layout_constraintVertical_bias="0.074" />
+
+        <Button
+            android:id="@+id/buttonHelp"
+            android:layout_width="34dp"
+            android:layout_height="33dp"
+            android:background="@drawable/ic_baseline_help_outline_24"
+            app:layout_constraintBottom_toTopOf="@+id/arrow3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.757"
+            app:layout_constraintStart_toEndOf="@+id/buttonDefiningSkill"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.225" />
 
         <TextView
             android:id="@+id/firstSkillTitle"
@@ -851,6 +863,21 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView55"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text='@{"IP: " + sharedViewModel.IP}'
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/buttonDefiningSkill"
+            app:layout_constraintEnd_toEndOf="@+id/buttonDefiningSkill"
+            app:layout_constraintStart_toStartOf="@+id/buttonDefiningSkill"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.753" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

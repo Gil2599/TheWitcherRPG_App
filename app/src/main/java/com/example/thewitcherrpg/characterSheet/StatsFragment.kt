@@ -12,13 +12,12 @@ import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.R
 
 
 class StatsFragment : Fragment() {
-    private var _bindind: FragmentStatsBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentStatsBinding? = null
+    private val binding get() = _binding!!
 
     private var focusedView: EditText? = null
     private var inCharCreation = false
@@ -30,7 +29,7 @@ class StatsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = DataBindingUtil.inflate(inflater, R.layout.fragment_stats, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_stats, container, false)
         val view = binding.root
 
         binding.lifecycleOwner = this

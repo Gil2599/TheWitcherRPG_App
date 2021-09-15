@@ -234,6 +234,899 @@
 
 
     </string-array>
-    
-    
+
+    <string-array name="bard_skills_info">
+
+        <item>Return Act (EMP):Before attempting a Busking
+            roll a Bard can roll Return Act
+            at a DC set by the GM to see
+            whether they have played in
+            this town before. If the roll is
+            successful the Bard has made
+            a name for themselves in this
+            town already. Not only is their
+            Busking income doubled but
+            they gain a +2 Charisma with
+            everyone in at that venue.</item>
+
+        <item>Raise A Crowd (EMP):By taking a full round
+            to perform, you can roll Raise A
+            Crowd to captivate anyone
+            within 20m. Anyone who
+            doesn’t make a Resist Coercion
+            roll higher than your initial roll
+            can do nothing but watch you
+            perform until they succeed at
+            rolling above your initial roll. If
+            attacked a target will snap out
+            of it.</item>
+
+        <item>Good Friend (EMP):Once per session a Bard can
+            make a Good Friend roll to
+            find a friend to aid them. Take
+            the total roll and split these
+            points up between the 3 categories in the Good Friend
+            chart in the sidebar. This is friend
+            will do one reasonable thing
+            for old times’ sake, then cannot
+            be called on again for free and
+            must be convinced.</item>
+
+        <item>Fade (INT):A Bard can make a Fade
+            roll against multiple targets’
+            Awareness rolls to fade into
+            the background. This ability allows a Bard to hide even
+            when there are no good hiding
+            places, by slipping into a conversation, drawing attention to
+            something else, or the like. This
+            ability doesn’t work if you are
+            wearing really flashy clothing.</item>
+
+        <item>Spread The Word (INT):A Bard who rolls a successful
+            Deceit roll against a target can
+            then roll Spread the Word
+            against the target’s Resist Coercion roll. If they succeed the
+            target spreads the Bard’s lie
+            around the target’s settlement
+            or group, giving the Bard a +2
+            to Deceit when trying to pass
+            off that lie again to someone
+            else.</item>
+
+        <item>Acclimatize (INT):When in a settlement a Bard
+            can roll Acclimatize (See Acclimatize chart for DC).
+            If successful, the Bard learns how to
+            appear as a local and will no
+            longer be treated as an outsider. This grants
+            a +2 to Charisma and Persuasion with locals
+            and means that they won’t be
+            questioned or harassed like an
+            outsider.</item>
+
+        <item>Poison The Well (EMP):A Bard can make a Poison
+            The Well roll against a target’s
+            EMPx3 when they are trying to influence a person or
+            people. If successful, the Bard
+            makes a pointed comment that
+            imposes a -1 for each point
+            they rolled above the DC to the
+            target’s Seduction, Persuasion,
+            Leadership, Intimidation or
+            Charisma rolls.</item>
+
+        <item>Needling (EMP):A Bard can make a Needling
+            roll against a target’s Resist
+            Coercion roll. If successful,
+            the bard goads them with obscenities and threats until they
+            attack. The target takes a negative to their attack and defense
+            equal to half the Bard’s Needling value, lasting for as many
+            rounds as the Needling value.</item>
+
+        <item>Et Tu Brute (EMP):A Bard can roll Et Tu Brute
+            against a target’s WILLx3 to
+            turn them against one ally. If
+            successful the Bard’s lies and
+            half-truths makes the target
+            treat that ally with mistrust and
+            animosity for as many days as
+            the Et Tu Brute value or until
+            they make a Resist Coercion
+            roll that beats the Et Tu Brute
+            roll.</item>
+
+    </string-array>
+
+    <string-array name="craftsman_skills_info">
+
+        <item>Extensive Catalogue (INT):A skilled Craftsman can keep a
+            mental catalogue of diagrams
+            in their head at all times. When
+            a Craftsman has memorized
+            as many diagrams as they can,
+            they may roll Extensive Catalogue at DC:15 to memorize
+            one more. There is no limit, but
+            every 10 diagrams they have
+            memorized adds 1 to the DC.</item>
+
+        <item>Journeyman (CRA):A Craftsman who begins crafting
+            an item can roll Journeyman at a DC equal to the item’s
+            crafting DC. If they succeed
+            they add +1 DMG for weapons
+            or +1 SP for armor for every
+            2 points they rolled above the
+            DC. The maximum bonus
+            they can give to DMG or SP is 5.</item>
+
+        <item>Master Crafting (CRA):Master Crafting allows a
+            Craftsman to make items that
+            are master grade. They can also
+            roll a Master Crafting roll at
+            any time at a DC equal to the
+            item’s crafting DC to permanently grant armor resistance
+            (their choice which) or weapons a 50% bleeding or -2 Stun
+            value based on damage type. </item>
+
+        <item>Mental Pharmacy (INT):A skilled Craftsman can keep
+            a mental catalogue of formulae
+            in their head at all times. When
+            a Craftsman has memorized
+            as many formulae as they can,
+            they may roll Mental Pharmacy at DC:15 to memorize one
+            more. There is no limit, but
+            every 10 formulae they have
+            memorized adds 1 to the DC.</item>
+
+        <item>Double Dose (CRA):Any time a craftsman sets out
+            to make an alchemical item
+            they can make a Double Dose
+            roll at a DC equal to the formula’s crafting DC. If they succeed
+            they create two units of the
+            formula with the ingredients
+            of one. This applies to all items
+            created with alchemy, including potions, oils, decoctions,
+            and bombs.</item>
+
+        <item>Adaptation (CRA):Craftsmen can roll
+            an Adaptation check (3 + the crafting
+            DC) before making a witcher
+            potion to lower its DC to avoid
+            poisoning by 1 for every point
+            over the crafting DC. If they
+            fail, the potion comes out as
+            poisonous as it normally would
+            be. The DC to avoid poisoning
+            can never be lower than 12.</item>
+
+        <item>Augmentation (CRA):A Craftsman can make an
+            Augmentation roll at a DC
+            listed in the Augmentation
+            chart to augment a weapon
+            or Armor with their crafting
+            tools. This augmentation takes
+            3 rounds. While a forge isn’t required,
+            it grants a +2 to the roll.
+            A fumble results in the item
+            taking damage equal to the
+            fumble value.</item>
+
+        <item>Silver Coating (CRA):A Craftsman can
+            coat an existing weapon in silver with a
+            forge and a number of units
+            of silver ingots based on the
+            size of the weapon. The DC for
+            this roll is 16. If you succeed,
+            add +1d6 silver damage to a
+            weapon per 3 points you rolled
+            above the DC, up to 5d6.
+            Failing the roll breaks the weapon.</item>
+
+        <item>Pinpoint (CRA):A Craftsman can roll Pinpoint
+            with a DC equal an item’s crafting
+            DC to search for a flaw in
+            the item’s design. This takes 1
+            turn of studying, but allows the
+            Craftsman to make a targeted
+            attack at a -6 to do ablation
+            damage to the armor or weapon equal to half their Pinpoint
+            value in 6-sided dice.</item>
+
+    </string-array>
+
+    <string-array name="criminal_skills_info">
+
+        <item>Case The Area (INT):A Criminal can take an hour
+            to wander the streets of a Settlement and roll Case the Area
+            against a DC in the Case the
+            Area chart. If successful, the
+            Criminal memorizes guard
+            patterns, street layouts, and
+            hiding spots for a +2 to Stealth
+            in that area for a number of
+            days equal to their Case the
+            Area value.</item>
+
+        <item>Mental Key (INT):Whenever a Criminal successfully picks a lock they can roll
+            Mental Key at a DC equal to
+            the Lock Picking DC to memorize its tumbler positions.
+            This allows the Criminal to
+            open the lock without a Lock
+            Picking roll. You can memorize as many locks as you have
+            points in INT and can always
+            replace one.</item>
+
+        <item>Go To Ground (INT):Once per session a Criminal
+            can roll Go To Ground to find
+            a hideout where they can lie
+            low for a while. Take the total
+            value of your Go to Ground
+            roll and split the points between the 3 categories in the
+            Go To Ground table in the
+            sidebar. This hideout remains
+            until destroyed, and you can
+            always return to it.</item>
+
+        <item>Weak Spot (EMP):A Criminal can roll Weak
+            Spot against a sentient target’s
+            Deceit roll to identify the target’s most valued possession
+            or person. This also grants the
+            Criminal a +1 to Intimidate
+            for every 2 points they rolled
+            above the target’s Deceit. This
+            Intimidation bonus lasts until
+            something happens to change
+            the target’s weak spot.</item>
+
+        <item>Marked Man (WILL):A Criminal can roll Marked
+            Man at a DC equal the target’s
+            EMPx3 to mark a target by
+            carving a mark on their door,
+            or the like. If successful the
+            target must make a Charisma,
+            Persuasion, or Intimidation
+            check that beats your Marked
+            Man roll to get any help or service
+            from anyone in their settlement.</item>
+
+        <item>Rally (WILL):Once per day, by taking an
+            hour, a Criminal can roll a Rally check against a DC set by the
+            GM. For every 2 you roll above
+            the DC they recruit 1 Bandit
+            for a number of days equal to
+            your Rally value. If a Bandit is
+            knocked below half health they
+            must roll under the Criminal’s
+            WILL on a 10 sided die or flee.</item>
+
+        <item>Careful Aim (DEX):A Criminal who’s
+            not in active combat and takes a round
+            to aim can roll Careful Aim
+            at a DC equal to their target’s
+            REFx3 to gain a bonus on
+            their next attack equal to half
+            their Careful Aim value. Being
+            spotted after making this roll
+            but before attacking halves the
+            bonus.</item>
+
+        <item>Eye Gouge (DEX):A Criminal can roll Eye Gouge
+            in place of an attack to temporarily blind a target. Eye Gouge
+            requires the Criminal to be in
+            melee range and imposes a -3
+            to hit. However if it hits, the
+            target takes an unmodified 2d6
+            damage and is blinded for a
+            number of rounds equal to the
+            Eye Gouge value.</item>
+
+        <item>Assassin Strike (DEX):When ambushing a target,
+            a Criminal can make an Assassin’s Strike roll against the
+            target’s Awareness roll to conceal themselves after an attack.
+            This ability can be used in any
+            situation but imposes penalties
+            based on light and cover conditions. Multiple opponents can
+            each roll to spot the Criminal.</item>
+
+    </string-array>
+
+    <string-array name="doctor_skills_info">
+
+        <item>Diagnose (INT):When able to look over a
+            wounded person or monster,
+            a Doctor can roll Diagnose at
+            a DC determined by the GM.
+            If they succeed they assess
+            any Critical Wounds the subject has and learn how many
+            Health Points it has left. This
+            also gives a +2 to any Healing
+            Hands checks to heal those
+            wounds.</item>
+
+        <item>Analysis (INT):When about to perform a
+            Healing Hands roll, a Doctor
+            can take a turn to make an
+            Analysis roll at a DC equal
+            to the severity of the Critical
+            Wound. If they succeed they
+            gain insight into the wounds,
+            and for every 2 they roll over
+            the DC (minimum 1) the surgery
+            takes 1 turn less.</item>
+
+        <item>Effective Surgery (CRA):Before starting
+            to heal a Critical Wound a Doctor can make
+            an Effective Surgery roll at a
+            DC equal to the wound’s Healing Hands DC. If they succeed
+            they treat the wounds so skilfully that they heal twice as
+            fast. This ability can be used on
+            critical wounds and can also be
+            used on regular wounds.</item>
+
+        <item>Healing Tent (CRA):Healing Tent allows a Doctor
+            to roll against a DC set by the
+            GM to create a covered area
+            that provides an optimal medical environment. This takes 1
+            hour but adds +3 to Healing
+            Hands/First Aid rolls inside,
+            and +2 to the healing rate of
+            anyone in the tent for a number of days equal to your Healing Tent value.</item>
+
+        <item>Improvisation (INT):A Doctor can make
+            an Improvisation roll at a DC equal
+            to the crafting DC for a specific medical alchemical item to
+            substitute something else on
+            hand for the same effect. This
+            roll takes one round and if it
+            is failed it can be made again.
+            Improvisation is very specific and works only on this one
+            injury.</item>
+
+        <item>Herbal Remedy (CRA):By mixing alchemical
+            substances, a Doctor can create
+            an herbal remedy that grants
+            bonuses/effects based on what
+            was put into it (see the Healing
+            Remedy chart in the sidebar).
+            Each remedy remains viable
+            for 3 days and must be burned
+            or chewed to provide the bonus, allowing
+            only 1 use. Making a remedy takes 1 turn</item>
+
+        <item>Bleeding Wound (INT):A Doctor who does damage
+            with a bladed weapon can
+            make a Bleeding Wound roll
+            against a DC of 15. On success,
+            the attack causes bleeding at
+            a rate of 1 point per 2 points
+            rolled over the DC. The bleeding can only be stopped by a
+            First Aid roll, at a DC equal to
+            the Doctor’s Bleeding Wound
+            roll.</item>
+
+        <item>Practical Carnage (INT):A Doctor can roll Practical
+            Carnage against a DC equal
+            to the opponent’s BODYx3 to
+            cause the target’s wounds and
+            critical wounds to heal half
+            as fast. Other Doctors with
+            the Effective Surgery skill and
+            items that raise the healing rate
+            of wounds and critical wounds
+            can counteract the effect.</item>
+
+        <item>Crippling Wound (INT):A Doctor can make a Crippling
+            Wound roll against the
+            target’s defense. This attack
+            takes a -6 to hit but imposes
+            a negative to the target’s REFLEX, BODY, or SPEED equal
+            to 1 per 3 points above their
+            defense roll. This negative can
+            only be removed with an Effective
+            Surgery roll that beats your attack roll.</item>
+
+    </string-array>
+
+    <string-array name="mage_skills_info">
+
+        <item>Scheming (INT):A Mage can make a Scheming
+            roll at a DC equal to a target’s
+            INTx3. On success the Mage
+            gets a +3 to Deceit, Seduction,
+            Intimidation, or Persuasion
+            against that target from their
+            observations of how the target
+            works. The bonus from this
+            ability applies for a number
+            of days equal to the Mage’s
+            Scheming value</item>
+
+        <item>Grape Vine (INT):A Mage can take 1 hour and
+            make a Grape Vine roll against
+            a target’s EMPx3. Success
+            spreads rumors throughout a
+            settlement or city, lowering the
+            target’s reputation there by half
+            your Grape Vine value for a
+            number of days equal to your
+            Grape Vine value.</item>
+
+        <item>Assets (INT):Once per game a Mage can
+            make an Assets roll to remember an asset they ‘acquired’
+            some time ago. Take the total of your roll and distribute
+            it between the 4 columns on
+            the table in the sidebar to find
+            out who you know. This asset
+            will help you, but how much
+            depends on their relationship
+            with you.</item>
+
+        <item>Reverse Engineer (INT):By taking 1
+            hour to study an alchemical solution a Mage can
+            roll Reverse Engineer at a DC
+            equal to the Crafting DC for
+            the alchemical item +3. Success allows them to
+            reverse-engineer and write down the
+            item’s formula. this formula is
+            3 points harder to craft , but reliably
+            creates the desired item.</item>
+
+        <item>Distillation (CRA):A Mage can roll Distillation
+            instead of Alchemy when creating an alchemical solution.
+            Success at this roll creates a
+            dose of that solution that has
+            half again the effect that it
+            would normally have, either
+            in duration, damage, or resistance DC (your choice). Always
+            round down when increasing.</item>
+
+        <item>Mutate (INT):A mage can spend all of their
+            stamina and a full day experimenting on a subject to roll
+            Mutate at a DC equal to (28 – (subject’s BODY + WILL)/2)
+            to mutate the subject. Success
+            grants the subject use of the
+            Mutagen with the appropriate minor mutation. Failure
+            throws the subject into Death
+            State and inflicts the larger mutation.</item>
+
+        <item>In Touch:As a Mage utilizes magic
+            more and more, their body
+            becomes more used to the
+            flow. Every point a Mage has
+            in In Touch grants +2 points
+            to Vigor threshold. When this
+            ability reaches level 10 your
+            maximum Vigor threshold
+            becomes 25. This skill can be
+            trained, like other skills.</item>
+
+        <item>Immutable (WILL):A Mage can roll Immutable at
+            DC-16 whenever they would
+            normally be affected by dimeritium.
+            Success means that
+            the Mage mostly shrugs off
+            the dimeritium. They are still
+            somewhat dizzy and uncomfortable but retain half of their
+            total Vigor threshold and can
+            perform magic.</item>
+
+        <item>Expanded Magic (WILL):By channelling magic through
+            various magical foci a Mage
+            can wield incredible power. A
+            Mage can roll Expanded Magic before attempting to cast a
+            spell or ritual, at a DC of 16.
+            On success the mage can channel the spell or ritual through
+            any 2 of their foci that they
+            choose, reducing the Stamina
+            cost twice.</item>
+
+    </string-array>
+
+    <string-array name="man_at_arms_skills_info">
+
+        <item>Extreme Range (DEX):When making a ranged attack
+            that would take range penalties, a Man At Arms can lower
+            the penalty by up to half their
+            Extreme Range value. They
+            can also make an Extreme
+            Range roll (DC:16) to attack
+            targets within 3 times the range
+            of their weapon at a -10 which
+            can be modified by Extreme
+            Range.</item>
+
+        <item>Twin Shot (DEX):When making a ranged attack
+            with a thrown weapon or a
+            bow, a Man At Arms can roll
+            Twin Shot in place of their
+            normal weapon skill. If they
+            hit, they strike with two projectiles and
+            damage two randomly rolled parts of the body.
+            Even if the attack is aimed, the
+            second projectile will hit a random location.</item>
+
+        <item>Pin Point Aim (DEX):A Man At Arms who scores a
+            critical with their ranged weapon can immediately roll Pin
+            Point Aim at a DC equal to the
+            target’s DEXx3. If they succeed,
+            they add their Pin Point Aim
+            value to their critical roll. These
+            points only affect the location
+            value of the Critical Wound.</item>
+
+        <item>Bloodhound (INT):When tracking a target or trying
+            to find a trail, a Man At
+            Arms adds their Bloodhound
+            value to Wilderness Survival
+            rolls to find the trail or follow
+            it. If the Man At Arms loses the
+            trail while tracking with this
+            ability, they can roll Bloodhound at a DC set by the GM
+            to pick the trail back up immediately.</item>
+
+        <item>Booby Trap (CRA):A Man At Arms can make a
+            Booby Trap roll to set a makeshift trap in a specific area. See
+            the Booby Trap table for traps
+            that can be built. The Man At
+            Arms can only build one type
+            of trap at a time. Every trap
+            has a 2m radius tripwire and
+            requires an Awareness roll at a
+            DC equal to your Booby Trap
+            roll to spot.</item>
+
+        <item>Tactical Awareness (INT):Instead of moving, a Man At
+            Arms can roll Tactical Awareness to gain insight into a whole
+            group of opponents. The Man
+            At Arms gains +3 to attack and
+            defense rolls against every enemy within 10m whose DEXx3
+            is lower than that roll, for one
+            round. This ability also tells the
+            Man At Arms what each affected opponent is about to do</item>
+
+        <item>Fury (WILL):A Man At Arms can roll Fury
+            at a DC equal to their EMPx3.
+            If they succeed, the Man At
+            Arms becomes immune to
+            fear, spells that change emotions, and Verbal Combat for
+            a number of rounds equal to
+            their Fury value times 2. During
+            this time, rage clouds their
+            thinking and instinct takes over.</item>
+
+        <item>Zweihand (BODY):By spending 10 STA and rolling
+            Zweihand minus 3 against an opponent’s defense, a Man
+            At Arms can make one attack
+            which does double damage
+            and has armor piercing. If the
+            weapon already has armor
+            piercing, it gains improved armor piercing. A weapon with
+            improved armor piercing gains 3d6 damage</item>
+
+        <item>Shrug It Off (BODY):A number of times per game
+            session equal to their BODY
+            value, a Man At Arms can
+            spend 10 STA to immediately
+            roll Shrug It Off when an enemy strikes a Critical Wound on
+            them. If their roll beats the enemy’s attack roll, they can negate
+            the Critical Wound, taking
+            damage as if the enemy hadn’t
+            rolled a critical.</item>
+
+    </string-array>
+
+    <string-array name="merchant_skills_info">
+
+        <item>Options (INT):A Merchant can roll Options
+            against a DC set by the GM to
+            find a lower price on an item.
+            If they succeed the Merchant
+            finds another person selling
+            the same item for half the price.
+            The higher the item rarity, the
+            higher the DC should be. Options
+            does not affect experimental,
+            witcher, or relic items.</item>
+
+        <item>Hard Bargain (EMP):When bribing a target
+            a Merchant can roll Hard Bargain
+            at a DC equal to the opponent’s
+            WILLx3. If they succeed, they
+            can bribe the opponent with
+            any item they have at hand that
+            is worth 5 crowns. The object
+            always grants +3 to Persuasion.
+            the DC rises by 5 for truly ridiculous bribes.</item>
+
+        <item>Promise (EMP):When attempting to buy an
+            item, a Merchant can make a
+            Promise roll at a DC equal to
+            the Salesperson’s EMPx3. If
+            they succeed the salesperson
+            accepts the Merchant’s promise
+            to pay for the item later. This
+            promise holds the salesperson
+            over for a number of weeks
+            equal to your Promise ability.</item>
+
+        <item>Rookery (EMP):A Merchant can make a
+            Rookery roll at a DC based on the
+            settlement they are in to gain
+            the aid of 1 urchin or vagrant
+            per 1 point they rolled over
+            the DC (maximum 10). These
+            people can be consulted to
+            grant +1 per person on Streetwise rolls. Informants take 1
+            crown each as payment each
+            time they are consulted.</item>
+
+        <item>Insider (INT):A Merchant with Insider can
+            convince a person to spy for
+            them. Spend 10 crowns and
+            roll Insider versus the person’s
+            Resist Coercion roll. If it is successful
+            the person will spy on a
+            target for as many days as your
+            Insider value. At the end of
+            this time you can roll again, but
+            must pay again.</item>
+
+        <item>Treasure Map (INT):Once per session a Merchant
+            can roll Treasure Map at a DC
+            set by the GM to remember
+            the supposed location of a relic
+            item, or a ruin that may hide
+            something useful. This location will, of course, be out of
+            the way or exceedingly dangerous, requiring a quest.
+            Reaching this item or ruin should
+            require a full session.</item>
+
+        <item>Well Connected (WILL):On first entering a settlement,
+            a Merchant can spend an hour
+            spreading word of their arrival,
+            then roll Well Connected at a
+            DC based on the settlement.
+            Success raises their reputation
+            in that settlement by a number equal to the amount you
+            rolled over the DC divided by 2
+            (minimum 1), for 1d6 Weeks.</item>
+
+        <item>Fence (INT):A Merchant who has to get
+            rid of a dubious or stolen item
+            can make a Fence roll at a DC
+            determined by the GM. If they
+            succeed, they sell the item (at
+            full market price) to a buyer who won’t ask any serious
+            questions and won’t turn them in to the Guard.</item>
+
+        <item>Warrior Debt (EMP):A Merchant can roll Warrior’s
+            Debt to call on a fighter who
+            owes them. Split your roll between the 3 sections on the
+            Warrior table in the sidebar.
+            This warrior will work for you
+            for a number of days equal to
+            your Warrior’s Debt value and
+            takes any reasonable order you
+            give without asking questions.</item>
+
+    </string-array>
+
+    <string-array name="priest_skills_info">
+
+        <item>Divine Power:A Priest can become more in
+            tune with their god, gaining 1
+            point of Vigor threshold per
+            skill level in Divine Power. This brings your
+            Vigor threshold to a total of 12 at level 10.
+            Divine Power can be trained
+            like other skills and stacks with
+            Nature Attunement. The Vigor
+            thresholds are not separate.</item>
+
+        <item>Divine Authority (EMP):Peasants and the common
+            folk of the world see Priests as
+            agents of the gods’ will. A Priest
+            can add their Divine Authority to their Leadership rolls if
+            they are in an area where their
+            religion is worshipped. Even
+            when outside such areas of
+            worship a Priest adds half this
+            value, due to their presence.</item>
+
+        <item>Precognition (WILL):At the will of the GM, a Priest
+            can be overcome by visions of
+            the future, sending them into
+            a catatonic state for 3 rounds.
+            After this time the Priest can
+            roll Precognition at a DC set
+            by the GM to decipher the visions that they are stricken by.
+            Such visions are composed of
+            symbolism and metaphors.</item>
+
+        <item>Nature Attunement:A Priest can become more in
+            tune with nature, gaining 1
+            point of Vigor threshold per
+            skill level in Nature Attunement. This brings your Vigor
+            threshold to a total of 12 at level 10. Nature Attunement can
+            be trained like other skills and
+            stacks with Divine Power. The
+            Vigor thresholds are not separate.</item>
+
+        <item>Read Nature (INT):When in a purely
+            natural environment a druid can roll Read
+            Nature at a DC set by the GM.
+            On a success, the druid reads
+            the signs around them to learn
+            everything that passed through
+            that area and what they did in
+            the area. Read Nature renders
+            a very localized picture and
+            cannot track things.</item>
+
+        <item>Animal Compact (WILL):Druid adds
+            Animal Compact to any Wilderness
+            Survival rolls they make to handle
+            animals. A Druid can also make
+            a compact with an animal. By
+            taking a full round and rolling
+            Animal Compact, they make
+            one Beast or animal their ally
+            for a number of hours equal to
+            their Animal Compact value.
+            Monsters are unaffected.</item>
+
+        <item>Blood Rituals (WILL):A Priest casting a ritual can
+            make a Blood Ritual check
+            against the casting DC of the
+            ritual. If they succeed, they can
+            cast the ritual without required
+            alchemical substances by sacrificing
+            5 HP in blood per missing
+            alchemical substance. This
+            blood can come from others,
+            but must be spilled at the time
+            of the ritual.</item>
+
+        <item>Fervor (EMP):A Priest can roll Fervor against
+            a target’s current INTx3. On
+            success, the rallying power of
+            the Priest’s words grants 1d6
+            temporary health for every
+            point rolled over the DC (maximum 5). This lasts for as many
+            rounds as their Fervor x2 and
+            only works once per target per day.</item>
+
+        <item>Word of God (EMP):A Priest can roll Word of God
+            to convince people that they
+            are speaking directly for the
+            gods. Anyone who fails a Resist
+            Coercion roll sees the Priest as
+            a messiah and follows along as
+            an apostle. A Priest can have as
+            many apostles as their Word
+            of God value. In combat, use
+            bandit stats for apostles without stats.</item>
+
+    </string-array>
+
+    <string-array name="witcher_skills_info">
+
+        <item>Meditation:A Witcher can enter a
+            meditative trance which grants all the
+            benefits of sleeping but allows
+            them to remain vigilant. While
+            meditating a Witcher is considered awake for the purpose
+            of noticing anything within
+            double their Meditation value
+            in meters.</item>
+
+        <item>Magical Source:As a Witcher uses signs more
+            often their body becomes
+            more used to the effort. For
+            every 2 points a Witcher has
+            in Magical Source they gain
+            1 points of Vigor threshold.
+            When this ability reaches level 10, your maximum Vigor
+            threshold becomes 7. This skill
+            can be trained like other skills.</item>
+
+        <item>Heliotrope (WILL):When a Witcher is targeted by
+            a spell, invocation, or hex they
+            can roll Heliotrope to attempt
+            to negate the effects. They must
+            roll a Heliotrope roll that equals
+            or beats the opponent’s roll and
+            expend an amount of Stamina
+            equal to half the Stamina spent
+            to cast the magic.</item>
+
+        <item>Iron Stomach:After decades of drinking toxic
+            witcher potions, witcher bodies adapt to the toxins.
+            A witcher can endure 5% more toxicity from drinking potions and
+            decoctions per 2 points they
+            spend on Iron Stomach. This
+            skill can be trained like other
+            skills. At level 10, a witcher’s
+            maximum toxicity is 150%.</item>
+
+        <item>Frenzy:When poisoned, a witcher
+            goes into a frenzy and deals an
+            extra 1 melee damage per level
+            in Frenzy. While in a Frenzy,
+            your single goal is to get to a
+            place of safety or kill the target
+            that poisoned you. When the
+            poison wears off, the Frenzy
+            ends. You can attempt to end
+            Frenzy early with a DC:15 Endurance roll.</item>
+
+        <item>Transmutation (BODY):When taking decoctions a
+            Witcher can roll Transmutation at DC-18. A success allows
+            their body to assimilate slightly more of the mutagen than
+            usual and gain a bonus based
+            on which decoction they take.
+            The decoction lasts half as long
+            as it normally would. The extra mutations
+            are too subtle to spot.</item>
+
+        <item>Parry Arrows (DEX):A Witcher can
+            roll Parry Arrows at a -3 to deflect physical
+            projectiles. When parrying,
+            the Witcher can choose a target
+            within 10m. That target must
+            take a defense action against
+            the Witcher’s Parry Arrows
+            roll or be Staggered by the flying projectile. </item>
+
+        <item>Quick Strike (REF):After a Witcher takes their
+            turn they can spend 5 STA
+            and make a Quick Strike roll
+            at a DC equal to their opponent’s REFx3. On success, they
+            make another single strike in
+            that round. This attack must
+            be made against the opponent
+            they rolled against, but can include disarms,
+            trips, and other attacks.</item>
+
+        <item>Whirl (REF):By spending 5 STA per round,
+            a witcher can enter a Whirl,
+            where the witcher makes one
+            attack against everyone within
+            sword range each turn, with
+            their Whirl roll acting as the
+            attack roll. The witcher can only
+            maintain this Whirl, dodge,
+            and move 2m each round. Doing
+            anything else or being hit
+            halts the Whirl.</item>
+
+    </string-array>
+
+    <string name="profession_skill_tree_help">
+         Each Profession in the Witcher TRPG has
+        a Profession Skill Tree which offers many
+        variations on the core Profession. Each
+        tree has three paths that represent different approaches to that Profession. At the
+        very bottom is the starting ability for the
+        Profession. As you proceed through the
+        game you can use Improvement Points to
+        travel down any of these paths, or venture
+        down all of them a bit. When you have 5
+        points in an ability, you can use the next
+        ability in that Profession Path at a value of
+        0.\n\n
+
+        Gaining points for each new ability works
+        the same as gaining points in any new skill.
+        You can go from your core skill down any
+        one of the three paths, but it must be along
+        the path (For example: Core Skill to A1,
+        B1 or C1). You cannot hop from one path
+        to another, so if you have points in A3 and
+        want to get to B3, you must work your way
+        all the way up Profession Path B. This allows
+        you to play multiple variations of the same
+        Profession and gives you lots of useful perks
+        to pursue.
+
+    </string>
+
 </resources>

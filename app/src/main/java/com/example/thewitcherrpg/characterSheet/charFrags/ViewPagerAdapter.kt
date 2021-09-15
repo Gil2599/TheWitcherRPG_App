@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.thewitcherrpg.characterSheet.PlaceholderFragment
 
 class ViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle,  private var numberOfTabs: Int) : FragmentStateAdapter(fm, lifecycle) {
 
@@ -16,10 +17,10 @@ class ViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle,  private var n
         when (position) {
             0 -> return QuickStatsFragment()
             1 -> return ProfessionFragment()
-            2 -> return QuickStatsFragment()
-            3 -> return QuickStatsFragment()
-            4 -> return QuickStatsFragment()
-            5 -> return QuickStatsFragment()
+            2 -> return PlaceholderFragment()
+            3 -> return PlaceholderFragment()
+            4 -> return PlaceholderFragment()
+            5 -> return PlaceholderFragment()
 
         }
         return ProfessionFragment()

@@ -24,10 +24,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var characterData: Character
 
-    private lateinit var  charFragment: CharFragment
-    private lateinit var statsFragment: StatsFragment
-    private lateinit var skillsFragment: SkillsFragment
-
     private val sharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,26 +44,27 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val fragmentManager = supportFragmentManager
 
-        charFragment = CharFragment()
-        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, charFragment)
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharFragment())
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
 
         binding.navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.Character -> {
-                    charFragment = CharFragment()
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, charFragment)
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
                 R.id.Skills -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
                 R.id.Stats -> {
-                    statsFragment = StatsFragment()
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, statsFragment)
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, StatsFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.ProfessionSkillTree -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, ProfessionSkillTree())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                }
+                R.id.Magic -> {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, PlaceholderFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }
@@ -106,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
         builder.setNegativeButton("No"){_, _ -> }
-
         builder.setTitle("Delete character?")
         builder.create().show()
     }
@@ -232,4 +228,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setPositiveButton("Yes"){_, _ ->
+            saveCharacter()
+            finish()
+        }
+        builder.setNegativeButton("No"){_, _ -> finish()}
+
+        builder.setNeutralButton("Cancel"){_, _ -> }
+
+        builder.setTitle("Save changes to character?")
+        builder.setMessage("All unsaved changes will be lost.")
+        builder.create().show()
+
+        //super.onBackPressed()
+    }
 }

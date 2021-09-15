@@ -1,24 +1,25 @@
 package com.example.thewitcherrpg.characterSheet
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentProfessionSkillTreeBinding
+import kotlinx.android.synthetic.main.custom_dialog_help_info.*
 
 
 class ProfessionSkillTree : Fragment() {
-    private var _bindind: FragmentProfessionSkillTreeBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentProfessionSkillTreeBinding? = null
+    private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -35,7 +36,7 @@ class ProfessionSkillTree : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _bindind = DataBindingUtil.inflate(inflater, R.layout.fragment_profession_skill_tree, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profession_skill_tree, container, false)
         val view = binding.root
 
         binding.lifecycleOwner = this
@@ -67,10 +68,11 @@ class ProfessionSkillTree : Fragment() {
         return view
     }
 
+    //Set the text views according to the selected profession
     private fun getSkillTree() {
 
         val tags = resources.getStringArray(R.array.profession_skill_trees)
-        Toast.makeText(context, sharedViewModel.definingSkill.value.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, sharedViewModel.definingSkill.value.toString(), Toast.LENGTH_SHORT).show()
 
         for (tag in tags) {
             val pair = tag.split(":").toTypedArray()
@@ -98,7 +100,39 @@ class ProfessionSkillTree : Fragment() {
 
     }
 
-    //Set up all view logic relating to the skill tree
+    //Retrieve skill description
+    private fun getSkillInfo(skill: String): String{
+
+        var tags = resources.getStringArray(R.array.bard_skills_info)
+
+        //Toast.makeText(context, sharedViewModel.profession.value.toString(), Toast.LENGTH_SHORT).show()
+        when (sharedViewModel.profession.value.toString()) {
+            "Craftsman" -> tags = resources.getStringArray(R.array.craftsman_skills_info)
+            "Criminal" -> tags = resources.getStringArray(R.array.criminal_skills_info)
+            "Doctor" -> tags = resources.getStringArray(R.array.doctor_skills_info)
+            "Mage" -> tags = resources.getStringArray(R.array.mage_skills_info)
+            "Man At Arms" -> tags = resources.getStringArray(R.array.man_at_arms_skills_info)
+            "Merchant" -> tags = resources.getStringArray(R.array.merchant_skills_info)
+            "Priest" -> tags = resources.getStringArray(R.array.priest_skills_info)
+            "Witcher" -> tags = resources.getStringArray(R.array.witcher_skills_info)
+        }
+
+        for (tag in tags) {
+            val pair = tag.split(":").toTypedArray()
+            val skillName = pair[0]
+            val skillInfo = pair[1]
+
+            if (skill.replace(" ", "") == skillName.replace(" ", "")){
+                return skillInfo
+            }
+
+        }
+
+        return "Unknown"
+
+    }
+
+    //Set up all view logic relating to the skill tree and click listeners
     private fun onInit(){
 
         //Create Dialog for Defining Skill above tree
@@ -115,6 +149,10 @@ class ProfessionSkillTree : Fragment() {
 
         }
 
+        binding.buttonHelp.setOnClickListener(){
+            showDialogHelp()
+        }
+
         //Create all of the button click listeners and long click listeners for skill info dialog
         binding.linearLayoutA1.setOnClickListener {
             focusedTextViews[0]?.visibility = View.INVISIBLE
@@ -128,9 +166,9 @@ class ProfessionSkillTree : Fragment() {
         }
         binding.linearLayoutA1.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillA1.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillA1.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -141,9 +179,9 @@ class ProfessionSkillTree : Fragment() {
 
         binding.linearLayoutA2.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillA2.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillA2.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -154,9 +192,9 @@ class ProfessionSkillTree : Fragment() {
 
         binding.linearLayoutA3.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillA3.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillA3.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -177,9 +215,9 @@ class ProfessionSkillTree : Fragment() {
         }
         binding.linearLayoutB1.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillB1.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillB1.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -189,9 +227,9 @@ class ProfessionSkillTree : Fragment() {
         }
         binding.linearLayoutB2.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillB2.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillB2.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -201,9 +239,9 @@ class ProfessionSkillTree : Fragment() {
         }
         binding.linearLayoutB3.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillB3.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillB3.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -224,9 +262,9 @@ class ProfessionSkillTree : Fragment() {
         }
         binding.linearLayoutC1.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillC1.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillC1.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -236,9 +274,9 @@ class ProfessionSkillTree : Fragment() {
         }
         binding.linearLayoutC2.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillC2.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillC2.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -248,9 +286,9 @@ class ProfessionSkillTree : Fragment() {
         }
         binding.linearLayoutC3.setOnLongClickListener(){
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle("Info Here")
+            alertDialogBuilder.setTitle(binding.textViewSkillC3.text)
             // set dialog message
-            alertDialogBuilder.setMessage("Placeholder Information Here")
+            alertDialogBuilder.setMessage(getSkillInfo(binding.textViewSkillC3.text.toString()))
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
@@ -488,4 +526,18 @@ class ProfessionSkillTree : Fragment() {
         }
     }
 
+    private fun showDialogHelp() {
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.custom_dialog_help_info)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialog.textViewInfo.text = resources.getString(R.string.profession_skill_tree_help)
+
+        dialog.textViewTitle.text = "Profession Skill Tree"
+        //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
+
+        dialog.show()
+    }
 }

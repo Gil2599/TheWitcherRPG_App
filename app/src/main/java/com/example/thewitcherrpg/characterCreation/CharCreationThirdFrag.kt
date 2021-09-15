@@ -10,8 +10,8 @@ import com.example.thewitcherrpg.characterSheet.StatsFragment
 import com.example.thewitcherrpg.databinding.FragmentCharCreationThirdBinding
 
 class CharCreationThirdFrag : Fragment() {
-    private var _bindind: FragmentCharCreationThirdBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentCharCreationThirdBinding? = null
+    private val binding get() = _binding!!
 
     private val fragment = StatsFragment()
 
@@ -20,7 +20,7 @@ class CharCreationThirdFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = FragmentCharCreationThirdBinding.inflate(inflater, container, false)
+        _binding = FragmentCharCreationThirdBinding.inflate(inflater, container, false)
         val view = binding.root
 
         if(childFragmentManager.findFragmentByTag("frag") == null){
@@ -37,7 +37,7 @@ class CharCreationThirdFrag : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _bindind = null
+        _binding = null
     }
 
 }

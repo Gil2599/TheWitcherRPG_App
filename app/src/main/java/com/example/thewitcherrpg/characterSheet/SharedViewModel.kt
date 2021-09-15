@@ -1127,10 +1127,15 @@ class SharedViewModel: ViewModel() {
     private fun onProfessionSkillChange(value: Int, increase: Boolean, nextSkill: String): Boolean{
 
         var newIP = iP.value!!
+        var newVal = value
 
         if (increase) {
-            if (iP.value!! > 0 && value < 10) {
-                newIP -= 1
+            if (value >= 10) return false
+
+            if (newVal == 0) newVal = 1
+
+            if (iP.value!! >= newVal) {
+                newIP -= newVal
             } else return false
         }
 
@@ -1144,7 +1149,10 @@ class SharedViewModel: ViewModel() {
                     "c2" -> if (_professionSkillC2.value!! > 0) return false
                     "c3" -> if (_professionSkillC3.value!! > 0) return false
                 }
-                newIP += 1
+                if (newVal == 1) newVal = 2
+
+                newIP += (newVal - 1)
+
             } else return false
         }
         _iP.value = newIP

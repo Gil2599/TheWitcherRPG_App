@@ -3,24 +3,19 @@ package com.example.thewitcherrpg.characterSheet.charFrags
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.EditText
-import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.databinding.FragmentProfessionBinding
-import kotlinx.android.synthetic.main.custom_dialog_edit_stats.*
 import kotlinx.android.synthetic.main.custom_dialog_help_info.*
 
 class ProfessionFragment : Fragment() {
-    private var _bindind: FragmentProfessionBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentProfessionBinding? = null
+    private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -32,7 +27,7 @@ class ProfessionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = FragmentProfessionBinding.inflate(inflater, container, false)
+        _binding = FragmentProfessionBinding.inflate(inflater, container, false)
         val view = binding.root
 
         binding.lifecycleOwner = this

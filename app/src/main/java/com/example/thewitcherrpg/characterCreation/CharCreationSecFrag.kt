@@ -13,8 +13,8 @@ import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.SkillsFragment
 
 class CharCreationSecFrag : Fragment() {
-    private var _bindind: FragmentCharCreationSecBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentCharCreationSecBinding? = null
+    private val binding get() = _binding!!
 
     private val fragment = SkillsFragment()
 
@@ -25,7 +25,7 @@ class CharCreationSecFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = FragmentCharCreationSecBinding.inflate(inflater, container, false)
+        _binding = FragmentCharCreationSecBinding.inflate(inflater, container, false)
         val view = binding.root
 
         if(childFragmentManager.findFragmentByTag("frag") == null){
@@ -41,7 +41,7 @@ class CharCreationSecFrag : Fragment() {
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        _bindind = null
+        _binding = null
     }
 
 

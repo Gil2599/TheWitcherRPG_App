@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
@@ -18,8 +17,8 @@ import kotlinx.android.synthetic.main.custom_dialog_edit_stats.*
 
 
 class QuickStatsFragment : Fragment() {
-    private var _bindind: FragmentCharInfoBinding? = null
-    private val binding get() = _bindind!!
+    private var _binding: FragmentCharInfoBinding? = null
+    private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -28,7 +27,7 @@ class QuickStatsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _bindind = DataBindingUtil.inflate(inflater, R.layout.fragment_char_info,container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_char_info,container, false)
         val view = binding.root
 
         binding.lifecycleOwner = this
@@ -49,7 +48,7 @@ class QuickStatsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _bindind = null
+        _binding = null
 
     }
 
