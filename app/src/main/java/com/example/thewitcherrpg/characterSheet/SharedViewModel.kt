@@ -288,6 +288,10 @@ class SharedViewModel: ViewModel() {
     private var _ritualCrafting = MutableLiveData(0)
     val ritualCrafting: LiveData<Int> = _ritualCrafting
 
+    //Spells
+    private var _spellList = MutableLiveData(arrayListOf(""))
+    val spellList: LiveData<ArrayList<String>> = _spellList
+
 
     //Setter Functions
     fun setID(id: Int){
@@ -653,6 +657,18 @@ class SharedViewModel: ViewModel() {
         _ritualCrafting.value = ritualCrafting
     }
 
+    fun setSpellList(spells: ArrayList<String>){
+        _spellList.value = spells
+    }
+
+    fun addSpell(spell: String){
+        val newArray = _spellList.value!!.toMutableList()
+        newArray.add(spell)
+        _spellList.value = ArrayList(newArray)
+
+    }
+
+    //Logic Functions
     private fun onStatChange(value: Int, increase: Boolean): Boolean{
 
         var newIP = iP.value!!
@@ -835,6 +851,7 @@ class SharedViewModel: ViewModel() {
         val resistMagic = _resistMagic.value!!
         val resistCoercion = _resistCoercion.value!!
         val ritualCrafting = _ritualCrafting.value!!
+        val spells = _spellList.value!!
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
@@ -845,7 +862,7 @@ class SharedViewModel: ViewModel() {
             staffSpear, swordsmanship, archery, athletics, crossbow, sleightOfHand, stealth, physique, endurance, charisma,
             deceit, fineArts, gambling, groomingAndStyle, humanPerception, leadership, persuasion, performance, seduction,
             alchemy, crafting, disguise, firstAid, forgery, pickLock, trapCrafting, courage, hexWeaving, intimidation,
-            spellCasting, resistMagic, resistCoercion, ritualCrafting)
+            spellCasting, resistMagic, resistCoercion, ritualCrafting, spells)
 
     }
 

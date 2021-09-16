@@ -3,6 +3,9 @@ package com.example.thewitcherrpg.data
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -105,6 +108,23 @@ data class Character(
     var spellCasting: Int,
     var resistMagic: Int,
     var resistCoercion: Int,
-    var ritualCrafting: Int
+    var ritualCrafting: Int,
+
+    //Spells
+    var spells: ArrayList<String>
 
 ): Parcelable
+
+class SpellsTypeConverter {
+    @TypeConverter
+    fun fromString(value: String?): ArrayList<String>{
+
+        val listType =object :TypeToken<ArrayList<String>>(){}.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun fromArrayList(list: ArrayList<String?>): String{
+        return Gson().toJson(list)
+    }
+}

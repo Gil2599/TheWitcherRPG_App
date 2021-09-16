@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.characterSheet.magic.SpellsFragment
 import com.example.thewitcherrpg.data.Character
 import com.example.thewitcherrpg.data.CharacterViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Magic -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, PlaceholderFragment())
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SpellsFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }
@@ -224,7 +225,9 @@ class MainActivity : AppCompatActivity() {
         sharedViewModel.setResistMagic(characterData.resistMagic)
         sharedViewModel.setResistCoercion(characterData.resistCoercion)
         sharedViewModel.setRitualCrafting(characterData.ritualCrafting)
-        //sharedViewModel.setSocialStanding((characterData.socialStanding))
+
+        //Spells
+        sharedViewModel.setSpellList(characterData.spells)
 
     }
 

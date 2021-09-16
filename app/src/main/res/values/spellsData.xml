@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="spells_list_data">
+
+        <item>Blinding Dust:3:Blinding Dust allows you to
+            shoot a magical dust into the eyes
+            of a target that blinds them for the
+            duration of the spell.
+            :4m:1d10:Dodge or Block</item>
+
+    </string-array>
+
+</resources>
