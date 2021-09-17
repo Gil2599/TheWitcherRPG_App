@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/rowLayout"
-    android:padding="15dp"
-    android:background="@drawable/row_bkg"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:background="@color/gray"
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/spell_name_text"
@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:text="Placeholder Name"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
@@ -27,11 +26,10 @@
         android:id="@+id/sta_cost_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
+        android:text="Stamina Cost: 5"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/spell_name_text"
         app:layout_constraintStart_toStartOf="@+id/spell_name_text"
         app:layout_constraintTop_toBottomOf="@+id/spell_name_text" />
 
@@ -41,9 +39,21 @@
         android:layout_height="wrap_content"
         android:text="Range: 100"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/sta_cost_text"
+        app:layout_constraintBottom_toTopOf="@+id/textView59"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toEndOf="@+id/spell_name_text"
-        app:layout_constraintTop_toTopOf="@+id/spell_name_text" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/element_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Earth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/range_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/range_text"
+        app:layout_constraintTop_toBottomOf="@+id/range_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

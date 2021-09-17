@@ -44,18 +44,26 @@
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/drawable/row_bkg.xml" value="0.2703125" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/drawable/transparent_bkg.xml" value="0.2703125" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/drawable/unfocused_outline_bkg.xml" value="0.2703125" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/activity_char_creation.xml" value="0.2549634273772205" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/custom_dialog_edit_stats.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/custom_dialog_help_info.xml" value="0.264" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/custom_dialog_spell.xml" value="0.264" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/custom_dialog_spells.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/custom_row.xml" value="0.536" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_char.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_char_creation_first.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_char_info.xml" value="0.264" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_placeholder.xml" value="0.176" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_profession.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_profession_skill_tree.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_skills.xml" value="0.772256728778468" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_spell_add.xml" value="0.4" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_spells_parent.xml" value="0.2542991141219385" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_stats.xml" value="0.7846790890269151" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/fragment_stats2.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/my_row.xml" value="0.2" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/nav_header.xml" value="0.264" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/layout/spell_row.xml" value="0.4" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App2/app/src/main/res/menu/nav_drawer_menu.xml" value="0.7359223300970874" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/layout/custom_dialog_hp.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/layout/fragment_char_creation_first.xml" value="0.1" />
@@ -64,14 +72,6 @@
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/layout/fragment_skills.xml" value="0.1" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/menu/delete_save_menu.xml" value="0.1" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG/app/src/main/res/menu/nav_drawer_menu.xml" value="0.1" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/activity_launcher.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_row.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_profession.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_profession_skill_tree.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_spells.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/my_row.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/spell_row.xml" value="0.33" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/menu/nav_drawer_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

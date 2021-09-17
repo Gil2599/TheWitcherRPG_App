@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.magic.SpellsFragment
+import com.example.thewitcherrpg.characterSheet.magic.SpellsParentFragment
 import com.example.thewitcherrpg.data.Character
 import com.example.thewitcherrpg.data.CharacterViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Magic -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SpellsFragment())
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SpellsParentFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }
@@ -232,11 +235,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        //Check if there is a callback set by a fragment
+        if (this.onBackPressedDispatcher.hasEnabledCallbacks()){
+            super.onBackPressed()
+            return;
+        }
+
+        //If no callbacks are set by fragments, ask user if they would like to save character or cancel
         val builder = AlertDialog.Builder(this)
         builder.setPositiveButton("Yes"){_, _ ->
             saveCharacter()
             finish()
-        }
+            }
         builder.setNegativeButton("No"){_, _ -> finish()}
 
         builder.setNeutralButton("Cancel"){_, _ -> }
@@ -245,6 +255,6 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage("All unsaved changes will be lost.")
         builder.create().show()
 
-        //super.onBackPressed()
     }
+
 }

@@ -1,13 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="spells_list_data">
+    <string-array name="novice_spells_list_data">
+
+        <item>Afan\'s Mirror:3:Created by the talented
+            Aedirnian mage Afan of Gulet, Afan\'s
+            mirror creates 1d10 illusory copies
+            of the caster. These copies are
+            intangible, but indistinguishable
+            from the caster and controlled by
+            the caster’s mind. Controlling the
+            copies does not require an action
+            but they cannot leave the spell\’s
+            range.
+            :10m:Active (2 STA):None:Mixed Element</item>
 
         <item>Blinding Dust:3:Blinding Dust allows you to
             shoot a magical dust into the eyes
             of a target that blinds them for the
             duration of the spell.
-            :4m:1d10:Dodge or Block</item>
+            :4m:1d10:Dodge or Block:Mixed Element</item>
+
+        <item>Dispel:Variable:Dispel allows you to end a
+            spell/ritual/hex within the range
+            of this spell. This spell can cancel
+            magic with a duration and can be
+            used as a defensive action to block
+            magic attacks with or without
+            physical components. To cancel
+            a magical effect you must spend
+            half as many Stamina points as the
+            caster spent to cast the magic and
+            make a Spell Casting roll that beats
+            their casting roll.
+            :10m:Immediate:Spell Casting:Mixed Element</item>
+
+        <item>Glamour:5:Glamour allows you to cast
+            an illusion around yourself that
+            makes you look stunning. This
+            spell grants you +3 to Seduction,
+            Charisma, and Leadership.
+            :Self:1d6 Hours:None:Mixed Element</item>
+
+        <item>Magic Compass:3:Magic Compass allows
+            you to instantly determine the direction to a place you have been
+            before. Alternately, the spell tells
+            which direction is north.
+            :Self:1d6 Hours:None:Mixed Element</item>
+
+    </string-array>
+
+    <string-array name="journeyman_spells_list_data">
+
+        <item>Eilhart\’s Technique:12:Named for its creator Philippa
+            Eilhart, this gruesome spell allows you
+            to dig into a target\’s mind and tear out
+            information. If you succeed on your
+            Spell Casting roll you gain one piece of
+            information from the target. If the target
+            fumbles their defense, their INT is
+            reduced by 1 permanently.
+            :3m:Immediate:Resist Magic:Mixed Element</item>
 
     </string-array>
 

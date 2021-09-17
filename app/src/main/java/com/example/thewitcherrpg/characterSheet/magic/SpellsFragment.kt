@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
+import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.CharSpellsListAdapter
 import com.example.thewitcherrpg.databinding.FragmentSpellsBinding
 
 class SpellsFragment : Fragment() {
@@ -21,7 +24,8 @@ class SpellsFragment : Fragment() {
         _binding = FragmentSpellsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val adapter = SpellsListAdapter(requireContext())
+        val adapter = CharSpellsListAdapter(requireContext())
+
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -31,6 +35,8 @@ class SpellsFragment : Fragment() {
 
         binding.addButton.setOnClickListener(){
             sharedViewModel.addSpell("Blinding Dust " + (0..10).random())
+            Navigation.findNavController(view).navigate(R.id.action_spellsFragment_to_spellAddFragment)
+
         }
 
 
@@ -38,3 +44,4 @@ class SpellsFragment : Fragment() {
     }
 
 }
+

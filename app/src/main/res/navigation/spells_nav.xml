@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/spells_nav"
+    app:startDestination="@id/spellsFragment">
+
+    <fragment
+        android:id="@+id/spellsFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.magic.SpellsFragment"
+        android:label="SpellsFragment" >
+        <action
+            android:id="@+id/action_spellsFragment_to_spellAddFragment"
+            app:destination="@id/spellAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/spellAddFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.magic.SpellAddFragment"
+        android:label="fragment_spell_add"
+        tools:layout="@layout/fragment_spell_add" >
+        <action
+            android:id="@+id/action_spellAddFragment_to_spellsFragment"
+            app:destination="@id/spellsFragment" />
+    </fragment>
+</navigation>
