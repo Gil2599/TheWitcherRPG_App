@@ -16,10 +16,9 @@ import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.JourneymanSpellListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
-import kotlinx.android.synthetic.main.custom_dialog_help_info.*
 import kotlinx.android.synthetic.main.custom_dialog_spell.*
 
-class SpellAddFragment : Fragment(), NoviceSpellListAdapter.OnClickListener{
+class SpellAddFragment : Fragment() {
     private var _binding: FragmentSpellAddBinding? = null
     private val binding get() = _binding!!
 
@@ -46,7 +45,9 @@ class SpellAddFragment : Fragment(), NoviceSpellListAdapter.OnClickListener{
 
     private fun listAdaptersInit(){
 
-        val noviceAdapter = NoviceSpellListAdapter(requireContext())
+        val noviceAdapter = NoviceSpellListAdapter(requireContext()){
+            spell -> showSpellDialog(spell)
+        }
         noviceAdapter.setData(resources.getStringArray(R.array.novice_spells_list_data).toList())
 
         val journeymanAdapter = JourneymanSpellListAdapter(requireContext())
@@ -65,9 +66,7 @@ class SpellAddFragment : Fragment(), NoviceSpellListAdapter.OnClickListener{
 
     }
 
-    override fun onSpellClick(spell: String?) {
-        Toast.makeText(context, "clicked!", Toast.LENGTH_SHORT).show()
-
+    private fun showSpellDialog(spell: String?) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -79,5 +78,7 @@ class SpellAddFragment : Fragment(), NoviceSpellListAdapter.OnClickListener{
 
         dialog.show()
     }
+
+
 
 }

@@ -8,29 +8,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import kotlinx.android.synthetic.main.spell_row.view.*
 import kotlinx.android.synthetic.main.spell_row.view.rowLayout
+import javax.security.auth.callback.Callback
 
-class NoviceSpellListAdapter(con: Context) : RecyclerView.Adapter<NoviceSpellListAdapter.MyViewHolder>() {
-
-    interface OnClickListener {
-        fun onSpellClick(spell: String?)
-    }
+class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<NoviceSpellListAdapter.MyViewHolder>() {
 
     private var spellList = emptyList<String>()
     private var context: Context = con
     private lateinit var currentItem: String
-    private lateinit var callback: OnClickListener
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
+    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        this.callback = callback
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.spell_row, parent, false))
 
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         currentItem = spellList[position]
-
 
         val pair = currentItem.split(":").toTypedArray()
         val spellName = pair[0]
@@ -46,11 +40,8 @@ class NoviceSpellListAdapter(con: Context) : RecyclerView.Adapter<NoviceSpellLis
         holder.itemView.range_text.text = range
         holder.itemView.element_text.text = element
 
-        holder.itemView.rowLayout.setOnClickListener{
-
-            callback.onSpellClick(currentItem)
-
-            //Toast.makeText(context, "$spellName clicked!", Toast.LENGTH_SHORT).show()
+        holder.itemView.rowLayout.setOnClickListener {
+            itemClick(spellList[position])
         }
 
     }

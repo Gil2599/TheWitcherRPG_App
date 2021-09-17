@@ -53,7 +53,5 @@
         android:text="Earth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/range_text"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/range_text"
         app:layout_constraintTop_toBottomOf="@+id/range_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
