@@ -106,6 +106,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/dark_gray"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.878"
@@ -114,7 +116,67 @@
         app:layout_constraintVertical_bias="0.93"
         app:srcCompat ="@drawable/ic_baseline_add_24"
         android:contentDescription="Add new character">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addSignButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/dark_gray"
+        app:tint="@color/blue"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintEnd_toEndOf="@+id/addButton"
+        app:layout_constraintStart_toStartOf="@+id/addButton"
+        app:srcCompat="@drawable/ic_aard_sign_icon">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addSpellButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_gray"
+        app:tint="@color/purple_200"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/addRitualButton"
+        app:layout_constraintEnd_toEndOf="@+id/addRitualButton"
+        app:srcCompat="@drawable/ic_magic_icon">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addHexButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_gray"
+        app:tint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/addSignButton"
+        app:layout_constraintEnd_toEndOf="@+id/addSignButton"
+        app:srcCompat="@drawable/ic_hex_icon">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addRitualButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_gray"
+        app:tint="@color/red"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/addHexButton"
+        app:layout_constraintEnd_toEndOf="@+id/addHexButton"
+        app:srcCompat="@drawable/ic_ritual_icon">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 </androidx.constraintlayout.widget.ConstraintLayout>

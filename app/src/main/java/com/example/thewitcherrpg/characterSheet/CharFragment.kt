@@ -48,6 +48,7 @@ class CharFragment : Fragment() {
                 }
             }
             sharedViewModel.setImagePath(saveToInternalStorage(bitmap).toString())
+            (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
         }
         catch (e: NullPointerException){
             Toast.makeText(context, "Action Cancelled", Toast.LENGTH_SHORT).show()
@@ -68,9 +69,11 @@ class CharFragment : Fragment() {
         val imagePath = sharedViewModel.image.value.toString()
 
         if (imagePath.isNotEmpty()){
+                //Make margins 0 if image is found
+            (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+                //Load Image into imageview
             loadImageFromStorage(imagePath)
         }
-        else Toast.makeText(context, "Image not found", Toast.LENGTH_SHORT).show()
 
         binding.imageView.setOnClickListener(){
             getContent.launch("image/*")

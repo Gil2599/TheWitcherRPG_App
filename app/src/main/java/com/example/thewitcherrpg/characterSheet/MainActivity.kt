@@ -1,20 +1,15 @@
 package com.example.thewitcherrpg.characterSheet
 
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.characterSheet.magic.SpellsFragment
 import com.example.thewitcherrpg.characterSheet.magic.SpellsParentFragment
 import com.example.thewitcherrpg.data.Character
 import com.example.thewitcherrpg.data.CharacterViewModel

@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="All Spells"
+                android:textColor="@color/purple_200"
                 android:textSize="25sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +35,7 @@
                 android:id="@+id/view1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/allSpellsText"
@@ -46,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Novice Spells"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view1"
                 app:layout_constraintTop_toBottomOf="@+id/view1" />
@@ -55,7 +56,7 @@
                 android:id="@+id/view2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/textNovice"
                 app:layout_constraintWidth_percent="0.9" />
@@ -75,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Journeyman Spells"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerViewNovice" />
@@ -84,7 +85,7 @@
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/textJourneyman"
                 app:layout_constraintWidth_percent="0.9" />

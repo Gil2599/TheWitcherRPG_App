@@ -21,7 +21,6 @@ class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : Re
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.spell_row, parent, false))
-
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -70,11 +69,8 @@ class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : Re
                         itemClick(tag)
                     }
                 }
-
             }
         }
-
-
 
     }
 
