@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,7 @@ import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.JourneymanSpellListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
-import kotlinx.android.synthetic.main.custom_dialog_spell.*
+import kotlinx.android.synthetic.main.custom_dialog_add_spell.*
 
 class SpellAddFragment : Fragment() {
     private var _binding: FragmentSpellAddBinding? = null
@@ -45,10 +46,12 @@ class SpellAddFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
+        //Receive information from recyclerView adapter
         val noviceAdapter = NoviceSpellListAdapter(requireContext()){
             spell -> showSpellDialog(spell)
         }
         noviceAdapter.setData(resources.getStringArray(R.array.novice_spells_list_data).toList())
+        noviceAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
         val journeymanAdapter = JourneymanSpellListAdapter(requireContext())
         journeymanAdapter.setData(resources.getStringArray(R.array.journeyman_spells_list_data).toList())
@@ -70,15 +73,42 @@ class SpellAddFragment : Fragment() {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_spell)
+        dialog.setContentView(R.layout.custom_dialog_add_spell)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        dialog.spell_name_text.text = spell
+        val pair = spell!!.split(":").toTypedArray()
+        val spellName = pair[0]
+        val staCost = "<b>" + "STA Cost: " + "</b>" + pair[1]
+        val effect = "<b>" + "Effect: " + "</b>" + pair[2]
+        val range = "<b>" + "Range: " + "</b>" + pair[3]
+        val duration = "<b>" + "Duration: " + "</b>" + pair[4]
+        val defense = "<b>" + "Defense: " + "</b>" + pair[5]
+        val element = pair[6]
+
+        dialog.spell_name_text.text = spellName
+        dialog.sta_cost_text.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.range_text.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.effect_text.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.duration_text.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.add_spell_element_text.text = element
         //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
+
+        dialog.addSpellbutton.setOnClickListener(){
+            if (sharedViewModel.addNoviceSpell(spellName)){
+                Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+
+        dialog.add_spell_cancel_button.setOnClickListener(){
+            dialog.dismiss()
+        }
 
         dialog.show()
     }
-
-
 
 }

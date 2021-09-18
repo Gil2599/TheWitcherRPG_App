@@ -13,8 +13,9 @@ import javax.security.auth.callback.Callback
 class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<NoviceSpellListAdapter.MyViewHolder>() {
 
     private var spellList = emptyList<String>()
-    private var context: Context = con
+    private var addSpell: Boolean = false
     private lateinit var currentItem: String
+    private var context: Context = con
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
@@ -26,23 +27,54 @@ class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : Re
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         currentItem = spellList[position]
 
-        val pair = currentItem.split(":").toTypedArray()
-        val spellName = pair[0]
-        val staCost = "STA Cost: " + pair[1]
-        val description = pair[2]
-        val range = "Range: " + pair[3]
-        val duration = pair[4]
-        val defense = pair[5]
-        val element = pair[6]
+        //Check whether to show all spells or only character spells
+        if (addSpell){
+            val pair = currentItem.split(":").toTypedArray()
+            val spellName = pair[0]
+            val staCost = "STA Cost: " + pair[1]
+            val description = pair[2]
+            val range = "Range: " + pair[3]
+            val duration = pair[4]
+            val defense = pair[5]
+            val element = pair[6]
 
-        holder.itemView.spell_name_text.text = spellName
-        holder.itemView.sta_cost_text.text = staCost
-        holder.itemView.range_text.text = range
-        holder.itemView.element_text.text = element
+            holder.itemView.spell_name_text.text = spellName
+            holder.itemView.sta_cost_text.text = staCost
+            holder.itemView.range_text.text = range
+            holder.itemView.element_text.text = element
 
-        holder.itemView.rowLayout.setOnClickListener {
-            itemClick(spellList[position])
+            holder.itemView.rowLayout.setOnClickListener {
+                itemClick(spellList[position])
+            }
         }
+        else{
+            val tags = context.resources.getStringArray(R.array.novice_spells_list_data)
+            for (tag in tags) {
+
+                val pair = tag.split(":").toTypedArray()
+                val spellName = pair[0]
+                val staCost = "STA Cost: " + pair[1]
+                val description = pair[2]
+                val range = "Range: " + pair[3]
+                val duration = pair[4]
+                val defense = pair[5]
+                val element = pair[6]
+
+                if (currentItem == spellName) {
+                    holder.itemView.spell_name_text.text = spellName
+                    holder.itemView.sta_cost_text.text = staCost
+                    holder.itemView.range_text.text = range
+                    holder.itemView.element_text.text = element
+
+                    holder.itemView.rowLayout.setOnClickListener {
+                        itemClick(tag)
+                    }
+                }
+
+            }
+        }
+
+
 
     }
 
@@ -55,4 +87,7 @@ class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : Re
         notifyDataSetChanged()
     }
 
+    fun setAddSpell(value: Boolean){
+        addSpell= value
+    }
 }

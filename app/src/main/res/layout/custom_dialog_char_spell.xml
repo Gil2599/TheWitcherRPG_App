@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="50dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_bkg"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/spell_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spell Name"
+            android:textSize="18sp"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.026" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/teal_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spell_name_text"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <TextView
+            android:id="@+id/sta_cost_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="STA Cost"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <TextView
+            android:id="@+id/range_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Range"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@+id/sta_cost_text"
+            app:layout_constraintTop_toBottomOf="@+id/sta_cost_text" />
+
+        <TextView
+            android:id="@+id/duration_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Duration"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@+id/range_text"
+            app:layout_constraintTop_toBottomOf="@+id/range_text" />
+
+        <TextView
+            android:id="@+id/defense_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Defense"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@+id/duration_text"
+            app:layout_constraintTop_toBottomOf="@+id/duration_text" />
+
+        <TextView
+            android:id="@+id/effect_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:maxHeight="270dp"
+            android:text="Effect"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/castSpellbutton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.47"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/defense_text"
+            app:layout_constraintTop_toBottomOf="@+id/defense_text"
+            app:layout_constraintVertical_bias="0.224" />
+
+        <Button
+            android:id="@+id/castSpellbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/outline_bkg"
+            android:text="Cast"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/outline_bkg"
+            android:text="Cancel"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/castSpellbutton"
+            app:layout_constraintTop_toTopOf="@+id/castSpellbutton"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <Button
+            android:id="@+id/removebutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/outline_bkg"
+            android:text="Remove"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/castSpellbutton"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            android:id="@+id/element_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Element"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@+id/spell_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

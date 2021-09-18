@@ -18,8 +18,6 @@ class CharCreationSecFrag : Fragment() {
 
     private val fragment = SkillsFragment()
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +26,7 @@ class CharCreationSecFrag : Fragment() {
         _binding = FragmentCharCreationSecBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        //Check if fragment exists in case user tries to return to this fragment after pressing back button and saves state
         if(childFragmentManager.findFragmentByTag("frag") == null){
             childFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment, "frag")
                 .commitNow()

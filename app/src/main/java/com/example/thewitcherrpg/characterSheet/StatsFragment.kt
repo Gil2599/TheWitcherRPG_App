@@ -42,6 +42,9 @@ class StatsFragment : Fragment() {
             false
         }
 
+        //If in character creation, set starting IP for stats = 70
+        if (sharedViewModel.inCharacterCreation) sharedViewModel.setIP(70)
+
         statsInit()
 
         binding.buttonPlus.setOnClickListener{

@@ -289,8 +289,8 @@ class SharedViewModel: ViewModel() {
     val ritualCrafting: LiveData<Int> = _ritualCrafting
 
     //Spells
-    private var _spellList = MutableLiveData(arrayListOf(""))
-    val spellList: LiveData<ArrayList<String>> = _spellList
+    private var _noviceSpellList = MutableLiveData(arrayListOf<String>())
+    val noviceSpellList: LiveData<ArrayList<String>> = _noviceSpellList
 
 
     //Setter Functions
@@ -658,14 +658,23 @@ class SharedViewModel: ViewModel() {
     }
 
     fun setSpellList(spells: ArrayList<String>){
-        _spellList.value = spells
+        _noviceSpellList.value = spells
     }
 
-    fun addSpell(spell: String){
-        val newArray = _spellList.value!!.toMutableList()
-        newArray.add(spell)
-        _spellList.value = ArrayList(newArray)
+    fun addNoviceSpell(spell: String): Boolean{
+        //Check whether character already has the spell
+        return if (spell !in _noviceSpellList.value!!){
+            val newArray = _noviceSpellList.value!!.toMutableList()
+            newArray.add(spell)
+            _noviceSpellList.value = ArrayList(newArray)
+            true
+        } else false
 
+    }
+    fun removeNoviceSpell(spell: String){
+        val newArray = _noviceSpellList.value!!.toMutableList()
+        newArray.remove(spell)
+        _noviceSpellList.value = ArrayList(newArray)
     }
 
     //Logic Functions
@@ -851,7 +860,7 @@ class SharedViewModel: ViewModel() {
         val resistMagic = _resistMagic.value!!
         val resistCoercion = _resistCoercion.value!!
         val ritualCrafting = _ritualCrafting.value!!
-        val spells = _spellList.value!!
+        val spells = _noviceSpellList.value!!
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,

@@ -23,6 +23,7 @@ class CharCreationThirdFrag : Fragment() {
         _binding = FragmentCharCreationThirdBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        //Check if fragment exists in case user tries to return to this fragment after pressing back button
         if(childFragmentManager.findFragmentByTag("frag") == null){
             childFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment, "frag")
                 .commitNow()
