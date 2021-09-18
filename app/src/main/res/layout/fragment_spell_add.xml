@@ -61,14 +61,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/textNovice"
                 app:layout_constraintWidth_percent="0.9" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewNovice"
+            <RelativeLayout
+                android:id="@+id/relativeLayoutNovice"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice" />
+                app:layout_constraintTop_toBottomOf="@+id/textNovice" >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewNovice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/textJourneyman"
@@ -79,7 +84,7 @@
                 android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewNovice" />
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutNovice" />
 
             <View
                 android:id="@+id/view3"
@@ -90,14 +95,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/textJourneyman"
                 app:layout_constraintWidth_percent="0.9" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewJourneyman"
+            <RelativeLayout
+                android:id="@+id/relativeLayoutJourneyman"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                app:layout_constraintTop_toBottomOf="@+id/view3">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewJourneyman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

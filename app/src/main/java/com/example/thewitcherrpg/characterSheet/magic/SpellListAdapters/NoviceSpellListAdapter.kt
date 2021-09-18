@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import kotlinx.android.synthetic.main.spell_row.view.*
@@ -49,6 +50,7 @@ class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : Re
         else{
             val tags = context.resources.getStringArray(R.array.novice_spells_list_data)
             for (tag in tags) {
+
 
                 val pair = tag.split(":").toTypedArray()
                 val spellName = pair[0]
