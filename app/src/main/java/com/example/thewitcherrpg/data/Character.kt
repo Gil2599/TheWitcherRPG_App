@@ -111,7 +111,9 @@ data class Character(
     var ritualCrafting: Int,
 
     //Spells
-    var spells: ArrayList<String>
+    var noviceSpells: ArrayList<String>,
+    var journeymanSpells: ArrayList<String>,
+    var masterSpells: ArrayList<String>
 
 ): Parcelable
 

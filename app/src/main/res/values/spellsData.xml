@@ -127,11 +127,214 @@
             to escape.
             :10m:Until Destroyed:Dodge:Earth</item>
 
+        <item>Adenydd:4:Adenydd allows you to
+            lighten yourself slightly and create
+            a simple glide path when falling.
+            This means for each 2m you fall
+            you travel 2m in a direction. If you
+            make it to the ground within the
+            duration of the spell you take no
+            damage.
+            :Self:Active (2 STA):None:Air</item>
+
+        <item>Air Pocket:3:Air Pocket allows you to
+            create a pocket of fresh air underwater
+            or in an area where there
+            normally wouldn\'t be fresh air. The
+            pocket has a 1m radius for the duration of the spell.
+            :12m:2d10 Rounds:None:Air</item>
+
+        <item>Bronwyn\'s Gust:2:Bronwyn\'s Gust is named
+            after the Skellige mage and raider,
+            Bronwyn Deadeye. The spell
+            allows you to knock a target back
+            a number of meters equal to the
+            number of points you rolled over
+            the opponent’s defense. This attack
+            only does 1d6 damage, but if your
+            opponent strikes something they
+            take ramming damage.
+            :2m:Immediate:Dodge:Air</item>
+
+        <item>Freshen Air:2:Freshen Air allows you to
+            clear a 4m radius area (centered
+            around you) of any smoke, poison,
+            or any other tainted air for the duration of the spell.
+            :2m Radius:Active (2 STA):None:Air</item>
+
+        <item>Urien\'s Shelter:3:Urien\'s Shelter, created by
+            the nautical air magician Urien of
+            Cidaris, allows you to negate hostile
+            weather effects in an 8m radius
+            centered on you. This negates extreme
+            heat, extreme cold, rain, and snow.
+            :8m Radius:1d6 Hours:None:Air</item>
+
+        <item>Static Storm:5:Static Storm allows you to
+            infuse a 5m radius centred around
+            you with electricity. Anyone within
+            this area (excluding you) who is
+            wearing metal armor or carrying
+            metal weapons takes 2 points of
+            damage per round.
+            :5m Radius:2d6 Rounds:None:Air</item>
+
+        <item>Telekinesis:3:Telekinesis allows you to
+            lift and manipulate an object (up
+            to 5 ENC per 1 point of Spell Casting)
+            as though you were holding it.
+            :5m:Active (2 STA):None:Air</item>
+
+        <item>Zephyr:5:Zephyr allows you to shoot
+            out a burst of wind that blasts anyone
+            within 2m of you back 6m.
+            This attack does only 1d6 damage,
+            but if your opponent hits something they
+            suffer ramming damage.
+            :2m Radius:Immediate:None:Air</item>
+
+        <item>Aenye:5:Aenye allows you to throw
+            a ball of pure fire at an opponent
+            within the range of the spell. This
+            ball of fire does 4d6 damage and
+            has a 75% chance of lighting the
+            target on fire.
+            :12m:Immediate:Dodge or Block:Fire</item>
+
+        <item>Aine Verseos:1:Aine Verseos creates an
+            area of bright light in a 4m radius
+            centred on you.
+            :4m Radius:Active (2 STA):None:Fire</item>
+
+        <item>Brand of Fire:4:Brand of Fire allows you
+            to brand a target with a simple
+            symbol or word anywhere on their
+            exposed body. This does 1d6 damage
+            to the target and leaves a large,
+            permanent scar.
+            :8m:Immediate:None:Fire</item>
+
+        <item>Cadfan\'s Grasp:4:Cadfan\'s Grasp, named for
+            the magician and smith Cadfan of
+            Ebbing, allows you to super-heat
+            a metal item, making the holder
+            drop the item or take 2d6 damage
+            to the limb holding it. Alternatively,
+            the spell can heat weapons
+            to give +2d6 damage and a 50%
+            chance to ignite a target.
+            :8m:1d6 Rounds:None:Fire</item>
+
+        <item>Magic Flare:2:Magic Flare creates a bright
+            flash above you. Everyone within
+            an 8m radius must make a Resist
+            Magic check or be blinded for 1d6
+            rounds. This flare can be seen for
+            10 kilometers.
+            :8m Radius:Immediate:Resist Magic:Fire</item>
+
+        <item>Raise Flame:3:Raise Flame allows you to
+            spread an existing fire at a speed
+            of 2m per round in any direction,
+            dull down a fire to a weak blaze
+            (lowering the fire damage by 1), or
+            intensify the fire (raising the fire
+            damage by 1).
+            :10m:Active (2 STA):None:Fire</item>
+
+        <item>Tanio Ilchar:3:Tanio Ilchar creates a burst
+            of fire in a 2m by 2m area. This has
+            a 100% chance of lighting a target
+            in the area on fire.
+            :8m:Immediate:Dodge:Fire</item>
+
+        <item>Wave of Fire:4:Wave of Fire shoots a 3m
+            cone of fire in one direction that
+            does 2d6 damage to anyone who
+            isn’t able to dodge or block, and
+            has a 50% chance of igniting a
+            target.
+            :3m Cone:Immediate:Dodge or Block:Fire</item>
+
+        <item>Carys\' Hail:3:Named for its creator
+            Carys of Cintra, this spell hurls
+            pellets of ice at high speeds at 1
+            opponent. For every 1 point you
+            roll over your opponent’s Dodge/
+            Block (maximum 5), you deal 1d6
+            damage and have a 25% chance to
+            freeze your opponent. Each roll
+            counts as its own separate attack
+            when determining location and
+            dealing damage.
+            :5m:Immediate:Dodge or Block:Water</item>
+
+        <item>Control Water:5:Control Water allows you
+            to control the speed at which a
+            body of water is moving and in
+            what direction it’s moving for the
+            duration of the spell. This can be
+            used to slow swimming targets
+            by half, speed up ships by half, or
+            slow or halt river currents.
+            :10m:Active (2 STA):DC set by the GM:Water</item>
+
+        <item>Curse of Sedna:5:Named after the tumultuous Sedna Abyss, which is considered a suicidal destination for
+            ships, Curse of Sedna creates a
+            powerful whirlpool in a 4 meter area.
+            Anyone within 5m must
+            make a Swimming check equal
+            to your Spell Casting check or be
+            dragged underwater. They must
+            make a check each round or remain
+            underwater, where they will
+            start suffocating.
+            :12m:Active (2 STA):Dodge:Water</item>
+
+        <item>Dormyn\'s Fog:3:Created by Dormyn of
+            Gemmera, Dormyn\'s Fog creates
+            an area with a 10m radius, centred
+            on you, of thick fog which puts anyone
+            in it at a -3 to Awareness and
+            limits vision range to 4m.
+            :10m Radius:Active (2 STA):None:Water</item>
+
+        <item>Downpour:2:Downpour creates a 10m
+            radius area of rain that puts out
+            any fire it hits. This spell
+            counteracts fire effects.
+            :8m:Active (2 STA):None:Water</item>
+
+        <item>Ice Slick:2:Ice Slick allows you to
+            create a 2m square area of ice. Anyone
+            who crosses that area must make
+            an Athletics check at a DC equal to
+            your Spell Casting check or trip on
+            the ice.
+            :10m:2d10 Rounds:Dodge:Water</item>
+
+        <item>Puro Dwr:2:Puro Dwr allows you to
+            purify 1 cubic meter of water. This
+            negates poison and disease, but
+            will not force living creatures out
+            of it. If cast on a small part of a
+            larger body of polluted water, the
+            water will begin to pollute again
+            after the duration of the spell ends.
+            :4m:1d10 Rounds:None:Water</item>
+
+        <item>Rhewi:2:Rhewi creates a thick layer
+            of ice around a target for the duration
+            of the spell. The target is treated as
+            frozen. If used on a non-living target,
+            the target cannot to be manipulated or moved.
+            :8m:1d10 Rounds:Dodge:Water</item>
+
     </string-array>
 
     <string-array name="journeyman_spells_list_data">
 
-        <item>Eilhart\’s Technique:12:Named for its creator Philippa
+        <item>Bronwyn\'s Gust:2:Named for its creator Philippa
             Eilhart, this gruesome spell allows you
             to dig into a target\’s mind and tear out
             information. If you succeed on your
@@ -140,6 +343,272 @@
             fumbles their defense, their INT is
             reduced by 1 permanently.
             :3m:Immediate:Resist Magic:Mixed Element</item>
+
+        <item>Illusion:8:Illusion allows you to create
+            any visual illusion you want within
+            20m of yourself. Anyone who fails the
+            Resist Magic check sees the illusion
+            and believes it. The illusion cannot be
+            touched, smelled, or heard, however.
+            :20m:Active (4 STA):Resist Magic:Mixed Element</item>
+
+        <item>Teleportation:10:Teleportation allows you to
+            teleport to a known location instantaneously.
+            You cannot take anyone with
+            you and can only transport the items
+            on your person or in your hands. Attempting
+            to teleport with a person
+            simply teleports you and leaves them
+            behind. Teleporting require a DC 15
+            Spell Casting roll. If you fail the roll,
+            you wind up in a random location 1d6
+            miles away.
+            :N/A:Immediate:None:Mixed Element</item>
+
+        <item>Elgan\'s Theory:10:Elgan\'s Theory was discovered
+            by Elgan of Verden who travelled to
+            the heart of Mahakam and worked for
+            years studying earth magic. The spell
+            allows you to magnetize a metal object
+            within 8m. Anything metal within 2m
+            is drawn and sticks to the magnet. It
+            takes a DC 18 Physique check to pry an
+            object off. All metal that sticks to
+            someone\'s weapons or armor counts against
+            their ENC.
+            :8m:2d10 Rounds:None:Earth</item>
+
+        <item>Rhwystr Graig:15:Rhwystr Graig allows you to
+            create a 2m by 3m rock wall with 30
+            points of SP anywhere within 10m with
+            any facing. This wall remains until destroyed.
+            :20m:Until Destroyed:None:Earth</item>
+
+        <item>Stammelford\'s Earthquake:12:Stammelford\'s
+            Earthquake allows you to disrupt the ground in a
+            10m area and create a jagged, crumbling
+            terrain which puts everyone in
+            the area at a -2 to Reflex and a -3 to
+            SPD. Small structures on the shattered
+            ground have a 10% chance of
+            collapsing. Each round, a creature in
+            the spell’s area must make an Athletics
+            roll or sink into the crumbling ground,
+            which causes them to suffocate until
+            they make a successful Athletics check
+            to climb out. After the duration of the
+            spell ends, the ground stops churning
+            but it will remain shattered.
+            :20m:1d10 Rounds:Dodge:Earth</item>
+
+        <item>Alzur\'s Thunder:15:Alzur\'s Thunder allows you
+            to shoot a powerful lightning bolt
+            at a target which does 8d6 damage
+            and has a 75% chance of setting
+            the target on fire. Alzur\'s Thunder
+            can travel in a straight line through
+            targets. For every target it passes
+            through the damage to the next
+            target decreases by 1d6.
+            :25m:Immediate:Dodge:Air</item>
+
+        <item>Gwynt Troelli:12:Gwynt Troelli creates a
+            barrier of wind around you that
+            blocks ranged attacks and projectiles.
+            Any projectile attack must
+            beat your Spell Casting roll. If they
+            fail, the barrier knocks the projectile
+            8m away in a random direction.
+            :10m Radius:Active (4 STA):None:Air</item>
+
+        <item>Suffocate:14: Suffocates a target for 1d10
+            damage per turn. The suffocation
+            ends if the caster is struck with a
+            weapon or stops focusing on the
+            spell. While suffocating, a target is
+            treated as staggered.
+            :10m:Active (4 STA):Resist Magic:Air</item>
+
+        <item>Demetia\'s Crest Surge:12:Demetia\'s Crest
+            Surge allows you to create a shield of pure
+            fire magic around you that blocks
+            a number of water spells equal to 2
+            times your Spell Casting skill value.
+            Projectiles that enter the shield
+            are destroyed, and living creatures
+            cannot enter the area of the shield.
+            :10m:Active (4 STA):None:Fire</item>
+
+        <item>Flaming Vortex:15:Flaming Vortex creates a
+            flaming tornado 2m wide. You can
+            direct the tornado to move a number
+            of meters equal to your Spell
+            Casting skill value per turn. If it
+            runs over or into a target, make
+            a Spell Casting roll versus their
+            Dodge/Escape roll. If they fail,
+            they take 5d6 damage and have a
+            50% chance of being set on fire.
+            The vortex will not travel beyond
+            the spell’s range.
+            :10m Radius:Active (4 STA):Dodge:Fire</item>
+
+        <item>Seirff Haul:10:Seirff Haul creates a
+            number of serpents from fire magic
+            that swarm over a target. The target
+            is grappled and on fire until
+            they make a Dodge/Escape check
+            vs. your Spell Casting roll. Every
+            round that the target fails the
+            Dodge/Escape check, the DC rises
+            by 1 point as the serpents tighten.
+            :10m:2d10:Dodge:Fire</item>
+
+        <item>Anialwch:8:Anialwch allows you to
+            suck some of the liquid from a target\'s
+            body, damaging and exhausting them. The
+            spell does 4d6 damage which cannot be blocked by
+            armor or shields. The extreme dehydration
+            creates a fatigue which
+            lowers the target\'s current STA by
+            4d6 as well.
+            :10m:Immediate:Resist Magic:Water</item>
+
+        <item>Merigold\'s Hailstorm:15:Named for its creator Triss
+            Merigold, ex-advisor of King
+            Foltest of Temeria, Merigold\'s
+            Hailstorm creates a hailstorm encompassing the area of the spell.
+            Everyone within the storm must
+            make a Dodge/Escape check at
+            a DC equal to your Spell Casting check each round or take 2d6
+            damage to a body part.
+            :30m Radius:Active (4 STA):Dodge:Water</item>
+
+        <item>Waves of the Naglfar:10:Created by a mage who
+            claimed to have witnessed the ride
+            of the Wild Hunt, this spell creates
+            a wave of ice magic that spreads
+            out 3m from you in all directions.
+            Anyone who doesn\'t dodge or
+            block the spell is frozen and takes
+            4d6 damage.
+            :3m Radius:Immediate:Dodge or Block:Water</item>
+
+    </string-array>
+
+    <string-array name="master_spells_list_data">
+
+        <item>Mental Command:25:Mental Command allows
+            you to plant an order in the mind
+            of a target. This command must be
+            executed to the letter by the target.
+            If the command is something the
+            target would never do, they get a
+            +5 to their Resist Magic check.
+            :10m:Until Task is Done:Resist Magic:Mixed Element</item>
+
+        <item>Standing Portal:22:Standing Portal creates a
+            1m by 2m floating portal up to 10m
+            from you. Stepping through this
+            portal teleports you anywhere you
+            can recall. The portal can transport
+            anything that fits through it. If you
+            end the portal while something is
+            partially through, the portal slices
+            the object (or creature) in two.
+            The person is counted as being
+            dismembered, as per the Critical
+            Wound. You can create a portal to
+            a location you don’t know as per
+            Teleportation.
+            :N/A:Active (6 STA):None:Mixed Element</item>
+
+        <item>Polymorphism:22:Polymorphism allows you
+            to take the shape of a serpent, a
+            cat, a bird, or a dog. While in this
+            form, you have the physical statistics
+            of that animal (See Bestiary,
+            pg.310). Any items on your person
+            transform with you. You must cast
+            the spell again to change back to
+            your human form.
+            :Self:Until Re-Cast:None:Earth</item>
+
+        <item>Transmutation:25:Transmutation allows you
+            to change the properties of a mineral or
+            metal. You can change one
+            unit of metal into any other metal,
+            or change an imperfect gem into
+            a perfect gem suitable for magic.
+            Dimeritium or other metals in
+            contact with dimeritium cannot
+            be created or changed by this spell.
+            :2m:Permanent:None:Earth</item>
+
+        <item>Dervish:22:Created by a mysterious
+            Offeri magician, Dervish allows
+            you to create a 2m tornado around
+            yourself. This tornado immediately redirects ranged attacks as per
+            Gwynt Troelli and acts a Zephyr
+            spell against anyone within 2m of
+            you. You cannot run while within this tornado, or make attacks
+            out of it. But if you move within
+            2m of a target they are effected by
+            Zephyr.
+            :2m Radius:Active (6 STA):Dodge:Air</item>
+
+        <item>Lightning Storm:25:Lightning Storm allows you
+            to create a lightning storm. Lightning strikes randomly around the
+            area. Anyone (except you) in the
+            area has a 35% chance of being
+            struck by lightning. If they miss
+            this roll, they must make a Dodge/
+            Escape check or take 8d6 damage
+            to the torso and have a 75% chance
+            to be ignited.
+            :20m Radius:Active (6 STA):Dodge:Air</item>
+
+        <item>Melgar\'s Fire:25:This spell is well
+            known for sowing chaos on the fields of the Pontar
+            Valley. Melgar’s Fire allows you to rain balls
+            of fire from the sky over a huge
+            area. Anyone (except you) in the area has a
+            75% chance of being struck by
+            a ball of fire. If they miss this roll,
+            they must defend at a DC equal to your
+            Spell Casting check or take 4d6 damage to
+            a random location and have a
+            75% chance of being ignited.
+            :40m Radius:2d6 Rounds:Dodge or Block:Fire</item>
+
+        <item>Mirror Effect:25:Mirror Effect creates a blinding
+            beam of light which does 10d6 damage. This laser can
+            be dodged and blocked (destroying whatever blocks it)
+            but it cannot be displaced by wind and can only be parried by a reflective
+            surface, which still takes damage. Tge reflected laser goes off in a random
+            direction. This spell uses the rays of the sun and cannot be used where the
+            sun’s rays can’t penetrate. By the light of the moon or on overcast days, it
+            does half damage.
+            :20m:2d6 Rounds:Dodge or Block:Fire</item>
+
+        <item>Part Water:25:Part Water allows you to create an open area in a body of water, up
+            to 10m by 100m by 10m. Fish, monsters, and other creatures in the water
+            are swept back with the water. You can pass in and out of the wall as easily
+            as stepping in or out of a body of water without disturbing the walls. If used
+            while in the water the effect pushes the caster aside as well. The area can
+            be summoned in any orientation, even vertical.
+            :10m Radius:Active (6 STA):None:Water</item>
+
+        <item>Tryferi Gaeaf:22:Tryferi Gaeaf allows you to shoot a number of 2m spikes of ice equal
+            to half your Spell Casting skill value at any number of targets within range.
+            These spikes do 5d6 points of damage and, if they do damage through
+            armor, freeze the opponent and do 2 point of damage each round until they
+            are broken off with a DC 20 Physique check or by doing 20 points of damage
+            to them. Otherwise, these spikes last for the duration of the spell. Each
+            attack resolves separately.
+            :20m:1d10 Rounds:Dodge or Block:Water</item>
+
+
 
     </string-array>
 

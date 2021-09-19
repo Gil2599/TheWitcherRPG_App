@@ -225,7 +225,9 @@ class MainActivity : AppCompatActivity() {
         sharedViewModel.setRitualCrafting(characterData.ritualCrafting)
 
         //Spells
-        sharedViewModel.setSpellList(characterData.spells)
+        sharedViewModel.setNoviceSpellList(characterData.noviceSpells)
+        sharedViewModel.setJourneymanSpellList(characterData.journeymanSpells)
+        sharedViewModel.setMasterSpellList(characterData.masterSpells)
 
     }
 

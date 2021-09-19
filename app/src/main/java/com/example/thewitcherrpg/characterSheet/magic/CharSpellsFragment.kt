@@ -49,8 +49,12 @@ class CharSpellsFragment : Fragment() {
             noviceAdapter.setData(spell)
         })
 
-        val journeymanAdapter = JourneymanSpellListAdapter(requireContext())
-        journeymanAdapter.setData(resources.getStringArray(R.array.journeyman_spells_list_data).toList())
+        val journeymanAdapter = JourneymanSpellListAdapter(requireContext()){
+                spell -> showSpellDialog(spell)
+        }
+        sharedViewModel.journeymanSpellList.observe(viewLifecycleOwner, { spell ->
+            journeymanAdapter.setData(spell)
+        })
 
         binding.recyclerViewNovice.adapter = noviceAdapter
         binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
@@ -86,7 +90,6 @@ class CharSpellsFragment : Fragment() {
         dialog.effect_text.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.duration_text.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.element_text.text = element
-        //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
 
         dialog.castSpellbutton.setOnClickListener(){
             dialog.dismiss()

@@ -48,13 +48,16 @@ class SpellAddFragment : Fragment() {
 
         //Receive information from recyclerView adapter
         val noviceAdapter = NoviceSpellListAdapter(requireContext()){
-            spell -> showSpellDialog(spell)
+            spell -> showSpellDialog(spell, "novice")
         }
         noviceAdapter.setData(resources.getStringArray(R.array.novice_spells_list_data).toList())
         noviceAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
-        val journeymanAdapter = JourneymanSpellListAdapter(requireContext())
+        val journeymanAdapter = JourneymanSpellListAdapter(requireContext()){
+                spell -> showSpellDialog(spell, "journeyman")
+        }
         journeymanAdapter.setData(resources.getStringArray(R.array.journeyman_spells_list_data).toList())
+        journeymanAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
         binding.recyclerViewNovice.adapter = noviceAdapter
         binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
@@ -69,7 +72,7 @@ class SpellAddFragment : Fragment() {
 
     }
 
-    private fun showSpellDialog(spell: String?) {
+    private fun showSpellDialog(spell: String?, level: String?) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -95,12 +98,23 @@ class SpellAddFragment : Fragment() {
         //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
 
         dialog.addSpellbutton.setOnClickListener(){
-            if (sharedViewModel.addNoviceSpell(spellName)){
-                Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+
+            when (level){
+                "novice" -> {
+                    if (sharedViewModel.addNoviceSpell(spellName))
+                    else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+                }
+
+                "journeyman" -> {
+                    if (sharedViewModel.addJourneymanSpell(spellName))
+                    else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+                }
             }
-            else{
-                Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
-            }
+
             dialog.dismiss()
         }
 

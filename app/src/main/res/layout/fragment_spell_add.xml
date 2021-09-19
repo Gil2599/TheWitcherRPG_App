@@ -103,11 +103,45 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewJourneyman"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewJourneyman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textMaster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Master Spells"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/textJourneyman"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutJourneyman" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/purple_200"
+                app:layout_constraintStart_toStartOf="@+id/textMaster"
+                app:layout_constraintTop_toBottomOf="@+id/textMaster"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutMaster"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view4">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMaster"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

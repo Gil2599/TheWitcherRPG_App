@@ -292,6 +292,12 @@ class SharedViewModel: ViewModel() {
     private var _noviceSpellList = MutableLiveData(arrayListOf<String>())
     val noviceSpellList: LiveData<ArrayList<String>> = _noviceSpellList
 
+    private var _journeymanSpellList = MutableLiveData(arrayListOf<String>())
+    val journeymanSpellList: LiveData<ArrayList<String>> = _journeymanSpellList
+
+    private var _masterSpellList = MutableLiveData(arrayListOf<String>())
+    val masterSpellList: LiveData<ArrayList<String>> = _masterSpellList
+
 
     //Setter Functions
     fun setID(id: Int){
@@ -657,8 +663,16 @@ class SharedViewModel: ViewModel() {
         _ritualCrafting.value = ritualCrafting
     }
 
-    fun setSpellList(spells: ArrayList<String>){
+    fun setNoviceSpellList(spells: ArrayList<String>){
         _noviceSpellList.value = spells
+    }
+
+    fun setJourneymanSpellList(spells: ArrayList<String>){
+        _journeymanSpellList.value = spells
+    }
+
+    fun setMasterSpellList(spells: ArrayList<String>){
+        _masterSpellList.value = spells
     }
 
     fun addNoviceSpell(spell: String): Boolean{
@@ -675,6 +689,22 @@ class SharedViewModel: ViewModel() {
         val newArray = _noviceSpellList.value!!.toMutableList()
         newArray.remove(spell)
         _noviceSpellList.value = ArrayList(newArray)
+    }
+
+    fun addJourneymanSpell(spell: String): Boolean{
+        //Check whether character already has the spell
+        return if (spell !in _journeymanSpellList.value!!){
+            val newArray = _journeymanSpellList.value!!.toMutableList()
+            newArray.add(spell)
+            _journeymanSpellList.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeJourneymanSpell(spell: String){
+        val newArray = _journeymanSpellList.value!!.toMutableList()
+        newArray.remove(spell)
+        _journeymanSpellList.value = ArrayList(newArray)
     }
 
     //Logic Functions
@@ -860,7 +890,9 @@ class SharedViewModel: ViewModel() {
         val resistMagic = _resistMagic.value!!
         val resistCoercion = _resistCoercion.value!!
         val ritualCrafting = _ritualCrafting.value!!
-        val spells = _noviceSpellList.value!!
+        val noviceSpells = _noviceSpellList.value!!
+        val journeymanSpells = _journeymanSpellList.value!!
+        val masterSpells = _masterSpellList.value!!
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
@@ -871,7 +903,7 @@ class SharedViewModel: ViewModel() {
             staffSpear, swordsmanship, archery, athletics, crossbow, sleightOfHand, stealth, physique, endurance, charisma,
             deceit, fineArts, gambling, groomingAndStyle, humanPerception, leadership, persuasion, performance, seduction,
             alchemy, crafting, disguise, firstAid, forgery, pickLock, trapCrafting, courage, hexWeaving, intimidation,
-            spellCasting, resistMagic, resistCoercion, ritualCrafting, spells)
+            spellCasting, resistMagic, resistCoercion, ritualCrafting, noviceSpells, journeymanSpells, masterSpells)
 
     }
 

@@ -26,7 +26,7 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.MyViewHolder>(
         val currentItem = charList[position]
 
         holder.itemView.name_text.text = currentItem.name
-        holder.itemView.race_text.text = currentItem.race
+        holder.itemView.race_text.text = currentItem.profession
         holder.itemView.id_text.text = currentItem.id.toString()
 
         val ip = "IP: " + currentItem.iP
