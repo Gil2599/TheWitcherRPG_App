@@ -1,41 +1,34 @@
 package com.example.thewitcherrpg.characterSheet.magic
 
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.JourneymanSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.NoviceSpellListAdapter
-import com.example.thewitcherrpg.databinding.FragmentSpellsBinding
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.defense_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.duration_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.effect_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.range_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.spell_name_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.sta_cost_text
-import kotlinx.android.synthetic.main.custom_dialog_char_spell.*
+import com.example.thewitcherrpg.databinding.FragmentCharMagicBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
-class MagicFragment : Fragment() {
-    private var _binding: FragmentSpellsBinding? = null
+class CharMagicFragment : Fragment() {
+    private var _binding: FragmentCharMagicBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var tabAdapter: MagicViewPagerAdapter
     private val sharedViewModel: SharedViewModel by activityViewModels()
-
     private var buttonClicked: Boolean = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        _binding = FragmentSpellsBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCharMagicBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        setupViewPager()
 
         //Remove or change magic categories depending on profession
         if(sharedViewModel.profession.value == "Witcher"){
@@ -47,19 +40,19 @@ class MagicFragment : Fragment() {
             binding.addSpellButton.setImageResource(R.drawable.ic_celtic_knot_icon)
         }
 
-        listAdaptersInit()
-
+        //Setting up Add FAB
         binding.addButton.setOnClickListener(){
             onAddButtonClicked()
         }
         binding.addSpellButton.setOnClickListener(){
-            Navigation.findNavController(view).navigate(R.id.action_spellsFragment_to_spellAddFragment)
+            Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_spellAddFragment)
         }
 
         binding.addSpellButton.animate().scaleX(0.8F).scaleY(0.8F).alpha(0F).translationY(50F).duration = 0
         binding.addRitualButton.animate().scaleX(0.8F).scaleY(0.8F).alpha(0F).translationY(50F).duration = 0
         binding.addHexButton.animate().scaleX(0.8F).scaleY(0.8F).alpha(0F).translationY(50F).duration = 0
         binding.addSignButton.animate().scaleX(0.8F).scaleY(0.8F).alpha(0F).translationY(50F).duration = 0
+
 
         return view
     }
@@ -139,70 +132,58 @@ class MagicFragment : Fragment() {
         }
     }
 
-    private fun listAdaptersInit(){
+    private fun setupViewPager(){
+        //Setting up viewPager
+        tabAdapter = MagicViewPagerAdapter(childFragmentManager, lifecycle)
 
-        val noviceAdapter = NoviceSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
+        val viewPager = binding.viewPager2
+        viewPager.apply{adapter = tabAdapter}
+
+        val tabsLayout: TabLayout = binding.MagicTabs
+        TabLayoutMediator(tabsLayout, viewPager,true) {tab, position ->
+            tab.text = when (tabAdapter.fragmentList[position]) {
+                MagicViewPagerAdapter.FragmentName.SPELLS -> "Spells"
+                MagicViewPagerAdapter.FragmentName.RITUALS -> "Rituals"
+                MagicViewPagerAdapter.FragmentName.HEXES -> "Hexes"
+                MagicViewPagerAdapter.FragmentName.SIGNS -> "Signs"
+            }
+        }.attach()
+
+        //Check the profession and set the tabLayout and Adapter accordingly
+        when (sharedViewModel.profession.value){
+            "Witcher" -> {
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
+                tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_aard_sign_icon)
+            }
+
+            "Mage" -> {
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.SPELLS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.RITUALS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.HEXES)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
+            }
+            "Priest" -> {
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.SPELLS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.RITUALS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.HEXES)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
+            }
+
         }
-        sharedViewModel.noviceSpellList.observe(viewLifecycleOwner, { spell ->
-            noviceAdapter.setData(spell)
-        })
+        if (sharedViewModel.profession.value == "Mage") tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_magic_icon)
+        else if (sharedViewModel.profession.value == "Priest") tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_celtic_knot_icon)
 
-        val journeymanAdapter = JourneymanSpellListAdapter(requireContext())
-        journeymanAdapter.setData(resources.getStringArray(R.array.journeyman_spells_list_data).toList())
-
-        binding.recyclerViewNovice.adapter = noviceAdapter
-        binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.recyclerViewJourneyman.adapter = journeymanAdapter
-        binding.recyclerViewJourneyman.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.recyclerViewNovice.isNestedScrollingEnabled = false
-        binding.recyclerViewJourneyman.isNestedScrollingEnabled = false
-
+        tabsLayout.getTabAt(1)?.setIcon(R.drawable.ic_ritual_icon)
+        tabsLayout.getTabAt(2)?.setIcon(R.drawable.ic_hex_icon)
+        tabsLayout.getTabAt(3)?.setIcon(R.drawable.ic_aard_sign_icon)
     }
 
-    private fun showSpellDialog(spell: String?) {
-        val dialog = Dialog(requireContext())
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_char_spell)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    override fun onStart() {
+        when (sharedViewModel.profession.value){
+            "Mage", "Witcher", "Priest" -> super.onStart()
 
-        val pair = spell!!.split(":").toTypedArray()
-        val spellName = pair[0]
-        val staCost = "<b>" + "STA Cost: " + "</b>" + pair[1]
-        val effect = "<b>" + "Effect: " + "</b>" + pair[2]
-        val range = "<b>" + "Range: " + "</b>" + pair[3]
-        val duration = "<b>" + "Duration: " + "</b>" + pair[4]
-        val defense = "<b>" + "Defense: " + "</b>" + pair[5]
-        val element = pair[6]
-
-        dialog.spell_name_text.text = spellName
-        dialog.sta_cost_text.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.range_text.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.effect_text.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.duration_text.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.element_text.text = element
-        //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
-
-        dialog.castSpellbutton.setOnClickListener(){
-            dialog.dismiss()
+            else -> Navigation.findNavController(requireView()).navigate(R.id.action_charMagicFragment_to_noMagicFragment)
         }
-        dialog.cancel_button.setOnClickListener(){
-            dialog.dismiss()
-        }
-        dialog.removebutton.setOnClickListener(){
-            sharedViewModel.removeNoviceSpell(spellName)
-            Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-
-        dialog.show()
+        super.onStart()
     }
-
-
-
 }
-

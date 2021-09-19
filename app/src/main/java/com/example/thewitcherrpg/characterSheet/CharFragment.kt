@@ -79,6 +79,7 @@ class CharFragment : Fragment() {
             getContent.launch("image/*")
         }
 
+        //Setting up viewPager
         val numTabs = 5
         val tabTitles = listOf<String>("Quick Stats", "Profession", "Armor", "Equipment", "Profession")
 

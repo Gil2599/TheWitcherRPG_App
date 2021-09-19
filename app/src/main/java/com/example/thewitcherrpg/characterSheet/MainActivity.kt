@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.characterSheet.magic.SpellsParentFragment
+import com.example.thewitcherrpg.characterSheet.magic.MagicParentFragment
 import com.example.thewitcherrpg.data.Character
 import com.example.thewitcherrpg.data.CharacterViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Magic -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SpellsParentFragment())
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, MagicParentFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }

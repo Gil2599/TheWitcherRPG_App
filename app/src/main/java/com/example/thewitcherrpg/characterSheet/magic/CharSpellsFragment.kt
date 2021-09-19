@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
@@ -16,28 +15,25 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.JourneymanSpellListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.NoviceSpellListAdapter
-import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.*
+import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
+import kotlinx.android.synthetic.main.custom_dialog_add_spell.defense_text
+import kotlinx.android.synthetic.main.custom_dialog_add_spell.duration_text
+import kotlinx.android.synthetic.main.custom_dialog_add_spell.effect_text
+import kotlinx.android.synthetic.main.custom_dialog_add_spell.range_text
+import kotlinx.android.synthetic.main.custom_dialog_add_spell.spell_name_text
+import kotlinx.android.synthetic.main.custom_dialog_add_spell.sta_cost_text
+import kotlinx.android.synthetic.main.custom_dialog_char_spell.*
 
-class SpellAddFragment : Fragment() {
-    private var _binding: FragmentSpellAddBinding? = null
+class CharSpellsFragment : Fragment() {
+    private var _binding: FragmentCharSpellsBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSpellAddBinding.inflate(inflater, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
+        _binding = FragmentCharSpellsBinding.inflate(inflater, container, false)
         val view = binding.root
-
-        //Adds a callback to back button to return to previous fragment in nav graph instead of destroying activity
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            // Handle the back button event
-            Navigation.findNavController(view).navigate(R.id.action_spellAddFragment_to_charMagicFragment)
-        }
-        callback.isEnabled = true
 
         listAdaptersInit()
 
@@ -46,12 +42,12 @@ class SpellAddFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
-        //Receive information from recyclerView adapter
         val noviceAdapter = NoviceSpellListAdapter(requireContext()){
-            spell -> showSpellDialog(spell)
+                spell -> showSpellDialog(spell)
         }
-        noviceAdapter.setData(resources.getStringArray(R.array.novice_spells_list_data).toList())
-        noviceAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
+        sharedViewModel.noviceSpellList.observe(viewLifecycleOwner, { spell ->
+            noviceAdapter.setData(spell)
+        })
 
         val journeymanAdapter = JourneymanSpellListAdapter(requireContext())
         journeymanAdapter.setData(resources.getStringArray(R.array.journeyman_spells_list_data).toList())
@@ -62,8 +58,6 @@ class SpellAddFragment : Fragment() {
         binding.recyclerViewJourneyman.adapter = journeymanAdapter
         binding.recyclerViewJourneyman.layoutManager = LinearLayoutManager(requireContext())
 
-
-
         binding.recyclerViewNovice.isNestedScrollingEnabled = false
         binding.recyclerViewJourneyman.isNestedScrollingEnabled = false
 
@@ -73,7 +67,7 @@ class SpellAddFragment : Fragment() {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_add_spell)
+        dialog.setContentView(R.layout.custom_dialog_char_spell)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val pair = spell!!.split(":").toTypedArray()
@@ -91,24 +85,25 @@ class SpellAddFragment : Fragment() {
         dialog.defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.effect_text.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.duration_text.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.add_spell_element_text.text = element
+        dialog.element_text.text = element
         //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
 
-        dialog.addSpellbutton.setOnClickListener(){
-            if (sharedViewModel.addNoviceSpell(spellName)){
-                Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
-            }
+        dialog.castSpellbutton.setOnClickListener(){
             dialog.dismiss()
         }
-
-        dialog.add_spell_cancel_button.setOnClickListener(){
+        dialog.cancel_button.setOnClickListener(){
+            dialog.dismiss()
+        }
+        dialog.removebutton.setOnClickListener(){
+            sharedViewModel.removeNoviceSpell(spellName)
+            Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
         dialog.show()
     }
 
+
+
 }
+
