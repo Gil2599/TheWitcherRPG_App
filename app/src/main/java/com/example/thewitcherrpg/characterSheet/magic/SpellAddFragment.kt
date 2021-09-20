@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.JourneymanSpellListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.MasterSpellListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
 import kotlinx.android.synthetic.main.custom_dialog_add_spell.*
@@ -48,7 +49,7 @@ class SpellAddFragment : Fragment() {
 
         //Receive information from recyclerView adapter
         val noviceAdapter = NoviceSpellListAdapter(requireContext()){
-            spell -> showSpellDialog(spell, "novice")
+            spell -> showSpellDialog(spell, "novice") //Determines which list this spell goes under
         }
         noviceAdapter.setData(resources.getStringArray(R.array.novice_spells_list_data).toList())
         noviceAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
@@ -59,16 +60,24 @@ class SpellAddFragment : Fragment() {
         journeymanAdapter.setData(resources.getStringArray(R.array.journeyman_spells_list_data).toList())
         journeymanAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
+        val masterAdapter = MasterSpellListAdapter(requireContext()){
+                spell -> showSpellDialog(spell, "master")
+        }
+        masterAdapter.setData(resources.getStringArray(R.array.master_spells_list_data).toList())
+        masterAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
+
         binding.recyclerViewNovice.adapter = noviceAdapter
         binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
 
         binding.recyclerViewJourneyman.adapter = journeymanAdapter
         binding.recyclerViewJourneyman.layoutManager = LinearLayoutManager(requireContext())
 
-
+        binding.recyclerViewMaster.adapter = masterAdapter
+        binding.recyclerViewMaster.layoutManager = LinearLayoutManager(requireContext())
 
         binding.recyclerViewNovice.isNestedScrollingEnabled = false
         binding.recyclerViewJourneyman.isNestedScrollingEnabled = false
+        binding.recyclerViewMaster.isNestedScrollingEnabled = false
 
     }
 
@@ -109,6 +118,13 @@ class SpellAddFragment : Fragment() {
 
                 "journeyman" -> {
                     if (sharedViewModel.addJourneymanSpell(spellName))
+                    else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+                }
+
+                "master" -> {
+                    if (sharedViewModel.addMasterSpell(spellName))
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
 
                     Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()

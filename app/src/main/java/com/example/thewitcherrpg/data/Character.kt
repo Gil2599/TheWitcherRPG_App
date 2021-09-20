@@ -110,7 +110,8 @@ data class Character(
     var resistCoercion: Int,
     var ritualCrafting: Int,
 
-    //Spells
+    //Magic
+    var vigor: Int,
     var noviceSpells: ArrayList<String>,
     var journeymanSpells: ArrayList<String>,
     var masterSpells: ArrayList<String>

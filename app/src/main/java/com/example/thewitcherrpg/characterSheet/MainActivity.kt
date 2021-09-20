@@ -31,10 +31,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mCharViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
-        characterData = intent?.getParcelableExtra("EXTRA_DATA")!!
+        characterData = intent?.getParcelableExtra("EXTRA_DATA")!! //Get character data
 
-        charInit()
 
+        sharedViewModel.onInit(characterData) //Initialize viewModel with character data
+
+        //Set up navigation drawer
         val drawerLayout = binding.drawerLayout
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
@@ -124,115 +126,8 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun charInit(){
-
-        sharedViewModel.setID(characterData.id)
-        sharedViewModel.setImagePath(characterData.imagePath)
-        sharedViewModel.setName(characterData.name)
-        sharedViewModel.setIP(characterData.iP)
-        sharedViewModel.setRace(characterData.race)
-        sharedViewModel.setGender(characterData.gender)
-        sharedViewModel.setAge(characterData.age)
-        sharedViewModel.setProfession(characterData.profession)
-        sharedViewModel.setDefiningSkill(characterData.definingSkill)
-        sharedViewModel.setCrowns(characterData.crowns)
-
-        //Profession Skills
-        sharedViewModel.setProfessionSkillA1(characterData.professionSkillA1)
-        sharedViewModel.setProfessionSkillA2(characterData.professionSkillA2)
-        sharedViewModel.setProfessionSkillA3(characterData.professionSkillA3)
-        sharedViewModel.setProfessionSkillB1(characterData.professionSkillB1)
-        sharedViewModel.setProfessionSkillB2(characterData.professionSkillB2)
-        sharedViewModel.setProfessionSkillB3(characterData.professionSkillB3)
-        sharedViewModel.setProfessionSkillC1(characterData.professionSkillC1)
-        sharedViewModel.setProfessionSkillC2(characterData.professionSkillC2)
-        sharedViewModel.setProfessionSkillC3(characterData.professionSkillC3)
-
-        //Stats
-        sharedViewModel.setIntelligence(characterData.intelligence)
-        sharedViewModel.setReflex(characterData.reflex)
-        sharedViewModel.setDexterity(characterData.dexterity)
-        sharedViewModel.setBody(characterData.body)
-        sharedViewModel.setSpeed(characterData.speed)
-        sharedViewModel.setEmpathy(characterData.empathy)
-        sharedViewModel.setCraftsmanship(characterData.craftsmanship)
-        sharedViewModel.setWill(characterData.will)
-        sharedViewModel.setLuck(characterData.luck)
-        sharedViewModel.setStun(characterData.stun)
-        sharedViewModel.setRun(characterData.run)
-        sharedViewModel.setLeap(characterData.leap)
-        sharedViewModel.setMaxHP(characterData.MaxHP)
-        sharedViewModel.setHP(characterData.hp)
-        sharedViewModel.setMaxStamina(characterData.MaxStamina)
-        sharedViewModel.setStamina(characterData.stamina)
-        sharedViewModel.setEncumbrance(characterData.encumbrance)
-        sharedViewModel.setRecovery(characterData.recovery)
-        sharedViewModel.setPunch(characterData.punch)
-        sharedViewModel.setKick(characterData.kick)
-
-        //Skills
-        sharedViewModel.setAwareness(characterData.awareness)
-        sharedViewModel.setBusiness(characterData.business)
-        sharedViewModel.setDeduction(characterData.deduction)
-        sharedViewModel.setEducation(characterData.education)
-        sharedViewModel.setCommonSpeech(characterData.commonSpeech)
-        sharedViewModel.setElderSpeech(characterData.elderSpeech)
-        sharedViewModel.setDwarven(characterData.dwarven)
-        sharedViewModel.setMonsterLore(characterData.monsterLore)
-        sharedViewModel.setSocialEtiquette(characterData.socialEtiquette)
-        sharedViewModel.setStreetwise(characterData.streetwise)
-        sharedViewModel.setTactics(characterData.tactics)
-        sharedViewModel.setTeaching(characterData.teaching)
-        sharedViewModel.setWildernessSurvival(characterData.wildernessSurvival)
-        sharedViewModel.setBrawling(characterData.brawling)
-        sharedViewModel.setDodgeEscape(characterData.dodgeEscape)
-        sharedViewModel.setMelee(characterData.melee)
-        sharedViewModel.setRiding(characterData.riding)
-        sharedViewModel.setSailing(characterData.sailing)
-        sharedViewModel.setSmallBlades(characterData.smallBlades)
-        sharedViewModel.setStaffSpear(characterData.staffSpear)
-        sharedViewModel.setSwordsmanship(characterData.swordsmanship)
-        sharedViewModel.setArchery(characterData.archery)
-        sharedViewModel.setAthletics(characterData.athletics)
-        sharedViewModel.setCrossbow(characterData.crossbow)
-        sharedViewModel.setSleightOfHand(characterData.sleightOfHand)
-        sharedViewModel.setStealth(characterData.stealth)
-        sharedViewModel.setPhysique(characterData.physique)
-        sharedViewModel.setEndurance(characterData.endurance)
-        sharedViewModel.setCharisma(characterData.charisma)
-        sharedViewModel.setDeceit(characterData.deceit)
-        sharedViewModel.setFineArts(characterData.fineArts)
-        sharedViewModel.setGambling(characterData.gambling)
-        sharedViewModel.setGroomingAndStyle(characterData.groomingAndStyle)
-        sharedViewModel.setHumanPerception(characterData.humanPerception)
-        sharedViewModel.setLeadership(characterData.leadership)
-        sharedViewModel.setPersuasion(characterData.persuasion)
-        sharedViewModel.setPerformance(characterData.performance)
-        sharedViewModel.setSeduction(characterData.seduction)
-        sharedViewModel.setAlchemy(characterData.alchemy)
-        sharedViewModel.setCrafting(characterData.crafting)
-        sharedViewModel.setDisguise(characterData.disguise)
-        sharedViewModel.setFirstAid(characterData.firstAid)
-        sharedViewModel.setForgery(characterData.forgery)
-        sharedViewModel.setPickLock(characterData.pickLock)
-        sharedViewModel.setTrapCrafting(characterData.trapCrafting)
-        sharedViewModel.setCourage(characterData.courage)
-        sharedViewModel.setHexWeaving(characterData.hexWeaving)
-        sharedViewModel.setIntimidation(characterData.intimidation)
-        sharedViewModel.setSpellCasting(characterData.spellCasting)
-        sharedViewModel.setResistMagic(characterData.resistMagic)
-        sharedViewModel.setResistCoercion(characterData.resistCoercion)
-        sharedViewModel.setRitualCrafting(characterData.ritualCrafting)
-
-        //Spells
-        sharedViewModel.setNoviceSpellList(characterData.noviceSpells)
-        sharedViewModel.setJourneymanSpellList(characterData.journeymanSpells)
-        sharedViewModel.setMasterSpellList(characterData.masterSpells)
-
-    }
-
     override fun onBackPressed() {
-        //Check if there is a callback set by a fragment
+        //Check if there is a callback set by a fragment then don't close activity
         if (this.onBackPressedDispatcher.hasEnabledCallbacks()){
             super.onBackPressed()
             return;
