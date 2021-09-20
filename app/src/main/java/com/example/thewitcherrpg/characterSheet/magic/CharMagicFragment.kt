@@ -143,6 +143,7 @@ class CharMagicFragment : Fragment() {
         TabLayoutMediator(tabsLayout, viewPager,true) {tab, position ->
             tab.text = when (tabAdapter.fragmentList[position]) {
                 MagicViewPagerAdapter.FragmentName.SPELLS -> "Spells"
+                MagicViewPagerAdapter.FragmentName.INVOCATIONS -> "Invocations"
                 MagicViewPagerAdapter.FragmentName.RITUALS -> "Rituals"
                 MagicViewPagerAdapter.FragmentName.HEXES -> "Hexes"
                 MagicViewPagerAdapter.FragmentName.SIGNS -> "Signs"
@@ -163,7 +164,7 @@ class CharMagicFragment : Fragment() {
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
             }
             "Priest" -> {
-                tabAdapter.add(MagicViewPagerAdapter.FragmentName.SPELLS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.INVOCATIONS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.RITUALS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.HEXES)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)

@@ -16,6 +16,7 @@ class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : Fragmen
     override fun createFragment(position: Int): Fragment {
         return when (fragmentList[position]) {
             FragmentName.SPELLS -> CharSpellsFragment()
+            FragmentName.INVOCATIONS -> CharInvocationsFragment()
             FragmentName.RITUALS -> NoMagicFragment()
             FragmentName.HEXES -> NoMagicFragment()
             FragmentName.SIGNS -> NoMagicFragment()
@@ -54,6 +55,7 @@ class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : Fragmen
     //Enum class to be able to add/remove tabs depending on profession
     enum class FragmentName {
         SPELLS,
+        INVOCATIONS,
         RITUALS,
         HEXES,
         SIGNS

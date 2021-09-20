@@ -14,9 +14,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.JourneymanSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.MasterSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters.NoviceSpellListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.JourneymanSpellListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.MasterSpellListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
 import kotlinx.android.synthetic.main.custom_dialog_add_spell.*
 

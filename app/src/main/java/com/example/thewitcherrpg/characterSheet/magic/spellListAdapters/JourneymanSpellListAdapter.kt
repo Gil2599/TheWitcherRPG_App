@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters
+package com.example.thewitcherrpg.characterSheet.magic.spellListAdapters
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,39 +1,31 @@
 package com.example.thewitcherrpg.characterSheet.magic
 
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.JourneymanSpellListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.invocationListAdapter.JourneymanDruidInvoListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.invocationListAdapter.NoviceDruidInvoListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.MasterSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.NoviceSpellListAdapter
-import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.defense_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.duration_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.effect_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.range_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.spell_name_text
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.sta_cost_text
-import kotlinx.android.synthetic.main.custom_dialog_char_spell.*
+import com.example.thewitcherrpg.databinding.FragmentCharInvocationsBinding
 
-class CharSpellsFragment : Fragment() {
-    private var _binding: FragmentCharSpellsBinding? = null
+
+class CharInvocationsFragment : Fragment() {
+    private var _binding: FragmentCharInvocationsBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        _binding = FragmentCharSpellsBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCharInvocationsBinding.inflate(inflater, container, false)
         val view = binding.root
 
         listAdaptersInit()
@@ -43,34 +35,34 @@ class CharSpellsFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
-        val noviceAdapter = NoviceSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
+        val noviceDruidAdapter = NoviceDruidInvoListAdapter(requireContext()){
+                //spell -> showSpellDialog(spell)
         }
         sharedViewModel.noviceSpellList.observe(viewLifecycleOwner, { spell ->
-            noviceAdapter.setData(spell)
+            noviceDruidAdapter.setData(spell)
         })
 
-        val journeymanAdapter = JourneymanSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
+        val journeymanDruidAdapter = JourneymanDruidInvoListAdapter(requireContext()){
+                //spell -> showSpellDialog(spell)
         }
         sharedViewModel.journeymanSpellList.observe(viewLifecycleOwner, { spell ->
-            journeymanAdapter.setData(spell)
+            journeymanDruidAdapter.setData(spell)
         })
 
-        val masterAdapter = MasterSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
+        val masterDruidAdapter = MasterSpellListAdapter(requireContext()){
+                //spell -> showSpellDialog(spell)
         }
         sharedViewModel.masterSpellList.observe(viewLifecycleOwner, { spell ->
-            masterAdapter.setData(spell)
+            masterDruidAdapter.setData(spell)
         })
 
-        binding.recyclerViewNovice.adapter = noviceAdapter
+        binding.recyclerViewNovice.adapter = noviceDruidAdapter
         binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.recyclerViewJourneyman.adapter = journeymanAdapter
+        binding.recyclerViewJourneyman.adapter = journeymanDruidAdapter
         binding.recyclerViewJourneyman.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.recyclerViewMaster.adapter = masterAdapter
+        binding.recyclerViewMaster.adapter = masterDruidAdapter
         binding.recyclerViewMaster.layoutManager = LinearLayoutManager(requireContext())
 
         binding.recyclerViewNovice.isNestedScrollingEnabled = false
@@ -80,7 +72,7 @@ class CharSpellsFragment : Fragment() {
     }
 
     //Set up dialog when a character spell is clicked
-    private fun showSpellDialog(spell: String?) {
+    /*private fun showSpellDialog(spell: String?) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -128,7 +120,7 @@ class CharSpellsFragment : Fragment() {
         }
 
         dialog.show()
-    }
+    }*/
 
     //Dialog that asks the user if they would like to use a portion of their HP to cast a spell that they
     //do not have enough stamina for
@@ -144,7 +136,4 @@ class CharSpellsFragment : Fragment() {
                 "cast this spell?")
         builder.create().show()
     }
-
-
 }
-

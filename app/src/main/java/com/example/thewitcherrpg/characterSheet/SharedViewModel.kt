@@ -919,11 +919,33 @@ class SharedViewModel: ViewModel() {
         val resistCoercion = _resistCoercion.value!!
         val ritualCrafting = _ritualCrafting.value!!
 
-        //Magic
+        //##### Magic #################################################
         val vigor = _vigor.value!!
+
+        val basicSigns = ArrayList<String>()
+        val alternateSigns = ArrayList<String>()
+
+        val noviceRituals = ArrayList<String>()
+        val journeymanRituals = ArrayList<String>()
+        val masterRituals = ArrayList<String>()
+
+        val hexes = ArrayList<String>()
+
+        //Mages
         val noviceSpells = _noviceSpellList.value!!
         val journeymanSpells = _journeymanSpellList.value!!
         val masterSpells = _masterSpellList.value!!
+
+        //Priests
+        val noviceDruidInvocations = ArrayList<String>()
+        val journeymanDruidInvocations = ArrayList<String>()
+        val masterDruidInvocations = ArrayList<String>()
+
+        val novicePreacherInvocations = ArrayList<String>()
+        val journeymanPreacherInvocations = ArrayList<String>()
+        val masterPreacherInvocations = ArrayList<String>()
+
+        val archPriestInvocations = ArrayList<String>()
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
@@ -934,7 +956,10 @@ class SharedViewModel: ViewModel() {
             staffSpear, swordsmanship, archery, athletics, crossbow, sleightOfHand, stealth, physique, endurance, charisma,
             deceit, fineArts, gambling, groomingAndStyle, humanPerception, leadership, persuasion, performance, seduction,
             alchemy, crafting, disguise, firstAid, forgery, pickLock, trapCrafting, courage, hexWeaving, intimidation,
-            spellCasting, resistMagic, resistCoercion, ritualCrafting, vigor,noviceSpells, journeymanSpells, masterSpells)
+            spellCasting, resistMagic, resistCoercion, ritualCrafting, vigor, basicSigns, alternateSigns, noviceRituals,
+            journeymanRituals, masterRituals, hexes, noviceSpells, journeymanSpells, masterSpells, noviceDruidInvocations,
+            journeymanDruidInvocations, masterDruidInvocations, novicePreacherInvocations, journeymanPreacherInvocations,
+            masterPreacherInvocations, archPriestInvocations)
 
     }
 

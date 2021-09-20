@@ -110,11 +110,33 @@ data class Character(
     var resistCoercion: Int,
     var ritualCrafting: Int,
 
-    //Magic
+    //##### Magic #################################################
     var vigor: Int,
+
+    var basicSigns: ArrayList<String>,
+    var alternateSigns: ArrayList<String>,
+
+    var noviceRituals: ArrayList<String>,
+    var journeymanRituals: ArrayList<String>,
+    var masterRituals: ArrayList<String>,
+
+    var hexes: ArrayList<String>,
+
+    //Mages
     var noviceSpells: ArrayList<String>,
     var journeymanSpells: ArrayList<String>,
-    var masterSpells: ArrayList<String>
+    var masterSpells: ArrayList<String>,
+
+    //Priests
+    var noviceDruidInvocations: ArrayList<String>,
+    var journeymanDruidInvocations: ArrayList<String>,
+    var masterDruidInvocations: ArrayList<String>,
+
+    var novicePreacherInvocations: ArrayList<String>,
+    var journeymanPreacherInvocations: ArrayList<String>,
+    var masterPreacherInvocations: ArrayList<String>,
+
+    var archPriestInvocations: ArrayList<String>
 
 ): Parcelable
 

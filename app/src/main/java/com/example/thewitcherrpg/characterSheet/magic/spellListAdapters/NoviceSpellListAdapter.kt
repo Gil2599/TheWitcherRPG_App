@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.characterSheet.magic.SpellListAdapters
+package com.example.thewitcherrpg.characterSheet.magic.spellListAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import kotlinx.android.synthetic.main.spell_row.view.*
+import kotlinx.android.synthetic.main.spell_row.view.rowLayout
 
-class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): RecyclerView.Adapter<MasterSpellListAdapter.MyViewHolder>() {
+class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<NoviceSpellListAdapter.MyViewHolder>() {
 
     private var spellList = emptyList<String>()
     private var addSpell: Boolean = false
     private lateinit var currentItem: String
     private var context: Context = con
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
+    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.spell_row, parent, false))
-
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -46,7 +46,7 @@ class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): Rec
             }
         }
         else{
-            val tags = context.resources.getStringArray(R.array.master_spells_list_data)
+            val tags = context.resources.getStringArray(R.array.novice_spells_list_data)
             for (tag in tags) {
 
                 val pair = tag.split(":").toTypedArray()
@@ -70,6 +70,7 @@ class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): Rec
                 }
             }
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -84,5 +85,4 @@ class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): Rec
     fun setAddSpell(value: Boolean){
         addSpell= value
     }
-
 }
