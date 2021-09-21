@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/spellAddFragment"
-        android:name="com.example.thewitcherrpg.characterSheet.magic.SpellAddFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.magic.addMagicFragments.SpellAddFragment"
         android:label="fragment_spell_add"
         tools:layout="@layout/fragment_spell_add" >
         <action
@@ -24,10 +24,21 @@
         <action
             android:id="@+id/action_charMagicFragment_to_noMagicFragment"
             app:destination="@id/noMagicFragment" />
+        <action
+            android:id="@+id/action_charMagicFragment_to_invocationAddFragment"
+            app:destination="@id/invocationAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/noMagicFragment"
         android:name="com.example.thewitcherrpg.characterSheet.magic.NoMagicFragment"
         android:label="fragment_no_magic"
         tools:layout="@layout/fragment_no_magic" />
+    <fragment
+        android:id="@+id/invocationAddFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.magic.addMagicFragments.InvocationAddFragment"
+        android:label="InvocationAddFragment" >
+        <action
+            android:id="@+id/action_invocationAddFragment_to_charMagicFragment"
+            app:destination="@id/charMagicFragment" />
+    </fragment>
 </navigation>

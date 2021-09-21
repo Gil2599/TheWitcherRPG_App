@@ -44,8 +44,12 @@ class CharMagicFragment : Fragment() {
         binding.addButton.setOnClickListener(){
             onAddButtonClicked()
         }
+        //If Mage, go to add spells fragment, otherwise (Priest) go to invocations fragment
         binding.addSpellButton.setOnClickListener(){
+            if(sharedViewModel.profession.value == "Mage")
             Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_spellAddFragment)
+
+            else Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_invocationAddFragment)
         }
 
         binding.addSpellButton.animate().scaleX(0.8F).scaleY(0.8F).alpha(0F).translationY(50F).duration = 0

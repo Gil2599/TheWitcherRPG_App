@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="novice_druidInvo_list_data">
+
+        <item>Boiling Blood:3:Boiling Blood causes an
+            animal or non-sentient monster
+            within range to become enraged
+            at a target. The creature will try to
+            attack the chosen target until the
+            duration ends.
+            :8m:1d10 Rounds:Creature\'s WILLx3</item>
+
+        <item>Cursed Illness:Variable:Cursed Illness causes one
+            target to fall ill. The illness manifests differently based on how
+            many Stamina points are spent.
+            2 points causes the target to double over coughing and staggers
+            them. 4 points causes the target
+            to become violently ill, stunning
+            them. 6 points causes the target to
+            become ill with a ravaging disease
+            which is treated as a poison. The
+            invocation ends when the target
+            makes an Endurance roll at a DC
+            equal to the casting roll.
+            :8m:Endurance Roll Ends:Resist Magic</item>
+
+        <item>Friend to Wild Kind:1:Friend to Wild Kind grants
+            the caster a +3 to Wilderness Survival
+            for handling animals. Alternately it can calm one animal if
+            the Spell Casting roll exceeds the animal’s WILLx3.
+            :Self or 5m:1d6 Hours:Creature\'s WILLx3</item>
+
+        <item>Nature\'s Gift:Variable:Nature\'s Gift grows a small
+            cluster of edible plants in soil of
+            any kind. These plants are enough
+            to sustain a number of people
+            equal to the number of STA points
+            spent for 1 day.
+            :2m:Immediate:None</item>
+
+        <item>Nature\'s Sight:2:Nature’s Sight allows you
+            to see creatures that are not natural
+            to this realm. This allows you
+            to see monsters within 50m, even
+            through obstacles. Monsters seen
+            in this view appears as glowing
+            versions of themselves.
+            :Self:Active (1 STA):None</item>
+
+        <item>Sigil of the Hidden:2:Drawing the Sigil of the
+            Hidden covers a 3m area in
+            branches, foliage, and other natural
+            elements to provide complete
+            visual cover. This grants you a +5
+            to Stealth, but immobilizes those
+            inside and must be cast again to
+            uncover yourself. You can cut
+            away the brush by doing 10 points
+            of damage to it.
+            :Self:Until Dispelled:None</item>
+
+    </string-array>
+
+    <string-array name="journeyman_druidInvo_list_data">
+
+        <item>Blessing of Healing:5:Blessing of Healing
+            jumpstarts a target\'s healing, allowing
+            them to heal at 3 points per round.
+            This blessing can be used multiple
+            times to heal a critical wound.
+            :2m:Active (3 STA):None</item>
+
+        <item>Primal Reservoir:6:Primal Reservoir allows
+            you to tap into the primal power
+            of a target and awaken it. It grants
+            them a +2 to Melee Damage, but a
+            -2 to INT for the duration of the
+            spell.
+            :5m:2d6 Rounds:Resist Magic</item>
+
+        <item>Threads of Life:4:Threads of Life allows you
+            to see the life energy binding every
+            target within the radius of the
+            spell, which tells you their current Health Points and any critical
+            wounds they have suffered.
+            :10m:Active (2 STA):None</item>
+
+    </string-array>
+
+    <string-array name="master_druidInvo_data">
+
+        <item>Shape Nature:12:Shape Nature allows you to create a golem
+            from a small nearby tree. The golem serves you for
+            the duration of the spell and will turn back into a
+            tree when the duration ends. If killed, the golem only
+            yields 2d10 units of timber. In all other ways, the tree
+            acts as a normal golem.
+            :10m:1d10 Rounds:None</item>
+
+        <item>Song of the Sky:10:The Song of the Sky changes the weather in the
+            area directly around you. You can change the weather
+            to: clear sky (no modifiers), cloudy (little sunlight),
+            rainstorm (puts out fires), wind storm (-2 to DEX for
+            ranged attacks), or lightning storm (35% chance of
+            being struck by lightning, equivalent to the Lightning
+            Storm spell).
+            :50m:Active (5 STA):None</item>
+
+    </string-array>
+
+    <string-array name="novice_preacherInvo_list_data">
+
+        <item>Blessing of Fortune:1:The Blessing of Fortune
+            gives the target LUCK points equal
+            to half the value you rolled over
+            DC of 12 (max 5).
+            :10m:Until Expired:None</item>
+
+        <item>Blessing of Love:2:The Blessing of Love gives
+            the caster a +3 to Charisma and
+            Seduction for the duration of the
+            invocation.
+            :5m:1d10 Rounds:None</item>
+
+        <item>Holy Light:1:Holy Light lights up an area
+            as though the caster was carrying
+            a torch. The light gives off no heat
+            and cannot be used to ignite other
+            objects like a torch can.
+            :Self:3d10 Rounds:None</item>
+
+        <item>Vaults of Knowledge:3:Vaults of Knowledge
+            allows you to reach back into your
+            mind and access any knowledge or
+            memory that you’ve ever known as
+            if you were just experiencing it.
+            :Self:Immediate:None</item>
+
+        <item>Waters of Clearance:1:Waters of Clearance sobers
+            the target immediately. This incantation counteracts alcohol and
+            alchemical solutions that cause intoxication.
+            :5m:Immediate:Resist Magic</item>
+
+        <item>Web of Lies:3:Web of Lies allows you to
+            scramble the information in a target’s head, making them question
+            every piece of information and
+            memory. This stuns the target.
+            Once per round, on their turn, the
+            target can roll 1d10. If they roll under their INT the effect ends.
+            :8m:INT roll ends:Resist Magic</item>
+
+    </string-array>
+
+    <string-array name="journeyman_preacherInvo_list_data">
+
+        <item>Cleansing Fire:6:Cleansing Fire ignites one
+            target, doing 3d6 damage and setting them on fire.
+            :10m:Until Put Out:Resist Magic</item>
+
+    </string-array>
+
+    <string-array name="master_preacherInvo_list_data">
+
+        <item>Divine Portal:12:Divine Portal creates a standing portal for a
+            brief instant. The portal lasts for just one round and
+            allows you to transport yourself or others anywhere
+            you can recall. This portal otherwise functions like the
+            mage spell, Standing Portal.
+            :N/A:1 Round:None</item>
+
+    </string-array>
+
+    <string-array name="archPriestInvo_list_data">
+
+        <item>Blessing of Death:16:Summoning the power of the Lion-Headed
+            Spider, you cut the ties of life holding a target to this
+            world. The target must roll Resist Magic or be thrust
+            into Death state as if by taking normal damage. However
+            if they are treated with a successful First Aid or
+            Healing Hands roll at a DC of 16, they immediately
+            recover their previous number of Health Points.
+            :10m:Immediate:Resist Magic</item>
+
+    </string-array>
+
+</resources>

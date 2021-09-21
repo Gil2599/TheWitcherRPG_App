@@ -288,10 +288,11 @@ class SharedViewModel: ViewModel() {
     private var _ritualCrafting = MutableLiveData(0)
     val ritualCrafting: LiveData<Int> = _ritualCrafting
 
-    //Magic
+    //##### Magic #################################################
     private var _vigor = MutableLiveData(10)
     val vigor: LiveData<Int> = _vigor
 
+    //Mages
     private var _noviceSpellList = MutableLiveData(arrayListOf<String>())
     val noviceSpellList: LiveData<ArrayList<String>> = _noviceSpellList
 
@@ -300,6 +301,28 @@ class SharedViewModel: ViewModel() {
 
     private var _masterSpellList = MutableLiveData(arrayListOf<String>())
     val masterSpellList: LiveData<ArrayList<String>> = _masterSpellList
+
+    //Priests
+    private var _noviceDruidInvocations = MutableLiveData(arrayListOf<String>())
+    val noviceDruidInvocations: LiveData<ArrayList<String>> = _noviceDruidInvocations
+
+    private var _journeymanDruidInvocations = MutableLiveData(arrayListOf<String>())
+    val journeymanDruidInvocations: LiveData<ArrayList<String>> = _journeymanDruidInvocations
+
+    private var _masterDruidInvocations = MutableLiveData(arrayListOf<String>())
+    val masterDruidInvocations: LiveData<ArrayList<String>> = _masterDruidInvocations
+
+    private var _novicePreacherInvocations = MutableLiveData(arrayListOf<String>())
+    val novicePreacherInvocations: LiveData<ArrayList<String>> = _novicePreacherInvocations
+
+    private var _journeymanPreacherInvocations = MutableLiveData(arrayListOf<String>())
+    val journeymanPreacherInvocations: LiveData<ArrayList<String>> = _journeymanPreacherInvocations
+
+    private var _masterPreacherInvocations = MutableLiveData(arrayListOf<String>())
+    val masterPreacherInvocations: LiveData<ArrayList<String>> = _masterPreacherInvocations
+
+    private var _archPriestInvocations = MutableLiveData(arrayListOf<String>())
+    val archPriestInvocations: LiveData<ArrayList<String>> = _archPriestInvocations
 
 
     //Setter Functions
@@ -336,351 +359,6 @@ class SharedViewModel: ViewModel() {
 
     fun setDefiningSkill(defSkill: String){
         _definingSkill.value = defSkill
-    }
-
-    fun setCrowns(crowns: Int){
-        _crowns.value = crowns
-    }
-
-    fun setProfessionSkillA1(value: Int){
-        _professionSkillA1.value = value
-    }
-
-    fun setProfessionSkillA2(value: Int){
-        _professionSkillA2.value = value
-    }
-
-    fun setProfessionSkillA3(value: Int){
-        _professionSkillA3.value = value
-    }
-
-    fun setProfessionSkillB1(value: Int){
-        _professionSkillB1.value = value
-    }
-
-    fun setProfessionSkillB2(value: Int){
-        _professionSkillB2.value = value
-    }
-
-    fun setProfessionSkillB3(value: Int){
-        _professionSkillB3.value = value
-    }
-
-    fun setProfessionSkillC1(value: Int){
-        _professionSkillC1.value = value
-    }
-
-    fun setProfessionSkillC2(value: Int){
-        _professionSkillC2.value = value
-    }
-
-    fun setProfessionSkillC3(value: Int){
-        _professionSkillC3.value = value
-    }
-
-    fun setIntelligence(intelligence: Int){
-        _intelligence.value = intelligence
-    }
-
-    fun setReflex(reflex: Int){
-        _ref.value = reflex
-    }
-
-    fun setDexterity(dexterity: Int){
-        _dex.value = dexterity
-    }
-
-    fun setBody(body: Int){
-        _body.value = body
-    }
-
-    fun setSpeed(speed: Int){
-        _spd.value = speed
-    }
-
-    fun setEmpathy(empathy: Int){
-        _emp.value = empathy
-    }
-
-    fun setCraftsmanship(craftsmanship: Int){
-        _cra.value = craftsmanship
-    }
-
-    fun setWill(will: Int){
-        _will.value = will
-    }
-
-    fun setLuck(luck: Int){
-        _luck.value = luck
-    }
-
-    fun setStun(stun: Int){
-        _stun.value = stun
-    }
-
-    fun setRun(run: Int){
-        _run.value = run
-    }
-
-    fun setLeap(leap: Int){
-        _leap.value = leap
-    }
-
-    fun setMaxHP(hp: Int){
-        _maxHP.value = hp
-    }
-
-    fun setHP(hp: Int){
-        _hp.value = hp
-    }
-
-    fun setMaxStamina(stamina: Int){
-        _maxSta.value = stamina
-    }
-
-    fun setStamina(stamina: Int){
-        _sta.value = stamina
-    }
-
-    fun setEncumbrance(enc: Int){
-        _enc.value = enc
-    }
-
-    fun setRecovery(recovery: Int){
-        _rec.value = recovery
-    }
-
-    fun setPunch(punch: String){
-        _punch.value = punch
-    }
-
-    fun setKick(kick: String){
-        _kick.value = kick
-    }
-
-    fun setAwareness(awareness: Int){
-        _awareness.value = awareness
-    }
-
-    fun setBusiness(business: Int){
-        _business.value = business
-    }
-
-    fun setDeduction(deduction: Int){
-        _deduction.value = deduction
-    }
-
-    fun setEducation(education: Int){
-        _education.value = education
-    }
-
-    fun setCommonSpeech(commonSpeech: Int){
-        _commonSpeech.value = commonSpeech
-    }
-
-    fun setElderSpeech(elderSpeech: Int){
-        _elderSpeech.value = elderSpeech
-    }
-
-    fun setDwarven(dwarven: Int){
-        _dwarven.value = dwarven
-    }
-
-    fun setMonsterLore(monsterLore: Int){
-        _monsterLore.value = monsterLore
-    }
-
-    fun setSocialEtiquette(socialEtiquette: Int){
-        _socialEtiquette.value = socialEtiquette
-    }
-
-    fun setStreetwise(streetwise: Int){
-        _streetwise.value = streetwise
-    }
-
-    fun setTactics(tactics: Int){
-        _tactics.value = tactics
-    }
-
-    fun setTeaching(teaching: Int){
-        _teaching.value = teaching
-    }
-
-    fun setWildernessSurvival(wildernessSurvival: Int){
-        _wildernessSurvival.value = wildernessSurvival
-    }
-
-    fun setBrawling(brawling: Int){
-        _brawling.value = brawling
-    }
-
-    fun setDodgeEscape(dodgeEscape: Int){
-        _dodgeEscape.value = dodgeEscape
-    }
-
-    fun setMelee(melee: Int){
-        _melee.value = melee
-    }
-
-    fun setRiding(riding: Int){
-        _riding.value = riding
-    }
-
-    fun setSailing(sailing: Int){
-        _sailing.value = sailing
-    }
-
-    fun setSmallBlades(smallBlades: Int){
-        _smallBlades.value = smallBlades
-    }
-
-    fun setStaffSpear(staffSpear: Int){
-        _staffSpear.value = staffSpear
-    }
-
-    fun setSwordsmanship(swordsmanship: Int){
-        _swordsmanship.value = swordsmanship
-    }
-
-    fun setArchery(archery: Int){
-        _archery.value = archery
-    }
-
-    fun setAthletics(athletics: Int){
-        _athletics.value = athletics
-    }
-
-    fun setCrossbow(crossbow: Int){
-        _crossbow.value = crossbow
-    }
-
-    fun setSleightOfHand(sleightOfHand: Int){
-        _sleightOfHand.value = sleightOfHand
-    }
-
-    fun setStealth(stealth: Int){
-        _stealth.value = stealth
-    }
-
-    fun setPhysique(physique: Int){
-        _physique.value = physique
-    }
-
-    fun setEndurance(endurance: Int){
-        _endurance.value = endurance
-    }
-
-    fun setCharisma(charisma: Int){
-        _charisma.value = charisma
-    }
-
-    fun setDeceit(deceit: Int){
-        _deceit.value = deceit
-    }
-
-    fun setFineArts(fineArts: Int){
-        _fineArts.value = fineArts
-    }
-
-    fun setGambling(gambling: Int) {
-        _gambling.value = gambling
-    }
-
-    fun setGroomingAndStyle(groomingAndStyle: Int) {
-        _groomingAndStyle.value = groomingAndStyle
-    }
-
-    fun setHumanPerception(humanPerception: Int) {
-        _humanPerception.value = humanPerception
-    }
-
-    fun setLeadership(leadership: Int) {
-        _leadership.value = leadership
-    }
-
-    fun setPersuasion(persuasion: Int) {
-        _persuasion.value = persuasion
-    }
-
-    fun setPerformance(performance: Int) {
-        _performance.value = performance
-    }
-
-    fun setSeduction(seduction: Int) {
-        _seduction.value = seduction
-    }
-
-    fun setAlchemy(alchemy: Int) {
-        _alchemy.value = alchemy
-    }
-
-    fun setCrafting(crafting: Int) {
-        _crafting.value = crafting
-    }
-
-    fun setDisguise(disguise: Int) {
-        _disguise.value = disguise
-    }
-
-    fun setFirstAid(firstAid: Int) {
-        _firstAid.value = firstAid
-    }
-
-    fun setForgery(forgery: Int) {
-        _forgery.value = forgery
-    }
-
-    fun setPickLock(pickLock: Int) {
-        _pickLock.value = pickLock
-    }
-
-    fun setTrapCrafting(trapCrafting: Int) {
-        _trapCrafting.value = trapCrafting
-    }
-
-    fun setCourage(courage: Int) {
-        _courage.value = courage
-    }
-
-    fun setHexWeaving(hexWeaving: Int) {
-        _hexWeaving.value = hexWeaving
-    }
-
-    fun setIntimidation(intimidation: Int) {
-        _intimidation.value = intimidation
-    }
-
-    fun setSpellCasting(spellCasting: Int) {
-        _spellCasting.value = spellCasting
-    }
-
-    fun setResistMagic(resistMagic: Int) {
-        _resistMagic.value = resistMagic
-    }
-
-    fun setResistCoercion(resistCoercion: Int) {
-        _resistCoercion.value = resistCoercion
-    }
-
-    fun setRitualCrafting(ritualCrafting: Int) {
-        _ritualCrafting.value = ritualCrafting
-    }
-
-    //Character magic logic
-    fun setVigor(vigor: Int) {
-        _vigor.value = vigor
-    }
-
-    fun setNoviceSpellList(spells: ArrayList<String>){
-        _noviceSpellList.value = spells
-    }
-
-    fun setJourneymanSpellList(spells: ArrayList<String>){
-        _journeymanSpellList.value = spells
-    }
-
-    fun setMasterSpellList(spells: ArrayList<String>){
-        _masterSpellList.value = spells
     }
 
     fun addNoviceSpell(spell: String): Boolean{
@@ -729,6 +407,118 @@ class SharedViewModel: ViewModel() {
         val newArray = _masterSpellList.value!!.toMutableList()
         newArray.remove(spell)
         _masterSpellList.value = ArrayList(newArray)
+    }
+
+    fun addNoviceDruidInvo(invo: String): Boolean{
+        //Check whether character already has the spell
+        return if (invo !in _noviceDruidInvocations.value!!){
+            val newArray = _noviceDruidInvocations.value!!.toMutableList()
+            newArray.add(invo)
+            _noviceDruidInvocations.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeNoviceDruidInvo(invo: String){
+        val newArray = _noviceDruidInvocations.value!!.toMutableList()
+        newArray.remove(invo)
+        _noviceDruidInvocations.value = ArrayList(newArray)
+    }
+
+    fun addJourneymanDruidInvo(invo: String): Boolean{
+        //Check whether character already has the spell
+        return if (invo !in _journeymanDruidInvocations.value!!){
+            val newArray = _journeymanDruidInvocations.value!!.toMutableList()
+            newArray.add(invo)
+            _journeymanDruidInvocations.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeJourneymanDruidInvo(invo: String){
+        val newArray = _journeymanDruidInvocations.value!!.toMutableList()
+        newArray.remove(invo)
+        _journeymanDruidInvocations.value = ArrayList(newArray)
+    }
+
+    fun addMasterDruidInvo(invo: String): Boolean{
+        //Check whether character already has the spell
+        return if (invo !in _masterDruidInvocations.value!!){
+            val newArray = _masterDruidInvocations.value!!.toMutableList()
+            newArray.add(invo)
+            _masterDruidInvocations.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeMasterDruidInvo(invo: String){
+        val newArray = _masterDruidInvocations.value!!.toMutableList()
+        newArray.remove(invo)
+        _masterDruidInvocations.value = ArrayList(newArray)
+    }
+
+    fun addNovicePreacherInvo(invo: String): Boolean{
+        //Check whether character already has the spell
+        return if (invo !in _novicePreacherInvocations.value!!){
+            val newArray = _novicePreacherInvocations.value!!.toMutableList()
+            newArray.add(invo)
+            _novicePreacherInvocations.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeNovicePreacherInvo(invo: String){
+        val newArray = _novicePreacherInvocations.value!!.toMutableList()
+        newArray.remove(invo)
+        _novicePreacherInvocations.value = ArrayList(newArray)
+    }
+
+    fun addJourneymanPreacherInvo(invo: String): Boolean{
+        //Check whether character already has the spell
+        return if (invo !in _journeymanPreacherInvocations.value!!){
+            val newArray = _journeymanPreacherInvocations.value!!.toMutableList()
+            newArray.add(invo)
+            _journeymanPreacherInvocations.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeJourneymanPreacherInvo(invo: String){
+        val newArray = _journeymanPreacherInvocations.value!!.toMutableList()
+        newArray.remove(invo)
+        _journeymanPreacherInvocations.value = ArrayList(newArray)
+    }
+
+    fun addMasterPreacherInvo(invo: String): Boolean{
+        //Check whether character already has the spell
+        return if (invo !in _masterPreacherInvocations.value!!){
+            val newArray = _masterPreacherInvocations.value!!.toMutableList()
+            newArray.add(invo)
+            _masterPreacherInvocations.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeMasterPreacherInvo(invo: String){
+        val newArray = _masterPreacherInvocations.value!!.toMutableList()
+        newArray.remove(invo)
+        _masterPreacherInvocations.value = ArrayList(newArray)
+    }
+
+    fun addArchPriestInvo(invo: String): Boolean{
+        //Check whether character already has the spell
+        return if (invo !in _archPriestInvocations.value!!){
+            val newArray = _archPriestInvocations.value!!.toMutableList()
+            newArray.add(invo)
+            _archPriestInvocations.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeArchPriestInvo(invo: String){
+        val newArray = _archPriestInvocations.value!!.toMutableList()
+        newArray.remove(invo)
+        _archPriestInvocations.value = ArrayList(newArray)
     }
 
     fun castSpell(staCost: Int): Boolean{
@@ -937,15 +727,15 @@ class SharedViewModel: ViewModel() {
         val masterSpells = _masterSpellList.value!!
 
         //Priests
-        val noviceDruidInvocations = ArrayList<String>()
-        val journeymanDruidInvocations = ArrayList<String>()
-        val masterDruidInvocations = ArrayList<String>()
+        val noviceDruidInvocations = _noviceDruidInvocations.value!!
+        val journeymanDruidInvocations = _journeymanDruidInvocations.value!!
+        val masterDruidInvocations = _masterDruidInvocations.value!!
 
-        val novicePreacherInvocations = ArrayList<String>()
-        val journeymanPreacherInvocations = ArrayList<String>()
-        val masterPreacherInvocations = ArrayList<String>()
+        val novicePreacherInvocations = _novicePreacherInvocations.value!!
+        val journeymanPreacherInvocations = _journeymanPreacherInvocations.value!!
+        val masterPreacherInvocations = _masterPreacherInvocations.value!!
 
-        val archPriestInvocations = ArrayList<String>()
+        val archPriestInvocations = _archPriestInvocations.value!!
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
@@ -1277,109 +1067,120 @@ class SharedViewModel: ViewModel() {
 
     fun onInit(characterData: Character){
 
-        this.setID(characterData.id)
-        this.setImagePath(characterData.imagePath)
-        this.setName(characterData.name)
-        this.setIP(characterData.iP)
-        this.setRace(characterData.race)
-        this.setGender(characterData.gender)
-        this.setAge(characterData.age)
-        this.setProfession(characterData.profession)
-        this.setDefiningSkill(characterData.definingSkill)
-        this.setCrowns(characterData.crowns)
+        this._uniqueID.value = characterData.id
+        this._image.value = characterData.imagePath
+        this._name.value = characterData.name
+        this._iP.value = characterData.iP
+        this._race.value = characterData.race
+        this._gender.value = characterData.gender
+        this._age.value = characterData.age
+        this._profession.value = characterData.profession
+        this._definingSkill.value = characterData.definingSkill
+        this._crowns.value = characterData.crowns
 
         //Profession Skills
-        this.setProfessionSkillA1(characterData.professionSkillA1)
-        this.setProfessionSkillA2(characterData.professionSkillA2)
-        this.setProfessionSkillA3(characterData.professionSkillA3)
-        this.setProfessionSkillB1(characterData.professionSkillB1)
-        this.setProfessionSkillB2(characterData.professionSkillB2)
-        this.setProfessionSkillB3(characterData.professionSkillB3)
-        this.setProfessionSkillC1(characterData.professionSkillC1)
-        this.setProfessionSkillC2(characterData.professionSkillC2)
-        this.setProfessionSkillC3(characterData.professionSkillC3)
+        this._professionSkillA1.value = characterData.professionSkillA1
+        this._professionSkillA2.value = characterData.professionSkillA2
+        this._professionSkillA3.value = characterData.professionSkillA3
+        this._professionSkillB1.value = characterData.professionSkillB1
+        this._professionSkillB2.value = characterData.professionSkillB2
+        this._professionSkillB3.value = characterData.professionSkillB3
+        this._professionSkillC1.value = characterData.professionSkillC1
+        this._professionSkillC2.value = characterData.professionSkillC2
+        this._professionSkillC3.value = characterData.professionSkillC3
 
         //Stats
-        this.setIntelligence(characterData.intelligence)
-        this.setReflex(characterData.reflex)
-        this.setDexterity(characterData.dexterity)
-        this.setBody(characterData.body)
-        this.setSpeed(characterData.speed)
-        this.setEmpathy(characterData.empathy)
-        this.setCraftsmanship(characterData.craftsmanship)
-        this.setWill(characterData.will)
-        this.setLuck(characterData.luck)
-        this.setStun(characterData.stun)
-        this.setRun(characterData.run)
-        this.setLeap(characterData.leap)
-        this.setMaxHP(characterData.MaxHP)
-        this.setHP(characterData.hp)
-        this.setMaxStamina(characterData.MaxStamina)
-        this.setStamina(characterData.stamina)
-        this.setEncumbrance(characterData.encumbrance)
-        this.setRecovery(characterData.recovery)
-        this.setPunch(characterData.punch)
-        this.setKick(characterData.kick)
+        this._intelligence.value = characterData.intelligence
+        this._ref.value = characterData.reflex
+        this._dex.value = characterData.dexterity
+        this._body.value = characterData.body
+        this._spd.value = characterData.speed
+        this._emp.value = characterData.empathy
+        this._cra.value = characterData.craftsmanship
+        this._will.value = characterData.will
+        this._luck.value = characterData.luck
+        this._stun.value = characterData.stun
+        this._run.value = characterData.run
+        this._leap.value = characterData.leap
+        this._maxHP.value = characterData.MaxHP
+        this._hp.value = characterData.hp
+        this._maxSta.value = characterData.MaxStamina
+        this._sta.value = characterData.stamina
+        this._enc.value = characterData.encumbrance
+        this._rec.value = characterData.recovery
+        this._punch.value = characterData.punch
+        this._kick.value = characterData.kick
 
         //Skills
-        this.setAwareness(characterData.awareness)
-        this.setBusiness(characterData.business)
-        this.setDeduction(characterData.deduction)
-        this.setEducation(characterData.education)
-        this.setCommonSpeech(characterData.commonSpeech)
-        this.setElderSpeech(characterData.elderSpeech)
-        this.setDwarven(characterData.dwarven)
-        this.setMonsterLore(characterData.monsterLore)
-        this.setSocialEtiquette(characterData.socialEtiquette)
-        this.setStreetwise(characterData.streetwise)
-        this.setTactics(characterData.tactics)
-        this.setTeaching(characterData.teaching)
-        this.setWildernessSurvival(characterData.wildernessSurvival)
-        this.setBrawling(characterData.brawling)
-        this.setDodgeEscape(characterData.dodgeEscape)
-        this.setMelee(characterData.melee)
-        this.setRiding(characterData.riding)
-        this.setSailing(characterData.sailing)
-        this.setSmallBlades(characterData.smallBlades)
-        this.setStaffSpear(characterData.staffSpear)
-        this.setSwordsmanship(characterData.swordsmanship)
-        this.setArchery(characterData.archery)
-        this.setAthletics(characterData.athletics)
-        this.setCrossbow(characterData.crossbow)
-        this.setSleightOfHand(characterData.sleightOfHand)
-        this.setStealth(characterData.stealth)
-        this.setPhysique(characterData.physique)
-        this.setEndurance(characterData.endurance)
-        this.setCharisma(characterData.charisma)
-        this.setDeceit(characterData.deceit)
-        this.setFineArts(characterData.fineArts)
-        this.setGambling(characterData.gambling)
-        this.setGroomingAndStyle(characterData.groomingAndStyle)
-        this.setHumanPerception(characterData.humanPerception)
-        this.setLeadership(characterData.leadership)
-        this.setPersuasion(characterData.persuasion)
-        this.setPerformance(characterData.performance)
-        this.setSeduction(characterData.seduction)
-        this.setAlchemy(characterData.alchemy)
-        this.setCrafting(characterData.crafting)
-        this.setDisguise(characterData.disguise)
-        this.setFirstAid(characterData.firstAid)
-        this.setForgery(characterData.forgery)
-        this.setPickLock(characterData.pickLock)
-        this.setTrapCrafting(characterData.trapCrafting)
-        this.setCourage(characterData.courage)
-        this.setHexWeaving(characterData.hexWeaving)
-        this.setIntimidation(characterData.intimidation)
-        this.setSpellCasting(characterData.spellCasting)
-        this.setResistMagic(characterData.resistMagic)
-        this.setResistCoercion(characterData.resistCoercion)
-        this.setRitualCrafting(characterData.ritualCrafting)
+        this._awareness.value = characterData.awareness
+        this._business.value = characterData.business
+        this._deduction.value = characterData.deduction
+        this._education.value = characterData.education
+        this._commonSpeech.value = characterData.commonSpeech
+        this._elderSpeech.value = characterData.elderSpeech
+        this._dwarven.value = characterData.dwarven
+        this._monsterLore.value = characterData.monsterLore
+        this._socialEtiquette.value = characterData.socialEtiquette
+        this._streetwise.value = characterData.streetwise
+        this._tactics.value = characterData.tactics
+        this._teaching.value = characterData.teaching
+        this._wildernessSurvival.value = characterData.wildernessSurvival
+        this._brawling.value = characterData.brawling
+        this._dodgeEscape.value = characterData.dodgeEscape
+        this._melee.value = characterData.melee
+        this._riding.value = characterData.riding
+        this._sailing.value = characterData.sailing
+        this._smallBlades.value = characterData.smallBlades
+        this._staffSpear.value = characterData.staffSpear
+        this._swordsmanship.value = characterData.swordsmanship
+        this._archery.value = characterData.archery
+        this._athletics.value = characterData.athletics
+        this._crossbow.value = characterData.crossbow
+        this._sleightOfHand.value = characterData.sleightOfHand
+        this._stealth.value = characterData.stealth
+        this._physique.value = characterData.physique
+        this._endurance.value = characterData.endurance
+        this._charisma.value = characterData.charisma
+        this._deceit.value = characterData.deceit
+        this._fineArts.value = characterData.fineArts
+        this._gambling.value = characterData.gambling
+        this._groomingAndStyle.value = characterData.groomingAndStyle
+        this._humanPerception.value = characterData.humanPerception
+        this._leadership.value = characterData.leadership
+        this._persuasion.value = characterData.persuasion
+        this._performance.value = characterData.performance
+        this._seduction.value = characterData.seduction
+        this._alchemy.value = characterData.alchemy
+        this._crafting.value = characterData.crafting
+        this._disguise.value = characterData.disguise
+        this._firstAid.value = characterData.firstAid
+        this._forgery.value = characterData.forgery
+        this._pickLock.value = characterData.pickLock
+        this._trapCrafting.value = characterData.trapCrafting
+        this._courage.value = characterData.courage
+        this._hexWeaving.value = characterData.hexWeaving
+        this._intimidation.value = characterData.intimidation
+        this._spellCasting.value = characterData.spellCasting
+        this._resistMagic.value = characterData.resistMagic
+        this._resistCoercion.value = characterData.resistCoercion
+        this._ritualCrafting.value = characterData.ritualCrafting
 
-        //Spells
-        this.setVigor(characterData.vigor)
-        this.setNoviceSpellList(characterData.noviceSpells)
-        this.setJourneymanSpellList(characterData.journeymanSpells)
-        this.setMasterSpellList(characterData.masterSpells)
+        //Magic
+        this._vigor.value = characterData.vigor
+
+        this._noviceSpellList.value = characterData.noviceSpells
+        this._journeymanSpellList.value = characterData.journeymanSpells
+        this._masterSpellList.value = characterData.masterSpells
+
+        this._noviceDruidInvocations.value = characterData.noviceDruidInvocations
+        this._journeymanDruidInvocations.value = characterData.journeymanDruidInvocations
+        this._masterDruidInvocations.value = characterData.masterDruidInvocations
+
+        this._novicePreacherInvocations.value = characterData.novicePreacherInvocations
+        this._journeymanPreacherInvocations.value = characterData.journeymanPreacherInvocations
+        this._masterPreacherInvocations.value = characterData.masterPreacherInvocations
+
+        this._archPriestInvocations.value = characterData.archPriestInvocations
     }
 
 }

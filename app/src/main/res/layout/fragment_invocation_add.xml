@@ -19,21 +19,45 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/textInvocations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="All Invocations"
+                android:gravity="center"
+                android:textColor="@color/purple_200"
+                android:textSize="25sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/purple_200"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInvocations"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <TextView
                 android:id="@+id/textNovice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Novice Druid Invocations"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textInvocations" />
 
             <View
                 android:id="@+id/view2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textNovice"
@@ -60,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Journeyman Druid Invocations"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutNoviceDruid" />
@@ -69,7 +93,7 @@
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/textJourneyman"
                 app:layout_constraintWidth_percent="0.9" />
@@ -95,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Master Druid Invocations"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textJourneyman"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutJourneymanDruid" />
@@ -104,7 +128,7 @@
                 android:id="@+id/view4"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintStart_toStartOf="@+id/textMaster"
                 app:layout_constraintTop_toBottomOf="@+id/textMaster"
                 app:layout_constraintWidth_percent="0.9" />
@@ -130,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Novice Preacher Invocations"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textMaster"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutMasterDruid" />
@@ -139,7 +163,7 @@
                 android:id="@+id/view5"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textNovice2"
@@ -166,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Journeyman Preacher Invocations"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textMaster"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutNovicePreacher" />
@@ -175,7 +199,7 @@
                 android:id="@+id/view6"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textJourneyman2"
@@ -202,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Master Preacher Invocations"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textMaster"
                 app:layout_constraintTop_toBottomOf="@id/relativeLayoutJourneymanPreacher" />
@@ -211,7 +235,7 @@
                 android:id="@+id/view7"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textMaster2"
@@ -238,7 +262,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Master Preacher Invocations"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textMaster"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutMasterPreacher" />
@@ -247,7 +271,7 @@
                 android:id="@+id/view8"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/teal_200"
+                android:background="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textArchPriest"

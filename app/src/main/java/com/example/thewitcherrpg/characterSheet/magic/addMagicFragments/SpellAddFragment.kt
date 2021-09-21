@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.characterSheet.magic
+package com.example.thewitcherrpg.characterSheet.magic.addMagicFragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -106,8 +106,8 @@ class SpellAddFragment : Fragment() {
         dialog.add_spell_element_text.text = element
         //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
 
+        //Check spell level to add it to correct character spell list
         dialog.addSpellbutton.setOnClickListener(){
-
             when (level){
                 "novice" -> {
                     if (sharedViewModel.addNoviceSpell(spellName))
@@ -115,14 +115,12 @@ class SpellAddFragment : Fragment() {
 
                     Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                 }
-
                 "journeyman" -> {
                     if (sharedViewModel.addJourneymanSpell(spellName))
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
 
                     Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                 }
-
                 "master" -> {
                     if (sharedViewModel.addMasterSpell(spellName))
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
