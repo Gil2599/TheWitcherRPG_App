@@ -17,7 +17,6 @@ import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.AlternateSignsListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.BasicSignsListAdapter
 import com.example.thewitcherrpg.databinding.FragmentSignsAddBinding
-import kotlinx.android.synthetic.main.custom_dialog_add_spell.*
 
 class SignsAddFragment : Fragment() {
     private var _binding: FragmentSignsAddBinding? = null
@@ -85,7 +84,7 @@ class SignsAddFragment : Fragment() {
         val defense = "<b>" + "Defense: " + "</b>" + pair[5]
         val element = pair[6]
 
-        dialog.add_spell_name_text.text = spellName
+        /*dialog.add_spell_name_text.text = spellName
         dialog.add_sta_cost_text.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.add_range_text.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.add_defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -117,7 +116,7 @@ class SignsAddFragment : Fragment() {
 
         dialog.add_spell_cancel_button.setOnClickListener(){
             dialog.dismiss()
-        }
+        }*/
 
         dialog.show()
     }

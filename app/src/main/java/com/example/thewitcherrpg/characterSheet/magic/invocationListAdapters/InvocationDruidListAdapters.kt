@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
-import kotlinx.android.synthetic.main.spell_row.view.*
 
 class NoviceDruidInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<NoviceDruidInvocationListAdapter.MyViewHolder>()  {
 
@@ -34,7 +33,7 @@ class NoviceDruidInvocationListAdapter(con: Context, val itemClick: (String) -> 
             val duration = pair[4]
             val defense = pair[5]
 
-            holder.itemView.spell_name_text.text = spellName
+            /*holder.itemView.spell_name_text.text = spellName
             holder.itemView.sta_cost_text.text = staCost
             holder.itemView.range_text.text = range
 
@@ -63,7 +62,7 @@ class NoviceDruidInvocationListAdapter(con: Context, val itemClick: (String) -> 
                         itemClick(tag)
                     }
                 }
-            }
+            }*/
         }
 
     }
@@ -108,7 +107,7 @@ class JourneymanDruidInvocationListAdapter(con: Context, val itemClick: (String)
             val duration = pair[4]
             val defense = pair[5]
 
-            holder.itemView.spell_name_text.text = spellName
+            /*holder.itemView.spell_name_text.text = spellName
             holder.itemView.sta_cost_text.text = staCost
             holder.itemView.range_text.text = range
 
@@ -137,7 +136,7 @@ class JourneymanDruidInvocationListAdapter(con: Context, val itemClick: (String)
                         itemClick(tag)
                     }
                 }
-            }
+            }*/
         }
 
     }
@@ -182,7 +181,7 @@ class MasterDruidInvocationListAdapter(con: Context, val itemClick: (String) -> 
             val duration = pair[4]
             val defense = pair[5]
 
-            holder.itemView.spell_name_text.text = spellName
+            /*holder.itemView.spell_name_text.text = spellName
             holder.itemView.sta_cost_text.text = staCost
             holder.itemView.range_text.text = range
 
@@ -211,7 +210,7 @@ class MasterDruidInvocationListAdapter(con: Context, val itemClick: (String) -> 
                         itemClick(tag)
                     }
                 }
-            }
+            }*/
         }
 
     }

@@ -12,8 +12,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharInfoBinding
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import kotlinx.android.synthetic.main.custom_dialog_edit_stats.*
-
 
 
 class QuickStatsFragment : Fragment() {
@@ -60,11 +58,11 @@ class QuickStatsFragment : Fragment() {
         dialog.setContentView(R.layout.custom_dialog_edit_stats)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        dialog.textView.text = sharedViewModel.hp.value.toString()
+        //dialog.textView.text = sharedViewModel.hp.value.toString()
 
-        dialog.editText.requestFocus()
+        //dialog.editText.requestFocus()
 
-        dialog.buttonPlus.setOnClickListener(){
+        /*dialog.buttonPlus.setOnClickListener(){
             val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
             sharedViewModel.onHealthChange(value)
             dialog.dismiss()
@@ -74,7 +72,7 @@ class QuickStatsFragment : Fragment() {
             val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
             sharedViewModel.onHealthChange(-kotlin.math.abs(value)
             )
-            dialog.dismiss() }
+            dialog.dismiss() }*/
         dialog.show()
     }
 
@@ -86,7 +84,7 @@ class QuickStatsFragment : Fragment() {
         dialog.setContentView(R.layout.custom_dialog_edit_stats)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        dialog.textViewCurrent.text = "CURRENT STAMINA"
+        /*dialog.textViewCurrent.text = "CURRENT STAMINA"
 
         dialog.textView.text = sharedViewModel.sta.value.toString()
 
@@ -102,7 +100,7 @@ class QuickStatsFragment : Fragment() {
             val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
             sharedViewModel.onStaminaChange(-kotlin.math.abs(value)
             )
-            dialog.dismiss() }
+            dialog.dismiss() }*/
         dialog.show()
     }
 
@@ -114,7 +112,7 @@ class QuickStatsFragment : Fragment() {
         dialog.setContentView(R.layout.custom_dialog_edit_stats)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        dialog.textViewCurrent.text = "CURRENT CROWNS"
+        /*dialog.textViewCurrent.text = "CURRENT CROWNS"
 
         dialog.textView.text = sharedViewModel.crowns.value.toString()
 
@@ -128,7 +126,7 @@ class QuickStatsFragment : Fragment() {
         dialog.buttonMinus.setOnClickListener {
             sharedViewModel.onCrownsChange(-kotlin.math.abs(dialog.editText.text.toString().toInt())
             )
-            dialog.dismiss() }
+            dialog.dismiss() }*/
         dialog.show()
     }
 }

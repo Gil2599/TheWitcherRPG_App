@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.databinding.FragmentProfessionBinding
-import kotlinx.android.synthetic.main.custom_dialog_help_info.*
 
 class ProfessionFragment : Fragment() {
     private var _binding: FragmentProfessionBinding? = null
@@ -107,9 +106,9 @@ class ProfessionFragment : Fragment() {
         dialog.setContentView(R.layout.custom_dialog_help_info)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        dialog.textViewInfo.text = resources.getString(R.string.profession_help)
+        //dialog.textViewInfo.text = resources.getString(R.string.profession_help)
 
-        dialog.textViewTitle.text = "Your Profession"
+        //dialog.textViewTitle.text = "Your Profession"
         //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
 
         dialog.show()

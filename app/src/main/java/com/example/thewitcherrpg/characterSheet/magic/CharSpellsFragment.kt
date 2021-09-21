@@ -17,7 +17,6 @@ import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.Journeym
 import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.MasterSpellListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
-import kotlinx.android.synthetic.main.custom_dialog_char_spell.*
 
 class CharSpellsFragment : Fragment() {
     private var _binding: FragmentCharSpellsBinding? = null
@@ -92,7 +91,7 @@ class CharSpellsFragment : Fragment() {
         val charSta = "<b>" + "STA: " + "</b>" + sharedViewModel.sta.value.toString()
         val vigor = sharedViewModel.vigor.value!!
 
-        dialog.spell_name_text.text = spellName
+        /*dialog.spell_name_text.text = spellName
         dialog.sta_cost_text.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.range_text.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -119,7 +118,7 @@ class CharSpellsFragment : Fragment() {
             sharedViewModel.removeMasterSpell(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
-        }
+        }*/
 
         dialog.show()
     }

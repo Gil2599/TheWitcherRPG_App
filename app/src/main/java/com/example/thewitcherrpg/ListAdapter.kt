@@ -8,24 +8,46 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.characterSheet.MainActivity
 import com.example.thewitcherrpg.data.Character
-import kotlinx.android.synthetic.main.custom_row.view.*
+import com.example.thewitcherrpg.databinding.CustomRowBinding
+import com.example.thewitcherrpg.databinding.SpellRowBinding
 
-class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder>() {
 
     private var charList = emptyList<Character>()
     private var context: Context = con
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
+    class CharViewHolder(private val binding: CustomRowBinding): RecyclerView.ViewHolder(binding.root) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.custom_row, parent, false))
+        fun bind(name: String, profession: String, id: String, ip: String, character: Character, context: Context){
 
+            with (binding){
+                nameText.text = name
+                professionText.text = profession
+                idText.text = id
+                IPText.text = ip
+
+                rowLayout.setOnClickListener(){
+                    val intent = Intent(context, MainActivity::class.java).also {
+                        it.putExtra("EXTRA_DATA", character)
+                    }
+                    context.startActivity(intent)
+                }
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharViewHolder {
+        val itemBinding = CustomRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CharViewHolder(itemBinding)
+    }
+
+    override fun onBindViewHolder(holder: CharViewHolder, position: Int) {
         val currentItem = charList[position]
 
-        holder.itemView.name_text.text = currentItem.name
+        holder.bind(currentItem.name, currentItem.profession, currentItem.id.toString(),
+            "IP: " + currentItem.iP, currentItem, context)
+
+        /*holder.itemView.name_text.text = currentItem.name
         holder.itemView.race_text.text = currentItem.profession
         holder.itemView.id_text.text = currentItem.id.toString()
 
@@ -37,7 +59,7 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.MyViewHolder>(
                 it.putExtra("EXTRA_DATA", currentItem)
             }
             context.startActivity(intent)
-        }
+        }*/
 
     }
 

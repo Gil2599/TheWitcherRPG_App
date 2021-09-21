@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
-import kotlinx.android.synthetic.main.spell_row.view.*
-import kotlinx.android.synthetic.main.spell_row.view.rowLayout
 
 class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<NoviceSpellListAdapter.MyViewHolder>() {
 
@@ -36,7 +34,7 @@ class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : Re
             val defense = pair[5]
             val element = pair[6]
 
-            holder.itemView.spell_name_text.text = spellName
+            /*holder.itemView.spell_name_text.text = spellName
             holder.itemView.sta_cost_text.text = staCost
             holder.itemView.range_text.text = range
             holder.itemView.element_text.text = element
@@ -68,7 +66,7 @@ class NoviceSpellListAdapter(con: Context, val itemClick: (String) -> Unit) : Re
                         itemClick(tag)
                     }
                 }
-            }
+            }*/
         }
 
     }

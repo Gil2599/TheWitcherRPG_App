@@ -13,9 +13,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentProfessionSkillTreeBinding
-import kotlinx.android.synthetic.main.custom_dialog_help_info.*
-
 
 class ProfessionSkillTree : Fragment() {
     private var _binding: FragmentProfessionSkillTreeBinding? = null
@@ -530,12 +529,14 @@ class ProfessionSkillTree : Fragment() {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_help_info)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        dialog.textViewInfo.text = resources.getString(R.string.profession_skill_tree_help)
+        val bind :CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
 
-        dialog.textViewTitle.text = "Profession Skill Tree"
+        bind.textViewInfo.text = resources.getString(R.string.profession_skill_tree_help)
+
+        bind.textViewTitle.text = "Profession Skill Tree"
         //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
 
         dialog.show()

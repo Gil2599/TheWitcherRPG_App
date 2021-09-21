@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
-import kotlinx.android.synthetic.main.spell_row.view.*
 
 class ArchPriestInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<ArchPriestInvocationListAdapter.MyViewHolder>()  {
 
@@ -34,13 +33,13 @@ class ArchPriestInvocationListAdapter(con: Context, val itemClick: (String) -> U
             val duration = pair[4]
             val defense = pair[5]
 
-            holder.itemView.spell_name_text.text = spellName
+            /*holder.itemView.spell_name_text.text = spellName
             holder.itemView.sta_cost_text.text = staCost
             holder.itemView.range_text.text = range
 
             holder.itemView.rowLayout.setOnClickListener {
                 itemClick(spellList[position])
-            }
+            }*/
         }
         else{
             val tags = context.resources.getStringArray(R.array.archPriestInvo_list_data)
@@ -55,13 +54,13 @@ class ArchPriestInvocationListAdapter(con: Context, val itemClick: (String) -> U
                 val defense = pair[5]
 
                 if (currentItem == spellName) {
-                    holder.itemView.spell_name_text.text = spellName
-                    holder.itemView.sta_cost_text.text = staCost
-                    holder.itemView.range_text.text = range
+                    //holder.itemView.spell_name_text.text = spellName
+                    //holder.itemView.sta_cost_text.text = staCost
+                    //holder.itemView.range_text.text = range
 
-                    holder.itemView.rowLayout.setOnClickListener {
-                        itemClick(tag)
-                    }
+                    //.itemView.rowLayout.setOnClickListener {
+                       // itemClick(tag)
+                    //}
                 }
             }
         }
