@@ -324,12 +324,15 @@ class SharedViewModel: ViewModel() {
     private var _archPriestInvocations = MutableLiveData(arrayListOf<String>())
     val archPriestInvocations: LiveData<ArrayList<String>> = _archPriestInvocations
 
+    //Signs
+    private var _basicSigns = MutableLiveData(arrayListOf<String>())
+    val basicSigns: LiveData<ArrayList<String>> = _basicSigns
+
+    private var _alternateSigns = MutableLiveData(arrayListOf<String>())
+    val alternateSigns: LiveData<ArrayList<String>> = _alternateSigns
+
 
     //Setter Functions
-    fun setID(id: Int){
-        _uniqueID.value = id
-    }
-
     fun setImagePath(path: String){
         _image.value = path
     }
@@ -361,6 +364,7 @@ class SharedViewModel: ViewModel() {
         _definingSkill.value = defSkill
     }
 
+    //Mages
     fun addNoviceSpell(spell: String): Boolean{
         //Check whether character already has the spell
         return if (spell !in _noviceSpellList.value!!){
@@ -409,6 +413,7 @@ class SharedViewModel: ViewModel() {
         _masterSpellList.value = ArrayList(newArray)
     }
 
+    //Priests
     fun addNoviceDruidInvo(invo: String): Boolean{
         //Check whether character already has the spell
         return if (invo !in _noviceDruidInvocations.value!!){
@@ -519,6 +524,39 @@ class SharedViewModel: ViewModel() {
         val newArray = _archPriestInvocations.value!!.toMutableList()
         newArray.remove(invo)
         _archPriestInvocations.value = ArrayList(newArray)
+    }
+
+    //Signs
+    fun addBasicSign(sign: String): Boolean{
+        //Check whether character already has the spell
+        return if (sign !in _basicSigns.value!!){
+            val newArray = _basicSigns.value!!.toMutableList()
+            newArray.add(sign)
+            _basicSigns.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeBasicSign(sign: String){
+        val newArray = _basicSigns.value!!.toMutableList()
+        newArray.remove(sign)
+        _basicSigns.value = ArrayList(newArray)
+    }
+
+    fun addAlternateSign(sign: String): Boolean{
+        //Check whether character already has the spell
+        return if (sign !in _alternateSigns.value!!){
+            val newArray = _alternateSigns.value!!.toMutableList()
+            newArray.add(sign)
+            _alternateSigns.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeAlternateSign(sign: String){
+        val newArray = _alternateSigns.value!!.toMutableList()
+        newArray.remove(sign)
+        _alternateSigns.value = ArrayList(newArray)
     }
 
     fun castSpell(staCost: Int): Boolean{
@@ -712,8 +750,8 @@ class SharedViewModel: ViewModel() {
         //##### Magic #################################################
         val vigor = _vigor.value!!
 
-        val basicSigns = ArrayList<String>()
-        val alternateSigns = ArrayList<String>()
+        val basicSigns = _basicSigns.value!!
+        val alternateSigns = _alternateSigns.value!!
 
         val noviceRituals = ArrayList<String>()
         val journeymanRituals = ArrayList<String>()
@@ -1168,10 +1206,12 @@ class SharedViewModel: ViewModel() {
         //Magic
         this._vigor.value = characterData.vigor
 
+        //Mages
         this._noviceSpellList.value = characterData.noviceSpells
         this._journeymanSpellList.value = characterData.journeymanSpells
         this._masterSpellList.value = characterData.masterSpells
 
+        //Priests
         this._noviceDruidInvocations.value = characterData.noviceDruidInvocations
         this._journeymanDruidInvocations.value = characterData.journeymanDruidInvocations
         this._masterDruidInvocations.value = characterData.masterDruidInvocations
@@ -1181,6 +1221,10 @@ class SharedViewModel: ViewModel() {
         this._masterPreacherInvocations.value = characterData.masterPreacherInvocations
 
         this._archPriestInvocations.value = characterData.archPriestInvocations
+
+        //Signs
+        this._basicSigns.value = characterData.basicSigns
+        this._alternateSigns.value = characterData.alternateSigns
     }
 
 }

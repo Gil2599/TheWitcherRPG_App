@@ -14,7 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import com.example.thewitcherrpg.characterSheet.magic.invocationListAdapter.*
+import com.example.thewitcherrpg.characterSheet.magic.invocationListAdapters.*
 import com.example.thewitcherrpg.databinding.FragmentInvocationAddBinding
 import kotlinx.android.synthetic.main.custom_dialog_add_spell.*
 
@@ -45,7 +45,7 @@ class InvocationAddFragment : Fragment() {
         return view
     }
 
-    private fun showSpellDialog(spell: String?, level: String?) {
+    private fun showInvocationDialog(spell: String?, level: InvocationLevel) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -60,48 +60,48 @@ class InvocationAddFragment : Fragment() {
         val duration = "<b>" + "Duration: " + "</b>" + pair[4]
         val defense = "<b>" + "Defense: " + "</b>" + pair[5]
 
-        dialog.spell_name_text.text = spellName
-        dialog.sta_cost_text.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.range_text.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.effect_text.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.duration_text.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.add_spell_name_text.text = spellName
+        dialog.add_sta_cost_text.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.add_range_text.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.add_defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.add_effect_text.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        dialog.add_duration_text.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
         dialog.addSpellbutton.text = "Learn Invocation"
 
         //Check spell level to add it to correct character spell list
         dialog.addSpellbutton.setOnClickListener(){
             when (level){
-                "noviceDruid" -> {
+                InvocationLevel.NoviceDruid -> {
                     if (sharedViewModel.addNoviceDruidInvo(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
                 }
-                "journeymanDruid" -> {
+                InvocationLevel.JourneymanDruid -> {
                     if (sharedViewModel.addJourneymanDruidInvo(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
                 }
-                "masterDruid" -> {
+                InvocationLevel.MasterDruid -> {
                     if (sharedViewModel.addMasterDruidInvo(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
                 }
-                "novicePreacher" -> {
+                InvocationLevel.NovicePreacher -> {
                     if (sharedViewModel.addNovicePreacherInvo(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
                 }
-                "journeymanPreacher" -> {
+                InvocationLevel.JourneymanPreacher -> {
                     if (sharedViewModel.addJourneymanPreacherInvo(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
                 }
-                "masterPreacher" -> {
+                InvocationLevel.MasterPreacher -> {
                     if (sharedViewModel.addMasterPreacherInvo(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
                 }
-                "archPriest" -> {
+                InvocationLevel.ArchPriest -> {
                     if (sharedViewModel.addArchPriestInvo(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
@@ -122,19 +122,19 @@ class InvocationAddFragment : Fragment() {
 
         //Receive information from recyclerView adapter
         val noviceDruidAdapter = NoviceDruidInvocationListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, "noviceDruid") //Determines which list this spell goes under
+                invocation -> showInvocationDialog(invocation, InvocationLevel.NoviceDruid) //Determines which list this spell goes under
         }
         noviceDruidAdapter.setData(resources.getStringArray(R.array.novice_druidInvo_list_data).toList())
         noviceDruidAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
         val journeymanDruidAdapter = JourneymanDruidInvocationListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, "journeymanDruid")
+                invocation -> showInvocationDialog(invocation, InvocationLevel.JourneymanDruid)
         }
         journeymanDruidAdapter.setData(resources.getStringArray(R.array.journeyman_druidInvo_list_data).toList())
         journeymanDruidAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
         val masterAdapterDruid = MasterDruidInvocationListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, "masterDruid")
+                invocation -> showInvocationDialog(invocation, InvocationLevel.MasterDruid)
         }
         masterAdapterDruid.setData(resources.getStringArray(R.array.master_druidInvo_data).toList())
         masterAdapterDruid.setAddSpell(true) //Sets add spell state to true to show all spells
@@ -157,19 +157,19 @@ class InvocationAddFragment : Fragment() {
 
         //Receive information from recyclerView adapter
         val novicePreacherAdapter = NovicePreacherInvocationListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, "novicePreacher") //Determines which list this spell goes under
+                invocation -> showInvocationDialog(invocation, InvocationLevel.NovicePreacher) //Determines which list this spell goes under
         }
         novicePreacherAdapter.setData(resources.getStringArray(R.array.novice_preacherInvo_list_data).toList())
         novicePreacherAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
         val journeymanPreacherAdapter = JourneymanPreacherInvocationListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, "journeymanPreacher")
+                invocation -> showInvocationDialog(invocation, InvocationLevel.JourneymanPreacher)
         }
         journeymanPreacherAdapter.setData(resources.getStringArray(R.array.journeyman_preacherInvo_list_data).toList())
         journeymanPreacherAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
         val masterPreacherAdapter = MasterPreacherInvocationListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, "masterPreacher")
+                invocation -> showInvocationDialog(invocation, InvocationLevel.MasterPreacher)
         }
         masterPreacherAdapter.setData(resources.getStringArray(R.array.master_preacherInvo_list_data).toList())
         masterPreacherAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
@@ -191,7 +191,7 @@ class InvocationAddFragment : Fragment() {
     private fun archPriestAdapter(){
         //Receive information from recyclerView adapter
         val archPriestAdapter = NovicePreacherInvocationListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, "archPriest") //Determines which list this spell goes under
+                invocation -> showInvocationDialog(invocation, InvocationLevel.ArchPriest) //Determines which list this spell goes under
         }
         archPriestAdapter.setData(resources.getStringArray(R.array.archPriestInvo_list_data).toList())
         archPriestAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
@@ -200,6 +200,17 @@ class InvocationAddFragment : Fragment() {
         binding.recyclerViewArchPriest.layoutManager = LinearLayoutManager(requireContext())
 
         binding.recyclerViewArchPriest.isNestedScrollingEnabled = false
+    }
+
+    //Enum class to determine invocation level
+    enum class InvocationLevel {
+        NoviceDruid,
+        JourneymanDruid,
+        MasterDruid,
+        NovicePreacher,
+        JourneymanPreacher,
+        MasterPreacher,
+        ArchPriest
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.characterSheet
 
+import android.Manifest
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -15,16 +16,16 @@ import com.example.thewitcherrpg.databinding.FragmentCharBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import android.graphics.Bitmap
-
 import android.content.ContextWrapper
 import java.lang.Exception
 import android.annotation.SuppressLint
-
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Log
 import java.io.*
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 
 
 class CharFragment : Fragment() {
@@ -55,6 +56,18 @@ class CharFragment : Fragment() {
         }
     }
 
+    private val requestPermission =
+        registerForActivityResult(RequestPermission()) { isGranted ->
+            // Do something if permission granted
+            if (isGranted) {
+                Log.i("DEBUG", "permission granted")
+                getContent.launch("image/*")
+            } else {
+                Log.i("DEBUG", "permission denied")
+                Toast.makeText(context, "Permission required to upload image.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,10 +88,11 @@ class CharFragment : Fragment() {
             loadImageFromStorage(imagePath)
         }
 
+        //Check whether permission is granted to access internal storage to set character image
         binding.imageView.setOnClickListener(){
-            getContent.launch("image/*")
+            requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
-
+        
         //Setting up viewPager
         val numTabs = 5
         val tabTitles = listOf<String>("Quick Stats", "Profession", "Armor", "Equipment", "Profession")

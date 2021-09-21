@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="basic_signs_list_data">
+
+        <item>Yrden:Variable:Yrden creates a large magic
+            circle on the ground around you.
+            Anything that steps into that circle
+            takes a negative to SPD and REF
+            (equal to the number of STA you
+            spent) until they exit the circle.
+            Any incorporeal creatures that enter
+            the circle become corporeal.
+            :3m:5 Rounds:None:Mixed Element</item>
+
+        <item>Quen:Variable: Quen creates a shield with
+            5 Health Points per point of Stamina spent to protect you. If you
+            fail (or choose not to or are unable to) to defend against an attack
+            or effect which causes damage,
+            the damage is first applied to the
+            Quen shield. Lethal and non-lethal
+            damage reduce the Quen shield’s
+            Health Points equally. If the shield
+            is reduced to 0 Health any remaining damage is applied to you as per
+            normal and must penetrate your
+            armor and damage resistances
+            to impact your Health Points or
+            Stamina just like any other attack.
+            Quen can be used to defend against any spell which can be
+            Blocked but is ineffective against
+            damage caused by spells which
+            cannot be Blocked or against
+            damage caused by already being
+            poisoned, having a disease, or suffocation due to a lack of oxygen in
+            the surrounding area.
+             You cannot cast Quen
+            again until your current Quen
+            shield has been exhausted or the
+            duration ends.
+            :Self:10 rounds or until exhausted:None:Earth</item>
+
+        <item>Aard:Variable:Aard shoots a wave of
+            telekinetic force, staggering creatures
+            with a 10% chance of those affected
+            being knocked prone. The percentage rises
+            by 10% for each point of STA spent.
+            :2m Cone:Immediate:Dodge:Air</item>
+
+        <item>Igni:Variable:Igni throws out a wave of
+            sparks and fire which does 1d6
+            damage per STA point spent and
+            has a 50% chance of lighting anything it
+            hits on fire. Igni always
+            deals damage to the torso unless
+            used at point blank range. When
+            used at point blank range Igni can
+            be aimed at body locations.
+            :2m Cone:Immediate:Dodge or Block:Fire</item>
+
+        <item>Axii:Variable:Axii stuns an opponent
+            until they can make Stun save at -1.
+            For every 2 points of additional
+            STA you spend past 1, the Stun
+            save becomes harder by 1 point.
+            :8m:Until Shaken Off:Resist Magic:Water</item>
+
+    </string-array>
+
+    <string-array name="alternate_signs_list_data">
+
+        <item>Magic Trap:Variable:Yrden now creates a magical trap that takes one round to
+            prepare. This trap attacks using
+            your Spell Casting and WILL and
+            does 3d6 damage. The trap will
+            make one attack against the closest
+            enemy each round.
+            :3m Radius:1 Round per STA point:Dodge or Block:Mixed Element</item>
+
+        <item>Active Shield:Variable:Quen now creates
+            a glowing shield around you. The shield
+            has 10 HP for every Stamina point
+            spent. Each round after the first,
+            you must spend a number of STA
+            points equal to the initial STA
+            cost to maintain the shield. Active
+            Shield only covers you, but you
+            can fit one other person into it if
+            you are pressed together. While in
+            the active shield nothing tangible
+            can pass in or out without destroying
+            the shield first and you must
+            move slowly to keep the shield up,
+            meaning you cannot run. When
+            the shield is expended or dropped,
+            anything adjacent to you is pushed
+            back 2m and takes 1d6 damage to
+            the torso. This includes objects,
+            furniture, and allies. Anything
+            rooted to the ground or heavier
+            than 226kg is not pushed back but
+            still takes damage.
+            :Self:Active (Initial STA):None:Earth</item>
+
+        <item>Aard Sweep:Variable:Aard now shoots a burst of
+            telekinetic force around you. For
+            each STA point spent, everything
+            caught in the burst has a 10%
+            chance of being knocked to the
+            ground and staggered. The burst
+            travels out in all directions as a
+            sphere. Flying creatures struck
+            with Aard Sweep are knocked out
+            of the air as well as being knocked down.
+            :4m Radius:Immediate:Dodge:Air</item>
+
+        <item>Fire Stream:Variable:Igni now throws
+            out a constant stream of fire and sparks
+            from your hand which does 1d6
+            damage per STA point spent, and
+            has a 75% chance of lighting the
+            opponent on fire. Fire Stream
+            must be maintained every round
+            with a number of STA points equal
+            to 1/2 the number of STA points
+            spent to cast the sign. You can
+            switch targets on your turn and
+            the stream can be aimed at body
+            locations.
+            :3m:Active (1/2 Initial STA):Dodge or Block:Fire</item>
+
+        <item>Puppet:Variable:Axii now controls
+            an opponent\'s mind, making them your
+            ally for a number of rounds equal
+            to the number of STA points you
+            spent on the spell. Each round, the
+            target can make a Resist Magic roll
+            against your Spell Casting roll to
+            try and free themselves.
+            :8m:Until Shaken Off or STA:Resist Magic:Water</item>
+
+    </string-array>
+
+</resources>

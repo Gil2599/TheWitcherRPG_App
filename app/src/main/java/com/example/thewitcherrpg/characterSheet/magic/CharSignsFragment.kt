@@ -13,21 +13,22 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.JourneymanSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.MasterSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.NoviceSpellListAdapter
-import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
+import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.AlternateSignsListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.BasicSignsListAdapter
+import com.example.thewitcherrpg.databinding.FragmentCharSignsBinding
 import kotlinx.android.synthetic.main.custom_dialog_char_spell.*
 
-class CharSpellsFragment : Fragment() {
-    private var _binding: FragmentCharSpellsBinding? = null
+class CharSignsFragment : Fragment() {
+    private var _binding: FragmentCharSignsBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        _binding = FragmentCharSpellsBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCharSignsBinding.inflate(inflater, container, false)
         val view = binding.root
 
         listAdaptersInit()
@@ -37,39 +38,28 @@ class CharSpellsFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
-        val noviceAdapter = NoviceSpellListAdapter(requireContext()){
+        val basicAdapter = BasicSignsListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
-        sharedViewModel.noviceSpellList.observe(viewLifecycleOwner, { spell ->
-            noviceAdapter.setData(spell)
+        sharedViewModel.basicSigns.observe(viewLifecycleOwner, { spell ->
+            basicAdapter.setData(spell)
         })
 
-        val journeymanAdapter = JourneymanSpellListAdapter(requireContext()){
+        val alternateAdapter = AlternateSignsListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
-        sharedViewModel.journeymanSpellList.observe(viewLifecycleOwner, { spell ->
-            journeymanAdapter.setData(spell)
+        sharedViewModel.alternateSigns.observe(viewLifecycleOwner, { spell ->
+            alternateAdapter.setData(spell)
         })
 
-        val masterAdapter = MasterSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
-        }
-        sharedViewModel.masterSpellList.observe(viewLifecycleOwner, { spell ->
-            masterAdapter.setData(spell)
-        })
+        binding.recyclerViewBasic.adapter = basicAdapter
+        binding.recyclerViewBasic.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.recyclerViewNovice.adapter = noviceAdapter
-        binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewAlternate.adapter = alternateAdapter
+        binding.recyclerViewAlternate.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.recyclerViewJourneyman.adapter = journeymanAdapter
-        binding.recyclerViewJourneyman.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.recyclerViewMaster.adapter = masterAdapter
-        binding.recyclerViewMaster.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.recyclerViewNovice.isNestedScrollingEnabled = false
-        binding.recyclerViewJourneyman.isNestedScrollingEnabled = false
-        binding.recyclerViewMaster.isNestedScrollingEnabled = false
+        binding.recyclerViewBasic.isNestedScrollingEnabled = false
+        binding.recyclerViewAlternate.isNestedScrollingEnabled = false
 
     }
 
@@ -114,18 +104,14 @@ class CharSpellsFragment : Fragment() {
         }
         dialog.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
-            sharedViewModel.removeNoviceSpell(spellName)
-            sharedViewModel.removeJourneymanSpell(spellName)
-            sharedViewModel.removeMasterSpell(spellName)
+            sharedViewModel.removeBasicSign(spellName)
+            sharedViewModel.removeAlternateSign(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
         dialog.show()
     }
-
-    //Dialog that asks the user if they would like to use a portion of their HP to cast a spell that they
-    //do not have enough stamina for
     private fun showCastSpellDialog(staCost: Int){
 
         val builder = AlertDialog.Builder(requireContext())
@@ -138,7 +124,4 @@ class CharSpellsFragment : Fragment() {
                 "cast this spell?")
         builder.create().show()
     }
-
-
 }
-

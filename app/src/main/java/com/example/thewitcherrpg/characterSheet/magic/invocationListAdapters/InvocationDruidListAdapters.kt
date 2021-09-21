@@ -1,15 +1,14 @@
-package com.example.thewitcherrpg.characterSheet.magic.invocationListAdapter
+package com.example.thewitcherrpg.characterSheet.magic.invocationListAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import kotlinx.android.synthetic.main.spell_row.view.*
 
-class NovicePreacherInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<NovicePreacherInvocationListAdapter.MyViewHolder>()  {
+class NoviceDruidInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<NoviceDruidInvocationListAdapter.MyViewHolder>()  {
 
     private var spellList = emptyList<String>()
     private var addSpell: Boolean = false
@@ -44,7 +43,7 @@ class NovicePreacherInvocationListAdapter(con: Context, val itemClick: (String) 
             }
         }
         else{
-            val tags = context.resources.getStringArray(R.array.novice_preacherInvo_list_data)
+            val tags = context.resources.getStringArray(R.array.novice_druidInvo_list_data)
             for (tag in tags) {
 
                 val pair = tag.split(":").toTypedArray()
@@ -83,7 +82,7 @@ class NovicePreacherInvocationListAdapter(con: Context, val itemClick: (String) 
     }
 }
 
-class JourneymanPreacherInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<JourneymanPreacherInvocationListAdapter.MyViewHolder>()  {
+class JourneymanDruidInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<JourneymanDruidInvocationListAdapter.MyViewHolder>()  {
 
     private var spellList = emptyList<String>()
     private var addSpell: Boolean = false
@@ -118,7 +117,7 @@ class JourneymanPreacherInvocationListAdapter(con: Context, val itemClick: (Stri
             }
         }
         else{
-            val tags = context.resources.getStringArray(R.array.journeyman_preacherInvo_list_data)
+            val tags = context.resources.getStringArray(R.array.journeyman_druidInvo_list_data)
             for (tag in tags) {
 
                 val pair = tag.split(":").toTypedArray()
@@ -157,7 +156,7 @@ class JourneymanPreacherInvocationListAdapter(con: Context, val itemClick: (Stri
     }
 }
 
-class MasterPreacherInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<MasterPreacherInvocationListAdapter.MyViewHolder>()  {
+class MasterDruidInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<MasterDruidInvocationListAdapter.MyViewHolder>()  {
 
     private var spellList = emptyList<String>()
     private var addSpell: Boolean = false
@@ -192,7 +191,7 @@ class MasterPreacherInvocationListAdapter(con: Context, val itemClick: (String) 
             }
         }
         else{
-            val tags = context.resources.getStringArray(R.array.master_preacherInvo_list_data)
+            val tags = context.resources.getStringArray(R.array.master_druidInvo_data)
             for (tag in tags) {
 
                 val pair = tag.split(":").toTypedArray()

@@ -19,7 +19,7 @@ class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : Fragmen
             FragmentName.INVOCATIONS -> CharInvocationsFragment()
             FragmentName.RITUALS -> NoMagicFragment()
             FragmentName.HEXES -> NoMagicFragment()
-            FragmentName.SIGNS -> NoMagicFragment()
+            FragmentName.SIGNS -> CharSignsFragment()
         }
     }
 

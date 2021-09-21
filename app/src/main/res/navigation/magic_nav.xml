@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_charMagicFragment_to_invocationAddFragment"
             app:destination="@id/invocationAddFragment" />
+        <action
+            android:id="@+id/action_charMagicFragment_to_signsAddFragment"
+            app:destination="@id/signsAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/noMagicFragment"
@@ -39,6 +42,14 @@
         android:label="InvocationAddFragment" >
         <action
             android:id="@+id/action_invocationAddFragment_to_charMagicFragment"
+            app:destination="@id/charMagicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signsAddFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.magic.addMagicFragments.SignsAddFragment"
+        android:label="SignsAddFragment" >
+        <action
+            android:id="@+id/action_signsAddFragment_to_charMagicFragment"
             app:destination="@id/charMagicFragment" />
     </fragment>
 </navigation>

@@ -19,11 +19,11 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textNovice"
+                android:id="@+id/textBasic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Novice Spells"
+                android:text="Basic Signs"
                 android:textColor="@color/teal_200"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view2"
@@ -36,92 +36,57 @@
                 android:background="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice"
+                app:layout_constraintTop_toBottomOf="@+id/textBasic"
                 app:layout_constraintWidth_percent="0.9" />
 
             <RelativeLayout
-                android:id="@+id/relativeLayoutNovice"
+                android:id="@+id/relativeLayoutBasic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice" >
+                app:layout_constraintTop_toBottomOf="@+id/textBasic" >
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewNovice"
+                    android:id="@+id/recyclerViewBasic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/textJourneyman"
+                android:id="@+id/textAlternate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Journeyman Spells"
+                android:text="Alternate Signs"
                 android:textColor="@color/teal_200"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/textNovice"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutNovice" />
+                app:layout_constraintStart_toStartOf="@+id/textBasic"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutBasic" />
 
             <View
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/teal_200"
-                app:layout_constraintStart_toStartOf="@+id/textNovice"
-                app:layout_constraintTop_toBottomOf="@+id/textJourneyman"
+                app:layout_constraintStart_toStartOf="@+id/textBasic"
+                app:layout_constraintTop_toBottomOf="@+id/textAlternate"
                 app:layout_constraintWidth_percent="0.9" />
 
             <RelativeLayout
-                android:id="@+id/relativeLayoutJourneyman"
+                android:id="@+id/relativeLayoutAlternate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textJourneyman" >
+                app:layout_constraintTop_toBottomOf="@+id/textAlternate" >
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewJourneyman"
+                    android:id="@+id/recyclerViewAlternate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textMaster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Master Spells"
-                android:textColor="@color/teal_200"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/textJourneyman"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutJourneyman" />
-
-            <View
-                android:id="@+id/view4"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/teal_200"
-                app:layout_constraintStart_toStartOf="@+id/textMaster"
-                app:layout_constraintTop_toBottomOf="@+id/textMaster"
-                app:layout_constraintWidth_percent="0.9" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutMaster"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewMaster"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

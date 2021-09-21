@@ -17,7 +17,6 @@
             android:id="@+id/vigor_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vigor"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="@+id/view2"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -26,7 +25,6 @@
             android:id="@+id/stamina_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="STA"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/view2"
             app:layout_constraintEnd_toEndOf="@+id/view2" />
@@ -94,20 +92,22 @@
             app:layout_constraintStart_toStartOf="@+id/duration_text"
             app:layout_constraintTop_toBottomOf="@+id/duration_text" />
 
-        <TextView
-            android:id="@+id/effect_text"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:maxHeight="270dp"
-            android:text="Effect"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/castSpellbutton"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/removebutton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.47"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/defense_text"
-            app:layout_constraintTop_toBottomOf="@+id/defense_text"
-            app:layout_constraintVertical_bias="0.224" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/defense_text">
+
+            <TextView
+                android:id="@+id/effect_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp" />
+        </ScrollView>
 
         <Button
             android:id="@+id/castSpellbutton"
@@ -147,7 +147,6 @@
             android:id="@+id/element_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Element"
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="@+id/spell_name_text"
             app:layout_constraintTop_toBottomOf="@+id/view2" />

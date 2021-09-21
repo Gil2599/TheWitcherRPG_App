@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Saved Successfully!", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.delete_save_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }

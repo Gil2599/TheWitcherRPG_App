@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import com.example.thewitcherrpg.characterSheet.magic.invocationListAdapter.*
+import com.example.thewitcherrpg.characterSheet.magic.invocationListAdapters.*
 import com.example.thewitcherrpg.databinding.FragmentCharInvocationsBinding
 import kotlinx.android.synthetic.main.custom_dialog_char_spell.*
 
@@ -173,6 +173,7 @@ class CharInvocationsFragment : Fragment() {
             sharedViewModel.removeNovicePreacherInvo(spellName)
             sharedViewModel.removeJourneymanPreacherInvo(spellName)
             sharedViewModel.removeMasterPreacherInvo(spellName)
+            sharedViewModel.removeArchPriestInvo(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

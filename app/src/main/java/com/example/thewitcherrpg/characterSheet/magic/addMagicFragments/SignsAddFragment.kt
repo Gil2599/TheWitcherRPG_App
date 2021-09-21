@@ -14,14 +14,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.JourneymanSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.MasterSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.NoviceSpellListAdapter
-import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
+import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.AlternateSignsListAdapter
+import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.BasicSignsListAdapter
+import com.example.thewitcherrpg.databinding.FragmentSignsAddBinding
 import kotlinx.android.synthetic.main.custom_dialog_add_spell.*
 
-class SpellAddFragment : Fragment() {
-    private var _binding: FragmentSpellAddBinding? = null
+class SignsAddFragment : Fragment() {
+    private var _binding: FragmentSignsAddBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -30,13 +29,12 @@ class SpellAddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSpellAddBinding.inflate(inflater, container, false)
+        _binding = FragmentSignsAddBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        //Adds a callback to back button to return to previous fragment in nav graph instead of destroying activity
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             // Handle the back button event
-            Navigation.findNavController(view).navigate(R.id.action_spellAddFragment_to_charMagicFragment)
+            Navigation.findNavController(view).navigate(R.id.action_signsAddFragment_to_charMagicFragment)
         }
         callback.isEnabled = true
 
@@ -48,40 +46,30 @@ class SpellAddFragment : Fragment() {
     private fun listAdaptersInit(){
 
         //Receive information from recyclerView adapter
-        val noviceAdapter = NoviceSpellListAdapter(requireContext()){
-            spell -> showSpellDialog(spell, SpellLevel.NOVICE) //Determines which list this spell goes under
+        val basicAdapter = BasicSignsListAdapter(requireContext()){
+                sign -> showSignDialog(sign, SignLevel.BASIC) //Determines which list this spell goes under
         }
-        noviceAdapter.setData(resources.getStringArray(R.array.novice_spells_list_data).toList())
-        noviceAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
+        basicAdapter.setData(resources.getStringArray(R.array.basic_signs_list_data).toList())
+        basicAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
-        val journeymanAdapter = JourneymanSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, SpellLevel.JOURNEYMAN)
+        val alternateAdapter = AlternateSignsListAdapter(requireContext()){
+                spell -> showSignDialog(spell, SignLevel.ALTERNATE)
         }
-        journeymanAdapter.setData(resources.getStringArray(R.array.journeyman_spells_list_data).toList())
-        journeymanAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
+        alternateAdapter.setData(resources.getStringArray(R.array.alternate_signs_list_data).toList())
+        alternateAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
 
-        val masterAdapter = MasterSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell, SpellLevel.MASTER)
-        }
-        masterAdapter.setData(resources.getStringArray(R.array.master_spells_list_data).toList())
-        masterAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
+        binding.recyclerViewBasic.adapter = basicAdapter
+        binding.recyclerViewBasic.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.recyclerViewNovice.adapter = noviceAdapter
-        binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewAlternate.adapter = alternateAdapter
+        binding.recyclerViewAlternate.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.recyclerViewJourneyman.adapter = journeymanAdapter
-        binding.recyclerViewJourneyman.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.recyclerViewMaster.adapter = masterAdapter
-        binding.recyclerViewMaster.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.recyclerViewNovice.isNestedScrollingEnabled = false
-        binding.recyclerViewJourneyman.isNestedScrollingEnabled = false
-        binding.recyclerViewMaster.isNestedScrollingEnabled = false
+        binding.recyclerViewBasic.isNestedScrollingEnabled = false
+        binding.recyclerViewAlternate.isNestedScrollingEnabled = false
 
     }
 
-    private fun showSpellDialog(spell: String?, level: SpellLevel) {
+    private fun showSignDialog(spell: String?, level: SignLevel) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -109,21 +97,15 @@ class SpellAddFragment : Fragment() {
         //Check spell level to add it to correct character spell list
         dialog.addSpellbutton.setOnClickListener(){
             when (level){
-                SpellLevel.NOVICE -> {
-                    if (sharedViewModel.addNoviceSpell(spellName))
+                SignLevel.BASIC -> {
+                    if (sharedViewModel.addBasicSign(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
 
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
 
                 }
-                SpellLevel.JOURNEYMAN -> {
-                    if (sharedViewModel.addJourneymanSpell(spellName))
-                        Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
-
-                    else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
-                }
-                SpellLevel.MASTER -> {
-                    if (sharedViewModel.addMasterSpell(spellName))
+                SignLevel.ALTERNATE -> {
+                    if (sharedViewModel.addAlternateSign(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
 
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
@@ -141,10 +123,9 @@ class SpellAddFragment : Fragment() {
     }
 
     //Enum class to determine spell level
-    enum class SpellLevel {
-        NOVICE,
-        JOURNEYMAN,
-        MASTER
+    enum class SignLevel {
+        BASIC,
+        ALTERNATE
     }
 
 }

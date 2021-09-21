@@ -100,7 +100,7 @@
 
         <item>Song of the Sky:10:The Song of the Sky changes the weather in the
             area directly around you. You can change the weather
-            to: clear sky (no modifiers), cloudy (little sunlight),
+            to clear sky (no modifiers), cloudy (little sunlight),
             rainstorm (puts out fires), wind storm (-2 to DEX for
             ranged attacks), or lightning storm (35% chance of
             being struck by lightning, equivalent to the Lightning
@@ -158,6 +158,20 @@
             target, doing 3d6 damage and setting them on fire.
             :10m:Until Put Out:Resist Magic</item>
 
+        <item>Holy Fortification:5:Holy Fortification bolsters
+            a target’s willpower and allows the
+            target to make a new check against
+            the effects of any spell that is currently affecting them.
+            :10m:Immediate:None</item>
+
+        <item>Light of Truth:4:The Light of Truth allows
+            you to create a bright white light
+            that forces one target to speak
+            truthfully. Every round the target
+            must make another check. If they
+            fail, they must answer any question truthfully.
+            :5m:Active (2 STA):Resist Magic</item>
+
     </string-array>
 
     <string-array name="master_preacherInvo_list_data">
@@ -168,6 +182,12 @@
             you can recall. This portal otherwise functions like the
             mage spell, Standing Portal.
             :N/A:1 Round:None</item>
+
+        <item>Divine Wisdom:10:Divine Wisdom searches
+            with a powerful augury for the answer to a question.
+            This answer cannot predict the future.
+            The GM sets your DC based on the secrecy of the information.
+            :50m:Active (5 STA):None</item>
 
     </string-array>
 
@@ -181,6 +201,63 @@
             Healing Hands roll at a DC of 16, they immediately
             recover their previous number of Health Points.
             :10m:Immediate:Resist Magic</item>
+
+        <item>Eternal Judgement:16:Using the power granted to you by the Eternal
+            Fire, you cause a target to burst into a bright white
+            fire, tinged with red. The fire does double the normal
+            fire damage and cannot be extinguished except
+            by magic, or by completely submerging underwater
+            for 3 rounds. Anything that touches this magical fire
+            ignites with normal fire and can be put out in one full round.
+            :10m:Until Put Out:Resist Magic</item>
+
+        <item>Freya\' Bravery:16:Calling upon the power of the goddess Freya,
+            you summon her spirit into your body, creating a
+            glow around yourself which emanates 20m in all directions. Every
+            person within that area is emboldened
+            by Modron Freya\'s love and guidance. They become
+            immune to fear and gain 25 Health Points for the duration of
+            the spell. If they leave the area of the invocation, its effects
+            last for 1d6 rounds. These rounds renew if the person
+            re-enters the area of the invocation
+            and leaves again. This invocation affects those who
+            don\'t believe in Freya, but the power can be withheld
+            from anyone the caster chooses.
+            :20m Radius:20 Rounds:None</item>
+
+        <item>Healing Rest:16:With the power granted to you by Melitele, the
+            mother goddess, you can place a number of people
+            equal to the value of your Spell Casting skill into a
+            deep coma in which their bodies heal themselves.
+            They cannot act for the entirety of the rest and are
+            unaware of their surroundings even if touched, moved,
+            or attacked. At the end of the rest, targets revive at full
+            health. If they had any critical wounds that had been
+            treated, these wounds have been healed. This does not
+            remove permanent penalties from Deadly Critical
+            Wounds.
+            :5m:1 Day:None</item>
+
+        <item>Luck of the Father:16:With power granted to you by Kreve, the
+            All-Father, you gather divine providence to you. For
+            the duration of the spell you can spend a number of
+            LUCK points equal to your Spell Casting skill value
+            times 3. You can augment any rolls you make, but can
+            also impose penalties or grant bonuses to the roll of
+            anyone within 10m.
+            :Self/10m:1 Hour:None</item>
+
+        <item>White Flame:16: Summoning the power of the Great Sun, you
+            create a bright aura of White Fire which lights the surrounding
+            area to the level of bright light. This aura of
+            fire doesn\'t burn anyone who touches it but does thaw
+            anyone in the spell’s area, and dispels water-based
+            spells in the area. Water-based spells can only be cast
+            in the area of the spell if the caster’s Spell Casting
+            check beats that of the Priest of the Great Sun. On top
+            of this, any monster in the area that is vulnerable to
+            sunlight takes double the normal penalties.
+            :10m Radius:1 Hour:Resist Magic</item>
 
     </string-array>
 

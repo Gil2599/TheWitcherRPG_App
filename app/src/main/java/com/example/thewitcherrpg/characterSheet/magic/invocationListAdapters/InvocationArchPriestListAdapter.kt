@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.characterSheet.magic.invocationListAdapter
+package com.example.thewitcherrpg.characterSheet.magic.invocationListAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
