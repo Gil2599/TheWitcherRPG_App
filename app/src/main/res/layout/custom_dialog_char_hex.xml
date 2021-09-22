@@ -14,7 +14,7 @@
         android:padding="20dp">
 
         <TextView
-            android:id="@+id/add_spell_stamina_text"
+            android:id="@+id/spell_stamina_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"
@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="@+id/view2" />
 
         <TextView
-            android:id="@+id/add_spell_vigor_text"
+            android:id="@+id/spell_vigor_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
-            android:id="@+id/add_spell_name_text"
+            android:id="@+id/spell_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Spell Name"
@@ -49,11 +49,11 @@
             android:layout_height="1dp"
             android:background="@color/teal_200"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_spell_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/spell_name_text"
             app:layout_constraintWidth_percent="0.97" />
 
         <TextView
-            android:id="@+id/add_sta_cost_text"
+            android:id="@+id/danger_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -61,76 +61,74 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <TextView
-            android:id="@+id/add_range_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/add_sta_cost_text"
-            app:layout_constraintTop_toBottomOf="@+id/add_sta_cost_text" />
-
-        <TextView
-            android:id="@+id/add_duration_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/add_range_text"
-            app:layout_constraintTop_toBottomOf="@+id/add_range_text" />
-
-        <TextView
-            android:id="@+id/add_defense_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/add_duration_text"
-            app:layout_constraintTop_toBottomOf="@+id/add_duration_text" />
-
         <ScrollView
+            android:id="@+id/scrollView4"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/add_spell_cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_defense_text">
+            app:layout_constraintTop_toBottomOf="@+id/danger_text">
 
             <TextView
-                android:id="@+id/add_effect_text"
+                android:id="@+id/effect_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp" />
+        </ScrollView>
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView4">
+
+            <TextView
+                android:id="@+id/lift_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp" />
         </ScrollView>
 
         <Button
-            android:id="@+id/addSpellbutton"
+            android:id="@+id/castSpellbutton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autoSizeTextType="uniform"
             android:background="@drawable/outline_bkg"
-            android:text="Learn Spell"
+            android:text="Cast"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintWidth_percent="0.3" />
 
         <Button
-            android:id="@+id/add_spell_cancel_button"
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/outline_bkg"
+            android:text="Cancel"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/castSpellbutton"
+            app:layout_constraintTop_toTopOf="@+id/castSpellbutton"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <Button
+            android:id="@+id/removebutton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/outline_bkg"
-            android:text="Cancel"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/addSpellbutton"
-            app:layout_constraintEnd_toStartOf="@+id/addSpellbutton"
+            android:text="Remove"
+            android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/addSpellbutton"
-            app:layout_constraintWidth_percent="0.35" />
+            app:layout_constraintTop_toTopOf="@+id/castSpellbutton"
+            app:layout_constraintWidth_percent="0.3" />
 
         <TextView
-            android:id="@+id/add_spell_element_text"
+            android:id="@+id/sta_cost_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"

@@ -49,7 +49,6 @@
         android:id="@+id/element_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Earth"
         app:layout_constraintBottom_toBottomOf="@+id/spell_name_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spell_name_text" />

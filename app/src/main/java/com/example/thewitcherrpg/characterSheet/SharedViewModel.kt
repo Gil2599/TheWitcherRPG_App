@@ -331,6 +331,20 @@ class SharedViewModel: ViewModel() {
     private var _alternateSigns = MutableLiveData(arrayListOf<String>())
     val alternateSigns: LiveData<ArrayList<String>> = _alternateSigns
 
+    //Rituals
+    private var _noviceRitualList = MutableLiveData(arrayListOf<String>())
+    val noviceRitualList: LiveData<ArrayList<String>> = _noviceRitualList
+
+    private var _journeymanRitualList = MutableLiveData(arrayListOf<String>())
+    val journeymanRitualList: LiveData<ArrayList<String>> = _journeymanRitualList
+
+    private var _masterRitualList = MutableLiveData(arrayListOf<String>())
+    val masterRitualList: LiveData<ArrayList<String>> = _masterRitualList
+
+    //Hexes
+    private var _hexesList = MutableLiveData(arrayListOf<String>())
+    val hexesList: LiveData<ArrayList<String>> = _hexesList
+
 
     //Setter Functions
     fun setImagePath(path: String){
@@ -559,10 +573,75 @@ class SharedViewModel: ViewModel() {
         _alternateSigns.value = ArrayList(newArray)
     }
 
+    //Rituals
+    fun addNoviceRitual(ritual: String): Boolean{
+        //Check whether character already has the spell
+        return if (ritual !in _noviceRitualList.value!!){
+            val newArray = _noviceRitualList.value!!.toMutableList()
+            newArray.add(ritual)
+            _noviceRitualList.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeNoviceRitual(ritual: String){
+        val newArray = _noviceRitualList.value!!.toMutableList()
+        newArray.remove(ritual)
+        _noviceRitualList.value = ArrayList(newArray)
+    }
+
+    fun addJourneymanRitual(ritual: String): Boolean{
+        //Check whether character already has the spell
+        return if (ritual !in _journeymanRitualList.value!!){
+            val newArray = _journeymanRitualList.value!!.toMutableList()
+            newArray.add(ritual)
+            _journeymanRitualList.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeJourneymanRitual(ritual: String){
+        val newArray = _journeymanRitualList.value!!.toMutableList()
+        newArray.remove(ritual)
+        _journeymanRitualList.value = ArrayList(newArray)
+    }
+
+    fun addMasterRitual(ritual: String): Boolean{
+        //Check whether character already has the spell
+        return if (ritual !in _masterRitualList.value!!){
+            val newArray = _masterRitualList.value!!.toMutableList()
+            newArray.add(ritual)
+            _masterRitualList.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeMasterRitual(ritual: String){
+        val newArray = _masterRitualList.value!!.toMutableList()
+        newArray.remove(ritual)
+        _masterRitualList.value = ArrayList(newArray)
+    }
+
+    //Hexes
+    fun addHex(hex: String): Boolean{
+        //Check whether character already has the spell
+        return if (hex !in _hexesList.value!!){
+            val newArray = _hexesList.value!!.toMutableList()
+            newArray.add(hex)
+            _hexesList.value = ArrayList(newArray)
+            true
+        } else false
+
+    }
+    fun removeHex(hex: String){
+        val newArray = _hexesList.value!!.toMutableList()
+        newArray.remove(hex)
+        _hexesList.value = ArrayList(newArray)
+    }
+
     fun castSpell(staCost: Int): Boolean{
         return _vigor.value!! >= staCost
     }
-
     //Logic Functions
     private fun onStatChange(value: Int, increase: Boolean): Boolean{
 
@@ -753,11 +832,11 @@ class SharedViewModel: ViewModel() {
         val basicSigns = _basicSigns.value!!
         val alternateSigns = _alternateSigns.value!!
 
-        val noviceRituals = ArrayList<String>()
-        val journeymanRituals = ArrayList<String>()
-        val masterRituals = ArrayList<String>()
+        val noviceRituals = _noviceRitualList.value!!
+        val journeymanRituals = _journeymanRitualList.value!!
+        val masterRituals = _masterRitualList.value!!
 
-        val hexes = ArrayList<String>()
+        val hexes = _hexesList.value!!
 
         //Mages
         val noviceSpells = _noviceSpellList.value!!
@@ -1225,6 +1304,15 @@ class SharedViewModel: ViewModel() {
         //Signs
         this._basicSigns.value = characterData.basicSigns
         this._alternateSigns.value = characterData.alternateSigns
+
+        //Rituals
+        this._noviceRitualList.value = characterData.noviceRituals
+        this._journeymanRitualList.value = characterData.journeymanRituals
+        this._masterRitualList.value = characterData.masterRituals
+
+        //Hexes
+        this._hexesList.value = characterData.hexes
+
     }
 
 }

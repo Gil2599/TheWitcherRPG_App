@@ -12,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharInfoBinding
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
+import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 
 
 class QuickStatsFragment : Fragment() {
@@ -55,24 +57,26 @@ class QuickStatsFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_edit_stats)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        //dialog.textView.text = sharedViewModel.hp.value.toString()
+        val bind : CustomDialogEditStatsBinding = CustomDialogEditStatsBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
 
-        //dialog.editText.requestFocus()
+        bind.textView.text = sharedViewModel.hp.value.toString()
 
-        /*dialog.buttonPlus.setOnClickListener(){
-            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+        bind.editText.requestFocus()
+
+        bind.buttonPlus.setOnClickListener(){
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
             sharedViewModel.onHealthChange(value)
             dialog.dismiss()
         }
 
-        dialog.buttonMinus.setOnClickListener {
-            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+        bind.buttonMinus.setOnClickListener {
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
             sharedViewModel.onHealthChange(-kotlin.math.abs(value)
             )
-            dialog.dismiss() }*/
+            dialog.dismiss() }
         dialog.show()
     }
 
@@ -81,26 +85,28 @@ class QuickStatsFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_edit_stats)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        /*dialog.textViewCurrent.text = "CURRENT STAMINA"
+        val bind : CustomDialogEditStatsBinding = CustomDialogEditStatsBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
 
-        dialog.textView.text = sharedViewModel.sta.value.toString()
+        bind.textViewCurrent.text = "CURRENT STAMINA"
 
-        dialog.editText.requestFocus()
+        bind.textView.text = sharedViewModel.sta.value.toString()
 
-        dialog.buttonPlus.setOnClickListener(){
-            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+        bind.editText.requestFocus()
+
+        bind.buttonPlus.setOnClickListener(){
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
             sharedViewModel.onStaminaChange(value)
             dialog.dismiss()
         }
 
-        dialog.buttonMinus.setOnClickListener {
-            val value = if (dialog.editText.text.isEmpty()) 0 else dialog.editText.text.toString().toInt()
+        bind.buttonMinus.setOnClickListener {
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
             sharedViewModel.onStaminaChange(-kotlin.math.abs(value)
             )
-            dialog.dismiss() }*/
+            dialog.dismiss() }
         dialog.show()
     }
 
@@ -109,24 +115,26 @@ class QuickStatsFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_edit_stats)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        /*dialog.textViewCurrent.text = "CURRENT CROWNS"
+        val bind : CustomDialogEditStatsBinding = CustomDialogEditStatsBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
 
-        dialog.textView.text = sharedViewModel.crowns.value.toString()
+        bind.textViewCurrent.text = "CURRENT CROWNS"
 
-        dialog.editText.requestFocus()
+        bind.textView.text = sharedViewModel.crowns.value.toString()
 
-        dialog.buttonPlus.setOnClickListener(){
-            sharedViewModel.onCrownsChange(dialog.editText.text.toString().toInt())
+        bind.editText.requestFocus()
+
+        bind.buttonPlus.setOnClickListener(){
+            sharedViewModel.onCrownsChange(bind.editText.text.toString().toInt())
             dialog.dismiss()
         }
 
-        dialog.buttonMinus.setOnClickListener {
-            sharedViewModel.onCrownsChange(-kotlin.math.abs(dialog.editText.text.toString().toInt())
+        bind.buttonMinus.setOnClickListener {
+            sharedViewModel.onCrownsChange(-kotlin.math.abs(bind.editText.text.toString().toInt())
             )
-            dialog.dismiss() }*/
+            dialog.dismiss() }
         dialog.show()
     }
 }

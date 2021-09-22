@@ -17,8 +17,8 @@ class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : Fragmen
         return when (fragmentList[position]) {
             FragmentName.SPELLS -> CharSpellsFragment()
             FragmentName.INVOCATIONS -> CharInvocationsFragment()
-            FragmentName.RITUALS -> NoMagicFragment()
-            FragmentName.HEXES -> NoMagicFragment()
+            FragmentName.RITUALS -> CharRitualsFragment()
+            FragmentName.HEXES -> CharHexesFragment()
             FragmentName.SIGNS -> CharSignsFragment()
         }
     }

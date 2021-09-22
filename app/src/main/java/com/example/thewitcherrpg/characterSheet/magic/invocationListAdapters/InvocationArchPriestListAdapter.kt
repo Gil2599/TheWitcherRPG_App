@@ -6,26 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.databinding.SpellRowBinding
 
-class ArchPriestInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<ArchPriestInvocationListAdapter.MyViewHolder>()  {
+class ArchPriestInvocationListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<ArchPriestInvocationListAdapter.PriestViewHolder>()  {
 
     private var spellList = emptyList<String>()
     private var addSpell: Boolean = false
     private lateinit var currentItem: String
     private var context: Context = con
 
-    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.spell_row, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        currentItem = spellList[position]
-
-        //Check whether to show all spells or only character spells
-        if (addSpell){
-            val pair = currentItem.split(":").toTypedArray()
+    inner class PriestViewHolder(private val binding: SpellRowBinding): RecyclerView.ViewHolder(binding.root) {
+        fun addBind(sign: String, position: Int){
+            val pair = sign.split(":").toTypedArray()
             val spellName = pair[0]
             val staCost = "STA Cost: " + pair[1]
             val description = pair[2]
@@ -33,13 +25,40 @@ class ArchPriestInvocationListAdapter(con: Context, val itemClick: (String) -> U
             val duration = pair[4]
             val defense = pair[5]
 
-            /*holder.itemView.spell_name_text.text = spellName
-            holder.itemView.sta_cost_text.text = staCost
-            holder.itemView.range_text.text = range
+            with (binding) {
+                spellNameText.text = spellName
+                staCostText.text = staCost
+                rangeText.text = range
+                rowLayout.setOnClickListener(){
+                    itemClick(spellList[position])
+                }
+            }
+        }
 
-            holder.itemView.rowLayout.setOnClickListener {
-                itemClick(spellList[position])
-            }*/
+        fun bind(sign: String, name: String, staCost: String, range: String){
+            with (binding){
+                spellNameText.text = name
+                staCostText.text = staCost
+                rangeText.text = range
+
+                rowLayout.setOnClickListener(){
+                    itemClick(sign)
+                }
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PriestViewHolder {
+        val itemBinding = SpellRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PriestViewHolder(itemBinding)
+    }
+
+    override fun onBindViewHolder(holder: PriestViewHolder, position: Int) {
+        currentItem = spellList[position]
+
+        //Check whether to show all spells or only character spells
+        if (addSpell){
+            holder.addBind(currentItem, position)
         }
         else{
             val tags = context.resources.getStringArray(R.array.archPriestInvo_list_data)
@@ -54,13 +73,7 @@ class ArchPriestInvocationListAdapter(con: Context, val itemClick: (String) -> U
                 val defense = pair[5]
 
                 if (currentItem == spellName) {
-                    //holder.itemView.spell_name_text.text = spellName
-                    //holder.itemView.sta_cost_text.text = staCost
-                    //holder.itemView.range_text.text = range
-
-                    //.itemView.rowLayout.setOnClickListener {
-                       // itemClick(tag)
-                    //}
+                    holder.bind(tag, spellName, staCost, range)
                 }
             }
         }

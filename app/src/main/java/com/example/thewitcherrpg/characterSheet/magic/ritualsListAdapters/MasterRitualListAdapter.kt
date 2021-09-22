@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.characterSheet.magic.spellListAdapters
+package com.example.thewitcherrpg.characterSheet.magic.ritualsListAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.SpellRowBinding
 
-class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): RecyclerView.Adapter<MasterSpellListAdapter.MasterViewHolder>() {
+class MasterRitualListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<MasterRitualListAdapter.MasterViewHolder>() {
 
     private var spellList = emptyList<String>()
     private var addSpell: Boolean = false
@@ -20,28 +20,26 @@ class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): Rec
             val spellName = pair[0]
             val staCost = "STA Cost: " + pair[1]
             val description = pair[2]
-            val range = "Range: " + pair[3]
-            val duration = pair[4]
-            val defense = pair[5]
-            val element = pair[6]
+            val preparation = "Preparation Time: " + pair[3]
+            val difficulty = "Difficulty: " + pair[4]
+            val duration = pair[5]
+            val components = pair[6]
 
             with (binding) {
                 spellNameText.text = spellName
                 staCostText.text = staCost
-                elementText.text = element
-                rangeText.text = range
+                rangeText.text = difficulty
                 rowLayout.setOnClickListener(){
                     itemClick(spellList[position])
                 }
             }
         }
 
-        fun bind(sign: String, name: String, staCost: String, range: String, element: String){
+        fun bind(sign: String, name: String, staCost: String, difficulty: String){
             with (binding){
                 spellNameText.text = name
                 staCostText.text = staCost
-                rangeText.text = range
-                elementText.text = element
+                rangeText.text = difficulty
 
                 rowLayout.setOnClickListener(){
                     itemClick(sign)
@@ -52,9 +50,7 @@ class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): Rec
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MasterViewHolder {
         val itemBinding = SpellRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MasterViewHolder(itemBinding)
-    }
-
+        return MasterViewHolder(itemBinding)    }
 
     override fun onBindViewHolder(holder: MasterViewHolder, position: Int) {
         currentItem = spellList[position]
@@ -64,23 +60,24 @@ class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): Rec
             holder.addBind(currentItem, position)
         }
         else{
-            val tags = context.resources.getStringArray(R.array.master_spells_list_data)
+            val tags = context.resources.getStringArray(R.array.master_rituals_list_data)
             for (tag in tags) {
 
                 val pair = tag.split(":").toTypedArray()
                 val spellName = pair[0]
                 val staCost = "STA Cost: " + pair[1]
                 val description = pair[2]
-                val range = "Range: " + pair[3]
-                val duration = pair[4]
-                val defense = pair[5]
-                val element = pair[6]
+                val preparation = "Preparation Time: " + pair[3]
+                val difficulty = "Difficulty: " + pair[4]
+                val duration = pair[5]
+                val components = pair[6]
 
                 if (currentItem == spellName) {
-                    holder.bind(tag, spellName, staCost, range, element)
+                    holder.bind(tag, spellName, staCost, difficulty)
                 }
             }
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -95,5 +92,4 @@ class MasterSpellListAdapter(con: Context, val itemClick: (String) -> Unit): Rec
     fun setAddSpell(value: Boolean){
         addSpell= value
     }
-
 }

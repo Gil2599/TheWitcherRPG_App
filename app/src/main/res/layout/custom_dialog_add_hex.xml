@@ -53,7 +53,7 @@
             app:layout_constraintWidth_percent="0.97" />
 
         <TextView
-            android:id="@+id/add_sta_cost_text"
+            android:id="@+id/add_danger_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -61,45 +61,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <TextView
-            android:id="@+id/add_range_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/add_sta_cost_text"
-            app:layout_constraintTop_toBottomOf="@+id/add_sta_cost_text" />
-
-        <TextView
-            android:id="@+id/add_duration_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/add_range_text"
-            app:layout_constraintTop_toBottomOf="@+id/add_range_text" />
-
-        <TextView
-            android:id="@+id/add_defense_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/add_duration_text"
-            app:layout_constraintTop_toBottomOf="@+id/add_duration_text" />
-
         <ScrollView
+            android:id="@+id/scrollView4"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/add_spell_cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_defense_text">
+            app:layout_constraintTop_toBottomOf="@+id/add_danger_text">
 
             <TextView
                 android:id="@+id/add_effect_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp" />
+        </ScrollView>
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView4">
+
+            <TextView
+                android:id="@+id/add_lift_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp" />
@@ -130,7 +118,7 @@
             app:layout_constraintWidth_percent="0.35" />
 
         <TextView
-            android:id="@+id/add_spell_element_text"
+            android:id="@+id/add_sta_cost_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"

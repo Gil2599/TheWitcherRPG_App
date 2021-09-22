@@ -6,26 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.databinding.SpellRowBinding
 
-class BasicSignsListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<BasicSignsListAdapter.MyViewHolder>() {
+class BasicSignsListAdapter(con: Context, val itemClick: (String) -> Unit) : RecyclerView.Adapter<BasicSignsListAdapter.SignsViewHolder>() {
 
     private var spellList = emptyList<String>()
     private var addSpell: Boolean = false
     private lateinit var currentItem: String
     private var context: Context = con
 
-    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
+    inner class SignsViewHolder(private val binding: SpellRowBinding): RecyclerView.ViewHolder(binding.root) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.spell_row, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        currentItem = spellList[position]
-
-        //Check whether to show all spells or only character spells
-        if (addSpell){
-            val pair = currentItem.split(":").toTypedArray()
+        fun addBind(sign: String, position: Int){
+            val pair = sign.split(":").toTypedArray()
             val spellName = pair[0]
             val staCost = "STA Cost: " + pair[1]
             val description = pair[2]
@@ -34,14 +27,42 @@ class BasicSignsListAdapter(con: Context, val itemClick: (String) -> Unit) : Rec
             val defense = pair[5]
             val element = pair[6]
 
-            /*holder.itemView.spell_name_text.text = spellName
-            holder.itemView.sta_cost_text.text = staCost
-            holder.itemView.range_text.text = range
-            holder.itemView.element_text.text = element
-
-            holder.itemView.rowLayout.setOnClickListener {
-                itemClick(spellList[position])
+            with (binding) {
+                spellNameText.text = spellName
+                staCostText.text = staCost
+                elementText.text = element
+                rangeText.text = range
+                rowLayout.setOnClickListener(){
+                    itemClick(spellList[position])
+                }
             }
+        }
+
+        fun bind(sign: String, name: String, staCost: String, range: String, element: String){
+            with (binding){
+                spellNameText.text = name
+                staCostText.text = staCost
+                rangeText.text = range
+                elementText.text = element
+
+                rowLayout.setOnClickListener(){
+                    itemClick(sign)
+                }
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SignsViewHolder {
+        val itemBinding = SpellRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SignsViewHolder(itemBinding)
+    }
+
+    override fun onBindViewHolder(holder: SignsViewHolder, position: Int) {
+        currentItem = spellList[position]
+
+        //Check whether to show all spells or only character spells
+        if (addSpell){
+            holder.addBind(currentItem, position)
         }
         else{
             val tags = context.resources.getStringArray(R.array.basic_signs_list_data)
@@ -57,16 +78,9 @@ class BasicSignsListAdapter(con: Context, val itemClick: (String) -> Unit) : Rec
                 val element = pair[6]
 
                 if (currentItem == spellName) {
-                    holder.itemView.spell_name_text.text = spellName
-                    holder.itemView.sta_cost_text.text = staCost
-                    holder.itemView.range_text.text = range
-                    holder.itemView.element_text.text = element
-
-                    holder.itemView.rowLayout.setOnClickListener {
-                        itemClick(tag)
-                    }
+                    holder.bind(tag, spellName, staCost, range, element)
                 }
-            }*/
+            }
         }
 
     }

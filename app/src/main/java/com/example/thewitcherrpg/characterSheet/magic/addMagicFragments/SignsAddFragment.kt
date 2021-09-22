@@ -16,6 +16,7 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.AlternateSignsListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.signsListAdapters.BasicSignsListAdapter
+import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentSignsAddBinding
 
 class SignsAddFragment : Fragment() {
@@ -72,8 +73,10 @@ class SignsAddFragment : Fragment() {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_add_spell)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind : CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
 
         val pair = spell!!.split(":").toTypedArray()
         val spellName = pair[0]
@@ -84,17 +87,16 @@ class SignsAddFragment : Fragment() {
         val defense = "<b>" + "Defense: " + "</b>" + pair[5]
         val element = pair[6]
 
-        /*dialog.add_spell_name_text.text = spellName
-        dialog.add_sta_cost_text.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.add_range_text.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.add_defense_text.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.add_effect_text.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.add_duration_text.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        dialog.add_spell_element_text.text = element
-        //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
+        bind.addSpellNameText.text = spellName
+        bind.addStaCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addRangeText.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addDefenseText.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addEffectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addDurationText.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addSpellElementText.text = element
 
         //Check spell level to add it to correct character spell list
-        dialog.addSpellbutton.setOnClickListener(){
+        bind.addSpellbutton.setOnClickListener(){
             when (level){
                 SignLevel.BASIC -> {
                     if (sharedViewModel.addBasicSign(spellName))
@@ -114,9 +116,9 @@ class SignsAddFragment : Fragment() {
             dialog.dismiss()
         }
 
-        dialog.add_spell_cancel_button.setOnClickListener(){
+        bind.addSpellCancelButton.setOnClickListener(){
             dialog.dismiss()
-        }*/
+        }
 
         dialog.show()
     }

@@ -56,6 +56,16 @@ class CharMagicFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_signsAddFragment)
         }
 
+        //Go to add rituals fragment
+        binding.addRitualButton.setOnClickListener(){
+            Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_ritualAddFragment)
+        }
+
+        //Go to add hexes fragment
+        binding.addHexButton.setOnClickListener(){
+            Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_hexesAddFragment)
+        }
+
         //Initial animations
         binding.addSpellButton.animate().scaleX(0.8F).scaleY(0.8F).alpha(0F).translationY(50F).duration = 0
         binding.addRitualButton.animate().scaleX(0.8F).scaleY(0.8F).alpha(0F).translationY(50F).duration = 0

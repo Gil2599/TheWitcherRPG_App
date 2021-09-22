@@ -30,6 +30,7 @@ class AlternateSignsListAdapter(con: Context, val itemClick: (String) -> Unit) :
                 spellNameText.text = spellName
                 staCostText.text = staCost
                 elementText.text = element
+                rangeText.text = range
                 rowLayout.setOnClickListener(){
                     itemClick(spellList[position])
                 }

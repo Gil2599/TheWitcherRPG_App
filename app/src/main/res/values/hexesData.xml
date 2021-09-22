@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="hexes_list_data">
+
+        <item>The Hex of Shadows:4:The Hex of Shadows creates whispers in the
+            shadows, and silhouettes around corners. The subject
+            must make random Awareness checks with an
+            unspecified DC, always almost catching a glimpse
+            of something or someone. The awareness checks are
+            never a real threat, just visions.
+            :Low:The subject must bring a bowl
+            of clear water, a branch from a white myrtle bush, and
+            a bottle of ink to a clearing under a crescent moon.
+            When the moon is at its highest the subject must pour
+            the ink into the water, dip the branch in the mixture,
+            and shake droplets in a circle around themselves while
+            holding their breath.</item>
+
+        <item>The Eternal Itch:4:The Eternal Itch causes inflamed,
+            itchy pustules to grow on the subjects genitals. The itch does
+            no damage but is a constant annoyance, causing a -1
+            to all tasks. As well as this -1 the target takes a -5 to
+            Seduction once in the bedroom.
+            :Low:The subject must gather a unit
+            of scleroderm, fool’s parsely, and bryonia. The subject
+            must light a campfire and bundle up the herbs. With
+            everything prepared the subject must light the herbs
+            and crumble the burning ashes onto the afflicted area
+            while reciting a series of magic words.</item>
+
+        <item>The Devil\'s Luck:8:The Devil’s Luck
+            plagues the subject with bouts
+            of bad fortune. In situations of high stress such as
+            combat or when performing any task with a deadline
+            or a DC higher than 15, the subject rolls a fumble on
+            a natural 1 or 2.
+            :Medium:The subject must hammer a
+            silver nail into their door frame and hang 2 units of
+            wolvesbane, tied with a lock of virgin’s hair, from it.
+            Finally the subject must stand under the silver nail,
+            set fire to the bundle of wolvesbane and virgin hair,
+            and breath deeply.</item>
+
+        <item>The Nightmare:8:The Nightmare forces the subject to relive the
+            same horrifying nightmare. Every night the subject
+            must make a Resist Coercion check at a DC equal to
+            the Hex Weaving roll the caster made to hex them. If
+            they succeed they manage to get a full, though restless,
+            night’s sleep. If they fail, they barely sleep and do
+            not recover STA or HP during the night. If they fail 3
+            nights in a row they halve their Stamina and take a -2
+            to all actions until they can get a full night’s rest.
+            :Medium:The subject must gather 5 candles, 5 units
+            of beast bones, and 1 unit of glowing ore.
+            The night of the ceremony the subject must arrange
+            the candles in a circle around them, linked by bones,
+            and place the glowing ore under their head. If the
+            subject is able to sleep through the night they will be
+            freed of the hex.</item>
+
+        <item>The Pesta\'s Kiss:12:The Pesta’s Kiss breaks
+            down the subject’s ability to fight illness and
+            resist nausea. Anytime the subject comes in
+            contact with a diseased person they have
+            a 75% chance of catching the illness. Any time they
+            smell something even slightly nauseating they must
+            succeed at a DC of 16 Endurance check or be nauseated.
+            :High:The subject must gather 3 units
+            of river clay, 1 unit of coal, 3 units of resin, and 1 unit
+            of infused dust. First the subject must craft a totem
+            from the clay mixed with infused dust and coated
+            in resin, with the coal forming its eyes. This takes a
+            DC of 14 Fine Arts roll. Then the subject must repeat a
+            series of magic words, infusing the totem with power.
+            Immediately after, the totem must be smashed and
+            the coal eyes must be powdered and consumed by the
+            subject.</item>
+
+        <item>The Hex of the Beast:12:The Hex of the Beast
+            makes the target anathema to animals and beasts.
+            Any time the target comes
+            within 10m of an animal that animal will react poorly
+            to the subject, giving them a -3 to Wilderness Survival
+            for handling animals. Each time they come within
+            10m of an animal there is a 50% chance the animal
+            will attack.
+            :High:The subject must gather a small
+            live animal of some sort, 2 units of mistletoe, 1 unit
+            of phosphorus, 2 units of crow’s eye, 3 units of mandrake
+            root. Under a full moon the subject must cut
+            the throat of the animal and consume its blood. Then
+            the animal’s body must be wrapped in bundles of mistletoe,
+            crow’s eye, and mandrake root and placed in
+            an open fire. As the scales or fur of the animal start to
+            burn away, the phosphorus must be thrown into the
+            fire. When the fire has burned out the subject must
+            remove the bones of the animal and wear them on their
+            person for a full day.</item>
+
+    </string-array>
+
+</resources>

@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
+import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentProfessionBinding
 
 class ProfessionFragment : Fragment() {
@@ -90,8 +92,6 @@ class ProfessionFragment : Fragment() {
             // show it
             alertDialog.show()
 
-            // After some action
-            //alertDialog.dismiss()
         }
 
         binding.buttonHelp.setOnClickListener(){
@@ -106,10 +106,11 @@ class ProfessionFragment : Fragment() {
         dialog.setContentView(R.layout.custom_dialog_help_info)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        //dialog.textViewInfo.text = resources.getString(R.string.profession_help)
+        val bind : CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
 
-        //dialog.textViewTitle.text = "Your Profession"
-        //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
+        bind.textViewInfo.text = resources.getString(R.string.profession_help)
+        bind.textViewTitle.text = "Your Profession"
 
         dialog.show()
     }

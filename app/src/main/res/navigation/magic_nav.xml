@@ -30,6 +30,12 @@
         <action
             android:id="@+id/action_charMagicFragment_to_signsAddFragment"
             app:destination="@id/signsAddFragment" />
+        <action
+            android:id="@+id/action_charMagicFragment_to_ritualAddFragment"
+            app:destination="@id/ritualAddFragment" />
+        <action
+            android:id="@+id/action_charMagicFragment_to_hexesAddFragment"
+            app:destination="@id/hexesAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/noMagicFragment"
@@ -50,6 +56,24 @@
         android:label="SignsAddFragment" >
         <action
             android:id="@+id/action_signsAddFragment_to_charMagicFragment"
+            app:destination="@id/charMagicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ritualAddFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.magic.addMagicFragments.RitualAddFragment"
+        android:label="fragment_ritual_add"
+        tools:layout="@layout/fragment_ritual_add" >
+        <action
+            android:id="@+id/action_ritualAddFragment_to_charMagicFragment"
+            app:destination="@id/charMagicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hexesAddFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.magic.addMagicFragments.HexesAddFragment"
+        android:label="fragment_hexes_add"
+        tools:layout="@layout/fragment_hexes_add" >
+        <action
+            android:id="@+id/action_hexesAddFragment_to_charMagicFragment"
             app:destination="@id/charMagicFragment" />
     </fragment>
 </navigation>
