@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.characterSheet.equipment.EquipmentParentFragment
 import com.example.thewitcherrpg.characterSheet.magic.MagicParentFragment
 import com.example.thewitcherrpg.data.Character
 import com.example.thewitcherrpg.data.CharacterViewModel
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mCharViewModel: CharacterViewModel
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var binding: ActivityMainBinding
-    lateinit var characterData: Character
+    private lateinit var characterData: Character
 
     private val sharedViewModel: SharedViewModel by viewModels()
 
@@ -66,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.Magic -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, MagicParentFragment())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                }
+                R.id.Equipment -> {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, EquipmentParentFragment())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }
@@ -130,7 +135,7 @@ class MainActivity : AppCompatActivity() {
         //Check if there is a callback set by a fragment then don't close activity
         if (this.onBackPressedDispatcher.hasEnabledCallbacks()){
             super.onBackPressed()
-            return;
+            return
         }
 
         //If no callbacks are set by fragments, ask user if they would like to save character or cancel

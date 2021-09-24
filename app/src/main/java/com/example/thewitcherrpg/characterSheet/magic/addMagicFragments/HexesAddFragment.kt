@@ -16,7 +16,6 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.hexexListAdapter.HexesListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogAddHexBinding
-import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentHexesAddBinding
 
 class HexesAddFragment : Fragment() {

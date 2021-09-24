@@ -17,12 +17,8 @@ import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.magic.ritualsListAdapters.JourneymanRitualListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.ritualsListAdapters.MasterRitualListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.ritualsListAdapters.NoviceRitualListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.JourneymanSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.MasterSpellListAdapter
-import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentRitualAddBinding
-import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
 
 class RitualAddFragment : Fragment() {
     private var _binding: FragmentRitualAddBinding? = null

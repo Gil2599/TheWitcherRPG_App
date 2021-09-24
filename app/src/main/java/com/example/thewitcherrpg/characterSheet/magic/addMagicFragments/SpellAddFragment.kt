@@ -18,7 +18,6 @@ import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.Journeym
 import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.MasterSpellListAdapter
 import com.example.thewitcherrpg.characterSheet.magic.spellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
-import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
 
 class SpellAddFragment : Fragment() {

@@ -26,4 +26,10 @@
         android:title="Magic"
         android:icon="@drawable/ic_magic_icon" />
 
+    <item
+        android:id="@+id/Equipment"
+        android:title="Equipment"
+        android:icon="@drawable/ic_armor_head" />
+
+
 </menu>

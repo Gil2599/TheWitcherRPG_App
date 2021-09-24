@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="equipmentCategories">
+
+        <item>Head Armor</item>
+        <item>Chest Armor</item>
+        <item>Hand Armor</item>
+        <item>Leg Armor</item>
+        <item>Weapon</item>
+        <item>Shield</item>
+        <item>Miscellaneous</item>
+
+    </string-array>
+
+    <string-array name="head_light_armor_data">
+
+        <item>Verden Archer\'s Hood:3:C:1::0:0.5:100:head</item>
+        <item>Double Woven Hood:5:P:1::0:1:175:head</item>
+        <item>Spectacled Helm:8:C:0::0:1:200:head</item>
+
+    </string-array>
+
+    <string-array name="chest_light_armor_data">
+
+        <item>Gambeson:3:E:0::0:1:100:chest</item>
+        <item>Aedirnian Gambeson:5:P:1::0:1.5:175:chest</item>
+        <item>Double Woven Gambeson:8:P:1::0:2.5:250:chest</item>
+
+    </string-array>
+
+
+
+</resources>

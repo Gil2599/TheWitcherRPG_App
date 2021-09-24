@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".characterSheet.equipment.EquipmentFragment">
+
+
+    <ImageView
+        android:id="@+id/imageViewHead"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_head"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView56"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewChest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_chest"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewRHand"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewLHand"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewHead"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewRHand"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_right_hand"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewChest"
+        app:layout_constraintTop_toTopOf="@+id/imageViewLHand"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewLHand"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_left_hand"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewChest"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewChest"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewSword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_sword"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewBelt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLHand"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewBelt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_belt"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewShield"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewSword"
+        app:layout_constraintTop_toTopOf="@+id/imageViewSword"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewShield"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_shield"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewBelt"
+        app:layout_constraintTop_toTopOf="@+id/imageViewSword"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewRLeg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_right_leg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewLLeg"
+        app:layout_constraintTop_toTopOf="@+id/imageViewLLeg"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/imageViewLLeg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/outline_bkg"
+        android:clickable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_armor_left_leg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewRLeg"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewSword"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <TextView
+        android:id="@+id/textView56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Equpment"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAddGear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Item"
+        android:background="@drawable/outline_bkg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLLeg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,12 +24,12 @@ class ProfessionSkillTree : Fragment() {
 
     private var focusedTextViews =  arrayOfNulls<TextView>(2)
 
-    lateinit var a1Observer: Observer<Int>
-    lateinit var a2Observer: Observer<Int>
-    lateinit var b1Observer: Observer<Int>
-    lateinit var b2Observer: Observer<Int>
-    lateinit var c1Observer: Observer<Int>
-    lateinit var c2Observer: Observer<Int>
+    private lateinit var a1Observer: Observer<Int>
+    private lateinit var a2Observer: Observer<Int>
+    private lateinit var b1Observer: Observer<Int>
+    private lateinit var b2Observer: Observer<Int>
+    private lateinit var c1Observer: Observer<Int>
+    private lateinit var c2Observer: Observer<Int>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -135,7 +135,7 @@ class ProfessionSkillTree : Fragment() {
     private fun onInit(){
 
         //Create Dialog for Defining Skill above tree
-        binding.buttonDefiningSkill.setOnClickListener() {
+        binding.buttonDefiningSkill.setOnClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(sharedViewModel.definingSkill.value.toString())
             // set dialog message
@@ -148,7 +148,7 @@ class ProfessionSkillTree : Fragment() {
 
         }
 
-        binding.buttonHelp.setOnClickListener(){
+        binding.buttonHelp.setOnClickListener{
             showDialogHelp()
         }
 
@@ -163,7 +163,7 @@ class ProfessionSkillTree : Fragment() {
             binding.buttonA1Plus.visibility = View.VISIBLE
             focusedTextViews[1] = binding.buttonA1Plus
         }
-        binding.linearLayoutA1.setOnLongClickListener(){
+        binding.linearLayoutA1.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillA1.text)
             // set dialog message
@@ -176,7 +176,7 @@ class ProfessionSkillTree : Fragment() {
             true
         }
 
-        binding.linearLayoutA2.setOnLongClickListener(){
+        binding.linearLayoutA2.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillA2.text)
             // set dialog message
@@ -189,7 +189,7 @@ class ProfessionSkillTree : Fragment() {
             true
         }
 
-        binding.linearLayoutA3.setOnLongClickListener(){
+        binding.linearLayoutA3.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillA3.text)
             // set dialog message
@@ -212,7 +212,7 @@ class ProfessionSkillTree : Fragment() {
             binding.buttonB1Plus.visibility = View.VISIBLE
             focusedTextViews[1] = binding.buttonB1Plus
         }
-        binding.linearLayoutB1.setOnLongClickListener(){
+        binding.linearLayoutB1.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillB1.text)
             // set dialog message
@@ -224,7 +224,7 @@ class ProfessionSkillTree : Fragment() {
             alertDialog.show()
             true
         }
-        binding.linearLayoutB2.setOnLongClickListener(){
+        binding.linearLayoutB2.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillB2.text)
             // set dialog message
@@ -236,7 +236,7 @@ class ProfessionSkillTree : Fragment() {
             alertDialog.show()
             true
         }
-        binding.linearLayoutB3.setOnLongClickListener(){
+        binding.linearLayoutB3.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillB3.text)
             // set dialog message
@@ -259,7 +259,7 @@ class ProfessionSkillTree : Fragment() {
             binding.buttonC1Plus.visibility = View.VISIBLE
             focusedTextViews[1] = binding.buttonC1Plus
         }
-        binding.linearLayoutC1.setOnLongClickListener(){
+        binding.linearLayoutC1.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillC1.text)
             // set dialog message
@@ -271,7 +271,7 @@ class ProfessionSkillTree : Fragment() {
             alertDialog.show()
             true
         }
-        binding.linearLayoutC2.setOnLongClickListener(){
+        binding.linearLayoutC2.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillC2.text)
             // set dialog message
@@ -283,7 +283,7 @@ class ProfessionSkillTree : Fragment() {
             alertDialog.show()
             true
         }
-        binding.linearLayoutC3.setOnLongClickListener(){
+        binding.linearLayoutC3.setOnLongClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
             alertDialogBuilder.setTitle(binding.textViewSkillC3.text)
             // set dialog message
@@ -296,49 +296,49 @@ class ProfessionSkillTree : Fragment() {
             true
         }
 
-        binding.buttonA1Minus.setOnClickListener(){
+        binding.buttonA1Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(1) }
-        binding.buttonA1Plus.setOnClickListener(){
+        binding.buttonA1Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(1) }
 
-        binding.buttonA2Minus.setOnClickListener(){
+        binding.buttonA2Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(2) }
-        binding.buttonA2Plus.setOnClickListener(){
+        binding.buttonA2Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(2) }
 
-        binding.buttonA3Minus.setOnClickListener(){
+        binding.buttonA3Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(3) }
-        binding.buttonA3Plus.setOnClickListener(){
+        binding.buttonA3Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(3) }
 
-        binding.buttonB1Minus.setOnClickListener(){
+        binding.buttonB1Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(4) }
-        binding.buttonB1Plus.setOnClickListener(){
+        binding.buttonB1Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(4) }
 
-        binding.buttonB2Minus.setOnClickListener(){
+        binding.buttonB2Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(5) }
-        binding.buttonB2Plus.setOnClickListener(){
+        binding.buttonB2Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(5) }
 
-        binding.buttonB3Minus.setOnClickListener(){
+        binding.buttonB3Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(6) }
-        binding.buttonB3Plus.setOnClickListener(){
+        binding.buttonB3Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(6) }
 
-        binding.buttonC1Minus.setOnClickListener(){
+        binding.buttonC1Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(7) }
-        binding.buttonC1Plus.setOnClickListener(){
+        binding.buttonC1Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(7) }
 
-        binding.buttonC2Minus.setOnClickListener(){
+        binding.buttonC2Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(8) }
-        binding.buttonC2Plus.setOnClickListener(){
+        binding.buttonC2Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(8) }
 
-        binding.buttonC3Minus.setOnClickListener(){
+        binding.buttonC3Minus.setOnClickListener{
             sharedViewModel.decreaseProfSkill(9) }
-        binding.buttonC3Plus.setOnClickListener(){
+        binding.buttonC3Plus.setOnClickListener{
             sharedViewModel.increaseProfSkill(9) }
 
     }
@@ -365,7 +365,7 @@ class ProfessionSkillTree : Fragment() {
         a1Observer = Observer<Int> { value ->
             // Update the UI if A1 is >= 5
             if (value >= 5){
-                binding.linearLayoutA2.setOnClickListener(){
+                binding.linearLayoutA2.setOnClickListener {
                     focusedTextViews[0]?.visibility = View.INVISIBLE
                     focusedTextViews[1]?.visibility = View.INVISIBLE
 
@@ -419,7 +419,7 @@ class ProfessionSkillTree : Fragment() {
         b1Observer = Observer<Int> { value ->
             // Update the UI if A1 is >= 5
             if (value >= 5){
-                binding.linearLayoutB2.setOnClickListener(){
+                binding.linearLayoutB2.setOnClickListener{
                     focusedTextViews[0]?.visibility = View.INVISIBLE
                     focusedTextViews[1]?.visibility = View.INVISIBLE
 
@@ -473,7 +473,7 @@ class ProfessionSkillTree : Fragment() {
         c1Observer = Observer<Int> { value ->
             // Update the UI if A1 is >= 5
             if (value >= 5){
-                binding.linearLayoutC2.setOnClickListener(){
+                binding.linearLayoutC2.setOnClickListener{
                     focusedTextViews[0]?.visibility = View.INVISIBLE
                     focusedTextViews[1]?.visibility = View.INVISIBLE
 

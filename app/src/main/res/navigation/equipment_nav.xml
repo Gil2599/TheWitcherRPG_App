@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/equipment_nav"
+    app:startDestination="@id/equipmentFragment">
+    <fragment
+        android:id="@+id/equipmentFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.equipment.EquipmentFragment"
+        android:label="fragment_equipment"
+        tools:layout="@layout/fragment_equipment" >
+        <action
+            android:id="@+id/action_equipmentFragment_to_addArmorFragment2"
+            app:destination="@id/addArmorFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/addArmorFragment2"
+        android:name="com.example.thewitcherrpg.characterSheet.equipment.AddItemFragment"
+        android:label="fragment_add_armor"
+        tools:layout="@layout/fragment_add_item" >
+        <action
+            android:id="@+id/action_addArmorFragment2_to_equipmentFragment"
+            app:destination="@id/equipmentFragment" />
+    </fragment>
+</navigation>
