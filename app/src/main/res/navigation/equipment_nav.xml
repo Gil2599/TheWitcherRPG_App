@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_equipmentFragment_to_addArmorFragment2"
             app:destination="@id/addArmorFragment2" />
+        <action
+            android:id="@+id/action_equipmentFragment_to_inventoryFragment"
+            app:destination="@id/inventoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/addArmorFragment2"
@@ -20,6 +23,14 @@
         tools:layout="@layout/fragment_add_item" >
         <action
             android:id="@+id/action_addArmorFragment2_to_equipmentFragment"
+            app:destination="@id/equipmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="com.example.thewitcherrpg.characterSheet.equipment.InventoryFragment"
+        android:label="InventoryFragment" >
+        <action
+            android:id="@+id/action_inventoryFragment_to_equipmentFragment"
             app:destination="@id/equipmentFragment" />
     </fragment>
 </navigation>

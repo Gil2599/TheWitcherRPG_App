@@ -38,6 +38,10 @@ class EquipmentFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_equipmentFragment_to_addArmorFragment2)
         }
 
+        binding.imageViewBelt.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_equipmentFragment_to_inventoryFragment)
+        }
+
         return view
     }
 
@@ -48,6 +52,9 @@ class EquipmentFragment : Fragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val bind : CustomDialogWeaponBinding = CustomDialogWeaponBinding.inflate(layoutInflater)
+        bind.textView57.text = sharedViewModel.equippedHead.value?.stoppingPower.toString()
+
+
         dialog.setContentView(bind.root)
 
         dialog.show()

@@ -14,7 +14,9 @@
 
     <string-array name="head_light_armor_data">
 
-        <item>Verden Archer\'s Hood:3:C:1::0:0.5:100:head</item>
+        <item>Verden Archer\'s Hood:3:C:1::0:0.5:100:head</item> <!-- Name : Stopping Power : Availability :
+                                                                        Armor Enhancement : Effect : Encumbrance Value :
+                                                                        Weight : Cost : Category-->
         <item>Double Woven Hood:5:P:1::0:1:175:head</item>
         <item>Spectacled Helm:8:C:0::0:1:200:head</item>
 
@@ -25,6 +27,14 @@
         <item>Gambeson:3:E:0::0:1:100:chest</item>
         <item>Aedirnian Gambeson:5:P:1::0:1.5:175:chest</item>
         <item>Double Woven Gambeson:8:P:1::0:2.5:250:chest</item>
+
+    </string-array>
+
+    <string-array name="legs_light_armor_data">
+
+        <item>Cavalry Trousers:3:C:0::0:0.5:75:leg</item>
+        <item>Padded Trousers:5:C:1::0:1:125:leg</item>
+        <item>Double Woven Trousers:8:P:0::0:1.5:225:leg</item>
 
     </string-array>
 

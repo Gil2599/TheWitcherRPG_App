@@ -1,6 +1,5 @@
 package com.example.thewitcherrpg.characterSheet.equipment
 
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,11 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.equipment.listAdapters.LightEquipmentListAdapter
-import com.example.thewitcherrpg.databinding.CustomDialogAddArmorBinding
-import com.example.thewitcherrpg.databinding.FragmentAddItemBinding
+import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
+import com.example.thewitcherrpg.databinding.FragmentInventoryBinding
 
-class AddItemFragment : Fragment() {
-    private var _binding: FragmentAddItemBinding? = null
+class InventoryFragment : Fragment() {
+    private var _binding: FragmentInventoryBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -31,13 +30,13 @@ class AddItemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddItemBinding.inflate(inflater, container, false)
+        _binding = FragmentInventoryBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //Adds a callback to back button to return to previous fragment in nav graph instead of destroying activity
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             // Handle the back button event
-            Navigation.findNavController(view).navigate(R.id.action_addArmorFragment2_to_equipmentFragment)
+            Navigation.findNavController(view).navigate(R.id.action_inventoryFragment_to_equipmentFragment)
         }
         callback.isEnabled = true
 
@@ -50,7 +49,6 @@ class AddItemFragment : Fragment() {
             binding.spinnerAddEquipment.adapter = adapter
         }
 
-
         binding.spinnerAddEquipment.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
@@ -61,7 +59,7 @@ class AddItemFragment : Fragment() {
                 val item = binding.spinnerAddEquipment.getItemAtPosition(position).toString()
 
                 if(item == "Head Armor"){
-                    lightAdapter.setData(resources.getStringArray(R.array.head_light_armor_data).toList())
+                    sharedViewModel.headEquipment.value?.let { lightAdapter.setData(it.toList()) }
                 }
                 else if (item == "Chest Armor"){
                     lightAdapter.setData(resources.getStringArray(R.array.chest_light_armor_data).toList())
@@ -81,40 +79,13 @@ class AddItemFragment : Fragment() {
     private fun listAdaptersInit(){
 
         lightAdapter = LightEquipmentListAdapter(requireContext()){
-            item -> showArmorDialog(item)
+                //item -> showArmorDialog(item)
         }
 
         binding.rvLightEquipment.adapter = lightAdapter
         binding.rvLightEquipment.layoutManager = LinearLayoutManager(requireContext())
 
         binding.rvLightEquipment.isNestedScrollingEnabled = false
-    }
-
-    private fun showArmorDialog(armorItem: String){
-        val dialog = Dialog(requireContext())
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        val bind : CustomDialogAddArmorBinding = CustomDialogAddArmorBinding.inflate(layoutInflater)
-
-        bind.buttonCancel.setOnClickListener{
-            dialog.dismiss()
-        }
-
-        bind.buttonAdd.setOnClickListener{
-
-            if (sharedViewModel.addArmor(armorItem)){
-                Toast.makeText(context, "Item added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
-
-            } else Toast.makeText(context, "${sharedViewModel.name.value} already has this item.", Toast.LENGTH_SHORT).show()
-
-            //Toast.makeText(context, sharedViewModel.headEquipment.value.toString(), Toast.LENGTH_SHORT).show()
-
-        }
-
-        dialog.setContentView(bind.root)
-
-        dialog.show()
     }
 
 }
