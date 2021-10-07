@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.characterSheet.equipment
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.characterSheet.SharedViewModel
 import com.example.thewitcherrpg.characterSheet.equipment.listAdapters.LightEquipmentListAdapter
+import com.example.thewitcherrpg.databinding.CustomDialogAddArmorBinding
+import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
 import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
 import com.example.thewitcherrpg.databinding.FragmentInventoryBinding
 
@@ -40,6 +43,15 @@ class InventoryFragment : Fragment() {
         }
         callback.isEnabled = true
 
+        onSpinnerInit()
+
+        listAdaptersInit()
+
+        return view
+    }
+
+    private fun onSpinnerInit(){
+
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.equipmentCategories,
@@ -64,6 +76,7 @@ class InventoryFragment : Fragment() {
                 else if (item == "Chest Armor"){
                     lightAdapter.setData(resources.getStringArray(R.array.chest_light_armor_data).toList())
                 }
+
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -71,21 +84,78 @@ class InventoryFragment : Fragment() {
             }
         }
 
-        listAdaptersInit()
-
-        return view
     }
 
     private fun listAdaptersInit(){
 
         lightAdapter = LightEquipmentListAdapter(requireContext()){
-                //item -> showArmorDialog(item)
+                item -> showArmorDialog(item)
         }
 
         binding.rvLightEquipment.adapter = lightAdapter
         binding.rvLightEquipment.layoutManager = LinearLayoutManager(requireContext())
 
         binding.rvLightEquipment.isNestedScrollingEnabled = false
+    }
+
+    private fun showArmorDialog(armorItem: String){
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val bind : CustomDialogCharArmorBinding = CustomDialogCharArmorBinding.inflate(layoutInflater)
+
+        val pair = armorItem.split(":").toTypedArray()
+        val armorName = pair[0]
+        val stoppingPower = "Stopping Power: " + pair[1]
+        val availability = "Availability: " + pair[2]
+        val armorEnhancement = "Armor Enhancement: " + pair[3]
+        val effect = "Effect: " + pair[4]
+        val encumbValue = "Encumbrance Value: " + pair[5]
+        val weight = "Weight: " + pair[6]
+        val price = "Cost: " + pair[7] + " Crowns"
+        val type = pair[8]
+
+        bind.textViewTitle.text = armorName
+        bind.textViewSP.text = stoppingPower
+        bind.textViewAvailability.text = availability
+        bind.textViewAE.text = armorEnhancement
+        bind.textViewEffect.text = effect
+        bind.textViewEV.text = encumbValue
+        bind.textViewWeight.text = weight
+        bind.textViewCost.text = price
+
+
+        bind.buttonCancel.setOnClickListener{
+            dialog.dismiss()
+        }
+
+        bind.buttonRemove.setOnClickListener{
+
+            sharedViewModel.removeArmor(armorItem)
+
+            onSpinnerInit() //Refresh Adapters
+
+            Toast.makeText(context, "$armorName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+
+            dialog.dismiss()
+
+        }
+
+        bind.buttonEquip.setOnClickListener{
+
+            if (sharedViewModel.buyArmor(armorItem)){
+                Toast.makeText(context, "${sharedViewModel.name.value} purchased $armorName", Toast.LENGTH_SHORT).show()
+            }
+            else Toast.makeText(context, "${sharedViewModel.name.value} does not have enough crowns to purchase $armorName", Toast.LENGTH_SHORT).show()
+
+            dialog.dismiss()
+
+        }
+
+        dialog.setContentView(bind.root)
+
+        dialog.show()
     }
 
 }

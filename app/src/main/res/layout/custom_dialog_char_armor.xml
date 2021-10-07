@@ -15,11 +15,11 @@
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Armor"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Armor" />
 
         <View
             android:id="@+id/view2"
@@ -103,28 +103,37 @@
             android:text="Cancel"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textViewCost"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
+            app:layout_constraintTop_toBottomOf="@+id/textView69" />
 
         <Button
-            android:id="@+id/buttonAdd"
+            android:id="@+id/buttonRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@drawable/outline_bkg"
-            android:text="Add"
+            android:text="Remove"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/buttonBuy"
-            app:layout_constraintTop_toTopOf="@+id/buttonBuy" />
+            app:layout_constraintEnd_toStartOf="@+id/buttonEquip"
+            app:layout_constraintTop_toTopOf="@+id/buttonEquip" />
 
         <Button
-            android:id="@+id/buttonBuy"
+            android:id="@+id/buttonEquip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/outline_bkg"
-            android:text="Buy"
+            android:text="Equip"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
+
+        <TextView
+            android:id="@+id/textView69"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Current Stopping Power:"
+            app:layout_constraintStart_toStartOf="@+id/textViewCost"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

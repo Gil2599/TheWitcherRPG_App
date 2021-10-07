@@ -52,7 +52,6 @@ class EquipmentFragment : Fragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val bind : CustomDialogWeaponBinding = CustomDialogWeaponBinding.inflate(layoutInflater)
-        bind.textView57.text = sharedViewModel.equippedHead.value?.stoppingPower.toString()
 
 
         dialog.setContentView(bind.root)

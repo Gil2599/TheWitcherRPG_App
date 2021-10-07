@@ -4,7 +4,6 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
-import com.example.thewitcherrpg.characterSheet.equipment.EquipmentItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.parcelize.Parcelize
@@ -140,8 +139,7 @@ data class Character(
     var archPriestInvocations: ArrayList<String>,
 
     //Equipment
-    var headEquipment: ArrayList<String>,
-    var equippedHead: EquipmentItem
+    var headEquipment: ArrayList<String>
 
 ): Parcelable
 
@@ -158,7 +156,7 @@ class MyTypeConverters {
         return Gson().toJson(list)
     }
 
-    @TypeConverter
+    /*@TypeConverter
     fun fromStringToItem(item: String?): EquipmentItem{
         val itemType =object :TypeToken<EquipmentItem>(){}.type
         return Gson().fromJson(item, itemType)
@@ -168,7 +166,7 @@ class MyTypeConverters {
     fun fromItem(item: EquipmentItem?): String{
         return Gson().toJson(item)
     }
-
+    */
 
 
 }

@@ -1,11 +1,8 @@
 package com.example.thewitcherrpg.characterSheet
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thewitcherrpg.characterSheet.equipment.EquipmentItem
-import com.example.thewitcherrpg.characterSheet.equipment.EquipmentTypes
 import com.example.thewitcherrpg.data.Character
 import kotlin.math.absoluteValue
 
@@ -352,9 +349,6 @@ class SharedViewModel: ViewModel() {
     private var _headEquipment = MutableLiveData(arrayListOf<String>())
     val headEquipment: LiveData<ArrayList<String>> = _headEquipment
 
-    private var _equippedHead = MutableLiveData<EquipmentItem>()
-    val equippedHead: LiveData<EquipmentItem> = _equippedHead
-
 
 
     //Setter Functions
@@ -655,23 +649,53 @@ class SharedViewModel: ViewModel() {
     }
 
     //Equipment
-    fun addArmor(itemString: String): Boolean{
+    fun addArmor(itemString: String){
 
         val pair = itemString.split(":").toTypedArray()
 
         //Check the armor type and add it to the correct list
         when(pair[8]) {
             "head" -> {
-                //Check whether character already has the spell
-                return if (itemString !in _headEquipment.value!!) {
-                    val newArray = _headEquipment.value!!.toMutableList()
-                    newArray.add(itemString)
-                    _headEquipment.value = ArrayList(newArray)
-                    true
-                } else false
+                val newArray = _headEquipment.value!!.toMutableList()
+                newArray.add(itemString)
+                _headEquipment.value = ArrayList(newArray)
+                }
+        }
+    }
+
+    fun buyArmor(itemString: String): Boolean{
+
+        val pair = itemString.split(":").toTypedArray()
+        val price = pair[7].toInt()
+
+        if(_crowns.value!! >= price){
+            _crowns.value = _crowns.value?.minus(price)
+        } else return false
+
+        //Check the armor type and add it to the correct list
+        when(pair[8]) {
+            "head" -> {
+                val newArray = _headEquipment.value!!.toMutableList()
+                newArray.add(itemString)
+                _headEquipment.value = ArrayList(newArray)
+                return true
             }
         }
         return false
+    }
+
+    fun removeArmor(itemString: String){
+
+        val pair = itemString.split(":").toTypedArray()
+
+        //Check the armor type and add it to the correct list
+        when(pair[8]) {
+            "head" -> {
+                val newArray = _headEquipment.value!!.toMutableList()
+                newArray.remove(itemString)
+                _headEquipment.value = ArrayList(newArray)
+            }
+        }
 
     }
 
@@ -889,8 +913,6 @@ class SharedViewModel: ViewModel() {
 
         //Equipment
         val headEquipment = _headEquipment.value!!
-        val equippedHead = EquipmentItem("", 0, "", "", "",
-                                            0, 0F, 0, EquipmentTypes.HEAD)
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
@@ -904,7 +926,7 @@ class SharedViewModel: ViewModel() {
             spellCasting, resistMagic, resistCoercion, ritualCrafting, vigor, basicSigns, alternateSigns, noviceRituals,
             journeymanRituals, masterRituals, hexes, noviceSpells, journeymanSpells, masterSpells, noviceDruidInvocations,
             journeymanDruidInvocations, masterDruidInvocations, novicePreacherInvocations, journeymanPreacherInvocations,
-            masterPreacherInvocations, archPriestInvocations, headEquipment, equippedHead)
+            masterPreacherInvocations, archPriestInvocations, headEquipment)
 
     }
 

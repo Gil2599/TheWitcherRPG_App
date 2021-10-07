@@ -97,18 +97,48 @@ class AddItemFragment : Fragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         val bind : CustomDialogAddArmorBinding = CustomDialogAddArmorBinding.inflate(layoutInflater)
 
+        val pair = armorItem.split(":").toTypedArray()
+        val armorName = pair[0]
+        val stoppingPower = "Stopping Power: " + pair[1]
+        val availability = "Availability: " + pair[2]
+        val armorEnhancement = "Armor Enhancement: " + pair[3]
+        val effect = "Effect: " + pair[4]
+        val encumbValue = "Encumbrance Value: " + pair[5]
+        val weight = "Weight: " + pair[6]
+        val price = "Cost: " + pair[7] + " Crowns"
+        val type = pair[8]
+
+        bind.textViewTitle.text = armorName
+        bind.textViewSP.text = stoppingPower
+        bind.textViewAvailability.text = availability
+        bind.textViewAE.text = armorEnhancement
+        bind.textViewEffect.text = effect
+        bind.textViewEV.text = encumbValue
+        bind.textViewWeight.text = weight
+        bind.textViewCost.text = price
+
+
         bind.buttonCancel.setOnClickListener{
             dialog.dismiss()
         }
 
         bind.buttonAdd.setOnClickListener{
 
-            if (sharedViewModel.addArmor(armorItem)){
-                Toast.makeText(context, "Item added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            sharedViewModel.addArmor(armorItem)
+            Toast.makeText(context, "$armorName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
 
-            } else Toast.makeText(context, "${sharedViewModel.name.value} already has this item.", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
 
-            //Toast.makeText(context, sharedViewModel.headEquipment.value.toString(), Toast.LENGTH_SHORT).show()
+        }
+
+        bind.buttonBuy.setOnClickListener{
+
+            if (sharedViewModel.buyArmor(armorItem)){
+                Toast.makeText(context, "${sharedViewModel.name.value} purchased $armorName", Toast.LENGTH_SHORT).show()
+            }
+            else Toast.makeText(context, "${sharedViewModel.name.value} does not have enough crowns to purchase $armorName", Toast.LENGTH_SHORT).show()
+
+            dialog.dismiss()
 
         }
 

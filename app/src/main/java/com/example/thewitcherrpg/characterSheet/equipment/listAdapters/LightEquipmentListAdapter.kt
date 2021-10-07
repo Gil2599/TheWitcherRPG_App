@@ -14,6 +14,7 @@ class LightEquipmentListAdapter(con: Context, val itemClick: (String) -> Unit) :
     private var item = ""
 
     inner class LightViewHolder(private val binding: ArmorRowBinding): RecyclerView.ViewHolder(binding.root) {
+
         fun bind(hex: String, position: Int){
             val pair = hex.split(":").toTypedArray()
             val armorName = pair[0]
@@ -57,8 +58,8 @@ class LightEquipmentListAdapter(con: Context, val itemClick: (String) -> Unit) :
         return armorList.size
     }
 
-    fun setData(spell: List<String>){
-        this.armorList = spell
+    fun setData(item: List<String>){
+        this.armorList = item
         notifyDataSetChanged()
     }
 

@@ -11,6 +11,10 @@ import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
+import android.R.array
+
+
+
 
 
 class SkillsFragment : Fragment() {
@@ -185,6 +189,8 @@ class SkillsFragment : Fragment() {
             if (!hasFocus) { sharedViewModel.setIP(binding.editIP.text.toString().toInt())
             }
         }
+
+
 
         binding.editText1.setRawInputType(0)
         binding.editText1.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
