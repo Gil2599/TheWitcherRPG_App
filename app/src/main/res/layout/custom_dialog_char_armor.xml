@@ -15,11 +15,11 @@
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Armor"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Armor" />
 
         <View
             android:id="@+id/view2"
@@ -103,28 +103,85 @@
             android:text="Cancel"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textViewCost"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSP" />
 
         <Button
-            android:id="@+id/buttonAdd"
+            android:id="@+id/buttonRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@drawable/outline_bkg"
-            android:text="Add"
+            android:text="Remove"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/buttonBuy"
-            app:layout_constraintTop_toTopOf="@+id/buttonBuy" />
+            app:layout_constraintEnd_toStartOf="@+id/buttonEquipUnequip"
+            app:layout_constraintTop_toTopOf="@+id/buttonEquipUnequip" />
 
         <Button
-            android:id="@+id/buttonBuy"
+            android:id="@+id/buttonEquipUnequip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/outline_bkg"
-            android:text="Buy"
+            android:text="Equip"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
+
+        <TextView
+            android:id="@+id/textViewCurrentSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Current SP: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textViewCost"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
+
+        <ImageView
+            android:id="@+id/imageViewMinus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_minus_icon"
+            android:clickable="true"
+            android:foreground="@drawable/outline_bkg"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/textCurrentSP"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textViewCurrentSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
+
+        <TextView
+            android:id="@+id/textCurrentSP"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPlus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageViewMinus"
+            app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
+
+        <ImageView
+            android:id="@+id/imageViewPlus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ic_baseline_add_24"
+            android:clickable="true"
+            android:foreground="@drawable/outline_bkg"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/textCurrentSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

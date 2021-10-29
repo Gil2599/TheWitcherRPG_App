@@ -140,8 +140,14 @@ data class Character(
     var archPriestInvocations: ArrayList<String>,
 
     //Equipment
-    var headEquipment: ArrayList<String>,
-    var equippedHead: EquipmentItem
+    var headEquipment: ArrayList<EquipmentItem>,
+    var equippedHead: EquipmentItem?,
+
+    var chestEquipment: ArrayList<EquipmentItem>,
+    var equippedChest: EquipmentItem?,
+
+    var legEquipment: ArrayList<EquipmentItem>,
+    var equippedLegs: EquipmentItem?
 
 ): Parcelable
 
@@ -159,7 +165,7 @@ class MyTypeConverters {
     }
 
     @TypeConverter
-    fun fromStringToItem(item: String?): EquipmentItem{
+    fun fromStringToItem(item: String?): EquipmentItem?{
         val itemType =object :TypeToken<EquipmentItem>(){}.type
         return Gson().fromJson(item, itemType)
     }
@@ -169,6 +175,19 @@ class MyTypeConverters {
         return Gson().toJson(item)
     }
 
+
+    @TypeConverter
+    fun fromItemArrayListToJson(list: ArrayList<EquipmentItem?>): String{
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun fromJsonToItemArrayList(list: String): ArrayList<EquipmentItem>{
+
+        val itemType =object :TypeToken<ArrayList<EquipmentItem>>(){}.type
+
+        return Gson().fromJson(list, itemType)
+    }
 
 
 }

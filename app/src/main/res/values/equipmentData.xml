@@ -4,7 +4,6 @@
 
         <item>Head Armor</item>
         <item>Chest Armor</item>
-        <item>Hand Armor</item>
         <item>Leg Armor</item>
         <item>Weapon</item>
         <item>Shield</item>
@@ -14,19 +13,51 @@
 
     <string-array name="head_light_armor_data">
 
-        <item>Verden Archer\'s Hood:3:C:1::0:0.5:100:head</item> <!-- Name : Stopping Power : Availability :
+        <item>Verden Archer\'s Hood:3:C:1::0:0.5:100:LHead</item> <!-- Name : Stopping Power : Availability :
                                                                         Armor Enhancement : Effect : Encumbrance Value :
                                                                         Weight : Cost : Category-->
-        <item>Double Woven Hood:5:P:1::0:1:175:head</item>
-        <item>Spectacled Helm:8:C:0::0:1:200:head</item>
+        <item>Double Woven Hood:5:P:1::0:1:175:LHead</item>
+        <item>Spectacled Helm:8:C:0::0:1:200:LHead</item>
+
+    </string-array>
+
+    <string-array name="head_medium_armor_data">
+
+        <item>Chain Coif:12:E:0::0:1.5:250:MHead</item>
+        <item>Armored Hood:14:C:0::0:2:350:MHead</item>
+        <item>Temerian Armet:16:P:1:Restricted Vision:0:1.5:475:MHead</item>
+
+    </string-array>
+
+    <string-array name="head_heavy_armor_data">
+
+        <item>Great Helm:20:R:1:Restricted Vision:0:3.5:575:HHead</item>
+        <item>Skellige Helm:25:P:1:Restricted Vision:0:3.5:700:HHead</item>
+        <item>Nilfgaardian Helm:30:R:2:Restricted Vision:0:3:800:HHead</item>
 
     </string-array>
 
     <string-array name="chest_light_armor_data">
 
-        <item>Gambeson:3:E:0::0:1:100:chest</item>
-        <item>Aedirnian Gambeson:5:P:1::0:1.5:175:chest</item>
-        <item>Double Woven Gambeson:8:P:1::0:2.5:250:chest</item>
+        <item>Gambeson:3:E:0::0:1:100:LChest</item>
+        <item>Aedirnian Gambeson:5:P:1::0:1.5:175:LChest</item>
+        <item>Double Woven Gambeson:8:P:1::0:2.5:250:LChest</item>
+
+    </string-array>
+
+    <string-array name="chest_medium_armor_data">
+
+        <item>Brigandine:12:C:0::1:7:300:MChest</item>
+        <item>Redanian Halberdier\'s Armor:14:P:1::1:8.5:400:MChest</item>
+        <item>Lyrian Leather Armor:16:R:1::1:6.5:525:MChest</item>
+
+    </string-array>
+
+    <string-array name="chest_heavy_armor_data">
+
+        <item>Plate Armor:20:R:1::2:14:625:HChest</item>
+        <item>Hindarsfjall Heavy Armor:25:R:3::2:15:750:HChest</item>
+        <item>Nilfgaardian Plate Armor:30:R:2::2:12:850:HChest</item>
 
     </string-array>
 

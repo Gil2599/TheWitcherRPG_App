@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.characterSheet.equipment.EquipmentItem
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
 
-class LightEquipmentListAdapter(con: Context, val itemClickString: (String) -> Unit,
+class MediumEquipmentListAdapter(con: Context, val itemClickString: (String) -> Unit,
                                 val itemClickObject: (EquipmentItem) -> Unit
-                                ) : RecyclerView.Adapter<LightEquipmentListAdapter.LightViewHolder>() {
+) : RecyclerView.Adapter<MediumEquipmentListAdapter.MediumViewHolder>() {
 
     private var armorStringList: List<String>? = null
     private var armorObjectList: List<EquipmentItem>? = null
@@ -18,7 +18,7 @@ class LightEquipmentListAdapter(con: Context, val itemClickString: (String) -> U
     private var itemString = ""
     private var itemObject = EquipmentItem()
 
-    inner class LightViewHolder(private val binding: ArmorRowBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class MediumViewHolder(private val binding: ArmorRowBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bindString(armorString: String, position: Int){
             val pair = armorString.split(":").toTypedArray()
@@ -71,11 +71,12 @@ class LightEquipmentListAdapter(con: Context, val itemClickString: (String) -> U
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LightViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MediumViewHolder {
         val itemBinding = ArmorRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LightViewHolder(itemBinding)    }
+        return MediumViewHolder(itemBinding) }
 
-    override fun onBindViewHolder(holder: LightViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: MediumViewHolder, position: Int) {
 
         if (!armorStringList.isNullOrEmpty()){
             currentItemString = armorStringList!![position]

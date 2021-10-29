@@ -1,6 +1,5 @@
 package com.example.thewitcherrpg.characterSheet
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -349,12 +348,23 @@ class SharedViewModel: ViewModel() {
     val hexesList: LiveData<ArrayList<String>> = _hexesList
 
     //Equipment
-    private var _headEquipment = MutableLiveData(arrayListOf<String>())
-    val headEquipment: LiveData<ArrayList<String>> = _headEquipment
+    private var _headEquipment = MutableLiveData(arrayListOf<EquipmentItem>())
+    val headEquipment: LiveData<ArrayList<EquipmentItem>> = _headEquipment
 
-    private var _equippedHead = MutableLiveData<EquipmentItem>()
-    val equippedHead: LiveData<EquipmentItem> = _equippedHead
+    private var _equippedHead = MutableLiveData<EquipmentItem?>()
+    val equippedHead: LiveData<EquipmentItem?> = _equippedHead
 
+    private var _chestEquipment = MutableLiveData(arrayListOf<EquipmentItem>())
+    val chestEquipment: LiveData<ArrayList<EquipmentItem>> = _chestEquipment
+
+    private var _equippedChest = MutableLiveData<EquipmentItem?>()
+    val equippedChest: LiveData<EquipmentItem?> = _equippedChest
+
+    private var _legEquipment = MutableLiveData(arrayListOf<EquipmentItem>())
+    val legEquipment: LiveData<ArrayList<EquipmentItem>> = _legEquipment
+
+    private var _equippedLegs = MutableLiveData<EquipmentItem?>()
+    val equippedLegs: LiveData<EquipmentItem?> = _equippedLegs
 
 
     //Setter Functions
@@ -655,25 +665,386 @@ class SharedViewModel: ViewModel() {
     }
 
     //Equipment
-    fun addArmor(itemString: String): Boolean{
+    fun addArmor(itemString: String){
 
         val pair = itemString.split(":").toTypedArray()
 
+        val armorName = pair[0]
+        val stoppingPower = pair[1].toInt()
+        val availability = pair[2]
+        val armorEnhancement = pair[3]
+        val effect = pair[4]
+        val encumbValue = pair[5].toInt()
+        val weight = pair[6].toFloat()
+        val price = pair[7].toInt()
+        val type = pair[8]
+
         //Check the armor type and add it to the correct list
         when(pair[8]) {
-            "head" -> {
-                //Check whether character already has the spell
-                return if (itemString !in _headEquipment.value!!) {
-                    val newArray = _headEquipment.value!!.toMutableList()
-                    newArray.add(itemString)
-                    _headEquipment.value = ArrayList(newArray)
-                    true
-                } else false
+            "LHead" -> { val newArray = _headEquipment.value!!.toMutableList()
+
+                        val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                            0, 0, 0, 0, availability, armorEnhancement, effect,
+                        encumbValue, weight, price, EquipmentTypes.LIGHT_HEAD)
+
+                        newArray.add(itemObject)
+                        _headEquipment.value = ArrayList(newArray) }
+
+            "MHead" -> { val newArray = _headEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    0, 0, 0, 0, availability, armorEnhancement, effect,
+                    encumbValue, weight, price, EquipmentTypes.MEDIUM_HEAD)
+
+                newArray.add(itemObject)
+                _headEquipment.value = ArrayList(newArray) }
+
+            "HHead" -> { val newArray = _headEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    0, 0, 0, 0, availability, armorEnhancement, effect,
+                    encumbValue, weight, price, EquipmentTypes.HEAVY_HEAD)
+
+                newArray.add(itemObject)
+                _headEquipment.value = ArrayList(newArray) }
+
+            "LChest" -> { val newArray = _chestEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    currentRArmSP = stoppingPower, currentLArmSP = stoppingPower, 0, 0,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.LIGHT_CHEST)
+
+                newArray.add(itemObject)
+                _chestEquipment.value = ArrayList(newArray) }
+
+            "MChest" -> { val newArray = _chestEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    currentRArmSP = stoppingPower, currentLArmSP = stoppingPower, 0, 0,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.MEDIUM_CHEST)
+
+                newArray.add(itemObject)
+                _chestEquipment.value = ArrayList(newArray) }
+
+            "HChest" -> { val newArray = _chestEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    currentRArmSP = stoppingPower, currentLArmSP = stoppingPower, 0, 0,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.HEAVY_CHEST)
+
+                newArray.add(itemObject)
+                _chestEquipment.value = ArrayList(newArray) }
+
+            "leg" -> { val newArray = _legEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    0, 0, currentRLegSP = stoppingPower, currentLLegSP = stoppingPower,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.LEG)
+
+                newArray.add(itemObject)
+                _legEquipment.value = ArrayList(newArray) }
+        }
+    }
+
+    fun buyArmor(itemString: String): Boolean{
+
+        val pair = itemString.split(":").toTypedArray()
+        val armorName = pair[0]
+        val stoppingPower = pair[1].toInt()
+        val availability = pair[2]
+        val armorEnhancement = pair[3]
+        val effect = pair[4]
+        val encumbValue = pair[5].toInt()
+        val weight = pair[6].toFloat()
+        val price = pair[7].toInt()
+        val type = pair[8]
+
+        if(_crowns.value!! >= price){
+            _crowns.value = _crowns.value?.minus(price)
+        } else return false
+
+        //Check the armor type and add it to the correct list
+        when(pair[8]) {
+            "LHead" -> { val newArray = _headEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    0, 0, 0, 0, availability, armorEnhancement, effect,
+                    encumbValue, weight, price, EquipmentTypes.LIGHT_HEAD)
+
+                newArray.add(itemObject)
+                _headEquipment.value = ArrayList(newArray)
+
+                return true
+            }
+
+            "MHead" -> { val newArray = _headEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    0, 0, 0, 0, availability, armorEnhancement, effect,
+                    encumbValue, weight, price, EquipmentTypes.MEDIUM_HEAD)
+
+                newArray.add(itemObject)
+                _headEquipment.value = ArrayList(newArray)
+
+                return true
+            }
+
+            "HHead" -> { val newArray = _headEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    0, 0, 0, 0, availability, armorEnhancement, effect,
+                    encumbValue, weight, price, EquipmentTypes.HEAVY_HEAD)
+
+                newArray.add(itemObject)
+                _headEquipment.value = ArrayList(newArray)
+
+                return true
+            }
+
+            "LChest" -> { val newArray = _chestEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    currentRArmSP = stoppingPower, currentLArmSP = stoppingPower, 0, 0,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.LIGHT_CHEST)
+
+                newArray.add(itemObject)
+                _chestEquipment.value = ArrayList(newArray)
+
+                return true
+            }
+
+            "MChest" -> { val newArray = _chestEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    currentRArmSP = stoppingPower, currentLArmSP = stoppingPower, 0, 0,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.MEDIUM_CHEST)
+
+                newArray.add(itemObject)
+                _chestEquipment.value = ArrayList(newArray)
+
+                return true
+            }
+
+            "HChest" -> { val newArray = _chestEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    currentRArmSP = stoppingPower, currentLArmSP = stoppingPower, 0, 0,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.HEAVY_CHEST)
+
+                newArray.add(itemObject)
+                _chestEquipment.value = ArrayList(newArray)
+
+                return true
+            }
+
+            "leg" -> { val newArray = _legEquipment.value!!.toMutableList()
+
+                val itemObject = EquipmentItem(armorName, stoppingPower, stoppingPower,
+                    0, 0, currentRLegSP = stoppingPower, currentLLegSP = stoppingPower,
+                    availability, armorEnhancement, effect, encumbValue, weight, price, EquipmentTypes.LEG)
+
+                newArray.add(itemObject)
+                _legEquipment.value = ArrayList(newArray)
+
+                return true
             }
         }
         return false
+    }
+
+    fun removeArmor(itemObject: EquipmentItem){
+
+        //Check the armor type and add it to the correct list
+        when(itemObject.equipmentType) {
+
+            EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> {
+                val newArray = _headEquipment.value!!.toMutableList()
+                newArray.remove(itemObject)
+                _headEquipment.value = ArrayList(newArray)
+            }
+
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
+                val newArray = _chestEquipment.value!!.toMutableList()
+                newArray.remove(itemObject)
+                _chestEquipment.value = ArrayList(newArray)
+            }
+
+            EquipmentTypes.LEG -> {
+                val newArray = _legEquipment.value!!.toMutableList()
+                newArray.remove(itemObject)
+                _legEquipment.value = ArrayList(newArray)
+            }
+        }
 
     }
+
+    fun equipItem(itemObject: EquipmentItem){
+
+        when(itemObject.equipmentType){
+
+            EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> {
+
+                //Check if theres an item already equipped in this slot
+                if (_equippedHead.value != null){
+
+                    val newArray = _headEquipment.value!!.toMutableList()
+                    newArray.add(_equippedHead.value!!) //Return equipped item to inventory
+                    newArray.remove(itemObject) //Move item from inventory to equipped slot
+                    _headEquipment.value = ArrayList(newArray)
+
+                    _equippedHead.value = itemObject
+                }
+
+                else {
+                    val newArray = _headEquipment.value!!.toMutableList()
+                    newArray.remove(itemObject)
+                    _headEquipment.value = ArrayList(newArray)
+                    _equippedHead.value = itemObject
+                }
+            }
+
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
+
+                //Check if theres an item already equipped in this slot
+                if (_equippedChest.value != null){
+
+                    val newArray = _chestEquipment.value!!.toMutableList()
+                    newArray.add(_equippedChest.value!!) //Return equipped item to inventory
+                    newArray.remove(itemObject) //Move item from inventory to equipped slot
+                    _chestEquipment.value = ArrayList(newArray)
+
+                    _equippedChest.value = itemObject
+                }
+
+                else {
+                    val newArray = _chestEquipment.value!!.toMutableList()
+                    newArray.remove(itemObject)
+                    _chestEquipment.value = ArrayList(newArray)
+                    _equippedChest.value = itemObject
+                }
+            }
+
+            EquipmentTypes.LEG -> {
+
+                //Check if theres an item already equipped in this slot
+                if (_equippedLegs.value != null){
+
+                    val newArray = _legEquipment.value!!.toMutableList()
+                    newArray.add(_equippedLegs.value!!) //Return equipped item to inventory
+                    newArray.remove(itemObject) //Move item from inventory to equipped slot
+                    _legEquipment.value = ArrayList(newArray)
+
+                    _equippedLegs.value = itemObject
+                }
+
+                else {
+                    val newArray = _legEquipment.value!!.toMutableList()
+                    newArray.remove(itemObject)
+                    _legEquipment.value = ArrayList(newArray)
+                    _equippedLegs.value = itemObject
+                }
+            }
+        }
+    }
+
+    fun updateItemSP(itemObject: EquipmentItem, increase: Boolean, armorType: EquipmentTypes?): Int{
+
+        if (increase){
+            when (armorType){
+                EquipmentTypes.LARM -> {
+                    itemObject.currentLArmSP = itemObject.currentLArmSP.plus(1)
+                    return itemObject.currentLArmSP
+                }
+
+                EquipmentTypes.RARM -> {
+                    itemObject.currentRArmSP = itemObject.currentRArmSP.plus(1)
+                    return itemObject.currentRArmSP
+                }
+
+                EquipmentTypes.LLEG -> {
+                    itemObject.currentLLegSP = itemObject.currentLLegSP.plus(1)
+                    return itemObject.currentLLegSP
+                }
+
+                EquipmentTypes.RLEG -> {
+                    itemObject.currentRLegSP = itemObject.currentRLegSP.plus(1)
+                    return itemObject.currentRLegSP
+                }
+
+                else -> {
+                    itemObject.currentStoppingPower = itemObject.currentStoppingPower.plus(1)
+                    return itemObject.currentStoppingPower
+                }
+            }
+        }
+        else {
+            when (armorType){
+                EquipmentTypes.LARM -> {
+                    itemObject.currentLArmSP = itemObject.currentLArmSP.minus(1)
+                    return itemObject.currentLArmSP
+                }
+
+                EquipmentTypes.RARM -> {
+                    itemObject.currentRArmSP = itemObject.currentRArmSP.minus(1)
+                    return itemObject.currentRArmSP
+                }
+
+                EquipmentTypes.LLEG -> {
+                    itemObject.currentLLegSP = itemObject.currentLLegSP.minus(1)
+                    return itemObject.currentLLegSP
+                }
+
+                EquipmentTypes.RLEG -> {
+                    itemObject.currentRLegSP = itemObject.currentRLegSP.minus(1)
+                    return itemObject.currentRLegSP
+                }
+
+                else -> {
+                    itemObject.currentStoppingPower = itemObject.currentStoppingPower.minus(1)
+                    return itemObject.currentStoppingPower
+                }
+            }
+        }
+    }
+
+    fun unequipItem(itemObject: EquipmentItem){
+
+        when(itemObject.equipmentType){
+
+            EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> {
+
+                    val newArray = _headEquipment.value!!.toMutableList()
+                    newArray.add(_equippedHead.value!!) //Return equipped head to inventory
+                    _headEquipment.value = ArrayList(newArray)
+
+                    _equippedHead.value = null
+
+            }
+
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
+
+                val newArray = _chestEquipment.value!!.toMutableList()
+                newArray.add(_equippedChest.value!!) //Return equipped head to inventory
+                _chestEquipment.value = ArrayList(newArray)
+
+                _equippedChest.value = null
+
+            }
+
+            EquipmentTypes.LEG -> {
+
+                val newArray = _legEquipment.value!!.toMutableList()
+                newArray.add(_equippedLegs.value!!) //Return equipped head to inventory
+                _legEquipment.value = ArrayList(newArray)
+
+                _equippedLegs.value = null
+
+            }
+
+        }
+
+    }
+
 
     //Logic Functions
     private fun onStatChange(value: Int, increase: Boolean): Boolean{
@@ -889,8 +1260,13 @@ class SharedViewModel: ViewModel() {
 
         //Equipment
         val headEquipment = _headEquipment.value!!
-        val equippedHead = EquipmentItem("", 0, "", "", "",
-                                            0, 0F, 0, EquipmentTypes.HEAD)
+        val equippedHead = _equippedHead.value
+
+        val chestEquipment = _chestEquipment.value!!
+        val equippedChest = _equippedChest.value
+
+        val legEquipment = _legEquipment.value!!
+        val equippedLegs = _equippedLegs.value
 
         return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
@@ -904,7 +1280,8 @@ class SharedViewModel: ViewModel() {
             spellCasting, resistMagic, resistCoercion, ritualCrafting, vigor, basicSigns, alternateSigns, noviceRituals,
             journeymanRituals, masterRituals, hexes, noviceSpells, journeymanSpells, masterSpells, noviceDruidInvocations,
             journeymanDruidInvocations, masterDruidInvocations, novicePreacherInvocations, journeymanPreacherInvocations,
-            masterPreacherInvocations, archPriestInvocations, headEquipment, equippedHead)
+            masterPreacherInvocations, archPriestInvocations, headEquipment, equippedHead, chestEquipment, equippedChest,
+            legEquipment, equippedLegs)
 
     }
 
@@ -1353,7 +1730,13 @@ class SharedViewModel: ViewModel() {
 
         //Equipment
         this._headEquipment.value = characterData.headEquipment
+        this._equippedHead.value = characterData.equippedHead
 
+        this._chestEquipment.value = characterData.chestEquipment
+        this._equippedChest.value = characterData.equippedChest
+
+        this._legEquipment.value = characterData.legEquipment
+        this._equippedLegs.value = characterData.equippedLegs
 
     }
 
