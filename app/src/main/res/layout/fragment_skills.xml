@@ -6,7 +6,7 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
+            type="com.example.thewitcherrpg.characterSheet.SharedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".feature_character_sheet.presentation.skills.SkillsFragment">
+        tools:context=".characterSheet.SkillsFragment">
 
 
         <TextView

@@ -6,14 +6,14 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
+            type="com.example.thewitcherrpg.characterSheet.SharedViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature_character_sheet.presentation.character_information.CharFragment">
+        tools:context=".characterSheet.CharFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
