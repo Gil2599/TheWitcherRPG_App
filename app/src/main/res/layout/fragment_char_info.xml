@@ -6,7 +6,7 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.characterSheet.SharedViewModel" />
+            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
 
     </data>
 
@@ -17,7 +17,7 @@
         android:backgroundTint="@color/dark_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        tools:context=".characterSheet.charFrags.QuickStatsFragment">
+        tools:context=".feature_character_sheet.presentation.character_information.charFrags.QuickStatsFragment">
 
         <LinearLayout
             android:id="@+id/linearLayoutHP"
