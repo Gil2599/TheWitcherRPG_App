@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/charCreation_firstFrag"
-        android:name="com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag"
+        android:name="com.example.thewitcherrpg.characterCreation.CharCreationFirstFrag"
         android:label="fragment_char_creation_first"
         tools:layout="@layout/fragment_char_creation_first" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/charCreation_secFrag"
-        android:name="com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationSecFrag"
+        android:name="com.example.thewitcherrpg.characterCreation.CharCreationSecFrag"
         android:label="fragment_char_creation_sec"
         tools:layout="@layout/fragment_char_creation_sec" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/charCreation_thirdFrag"
-        android:name="com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationThirdFrag"
+        android:name="com.example.thewitcherrpg.characterCreation.CharCreationThirdFrag"
         android:label="fragment_char_creation_third"
         tools:layout="@layout/fragment_char_creation_third" />
 </navigation>

@@ -8,7 +8,6 @@
     </uses-permission>
 
     <application
-        android:name=".TheWitcherTRPGApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,22 +16,22 @@
         android:theme="@style/Theme.WitcherDD"
         tools:node="merge">
         <activity
-            android:name=".feature_character_creation.presentation.CharCreationActivity"
+            android:name=".characterCreation.CharCreationActivity"
             android:exported="true"
-            android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
+            android:parentActivityName=".LauncherActivity"
             android:windowSoftInputMode="adjustNothing"
             tools:node="merge"
             android:label="Create Character"/>
         <activity
-            android:name=".feature_character_sheet.presentation.MainActivity"
+            android:name=".characterSheet.MainActivity"
             android:exported="true"
             android:label="Character Sheet"
-            android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
+            android:parentActivityName=".LauncherActivity"
             android:windowSoftInputMode="adjustNothing"
             tools:node="merge"
             />
         <activity
-            android:name=".feature_character_list.presentation.LauncherActivity"
+            android:name=".LauncherActivity"
             android:exported="true"
             tools:node="merge">
             <intent-filter>
