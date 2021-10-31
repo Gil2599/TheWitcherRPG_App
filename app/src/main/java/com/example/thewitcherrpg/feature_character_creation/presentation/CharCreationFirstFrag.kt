@@ -1,7 +1,9 @@
 package com.example.thewitcherrpg.feature_character_creation.presentation
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,19 +14,25 @@ import android.widget.Toast
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharCreationFirstBinding
 import android.widget.AdapterView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
-
+@AndroidEntryPoint
 class CharCreationFirstFrag : Fragment() {
     private var _binding: FragmentCharCreationFirstBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
 
     lateinit var defSkill: String
     lateinit var race: String
+    lateinit var racePerks: String
+    lateinit var defSkillInfo: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +44,7 @@ class CharCreationFirstFrag : Fragment() {
 
         onInit()
 
-        binding.buttonToSecFrag.setOnClickListener(){
+        binding.buttonToSecFrag.setOnClickListener{
             if (saveData()){
                 Navigation.findNavController(view).navigate(R.id.action_charCreation_firstFrag_to_charCreation_secFrag)
             }
@@ -45,54 +53,7 @@ class CharCreationFirstFrag : Fragment() {
         return view
     }
 
-
-    fun getDefSkill(profession: String): String {
-
-        val tags = resources.getStringArray(R.array.professions_defSkills_array)
-        for (tag in tags) {
-            val pair = tag.split(":").toTypedArray()
-            val key = pair[0]
-            val value = pair[1]
-
-            if (profession == key) {
-                return value
-            }
-        }
-        return "?"
-    }
-
-    private fun getDefSkillInfo(definingSkill: String): String {
-
-        val tags = resources.getStringArray(R.array.defSkills_data_array)
-
-        for (tag in tags) {
-            val pair = tag.split(":").toTypedArray()
-            val key = pair[0]
-            val value = pair[1]
-
-            if (definingSkill == key) {
-                return value
-            }
-        }
-        return "?"
-    }
-
-    private fun getRacePerksInfo(definingSkill: String): String {
-
-        val tags = resources.getStringArray(R.array.races_data_array)
-
-        for (tag in tags) {
-            val pair = tag.split(":").toTypedArray()
-            val key = pair[0]
-            val value = pair[1]
-
-            if (definingSkill == key) {
-                return value
-            }
-        }
-        return "?"
-    }
-
+    @SuppressLint("SetTextI18n")
     private fun onInit(){
 
         ArrayAdapter.createFromResource(
@@ -129,10 +90,9 @@ class CharCreationFirstFrag : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                race = binding.raceSpinner.getItemAtPosition(position).toString()
-
-                val racePerks = "Perks: $race"
-                binding.textRacePerks.text = racePerks
+                race = binding.raceSpinner.selectedItem.toString()
+                binding.textRacePerks.text = "Perks: $race"
+                characterCreationViewModel.setRace(race)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -147,14 +107,22 @@ class CharCreationFirstFrag : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                defSkill = getDefSkill(binding.profSpinner.getItemAtPosition(position).toString())
-
-                val definingSkill = "Defining Skill: $defSkill"
-                binding.textDefiningSkill.text = definingSkill
+                characterCreationViewModel.setProfession(binding.profSpinner.selectedItem.toString())
             }
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Nothing happens
             }
+        }
+
+        binding.genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                characterCreationViewModel.setGender(binding.genderSpinner.selectedItem.toString())
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                // Nothing happens
+            }
+
         }
 
         binding.etAge.setOnEditorActionListener { _, actionId, _ ->
@@ -164,45 +132,55 @@ class CharCreationFirstFrag : Fragment() {
             }
             false
         }
+        binding.etAge.addTextChangedListener {
+            characterCreationViewModel.setAge(binding.etAge.text.toString())
+        }
 
-        binding.textDefiningSkill.setOnClickListener() {
+        binding.etCharName.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                //Clear focus here from edittext
+                binding.etCharName.clearFocus()
+            }
+            false
+        }
+        binding.etCharName.addTextChangedListener {
+            characterCreationViewModel.setName(binding.etCharName.text.toString())
+        }
+
+        binding.textDefiningSkill.setOnClickListener {
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-
             alertDialogBuilder.setTitle(defSkill)
-
-            // set dialog message
-            alertDialogBuilder.setMessage(getDefSkillInfo(defSkill))
-
-            // create alert dialog
+            alertDialogBuilder.setMessage(defSkillInfo)
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
-
-            // show it
             alertDialog.show()
-
-            // After some action
-            //alertDialog.dismiss()
         }
 
-        binding.textRacePerks.setOnClickListener() {
+        binding.textRacePerks.setOnClickListener {
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-
             alertDialogBuilder.setTitle(race)
-
-            // set dialog message
-            alertDialogBuilder.setMessage(getRacePerksInfo(race))
-
-            // create alert dialog
+            alertDialogBuilder.setMessage(racePerks)
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.setCanceledOnTouchOutside(true)
-
-            // show it
             alertDialog.show()
-
-            // After some action
-            //alertDialog.dismiss()
         }
 
+        lifecycleScope.launchWhenStarted {
+            characterCreationViewModel.definingSkill.collectLatest {
+                defSkill = it
+                binding.textDefiningSkill.text = "Defining Skill: $it"
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            characterCreationViewModel.perks.collectLatest {
+                racePerks = it
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            characterCreationViewModel.definingSkillInfo.collectLatest {
+                defSkillInfo = it
+            }
+        }
     }
 
     private fun saveData(): Boolean {
@@ -217,12 +195,12 @@ class CharCreationFirstFrag : Fragment() {
             return false
         }
 
-        sharedViewModel.setName(binding.etCharName.text.toString())
+        /*sharedViewModel.setName(binding.etCharName.text.toString())
         sharedViewModel.setGender(binding.genderSpinner.selectedItem.toString())
         sharedViewModel.setRace(binding.raceSpinner.selectedItem.toString())
         sharedViewModel.setAge(binding.etAge.text.toString().toInt())
         sharedViewModel.setProfession(binding.profSpinner.selectedItem.toString())
-        sharedViewModel.setDefiningSkill(defSkill)
+        sharedViewModel.setDefiningSkill(defSkill)*/
 
         return true
 

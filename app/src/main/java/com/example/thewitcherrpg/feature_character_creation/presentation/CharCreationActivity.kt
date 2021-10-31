@@ -5,29 +5,32 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.feature_character_list.presentation.CharacterListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
-
+@AndroidEntryPoint
 class CharCreationActivity : AppCompatActivity() {
 
-    private lateinit var mCharListViewModel: CharacterListViewModel
-    private val sharedViewModel: SharedViewModel by viewModels()
+    private val characterCreationViewModel: CharacterCreationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_char_creation)
 
-        sharedViewModel.inCharacterCreation = true
-        mCharListViewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
+
+        //characterCreationViewModel
 
     }
 
     fun onSaveFinal(){
 
-        val finalCharacter = sharedViewModel.onSaveFinal()
-        mCharListViewModel.addChar(finalCharacter)
+        //val finalCharacter = sharedViewModel.onSaveFinal()
+        //mCharListViewModel.addChar(finalCharacter)
+
+        //characterCreationViewModel.addCharacter()
 
         finish()
     }
