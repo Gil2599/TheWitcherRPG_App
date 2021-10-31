@@ -16,11 +16,14 @@ import com.example.thewitcherrpg.databinding.FragmentCharCreationFirstBinding
 import android.widget.AdapterView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CharCreationFirstFrag : Fragment() {
@@ -94,7 +97,6 @@ class CharCreationFirstFrag : Fragment() {
                 binding.textRacePerks.text = "Perks: $race"
                 characterCreationViewModel.setRace(race)
             }
-
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Nothing happens
             }
@@ -118,16 +120,13 @@ class CharCreationFirstFrag : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 characterCreationViewModel.setGender(binding.genderSpinner.selectedItem.toString())
             }
-
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 // Nothing happens
             }
-
         }
 
         binding.etAge.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //Clear focus here from edittext
                 binding.etAge.clearFocus()
             }
             false
@@ -165,20 +164,25 @@ class CharCreationFirstFrag : Fragment() {
             alertDialog.show()
         }
 
-        lifecycleScope.launchWhenStarted {
-            characterCreationViewModel.definingSkill.collectLatest {
-                defSkill = it
-                binding.textDefiningSkill.text = "Defining Skill: $it"
-            }
-        }
-        lifecycleScope.launchWhenStarted {
-            characterCreationViewModel.perks.collectLatest {
-                racePerks = it
-            }
-        }
-        lifecycleScope.launchWhenStarted {
-            characterCreationViewModel.definingSkillInfo.collectLatest {
-                defSkillInfo = it
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    characterCreationViewModel.definingSkill.collectLatest {
+                        defSkill = it
+                        binding.textDefiningSkill.text = "Defining Skill: $it"
+                    }
+                }
+                launch {
+                    characterCreationViewModel.perks.collectLatest {
+                        racePerks = it
+                    }
+                }
+                launch {
+                    characterCreationViewModel.definingSkillInfo.collectLatest {
+                        defSkillInfo = it
+                    }
+                }
             }
         }
     }
