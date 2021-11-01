@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharCreationFirstBinding
 import android.widget.AdapterView
+import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -45,6 +46,9 @@ class CharCreationFirstFrag : Fragment() {
         _binding = FragmentCharCreationFirstBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.lifecycleOwner = this
+        binding.sharedViewModel = characterCreationViewModel
+
         onInit()
 
         binding.buttonToSecFrag.setOnClickListener{
@@ -58,6 +62,8 @@ class CharCreationFirstFrag : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun onInit(){
+
+        characterCreationViewModel.setInCharCreation(true)
 
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -135,7 +141,7 @@ class CharCreationFirstFrag : Fragment() {
             characterCreationViewModel.setAge(binding.etAge.text.toString())
         }
 
-        binding.etCharName.setOnEditorActionListener { _, actionId, _ ->
+        /*binding.etCharName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edittext
                 binding.etCharName.clearFocus()
@@ -144,7 +150,7 @@ class CharCreationFirstFrag : Fragment() {
         }
         binding.etCharName.addTextChangedListener {
             characterCreationViewModel.setName(binding.etCharName.text.toString())
-        }
+        }*/
 
         binding.textDefiningSkill.setOnClickListener {
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
@@ -189,7 +195,7 @@ class CharCreationFirstFrag : Fragment() {
 
     private fun saveData(): Boolean {
 
-        if (binding.etCharName.text.isEmpty()) {
+        if (binding.etCharName.text?.isEmpty() == true) {
             Toast.makeText(context, "Character name cannot be empty", Toast.LENGTH_SHORT).show()
             return false
         }

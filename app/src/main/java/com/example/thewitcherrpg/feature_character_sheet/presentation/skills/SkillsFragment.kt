@@ -22,10 +22,11 @@ class SkillsFragment : Fragment() {
 
     private var focusedView: EditText? = null
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    //private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
 
     //private lateinit var sharedViewModel: SharedViewModel
-    private var characterCreationViewModel: CharacterCreationViewModel? = null
+    //private var characterCreationViewModel: CharacterCreationViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +37,7 @@ class SkillsFragment : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = sharedViewModel
+        binding.sharedViewModel = characterCreationViewModel
 
         skillsInit()
 
@@ -59,10 +60,6 @@ class SkillsFragment : Fragment() {
         return view
     }
 
-    fun setViewModel(creationViewModel: CharacterCreationViewModel? = null){
-        characterCreationViewModel = creationViewModel
-    }
-
     private fun increaseButton() {
 
         if (focusedView != null) {
@@ -83,8 +80,7 @@ class SkillsFragment : Fragment() {
 
         //Initialize all EditTexts
         binding.editIP.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) { sharedViewModel.setIP(binding.editIP.text.toString().toInt())
-            }
+            //if (!hasFocus) { sharedViewModel.setIP(binding.editIP.text.toString().toInt()) }
         }
 
         binding.editText1.setRawInputType(0)

@@ -28,8 +28,11 @@ class CharacterCreationViewModel @Inject constructor(
     private val onSkillChangeUseCase: OnSkillChangeUseCase
 ): ViewModel() {
 
-    private val _name = mutableStateOf("")
-    val name: State<String> = _name
+    private val _inCharacterCreation = mutableStateOf(false)
+    val inCharacterCreation: State<Boolean> = _inCharacterCreation
+
+    val name = MutableLiveData<String>("")
+    //val name: State<String> = _name
 
     private val _age = mutableStateOf("")
     val age: State<String> = _age
@@ -52,7 +55,7 @@ class CharacterCreationViewModel @Inject constructor(
     private val _perks = MutableStateFlow("")
     val perks = _perks.asStateFlow()
 
-    private var _ip = MutableStateFlow(0)
+    private var _ip = MutableStateFlow(70)
     val ip = _ip.asStateFlow()
 
     //Profession Skills
@@ -303,6 +306,9 @@ class CharacterCreationViewModel @Inject constructor(
     val ritualCrafting = _ritualCrafting.asStateFlow()
 
 
+    fun setInCharCreation(inCharacterCreation: Boolean){
+        _inCharacterCreation.value = inCharacterCreation
+    }
 
     fun addCharacter(character: Character){
         addCharacterUseCase.invoke(character)
@@ -310,10 +316,6 @@ class CharacterCreationViewModel @Inject constructor(
 
     fun setAge(age: String){
         _age.value = age
-    }
-
-    fun setName(name: String){
-        _name.value = name
     }
 
     fun setRace(race: String){
@@ -361,58 +363,370 @@ class CharacterCreationViewModel @Inject constructor(
     fun onSkillChange(skill: String, increase: Boolean){
 
         when (skill){
-            "Awareness" -> onSkillChangeUseCase(_awareness.value, _ip.value, increase)
-            "Business" -> onSkillChangeUseCase(_business.value, _ip.value, increase)
-            "Deduction" -> onSkillChangeUseCase(_deduction.value, _ip.value, increase)
-            "Education" -> onSkillChangeUseCase(_education.value, _ip.value, increase)
-            "Common Speech" -> onSkillChangeUseCase(_commonSpeech.value, _ip.value, increase)
-            "Elder Speech" -> onSkillChangeUseCase(_elderSpeech.value, _ip.value, increase)
-            "Dwarven" -> onSkillChangeUseCase(_dwarven.value, _ip.value, increase)
-            "Monster Lore" -> onSkillChangeUseCase(_monsterLore.value, _ip.value, increase)
-            "Social Etiquette" -> onSkillChangeUseCase(_socialEtiquette.value, _ip.value, increase)
-            "Streetwise" -> onSkillChangeUseCase(_streetwise.value, _ip.value, increase)
-            "Tactics" -> onSkillChangeUseCase(_tactics.value, _ip.value, increase)
-            "Teaching" -> onSkillChangeUseCase(_teaching.value, _ip.value, increase)
-            "Wilderness Survival" -> onSkillChangeUseCase(_wildernessSurvival.value, _ip.value, increase)
-            "Brawling" -> onSkillChangeUseCase(_brawling.value, _ip.value, increase)
-            "Dodge/Escape" -> onSkillChangeUseCase(_dodgeEscape.value, _ip.value, increase)
-            "Melee" -> onSkillChangeUseCase(_melee.value, _ip.value, increase)
-            "Riding" -> onSkillChangeUseCase(_riding.value, _ip.value, increase)
-            "Sailing" -> onSkillChangeUseCase(_sailing.value, _ip.value, increase)
-            "Small Blades" -> onSkillChangeUseCase(_smallBlades.value, _ip.value, increase)
-            "Staff/Spear" -> onSkillChangeUseCase(_staffSpear.value, _ip.value, increase)
-            "Swordsmanship" -> onSkillChangeUseCase(_swordsmanship.value, _ip.value, increase)
-            "Archery" -> onSkillChangeUseCase(_archery.value, _ip.value, increase)
-            "Athletics" -> onSkillChangeUseCase(_athletics.value, _ip.value, increase)
-            "Crossbow" -> onSkillChangeUseCase(_crossbow.value, _ip.value, increase)
-            "Sleight of Hand" -> onSkillChangeUseCase(_sleightOfHand.value, _ip.value, increase)
-            "Stealth" -> onSkillChangeUseCase(_stealth.value, _ip.value, increase)
-            "Physique" -> onSkillChangeUseCase(_physique.value, _ip.value, increase)
-            "Endurance" -> onSkillChangeUseCase(_endurance.value, _ip.value, increase)
-            "Charisma" -> onSkillChangeUseCase(_charisma.value, _ip.value, increase)
-            "Deceit" -> onSkillChangeUseCase(_deceit.value, _ip.value, increase)
-            "Fine Arts" -> onSkillChangeUseCase(_fineArts.value, _ip.value, increase)
-            "Gambling" -> onSkillChangeUseCase(_gambling.value, _ip.value, increase)
-            "Grooming and Style" -> onSkillChangeUseCase(_groomingAndStyle.value, _ip.value, increase)
-            "Human Perception" -> onSkillChangeUseCase(_humanPerception.value, _ip.value, increase)
-            "Leadership" -> onSkillChangeUseCase(_leadership.value, _ip.value, increase)
-            "Persuasion" -> onSkillChangeUseCase(_persuasion.value, _ip.value, increase)
-            "Performance" -> onSkillChangeUseCase(_performance.value, _ip.value, increase)
-            "Seduction" -> onSkillChangeUseCase(_seduction.value, _ip.value, increase)
-            "Alchemy" -> onSkillChangeUseCase(_alchemy.value, _ip.value, increase)
-            "Crafting" -> onSkillChangeUseCase(_crafting.value, _ip.value, increase)
-            "Disguise" -> onSkillChangeUseCase(_disguise.value, _ip.value, increase)
-            "First Aid" -> onSkillChangeUseCase(_firstAid.value, _ip.value, increase)
-            "Forgery" -> onSkillChangeUseCase(_forgery.value, _ip.value, increase)
-            "Pick Lock" -> onSkillChangeUseCase(_pickLock.value, _ip.value, increase)
-            "Trap Crafting" -> onSkillChangeUseCase(_trapCrafting.value, _ip.value, increase)
-            "Courage" -> onSkillChangeUseCase(_courage.value, _ip.value, increase)
-            "Hex Weaving" -> onSkillChangeUseCase(_hexWeaving.value, _ip.value, increase)
-            "Intimidation" -> onSkillChangeUseCase(_intimidation.value, _ip.value, increase)
-            "Spell Casting" -> onSkillChangeUseCase(_spellCasting.value, _ip.value, increase)
-            "Resist Magic" -> onSkillChangeUseCase(_resistMagic.value, _ip.value, increase)
-            "Resist Coercion" -> onSkillChangeUseCase(_resistCoercion.value, _ip.value, increase)
-            "Ritual Crafting" -> onSkillChangeUseCase(_ritualCrafting.value, _ip.value, increase)
+            "Awareness" -> {
+                val pair = onSkillChangeUseCase(_awareness.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _awareness.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Business" -> {
+                val pair = onSkillChangeUseCase(_business.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _business.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Deduction" -> {
+                val pair = onSkillChangeUseCase(_deduction.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _deduction.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Education" -> {
+                val pair = onSkillChangeUseCase(_education.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _education.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Common Speech" -> {
+                val pair = onSkillChangeUseCase(_commonSpeech.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _commonSpeech.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Elder Speech" -> {
+                val pair = onSkillChangeUseCase(_elderSpeech.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _elderSpeech.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Dwarven" -> {
+                val pair = onSkillChangeUseCase(_dwarven.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _dwarven.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Monster Lore" -> {
+                val pair = onSkillChangeUseCase(_monsterLore.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _monsterLore.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Social Etiquette" -> {
+                val pair = onSkillChangeUseCase(_socialEtiquette.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _socialEtiquette.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Streetwise" -> {
+                val pair = onSkillChangeUseCase(_streetwise.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _streetwise.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Tactics" -> {
+                val pair = onSkillChangeUseCase(_tactics.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _tactics.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Teaching" -> {
+                val pair = onSkillChangeUseCase(_teaching.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _teaching.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Wilderness Survival" -> {
+                val pair = onSkillChangeUseCase(_wildernessSurvival.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _wildernessSurvival.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Brawling" -> {
+                val pair = onSkillChangeUseCase(_brawling.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _brawling.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Dodge/Escape" -> {
+                val pair = onSkillChangeUseCase(_dodgeEscape.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _dodgeEscape.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Melee" -> {
+                val pair = onSkillChangeUseCase(_melee.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _melee.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Riding" -> {
+                val pair = onSkillChangeUseCase(_riding.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _riding.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Sailing" -> {
+                val pair = onSkillChangeUseCase(_sailing.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _sailing.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Small Blades" -> {
+                val pair = onSkillChangeUseCase(_smallBlades.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _smallBlades.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Staff/Spear" -> {
+                val pair = onSkillChangeUseCase(_staffSpear.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _staffSpear.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Swordsmanship" -> {
+                val pair = onSkillChangeUseCase(_swordsmanship.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _swordsmanship.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Archery" -> {
+                val pair = onSkillChangeUseCase(_archery.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _archery.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Athletics" -> {
+                val pair = onSkillChangeUseCase(_athletics.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _athletics.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Crossbow" -> {
+                val pair = onSkillChangeUseCase(_crossbow.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _crossbow.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Sleight of Hand" -> {
+                val pair = onSkillChangeUseCase(_sleightOfHand.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _sleightOfHand.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Stealth" -> {
+                val pair = onSkillChangeUseCase(_stealth.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _stealth.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Physique" -> {
+                val pair = onSkillChangeUseCase(_physique.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _physique.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Endurance" -> {
+                val pair = onSkillChangeUseCase(_endurance.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _endurance.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Charisma" -> {
+                val pair = onSkillChangeUseCase(_charisma.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _charisma.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Deceit" -> {
+                val pair = onSkillChangeUseCase(_deceit.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _deceit.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Fine Arts" -> {
+                val pair = onSkillChangeUseCase(_fineArts.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _fineArts.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Gambling" -> {
+                val pair = onSkillChangeUseCase(_gambling.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _gambling.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Grooming and Style" -> {
+                val pair = onSkillChangeUseCase(_groomingAndStyle.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _groomingAndStyle.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Human Perception" -> {
+                val pair = onSkillChangeUseCase(_humanPerception.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _humanPerception.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Leadership" -> {
+                val pair = onSkillChangeUseCase(_leadership.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _leadership.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Persuasion" -> {
+                val pair = onSkillChangeUseCase(_persuasion.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _persuasion.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Performance" -> {
+                val pair = onSkillChangeUseCase(_performance.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _performance.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Seduction" -> {
+                val pair = onSkillChangeUseCase(_seduction.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _seduction.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Alchemy" -> {
+                val pair = onSkillChangeUseCase(_alchemy.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _alchemy.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Crafting" -> {
+                val pair = onSkillChangeUseCase(_crafting.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _crafting.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Disguise" -> {
+                val pair = onSkillChangeUseCase(_disguise.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _disguise.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "First Aid" -> {
+                val pair = onSkillChangeUseCase(_firstAid.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _firstAid.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Forgery" -> {
+                val pair = onSkillChangeUseCase(_forgery.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _forgery.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Pick Lock" -> {
+                val pair = onSkillChangeUseCase(_pickLock.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _pickLock.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Trap Crafting" -> {
+                val pair = onSkillChangeUseCase(_trapCrafting.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _trapCrafting.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Courage" -> {
+                val pair = onSkillChangeUseCase(_courage.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _courage.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Hex Weaving" -> {
+                val pair = onSkillChangeUseCase(_hexWeaving.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _hexWeaving.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Intimidation" -> {
+                val pair = onSkillChangeUseCase(_intimidation.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _intimidation.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Spell Casting" -> {
+                val pair = onSkillChangeUseCase(_spellCasting.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _spellCasting.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Resist Magic" -> {
+                val pair = onSkillChangeUseCase(_resistMagic.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _resistMagic.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Resist Coercion" -> {
+                val pair = onSkillChangeUseCase(_resistCoercion.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _resistCoercion.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "Ritual Crafting" -> {
+                val pair = onSkillChangeUseCase(_ritualCrafting.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _ritualCrafting.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
         }
     }
 }
