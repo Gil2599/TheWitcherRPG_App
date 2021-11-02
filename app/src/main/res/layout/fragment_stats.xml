@@ -6,7 +6,7 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
+            type="com.example.thewitcherrpg.feature_character_creation.presentation.CharacterCreationViewModel" />
 
     </data>
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:text='@{`` + sharedViewModel.IP}'
+            android:text='@{`` + sharedViewModel.ip}'
             android:gravity="center"
             android:imeOptions="actionDone"
             android:inputType="numberSigned"

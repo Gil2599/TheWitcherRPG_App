@@ -12,16 +12,14 @@ class AddCharacterUseCase @Inject constructor(
     private val repositoryImpl: CharacterRepositoryImpl,
 ) {
 
-    operator fun invoke(character: Character): Flow<Resource<Character>> = flow {
+    operator fun invoke(character: Character): Flow<Resource<String>> = flow {
         emit(Resource.Loading())
 
         try {
             repositoryImpl.addChar(character)
-            emit(Resource.Success(character))
+            emit(Resource.Success("Character Saved Successfully"))
         } catch (ex: Exception){
             emit(Resource.Error(ex.localizedMessage ?: "An unexpected error occurred"))
         }
-
-
     }
 }

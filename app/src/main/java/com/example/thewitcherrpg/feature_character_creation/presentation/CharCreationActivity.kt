@@ -20,18 +20,11 @@ class CharCreationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_char_creation)
 
-
-        //characterCreationViewModel
-
     }
 
     fun onSaveFinal(){
 
-        //val finalCharacter = sharedViewModel.onSaveFinal()
-        //mCharListViewModel.addChar(finalCharacter)
-
-        //characterCreationViewModel.addCharacter()
-
+        characterCreationViewModel.addCharacter()
         finish()
     }
 }

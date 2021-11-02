@@ -142,13 +142,13 @@ data class Character(
 
     //Equipment
     var headEquipment: ArrayList<EquipmentItem> = arrayListOf(),
-    var equippedHead: EquipmentItem?,
+    var equippedHead: EquipmentItem? = null,
 
     var chestEquipment: ArrayList<EquipmentItem> = arrayListOf(),
-    var equippedChest: EquipmentItem?,
+    var equippedChest: EquipmentItem? = null,
 
     var legEquipment: ArrayList<EquipmentItem> = arrayListOf(),
-    var equippedLegs: EquipmentItem?
+    var equippedLegs: EquipmentItem? = null
 
 ): Parcelable
 

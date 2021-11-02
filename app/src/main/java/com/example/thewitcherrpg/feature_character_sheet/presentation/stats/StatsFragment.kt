@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.feature_character_creation.presentation.CharacterCreationViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 
 
@@ -23,7 +24,7 @@ class StatsFragment : Fragment() {
     private var focusedView: EditText? = null
     private var inCharCreation = false
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +35,7 @@ class StatsFragment : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = sharedViewModel
+        binding.sharedViewModel = characterCreationViewModel
 
         binding.editIP.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -44,7 +45,7 @@ class StatsFragment : Fragment() {
         }
 
         //If in character creation, set starting IP for stats = 70
-        if (sharedViewModel.inCharacterCreation) sharedViewModel.setIP(70)
+        //if (characterCreationViewModel.inCharacterCreation) characterCreationViewModel.setIP(70)
 
         statsInit()
 
@@ -62,7 +63,8 @@ class StatsFragment : Fragment() {
     private fun statsInit(){
 
         binding.editIP.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) { sharedViewModel.setIP(binding.editIP.text.toString().toInt()) }}
+            //if (!hasFocus) { characterCreationViewModel.setIP(binding.editIP.text.toString().toInt()) }
+            }
 
         binding.editTextINT.setRawInputType(0)
         binding.editTextINT.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
@@ -185,53 +187,17 @@ class StatsFragment : Fragment() {
 
     private fun increaseButton() {
 
-        if (focusedView != null) {
-
-            when (focusedView){
-                binding.editTextINT -> sharedViewModel.increaseStat(1)
-                binding.editTextREF -> sharedViewModel.increaseStat(2)
-                binding.editTextDEX -> sharedViewModel.increaseStat(3)
-                binding.editTextBODY -> sharedViewModel.increaseStat(4)
-                binding.editTextSPD -> sharedViewModel.increaseStat(5)
-                binding.editTextEMP -> sharedViewModel.increaseStat(6)
-                binding.editTextCRA -> sharedViewModel.increaseStat(7)
-                binding.editTextWILL -> sharedViewModel.increaseStat(8)
-                binding.editTextLUCK -> sharedViewModel.increaseStat(9)
-                binding.editTextSTUN -> sharedViewModel.increaseStat(10)
-                binding.editTextRUN -> sharedViewModel.increaseStat(11)
-                binding.editTextLEAP -> sharedViewModel.increaseStat(12)
-                binding.editTextMaxHP -> sharedViewModel.increaseStat(13)
-                binding.editTextMaxSTA -> sharedViewModel.increaseStat(14)
-                binding.editTextENC -> sharedViewModel.increaseStat(15)
-                binding.editTextREC -> sharedViewModel.increaseStat(16)
-
-            }
+        if (focusedView != null){
+            val stat = focusedView!!.tag.toString()
+            characterCreationViewModel.onStatChange(stat, true)
         }
     }
 
     private fun decreaseButton(){
 
-        if (focusedView != null) {
-
-            when (focusedView){
-                binding.editTextINT -> sharedViewModel.decreaseStat(1)
-                binding.editTextREF -> sharedViewModel.decreaseStat(2)
-                binding.editTextDEX -> sharedViewModel.decreaseStat(3)
-                binding.editTextBODY -> sharedViewModel.decreaseStat(4)
-                binding.editTextSPD -> sharedViewModel.decreaseStat(5)
-                binding.editTextEMP -> sharedViewModel.decreaseStat(6)
-                binding.editTextCRA -> sharedViewModel.decreaseStat(7)
-                binding.editTextWILL -> sharedViewModel.decreaseStat(8)
-                binding.editTextLUCK -> sharedViewModel.decreaseStat(9)
-                binding.editTextSTUN -> sharedViewModel.decreaseStat(10)
-                binding.editTextRUN -> sharedViewModel.decreaseStat(11)
-                binding.editTextLEAP -> sharedViewModel.decreaseStat(12)
-                binding.editTextMaxHP -> sharedViewModel.decreaseStat(13)
-                binding.editTextMaxSTA -> sharedViewModel.decreaseStat(14)
-                binding.editTextENC -> sharedViewModel.decreaseStat(15)
-                binding.editTextREC -> sharedViewModel.decreaseStat(16)
-
-            }
+        if (focusedView != null){
+            val stat = focusedView!!.tag.toString()
+            characterCreationViewModel.onStatChange(stat, false)
         }
     }
 

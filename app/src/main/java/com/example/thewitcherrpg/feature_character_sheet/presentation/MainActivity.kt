@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
     private fun deleteCharacter() {
         val builder = AlertDialog.Builder(this)
         builder.setPositiveButton("Yes"){_, _ ->
-            mCharListViewModel.deleteChar(characterData)
+            //mCharListViewModel.deleteChar(characterData)
 
             //Deletes the character image associated with this character
             val path = sharedViewModel.image.value.toString()
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         //Toast.makeText(this, updatedCharacter.professionSkillA1.toString(), Toast.LENGTH_SHORT).show()
 
-        mCharListViewModel.updateChar(updatedCharacter)
+        //mCharListViewModel.updateChar(updatedCharacter)
 
         Toast.makeText(this, "Saved Successfully!", Toast.LENGTH_SHORT).show()
     }

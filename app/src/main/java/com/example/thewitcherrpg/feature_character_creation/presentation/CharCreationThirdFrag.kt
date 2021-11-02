@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
 import com.example.thewitcherrpg.databinding.FragmentCharCreationThirdBinding
@@ -14,6 +15,8 @@ class CharCreationThirdFrag : Fragment() {
     private val binding get() = _binding!!
 
     private val fragment = StatsFragment()
+
+    private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +32,7 @@ class CharCreationThirdFrag : Fragment() {
                 .commitNow()
         }
 
-        binding.buttonFinish.setOnClickListener(){
+        binding.buttonFinish.setOnClickListener{
             (activity as CharCreationActivity?)?.onSaveFinal()
         }
 

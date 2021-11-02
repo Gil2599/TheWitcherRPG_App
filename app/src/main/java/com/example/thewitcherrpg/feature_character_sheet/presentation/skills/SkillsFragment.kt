@@ -19,6 +19,7 @@ class SkillsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var focusedView: EditText? = null
+    private var inCharCreation = false
 
     private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
 
