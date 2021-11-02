@@ -5,9 +5,8 @@
 
     <data>
         <variable
-            name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
-
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +35,8 @@
                 android:background="@drawable/ic_baseline_add_a_photo_24"
                 app:layout_constraintHeight_percent="0.155"
                 app:layout_constraintWidth_percent="0.32"
-                android:layout_margin="20dp"/>
+                android:layout_margin="20dp"
+                android:contentDescription="Character Image" />
 
         </androidx.cardview.widget.CardView>
 
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text='@{sharedViewModel.name}'
+            android:text='@{MainViewModel.name}'
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor = "@color/white"

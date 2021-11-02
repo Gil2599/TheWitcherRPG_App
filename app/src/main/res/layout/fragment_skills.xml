@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_creation.presentation.CharacterCreationViewModel" />
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        tools:ignore="HardcodedText"
         tools:context=".feature_character_sheet.presentation.skills.SkillsFragment">
 
 
@@ -37,7 +38,7 @@
             android:id="@+id/editIP"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text='@{`` + sharedViewModel.ip}'
+            android:text='@{`` + MainViewModel.ip}'
             android:gravity="center"
             android:imeOptions="actionDone"
             android:inputType="numberSigned"
@@ -48,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textIP"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -83,7 +84,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -118,7 +120,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.awareness}'/>
+                            android:text='@{`` + MainViewModel.awareness}'/>
 
                     </LinearLayout>
 
@@ -128,7 +130,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -163,7 +166,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.business}'/>
+                            android:text='@{`` + MainViewModel.business}'/>
 
                     </LinearLayout>
 
@@ -173,7 +176,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -208,7 +212,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.deduction}' />
+                            android:text='@{`` + MainViewModel.deduction}' />
 
                     </LinearLayout>
 
@@ -218,7 +222,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -253,7 +258,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.education}' />
+                            android:text='@{`` + MainViewModel.education}' />
 
                     </LinearLayout>
 
@@ -263,7 +268,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -298,7 +304,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.commonSpeech}' />
+                            android:text='@{`` + MainViewModel.commonSpeech}' />
 
                     </LinearLayout>
 
@@ -308,7 +314,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -343,7 +350,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.elderSpeech}' />
+                            android:text='@{`` + MainViewModel.elderSpeech}' />
 
                     </LinearLayout>
 
@@ -353,7 +360,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -388,7 +396,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.dwarven}' />
+                            android:text='@{`` + MainViewModel.dwarven}' />
 
                     </LinearLayout>
 
@@ -398,7 +406,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -433,7 +442,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.monsterLore}' />
+                            android:text='@{`` + MainViewModel.monsterLore}' />
 
                     </LinearLayout>
 
@@ -443,7 +452,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -478,7 +488,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.socialEtiquette}' />
+                            android:text='@{`` + MainViewModel.socialEtiquette}' />
 
                     </LinearLayout>
 
@@ -488,7 +498,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -523,7 +534,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.streetwise}' />
+                            android:text='@{`` + MainViewModel.streetwise}' />
 
                     </LinearLayout>
 
@@ -533,7 +544,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -568,7 +580,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.tactics}' />
+                            android:text='@{`` + MainViewModel.tactics}' />
 
                     </LinearLayout>
 
@@ -578,7 +590,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -613,7 +626,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.teaching}' />
+                            android:text='@{`` + MainViewModel.teaching}' />
 
                     </LinearLayout>
 
@@ -623,7 +636,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -658,7 +672,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.wildernessSurvival}' />
+                            android:text='@{`` + MainViewModel.wildernessSurvival}' />
 
                     </LinearLayout>
 
@@ -679,7 +693,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -714,7 +729,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.brawling}' />
+                            android:text='@{`` + MainViewModel.brawling}' />
 
                     </LinearLayout>
 
@@ -724,7 +739,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -759,7 +775,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.dodgeEscape}' />
+                            android:text='@{`` + MainViewModel.dodgeEscape}' />
 
                     </LinearLayout>
 
@@ -769,7 +785,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -804,7 +821,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.melee}' />
+                            android:text='@{`` + MainViewModel.melee}' />
 
                     </LinearLayout>
 
@@ -814,7 +831,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -849,7 +867,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.riding}' />
+                            android:text='@{`` + MainViewModel.riding}' />
 
                     </LinearLayout>
 
@@ -859,7 +877,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -894,7 +913,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.sailing}' />
+                            android:text='@{`` + MainViewModel.sailing}' />
 
                     </LinearLayout>
 
@@ -904,7 +923,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -939,7 +959,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.smallBlades}' />
+                            android:text='@{`` + MainViewModel.smallBlades}' />
 
                     </LinearLayout>
 
@@ -949,7 +969,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -984,7 +1005,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.staffSpear}' />
+                            android:text='@{`` + MainViewModel.staffSpear}' />
 
                     </LinearLayout>
 
@@ -994,7 +1015,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1029,7 +1051,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.swordsmanship}' />
+                            android:text='@{`` + MainViewModel.swordsmanship}' />
 
                     </LinearLayout>
 
@@ -1050,7 +1072,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1085,7 +1108,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.archery}' />
+                            android:text='@{`` + MainViewModel.archery}' />
 
                     </LinearLayout>
 
@@ -1095,7 +1118,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1130,7 +1154,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.athletics}' />
+                            android:text='@{`` + MainViewModel.athletics}' />
 
                     </LinearLayout>
 
@@ -1140,7 +1164,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1174,7 +1199,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.crossbow}' />
+                            android:text='@{`` + MainViewModel.crossbow}' />
 
                     </LinearLayout>
 
@@ -1184,7 +1209,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1219,7 +1245,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.sleightOfHand}' />
+                            android:text='@{`` + MainViewModel.sleightOfHand}' />
 
                     </LinearLayout>
 
@@ -1229,7 +1255,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1264,7 +1291,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.stealth}' />
+                            android:text='@{`` + MainViewModel.stealth}' />
 
                     </LinearLayout>
 
@@ -1285,7 +1312,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1320,7 +1348,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.physique}' />
+                            android:text='@{`` + MainViewModel.physique}' />
 
                     </LinearLayout>
 
@@ -1330,7 +1358,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1365,7 +1394,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.endurance}' />
+                            android:text='@{`` + MainViewModel.endurance}' />
 
                     </LinearLayout>
 
@@ -1386,7 +1415,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1421,7 +1451,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.charisma}' />
+                            android:text='@{`` + MainViewModel.charisma}' />
 
                     </LinearLayout>
 
@@ -1431,7 +1461,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1466,7 +1497,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.deceit}' />
+                            android:text='@{`` + MainViewModel.deceit}' />
 
                     </LinearLayout>
 
@@ -1476,7 +1507,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1511,7 +1543,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.fineArts}' />
+                            android:text='@{`` + MainViewModel.fineArts}' />
 
                     </LinearLayout>
 
@@ -1521,7 +1553,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1556,7 +1589,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.gambling}' />
+                            android:text='@{`` + MainViewModel.gambling}' />
 
                     </LinearLayout>
 
@@ -1566,7 +1599,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1601,7 +1635,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.groomingAndStyle}' />
+                            android:text='@{`` + MainViewModel.groomingAndStyle}' />
 
                     </LinearLayout>
 
@@ -1611,7 +1645,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1646,7 +1681,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.humanPerception}' />
+                            android:text='@{`` + MainViewModel.humanPerception}' />
 
                     </LinearLayout>
 
@@ -1656,7 +1691,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1691,7 +1727,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.leadership}' />
+                            android:text='@{`` + MainViewModel.leadership}' />
 
                     </LinearLayout>
 
@@ -1701,7 +1737,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1736,7 +1773,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.persuasion}' />
+                            android:text='@{`` + MainViewModel.persuasion}' />
 
                     </LinearLayout>
 
@@ -1746,7 +1783,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1781,7 +1819,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.performance}' />
+                            android:text='@{`` + MainViewModel.performance}' />
 
                     </LinearLayout>
 
@@ -1791,7 +1829,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1826,7 +1865,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.seduction}' />
+                            android:text='@{`` + MainViewModel.seduction}' />
 
                     </LinearLayout>
 
@@ -1847,7 +1886,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1882,7 +1922,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.alchemy}' />
+                            android:text='@{`` + MainViewModel.alchemy}' />
 
                     </LinearLayout>
 
@@ -1892,7 +1932,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1927,7 +1968,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.crafting}' />
+                            android:text='@{`` + MainViewModel.crafting}' />
 
                     </LinearLayout>
 
@@ -1937,7 +1978,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1972,7 +2014,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.disguise}' />
+                            android:text='@{`` + MainViewModel.disguise}' />
 
                     </LinearLayout>
 
@@ -1982,7 +2024,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2017,7 +2060,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.firstAid}' />
+                            android:text='@{`` + MainViewModel.firstAid}' />
 
                     </LinearLayout>
 
@@ -2027,7 +2070,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2062,7 +2106,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.forgery}' />
+                            android:text='@{`` + MainViewModel.forgery}' />
 
                     </LinearLayout>
 
@@ -2072,7 +2116,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2107,7 +2152,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.pickLock}' />
+                            android:text='@{`` + MainViewModel.pickLock}' />
 
                     </LinearLayout>
 
@@ -2117,7 +2162,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2152,7 +2198,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.trapCrafting}' />
+                            android:text='@{`` + MainViewModel.trapCrafting}' />
 
                     </LinearLayout>
 
@@ -2173,7 +2219,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2208,7 +2255,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.courage}' />
+                            android:text='@{`` + MainViewModel.courage}' />
 
                     </LinearLayout>
 
@@ -2218,7 +2265,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2253,7 +2301,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.hexWeaving}' />
+                            android:text='@{`` + MainViewModel.hexWeaving}' />
 
                     </LinearLayout>
 
@@ -2263,7 +2311,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2298,7 +2347,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.intimidation}' />
+                            android:text='@{`` + MainViewModel.intimidation}' />
 
                     </LinearLayout>
 
@@ -2308,7 +2357,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2343,7 +2393,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.spellCasting}' />
+                            android:text='@{`` + MainViewModel.spellCasting}' />
 
                     </LinearLayout>
 
@@ -2353,7 +2403,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2388,7 +2439,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.resistMagic}' />
+                            android:text='@{`` + MainViewModel.resistMagic}' />
 
                     </LinearLayout>
 
@@ -2398,7 +2449,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2433,7 +2485,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.resistCoercion}' />
+                            android:text='@{`` + MainViewModel.resistCoercion}' />
 
                     </LinearLayout>
 
@@ -2443,7 +2495,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2478,7 +2531,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.ritualCrafting}' />
+                            android:text='@{`` + MainViewModel.ritualCrafting}' />
 
                     </LinearLayout>
 

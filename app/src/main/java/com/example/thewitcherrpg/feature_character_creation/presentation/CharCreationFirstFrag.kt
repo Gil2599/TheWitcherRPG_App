@@ -3,35 +3,30 @@ package com.example.thewitcherrpg.feature_character_creation.presentation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharCreationFirstBinding
 import android.widget.AdapterView
-import androidx.core.view.isEmpty
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
 class CharCreationFirstFrag : Fragment() {
     private var _binding: FragmentCharCreationFirstBinding? = null
     private val binding get() = _binding!!
 
-    private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     lateinit var defSkill: String
     lateinit var race: String
@@ -47,7 +42,7 @@ class CharCreationFirstFrag : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = characterCreationViewModel
+        binding.sharedViewModel = mainCharacterViewModel
 
         onInit()
 
@@ -63,7 +58,7 @@ class CharCreationFirstFrag : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun onInit(){
 
-        characterCreationViewModel.setInCharCreation(true)
+        mainCharacterViewModel.setInCharCreation(true)
 
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -101,7 +96,7 @@ class CharCreationFirstFrag : Fragment() {
             ) {
                 race = binding.raceSpinner.selectedItem.toString()
                 binding.textRacePerks.text = "Perks: $race"
-                characterCreationViewModel.setRace(race)
+                mainCharacterViewModel.setRace(race)
             }
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Nothing happens
@@ -115,7 +110,7 @@ class CharCreationFirstFrag : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                characterCreationViewModel.setProfession(binding.profSpinner.selectedItem.toString())
+                mainCharacterViewModel.setProfession(binding.profSpinner.selectedItem.toString())
             }
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Nothing happens
@@ -124,33 +119,12 @@ class CharCreationFirstFrag : Fragment() {
 
         binding.genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                characterCreationViewModel.setGender(binding.genderSpinner.selectedItem.toString())
+                mainCharacterViewModel.setGender(binding.genderSpinner.selectedItem.toString())
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 // Nothing happens
             }
         }
-
-        /*binding.etAge.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                binding.etAge.clearFocus()
-            }
-            false
-        }
-        binding.etAge.addTextChangedListener {
-            //characterCreationViewModel.setAge(binding.etAge.text.toString())
-        }*/
-
-        /*binding.etCharName.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //Clear focus here from edittext
-                binding.etCharName.clearFocus()
-            }
-            false
-        }
-        binding.etCharName.addTextChangedListener {
-            characterCreationViewModel.setName(binding.etCharName.text.toString())
-        }*/
 
         binding.textDefiningSkill.setOnClickListener {
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
@@ -174,18 +148,18 @@ class CharCreationFirstFrag : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
                 launch {
-                    characterCreationViewModel.definingSkill.collectLatest {
+                    mainCharacterViewModel.definingSkill.collectLatest {
                         defSkill = it
                         binding.textDefiningSkill.text = "Defining Skill: $it"
                     }
                 }
                 launch {
-                    characterCreationViewModel.perks.collectLatest {
+                    mainCharacterViewModel.perks.collectLatest {
                         racePerks = it
                     }
                 }
                 launch {
-                    characterCreationViewModel.definingSkillInfo.collectLatest {
+                    mainCharacterViewModel.definingSkillInfo.collectLatest {
                         defSkillInfo = it
                     }
                 }

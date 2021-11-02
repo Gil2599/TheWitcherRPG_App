@@ -14,6 +14,7 @@ import com.example.thewitcherrpg.feature_character_creation.presentation.CharCre
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
 import com.example.thewitcherrpg.core.domain.model.Character
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

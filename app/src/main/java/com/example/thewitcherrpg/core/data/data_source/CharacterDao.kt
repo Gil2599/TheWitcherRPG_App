@@ -14,7 +14,7 @@ interface CharacterDao {
     fun readAllData(): Flow<List<Character>>
 
     @Query("SELECT * FROM character_table WHERE id = :id")
-    suspend fun getCharacterById(id: Int): Character?
+    fun getCharacterById(id: Int): Flow<Character>
 
     @Delete
     suspend fun deleteChar(character: Character)

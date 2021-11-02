@@ -31,8 +31,11 @@ class CharCreationSecFrag : Fragment() {
                 .commitNow()
         }
 
-        binding.buttonToThirdFrag.setOnClickListener(){
+        binding.buttonToThirdFrag.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_charCreation_secFrag_to_charCreation_thirdFrag2)
+        }
+        binding.buttonToFirstFrag.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_charCreation_secFrag_to_charCreation_firstFrag)
         }
 
         return view

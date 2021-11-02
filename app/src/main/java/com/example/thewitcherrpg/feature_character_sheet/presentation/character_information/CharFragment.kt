@@ -26,7 +26,9 @@ import android.provider.MediaStore
 import android.util.Log
 import java.io.*
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class CharFragment : Fragment() {
@@ -35,6 +37,8 @@ class CharFragment : Fragment() {
     private lateinit var tabAdapter: ViewPagerAdapter
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
+
 
     @SuppressLint("NewApi")
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
@@ -49,11 +53,12 @@ class CharFragment : Fragment() {
                     ImageDecoder.decodeBitmap(source)
                 }
             }
-            sharedViewModel.setImagePath(saveToInternalStorage(bitmap).toString())
+            mainCharacterViewModel.setImage(saveToInternalStorage(bitmap).toString())
             (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
         }
         catch (e: NullPointerException){
-            Toast.makeText(context, "Action Cancelled", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Action Cancelled",
+                Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -65,7 +70,8 @@ class CharFragment : Fragment() {
                 getContent.launch("image/*")
             } else {
                 Log.i("DEBUG", "permission denied")
-                Toast.makeText(context, "Permission required to upload image.", Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Permission required to set image.",
+                    Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -78,9 +84,9 @@ class CharFragment : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = sharedViewModel
+        binding.mainViewModel = mainCharacterViewModel
 
-        val imagePath = sharedViewModel.image.value.toString()
+        val imagePath = mainCharacterViewModel.image.value
 
         if (imagePath.isNotEmpty()){
                 //Make margins 0 if image is found

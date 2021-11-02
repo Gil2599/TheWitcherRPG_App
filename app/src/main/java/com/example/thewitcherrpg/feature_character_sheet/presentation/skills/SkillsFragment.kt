@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentSkillsBinding
-import com.example.thewitcherrpg.feature_character_creation.presentation.CharacterCreationViewModel
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 
 
 class SkillsFragment : Fragment() {
@@ -21,7 +21,7 @@ class SkillsFragment : Fragment() {
     private var focusedView: EditText? = null
     private var inCharCreation = false
 
-    private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class SkillsFragment : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = characterCreationViewModel
+        binding.sharedViewModel = mainCharacterViewModel
 
         skillsInit()
 
@@ -59,7 +59,7 @@ class SkillsFragment : Fragment() {
 
         if (focusedView != null) {
             val skill = focusedView!!.tag.toString()
-            characterCreationViewModel.onSkillChange(skill, true)
+            mainCharacterViewModel.onSkillChange(skill, true)
         }
     }
 
@@ -67,7 +67,7 @@ class SkillsFragment : Fragment() {
 
             if (focusedView != null) {
                 val skill = focusedView!!.tag.toString()
-                characterCreationViewModel.onSkillChange(skill, false)
+                mainCharacterViewModel.onSkillChange(skill, false)
             }
     }
 

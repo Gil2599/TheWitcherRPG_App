@@ -2,29 +2,49 @@ package com.example.thewitcherrpg.feature_character_creation.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
-import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.TheWitcherTRPGApp
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_list.presentation.CharacterListViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.example.thewitcherrpg.databinding.ActivityCharCreationBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class CharCreationActivity : AppCompatActivity() {
 
-    private val characterCreationViewModel: CharacterCreationViewModel by viewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_char_creation)
+        val binding: ActivityCharCreationBinding =
+            ActivityCharCreationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mainCharacterViewModel.addState.collectLatest {
+                        if (it.success) {
+                            Toast.makeText(this@CharCreationActivity,
+                                "Character created successfully",
+                                Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     fun onSaveFinal(){
 
-        characterCreationViewModel.addCharacter()
+        mainCharacterViewModel.addCharacter()
         finish()
     }
 }

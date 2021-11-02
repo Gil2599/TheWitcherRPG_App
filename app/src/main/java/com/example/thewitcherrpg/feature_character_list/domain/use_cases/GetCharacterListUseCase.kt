@@ -12,5 +12,4 @@ class GetCharacterListUseCase @Inject constructor(
     operator fun invoke(): Flow<List<Character>>{
         return repository.getCharacters()
     }
-
 }

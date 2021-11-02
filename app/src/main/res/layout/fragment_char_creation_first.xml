@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_creation.presentation.CharacterCreationViewModel" />
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +51,7 @@
                 android:gravity="center"
                 android:inputType="text"
                 android:maxLength="19"
-                android:text="@={sharedViewModel.name}" />
+                android:text="@={MainViewModel.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -78,7 +78,7 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="4"
-                android:text="@={sharedViewModel.age}" />
+                android:text="@={MainViewModel.age}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
@@ -117,12 +117,11 @@
             android:id="@+id/buttonToSecFrag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/outline_bkg"
             android:text="NEXT"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.88"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.96" />
 

@@ -13,6 +13,7 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentParentFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicParentFragment
 import com.example.thewitcherrpg.core.domain.model.Character
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_list.presentation.CharacterListViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
@@ -20,27 +21,25 @@ import com.example.thewitcherrpg.feature_character_sheet.presentation.character_
 import com.example.thewitcherrpg.feature_character_sheet.presentation.profession_skill_tree.ProfessionSkillTree
 import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mCharListViewModel: CharacterListViewModel
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var binding: ActivityMainBinding
-    private lateinit var characterData: Character
 
-    private val sharedViewModel: SharedViewModel by viewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mCharListViewModel = ViewModelProvider(this).get(CharacterListViewModel::class.java)
-        characterData = intent?.getParcelableExtra("EXTRA_DATA")!! //Get character data
+        val characterId: Int = intent.getIntExtra("CHARACTER_ID", -1)//Get character id
 
-
-        sharedViewModel.onInit(characterData) //Initialize viewModel with character data
+        mainCharacterViewModel.getCharacter(characterId) //Initialize viewModel with character data
 
         //Set up navigation drawer
         val drawerLayout = binding.drawerLayout
@@ -82,7 +81,6 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(binding.navView)
             true
         }
-
     }
 
 
@@ -106,8 +104,8 @@ class MainActivity : AppCompatActivity() {
             //mCharListViewModel.deleteChar(characterData)
 
             //Deletes the character image associated with this character
-            val path = sharedViewModel.image.value.toString()
-            val f = File(path, sharedViewModel.uniqueID.value.toString() + ".jpeg")
+            val path = mainCharacterViewModel.image.value.toString()
+            val f = File(path, mainCharacterViewModel.id.value.toString() + ".jpeg")
             f.delete()
 
             Toast.makeText(this, "Character Deleted", Toast.LENGTH_SHORT).show()
@@ -120,9 +118,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveCharacter(){
 
-        val updatedCharacter = sharedViewModel.onSaveFinal()
-        val charID = characterData.id
-        updatedCharacter.id = charID
+        //val updatedCharacter = mainCharacterViewModel.onSaveFinal()
+        //val charID = characterData.id
+        //updatedCharacter.id = charID
 
         //Toast.makeText(this, updatedCharacter.professionSkillA1.toString(), Toast.LENGTH_SHORT).show()
 

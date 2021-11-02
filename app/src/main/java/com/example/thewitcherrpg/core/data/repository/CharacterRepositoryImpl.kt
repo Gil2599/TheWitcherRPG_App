@@ -18,7 +18,7 @@ class CharacterRepositoryImpl @Inject constructor(
         charDao.addChar(character)
     }
 
-    override suspend fun getCharacterById(id: Int): Character?{
+    override fun getCharacterById(id: Int): Flow<Character>{
         return charDao.getCharacterById(id)
     }
 

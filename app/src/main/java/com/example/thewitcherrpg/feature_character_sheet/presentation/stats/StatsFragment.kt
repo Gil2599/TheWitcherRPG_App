@@ -13,8 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.feature_character_creation.presentation.CharacterCreationViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 
 
 class StatsFragment : Fragment() {
@@ -24,7 +23,7 @@ class StatsFragment : Fragment() {
     private var focusedView: EditText? = null
     private var inCharCreation = false
 
-    private val characterCreationViewModel: CharacterCreationViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +34,7 @@ class StatsFragment : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = characterCreationViewModel
+        binding.sharedViewModel = mainCharacterViewModel
 
         binding.editIP.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -189,7 +188,7 @@ class StatsFragment : Fragment() {
 
         if (focusedView != null){
             val stat = focusedView!!.tag.toString()
-            characterCreationViewModel.onStatChange(stat, true)
+            mainCharacterViewModel.onStatChange(stat, true)
         }
     }
 
@@ -197,7 +196,7 @@ class StatsFragment : Fragment() {
 
         if (focusedView != null){
             val stat = focusedView!!.tag.toString()
-            characterCreationViewModel.onStatChange(stat, false)
+            mainCharacterViewModel.onStatChange(stat, false)
         }
     }
 

@@ -9,7 +9,7 @@ interface CharacterRepository {
 
     suspend fun addChar(character: Character)
 
-    suspend fun getCharacterById(id: Int): Character?
+    fun getCharacterById(id: Int): Flow<Character>
 
     suspend fun deleteChar(character: Character)
 
