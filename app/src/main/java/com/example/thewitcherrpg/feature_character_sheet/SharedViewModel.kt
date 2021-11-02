@@ -3,9 +3,10 @@ package com.example.thewitcherrpg.feature_character_sheet
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentTypes
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
 import kotlin.math.absoluteValue
 
 class SharedViewModel: ViewModel() {
@@ -1268,7 +1269,7 @@ class SharedViewModel: ViewModel() {
         val legEquipment = _legEquipment.value!!
         val equippedLegs = _equippedLegs.value
 
-        return Character(0, imagePath, name, ip, race, gender, age, profession, definingSkill, crowns,
+        return Character(0, imagePath, name, ip, race, gender, age, Constants.Professions.BARD, definingSkill, crowns,
             professionSkillA1, professionSkillA2, professionSkillA3, professionSkillB1, professionSkillB2, professionSkillB3,
             professionSkillC1, professionSkillC2, professionSkillC3, inte, ref, dex, body, spd, emp, cra, will, luck,
             stun, run, leap, maxHp, hp, maxSta, sta, enc, rec, punch, kick,
@@ -1606,7 +1607,7 @@ class SharedViewModel: ViewModel() {
         this._race.value = characterData.race
         this._gender.value = characterData.gender
         this._age.value = characterData.age
-        this._profession.value = characterData.profession
+        this._profession.value = characterData.profession.toString()
         this._definingSkill.value = characterData.definingSkill
         this._crowns.value = characterData.crowns
 

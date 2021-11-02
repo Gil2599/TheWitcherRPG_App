@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
 import com.example.thewitcherrpg.databinding.CustomRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.presentation.MainActivity
 
@@ -16,11 +16,11 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
 
     class CharViewHolder(private val binding: CustomRowBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(name: String, profession: String, id: String, ip: String, character: Character, context: Context){
+        fun bind(name: String, id: String, ip: String, character: Character, context: Context){
 
             with (binding){
                 nameText.text = name
-                professionText.text = profession
+                //professionText.text = profession
                 idText.text = id
                 IPText.text = ip
 
@@ -42,7 +42,7 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
     override fun onBindViewHolder(holder: CharViewHolder, position: Int) {
         val currentItem = charList[position]
 
-        holder.bind(currentItem.name, currentItem.profession, currentItem.id.toString(),
+        holder.bind(currentItem.name, currentItem.id.toString(),
             "IP: " + currentItem.iP, currentItem, context)
 
         /*holder.itemView.name_text.text = currentItem.name

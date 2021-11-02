@@ -1,9 +1,10 @@
-package com.example.thewitcherrpg.feature_character_list.domain.model
+package com.example.thewitcherrpg.core.domain.model
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -20,7 +21,7 @@ data class Character(
     var race: String,
     var gender: String,
     var age: Int,
-    var profession: String,
+    var profession: Constants.Professions,
     var definingSkill: String,
     var crowns: Int = 0,
 
@@ -187,6 +188,17 @@ class MyTypeConverters {
         val itemType =object :TypeToken<ArrayList<EquipmentItem>>(){}.type
 
         return Gson().fromJson(list, itemType)
+    }
+
+    @TypeConverter
+    fun fromProfession(profession: Constants.Professions): String{
+        return Gson().toJson(profession)
+    }
+
+    @TypeConverter
+    fun fromStringToProfession(profession: String): Constants.Professions?{
+        val prof = object :TypeToken<Constants.Professions>(){}.type
+        return Gson().fromJson(profession, prof)
     }
 
 

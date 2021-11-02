@@ -1,12 +1,12 @@
-package com.example.thewitcherrpg.feature_character_list.data.data_source
+package com.example.thewitcherrpg.core.data.data_source
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
-import com.example.thewitcherrpg.feature_character_list.domain.model.MyTypeConverters
+import com.example.thewitcherrpg.core.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.MyTypeConverters
 
 @Database(
     entities = [Character::class],

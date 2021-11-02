@@ -1,6 +1,6 @@
-package com.example.thewitcherrpg.feature_character_list.domain.repository
+package com.example.thewitcherrpg.core.domain.repository
 
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
 import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {

@@ -1,11 +1,9 @@
-package com.example.thewitcherrpg.feature_character_creation.domain.use_cases
+package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.stats
 
 import com.example.thewitcherrpg.core.Resource
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class OnSkillChangeUseCase @Inject constructor() {
+class OnStatChangeUseCase @Inject constructor() {
 
     operator fun invoke(value: Int, ip: Int, increase: Boolean, inCharacterCreation: Boolean): Resource<Pair<Int, Int>> {
 
@@ -49,4 +47,5 @@ class OnSkillChangeUseCase @Inject constructor() {
         }
         return Resource.Success(Pair(newIP, newVal))
     }
+
 }

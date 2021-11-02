@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentParentFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicParentFragment
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
 import com.example.thewitcherrpg.feature_character_list.presentation.CharacterListViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel

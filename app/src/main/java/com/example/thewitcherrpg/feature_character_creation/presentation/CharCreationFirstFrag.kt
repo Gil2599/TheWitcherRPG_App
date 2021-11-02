@@ -131,15 +131,15 @@ class CharCreationFirstFrag : Fragment() {
             }
         }
 
-        binding.etAge.setOnEditorActionListener { _, actionId, _ ->
+        /*binding.etAge.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 binding.etAge.clearFocus()
             }
             false
         }
         binding.etAge.addTextChangedListener {
-            characterCreationViewModel.setAge(binding.etAge.text.toString())
-        }
+            //characterCreationViewModel.setAge(binding.etAge.text.toString())
+        }*/
 
         /*binding.etCharName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -200,7 +200,7 @@ class CharCreationFirstFrag : Fragment() {
             return false
         }
 
-        if(binding.etAge.text.isEmpty()) {
+        if(binding.etCharAge.text?.isEmpty() == true) {
             Toast.makeText(context, "Character age cannot be empty", Toast.LENGTH_SHORT).show()
             return false
         }

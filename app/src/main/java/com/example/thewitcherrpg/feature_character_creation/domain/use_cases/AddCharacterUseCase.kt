@@ -1,8 +1,8 @@
 package com.example.thewitcherrpg.feature_character_creation.domain.use_cases
 
 import com.example.thewitcherrpg.core.Resource
-import com.example.thewitcherrpg.feature_character_list.data.repository.CharacterRepositoryImpl
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.data.repository.CharacterRepositoryImpl
+import com.example.thewitcherrpg.core.domain.model.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception

@@ -1,7 +1,7 @@
-package com.example.thewitcherrpg.feature_character_list.data.data_source
+package com.example.thewitcherrpg.core.data.data_source
 
 import androidx.room.*
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
 import kotlinx.coroutines.flow.Flow
 
 @Dao

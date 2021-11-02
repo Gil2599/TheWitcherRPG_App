@@ -1,17 +1,16 @@
 package com.example.thewitcherrpg.feature_character_creation.presentation
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.feature_character_creation.domain.use_cases.*
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,17 +24,16 @@ class CharacterCreationViewModel @Inject constructor(
     private val getDefiningSkillUseCase: GetDefiningSkillUseCase,
     private val getRacePerkUseCase: GetRacePerkUseCase,
     private val getDefiningSkillInfoUseCase: GetDefiningSkillInfoUseCase,
-    private val onSkillChangeUseCase: OnSkillChangeUseCase
+    private val onSkillChangeUseCase: OnSkillChangeUseCase,
+    private val onStatChangeUseCase: OnStatChangeUseCase
 ): ViewModel() {
 
     private val _inCharacterCreation = mutableStateOf(false)
     val inCharacterCreation: State<Boolean> = _inCharacterCreation
 
     val name = MutableLiveData<String>("")
-    //val name: State<String> = _name
 
-    private val _age = mutableStateOf("")
-    val age: State<String> = _age
+    val age = MutableLiveData("")
 
     private val _gender = mutableStateOf("")
     val gender: State<String> = _gender
@@ -314,9 +312,9 @@ class CharacterCreationViewModel @Inject constructor(
         addCharacterUseCase.invoke(character)
     }
 
-    fun setAge(age: String){
-        _age.value = age
-    }
+    //fun setAge(age: String){
+      //  _age.value = age
+    //}
 
     fun setRace(race: String){
         _race.value = race
@@ -729,4 +727,126 @@ class CharacterCreationViewModel @Inject constructor(
             }
         }
     }
+
+    fun onStatChange(stat: String, increase: Boolean){
+
+        when (stat){
+
+            "INT" -> {
+                val pair = onStatChangeUseCase(_intelligence.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _intelligence.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "REF" -> {
+                val pair = onStatChangeUseCase(_ref.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _ref.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "DEX" -> {
+                val pair = onStatChangeUseCase(_dex.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _dex.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(_body.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "SPD" -> {
+                val pair = onStatChangeUseCase(_spd.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _spd.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "EMP" -> {
+                val pair = onStatChangeUseCase(_emp.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _emp.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "CRA" -> {
+                val pair = onStatChangeUseCase(_cra.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _cra.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "WILL" -> {
+                val pair = onStatChangeUseCase(_will.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _will.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "LUCK" -> {
+                val pair = onStatChangeUseCase(_luck.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _luck.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "STUN" -> {
+                val pair = onStatChangeUseCase(_stun.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _stun.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(_body.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(_body.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(_body.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(_body.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(_body.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(_body.value, _ip.value, increase, _inCharacterCreation.value).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+
+
+        }
+    }
+
 }
