@@ -42,21 +42,21 @@ class CharInvocationsFragment : Fragment() {
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.noviceDruidInvocations.observe(viewLifecycleOwner, { spell ->
-            noviceDruidAdapter.setData(spell)
+            //noviceDruidAdapter.setData(spell)
         })
 
         val journeymanDruidAdapter = JourneymanDruidInvocationListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.journeymanDruidInvocations.observe(viewLifecycleOwner, { spell ->
-            journeymanDruidAdapter.setData(spell)
+            //journeymanDruidAdapter.setData(spell)
         })
 
         val masterDruidAdapter = MasterDruidInvocationListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.masterDruidInvocations.observe(viewLifecycleOwner, { spell ->
-            masterDruidAdapter.setData(spell)
+            //masterDruidAdapter.setData(spell)
         })
 
         binding.recyclerViewNoviceDruid.adapter = noviceDruidAdapter
@@ -80,14 +80,14 @@ class CharInvocationsFragment : Fragment() {
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.novicePreacherInvocations.observe(viewLifecycleOwner, { spell ->
-            novicePreacherAdapter.setData(spell)
+            //novicePreacherAdapter.setData(spell)
         })
 
         val journeymanPreacherAdapter = JourneymanPreacherInvocationListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.journeymanPreacherInvocations.observe(viewLifecycleOwner, { spell ->
-            journeymanPreacherAdapter.setData(spell)
+            //journeymanPreacherAdapter.setData(spell)
         })
 
         val masterPreacherAdapter = MasterPreacherInvocationListAdapter(requireContext()){
@@ -95,7 +95,7 @@ class CharInvocationsFragment : Fragment() {
 
         }
         sharedViewModel.masterPreacherInvocations.observe(viewLifecycleOwner, { spell ->
-            masterPreacherAdapter.setData(spell)
+            //masterPreacherAdapter.setData(spell)
         })
 
         binding.recyclerViewNovicePreacher.adapter = novicePreacherAdapter
@@ -117,7 +117,7 @@ class CharInvocationsFragment : Fragment() {
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.archPriestInvocations.observe(viewLifecycleOwner, { spell ->
-            archPriestAdapter.setData(spell)
+            //archPriestAdapter.setData(spell)
         })
 
         binding.recyclerViewArchPriest.adapter = archPriestAdapter
@@ -167,13 +167,13 @@ class CharInvocationsFragment : Fragment() {
         }
         bind.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
-            sharedViewModel.removeNoviceDruidInvo(spellName)
-            sharedViewModel.removeJourneymanDruidInvo(spellName)
-            sharedViewModel.removeMasterDruidInvo(spellName)
-            sharedViewModel.removeNovicePreacherInvo(spellName)
-            sharedViewModel.removeJourneymanPreacherInvo(spellName)
-            sharedViewModel.removeMasterPreacherInvo(spellName)
-            sharedViewModel.removeArchPriestInvo(spellName)
+            //sharedViewModel.removeNoviceDruidInvo(spellName)
+            //sharedViewModel.removeJourneymanDruidInvo(spellName)
+            //sharedViewModel.removeMasterDruidInvo(spellName)
+            //sharedViewModel.removeNovicePreacherInvo(spellName)
+            //sharedViewModel.removeJourneymanPreacherInvo(spellName)
+            //sharedViewModel.removeMasterPreacherInvo(spellName)
+            //sharedViewModel.removeArchPriestInvo(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

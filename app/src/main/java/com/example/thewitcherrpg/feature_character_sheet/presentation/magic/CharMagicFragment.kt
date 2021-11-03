@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.core.Constants
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.databinding.FragmentCharMagicBinding
 import com.google.android.material.tabs.TabLayout
@@ -18,7 +20,7 @@ class CharMagicFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var tabAdapter: MagicViewPagerAdapter
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
     private var buttonClicked: Boolean = false
 
     override fun onCreateView(
@@ -31,12 +33,12 @@ class CharMagicFragment : Fragment() {
         setupViewPager()
 
         //Remove or change magic categories depending on profession
-        if(sharedViewModel.profession.value == "Witcher"){
+        if(mainCharacterViewModel.profession.value == Constants.Professions.WITCHER){
             (binding.addSpellButton.parent as ViewGroup).removeView(binding.addSpellButton)
             (binding.addRitualButton.parent as ViewGroup).removeView(binding.addRitualButton)
             (binding.addHexButton.parent as ViewGroup).removeView(binding.addHexButton)
         }
-        else if (sharedViewModel.profession.value == "Priest"){
+        else if (mainCharacterViewModel.profession.value == Constants.Professions.PRIEST){
             binding.addSpellButton.setImageResource(R.drawable.ic_celtic_knot_icon)
         }
 
@@ -46,7 +48,7 @@ class CharMagicFragment : Fragment() {
         }
         //If Mage, go to add spells fragment, otherwise (Priest) go to add invocations fragment
         binding.addSpellButton.setOnClickListener(){
-            if(sharedViewModel.profession.value == "Mage")
+            if(mainCharacterViewModel.profession.value == Constants.Professions.MAGE)
             Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_spellAddFragment)
 
             else Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_invocationAddFragment)
@@ -170,19 +172,19 @@ class CharMagicFragment : Fragment() {
         }.attach()
 
         //Check the profession and set the tabLayout and Adapter accordingly
-        when (sharedViewModel.profession.value){
-            "Witcher" -> {
+        when (mainCharacterViewModel.profession.value){
+            Constants.Professions.WITCHER -> {
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
                 tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_aard_sign_icon)
             }
 
-            "Mage" -> {
+            Constants.Professions.MAGE -> {
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SPELLS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.RITUALS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.HEXES)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
             }
-            "Priest" -> {
+            Constants.Professions.PRIEST -> {
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.INVOCATIONS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.RITUALS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.HEXES)
@@ -190,8 +192,8 @@ class CharMagicFragment : Fragment() {
             }
 
         }
-        if (sharedViewModel.profession.value == "Mage") tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_magic_icon)
-        else if (sharedViewModel.profession.value == "Priest") tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_celtic_knot_icon)
+        if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE) tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_magic_icon)
+        else if (mainCharacterViewModel.profession.value == Constants.Professions.PRIEST) tabsLayout.getTabAt(0)?.setIcon(R.drawable.ic_celtic_knot_icon)
 
         tabsLayout.getTabAt(1)?.setIcon(R.drawable.ic_ritual_icon)
         tabsLayout.getTabAt(2)?.setIcon(R.drawable.ic_hex_icon)
@@ -199,8 +201,8 @@ class CharMagicFragment : Fragment() {
     }
 
     override fun onStart() {
-        when (sharedViewModel.profession.value){
-            "Mage", "Witcher", "Priest" -> super.onStart()
+        when (mainCharacterViewModel.profession.value){
+            Constants.Professions.MAGE, Constants.Professions.WITCHER, Constants.Professions.PRIEST -> super.onStart()
 
             else -> Navigation.findNavController(requireView()).navigate(R.id.action_charMagicFragment_to_noMagicFragment)
         }

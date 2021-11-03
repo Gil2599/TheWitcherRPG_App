@@ -42,21 +42,21 @@ class CharRitualsFragment : Fragment() {
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.noviceRitualList.observe(viewLifecycleOwner, { spell ->
-            noviceAdapter.setData(spell)
+            //noviceAdapter.setData(spell)
         })
 
         val journeymanAdapter = JourneymanRitualListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.journeymanRitualList.observe(viewLifecycleOwner, { spell ->
-            journeymanAdapter.setData(spell)
+            //journeymanAdapter.setData(spell)
         })
 
         val masterAdapter = MasterRitualListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.masterRitualList.observe(viewLifecycleOwner, { spell ->
-            masterAdapter.setData(spell)
+            //masterAdapter.setData(spell)
         })
 
         binding.recyclerViewNovice.adapter = noviceAdapter
@@ -116,9 +116,9 @@ class CharRitualsFragment : Fragment() {
         }
         bind.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
-            sharedViewModel.removeNoviceRitual(spellName)
-            sharedViewModel.removeJourneymanRitual(spellName)
-            sharedViewModel.removeMasterRitual(spellName)
+            //sharedViewModel.removeNoviceRitual(spellName)
+            //sharedViewModel.removeJourneymanRitual(spellName)
+            //sharedViewModel.removeMasterRitual(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

@@ -7,6 +7,7 @@ import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentTypes
 import com.example.thewitcherrpg.core.domain.model.Character
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
 import kotlin.math.absoluteValue
 
 class SharedViewModel: ViewModel() {
@@ -296,57 +297,57 @@ class SharedViewModel: ViewModel() {
     val vigor: LiveData<Int> = _vigor
 
     //Mages
-    private var _noviceSpellList = MutableLiveData(arrayListOf<String>())
-    val noviceSpellList: LiveData<ArrayList<String>> = _noviceSpellList
+    private var _noviceSpellList = MutableLiveData(arrayListOf<MagicItem>())
+    val noviceSpellList: LiveData<ArrayList<MagicItem>> = _noviceSpellList
 
-    private var _journeymanSpellList = MutableLiveData(arrayListOf<String>())
-    val journeymanSpellList: LiveData<ArrayList<String>> = _journeymanSpellList
+    private var _journeymanSpellList = MutableLiveData(arrayListOf<MagicItem>())
+    val journeymanSpellList: LiveData<ArrayList<MagicItem>> = _journeymanSpellList
 
-    private var _masterSpellList = MutableLiveData(arrayListOf<String>())
-    val masterSpellList: LiveData<ArrayList<String>> = _masterSpellList
+    private var _masterSpellList = MutableLiveData(arrayListOf<MagicItem>())
+    val masterSpellList: LiveData<ArrayList<MagicItem>> = _masterSpellList
 
     //Priests
-    private var _noviceDruidInvocations = MutableLiveData(arrayListOf<String>())
-    val noviceDruidInvocations: LiveData<ArrayList<String>> = _noviceDruidInvocations
+    private var _noviceDruidInvocations = MutableLiveData(arrayListOf<MagicItem>())
+    val noviceDruidInvocations: LiveData<ArrayList<MagicItem>> = _noviceDruidInvocations
 
-    private var _journeymanDruidInvocations = MutableLiveData(arrayListOf<String>())
-    val journeymanDruidInvocations: LiveData<ArrayList<String>> = _journeymanDruidInvocations
+    private var _journeymanDruidInvocations = MutableLiveData(arrayListOf<MagicItem>())
+    val journeymanDruidInvocations: LiveData<ArrayList<MagicItem>> = _journeymanDruidInvocations
 
-    private var _masterDruidInvocations = MutableLiveData(arrayListOf<String>())
-    val masterDruidInvocations: LiveData<ArrayList<String>> = _masterDruidInvocations
+    private var _masterDruidInvocations = MutableLiveData(arrayListOf<MagicItem>())
+    val masterDruidInvocations: LiveData<ArrayList<MagicItem>> = _masterDruidInvocations
 
-    private var _novicePreacherInvocations = MutableLiveData(arrayListOf<String>())
-    val novicePreacherInvocations: LiveData<ArrayList<String>> = _novicePreacherInvocations
+    private var _novicePreacherInvocations = MutableLiveData(arrayListOf<MagicItem>())
+    val novicePreacherInvocations: LiveData<ArrayList<MagicItem>> = _novicePreacherInvocations
 
-    private var _journeymanPreacherInvocations = MutableLiveData(arrayListOf<String>())
-    val journeymanPreacherInvocations: LiveData<ArrayList<String>> = _journeymanPreacherInvocations
+    private var _journeymanPreacherInvocations = MutableLiveData(arrayListOf<MagicItem>())
+    val journeymanPreacherInvocations: LiveData<ArrayList<MagicItem>> = _journeymanPreacherInvocations
 
-    private var _masterPreacherInvocations = MutableLiveData(arrayListOf<String>())
-    val masterPreacherInvocations: LiveData<ArrayList<String>> = _masterPreacherInvocations
+    private var _masterPreacherInvocations = MutableLiveData(arrayListOf<MagicItem>())
+    val masterPreacherInvocations: LiveData<ArrayList<MagicItem>> = _masterPreacherInvocations
 
-    private var _archPriestInvocations = MutableLiveData(arrayListOf<String>())
-    val archPriestInvocations: LiveData<ArrayList<String>> = _archPriestInvocations
+    private var _archPriestInvocations = MutableLiveData(arrayListOf<MagicItem>())
+    val archPriestInvocations: LiveData<ArrayList<MagicItem>> = _archPriestInvocations
 
     //Signs
-    private var _basicSigns = MutableLiveData(arrayListOf<String>())
-    val basicSigns: LiveData<ArrayList<String>> = _basicSigns
+    private var _basicSigns = MutableLiveData(arrayListOf<MagicItem>())
+    val basicSigns: LiveData<ArrayList<MagicItem>> = _basicSigns
 
-    private var _alternateSigns = MutableLiveData(arrayListOf<String>())
-    val alternateSigns: LiveData<ArrayList<String>> = _alternateSigns
+    private var _alternateSigns = MutableLiveData(arrayListOf<MagicItem>())
+    val alternateSigns: LiveData<ArrayList<MagicItem>> = _alternateSigns
 
     //Rituals
-    private var _noviceRitualList = MutableLiveData(arrayListOf<String>())
-    val noviceRitualList: LiveData<ArrayList<String>> = _noviceRitualList
+    private var _noviceRitualList = MutableLiveData(arrayListOf<MagicItem>())
+    val noviceRitualList: LiveData<ArrayList<MagicItem>> = _noviceRitualList
 
-    private var _journeymanRitualList = MutableLiveData(arrayListOf<String>())
-    val journeymanRitualList: LiveData<ArrayList<String>> = _journeymanRitualList
+    private var _journeymanRitualList = MutableLiveData(arrayListOf<MagicItem>())
+    val journeymanRitualList: LiveData<ArrayList<MagicItem>> = _journeymanRitualList
 
-    private var _masterRitualList = MutableLiveData(arrayListOf<String>())
-    val masterRitualList: LiveData<ArrayList<String>> = _masterRitualList
+    private var _masterRitualList = MutableLiveData(arrayListOf<MagicItem>())
+    val masterRitualList: LiveData<ArrayList<MagicItem>> = _masterRitualList
 
     //Hexes
-    private var _hexesList = MutableLiveData(arrayListOf<String>())
-    val hexesList: LiveData<ArrayList<String>> = _hexesList
+    private var _hexesList = MutableLiveData(arrayListOf<MagicItem>())
+    val hexesList: LiveData<ArrayList<MagicItem>> = _hexesList
 
     //Equipment
     private var _headEquipment = MutableLiveData(arrayListOf<EquipmentItem>())
@@ -400,7 +401,7 @@ class SharedViewModel: ViewModel() {
         _definingSkill.value = defSkill
     }
 
-    //Mages
+    /*//Mages
     fun addNoviceSpell(spell: String): Boolean{
         //Check whether character already has the spell
         return if (spell !in _noviceSpellList.value!!){
@@ -659,7 +660,7 @@ class SharedViewModel: ViewModel() {
         val newArray = _hexesList.value!!.toMutableList()
         newArray.remove(hex)
         _hexesList.value = ArrayList(newArray)
-    }
+    }*/
 
     fun castSpell(staCost: Int): Boolean{
         return _vigor.value!! >= staCost
@@ -1279,7 +1280,7 @@ class SharedViewModel: ViewModel() {
             deceit, fineArts, gambling, groomingAndStyle, humanPerception, leadership, persuasion, performance, seduction,
             alchemy, crafting, disguise, firstAid, forgery, pickLock, trapCrafting, courage, hexWeaving, intimidation,
             spellCasting, resistMagic, resistCoercion, ritualCrafting, vigor, basicSigns, alternateSigns, noviceRituals,
-            journeymanRituals, masterRituals, hexes, noviceSpells, journeymanSpells, masterSpells, noviceDruidInvocations,
+            journeymanRituals, masterRituals, hexes, journeymanSpells, journeymanSpells, masterSpells, noviceDruidInvocations,
             journeymanDruidInvocations, masterDruidInvocations, novicePreacherInvocations, journeymanPreacherInvocations,
             masterPreacherInvocations, archPriestInvocations, headEquipment, equippedHead, chestEquipment, equippedChest,
             legEquipment, equippedLegs)
@@ -1717,7 +1718,7 @@ class SharedViewModel: ViewModel() {
 
         this._archPriestInvocations.value = characterData.archPriestInvocations
 
-        //Signs
+        /*//Signs
         this._basicSigns.value = characterData.basicSigns
         this._alternateSigns.value = characterData.alternateSigns
 
@@ -1734,7 +1735,7 @@ class SharedViewModel: ViewModel() {
         this._equippedHead.value = characterData.equippedHead
 
         this._chestEquipment.value = characterData.chestEquipment
-        this._equippedChest.value = characterData.equippedChest
+        this._equippedChest.value = characterData.equippedChest*/
 
         this._legEquipment.value = characterData.legEquipment
         this._equippedLegs.value = characterData.equippedLegs

@@ -41,14 +41,14 @@ class CharSignsFragment : Fragment() {
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.basicSigns.observe(viewLifecycleOwner, { spell ->
-            basicAdapter.setData(spell)
+            //basicAdapter.setData(spell)
         })
 
         val alternateAdapter = AlternateSignsListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.alternateSigns.observe(viewLifecycleOwner, { spell ->
-            alternateAdapter.setData(spell)
+            //alternateAdapter.setData(spell)
         })
 
         binding.recyclerViewBasic.adapter = basicAdapter
@@ -105,8 +105,8 @@ class CharSignsFragment : Fragment() {
         }
         bind.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
-            sharedViewModel.removeBasicSign(spellName)
-            sharedViewModel.removeAlternateSign(spellName)
+            //sharedViewModel.removeBasicSign(spellName)
+            //sharedViewModel.removeAlternateSign(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

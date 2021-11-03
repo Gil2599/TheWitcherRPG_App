@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanSpellListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.MasterSpellListAdapter
@@ -23,6 +24,7 @@ class CharSpellsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -40,21 +42,21 @@ class CharSpellsFragment : Fragment() {
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.noviceSpellList.observe(viewLifecycleOwner, { spell ->
-            noviceAdapter.setData(spell)
+            //noviceAdapter.setData(spell)
         })
 
         val journeymanAdapter = JourneymanSpellListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.journeymanSpellList.observe(viewLifecycleOwner, { spell ->
-            journeymanAdapter.setData(spell)
+            //journeymanAdapter.setData(spell)
         })
 
         val masterAdapter = MasterSpellListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.masterSpellList.observe(viewLifecycleOwner, { spell ->
-            masterAdapter.setData(spell)
+            //masterAdapter.setData(spell)
         })
 
         binding.recyclerViewNovice.adapter = noviceAdapter
@@ -115,9 +117,9 @@ class CharSpellsFragment : Fragment() {
         }
         bind.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
-            sharedViewModel.removeNoviceSpell(spellName)
-            sharedViewModel.removeJourneymanSpell(spellName)
-            sharedViewModel.removeMasterSpell(spellName)
+            //sharedViewModel.removeNoviceSpell(spellName)
+            //sharedViewModel.removeJourneymanSpell(spellName)
+            //sharedViewModel.removeMasterSpell(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.parcelize.Parcelize
@@ -115,30 +116,30 @@ data class Character(
     //##### Magic #################################################
     var vigor: Int = 0,
 
-    var basicSigns: ArrayList<String> = arrayListOf(),
-    var alternateSigns: ArrayList<String> = arrayListOf(),
+    var basicSigns: ArrayList<MagicItem> = arrayListOf(),
+    var alternateSigns: ArrayList<MagicItem> = arrayListOf(),
 
-    var noviceRituals: ArrayList<String> = arrayListOf(),
-    var journeymanRituals: ArrayList<String> = arrayListOf(),
-    var masterRituals: ArrayList<String> = arrayListOf(),
+    var noviceRituals: ArrayList<MagicItem> = arrayListOf(),
+    var journeymanRituals: ArrayList<MagicItem> = arrayListOf(),
+    var masterRituals: ArrayList<MagicItem> = arrayListOf(),
 
-    var hexes: ArrayList<String> = arrayListOf(),
+    var hexes: ArrayList<MagicItem> = arrayListOf(),
 
     //Mages
-    var noviceSpells: ArrayList<String> = arrayListOf(),
-    var journeymanSpells: ArrayList<String> = arrayListOf(),
-    var masterSpells: ArrayList<String> = arrayListOf(),
+    var noviceSpells: ArrayList<MagicItem> = arrayListOf(),
+    var journeymanSpells: ArrayList<MagicItem> = arrayListOf(),
+    var masterSpells: ArrayList<MagicItem> = arrayListOf(),
 
     //Priests
-    var noviceDruidInvocations: ArrayList<String> = arrayListOf(),
-    var journeymanDruidInvocations: ArrayList<String> = arrayListOf(),
-    var masterDruidInvocations: ArrayList<String> = arrayListOf(),
+    var noviceDruidInvocations: ArrayList<MagicItem> = arrayListOf(),
+    var journeymanDruidInvocations: ArrayList<MagicItem> = arrayListOf(),
+    var masterDruidInvocations: ArrayList<MagicItem> = arrayListOf(),
 
-    var novicePreacherInvocations: ArrayList<String> = arrayListOf(),
-    var journeymanPreacherInvocations: ArrayList<String> = arrayListOf(),
-    var masterPreacherInvocations: ArrayList<String> = arrayListOf(),
+    var novicePreacherInvocations: ArrayList<MagicItem> = arrayListOf(),
+    var journeymanPreacherInvocations: ArrayList<MagicItem> = arrayListOf(),
+    var masterPreacherInvocations: ArrayList<MagicItem> = arrayListOf(),
 
-    var archPriestInvocations: ArrayList<String> = arrayListOf(),
+    var archPriestInvocations: ArrayList<MagicItem> = arrayListOf(),
 
     //Equipment
     var headEquipment: ArrayList<EquipmentItem> = arrayListOf(),
@@ -184,9 +185,7 @@ class MyTypeConverters {
 
     @TypeConverter
     fun fromJsonToItemArrayList(list: String): ArrayList<EquipmentItem>{
-
         val itemType =object :TypeToken<ArrayList<EquipmentItem>>(){}.type
-
         return Gson().fromJson(list, itemType)
     }
 
@@ -201,6 +200,27 @@ class MyTypeConverters {
         return Gson().fromJson(profession, prof)
     }
 
+    @TypeConverter
+    fun fromStringToMagicItem(item: String?): MagicItem?{
+        val itemType =object :TypeToken<MagicItem>(){}.type
+        return Gson().fromJson(item, itemType)
+    }
+
+    @TypeConverter
+    fun fromMagicItemToString(item: MagicItem?): String{
+        return Gson().toJson(item)
+    }
+
+    @TypeConverter
+    fun fromMagicItemArrayListToJson(list: ArrayList<MagicItem?>): String{
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun fromJsonToMagicItemArrayList(list: String): ArrayList<MagicItem>{
+        val itemType =object :TypeToken<ArrayList<MagicItem>>(){}.type
+        return Gson().fromJson(list, itemType)
+    }
 
 }
 

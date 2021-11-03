@@ -40,7 +40,7 @@ class CharHexesFragment : Fragment() {
                 spell -> showSpellDialog(spell)
         }
         sharedViewModel.hexesList.observe(viewLifecycleOwner, { spell ->
-            hexesAdapter.setData(spell)
+            //hexesAdapter.setData(spell)
         })
 
         binding.recyclerViewHexes.adapter = hexesAdapter
@@ -88,7 +88,7 @@ class CharHexesFragment : Fragment() {
         }
         bind.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
-            sharedViewModel.removeHex(spellName)
+            //sharedViewModel.removeHex(spellName)
             Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

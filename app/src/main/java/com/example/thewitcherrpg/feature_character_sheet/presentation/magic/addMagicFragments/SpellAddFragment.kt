@@ -110,7 +110,7 @@ class SpellAddFragment : Fragment() {
         //Check spell level to add it to correct character spell list
         bind.addSpellbutton.setOnClickListener(){
             when (level){
-                SpellLevel.NOVICE -> {
+                /*SpellLevel.NOVICE -> {
                     if (sharedViewModel.addNoviceSpell(spellName))
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
 
@@ -128,7 +128,7 @@ class SpellAddFragment : Fragment() {
                         Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
 
                     else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
-                }
+                }*/
             }
 
             dialog.dismiss()
