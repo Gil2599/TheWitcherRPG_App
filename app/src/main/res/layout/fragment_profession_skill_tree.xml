@@ -5,9 +5,8 @@
 
     <data>
         <variable
-            name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
-
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,7 +136,7 @@
             android:layout_height="0dp"
             android:autoSizeTextType="uniform"
             android:background="@drawable/outline_bkg"
-            android:text='@{sharedViewModel.definingSkill}'
+            android:text='@{MainViewModel.definingSkill}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.1"
@@ -221,13 +220,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillA3}'
+                    android:text='@{`` + MainViewModel.professionSkillA3}'
                     android:textColor="@color/purple_200"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonA3Plus"
+                    android:tag="A3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -294,13 +294,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillA2}'
+                    android:text='@{`` + MainViewModel.professionSkillA2}'
                     android:textColor="@color/purple_200"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonA2Plus"
+                    android:tag="A2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -368,13 +369,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillA1}'
+                    android:text='@{`` + MainViewModel.professionSkillA1}'
                     android:textColor="@color/purple_200"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonA1Plus"
+                    android:tag="A1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -458,13 +460,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillB3}'
+                    android:text='@{`` + MainViewModel.professionSkillB3}'
                     android:textColor="@color/purple_200"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonB3Plus"
+                    android:tag="B3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -531,13 +534,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillB2}'
+                    android:text='@{`` + MainViewModel.professionSkillB2}'
                     android:textColor="@color/purple_200"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonB2Plus"
+                    android:tag="B2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -605,13 +609,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillB1}'
+                    android:text='@{`` + MainViewModel.professionSkillB1}'
                     android:textColor="@color/green"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonB1Plus"
+                    android:tag="B1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -696,13 +701,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillC1}'
+                    android:text='@{`` + MainViewModel.professionSkillC1}'
                     android:textColor="@color/red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonC1Plus"
+                    android:tag="C1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -768,13 +774,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillC2}'
+                    android:text='@{`` + MainViewModel.professionSkillC2}'
                     android:textColor="@color/red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonC2Plus"
+                    android:tag="C2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -841,13 +848,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='@{`` + sharedViewModel.professionSkillC3}'
+                    android:text='@{`` + MainViewModel.professionSkillC3}'
                     android:textColor="@color/red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/buttonC3Plus"
+                    android:tag="C3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -870,7 +878,7 @@
             android:layout_height="0dp"
             android:textSize="18sp"
             android:gravity="center"
-            android:text='@{"IP: " + sharedViewModel.IP}'
+            android:text='@{"IP: " + MainViewModel.ip}'
             android:textColor="@color/white"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toTopOf="@+id/buttonDefiningSkill"

@@ -12,21 +12,27 @@ class OnStatChangeUseCase @Inject constructor() {
 
         if (!inCharacterCreation) {
             if (increase) {
-                if (newVal == 0) newVal = 1
-
-                if (ip >= newVal * 10) {
-                    newIP -= newVal * 10
+                if (ip >= newVal * 10){
+                    if (newVal == 0 && ip >= 10) {
+                        newVal = 1
+                        newIP -= 10
+                    } else {
+                        newIP -= newVal * 10
+                        newVal += 1
+                    }
                 } else return Resource.Error("Not enough IP")
             }
 
             if (!increase) {
                 if (newVal > 0) {
-                    if (newVal == 1) newVal = 2
 
-                    newIP += (newVal - 1) * 10
+                    newIP += if (newVal == 1) 10
+                        else ((newVal - 1) * 10)
+
+                    newVal -= 1
+
                 } else return Resource.Error("Cannot go below 0")
             }
-            //_iP.value = newIP
         } else {
             if (increase) {
                 if (ip > 0 && newVal < 10) {
@@ -41,7 +47,6 @@ class OnStatChangeUseCase @Inject constructor() {
                     newVal -= 1
                 } else return Resource.Error("Cannot go below 0")
             }
-            //_iP.value = newIP
         }
         return Resource.Success(Pair(newIP, newVal))
     }

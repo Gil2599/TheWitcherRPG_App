@@ -19,7 +19,6 @@ class SkillsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var focusedView: EditText? = null
-    private var inCharCreation = false
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
@@ -32,7 +31,7 @@ class SkillsFragment : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = mainCharacterViewModel
+        binding.mainViewModel = mainCharacterViewModel
 
         skillsInit()
 
@@ -51,7 +50,6 @@ class SkillsFragment : Fragment() {
         binding.buttonMinus.setOnClickListener(){
             decreaseButton()
         }
-
         return view
     }
 

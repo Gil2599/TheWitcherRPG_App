@@ -14,7 +14,7 @@
         android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature_character_sheet.presentation.character_information.charFrags.professionFragment">
+        tools:context=".feature_character_sheet.presentation.character_information.child_fragments.professionFragment">
 
         <TextView
             android:id="@+id/textViewProfessionTitle"

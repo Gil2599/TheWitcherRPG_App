@@ -1,23 +1,19 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information
 
 import android.Manifest
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
-import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.charFrags.ViewPagerAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments.ViewPagerAdapter
 import com.example.thewitcherrpg.databinding.FragmentCharBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import android.graphics.Bitmap
-import android.content.ContextWrapper
-import java.lang.Exception
 import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
@@ -27,7 +23,6 @@ import android.util.Log
 import java.io.*
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -36,9 +31,7 @@ class CharFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var tabAdapter: ViewPagerAdapter
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
-
 
     @SuppressLint("NewApi")
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
@@ -53,12 +46,13 @@ class CharFragment : Fragment() {
                     ImageDecoder.decodeBitmap(source)
                 }
             }
-            mainCharacterViewModel.setImage(saveToInternalStorage(bitmap).toString())
+            mainCharacterViewModel.saveImageToInternalStorage(bitmap)
             (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
         }
         catch (e: NullPointerException){
             Snackbar.make(binding.root, "Action Cancelled",
-                Snackbar.LENGTH_SHORT).show()
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -102,7 +96,7 @@ class CharFragment : Fragment() {
         
         //Setting up viewPager
         val numTabs = 5
-        val tabTitles = listOf<String>("Quick Stats", "Profession", "Armor", "Equipment", "Profession")
+        val tabTitles = listOf("Quick Stats", "Profession", "Armor", "Equipment", "Profession")
 
         tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, numTabs)
 
@@ -124,33 +118,9 @@ class CharFragment : Fragment() {
         _binding = null
     }
 
-    private fun saveToInternalStorage(bitmapImage: Bitmap): String? {
-        val cw = ContextWrapper(activity?.applicationContext)
-        // path to /data/data/thewitherrpg/app_data/imageDir
-        val directory: File = cw.getDir("imageDir", Context.MODE_PRIVATE)
-        // Create imageDir
-        val myPath = File(directory, sharedViewModel.uniqueID.value.toString() + ".jpeg")
-        var fos: FileOutputStream? = null
-        try {
-            fos = FileOutputStream(myPath)
-            // Use the compress method on the BitMap object to write image to the OutputStream
-            bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            try {
-                fos?.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-        return directory.absolutePath
-    }
-
     private fun loadImageFromStorage(path: String) {
         try {
-            val f = File(path, sharedViewModel.uniqueID.value.toString() + ".jpeg")
-            //Toast.makeText(context, sharedViewModel.uniqueID.toString() + ".jpeg", Toast.LENGTH_SHORT).show()
+            val f = File(path, mainCharacterViewModel.id.value.toString() + ".jpeg")
             val b = BitmapFactory.decodeStream(FileInputStream(f))
             val img = binding.imageView
             img.setImageBitmap(b)

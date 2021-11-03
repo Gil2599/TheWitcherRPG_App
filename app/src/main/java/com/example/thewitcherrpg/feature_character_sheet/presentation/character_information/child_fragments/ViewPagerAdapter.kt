@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.charFrags
+package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

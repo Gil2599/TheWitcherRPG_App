@@ -31,16 +31,19 @@ class SaveImageUseCase @Inject constructor(
 
                 fos = FileOutputStream(myPath)
 
-
                 // Use the compress method on the BitMap object to write image to the OutputStream
                 bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+                emit(Resource.Success(directory.absolutePath))
+
             } catch (e: Exception) {
+                emit(Resource.Error("Unexpected Error", e.toString()))
                 e.printStackTrace()
             } finally {
                 try {
                     fos?.close()
                 } catch (e: IOException) {
                     e.printStackTrace()
+                    emit(Resource.Error("Unexpected Error", e.toString()))
                 }
             }
         }

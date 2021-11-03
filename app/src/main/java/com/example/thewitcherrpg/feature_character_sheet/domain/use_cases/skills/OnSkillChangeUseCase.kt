@@ -14,21 +14,26 @@ class OnSkillChangeUseCase @Inject constructor() {
 
         if(!inCharacterCreation) {
             if (increase) {
-                if (newVal == 0) newVal = 1
-
                 if (ip >= newVal) {
-                    newIP -= newVal
+                    if (newVal == 0) {
+                        newVal = 1
+                        newIP -= 1
+                    } else {
+                        newIP -= newVal
+                        newVal += 1
+                    }
                 } else return Resource.Error("Not enough IP")
             }
 
             if (!increase) {
                 if (newVal > 0) {
-                    if (newVal == 1) newVal = 2
 
-                    newIP += (newVal - 1)
+                    newIP += if (newVal == 1) 1
+                        else (newVal - 1)
+                    newVal -= 1
+
                 } else return Resource.Error("Cannot go below 0")
             }
-            //_iP.value = newIP
         }
         else {
             if (increase) {
@@ -45,7 +50,6 @@ class OnSkillChangeUseCase @Inject constructor() {
                     newVal -= 1
                 } else return Resource.Error("Cannot go below 0")
             }
-            //_iP.value = newIP
         }
         return Resource.Success(Pair(newIP, newVal))
     }

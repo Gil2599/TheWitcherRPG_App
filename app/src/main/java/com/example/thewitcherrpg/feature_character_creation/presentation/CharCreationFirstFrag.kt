@@ -42,7 +42,7 @@ class CharCreationFirstFrag : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = mainCharacterViewModel
+        binding.mainViewModel = mainCharacterViewModel
 
         onInit()
 

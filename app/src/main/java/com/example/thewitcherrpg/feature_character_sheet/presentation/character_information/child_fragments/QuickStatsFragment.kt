@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.charFrags
+package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments
 
 import android.app.Dialog
 import android.os.Bundle
