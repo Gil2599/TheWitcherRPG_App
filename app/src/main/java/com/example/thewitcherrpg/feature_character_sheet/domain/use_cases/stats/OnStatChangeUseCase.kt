@@ -5,14 +5,19 @@ import javax.inject.Inject
 
 class OnStatChangeUseCase @Inject constructor() {
 
-    operator fun invoke(value: Int, ip: Int, increase: Boolean, inCharacterCreation: Boolean): Resource<Pair<Int, Int>> {
+    operator fun invoke(
+        value: Int,
+        ip: Int,
+        increase: Boolean,
+        inCharacterCreation: Boolean
+    ): Resource<Pair<Int, Int>> {
 
         var newIP = ip
         var newVal = value
 
         if (!inCharacterCreation) {
             if (increase) {
-                if (ip >= newVal * 10){
+                if (ip >= newVal * 10) {
                     if (newVal == 0 && ip >= 10) {
                         newVal = 1
                         newIP -= 10
@@ -27,7 +32,7 @@ class OnStatChangeUseCase @Inject constructor() {
                 if (newVal > 0) {
 
                     newIP += if (newVal == 1) 10
-                        else ((newVal - 1) * 10)
+                    else ((newVal - 1) * 10)
 
                     newVal -= 1
 

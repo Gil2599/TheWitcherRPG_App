@@ -1,16 +1,15 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.magic
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.databinding.FragmentCharMagicBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -43,28 +42,28 @@ class CharMagicFragment : Fragment() {
         }
 
         //Setting up Add FAB
-        binding.addButton.setOnClickListener(){
+        binding.addButton.setOnClickListener{
             onAddButtonClicked()
         }
         //If Mage, go to add spells fragment, otherwise (Priest) go to add invocations fragment
-        binding.addSpellButton.setOnClickListener(){
+        binding.addSpellButton.setOnClickListener{
             if(mainCharacterViewModel.profession.value == Constants.Professions.MAGE)
             Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_spellAddFragment)
 
             else Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_invocationAddFragment)
         }
         //Go to add signs fragment
-        binding.addSignButton.setOnClickListener(){
+        binding.addSignButton.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_signsAddFragment)
         }
 
         //Go to add rituals fragment
-        binding.addRitualButton.setOnClickListener(){
+        binding.addRitualButton.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_ritualAddFragment)
         }
 
         //Go to add hexes fragment
-        binding.addHexButton.setOnClickListener(){
+        binding.addHexButton.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_charMagicFragment_to_hexesAddFragment)
         }
 
@@ -88,29 +87,33 @@ class CharMagicFragment : Fragment() {
 
         if (!buttonClicked){
             binding.addSpellButton.animate()
-                .withStartAction(Runnable {
-                    binding.addSpellButton.visibility = View.VISIBLE })
+                .withStartAction {
+                    binding.addSpellButton.visibility = View.VISIBLE
+                }
                 .alpha(1F)
                 .setDuration(300)
                 .translationY(-10F)
 
             binding.addRitualButton.animate()
-                .withStartAction(Runnable {
-                    binding.addRitualButton.visibility = View.VISIBLE })
+                .withStartAction {
+                    binding.addRitualButton.visibility = View.VISIBLE
+                }
                 .alpha(1F)
                 .setDuration(300)
                 .translationY(-10F)
 
             binding.addHexButton.animate()
-                .withStartAction(Runnable {
-                    binding.addRitualButton.visibility = View.VISIBLE })
+                .withStartAction {
+                    binding.addRitualButton.visibility = View.VISIBLE
+                }
                 .alpha(1F)
                 .setDuration(300)
                 .translationY(-10F)
 
             binding.addSignButton.animate()
-                .withStartAction(Runnable {
-                    binding.addRitualButton.visibility = View.VISIBLE })
+                .withStartAction {
+                    binding.addRitualButton.visibility = View.VISIBLE
+                }
                 .alpha(1F)
                 .setDuration(300)
                 .translationY(-10F)
@@ -123,29 +126,33 @@ class CharMagicFragment : Fragment() {
                 .alpha(0F)
                 .setDuration(300)
                 .translationY(50F)
-                .withEndAction(Runnable {
-                    binding.addSpellButton.visibility = View.GONE })
+                .withEndAction {
+                    binding.addSpellButton.visibility = View.GONE
+                }
 
             binding.addRitualButton.animate()
                 .alpha(0F)
                 .setDuration(300)
                 .translationY(50F)
-                .withEndAction(Runnable {
-                    binding.addSpellButton.visibility = View.GONE })
+                .withEndAction {
+                    binding.addSpellButton.visibility = View.GONE
+                }
 
             binding.addHexButton.animate()
                 .alpha(0F)
                 .setDuration(300)
                 .translationY(50F)
-                .withEndAction(Runnable {
-                    binding.addSpellButton.visibility = View.GONE })
+                .withEndAction {
+                    binding.addSpellButton.visibility = View.GONE
+                }
 
             binding.addSignButton.animate()
                 .alpha(0F)
                 .setDuration(300)
                 .translationY(50F)
-                .withEndAction(Runnable {
-                    binding.addSpellButton.visibility = View.GONE })
+                .withEndAction {
+                    binding.addSpellButton.visibility = View.GONE
+                }
 
             //binding.addButton.startAnimation(rotateClose)
             binding.addButton.animate()

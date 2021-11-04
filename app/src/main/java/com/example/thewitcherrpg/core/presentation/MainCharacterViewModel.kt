@@ -16,7 +16,10 @@ import com.example.thewitcherrpg.feature_character_list.domain.use_cases.GetChar
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.profession_tree.OnProfessionSkillChangeUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
-import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.domain.use_cases.SaveImageUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.SaveImageUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.AddMagicUseCase
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicTypes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +34,8 @@ class MainCharacterViewModel @Inject constructor(
     private val onStatChangeUseCase: OnStatChangeUseCase,
     private val getCharacterUseCase: GetCharacterUseCase,
     private val saveImageUseCase: SaveImageUseCase,
-    private val onProfessionSkillChangeUseCase: OnProfessionSkillChangeUseCase
+    private val onProfessionSkillChangeUseCase: OnProfessionSkillChangeUseCase,
+    private val addMagicUseCase: AddMagicUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -320,6 +324,63 @@ class MainCharacterViewModel @Inject constructor(
 
     private var _ritualCrafting = MutableStateFlow(0)
     val ritualCrafting = _ritualCrafting.asStateFlow()
+
+    //##### Magic #################################################
+    private var _vigor = MutableStateFlow(10)
+    val vigor = _vigor.asStateFlow()
+
+    //Mages
+    private var _noviceSpellList = MutableStateFlow(arrayListOf<MagicItem>())
+    val noviceSpellList = _noviceSpellList.asStateFlow()
+
+    private var _journeymanSpellList = MutableStateFlow(arrayListOf<MagicItem>())
+    val journeymanSpellList = _journeymanSpellList.asStateFlow()
+
+    private var _masterSpellList = MutableStateFlow(arrayListOf<MagicItem>())
+    val masterSpellList = _masterSpellList.asStateFlow()
+
+    //Priests
+    private var _noviceDruidInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val noviceDruidInvocations = _noviceDruidInvocations.asStateFlow()
+
+    private var _journeymanDruidInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val journeymanDruidInvocations = _journeymanDruidInvocations.asStateFlow()
+
+    private var _masterDruidInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val masterDruidInvocations = _masterDruidInvocations.asStateFlow()
+
+    private var _novicePreacherInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val novicePreacherInvocations = _novicePreacherInvocations.asStateFlow()
+
+    private var _journeymanPreacherInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val journeymanPreacherInvocations = _journeymanPreacherInvocations.asStateFlow()
+
+    private var _masterPreacherInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val masterPreacherInvocations = _masterPreacherInvocations.asStateFlow()
+
+    private var _archPriestInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val archPriestInvocations = _archPriestInvocations.asStateFlow()
+
+    //Signs
+    private var _basicSigns = MutableStateFlow(arrayListOf<MagicItem>())
+    val basicSigns = _basicSigns.asStateFlow()
+
+    private var _alternateSigns = MutableStateFlow(arrayListOf<MagicItem>())
+    val alternateSigns = _alternateSigns.asStateFlow()
+
+    //Rituals
+    private var _noviceRitualList = MutableStateFlow(arrayListOf<MagicItem>())
+    val noviceRitualList = _noviceRitualList.asStateFlow()
+
+    private var _journeymanRitualList = MutableStateFlow(arrayListOf<MagicItem>())
+    val journeymanRitualList = _journeymanRitualList.asStateFlow()
+
+    private var _masterRitualList = MutableStateFlow(arrayListOf<MagicItem>())
+    val masterRitualList = _masterRitualList.asStateFlow()
+
+    //Hexes
+    private var _hexesList = MutableStateFlow(arrayListOf<MagicItem>())
+    val hexesList = _hexesList.asStateFlow()
 
 
     fun setInCharCreation(inCharacterCreation: Boolean) {
@@ -1482,5 +1543,12 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun addMagicItem(magic: String, magicTypes: MagicTypes){
+        when (magicTypes){
+            MagicTypes.NOVICE_SPELL -> addMagicUseCase(magic, magicTypes, _noviceSpellList.value)
+        }
+
     }
 }

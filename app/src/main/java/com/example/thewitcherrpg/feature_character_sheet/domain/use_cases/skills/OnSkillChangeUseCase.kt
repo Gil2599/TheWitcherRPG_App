@@ -7,12 +7,17 @@ import javax.inject.Inject
 
 class OnSkillChangeUseCase @Inject constructor() {
 
-    operator fun invoke(value: Int, ip: Int, increase: Boolean, inCharacterCreation: Boolean): Resource<Pair<Int, Int>> {
+    operator fun invoke(
+        value: Int,
+        ip: Int,
+        increase: Boolean,
+        inCharacterCreation: Boolean
+    ): Resource<Pair<Int, Int>> {
 
         var newIP = ip
         var newVal = value
 
-        if(!inCharacterCreation) {
+        if (!inCharacterCreation) {
             if (increase) {
                 if (ip >= newVal) {
                     if (newVal == 0) {
@@ -29,13 +34,12 @@ class OnSkillChangeUseCase @Inject constructor() {
                 if (newVal > 0) {
 
                     newIP += if (newVal == 1) 1
-                        else (newVal - 1)
+                    else (newVal - 1)
                     newVal -= 1
 
                 } else return Resource.Error("Cannot go below 0")
             }
-        }
-        else {
+        } else {
             if (increase) {
                 if (ip > 0 && newVal < 6) {
                     newIP -= 1

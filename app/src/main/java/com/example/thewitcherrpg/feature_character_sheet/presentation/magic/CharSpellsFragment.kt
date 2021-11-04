@@ -8,9 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanSpellListAdapter
@@ -18,6 +23,8 @@ import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spel
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceSpellListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class CharSpellsFragment : Fragment() {
     private var _binding: FragmentCharSpellsBinding? = null
@@ -40,6 +47,16 @@ class CharSpellsFragment : Fragment() {
 
         val noviceAdapter = NoviceSpellListAdapter(requireContext()){
                 spell -> showSpellDialog(spell)
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mainCharacterViewModel.noviceSpellList.collectLatest { spell ->
+                        //noviceAdapter.setData(spell)
+                    }
+                }
+            }
         }
         sharedViewModel.noviceSpellList.observe(viewLifecycleOwner, { spell ->
             //noviceAdapter.setData(spell)

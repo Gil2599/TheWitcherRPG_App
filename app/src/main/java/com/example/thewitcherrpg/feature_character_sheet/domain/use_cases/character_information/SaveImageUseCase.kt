@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.domain.use_cases
+package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information
 
 import android.app.Application
 import android.content.Context
