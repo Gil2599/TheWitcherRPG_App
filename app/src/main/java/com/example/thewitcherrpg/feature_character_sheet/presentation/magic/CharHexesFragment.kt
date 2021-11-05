@@ -10,17 +10,24 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.hexexListAdapter.HexesListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogCharHexBinding
 import com.example.thewitcherrpg.databinding.FragmentCharHexesBinding
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class CharHexesFragment : Fragment() {
     private var _binding: FragmentCharHexesBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +43,19 @@ class CharHexesFragment : Fragment() {
 
     private fun listAdapterInit(){
 
-        val hexesAdapter = HexesListAdapter(requireContext()){
+        val hexesAdapter = NoviceListAdapter{
                 spell -> showSpellDialog(spell)
         }
-        sharedViewModel.hexesList.observe(viewLifecycleOwner, { spell ->
-            //hexesAdapter.setData(spell)
-        })
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mainCharacterViewModel.hexesList.collectLatest { itemList ->
+                        hexesAdapter.setData(itemList)
+                    }
+                }
+            }
+        }
 
         binding.recyclerViewHexes.adapter = hexesAdapter
         binding.recyclerViewHexes.layoutManager = LinearLayoutManager(requireContext())
@@ -50,7 +64,7 @@ class CharHexesFragment : Fragment() {
 
     }
 
-    private fun showSpellDialog(spell: String?) {
+    private fun showSpellDialog(item: MagicItem) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -59,16 +73,14 @@ class CharHexesFragment : Fragment() {
         val bind : CustomDialogCharHexBinding = CustomDialogCharHexBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val pair = spell!!.split(":").toTypedArray()
-        val spellName = pair[0]
-        val staCost = "<b>" + "STA Cost: " + "</b>" + pair[1]
-        val effect = "<b>" + "Effect: " + "</b>" + pair[2]
-        val danger = "<b>" + "Danger: " + "</b>" + pair[3]
-        val lift = "<b>" + "Requirement To Lift: " + "</b>" + pair[4]
+        val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
+        val effect = "<b>" + "Effect: " + "</b>" + item.description
+        val danger = "<b>" + "Danger: " + "</b>" + item.danger
+        val lift = "<b>" + "Requirement To Lift: " + "</b>" + item.requirementToLift
         val charSta = "<b>" + "STA: " + "</b>" + sharedViewModel.sta.value.toString()
         val vigor = sharedViewModel.vigor.value!!
 
-        bind.spellNameText.text = spellName
+        bind.spellNameText.text = item.name
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.effectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.liftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -77,8 +89,8 @@ class CharHexesFragment : Fragment() {
         bind.spellVigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener(){
-            if (!sharedViewModel.castSpell(pair[1].toInt())) { //Stamina cost without html text
-                showCastSpellDialog(pair[1].toInt()) //Show how much HP a character would lose to cast a spell if not enough vigor
+            if (!sharedViewModel.castSpell(item.staminaCost!!)) { //Stamina cost without html text
+                showCastSpellDialog(item.staminaCost!!) //Show how much HP a character would lose to cast a spell if not enough vigor
             }
 
             dialog.dismiss()
@@ -89,7 +101,7 @@ class CharHexesFragment : Fragment() {
         bind.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
             //sharedViewModel.removeHex(spellName)
-            Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "${item.name} removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
         dialog.show()

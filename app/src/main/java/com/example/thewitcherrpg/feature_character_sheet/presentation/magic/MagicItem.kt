@@ -5,14 +5,17 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MagicItem(
+    var type: MagicType,
     var name: String,
-    var staCost: Int,
-    var effect: String,
-    var range: String,
-    var duration: String,
-    var defense: String,
-    var element: String,
-    var magicType: MagicTypes
-
-) : Parcelable {
-}
+    var staminaCost: Int?,
+    var description: String,
+    var range: String? = null,
+    var duration: String? = null,
+    var defense: String? = null,
+    var element: String? = null,
+    var difficulty: Int? = null,
+    var preparation: String? = null,
+    var components: String? = null,
+    var requirementToLift: String? = null,
+    var danger: String? = null
+) : Parcelable

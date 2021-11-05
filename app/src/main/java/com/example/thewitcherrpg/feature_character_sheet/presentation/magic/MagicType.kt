@@ -1,6 +1,6 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.magic
 
-enum class MagicTypes {
+enum class MagicType {
     NOVICE_SPELL,
     JOURNEYMAN_SPELL,
     MASTER_SPELL,

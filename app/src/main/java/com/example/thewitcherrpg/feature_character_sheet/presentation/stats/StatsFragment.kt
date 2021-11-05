@@ -200,10 +200,6 @@ class StatsFragment : Fragment() {
         }
     }
 
-    fun inCharCreation(){
-        inCharCreation = true
-    }
-
     override fun onPause(){
         super.onPause()
         focusedView = null

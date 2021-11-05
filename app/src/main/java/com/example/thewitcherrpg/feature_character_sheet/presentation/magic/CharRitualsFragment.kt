@@ -10,19 +10,27 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.ritualsListAdapters.JourneymanRitualListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.ritualsListAdapters.MasterRitualListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.ritualsListAdapters.NoviceRitualListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentCharRitualsBinding
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.MasterListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class CharRitualsFragment : Fragment() {
     private var _binding: FragmentCharRitualsBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,26 +46,36 @@ class CharRitualsFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
-        val noviceAdapter = NoviceRitualListAdapter(requireContext()){
+        val noviceAdapter = NoviceListAdapter{
                 spell -> showSpellDialog(spell)
         }
-        sharedViewModel.noviceRitualList.observe(viewLifecycleOwner, { spell ->
-            //noviceAdapter.setData(spell)
-        })
+        val journeymanAdapter = JourneymanListAdapter{
+                spell -> showSpellDialog(spell)
+        }
+        val masterAdapter = MasterListAdapter{
+                spell -> showSpellDialog(spell)
+        }
 
-        val journeymanAdapter = JourneymanRitualListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mainCharacterViewModel.noviceRitualList.collectLatest { itemList ->
+                        noviceAdapter.setData(itemList)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.journeymanRitualList.collectLatest { itemList ->
+                        journeymanAdapter.setData(itemList)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.masterRitualList.collectLatest { itemList ->
+                        masterAdapter.setData(itemList)
+                    }
+                }
+            }
         }
-        sharedViewModel.journeymanRitualList.observe(viewLifecycleOwner, { spell ->
-            //journeymanAdapter.setData(spell)
-        })
-
-        val masterAdapter = MasterRitualListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
-        }
-        sharedViewModel.masterRitualList.observe(viewLifecycleOwner, { spell ->
-            //masterAdapter.setData(spell)
-        })
 
         binding.recyclerViewNovice.adapter = noviceAdapter
         binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
@@ -74,7 +92,7 @@ class CharRitualsFragment : Fragment() {
 
     }
 
-    private fun showSpellDialog(spell: String?) {
+    private fun showSpellDialog(item: MagicItem) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -83,18 +101,16 @@ class CharRitualsFragment : Fragment() {
         val bind : CustomDialogCharSpellBinding = CustomDialogCharSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val pair = spell!!.split(":").toTypedArray()
-        val spellName = pair[0]
-        val staCost = "<b>" + "STA Cost: " + "</b>" + pair[1]
-        val effect = "<b>" + "Effect: " + "</b>" + pair[2]
-        val preparation = "<b>" + "Preparation Time: " + "</b>" + pair[3]
-        val difficulty = "<b>" + "Difficulty: " + "</b>" + pair[4]
-        val duration = "<b>" + "Duration: " + "</b>" + pair[5]
-        val components = "<b>" + "Components: " + "</b>" + pair[6]
+        val staCost = "<b>" + "STA Cost: " + "</b>" + item.staminaCost
+        val effect = "<b>" + "Effect: " + "</b>" + item.description
+        val preparation = "<b>" + "Preparation Time: " + "</b>" + item.preparation
+        val difficulty = "<b>" + "Difficulty: " + "</b>" + if (item.difficulty == null) "Variable" else item.difficulty
+        val duration = "<b>" + "Duration: " + "</b>" + item.duration
+        val components = "<b>" + "Components: " + "</b>" + item.components
         val charSta = "<b>" + "STA: " + "</b>" + sharedViewModel.sta.value.toString()
         val vigor = sharedViewModel.vigor.value!!
 
-        bind.spellNameText.text = spellName
+        bind.spellNameText.text = item.name
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.rangeText.text = HtmlCompat.fromHtml(preparation, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.defenseText.text = HtmlCompat.fromHtml(components, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -105,8 +121,8 @@ class CharRitualsFragment : Fragment() {
         bind.vigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener(){
-            if (!sharedViewModel.castSpell(pair[1].toInt())) { //Stamina cost without html text
-                showCastSpellDialog(pair[1].toInt()) //Show how much HP a character would lose to cast a spell if not enough vigor
+            if (!sharedViewModel.castSpell(item.staminaCost!!)) { //Stamina cost without html text
+                showCastSpellDialog(item.staminaCost!!) //Show how much HP a character would lose to cast a spell if not enough vigor
             }
 
             dialog.dismiss()
@@ -119,7 +135,7 @@ class CharRitualsFragment : Fragment() {
             //sharedViewModel.removeNoviceRitual(spellName)
             //sharedViewModel.removeJourneymanRitual(spellName)
             //sharedViewModel.removeMasterRitual(spellName)
-            Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "${item.name} removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 

@@ -8,19 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanSpellListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.MasterSpellListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceSpellListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.MasterListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -45,36 +43,35 @@ class CharSpellsFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
-        val noviceAdapter = NoviceSpellListAdapter(requireContext()){
+        val noviceAdapter = NoviceListAdapter{
+                spell -> showSpellDialog(spell)
+        }
+        val journeymanAdapter = JourneymanListAdapter{
+                spell -> showSpellDialog(spell)
+        }
+        val masterAdapter = MasterListAdapter{
                 spell -> showSpellDialog(spell)
         }
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
                 launch {
-                    mainCharacterViewModel.noviceSpellList.collectLatest { spell ->
-                        //noviceAdapter.setData(spell)
+                    mainCharacterViewModel.noviceSpellList.collectLatest { itemList ->
+                        noviceAdapter.setData(itemList)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.journeymanSpellList.collectLatest { itemList ->
+                        journeymanAdapter.setData(itemList)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.masterSpellList.collectLatest { itemList ->
+                        masterAdapter.setData(itemList)
                     }
                 }
             }
         }
-        sharedViewModel.noviceSpellList.observe(viewLifecycleOwner, { spell ->
-            //noviceAdapter.setData(spell)
-        })
-
-        val journeymanAdapter = JourneymanSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
-        }
-        sharedViewModel.journeymanSpellList.observe(viewLifecycleOwner, { spell ->
-            //journeymanAdapter.setData(spell)
-        })
-
-        val masterAdapter = MasterSpellListAdapter(requireContext()){
-                spell -> showSpellDialog(spell)
-        }
-        sharedViewModel.masterSpellList.observe(viewLifecycleOwner, { spell ->
-            //masterAdapter.setData(spell)
-        })
 
         binding.recyclerViewNovice.adapter = noviceAdapter
         binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
@@ -92,7 +89,7 @@ class CharSpellsFragment : Fragment() {
     }
 
     //Set up dialog when a character spell is clicked
-    private fun showSpellDialog(spell: String?) {
+    private fun showSpellDialog(item: MagicItem) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -101,18 +98,16 @@ class CharSpellsFragment : Fragment() {
         val bind : CustomDialogCharSpellBinding = CustomDialogCharSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val pair = spell!!.split(":").toTypedArray()
-        val spellName = pair[0]
-        val staCost = "<b>" + "STA Cost: " + "</b>" + pair[1]
-        val effect = "<b>" + "Effect: " + "</b>" + pair[2]
-        val range = "<b>" + "Range: " + "</b>" + pair[3]
-        val duration = "<b>" + "Duration: " + "</b>" + pair[4]
-        val defense = "<b>" + "Defense: " + "</b>" + pair[5]
-        val element = pair[6]
+        val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
+        val effect = "<b>" + "Effect: " + "</b>" + item.description
+        val range = "<b>" + "Range: " + "</b>" + item.range
+        val duration = "<b>" + "Duration: " + "</b>" + item.duration
+        val defense = "<b>" + "Defense: " + "</b>" + item.defense
+        val element = item.element
         val charSta = "<b>" + "STA: " + "</b>" + sharedViewModel.sta.value.toString()
         val vigor = sharedViewModel.vigor.value!!
 
-        bind.spellNameText.text = spellName
+        bind.spellNameText.text = item.name
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.rangeText.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.defenseText.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -123,10 +118,9 @@ class CharSpellsFragment : Fragment() {
         bind.vigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener(){
-            if (!sharedViewModel.castSpell(pair[1].toInt())) { //Stamina cost without html text
-                showCastSpellDialog(pair[1].toInt()) //Show how much HP a character would lose to cast a spell if not enough vigor
+            if (!sharedViewModel.castSpell(item.staminaCost!!)) { //Stamina cost without html text
+                showCastSpellDialog(item.staminaCost!!) //Show how much HP a character would lose to cast a spell if not enough vigor
             }
-
             dialog.dismiss()
         }
         bind.cancelButton.setOnClickListener(){
@@ -137,7 +131,7 @@ class CharSpellsFragment : Fragment() {
             //sharedViewModel.removeNoviceSpell(spellName)
             //sharedViewModel.removeJourneymanSpell(spellName)
             //sharedViewModel.removeMasterSpell(spellName)
-            Toast.makeText(context, "$spellName removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "${item.name} removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 

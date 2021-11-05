@@ -18,8 +18,9 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.skills
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.SaveImageUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.AddMagicUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicTypes
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,7 +36,8 @@ class MainCharacterViewModel @Inject constructor(
     private val getCharacterUseCase: GetCharacterUseCase,
     private val saveImageUseCase: SaveImageUseCase,
     private val onProfessionSkillChangeUseCase: OnProfessionSkillChangeUseCase,
-    private val addMagicUseCase: AddMagicUseCase
+    private val addMagicUseCase: AddMagicUseCase,
+    private val getMagicListUseCase: GetMagicListUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -1545,10 +1547,21 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
-    fun addMagicItem(magic: String, magicTypes: MagicTypes){
-        when (magicTypes){
-            MagicTypes.NOVICE_SPELL -> addMagicUseCase(magic, magicTypes, _noviceSpellList.value)
-        }
+    fun addMagicItem(item: MagicItem){
 
+        when (item.type){
+            MagicType.NOVICE_SPELL -> if (item !in _noviceSpellList.value)  _noviceSpellList.value.add(item)
+            MagicType.JOURNEYMAN_SPELL -> if (item !in _journeymanSpellList.value)  _journeymanSpellList.value.add(item)
+            MagicType.MASTER_SPELL -> if (item !in _masterSpellList.value)  _masterSpellList.value.add(item)
+            MagicType.NOVICE_RITUAL -> if (item !in _noviceRitualList.value)  _noviceRitualList.value.add(item)
+            MagicType.JOURNEYMAN_RITUAL -> if (item !in _journeymanRitualList.value)  _journeymanRitualList.value.add(item)
+            MagicType.MASTER_RITUAL -> if (item !in _masterRitualList.value)  _masterRitualList.value.add(item)
+            MagicType.HEX -> if (item !in _hexesList.value)  _hexesList.value.add(item)
+        }
     }
+
+    fun getMagicList(source: Int): ArrayList<MagicItem>{
+        return getMagicListUseCase(source)
+    }
+
 }
