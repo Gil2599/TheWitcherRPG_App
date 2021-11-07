@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.magic
+package com.example.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -14,13 +14,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thewitcherrpg.core.Resource
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.MasterListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -43,13 +44,13 @@ class CharSpellsFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
-        val noviceAdapter = NoviceListAdapter{
+        val noviceAdapter = MagicListAdapter{
                 spell -> showSpellDialog(spell)
         }
-        val journeymanAdapter = JourneymanListAdapter{
+        val journeymanAdapter = MagicListAdapter{
                 spell -> showSpellDialog(spell)
         }
-        val masterAdapter = MasterListAdapter{
+        val masterAdapter = MagicListAdapter{
                 spell -> showSpellDialog(spell)
         }
         viewLifecycleOwner.lifecycleScope.launch {
@@ -117,9 +118,25 @@ class CharSpellsFragment : Fragment() {
         bind.staminaText.text = HtmlCompat.fromHtml(charSta, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.vigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        bind.castSpellbutton.setOnClickListener(){
-            if (!sharedViewModel.castSpell(item.staminaCost!!)) { //Stamina cost without html text
-                showCastSpellDialog(item.staminaCost!!) //Show how much HP a character would lose to cast a spell if not enough vigor
+        bind.castSpellbutton.setOnClickListener{
+            if (item.staminaCost != null) {
+                if (item.staminaCost!! > mainCharacterViewModel.sta.value){
+                    Snackbar.make(binding.root, "Not enough stamina to cast ${item.name}.",
+                        Snackbar.LENGTH_SHORT).show()
+                }
+                else {
+                    when (val result = mainCharacterViewModel.onCastMagic(item)){
+                        is Resource.Error -> showCastSpellDialog(item, result.data!!)
+                        is Resource.Success -> {
+                            Snackbar.make(binding.root, "${item.name} has been casted.",
+                                Snackbar.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+            else{
+                Snackbar.make(binding.root, "Variable stamina cost: Adjust stamina accordingly.",
+                    Snackbar.LENGTH_SHORT).show()
             }
             dialog.dismiss()
         }
@@ -140,19 +157,19 @@ class CharSpellsFragment : Fragment() {
 
     //Dialog that asks the user if they would like to use a portion of their HP to cast a spell that they
     //do not have enough stamina for
-    private fun showCastSpellDialog(staCost: Int){
+    private fun showCastSpellDialog(item: MagicItem, hpCost: Int){
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ -> }
+        builder.setPositiveButton("Yes") { _,
+                                           _ -> mainCharacterViewModel.onCastMagic(item, true)}
         builder.setNegativeButton("Cancel") { _, _ -> }
 
         builder.setTitle("NOT ENOUGH VIGOR")
         builder.setMessage("You do not have enough Vigor to cast this spell. If you decide to cast this spell, " +
-                "you will lose (" + (5 * (staCost - sharedViewModel.vigor.value!!)).toString() + ") HP. Do you wish to " +
+                "you will lose (" + hpCost.toString() + ") HP. Do you wish to " +
                 "cast this spell?")
         builder.create().show()
     }
-
 
 }
 

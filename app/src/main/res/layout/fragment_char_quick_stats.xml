@@ -6,7 +6,7 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
 
     </data>
 

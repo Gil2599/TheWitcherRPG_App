@@ -15,10 +15,8 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentRitualAddBinding
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.MasterListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 
 class RitualAddFragment : Fragment() {
     private var _binding: FragmentRitualAddBinding? = null
@@ -49,17 +47,17 @@ class RitualAddFragment : Fragment() {
     private fun listAdaptersInit() {
 
         //Receive information from recyclerView adapter
-        val noviceAdapter = NoviceListAdapter{ item ->
+        val noviceAdapter = MagicListAdapter{ item ->
             showSpellDialog(item)
         }
         noviceAdapter.setData(mainCharacterViewModel.getMagicList(R.array.novice_rituals_list_data))
 
-        val journeymanAdapter = JourneymanListAdapter{
+        val journeymanAdapter = MagicListAdapter{
             item -> showSpellDialog(item)
         }
         journeymanAdapter.setData(mainCharacterViewModel.getMagicList(R.array.journeyman_rituals_list_data))
 
-        val masterAdapter = MasterListAdapter{
+        val masterAdapter = MagicListAdapter{
             item -> showSpellDialog(item)
         }
         masterAdapter.setData(mainCharacterViewModel.getMagicList(R.array.master_rituals_list_data))

@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.magic
+package com.example.thewitcherrpg.feature_character_sheet.domain.item_types
 
 enum class MagicType {
     NOVICE_SPELL,

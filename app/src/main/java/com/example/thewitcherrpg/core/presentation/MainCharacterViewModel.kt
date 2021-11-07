@@ -1,7 +1,6 @@
 package com.example.thewitcherrpg.core.presentation
 
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
@@ -17,16 +16,20 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.profes
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.SaveImageUseCase
-import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.AddMagicUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicType
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
+import kotlin.math.absoluteValue
 
 @HiltViewModel
 class MainCharacterViewModel @Inject constructor(
@@ -36,8 +39,9 @@ class MainCharacterViewModel @Inject constructor(
     private val getCharacterUseCase: GetCharacterUseCase,
     private val saveImageUseCase: SaveImageUseCase,
     private val onProfessionSkillChangeUseCase: OnProfessionSkillChangeUseCase,
-    private val addMagicUseCase: AddMagicUseCase,
-    private val getMagicListUseCase: GetMagicListUseCase
+    private val getMagicListUseCase: GetMagicListUseCase,
+    private val castMagicUseCase: CastMagicUseCase,
+    private val getEquipmentListUseCase: GetEquipmentListUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -45,6 +49,7 @@ class MainCharacterViewModel @Inject constructor(
 
     //ViewModel States
     private val _inCharacterCreation = mutableStateOf(false)
+    val inCharacterCreation: State<Boolean> = _inCharacterCreation
 
     private val _addState = MutableStateFlow(SaveCharacterState())
     val addState = _addState.asStateFlow()
@@ -52,7 +57,7 @@ class MainCharacterViewModel @Inject constructor(
     private val _image = mutableStateOf("")
     val image: State<String> = _image
 
-    val name = MutableLiveData<String>("")
+    val name = MutableLiveData("")
 
     val age = MutableLiveData("")
 
@@ -384,6 +389,25 @@ class MainCharacterViewModel @Inject constructor(
     private var _hexesList = MutableStateFlow(arrayListOf<MagicItem>())
     val hexesList = _hexesList.asStateFlow()
 
+    //Equipment
+    private var _headEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
+    val headEquipment = _headEquipment.asStateFlow()
+
+    private var _equippedHead = MutableStateFlow<EquipmentItem?>(null)
+    val equippedHead = _equippedHead.asStateFlow()
+
+    private var _chestEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
+    val chestEquipment = _chestEquipment.asStateFlow()
+
+    private var _equippedChest = MutableStateFlow<EquipmentItem?>(null)
+    val equippedChest = _equippedChest.asStateFlow()
+
+    private var _legEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
+    val legEquipment = _legEquipment.asStateFlow()
+
+    private var _equippedLegs = MutableStateFlow<EquipmentItem?>(null)
+    val equippedLegs = _equippedLegs.asStateFlow()
+
 
     fun setInCharCreation(inCharacterCreation: Boolean) {
         _inCharacterCreation.value = inCharacterCreation
@@ -402,6 +426,7 @@ class MainCharacterViewModel @Inject constructor(
                 age = age.value.toString().toInt(),
                 profession = _profession.value,
                 definingSkill = _definingSkill.value,
+                definingSkillInfo = _definingSkillInfo.value,
                 intelligence = _intelligence.value,
                 reflex = _ref.value,
                 dexterity = _dex.value,
@@ -415,9 +440,9 @@ class MainCharacterViewModel @Inject constructor(
                 run = _run.value,
                 leap = _leap.value,
                 MaxHP = _maxHP.value,
-                hp = _hp.value,
+                hp = _maxHP.value,
                 MaxStamina = _maxSta.value,
-                stamina = _sta.value,
+                stamina = _maxSta.value,
                 encumbrance = _enc.value,
                 recovery = _rec.value,
                 punch = _punch.value,
@@ -505,6 +530,7 @@ class MainCharacterViewModel @Inject constructor(
             age.value = characterData.age.toString()
             _profession.value = characterData.profession
             _definingSkill.value = characterData.definingSkill
+            _definingSkillInfo.value = characterData.definingSkillInfo
             _crowns.value = characterData.crowns
 
             //Profession Skills
@@ -594,7 +620,7 @@ class MainCharacterViewModel @Inject constructor(
             _resistCoercion.value = characterData.resistCoercion
             _ritualCrafting.value = characterData.ritualCrafting
 
-            /*//Magic
+            //Magic
             _vigor.value = characterData.vigor
 
             //Mages
@@ -625,7 +651,7 @@ class MainCharacterViewModel @Inject constructor(
             //Hexes
             _hexesList.value = characterData.hexes
 
-            //Equipment
+            /*//Equipment
             _headEquipment.value = characterData.headEquipment
             _equippedHead.value = characterData.equippedHead
 
@@ -642,6 +668,7 @@ class MainCharacterViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> _image.value = result.data!!
                 is Resource.Error -> _image.value = ""
+                is Resource.Loading -> TODO()
             }
         }
     }
@@ -682,7 +709,6 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
 
         characterCreationUseCases.getDefiningSkillInfoUseCase(definingSkill.value).onEach { info ->
-            Log.d("Test", info)
             _definingSkillInfo.value = info
         }.launchIn(viewModelScope)
     }
@@ -691,119 +717,204 @@ class MainCharacterViewModel @Inject constructor(
 
         when (skill) {
             "Awareness" -> {
-                val pair = onSkillChangeUseCase(_awareness.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _awareness.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _awareness.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Business" -> {
-                val pair = onSkillChangeUseCase(_business.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _business.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _business.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Deduction" -> {
-                val pair = onSkillChangeUseCase(_deduction.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _deduction.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _deduction.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Education" -> {
-                val pair = onSkillChangeUseCase(_education.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _education.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _education.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Common Speech" -> {
-                val pair = onSkillChangeUseCase(_commonSpeech.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _commonSpeech.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _commonSpeech.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Elder Speech" -> {
-                val pair = onSkillChangeUseCase(_elderSpeech.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _elderSpeech.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _elderSpeech.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Dwarven" -> {
-                val pair = onSkillChangeUseCase(_dwarven.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _dwarven.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _dwarven.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Monster Lore" -> {
-                val pair = onSkillChangeUseCase(_monsterLore.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _monsterLore.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _monsterLore.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Social Etiquette" -> {
-                val pair = onSkillChangeUseCase(_socialEtiquette.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _socialEtiquette.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _socialEtiquette.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Streetwise" -> {
-                val pair = onSkillChangeUseCase(_streetwise.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _streetwise.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _streetwise.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Tactics" -> {
-                val pair = onSkillChangeUseCase(_tactics.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _tactics.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _tactics.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Teaching" -> {
-                val pair = onSkillChangeUseCase(_teaching.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _teaching.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _teaching.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Wilderness Survival" -> {
-                val pair = onSkillChangeUseCase(_wildernessSurvival.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _wildernessSurvival.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _wildernessSurvival.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Brawling" -> {
-                val pair = onSkillChangeUseCase(_brawling.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _brawling.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _brawling.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Dodge/Escape" -> {
-                val pair = onSkillChangeUseCase(_dodgeEscape.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _dodgeEscape.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _dodgeEscape.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Melee" -> {
-                val pair = onSkillChangeUseCase(_melee.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _melee.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _melee.value = pair.second
                     _ip.value = pair.first
                 }
             }
             "Riding" -> {
-                val pair = onSkillChangeUseCase(_riding.value, _ip.value, increase, _inCharacterCreation.value).data
+                val pair = onSkillChangeUseCase(
+                    _riding.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
                 if (pair != null) {
                     _riding.value = pair.second
                     _ip.value = pair.first
@@ -1282,6 +1393,42 @@ class MainCharacterViewModel @Inject constructor(
                 if (pair != null) {
                     _body.value = pair.second
                     _ip.value = pair.first
+                    onHpChange(increase = increase)
+                    _rec.value = (_body.value + _will.value) / 2
+                    _stun.value =
+                        if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
+                        else 10
+                    _enc.value = _body.value * 10
+                    when (_body.value) {
+                        1, 2 -> {
+                            _punch.value = "1d6 - 4"
+                            _kick.value = "1d6"
+                        }
+                        3, 4 -> {
+                            _punch.value = "1d6 - 2"
+                            _kick.value = "1d6 + 2"
+                        }
+                        5, 6 -> {
+                            _punch.value = "1d6"
+                            _kick.value = "1d6 + 4"
+                        }
+                        7, 8 -> {
+                            _punch.value = "1d6 + 2"
+                            _kick.value = "1d6 + 6"
+                        }
+                        9, 10 -> {
+                            _punch.value = "1d6 + 4"
+                            _kick.value = "1d6 + 8"
+                        }
+                        11, 12 -> {
+                            _punch.value = "1d6 + 6"
+                            _kick.value = "1d6 + 10"
+                        }
+                        13 -> {
+                            _punch.value = "1d6 + 8"
+                            _kick.value = "1d6 + 12"
+                        }
+                    }
                 }
             }
             "SPD" -> {
@@ -1294,6 +1441,8 @@ class MainCharacterViewModel @Inject constructor(
                 if (pair != null) {
                     _spd.value = pair.second
                     _ip.value = pair.first
+                    _run.value = _spd.value * 3
+                    _leap.value = (_spd.value * 3) / 5
                 }
             }
             "EMP" -> {
@@ -1330,6 +1479,11 @@ class MainCharacterViewModel @Inject constructor(
                 if (pair != null) {
                     _will.value = pair.second
                     _ip.value = pair.first
+                    onHpChange(increase = increase)
+                    _rec.value = (_body.value + _will.value) / 2
+                    _stun.value =
+                        if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
+                        else 10
                 }
             }
             "LUCK" -> {
@@ -1345,91 +1499,30 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             "STUN" -> {
-                val pair = onStatChangeUseCase(
-                    _stun.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _stun.value = pair.second
-                    _ip.value = pair.first
-                }
+                _stun.value = if (increase) _stun.value.plus(1) else _enc.value.minus(1)
             }
             "RUN" -> {
-                val pair = onStatChangeUseCase(
-                    _run.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _run.value = pair.second
-                    _ip.value = pair.first
-                }
+                _run.value = if (increase) _run.value.plus(1) else _enc.value.minus(1)
+
             }
             "LEAP" -> {
-                val pair = onStatChangeUseCase(
-                    _leap.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _leap.value = pair.second
-                    _ip.value = pair.first
-                }
+                _leap.value = if (increase) _leap.value.plus(1) else _enc.value.minus(1)
+
             }
             "MaxHP" -> {
-                val pair = onStatChangeUseCase(
-                    _maxHP.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _maxHP.value = pair.second
-                    _ip.value = pair.first
-                }
+                _maxHP.value = if (increase) _maxHP.value.plus(1) else _enc.value.minus(1)
+
             }
             "MaxSTA" -> {
-                val pair = onStatChangeUseCase(
-                    _maxSta.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _maxSta.value = pair.second
-                    _ip.value = pair.first
-                }
+                _maxSta.value = if (increase) _maxSta.value.plus(1) else _enc.value.minus(1)
             }
             "ENC" -> {
-                val pair = onStatChangeUseCase(
-                    _enc.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _enc.value = pair.second
-                    _ip.value = pair.first
-                }
+                _enc.value = if (increase) _enc.value.plus(1) else _enc.value.minus(1)
             }
             "REC" -> {
-                val pair = onStatChangeUseCase(
-                    _rec.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _rec.value = pair.second
-                    _ip.value = pair.first
-                }
+                _rec.value = if (increase) _rec.value.plus(1) else _enc.value.minus(1)
+
             }
-
-
         }
     }
 
@@ -1547,21 +1640,204 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
-    fun addMagicItem(item: MagicItem){
+    fun addMagicItem(item: MagicItem) {
 
-        when (item.type){
-            MagicType.NOVICE_SPELL -> if (item !in _noviceSpellList.value)  _noviceSpellList.value.add(item)
-            MagicType.JOURNEYMAN_SPELL -> if (item !in _journeymanSpellList.value)  _journeymanSpellList.value.add(item)
-            MagicType.MASTER_SPELL -> if (item !in _masterSpellList.value)  _masterSpellList.value.add(item)
-            MagicType.NOVICE_RITUAL -> if (item !in _noviceRitualList.value)  _noviceRitualList.value.add(item)
-            MagicType.JOURNEYMAN_RITUAL -> if (item !in _journeymanRitualList.value)  _journeymanRitualList.value.add(item)
-            MagicType.MASTER_RITUAL -> if (item !in _masterRitualList.value)  _masterRitualList.value.add(item)
-            MagicType.HEX -> if (item !in _hexesList.value)  _hexesList.value.add(item)
+        when (item.type) {
+            MagicType.NOVICE_SPELL -> if (item !in _noviceSpellList.value) _noviceSpellList.value.add(
+                item
+            )
+            MagicType.JOURNEYMAN_SPELL -> if (item !in _journeymanSpellList.value) _journeymanSpellList.value.add(
+                item
+            )
+            MagicType.MASTER_SPELL -> if (item !in _masterSpellList.value) _masterSpellList.value.add(
+                item
+            )
+            MagicType.NOVICE_RITUAL -> if (item !in _noviceRitualList.value) _noviceRitualList.value.add(
+                item
+            )
+            MagicType.JOURNEYMAN_RITUAL -> if (item !in _journeymanRitualList.value) _journeymanRitualList.value.add(
+                item
+            )
+            MagicType.MASTER_RITUAL -> if (item !in _masterRitualList.value) _masterRitualList.value.add(
+                item
+            )
+            MagicType.HEX -> if (item !in _hexesList.value) _hexesList.value.add(item)
+            MagicType.BASIC_SIGN -> if (item !in _basicSigns.value) _basicSigns.value.add(item)
+            MagicType.ALTERNATE_SIGN -> if (item !in _alternateSigns.value) _alternateSigns.value.add(
+                item
+            )
+            MagicType.NOVICE_DRUID_INVOCATION -> if (item !in _noviceDruidInvocations.value) _noviceDruidInvocations.value.add(
+                item
+            )
+            MagicType.JOURNEYMAN_DRUID_INVOCATION -> if (item !in _journeymanDruidInvocations.value) _journeymanDruidInvocations.value.add(
+                item
+            )
+            MagicType.MASTER_DRUID_INVOCATION -> if (item !in _masterDruidInvocations.value) _masterDruidInvocations.value.add(
+                item
+            )
+            MagicType.NOVICE_PREACHER_INVOCATION -> if (item !in _novicePreacherInvocations.value) _novicePreacherInvocations.value.add(
+                item
+            )
+            MagicType.JOURNEYMAN_PREACHER_INVOCATION -> if (item !in _journeymanPreacherInvocations.value) _journeymanPreacherInvocations.value.add(
+                item
+            )
+            MagicType.MASTER_PREACHER_INVOCATION -> if (item !in _masterPreacherInvocations.value) _masterPreacherInvocations.value.add(
+                item
+            )
+            MagicType.ARCH_PRIEST_INVOCATION -> if (item !in _archPriestInvocations.value) _archPriestInvocations.value.add(
+                item
+            )
         }
     }
 
-    fun getMagicList(source: Int): ArrayList<MagicItem>{
+    fun getMagicList(source: Int): ArrayList<MagicItem> {
         return getMagicListUseCase(source)
     }
 
+    fun onCastMagic(item: MagicItem, ignoreHpLoss: Boolean = false): Resource<Int> {
+
+        when (val result = castMagicUseCase(item, _sta.value, _vigor.value)) {
+
+            is Resource.Error -> {
+
+                return if (ignoreHpLoss) {
+                    _hp.value -= result.data!!
+                    _sta.value -= item.staminaCost!!
+                    result
+                } else {
+                    result
+                }
+            }
+            is Resource.Loading -> {
+                TODO()
+            }
+            is Resource.Success -> {
+                _sta.value -= result.data!!
+            }
+        }
+        return Resource.Success(1)
+    }
+
+    fun onHpChange(value: Int? = null, increase: Boolean) {
+        if (value == null) {
+            if (increase) {
+                val hpBonus = ((_body.value + _will.value) / 2) * 5
+                _maxHP.value =
+                    (_maxHP.value - ((((_body.value - 1) + _will.value) / 2) * 5)) + hpBonus
+            } else {
+                val hpBonus = ((_body.value + _will.value) / 2) * 5
+                _maxHP.value =
+                    (_maxHP.value - ((((_body.value + 1) + _will.value) / 2) * 5)) + hpBonus
+            }
+        } else {
+            if (increase) _hp.value += value
+            else _hp.value -= value
+        }
+    }
+
+    fun onStaminaChange(value: Int? = null, increase: Boolean) {
+        if (value != null) {
+            if (value < 0) {
+                if (value.absoluteValue < _sta.value) {
+                    _sta.value = _sta.value.plus(value)
+                } else _sta.value = 0
+            } else _sta.value = _sta.value.plus(value)
+        } else {
+            if (increase) {
+                val staBonus = ((_body.value + _will.value) / 2) * 5
+                _maxSta.value =
+                    (_maxSta.value - ((((_body.value - 1) + _will.value) / 2) * 5)) + staBonus
+            } else {
+                val staBonus = ((_body.value + _will.value) / 2) * 5
+                _maxSta.value =
+                    (_maxSta.value - ((((_body.value + 1) + _will.value) / 2) * 5)) + staBonus
+            }
+        }
+    }
+
+    fun onCrownsChange(value: Int) {
+        if (value < 0) {
+            if (value.absoluteValue < _crowns.value) {
+                _crowns.value = _crowns.value.plus(value)
+            } else _crowns.value = 0
+        } else _crowns.value = _crowns.value.plus(value)
+    }
+
+    fun getEquipmentList(source: Int): ArrayList<EquipmentItem> {
+        return getEquipmentListUseCase(source)
+    }
+
+    fun addEquipmentItem(item: EquipmentItem) {
+        when (item.equipmentType) {
+            EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> _headEquipment.value.add(
+                item
+            )
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.add(
+                item
+            )
+            EquipmentTypes.LEG -> _legEquipment.value.add(item)
+        }
+    }
+
+    fun removeEquipment(item: EquipmentItem) {
+        when (item.equipmentType) {
+            EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> _headEquipment.value.remove(
+                item
+            )
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.remove(
+                item
+            )
+            EquipmentTypes.LEG -> _legEquipment.value.remove(item)
+        }
+    }
+
+    fun equipItem(item: EquipmentItem) {
+        when (item.equipmentType) {
+
+            EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> {
+
+                //Check if theres an item already equipped in this slot
+                if (_equippedHead.value != null) {
+
+                    _headEquipment.value.remove(item)
+                    _headEquipment.value.add(_equippedHead.value!!)
+                    _equippedHead.value = item
+
+                } else {
+                    _headEquipment.value.remove(item)
+                    _equippedHead.value = item
+                }
+            }
+
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
+
+                //Check if theres an item already equipped in this slot
+                if (_equippedChest.value != null) {
+
+                    _chestEquipment.value.remove(item)
+                    _chestEquipment.value.add(_equippedChest.value!!)
+                    _equippedChest.value = item
+
+                } else {
+                    _chestEquipment.value.remove(item)
+                    _equippedChest.value = item
+                }
+            }
+
+            EquipmentTypes.LEG -> {
+
+                //Check if theres an item already equipped in this slot
+                if (_equippedLegs.value != null) {
+
+                    _legEquipment.value.remove(item)
+                    _legEquipment.value.add(_equippedLegs.value!!)
+                    _equippedLegs.value = item
+
+                } else {
+                    _legEquipment.value.remove(item)
+                    _equippedLegs.value = item
+                }
+            }
+        }
+    }
 }

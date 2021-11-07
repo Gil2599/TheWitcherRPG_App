@@ -15,8 +15,8 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogAddHexBinding
 import com.example.thewitcherrpg.databinding.FragmentHexesAddBinding
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 
 class HexesAddFragment : Fragment() {
     private var _binding: FragmentHexesAddBinding? = null
@@ -47,7 +47,7 @@ class HexesAddFragment : Fragment() {
     private fun listAdapterInit(){
 
         //Receive information from recyclerView adapter
-        val hexesAdapter = NoviceListAdapter{
+        val hexesAdapter = MagicListAdapter{
                 hex -> showSpellDialog(hex)
         }
         hexesAdapter.setData(mainCharacterViewModel.getMagicList(R.array.hexes_list_data))

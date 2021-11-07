@@ -6,24 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.signsListAdapters.AlternateSignsListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.signsListAdapters.BasicSignsListAdapter
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentSignsAddBinding
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 
 class SignsAddFragment : Fragment() {
     private var _binding: FragmentSignsAddBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,17 +45,15 @@ class SignsAddFragment : Fragment() {
     private fun listAdaptersInit(){
 
         //Receive information from recyclerView adapter
-        val basicAdapter = BasicSignsListAdapter(requireContext()){
-                sign -> showSignDialog(sign, SignLevel.BASIC) //Determines which list this spell goes under
+        val basicAdapter = MagicListAdapter {
+                sign -> showSignDialog(sign) //Determines which list this spell goes under
         }
-        basicAdapter.setData(resources.getStringArray(R.array.basic_signs_list_data).toList())
-        basicAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
+        basicAdapter.setData(mainCharacterViewModel.getMagicList(R.array.basic_signs_list_data))
 
-        val alternateAdapter = AlternateSignsListAdapter(requireContext()){
-                spell -> showSignDialog(spell, SignLevel.ALTERNATE)
+        val alternateAdapter = MagicListAdapter {
+                spell -> showSignDialog(spell)
         }
-        alternateAdapter.setData(resources.getStringArray(R.array.alternate_signs_list_data).toList())
-        alternateAdapter.setAddSpell(true) //Sets add spell state to true to show all spells
+        alternateAdapter.setData(mainCharacterViewModel.getMagicList(R.array.alternate_signs_list_data))
 
         binding.recyclerViewBasic.adapter = basicAdapter
         binding.recyclerViewBasic.layoutManager = LinearLayoutManager(requireContext())
@@ -69,7 +66,7 @@ class SignsAddFragment : Fragment() {
 
     }
 
-    private fun showSignDialog(spell: String?, level: SignLevel) {
+    private fun showSignDialog(item: MagicItem) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -78,16 +75,14 @@ class SignsAddFragment : Fragment() {
         val bind : CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val pair = spell!!.split(":").toTypedArray()
-        val spellName = pair[0]
-        val staCost = "<b>" + "STA Cost: " + "</b>" + pair[1]
-        val effect = "<b>" + "Effect: " + "</b>" + pair[2]
-        val range = "<b>" + "Range: " + "</b>" + pair[3]
-        val duration = "<b>" + "Duration: " + "</b>" + pair[4]
-        val defense = "<b>" + "Defense: " + "</b>" + pair[5]
-        val element = pair[6]
+        val staCost = "<b>" + "STA Cost: " + "</b>" + item.staminaCost
+        val effect = "<b>" + "Effect: " + "</b>" + item.description
+        val range = "<b>" + "Range: " + "</b>" + item.range
+        val duration = "<b>" + "Duration: " + "</b>" + item.duration
+        val defense = "<b>" + "Defense: " + "</b>" + item.defense
+        val element = item.element
 
-        bind.addSpellNameText.text = spellName
+        bind.addSpellNameText.text = item.name
         bind.addStaCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addRangeText.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addDefenseText.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -96,23 +91,9 @@ class SignsAddFragment : Fragment() {
         bind.addSpellElementText.text = element
 
         //Check spell level to add it to correct character spell list
-        bind.addSpellbutton.setOnClickListener(){
-            when (level){
-                /*SignLevel.BASIC -> {
-                    if (sharedViewModel.addBasicSign(spellName))
-                        Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+        bind.addSpellbutton.setOnClickListener {
 
-                    else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
-
-                }
-                SignLevel.ALTERNATE -> {
-                    if (sharedViewModel.addAlternateSign(spellName))
-                        Toast.makeText(context, "$spellName added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
-
-                    else Toast.makeText(context, "${sharedViewModel.name.value} already knows $spellName", Toast.LENGTH_SHORT).show()
-                }*/
-            }
-
+            mainCharacterViewModel.addMagicItem(item)
             dialog.dismiss()
         }
 
@@ -121,12 +102,6 @@ class SignsAddFragment : Fragment() {
         }
 
         dialog.show()
-    }
-
-    //Enum class to determine spell level
-    enum class SignLevel {
-        BASIC,
-        ALTERNATE
     }
 
 }

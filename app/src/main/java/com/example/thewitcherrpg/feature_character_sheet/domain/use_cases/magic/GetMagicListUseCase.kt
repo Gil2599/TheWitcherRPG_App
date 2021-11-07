@@ -2,8 +2,8 @@ package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic
 
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicType
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import javax.inject.Inject
 
 class GetMagicListUseCase @Inject constructor() {
@@ -17,12 +17,10 @@ class GetMagicListUseCase @Inject constructor() {
                 magicStringArray,
                 MagicType.NOVICE_SPELL
             )
-
             R.array.journeyman_spells_list_data -> getSpellListInfo(
                 magicStringArray,
                 MagicType.JOURNEYMAN_SPELL
             )
-
             R.array.master_spells_list_data -> getSpellListInfo(
                 magicStringArray,
                 MagicType.MASTER_SPELL
@@ -31,19 +29,53 @@ class GetMagicListUseCase @Inject constructor() {
                 magicStringArray,
                 MagicType.NOVICE_RITUAL
             )
-
             R.array.journeyman_rituals_list_data -> getRitualListInfo(
                 magicStringArray,
                 MagicType.JOURNEYMAN_RITUAL
             )
-
             R.array.master_rituals_list_data -> getRitualListInfo(
                 magicStringArray,
                 MagicType.MASTER_RITUAL
             )
-            R.array.hexes_list_data -> getHexListInfo(magicStringArray)
-
-
+            R.array.hexes_list_data -> getHexListInfo(
+                magicStringArray
+            )
+            R.array.basic_signs_list_data -> getSpellListInfo(
+                magicStringArray,
+                MagicType.BASIC_SIGN
+            )
+            R.array.alternate_signs_list_data -> getSpellListInfo(
+                magicStringArray,
+                MagicType.ALTERNATE_SIGN
+            )
+            R.array.novice_druidInvo_list_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.NOVICE_DRUID_INVOCATION
+            )
+            R.array.journeyman_druidInvo_list_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.JOURNEYMAN_DRUID_INVOCATION
+            )
+            R.array.master_druidInvo_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.MASTER_DRUID_INVOCATION
+            )
+            R.array.novice_preacherInvo_list_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.NOVICE_PREACHER_INVOCATION
+            )
+            R.array.journeyman_preacherInvo_list_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.JOURNEYMAN_PREACHER_INVOCATION
+            )
+            R.array.master_preacherInvo_list_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.MASTER_PREACHER_INVOCATION
+            )
+            R.array.archPriestInvo_list_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.ARCH_PRIEST_INVOCATION
+            )
             else -> arrayListOf()
         }
     }
@@ -144,6 +176,38 @@ class GetMagicListUseCase @Inject constructor() {
                     description = description,
                     danger = danger,
                     requirementToLift = lift
+                )
+            )
+        }
+        return magicArray
+    }
+
+    private fun getInvocationListInfo(itemList: Array<String>, type: MagicType): ArrayList<MagicItem> {
+
+        val magicArray: ArrayList<MagicItem> = arrayListOf()
+
+        for (tag in itemList) {
+            val pair = tag.split(":").toTypedArray()
+            val spellName = pair[0]
+            val staCost = pair[1]
+            val description = pair[2]
+            val range = pair[3]
+            val duration = pair[4]
+            val defense = pair[5]
+
+            magicArray.add(
+                MagicItem(
+                    type = type,
+                    name = spellName,
+                    try {
+                        staCost.toInt()
+                    } catch (ex: NumberFormatException) {
+                        null
+                    },
+                    description = description,
+                    range = range,
+                    duration = duration,
+                    defense = defense
                 )
             )
         }

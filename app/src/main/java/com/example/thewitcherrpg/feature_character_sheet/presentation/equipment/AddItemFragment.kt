@@ -14,22 +14,24 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.HeavyEquipmentListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.LightEquipmentListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.MediumEquipmentListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogAddArmorBinding
 import com.example.thewitcherrpg.databinding.FragmentAddItemBinding
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 
 class AddItemFragment : Fragment() {
     private var _binding: FragmentAddItemBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     private lateinit var lightAdapter: LightEquipmentListAdapter
-    private lateinit var mediumAdapter: MediumEquipmentListAdapter
-    private lateinit var heavyAdapter: HeavyEquipmentListAdapter
+    private lateinit var mediumAdapter: LightEquipmentListAdapter
+    private lateinit var heavyAdapter: LightEquipmentListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,17 +67,17 @@ class AddItemFragment : Fragment() {
                 val item = binding.spinnerAddEquipment.getItemAtPosition(position).toString()
 
                 if(item == "Head Armor"){
-                    lightAdapter.setData(resources.getStringArray(R.array.head_light_armor_data).toList())
-                    mediumAdapter.setData(resources.getStringArray(R.array.head_medium_armor_data).toList())
-                    heavyAdapter.setData(resources.getStringArray(R.array.head_heavy_armor_data).toList())
+                    lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_light_armor_data))
+                    mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_medium_armor_data))
+                    heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_heavy_armor_data))
                 }
                 if (item == "Chest Armor"){
-                    lightAdapter.setData(resources.getStringArray(R.array.chest_light_armor_data).toList())
-                    mediumAdapter.setData(resources.getStringArray(R.array.chest_medium_armor_data).toList())
-                    heavyAdapter.setData(resources.getStringArray(R.array.chest_heavy_armor_data).toList())
+                    lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_light_armor_data))
+                    mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_medium_armor_data))
+                    heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_heavy_armor_data))
                 }
                 if (item == "Leg Armor"){
-                    lightAdapter.setData(resources.getStringArray(R.array.legs_light_armor_data).toList())
+                    lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_light_armor_data))
                 }
             }
 
@@ -91,46 +93,43 @@ class AddItemFragment : Fragment() {
 
     private fun listAdaptersInit(){
 
-        lightAdapter = LightEquipmentListAdapter(requireContext(), {item -> showArmorDialog(item)}){}
+        lightAdapter = LightEquipmentListAdapter{item -> showArmorDialog(item)}
         binding.rvLightEquipment.adapter = lightAdapter
         binding.rvLightEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvLightEquipment.isNestedScrollingEnabled = false
 
-        mediumAdapter = MediumEquipmentListAdapter(requireContext(), {item -> showArmorDialog(item)}){}
+        mediumAdapter = LightEquipmentListAdapter{item -> showArmorDialog(item)}
         binding.rvMediumEquipment.adapter = mediumAdapter
         binding.rvMediumEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMediumEquipment.isNestedScrollingEnabled = false
 
-        heavyAdapter = HeavyEquipmentListAdapter(requireContext(), {item -> showArmorDialog(item)}){}
+        heavyAdapter = LightEquipmentListAdapter{item -> showArmorDialog(item)}
         binding.rvHeavyEquipment.adapter = heavyAdapter
         binding.rvHeavyEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHeavyEquipment.isNestedScrollingEnabled = false
-
     }
 
-    private fun showArmorDialog(armorItem: String){
+    private fun showArmorDialog(armorItem: EquipmentItem){
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         val bind : CustomDialogAddArmorBinding = CustomDialogAddArmorBinding.inflate(layoutInflater)
 
-        val pair = armorItem.split(":").toTypedArray()
-        val armorName = pair[0]
-        val stoppingPower = "Stopping Power: " + pair[1]
-        val availability = "Availability: " + pair[2]
-        val armorEnhancement = "Armor Enhancement: " + pair[3]
-        val effect = "Effect: " + pair[4]
-        val encumbValue = "Encumbrance Value: " + pair[5]
-        val weight = "Weight: " + pair[6]
-        val price = "Cost: " + pair[7] + " Crowns"
+        val stoppingPower = "Stopping Power: " + armorItem.stoppingPower
+        val availability = "Availability: " + armorItem.availability
+        val armorEnhancement = "Armor Enhancement: " + armorItem.armorEnhancement
+        val effect = "Effect: " + armorItem.effect
+        val encValue = "Encumbrance Value: " + armorItem.encumbranceValue
+        val weight = "Weight: " + armorItem.weight
+        val price = "Cost: " + armorItem.cost + " Crowns"
 
-        bind.textViewTitle.text = armorName
+        bind.textViewTitle.text = armorItem.name
         bind.textViewSP.text = stoppingPower
         bind.textViewAvailability.text = availability
         bind.textViewAE.text = armorEnhancement
         bind.textViewEffect.text = effect
-        bind.textViewEV.text = encumbValue
+        bind.textViewEV.text = encValue
         bind.textViewWeight.text = weight
         bind.textViewCost.text = price
 
@@ -140,18 +139,18 @@ class AddItemFragment : Fragment() {
 
         bind.buttonAdd.setOnClickListener{
 
-            sharedViewModel.addArmor(armorItem)
-            Toast.makeText(context, "Item added to ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            mainCharacterViewModel.addEquipmentItem(armorItem)
+            Toast.makeText(context, "Item added to ${mainCharacterViewModel.name.value}", Toast.LENGTH_SHORT).show()
 
             dialog.dismiss()
         }
 
         bind.buttonBuy.setOnClickListener{
 
-            if (sharedViewModel.buyArmor(armorItem)){
-                Toast.makeText(context, "${sharedViewModel.name.value} purchased $armorName", Toast.LENGTH_SHORT).show()
-            }
-            else Toast.makeText(context, "${sharedViewModel.name.value} does not have enough crowns to purchase $armorName", Toast.LENGTH_SHORT).show()
+            //if (sharedViewModel.buyArmor(armorItem)){
+               // Toast.makeText(context, "${sharedViewModel.name.value} purchased $armorName", Toast.LENGTH_SHORT).show()
+            //}
+            //else Toast.makeText(context, "${sharedViewModel.name.value} does not have enough crowns to purchase $armorName", Toast.LENGTH_SHORT).show()
 
             dialog.dismiss()
 

@@ -33,58 +33,29 @@ class ProfessionFragment : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = sharedViewModel
+        binding.sharedViewModel = mainCharacterViewModel
 
         onInit()
 
         return view
     }
 
-    private fun getDefSkill(profession: String): String {
-
-        val tags = resources.getStringArray(R.array.professions_defSkills_array)
-        for (tag in tags) {
-            val pair = tag.split(":").toTypedArray()
-            val key = pair[0]
-            val value = pair[1]
-
-            if (profession == key) {
-                return value
-            }
-        }
-        return "?"
-    }
-
-    private fun getDefSkillInfo(definingSkill: String): String {
-
-        val tags = resources.getStringArray(R.array.defSkills_data_array)
-
-        for (tag in tags) {
-            val pair = tag.split(":").toTypedArray()
-            val key = pair[0]
-            val value = pair[1]
-
-            if (definingSkill == key) {
-                return value
-            }
-        }
-        return "?"
-    }
-
     private fun onInit(){
 
-        defSkill = getDefSkill(sharedViewModel.profession.value.toString())
+        defSkill = mainCharacterViewModel.definingSkill.value
+
+        binding.textViewProfessionTitle.text = mainCharacterViewModel.profession.value.toString()
 
         val definingSkill = "Defining Skill: $defSkill"
         binding.textDefiningSkill.text = definingSkill
 
-        binding.textDefiningSkill.setOnClickListener() {
+        binding.textDefiningSkill.setOnClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
 
             alertDialogBuilder.setTitle(defSkill)
 
             // set dialog message
-            alertDialogBuilder.setMessage(getDefSkillInfo(defSkill))
+            alertDialogBuilder.setMessage(mainCharacterViewModel.definingSkillInfo.value)
 
             // create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()

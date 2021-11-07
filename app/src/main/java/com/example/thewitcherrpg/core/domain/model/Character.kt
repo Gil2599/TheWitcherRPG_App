@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.example.thewitcherrpg.core.Constants
-import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentItem
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.parcelize.Parcelize
@@ -24,6 +24,7 @@ data class Character(
     var age: Int,
     var profession: Constants.Professions,
     var definingSkill: String,
+    var definingSkillInfo: String,
     var crowns: Int = 0,
 
     //Profession Skills

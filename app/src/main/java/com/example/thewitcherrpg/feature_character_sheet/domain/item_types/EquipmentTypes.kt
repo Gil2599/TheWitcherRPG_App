@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
+package com.example.thewitcherrpg.feature_character_sheet.domain.item_types
 
 enum class EquipmentTypes {
     LIGHT_HEAD,

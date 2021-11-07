@@ -17,11 +17,11 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
 
     class CharViewHolder(private val binding: CustomRowBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(name: String, id: Int, ip: String, character: Character, context: Context){
+        fun bind(name: String, id: Int, ip: String, profession: String, context: Context){
 
             with (binding){
                 nameText.text = name
-                //professionText.text = profession
+                professionText.text = profession
                 idText.text = id.toString()
                 IPText.text = ip
 
@@ -44,7 +44,7 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
         val currentItem = charList[position]
 
         holder.bind(currentItem.name, currentItem.id,
-            "IP: " + currentItem.iP, currentItem, context)
+            "IP: " + currentItem.iP, currentItem.profession.toString(), context)
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.magic
+package com.example.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.FragmentCharMagicBinding
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

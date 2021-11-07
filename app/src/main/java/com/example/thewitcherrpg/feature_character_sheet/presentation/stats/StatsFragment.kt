@@ -21,7 +21,6 @@ class StatsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var focusedView: EditText? = null
-    private var inCharCreation = false
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
@@ -42,9 +41,6 @@ class StatsFragment : Fragment() {
             }
             false
         }
-
-        //If in character creation, set starting IP for stats = 70
-        //if (characterCreationViewModel.inCharacterCreation) characterCreationViewModel.setIP(70)
 
         statsInit()
 
@@ -161,17 +157,10 @@ class StatsFragment : Fragment() {
             else{ focusedView = binding.editTextREC
                 binding.editTextREC.background = ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg) } }
 
-        binding.editTextPunch.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) { binding.editTextPunch.background = ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg) }
-            else{ focusedView = binding.editTextPunch
-                binding.editTextPunch.background = ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg) } }
+        binding.editTextPunch.focusable = View.NOT_FOCUSABLE
+        binding.editTextKick.focusable = View.NOT_FOCUSABLE
 
-        binding.editTextKick.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) { binding.editTextKick.background = ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg) }
-            else{ focusedView = binding.editTextKick
-                binding.editTextKick.background = ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg) } }
-
-        if(inCharCreation){
+        if(mainCharacterViewModel.inCharacterCreation.value){
             binding.editTextSTUN.focusable = View.NOT_FOCUSABLE
             binding.editTextRUN.focusable = View.NOT_FOCUSABLE
             binding.editTextLEAP.focusable = View.NOT_FOCUSABLE
@@ -179,8 +168,6 @@ class StatsFragment : Fragment() {
             binding.editTextMaxSTA.focusable = View.NOT_FOCUSABLE
             binding.editTextENC.focusable = View.NOT_FOCUSABLE
             binding.editTextREC.focusable = View.NOT_FOCUSABLE
-            binding.editTextPunch.focusable = View.NOT_FOCUSABLE
-            binding.editTextKick.focusable = View.NOT_FOCUSABLE
         }
     }
 

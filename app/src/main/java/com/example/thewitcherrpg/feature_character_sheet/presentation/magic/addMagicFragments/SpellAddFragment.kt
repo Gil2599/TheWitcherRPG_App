@@ -13,12 +13,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.JourneymanListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.MasterListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
 
 class SpellAddFragment : Fragment() {
     private var _binding: FragmentSpellAddBinding? = null
@@ -48,17 +46,17 @@ class SpellAddFragment : Fragment() {
     private fun listAdaptersInit(){
 
         //Receive information from recyclerView adapter
-        val noviceAdapter = NoviceListAdapter{
+        val noviceAdapter = MagicListAdapter{
             spell -> showSpellDialog(spell)
         }
         noviceAdapter.setData(mainCharacterViewModel.getMagicList(R.array.novice_spells_list_data))
 
-        val journeymanAdapter = JourneymanListAdapter{
+        val journeymanAdapter = MagicListAdapter{
                 spell -> showSpellDialog(spell)
         }
         journeymanAdapter.setData(mainCharacterViewModel.getMagicList(R.array.journeyman_spells_list_data))
 
-        val masterAdapter = MasterListAdapter{
+        val masterAdapter = MagicListAdapter{
                 spell -> showSpellDialog(spell)
         }
         masterAdapter.setData(mainCharacterViewModel.getMagicList(R.array.master_spells_list_data))
@@ -106,7 +104,6 @@ class SpellAddFragment : Fragment() {
         bind.addSpellbutton.setOnClickListener{
 
             mainCharacterViewModel.addMagicItem(item)
-
             dialog.dismiss()
         }
 

@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.magic
+package com.example.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -16,51 +16,78 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.databinding.CustomDialogCharHexBinding
-import com.example.thewitcherrpg.databinding.FragmentCharHexesBinding
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapters.NoviceListAdapter
+import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
+import com.example.thewitcherrpg.databinding.FragmentCharRitualsBinding
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class CharHexesFragment : Fragment() {
-    private var _binding: FragmentCharHexesBinding? = null
+class CharRitualsFragment : Fragment() {
+    private var _binding: FragmentCharRitualsBinding? = null
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharHexesBinding.inflate(inflater, container, false)
+        _binding = FragmentCharRitualsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        listAdapterInit()
+        listAdaptersInit()
 
         return view
     }
 
-    private fun listAdapterInit(){
+    private fun listAdaptersInit(){
 
-        val hexesAdapter = NoviceListAdapter{
+        val noviceAdapter = MagicListAdapter{
                 spell -> showSpellDialog(spell)
         }
+        val journeymanAdapter = MagicListAdapter{
+                spell -> showSpellDialog(spell)
+        }
+        val masterAdapter = MagicListAdapter{
+                spell -> showSpellDialog(spell)
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
                 launch {
-                    mainCharacterViewModel.hexesList.collectLatest { itemList ->
-                        hexesAdapter.setData(itemList)
+                    mainCharacterViewModel.noviceRitualList.collectLatest { itemList ->
+                        noviceAdapter.setData(itemList)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.journeymanRitualList.collectLatest { itemList ->
+                        journeymanAdapter.setData(itemList)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.masterRitualList.collectLatest { itemList ->
+                        masterAdapter.setData(itemList)
                     }
                 }
             }
         }
 
-        binding.recyclerViewHexes.adapter = hexesAdapter
-        binding.recyclerViewHexes.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewNovice.adapter = noviceAdapter
+        binding.recyclerViewNovice.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.recyclerViewHexes.isNestedScrollingEnabled = false
+        binding.recyclerViewJourneyman.adapter = journeymanAdapter
+        binding.recyclerViewJourneyman.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.recyclerViewMaster.adapter = masterAdapter
+        binding.recyclerViewMaster.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.recyclerViewNovice.isNestedScrollingEnabled = false
+        binding.recyclerViewJourneyman.isNestedScrollingEnabled = false
+        binding.recyclerViewMaster.isNestedScrollingEnabled = false
 
     }
 
@@ -70,23 +97,27 @@ class CharHexesFragment : Fragment() {
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val bind : CustomDialogCharHexBinding = CustomDialogCharHexBinding.inflate(layoutInflater)
+        val bind : CustomDialogCharSpellBinding = CustomDialogCharSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
+        val staCost = "<b>" + "STA Cost: " + "</b>" + item.staminaCost
         val effect = "<b>" + "Effect: " + "</b>" + item.description
-        val danger = "<b>" + "Danger: " + "</b>" + item.danger
-        val lift = "<b>" + "Requirement To Lift: " + "</b>" + item.requirementToLift
+        val preparation = "<b>" + "Preparation Time: " + "</b>" + item.preparation
+        val difficulty = "<b>" + "Difficulty: " + "</b>" + if (item.difficulty == null) "Variable" else item.difficulty
+        val duration = "<b>" + "Duration: " + "</b>" + item.duration
+        val components = "<b>" + "Components: " + "</b>" + item.components
         val charSta = "<b>" + "STA: " + "</b>" + sharedViewModel.sta.value.toString()
         val vigor = sharedViewModel.vigor.value!!
 
         bind.spellNameText.text = item.name
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.rangeText.text = HtmlCompat.fromHtml(preparation, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.defenseText.text = HtmlCompat.fromHtml(components, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.effectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        bind.liftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        bind.dangerText.text = HtmlCompat.fromHtml(danger, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        bind.spellStaminaText.text = HtmlCompat.fromHtml(charSta, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        bind.spellVigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.durationText.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.elementText.text = HtmlCompat.fromHtml(difficulty, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.staminaText.text = HtmlCompat.fromHtml(charSta, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.vigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener(){
             if (!sharedViewModel.castSpell(item.staminaCost!!)) { //Stamina cost without html text
@@ -100,10 +131,13 @@ class CharHexesFragment : Fragment() {
         }
         bind.removebutton.setOnClickListener(){
             //Remove the spell in whichever list it is in
-            //sharedViewModel.removeHex(spellName)
+            //sharedViewModel.removeNoviceRitual(spellName)
+            //sharedViewModel.removeJourneymanRitual(spellName)
+            //sharedViewModel.removeMasterRitual(spellName)
             Toast.makeText(context, "${item.name} removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
+
         dialog.show()
     }
 
