@@ -2,17 +2,18 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.databinding.*
+import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
+import com.example.thewitcherrpg.databinding.CustomDialogWeaponBinding
+import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 
@@ -20,7 +21,6 @@ class EquipmentFragment : Fragment() {
     private var _binding: FragmentEquipmentBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -135,7 +135,7 @@ class EquipmentFragment : Fragment() {
 
             bind.buttonEquipUnequip.setOnClickListener {
 
-                sharedViewModel.unequipItem(armorItem)
+                mainCharacterViewModel.unEquipItem(armorItem)
                 Toast.makeText(
                     context,
                     "${mainCharacterViewModel.name.value} has unequipped ${armorItem.name}",
@@ -147,13 +147,13 @@ class EquipmentFragment : Fragment() {
 
             bind.imageViewMinus.setOnClickListener{
                 if (bind.textCurrentSP.text.toString().toInt() > 0){
-                    bind.textCurrentSP.text = sharedViewModel.updateItemSP(armorItem, increase = false, armorType).toString()
+                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(armorItem, increase = false, armorType).toString()
                 }
             }
 
             bind.imageViewPlus.setOnClickListener{
                 if (bind.textCurrentSP.text.toString().toInt() < armorItem.stoppingPower){
-                    bind.textCurrentSP.text = sharedViewModel.updateItemSP(armorItem, increase = true, armorType).toString()
+                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(armorItem, increase = true, armorType).toString()
                 }
             }
 

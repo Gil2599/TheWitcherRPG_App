@@ -3,14 +3,13 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.character
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentProfessionBinding
 
@@ -18,7 +17,6 @@ class ProfessionFragment : Fragment() {
     private var _binding: FragmentProfessionBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     lateinit var defSkill: String

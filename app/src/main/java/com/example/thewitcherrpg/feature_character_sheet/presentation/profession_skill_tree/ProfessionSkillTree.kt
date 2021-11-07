@@ -3,16 +3,15 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.professio
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
@@ -20,7 +19,6 @@ import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentProfessionSkillTreeBinding
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

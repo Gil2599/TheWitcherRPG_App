@@ -2,7 +2,6 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,18 +9,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.HeavyEquipmentListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.LightEquipmentListAdapter
-import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.MediumEquipmentListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogAddArmorBinding
 import com.example.thewitcherrpg.databinding.FragmentAddItemBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.LightEquipmentListAdapter
 
 class AddItemFragment : Fragment() {
     private var _binding: FragmentAddItemBinding? = null

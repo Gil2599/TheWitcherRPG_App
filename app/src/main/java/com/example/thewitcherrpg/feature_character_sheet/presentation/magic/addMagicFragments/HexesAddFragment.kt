@@ -22,7 +22,6 @@ class HexesAddFragment : Fragment() {
     private var _binding: FragmentHexesAddBinding? = null
     private val binding get() = _binding!!
 
-    //private val sharedViewModel: SharedViewModel by activityViewModels()
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(

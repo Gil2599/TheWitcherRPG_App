@@ -2,16 +2,15 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.character
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.example.thewitcherrpg.databinding.FragmentCharQuickStatsBinding
 

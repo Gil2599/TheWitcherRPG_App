@@ -1840,4 +1840,61 @@ class MainCharacterViewModel @Inject constructor(
             }
         }
     }
+
+    fun unEquipItem(item: EquipmentItem) {
+        when (item.equipmentType) {
+
+            EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> {
+                _headEquipment.value.add(item)
+                _equippedHead.value = null
+            }
+
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
+                _chestEquipment.value.add(item)
+                _equippedChest.value = null
+            }
+
+            EquipmentTypes.LEG -> {
+                _legEquipment.value.add(item)
+                _equippedLegs.value = null
+            }
+        }
+    }
+
+    fun onItemSPChange(item: EquipmentItem, increase: Boolean, armorType: EquipmentTypes?): Int {
+
+
+        when (armorType) {
+            EquipmentTypes.LARM -> {
+                item.currentLArmSP = if (increase) item.currentLArmSP.plus(1)
+                else item.currentLArmSP.minus(1)
+                return item.currentLArmSP
+            }
+
+            EquipmentTypes.RARM -> {
+                item.currentRArmSP = if (increase) item.currentRArmSP.plus(1)
+                else item.currentRArmSP.minus(1)
+                return item.currentRArmSP
+            }
+
+            EquipmentTypes.LLEG -> {
+                item.currentLLegSP = if (increase) item.currentLLegSP.plus(1)
+                else item.currentLLegSP.minus(1)
+                return item.currentLLegSP
+            }
+
+            EquipmentTypes.RLEG -> {
+                item.currentRLegSP = if (increase) item.currentRLegSP.plus(1)
+                else item.currentRLegSP.minus(1)
+                return item.currentRLegSP
+            }
+
+            else -> {
+                item.currentStoppingPower = if (increase) item.currentStoppingPower.plus(1)
+                else item.currentStoppingPower.minus(1)
+                return item.currentStoppingPower
+            }
+        }
+
+    }
 }

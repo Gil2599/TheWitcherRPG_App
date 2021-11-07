@@ -2,13 +2,13 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.magic.cha
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,11 +16,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.core.Resource
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogCharSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentCharSpellsBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -29,7 +28,6 @@ class CharSpellsFragment : Fragment() {
     private var _binding: FragmentCharSpellsBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -105,8 +103,8 @@ class CharSpellsFragment : Fragment() {
         val duration = "<b>" + "Duration: " + "</b>" + item.duration
         val defense = "<b>" + "Defense: " + "</b>" + item.defense
         val element = item.element
-        val charSta = "<b>" + "STA: " + "</b>" + sharedViewModel.sta.value.toString()
-        val vigor = sharedViewModel.vigor.value!!
+        val charSta = "<b>" + "STA: " + "</b>" + mainCharacterViewModel.sta.value.toString()
+        val vigor = mainCharacterViewModel.vigor.value
 
         bind.spellNameText.text = item.name
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -148,7 +146,7 @@ class CharSpellsFragment : Fragment() {
             //sharedViewModel.removeNoviceSpell(spellName)
             //sharedViewModel.removeJourneymanSpell(spellName)
             //sharedViewModel.removeMasterSpell(spellName)
-            Toast.makeText(context, "${item.name} removed from ${sharedViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "${item.name} removed from ${mainCharacterViewModel.name.value}", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
