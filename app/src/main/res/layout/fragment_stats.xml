@@ -6,7 +6,7 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.characterSheet.SharedViewModel" />
+            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".characterSheet.StatsFragment">
+        tools:context=".feature_character_sheet.presentation.stats.StatsFragment">
 
         <TextView
             android:id="@+id/textIP"
