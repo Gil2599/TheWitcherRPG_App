@@ -6,8 +6,7 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
-
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:text='@{`` + sharedViewModel.IP}'
+            android:text='@{`` + sharedViewModel.ip}'
             android:gravity="center"
             android:imeOptions="actionDone"
             android:inputType="numberSigned"
@@ -89,6 +88,7 @@
 
         <EditText
             android:id="@+id/editTextEMP"
+            android:tag="EMP"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -106,6 +106,7 @@
 
         <EditText
             android:id="@+id/editTextCRA"
+            android:tag="CRA"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -123,6 +124,7 @@
 
         <EditText
             android:id="@+id/editTextWILL"
+            android:tag="WILL"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -140,6 +142,7 @@
 
         <EditText
             android:id="@+id/editTextLUCK"
+            android:tag="LUCK"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -157,6 +160,7 @@
 
         <EditText
             android:id="@+id/editTextREF"
+            android:tag="REF"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -174,6 +178,7 @@
 
         <EditText
             android:id="@+id/editTextDEX"
+            android:tag="DEX"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -191,6 +196,7 @@
 
         <EditText
             android:id="@+id/editTextBODY"
+            android:tag="BODY"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -208,6 +214,7 @@
 
         <EditText
             android:id="@+id/editTextSPD"
+            android:tag="SPD"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -225,6 +232,7 @@
 
         <EditText
             android:id="@+id/editTextINT"
+            android:tag="INT"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -242,6 +250,7 @@
 
         <EditText
             android:id="@+id/editTextSTUN"
+            android:tag="STUN"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -259,6 +268,7 @@
 
         <EditText
             android:id="@+id/editTextRUN"
+            android:tag="RUN"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -276,6 +286,7 @@
 
         <EditText
             android:id="@+id/editTextLEAP"
+            android:tag="LEAP"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -293,6 +304,7 @@
 
         <EditText
             android:id="@+id/editTextMaxHP"
+            android:tag="MaxHP"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -310,6 +322,7 @@
 
         <EditText
             android:id="@+id/editTextMaxSTA"
+            android:tag="MaxSTA"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -327,6 +340,7 @@
 
         <EditText
             android:id="@+id/editTextENC"
+            android:tag="ENC"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -344,6 +358,7 @@
 
         <EditText
             android:id="@+id/editTextREC"
+            android:tag="REC"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -361,6 +376,7 @@
 
         <EditText
             android:id="@+id/editTextPunch"
+            android:tag="Punch"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"
@@ -378,6 +394,7 @@
 
         <EditText
             android:id="@+id/editTextKick"
+            android:tag="Kick"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/unfocused_outline_bkg"

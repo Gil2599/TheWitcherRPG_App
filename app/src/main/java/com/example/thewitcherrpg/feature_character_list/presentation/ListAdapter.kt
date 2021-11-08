@@ -2,10 +2,11 @@ package com.example.thewitcherrpg.feature_character_list.presentation
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
 import com.example.thewitcherrpg.databinding.CustomRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.presentation.MainActivity
 
@@ -16,17 +17,17 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
 
     class CharViewHolder(private val binding: CustomRowBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(name: String, profession: String, id: String, ip: String, character: Character, context: Context){
+        fun bind(name: String, id: Int, ip: String, profession: String, context: Context){
 
             with (binding){
                 nameText.text = name
                 professionText.text = profession
-                idText.text = id
+                idText.text = id.toString()
                 IPText.text = ip
 
-                rowLayout.setOnClickListener(){
+                rowLayout.setOnClickListener{
                     val intent = Intent(context, MainActivity::class.java).also {
-                        it.putExtra("EXTRA_DATA", character)
+                        it.putExtra("CHARACTER_ID", id)
                     }
                     context.startActivity(intent)
                 }
@@ -42,22 +43,8 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
     override fun onBindViewHolder(holder: CharViewHolder, position: Int) {
         val currentItem = charList[position]
 
-        holder.bind(currentItem.name, currentItem.profession, currentItem.id.toString(),
-            "IP: " + currentItem.iP, currentItem, context)
-
-        /*holder.itemView.name_text.text = currentItem.name
-        holder.itemView.race_text.text = currentItem.profession
-        holder.itemView.id_text.text = currentItem.id.toString()
-
-        val ip = "IP: " + currentItem.iP
-        holder.itemView.IP_text.text = ip
-
-        holder.itemView.rowLayout.setOnClickListener{
-            val intent = Intent(context, MainActivity::class.java).also {
-                it.putExtra("EXTRA_DATA", currentItem)
-            }
-            context.startActivity(intent)
-        }*/
+        holder.bind(currentItem.name, currentItem.id,
+            "IP: " + currentItem.iP, currentItem.profession.toString(), context)
 
     }
 

@@ -3,34 +3,32 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.professio
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.core.Constants
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentProfessionSkillTreeBinding
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class ProfessionSkillTree : Fragment() {
     private var _binding: FragmentProfessionSkillTreeBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     private var focusedTextViews =  arrayOfNulls<TextView>(2)
-
-    private lateinit var a1Observer: Observer<Int>
-    private lateinit var a2Observer: Observer<Int>
-    private lateinit var b1Observer: Observer<Int>
-    private lateinit var b2Observer: Observer<Int>
-    private lateinit var c1Observer: Observer<Int>
-    private lateinit var c2Observer: Observer<Int>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +38,7 @@ class ProfessionSkillTree : Fragment() {
         val view = binding.root
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = sharedViewModel
+        binding.mainViewModel = mainCharacterViewModel
 
         binding.arrow1.rotation = 130F
         binding.arrow2.rotation = 90F
@@ -58,13 +56,6 @@ class ProfessionSkillTree : Fragment() {
 
         createObservers()
 
-        sharedViewModel.professionSkillA1.observe(viewLifecycleOwner, a1Observer)
-        sharedViewModel.professionSkillA2.observe(viewLifecycleOwner, a2Observer)
-        sharedViewModel.professionSkillB1.observe(viewLifecycleOwner, b1Observer)
-        sharedViewModel.professionSkillB2.observe(viewLifecycleOwner, b2Observer)
-        sharedViewModel.professionSkillC1.observe(viewLifecycleOwner, c1Observer)
-        sharedViewModel.professionSkillC2.observe(viewLifecycleOwner, c2Observer)
-
         return view
     }
 
@@ -79,7 +70,7 @@ class ProfessionSkillTree : Fragment() {
             val defSkill = pair[0]
             val allSkills = pair[1]
 
-            if (sharedViewModel.definingSkill.value.toString() == defSkill) {
+            if (mainCharacterViewModel.definingSkill.value == defSkill) {
                 val skills = allSkills.split(",").toTypedArray()
 
                 binding.firstSkillTitle.text = skills[0]
@@ -106,15 +97,15 @@ class ProfessionSkillTree : Fragment() {
         var tags = resources.getStringArray(R.array.bard_skills_info)
 
         //Toast.makeText(context, sharedViewModel.profession.value.toString(), Toast.LENGTH_SHORT).show()
-        when (sharedViewModel.profession.value.toString()) {
-            "Craftsman" -> tags = resources.getStringArray(R.array.craftsman_skills_info)
-            "Criminal" -> tags = resources.getStringArray(R.array.criminal_skills_info)
-            "Doctor" -> tags = resources.getStringArray(R.array.doctor_skills_info)
-            "Mage" -> tags = resources.getStringArray(R.array.mage_skills_info)
-            "Man At Arms" -> tags = resources.getStringArray(R.array.man_at_arms_skills_info)
-            "Merchant" -> tags = resources.getStringArray(R.array.merchant_skills_info)
-            "Priest" -> tags = resources.getStringArray(R.array.priest_skills_info)
-            "Witcher" -> tags = resources.getStringArray(R.array.witcher_skills_info)
+        when (mainCharacterViewModel.profession.value) {
+            Constants.Professions.CRAFTSMAN -> tags = resources.getStringArray(R.array.craftsman_skills_info)
+            Constants.Professions.CRIMINAL -> tags = resources.getStringArray(R.array.criminal_skills_info)
+            Constants.Professions.DOCTOR -> tags = resources.getStringArray(R.array.doctor_skills_info)
+            Constants.Professions.MAGE -> tags = resources.getStringArray(R.array.mage_skills_info)
+            Constants.Professions.MAN_AT_ARMS -> tags = resources.getStringArray(R.array.man_at_arms_skills_info)
+            Constants.Professions.MERCHANT -> tags = resources.getStringArray(R.array.merchant_skills_info)
+            Constants.Professions.PRIEST -> tags = resources.getStringArray(R.array.priest_skills_info)
+            Constants.Professions.WITCHER -> tags = resources.getStringArray(R.array.witcher_skills_info)
         }
 
         for (tag in tags) {
@@ -127,9 +118,7 @@ class ProfessionSkillTree : Fragment() {
             }
 
         }
-
         return "Unknown"
-
     }
 
     //Set up all view logic relating to the skill tree and click listeners
@@ -138,7 +127,7 @@ class ProfessionSkillTree : Fragment() {
         //Create Dialog for Defining Skill above tree
         binding.buttonDefiningSkill.setOnClickListener{
             val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle(sharedViewModel.definingSkill.value.toString())
+            alertDialogBuilder.setTitle(mainCharacterViewModel.definingSkill.value)
             // set dialog message
             alertDialogBuilder.setMessage(getDefSkillInfo())
             // create alert dialog
@@ -298,49 +287,49 @@ class ProfessionSkillTree : Fragment() {
         }
 
         binding.buttonA1Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(1) }
+            mainCharacterViewModel.onProfessionSkillChange(1, false) }
         binding.buttonA1Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(1) }
+            mainCharacterViewModel.onProfessionSkillChange(1, true) }
 
         binding.buttonA2Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(2) }
+            mainCharacterViewModel.onProfessionSkillChange(2, false) }
         binding.buttonA2Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(2) }
+            mainCharacterViewModel.onProfessionSkillChange(2, true) }
 
         binding.buttonA3Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(3) }
+            mainCharacterViewModel.onProfessionSkillChange(3, false) }
         binding.buttonA3Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(3) }
+            mainCharacterViewModel.onProfessionSkillChange(3, true) }
 
         binding.buttonB1Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(4) }
+            mainCharacterViewModel.onProfessionSkillChange(4, false) }
         binding.buttonB1Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(4) }
+            mainCharacterViewModel.onProfessionSkillChange(4, true) }
 
         binding.buttonB2Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(5) }
+            mainCharacterViewModel.onProfessionSkillChange(5, false) }
         binding.buttonB2Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(5) }
+            mainCharacterViewModel.onProfessionSkillChange(5, true) }
 
         binding.buttonB3Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(6) }
+            mainCharacterViewModel.onProfessionSkillChange(6, false) }
         binding.buttonB3Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(6) }
+            mainCharacterViewModel.onProfessionSkillChange(6, true) }
 
         binding.buttonC1Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(7) }
+            mainCharacterViewModel.onProfessionSkillChange(7, false) }
         binding.buttonC1Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(7) }
+            mainCharacterViewModel.onProfessionSkillChange(7, true) }
 
         binding.buttonC2Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(8) }
+            mainCharacterViewModel.onProfessionSkillChange(8, false) }
         binding.buttonC2Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(8) }
+            mainCharacterViewModel.onProfessionSkillChange(8, true) }
 
         binding.buttonC3Minus.setOnClickListener{
-            sharedViewModel.decreaseProfSkill(9) }
+            mainCharacterViewModel.onProfessionSkillChange(9, false) }
         binding.buttonC3Plus.setOnClickListener{
-            sharedViewModel.increaseProfSkill(9) }
+            mainCharacterViewModel.onProfessionSkillChange(9, true) }
 
     }
 
@@ -353,7 +342,7 @@ class ProfessionSkillTree : Fragment() {
             val key = pair[0]
             val value = pair[1]
 
-            if (sharedViewModel.definingSkill.value.toString() == key) {
+            if (mainCharacterViewModel.definingSkill.value == key) {
                 return value
             }
         }
@@ -363,167 +352,174 @@ class ProfessionSkillTree : Fragment() {
     //Create observers for each skill in order to make next skills in branch editable when a value of 5 is reached
     private fun createObservers(){
 
-        a1Observer = Observer<Int> { value ->
-            // Update the UI if A1 is >= 5
-            if (value >= 5){
-                binding.linearLayoutA2.setOnClickListener {
-                    focusedTextViews[0]?.visibility = View.INVISIBLE
-                    focusedTextViews[1]?.visibility = View.INVISIBLE
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mainCharacterViewModel.professionSkillA1.collectLatest { value ->
+                        if (value >= 5){
+                            binding.linearLayoutA2.setOnClickListener {
+                                focusedTextViews[0]?.visibility = View.INVISIBLE
+                                focusedTextViews[1]?.visibility = View.INVISIBLE
 
-                    binding.buttonA2Minus.visibility = View.VISIBLE
-                    focusedTextViews[0] = binding.buttonA2Minus
+                                binding.buttonA2Minus.visibility = View.VISIBLE
+                                focusedTextViews[0] = binding.buttonA2Minus
 
-                    binding.buttonA2Plus.visibility = View.VISIBLE
-                    focusedTextViews[1] = binding.buttonA2Plus
+                                binding.buttonA2Plus.visibility = View.VISIBLE
+                                focusedTextViews[1] = binding.buttonA2Plus
+                            }
+                            binding.linearLayoutA2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
+                            binding.SkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
+                            binding.textViewSkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
+                            binding.arrow4.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
+                        }
+                        else{
+                            binding.linearLayoutA2.setOnClickListener(null)
+                            binding.linearLayoutA2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.SkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.textViewSkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.arrow4.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                        }
+                    }
                 }
-                binding.linearLayoutA2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
-                binding.SkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                binding.textViewSkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                binding.arrow4.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
-            }
-            else{
-                binding.linearLayoutA2.setOnClickListener(null)
-                binding.linearLayoutA2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                binding.SkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.textViewSkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.arrow4.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                launch {
+                    mainCharacterViewModel.professionSkillA2.collectLatest { value ->
+                        if (value >= 5){
+                            binding.linearLayoutA3.setOnClickListener {
+                                focusedTextViews[0]?.visibility = View.INVISIBLE
+                                focusedTextViews[1]?.visibility = View.INVISIBLE
+
+                                binding.buttonA3Minus.visibility = View.VISIBLE
+                                focusedTextViews[0] = binding.buttonA3Minus
+
+                                binding.buttonA3Plus.visibility = View.VISIBLE
+                                focusedTextViews[1] = binding.buttonA3Plus
+                            }
+                            binding.linearLayoutA3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
+                            binding.SkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
+                            binding.textViewSkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
+                            binding.arrow5.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
+                        }
+                        else{
+                            binding.linearLayoutA3.setOnClickListener(null)
+                            binding.linearLayoutA3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.SkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.textViewSkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.arrow5.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                        }
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.professionSkillB1.collectLatest { value ->
+                        if (value >= 5){
+                            binding.linearLayoutB2.setOnClickListener{
+                                focusedTextViews[0]?.visibility = View.INVISIBLE
+                                focusedTextViews[1]?.visibility = View.INVISIBLE
+
+                                binding.buttonB2Minus.visibility = View.VISIBLE
+                                focusedTextViews[0] = binding.buttonB2Minus
+
+                                binding.buttonB2Plus.visibility = View.VISIBLE
+                                focusedTextViews[1] = binding.buttonB2Plus
+                            }
+                            binding.linearLayoutB2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+                            binding.SkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                            binding.textViewSkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                            binding.arrow6.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+                        }
+                        else{
+                            binding.linearLayoutB2.setOnClickListener(null)
+                            binding.linearLayoutB2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.SkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.textViewSkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.arrow6.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                        }
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.professionSkillB2.collectLatest { value ->
+                        if (value >= 5){
+                            binding.linearLayoutB3.setOnClickListener {
+                                focusedTextViews[0]?.visibility = View.INVISIBLE
+                                focusedTextViews[1]?.visibility = View.INVISIBLE
+
+                                binding.buttonB3Minus.visibility = View.VISIBLE
+                                focusedTextViews[0] = binding.buttonB3Minus
+
+                                binding.buttonB3Plus.visibility = View.VISIBLE
+                                focusedTextViews[1] = binding.buttonB3Plus
+                            }
+                            binding.linearLayoutB3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+                            binding.SkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                            binding.textViewSkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                            binding.arrow9.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+                        }
+                        else{
+                            binding.linearLayoutB3.setOnClickListener(null)
+                            binding.linearLayoutB3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.SkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.textViewSkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.arrow9.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                        }
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.professionSkillC1.collectLatest { value ->
+                        if (value >= 5){
+                            binding.linearLayoutC2.setOnClickListener{
+                                focusedTextViews[0]?.visibility = View.INVISIBLE
+                                focusedTextViews[1]?.visibility = View.INVISIBLE
+
+                                binding.buttonC2Minus.visibility = View.VISIBLE
+                                focusedTextViews[0] = binding.buttonC2Minus
+
+                                binding.buttonC2Plus.visibility = View.VISIBLE
+                                focusedTextViews[1] = binding.buttonC2Plus
+                            }
+                            binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
+                            binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                            binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                            binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
+                        }
+                        else{
+                            binding.linearLayoutC2.setOnClickListener(null)
+                            binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                        }
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.professionSkillC2.collectLatest { value ->
+                        if (value >= 5){
+                            binding.linearLayoutC3.setOnClickListener {
+                                focusedTextViews[0]?.visibility = View.INVISIBLE
+                                focusedTextViews[1]?.visibility = View.INVISIBLE
+
+                                binding.buttonC3Minus.visibility = View.VISIBLE
+                                focusedTextViews[0] = binding.buttonC3Minus
+
+                                binding.buttonC3Plus.visibility = View.VISIBLE
+                                focusedTextViews[1] = binding.buttonC3Plus
+                            }
+                            binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
+                            binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                            binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                            binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
+                        }
+                        else{
+                            binding.linearLayoutC3.setOnClickListener(null)
+                            binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                            binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                        }
+                    }
+                }
             }
         }
 
-        a2Observer = Observer<Int> { value ->
-            // Update the UI if A2 is >= 5
-            if (value >= 5){
-                binding.linearLayoutA3.setOnClickListener {
-                    focusedTextViews[0]?.visibility = View.INVISIBLE
-                    focusedTextViews[1]?.visibility = View.INVISIBLE
-
-                    binding.buttonA3Minus.visibility = View.VISIBLE
-                    focusedTextViews[0] = binding.buttonA3Minus
-
-                    binding.buttonA3Plus.visibility = View.VISIBLE
-                    focusedTextViews[1] = binding.buttonA3Plus
-                }
-                binding.linearLayoutA3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
-                binding.SkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                binding.textViewSkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                binding.arrow5.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
-            }
-            else{
-                binding.linearLayoutA3.setOnClickListener(null)
-                binding.linearLayoutA3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                binding.SkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.textViewSkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.arrow5.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-            }
-        }
-
-        b1Observer = Observer<Int> { value ->
-            // Update the UI if A1 is >= 5
-            if (value >= 5){
-                binding.linearLayoutB2.setOnClickListener{
-                    focusedTextViews[0]?.visibility = View.INVISIBLE
-                    focusedTextViews[1]?.visibility = View.INVISIBLE
-
-                    binding.buttonB2Minus.visibility = View.VISIBLE
-                    focusedTextViews[0] = binding.buttonB2Minus
-
-                    binding.buttonB2Plus.visibility = View.VISIBLE
-                    focusedTextViews[1] = binding.buttonB2Plus
-                }
-                binding.linearLayoutB2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
-                binding.SkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                binding.textViewSkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                binding.arrow6.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
-            }
-            else{
-                binding.linearLayoutB2.setOnClickListener(null)
-                binding.linearLayoutB2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                binding.SkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.textViewSkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.arrow6.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-            }
-        }
-
-        b2Observer = Observer<Int> { value ->
-            // Update the UI if A2 is >= 5
-            if (value >= 5){
-                binding.linearLayoutB3.setOnClickListener {
-                    focusedTextViews[0]?.visibility = View.INVISIBLE
-                    focusedTextViews[1]?.visibility = View.INVISIBLE
-
-                    binding.buttonB3Minus.visibility = View.VISIBLE
-                    focusedTextViews[0] = binding.buttonB3Minus
-
-                    binding.buttonB3Plus.visibility = View.VISIBLE
-                    focusedTextViews[1] = binding.buttonB3Plus
-                }
-                binding.linearLayoutB3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
-                binding.SkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                binding.textViewSkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                binding.arrow9.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
-            }
-            else{
-                binding.linearLayoutB3.setOnClickListener(null)
-                binding.linearLayoutB3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                binding.SkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.textViewSkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.arrow9.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-            }
-        }
-
-        c1Observer = Observer<Int> { value ->
-            // Update the UI if A1 is >= 5
-            if (value >= 5){
-                binding.linearLayoutC2.setOnClickListener{
-                    focusedTextViews[0]?.visibility = View.INVISIBLE
-                    focusedTextViews[1]?.visibility = View.INVISIBLE
-
-                    binding.buttonC2Minus.visibility = View.VISIBLE
-                    focusedTextViews[0] = binding.buttonC2Minus
-
-                    binding.buttonC2Plus.visibility = View.VISIBLE
-                    focusedTextViews[1] = binding.buttonC2Plus
-                }
-                binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
-                binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
-            }
-            else{
-                binding.linearLayoutC2.setOnClickListener(null)
-                binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-            }
-        }
-
-        c2Observer = Observer<Int> { value ->
-            // Update the UI if A2 is >= 5
-            if (value >= 5){
-                binding.linearLayoutC3.setOnClickListener {
-                    focusedTextViews[0]?.visibility = View.INVISIBLE
-                    focusedTextViews[1]?.visibility = View.INVISIBLE
-
-                    binding.buttonC3Minus.visibility = View.VISIBLE
-                    focusedTextViews[0] = binding.buttonC3Minus
-
-                    binding.buttonC3Plus.visibility = View.VISIBLE
-                    focusedTextViews[1] = binding.buttonC3Plus
-                }
-                binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
-                binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
-            }
-            else{
-                binding.linearLayoutC3.setOnClickListener(null)
-                binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-            }
-        }
     }
 
     private fun showDialogHelp() {

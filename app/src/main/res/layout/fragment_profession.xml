@@ -6,22 +6,20 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
-
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature_character_sheet.presentation.character_information.charFrags.professionFragment">
+        tools:context=".feature_character_sheet.presentation.character_information.child_fragments.professionFragment">
 
         <TextView
             android:id="@+id/textViewProfessionTitle"
             android:layout_width="0dp"
             app:layout_constraintWidth_percent="0.3"
             android:layout_height="wrap_content"
-            android:text='@{sharedViewModel.profession}'
             android:gravity="center"
             android:textStyle="bold|italic"
             android:textSize="25sp"

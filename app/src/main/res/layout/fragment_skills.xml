@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="sharedViewModel"
-            type="com.example.thewitcherrpg.feature_character_sheet.SharedViewModel" />
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        tools:ignore="HardcodedText"
         tools:context=".feature_character_sheet.presentation.skills.SkillsFragment">
 
 
@@ -37,7 +38,7 @@
             android:id="@+id/editIP"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text='@{`` + sharedViewModel.IP}'
+            android:text='@{`` + MainViewModel.ip}'
             android:gravity="center"
             android:imeOptions="actionDone"
             android:inputType="numberSigned"
@@ -48,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textIP"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -83,7 +84,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -110,6 +112,7 @@
 
                         <EditText
                             android:id="@+id/editText1"
+                            android:tag="Awareness"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -117,7 +120,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.awareness}'/>
+                            android:text='@{`` + MainViewModel.awareness}'/>
 
                     </LinearLayout>
 
@@ -127,7 +130,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -154,6 +158,7 @@
 
                         <EditText
                             android:id="@+id/editText2"
+                            android:tag="Business"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -161,7 +166,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.business}'/>
+                            android:text='@{`` + MainViewModel.business}'/>
 
                     </LinearLayout>
 
@@ -171,7 +176,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -198,6 +204,7 @@
 
                         <EditText
                             android:id="@+id/editText3"
+                            android:tag="Deduction"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -205,7 +212,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.deduction}' />
+                            android:text='@{`` + MainViewModel.deduction}' />
 
                     </LinearLayout>
 
@@ -215,7 +222,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -242,6 +250,7 @@
 
                         <EditText
                             android:id="@+id/editText4"
+                            android:tag="Education"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -249,7 +258,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.education}' />
+                            android:text='@{`` + MainViewModel.education}' />
 
                     </LinearLayout>
 
@@ -259,7 +268,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -286,6 +296,7 @@
 
                         <EditText
                             android:id="@+id/editText5"
+                            android:tag="Common Speech"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -293,7 +304,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.commonSpeech}' />
+                            android:text='@{`` + MainViewModel.commonSpeech}' />
 
                     </LinearLayout>
 
@@ -303,7 +314,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -330,6 +342,7 @@
 
                         <EditText
                             android:id="@+id/editText6"
+                            android:tag="Elder Speech"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -337,7 +350,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.elderSpeech}' />
+                            android:text='@{`` + MainViewModel.elderSpeech}' />
 
                     </LinearLayout>
 
@@ -347,7 +360,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -374,6 +388,7 @@
 
                         <EditText
                             android:id="@+id/editText7"
+                            android:tag="Dwarven"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -381,7 +396,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.dwarven}' />
+                            android:text='@{`` + MainViewModel.dwarven}' />
 
                     </LinearLayout>
 
@@ -391,7 +406,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -418,6 +434,7 @@
 
                         <EditText
                             android:id="@+id/editText8"
+                            android:tag="Monster Lore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -425,7 +442,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.monsterLore}' />
+                            android:text='@{`` + MainViewModel.monsterLore}' />
 
                     </LinearLayout>
 
@@ -435,7 +452,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -462,6 +480,7 @@
 
                         <EditText
                             android:id="@+id/editText9"
+                            android:tag="Social Etiquette"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -469,7 +488,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.socialEtiquette}' />
+                            android:text='@{`` + MainViewModel.socialEtiquette}' />
 
                     </LinearLayout>
 
@@ -479,7 +498,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -506,6 +526,7 @@
 
                         <EditText
                             android:id="@+id/editText10"
+                            android:tag="Streetwise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -513,7 +534,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.streetwise}' />
+                            android:text='@{`` + MainViewModel.streetwise}' />
 
                     </LinearLayout>
 
@@ -523,7 +544,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -550,6 +572,7 @@
 
                         <EditText
                             android:id="@+id/editText11"
+                            android:tag="Tactics"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -557,7 +580,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.tactics}' />
+                            android:text='@{`` + MainViewModel.tactics}' />
 
                     </LinearLayout>
 
@@ -567,7 +590,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -594,6 +618,7 @@
 
                         <EditText
                             android:id="@+id/editText12"
+                            android:tag="Teaching"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -601,7 +626,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.teaching}' />
+                            android:text='@{`` + MainViewModel.teaching}' />
 
                     </LinearLayout>
 
@@ -611,7 +636,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -638,6 +664,7 @@
 
                         <EditText
                             android:id="@+id/editText13"
+                            android:tag="Wilderness Survival"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -645,7 +672,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.wildernessSurvival}' />
+                            android:text='@{`` + MainViewModel.wildernessSurvival}' />
 
                     </LinearLayout>
 
@@ -666,7 +693,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -693,6 +721,7 @@
 
                         <EditText
                             android:id="@+id/editText14"
+                            android:tag="Brawling"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -700,7 +729,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.brawling}' />
+                            android:text='@{`` + MainViewModel.brawling}' />
 
                     </LinearLayout>
 
@@ -710,7 +739,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -737,6 +767,7 @@
 
                         <EditText
                             android:id="@+id/editText15"
+                            android:tag="Dodge/Escape"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -744,7 +775,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.dodgeEscape}' />
+                            android:text='@{`` + MainViewModel.dodgeEscape}' />
 
                     </LinearLayout>
 
@@ -754,7 +785,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -781,6 +813,7 @@
 
                         <EditText
                             android:id="@+id/editText16"
+                            android:tag="Melee"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -788,7 +821,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.melee}' />
+                            android:text='@{`` + MainViewModel.melee}' />
 
                     </LinearLayout>
 
@@ -798,7 +831,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -825,6 +859,7 @@
 
                         <EditText
                             android:id="@+id/editText17"
+                            android:tag="Riding"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -832,7 +867,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.riding}' />
+                            android:text='@{`` + MainViewModel.riding}' />
 
                     </LinearLayout>
 
@@ -842,7 +877,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -869,6 +905,7 @@
 
                         <EditText
                             android:id="@+id/editText18"
+                            android:tag="Sailing"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -876,7 +913,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.sailing}' />
+                            android:text='@{`` + MainViewModel.sailing}' />
 
                     </LinearLayout>
 
@@ -886,7 +923,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -913,6 +951,7 @@
 
                         <EditText
                             android:id="@+id/editText19"
+                            android:tag="Small Blades"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -920,7 +959,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.smallBlades}' />
+                            android:text='@{`` + MainViewModel.smallBlades}' />
 
                     </LinearLayout>
 
@@ -930,7 +969,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -957,6 +997,7 @@
 
                         <EditText
                             android:id="@+id/editText20"
+                            android:tag="Staff/Spear"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -964,7 +1005,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.staffSpear}' />
+                            android:text='@{`` + MainViewModel.staffSpear}' />
 
                     </LinearLayout>
 
@@ -974,7 +1015,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1001,6 +1043,7 @@
 
                         <EditText
                             android:id="@+id/editText21"
+                            android:tag="Swordsmanship"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1008,7 +1051,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.swordsmanship}' />
+                            android:text='@{`` + MainViewModel.swordsmanship}' />
 
                     </LinearLayout>
 
@@ -1029,7 +1072,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1056,6 +1100,7 @@
 
                         <EditText
                             android:id="@+id/editText22"
+                            android:tag="Archery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1063,7 +1108,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.archery}' />
+                            android:text='@{`` + MainViewModel.archery}' />
 
                     </LinearLayout>
 
@@ -1073,7 +1118,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1100,6 +1146,7 @@
 
                         <EditText
                             android:id="@+id/editText23"
+                            android:tag="Athletics"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1107,7 +1154,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.athletics}' />
+                            android:text='@{`` + MainViewModel.athletics}' />
 
                     </LinearLayout>
 
@@ -1117,7 +1164,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1151,7 +1199,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.crossbow}' />
+                            android:text='@{`` + MainViewModel.crossbow}' />
 
                     </LinearLayout>
 
@@ -1161,7 +1209,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1188,6 +1237,7 @@
 
                         <EditText
                             android:id="@+id/editText25"
+                            android:tag="Sleight of Hand"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1195,7 +1245,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.sleightOfHand}' />
+                            android:text='@{`` + MainViewModel.sleightOfHand}' />
 
                     </LinearLayout>
 
@@ -1205,7 +1255,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1232,6 +1283,7 @@
 
                         <EditText
                             android:id="@+id/editText26"
+                            android:tag="Stealth"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1239,7 +1291,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.stealth}' />
+                            android:text='@{`` + MainViewModel.stealth}' />
 
                     </LinearLayout>
 
@@ -1260,7 +1312,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1287,6 +1340,7 @@
 
                         <EditText
                             android:id="@+id/editText27"
+                            android:tag="Physique"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1294,7 +1348,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.physique}' />
+                            android:text='@{`` + MainViewModel.physique}' />
 
                     </LinearLayout>
 
@@ -1304,7 +1358,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1331,6 +1386,7 @@
 
                         <EditText
                             android:id="@+id/editText28"
+                            android:tag="Endurance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1338,7 +1394,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.endurance}' />
+                            android:text='@{`` + MainViewModel.endurance}' />
 
                     </LinearLayout>
 
@@ -1359,7 +1415,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1386,6 +1443,7 @@
 
                         <EditText
                             android:id="@+id/editText29"
+                            android:tag="Charisma"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1393,7 +1451,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.charisma}' />
+                            android:text='@{`` + MainViewModel.charisma}' />
 
                     </LinearLayout>
 
@@ -1403,7 +1461,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1430,6 +1489,7 @@
 
                         <EditText
                             android:id="@+id/editText30"
+                            android:tag="Deceit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1437,7 +1497,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.deceit}' />
+                            android:text='@{`` + MainViewModel.deceit}' />
 
                     </LinearLayout>
 
@@ -1447,7 +1507,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1474,6 +1535,7 @@
 
                         <EditText
                             android:id="@+id/editText31"
+                            android:tag="Fine Arts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1481,7 +1543,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.fineArts}' />
+                            android:text='@{`` + MainViewModel.fineArts}' />
 
                     </LinearLayout>
 
@@ -1491,7 +1553,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1518,6 +1581,7 @@
 
                         <EditText
                             android:id="@+id/editText32"
+                            android:tag="Gambling"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1525,7 +1589,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.gambling}' />
+                            android:text='@{`` + MainViewModel.gambling}' />
 
                     </LinearLayout>
 
@@ -1535,7 +1599,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1562,6 +1627,7 @@
 
                         <EditText
                             android:id="@+id/editText33"
+                            android:tag="Grooming and Style"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1569,7 +1635,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.groomingAndStyle}' />
+                            android:text='@{`` + MainViewModel.groomingAndStyle}' />
 
                     </LinearLayout>
 
@@ -1579,7 +1645,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1606,6 +1673,7 @@
 
                         <EditText
                             android:id="@+id/editText34"
+                            android:tag="Human Perception"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1613,7 +1681,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.humanPerception}' />
+                            android:text='@{`` + MainViewModel.humanPerception}' />
 
                     </LinearLayout>
 
@@ -1623,7 +1691,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1650,6 +1719,7 @@
 
                         <EditText
                             android:id="@+id/editText35"
+                            android:tag="Leadership"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1657,7 +1727,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.leadership}' />
+                            android:text='@{`` + MainViewModel.leadership}' />
 
                     </LinearLayout>
 
@@ -1667,7 +1737,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1694,6 +1765,7 @@
 
                         <EditText
                             android:id="@+id/editText36"
+                            android:tag="Persuasion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1701,7 +1773,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.persuasion}' />
+                            android:text='@{`` + MainViewModel.persuasion}' />
 
                     </LinearLayout>
 
@@ -1711,7 +1783,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1738,6 +1811,7 @@
 
                         <EditText
                             android:id="@+id/editText37"
+                            android:tag="Performance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1745,7 +1819,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.performance}' />
+                            android:text='@{`` + MainViewModel.performance}' />
 
                     </LinearLayout>
 
@@ -1755,7 +1829,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1782,6 +1857,7 @@
 
                         <EditText
                             android:id="@+id/editText38"
+                            android:tag="Seduction"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1789,7 +1865,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.seduction}' />
+                            android:text='@{`` + MainViewModel.seduction}' />
 
                     </LinearLayout>
 
@@ -1810,7 +1886,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1837,6 +1914,7 @@
 
                         <EditText
                             android:id="@+id/editText39"
+                            android:tag="Alchemy"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1844,7 +1922,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.alchemy}' />
+                            android:text='@{`` + MainViewModel.alchemy}' />
 
                     </LinearLayout>
 
@@ -1854,7 +1932,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1881,6 +1960,7 @@
 
                         <EditText
                             android:id="@+id/editText40"
+                            android:tag="Crafting"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1888,7 +1968,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.crafting}' />
+                            android:text='@{`` + MainViewModel.crafting}' />
 
                     </LinearLayout>
 
@@ -1898,7 +1978,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1925,6 +2006,7 @@
 
                         <EditText
                             android:id="@+id/editText41"
+                            android:tag="Disguise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1932,7 +2014,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.disguise}' />
+                            android:text='@{`` + MainViewModel.disguise}' />
 
                     </LinearLayout>
 
@@ -1942,7 +2024,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -1969,6 +2052,7 @@
 
                         <EditText
                             android:id="@+id/editText42"
+                            android:tag="First Aid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -1976,7 +2060,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.firstAid}' />
+                            android:text='@{`` + MainViewModel.firstAid}' />
 
                     </LinearLayout>
 
@@ -1986,7 +2070,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2013,6 +2098,7 @@
 
                         <EditText
                             android:id="@+id/editText43"
+                            android:tag="Forgery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2020,7 +2106,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.forgery}' />
+                            android:text='@{`` + MainViewModel.forgery}' />
 
                     </LinearLayout>
 
@@ -2030,7 +2116,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2057,6 +2144,7 @@
 
                         <EditText
                             android:id="@+id/editText44"
+                            android:tag="Pick Lock"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2064,7 +2152,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.pickLock}' />
+                            android:text='@{`` + MainViewModel.pickLock}' />
 
                     </LinearLayout>
 
@@ -2074,7 +2162,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2101,6 +2190,7 @@
 
                         <EditText
                             android:id="@+id/editText45"
+                            android:tag="Trap Crafting"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2108,7 +2198,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.trapCrafting}' />
+                            android:text='@{`` + MainViewModel.trapCrafting}' />
 
                     </LinearLayout>
 
@@ -2129,7 +2219,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2156,6 +2247,7 @@
 
                         <EditText
                             android:id="@+id/editText46"
+                            android:tag="Courage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2163,7 +2255,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.courage}' />
+                            android:text='@{`` + MainViewModel.courage}' />
 
                     </LinearLayout>
 
@@ -2173,7 +2265,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2200,6 +2293,7 @@
 
                         <EditText
                             android:id="@+id/editText47"
+                            android:tag="Hex Weaving"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2207,7 +2301,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.hexWeaving}' />
+                            android:text='@{`` + MainViewModel.hexWeaving}' />
 
                     </LinearLayout>
 
@@ -2217,7 +2311,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2244,6 +2339,7 @@
 
                         <EditText
                             android:id="@+id/editText48"
+                            android:tag="Intimidation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2251,7 +2347,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.intimidation}' />
+                            android:text='@{`` + MainViewModel.intimidation}' />
 
                     </LinearLayout>
 
@@ -2261,7 +2357,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2288,6 +2385,7 @@
 
                         <EditText
                             android:id="@+id/editText49"
+                            android:tag="Spell Casting"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2295,7 +2393,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.spellCasting}' />
+                            android:text='@{`` + MainViewModel.spellCasting}' />
 
                     </LinearLayout>
 
@@ -2305,7 +2403,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2332,6 +2431,7 @@
 
                         <EditText
                             android:id="@+id/editText50"
+                            android:tag="Resist Magic"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2339,7 +2439,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.resistMagic}' />
+                            android:text='@{`` + MainViewModel.resistMagic}' />
 
                     </LinearLayout>
 
@@ -2349,7 +2449,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2376,6 +2477,7 @@
 
                         <EditText
                             android:id="@+id/editText51"
+                            android:tag="Resist Coercion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2383,7 +2485,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.resistCoercion}' />
+                            android:text='@{`` + MainViewModel.resistCoercion}' />
 
                     </LinearLayout>
 
@@ -2393,7 +2495,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -2420,6 +2523,7 @@
 
                         <EditText
                             android:id="@+id/editText52"
+                            android:tag="Ritual Crafting"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"
@@ -2427,7 +2531,7 @@
                             android:gravity="center"
                             android:maxLength="2"
                             android:singleLine="true"
-                            android:text='@{`` + sharedViewModel.ritualCrafting}' />
+                            android:text='@{`` + MainViewModel.ritualCrafting}' />
 
                     </LinearLayout>
 

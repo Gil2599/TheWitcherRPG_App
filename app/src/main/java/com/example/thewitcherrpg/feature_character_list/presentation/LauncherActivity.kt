@@ -4,14 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
-import com.example.thewitcherrpg.feature_character_list.domain.model.Character
+import com.example.thewitcherrpg.core.domain.model.Character
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,8 +27,6 @@ class LauncherActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     private lateinit var addButton: FloatingActionButton
 
-    private var characterList = ArrayList<Character>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityLauncherBinding = ActivityLauncherBinding.inflate(layoutInflater)
@@ -37,7 +38,6 @@ class LauncherActivity : AppCompatActivity() {
         addButton = binding.addButton
 
         addButton.setOnClickListener() {
-
             val intent = Intent(this, CharCreationActivity::class.java)
             this.startActivity(intent)
         }
@@ -49,10 +49,14 @@ class LauncherActivity : AppCompatActivity() {
         mCharListViewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
 
         lifecycleScope.launch {
-            mCharListViewModel.characterList.collectLatest {
-                adapter.setData(characterList)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mCharListViewModel.characterList.collectLatest {
+                        adapter.setData(it)
+                    }
+                }
             }
         }
-
     }
 }

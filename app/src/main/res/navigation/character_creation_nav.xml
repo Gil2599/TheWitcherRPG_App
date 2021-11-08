@@ -23,10 +23,17 @@
         <action
             android:id="@+id/action_charCreation_secFrag_to_charCreation_thirdFrag2"
             app:destination="@id/charCreation_thirdFrag" />
+        <action
+            android:id="@+id/action_charCreation_secFrag_to_charCreation_firstFrag"
+            app:destination="@id/charCreation_firstFrag" />
     </fragment>
     <fragment
         android:id="@+id/charCreation_thirdFrag"
         android:name="com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationThirdFrag"
         android:label="fragment_char_creation_third"
-        tools:layout="@layout/fragment_char_creation_third" />
+        tools:layout="@layout/fragment_char_creation_third" >
+        <action
+            android:id="@+id/action_charCreation_thirdFrag_to_charCreation_secFrag"
+            app:destination="@id/charCreation_secFrag" />
+    </fragment>
 </navigation>

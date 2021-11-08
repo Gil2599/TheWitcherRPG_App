@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/charMagicFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.CharMagicFragment"
+        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments.CharMagicFragment"
         android:label="CharMagicFragment" >
         <action
             android:id="@+id/action_charMagicFragment_to_spellAddFragment"

@@ -2,22 +2,26 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.feature_character_sheet.SharedViewModel
-import com.example.thewitcherrpg.databinding.*
+import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
+import com.example.thewitcherrpg.databinding.CustomDialogWeaponBinding
+import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 
 class EquipmentFragment : Fragment() {
     private var _binding: FragmentEquipmentBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,27 +31,27 @@ class EquipmentFragment : Fragment() {
         val view = binding.root
         
         binding.imageViewHead.setOnClickListener{
-            showArmorDialog(sharedViewModel.equippedHead.value)
+            showArmorDialog(mainCharacterViewModel.equippedHead.value)
         }
 
         binding.imageViewChest.setOnClickListener{
-            showArmorDialog(sharedViewModel.equippedChest.value)
+            showArmorDialog(mainCharacterViewModel.equippedChest.value)
         }
 
         binding.imageViewLHand.setOnClickListener{
-            showArmorDialog(sharedViewModel.equippedChest.value, EquipmentTypes.LARM)
+            showArmorDialog(mainCharacterViewModel.equippedChest.value, EquipmentTypes.LARM)
         }
 
         binding.imageViewRHand.setOnClickListener{
-            showArmorDialog(sharedViewModel.equippedChest.value, EquipmentTypes.RARM)
+            showArmorDialog(mainCharacterViewModel.equippedChest.value, EquipmentTypes.RARM)
         }
 
         binding.imageViewRLeg.setOnClickListener{
-            showArmorDialog(sharedViewModel.equippedLegs.value, EquipmentTypes.RLEG)
+            showArmorDialog(mainCharacterViewModel.equippedLegs.value, EquipmentTypes.RLEG)
         }
 
         binding.imageViewLLeg.setOnClickListener{
-            showArmorDialog(sharedViewModel.equippedLegs.value, EquipmentTypes.LLEG)
+            showArmorDialog(mainCharacterViewModel.equippedLegs.value, EquipmentTypes.LLEG)
         }
 
         binding.imageViewSword.setOnClickListener{
@@ -72,7 +76,7 @@ class EquipmentFragment : Fragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val bind : CustomDialogWeaponBinding = CustomDialogWeaponBinding.inflate(layoutInflater)
-        bind.textView57.text = sharedViewModel.equippedHead.value?.stoppingPower.toString()
+        bind.textView57.text = mainCharacterViewModel.equippedHead.value?.stoppingPower.toString()
 
 
         dialog.setContentView(bind.root)
@@ -131,10 +135,10 @@ class EquipmentFragment : Fragment() {
 
             bind.buttonEquipUnequip.setOnClickListener {
 
-                sharedViewModel.unequipItem(armorItem)
+                mainCharacterViewModel.unEquipItem(armorItem)
                 Toast.makeText(
                     context,
-                    "${sharedViewModel.name.value} has unequipped ${armorItem.name}",
+                    "${mainCharacterViewModel.name.value} has unequipped ${armorItem.name}",
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -143,13 +147,13 @@ class EquipmentFragment : Fragment() {
 
             bind.imageViewMinus.setOnClickListener{
                 if (bind.textCurrentSP.text.toString().toInt() > 0){
-                    bind.textCurrentSP.text = sharedViewModel.updateItemSP(armorItem, increase = false, armorType).toString()
+                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(armorItem, increase = false, armorType).toString()
                 }
             }
 
             bind.imageViewPlus.setOnClickListener{
                 if (bind.textCurrentSP.text.toString().toInt() < armorItem.stoppingPower){
-                    bind.textCurrentSP.text = sharedViewModel.updateItemSP(armorItem, increase = true, armorType).toString()
+                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(armorItem, increase = true, armorType).toString()
                 }
             }
 

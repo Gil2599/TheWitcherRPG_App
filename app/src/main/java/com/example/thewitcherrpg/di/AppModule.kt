@@ -1,14 +1,13 @@
 package com.example.thewitcherrpg.di
 
 import android.app.Application
-import androidx.lifecycle.ViewModelProvider
-import com.example.thewitcherrpg.feature_character_list.data.data_source.CharacterDao
-import com.example.thewitcherrpg.feature_character_list.data.data_source.CharacterDatabase
-import com.example.thewitcherrpg.feature_character_list.data.repository.CharacterRepositoryImpl
-import com.example.thewitcherrpg.feature_character_list.domain.repository.CharacterRepository
+import com.example.thewitcherrpg.core.data.data_source.CharacterDao
+import com.example.thewitcherrpg.core.data.data_source.CharacterDatabase
+import com.example.thewitcherrpg.core.data.repository.CharacterRepositoryImpl
+import com.example.thewitcherrpg.core.domain.repository.CharacterRepository
+import com.example.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.example.thewitcherrpg.feature_character_list.domain.use_cases.CharacterListUseCases
 import com.example.thewitcherrpg.feature_character_list.domain.use_cases.GetCharacterListUseCase
-import com.example.thewitcherrpg.feature_character_list.presentation.CharacterListViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,6 +42,17 @@ object AppModule {
     fun provideCharacterSheetUseCases(repository: CharacterRepository): CharacterListUseCases {
         return CharacterListUseCases(
             getCharacterListUseCase = GetCharacterListUseCase(repository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideCharacterCreationUseCases(repository: CharacterRepository): CharacterCreationUseCases{
+        return CharacterCreationUseCases(
+            addCharacterUseCase = AddCharacterUseCase(repository),
+            getDefiningSkillInfoUseCase = GetDefiningSkillInfoUseCase(),
+            getDefiningSkillUseCase = GetDefiningSkillUseCase(),
+            getRacePerkUseCase = GetRacePerkUseCase()
         )
     }
 

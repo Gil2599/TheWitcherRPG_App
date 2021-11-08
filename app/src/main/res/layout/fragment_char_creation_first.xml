@@ -1,199 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".feature_character_creation.presentation.CharCreationFirstFrag">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Character Gender: "
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/genderSpinner"
-        app:layout_constraintEnd_toStartOf="@+id/genderSpinner"
-        app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/genderSpinner"
-        app:layout_constraintVertical_bias="0.423" />
+    <data>
+        <variable
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
+    </data>
 
-    <Spinner
-        android:id="@+id/genderSpinner"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:padding="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCharName"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView53"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="General Information"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="25sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002" />
-
-    <Button
-        android:id="@+id/buttonToSecFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NEXT"
-        android:background="@drawable/outline_bkg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
-
-    <EditText
-        android:id="@+id/etCharName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="7"
-        android:hint="Character Name"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:maxLength="15"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView53"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/charRace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Character Race: "
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/raceSpinner"
-        app:layout_constraintEnd_toEndOf="@+id/textGender"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/raceSpinner" />
-
-    <Spinner
-        android:id="@+id/raceSpinner"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/genderSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/genderSpinner"
-        app:layout_constraintVertical_bias="0.025" />
-
-    <TextView
-        android:id="@+id/textView58"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Age:"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/charRace"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/charRace"
-        app:layout_constraintVertical_bias="0.01" />
-
-    <EditText
-        android:id="@+id/etAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.4"
-        android:ems="3"
-        android:gravity="start"
-        android:imeOptions="actionDone"
-        android:inputType="numberSigned"
-        android:maxLength="4"
-        app:layout_constraintBottom_toBottomOf="@+id/textView58"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/raceSpinner"
-        app:layout_constraintTop_toTopOf="@+id/textView58"
-        app:layout_constraintVertical_bias="0.619" />
-
-    <TextView
-        android:id="@+id/textProfession"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profession:"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/profSpinner"
-        app:layout_constraintEnd_toStartOf="@+id/profSpinner"
-        app:layout_constraintHorizontal_bias="0.691"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profSpinner"
-        app:layout_constraintVertical_bias="0.538" />
-
-    <Spinner
-        android:id="@+id/profSpinner"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:padding="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etAge"
-        app:layout_constraintTop_toBottomOf="@+id/etAge"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textDefiningSkill"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/outline_bkg"
-        android:gravity="center"
-        android:text="Defining SKill: "
-        android:textColor="@color/teal_200"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRacePerks"
-        app:layout_constraintVertical_bias="0.089" />
+        android:layout_height="match_parent"
+        tools:context=".feature_character_creation.presentation.CharCreationFirstFrag">
 
-    <TextView
-        android:id="@+id/textRacePerks"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/outline_bkg"
-        android:gravity="center"
-        android:text="Perks: "
-        android:textColor="@color/teal_200"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profSpinner"
-        app:layout_constraintVertical_bias="0.046" />
+        <TextView
+            android:id="@+id/textGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Character Gender: "
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/genderSpinner"
+            app:layout_constraintEnd_toStartOf="@+id/genderSpinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/genderSpinner"
+            app:layout_constraintVertical_bias="0.423" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etCharNameLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="Character Name"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintStart_toStartOf="@+id/textGender"
+            app:layout_constraintTop_toBottomOf="@+id/textView53"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="HardcodedText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCharName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:inputType="text"
+                android:maxLength="19"
+                android:text="@={MainViewModel.name}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etCharAgeLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/genderSpinner"
+            app:layout_constraintStart_toEndOf="@+id/etCharNameLayout"
+            app:layout_constraintTop_toTopOf="@+id/etCharNameLayout"
+            app:layout_constraintWidth_percent="0.2"
+            tools:ignore="HardcodedText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCharAge"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="4"
+                android:text="@={MainViewModel.age}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/genderSpinner"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textGender"
+            app:layout_constraintTop_toBottomOf="@+id/etCharNameLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent="0.38" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="General Information"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.002" />
+
+        <Button
+            android:id="@+id/buttonToSecFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/outline_bkg"
+            android:text="NEXT"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.96" />
+
+        <TextView
+            android:id="@+id/charRace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Character Race: "
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/raceSpinner"
+            app:layout_constraintEnd_toEndOf="@+id/textGender"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/raceSpinner" />
+
+        <Spinner
+            android:id="@+id/raceSpinner"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/genderSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/genderSpinner"
+            app:layout_constraintWidth_percent="0.38" />
+
+        <TextView
+            android:id="@+id/textProfession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profession:"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/profSpinner"
+            app:layout_constraintEnd_toStartOf="@+id/profSpinner"
+            app:layout_constraintHorizontal_bias="0.691"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profSpinner"
+            app:layout_constraintVertical_bias="0.538" />
+
+        <Spinner
+            android:id="@+id/profSpinner"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            app:layout_constraintStart_toStartOf="@+id/raceSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/raceSpinner"
+            app:layout_constraintWidth_percent="0.38" />
+
+        <TextView
+            android:id="@+id/textDefiningSkill"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/outline_bkg"
+            android:gravity="center"
+            android:text="Defining SKill: "
+            android:textColor="@color/teal_200"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textRacePerks"
+            app:layout_constraintVertical_bias="0.089" />
+
+        <TextView
+            android:id="@+id/textRacePerks"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/outline_bkg"
+            android:gravity="center"
+            android:text="Perks: "
+            android:textColor="@color/teal_200"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profSpinner" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

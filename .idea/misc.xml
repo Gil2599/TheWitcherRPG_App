@@ -4,11 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char.xml" value="0.1" />
+        <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_creation_first.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_creation_sec.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_creation_third.xml" value="0.20989583333333334" />
         <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_hexes.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_info.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_invocations.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_magic.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_char_rituals.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_equipment_parent.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_magic_parent.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_skills.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/Hannah/StudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_stats.xml" value="0.20989583333333334" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/gradient_bkg.xml" value="0.2703125" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/image_bkg.xml" value="0.2703125" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/img_bkg.xml" value="0.2703125" />
@@ -138,6 +145,7 @@
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_row.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_creation_first.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_info.xml" value="0.5" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_invocations.xml" value="0.22" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_magic.xml" value="0.22" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_spells.xml" value="0.36666666666666664" />
