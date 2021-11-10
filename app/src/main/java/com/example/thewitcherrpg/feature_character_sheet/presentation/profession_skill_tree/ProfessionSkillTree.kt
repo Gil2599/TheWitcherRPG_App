@@ -476,10 +476,10 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonC2Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonC2Plus
                             }
-                            binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
-                            binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                            binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                            binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
+                            binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
+                            binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
+                            binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
+                            binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
                         }
                         else{
                             binding.linearLayoutC2.setOnClickListener(null)
@@ -503,10 +503,10 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonC3Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonC3Plus
                             }
-                            binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
-                            binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                            binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                            binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.red)
+                            binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
+                            binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
+                            binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
+                            binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
                         }
                         else{
                             binding.linearLayoutC3.setOnClickListener(null)

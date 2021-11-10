@@ -37,7 +37,7 @@
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutC1"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutC1"
-            app:tint="@color/red"/>
+            app:tint="@color/light_red"/>
 
         <ImageView
             android:id="@+id/arrow7"
@@ -50,7 +50,7 @@
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutC2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutC2"
-            app:tint="@color/red"/>
+            app:tint="@color/light_red"/>
 
         <ImageView
             android:id="@+id/arrow6"
@@ -101,7 +101,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/arrow2"
             app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
-            app:tint="@color/red"/>
+            app:tint="@color/light_red"/>
 
         <ImageView
             android:id="@+id/arrow2"
@@ -640,7 +640,7 @@
             app:layout_constraintHeight_percent="0.04"
             android:layout_marginTop="1dp"
             android:gravity="center"
-            android:textColor="@color/red"
+            android:textColor="@color/light_red"
             android:textSize="17sp"
             android:textStyle="bold"
             android:autoSizeTextType="uniform"
@@ -655,7 +655,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/light_red"
             android:orientation="vertical"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -673,7 +673,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/red" />
+                android:textColor="@color/light_red" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutC1Skill"
@@ -702,7 +702,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillC1}'
-                    android:textColor="@color/red"
+                    android:textColor="@color/light_red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -729,7 +729,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/light_red"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
@@ -746,7 +746,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/red" />
+                android:textColor="@color/light_red" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutC2Skill"
@@ -775,7 +775,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillC2}'
-                    android:textColor="@color/red"
+                    android:textColor="@color/light_red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -803,7 +803,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/light_red"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@+id/arrow7"
@@ -820,7 +820,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/red" />
+                android:textColor="@color/light_red" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutC3Skill"
@@ -849,7 +849,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillC3}'
-                    android:textColor="@color/red"
+                    android:textColor="@color/light_red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 

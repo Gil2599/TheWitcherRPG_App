@@ -38,7 +38,7 @@
                 android:layout_weight= "0.5"
                 android:gravity="center"
                 android:text="@string/HP"
-                android:textColor="@color/grayText"
+                android:textColor="@color/blueish_gray"
                 android:textSize="30sp" />
 
             <Button
@@ -75,7 +75,7 @@
                 android:gravity="center"
                 android:paddingHorizontal="8dp"
                 android:text="@string/Stamina"
-                android:textColor="@color/grayText"
+                android:textColor="@color/blueish_gray"
                 android:textSize="30sp" />
 
             <Button
@@ -111,7 +111,7 @@
                 android:gravity="center"
                 android:paddingHorizontal="8dp"
                 android:text="@string/Crowns"
-                android:textColor="@color/grayText"
+                android:textColor="@color/blueish_gray"
                 android:textSize="30sp" />
 
             <Button

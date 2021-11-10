@@ -23,7 +23,7 @@
             android:gravity="center"
             android:textStyle="bold|italic"
             android:textSize="25sp"
-            android:textColor="@color/grayText"
+            android:textColor="@color/blueish_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
