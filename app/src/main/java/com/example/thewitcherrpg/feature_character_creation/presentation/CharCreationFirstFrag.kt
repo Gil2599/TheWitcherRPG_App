@@ -51,6 +51,8 @@ class CharCreationFirstFrag : Fragment() {
                 Navigation.findNavController(view).navigate(R.id.action_charCreation_firstFrag_to_charCreation_secFrag)
             }
         }
+        binding.customTitle.setTitle("General Information")
+        binding.customTitle.setTitleSize(20F)
 
         return view
     }

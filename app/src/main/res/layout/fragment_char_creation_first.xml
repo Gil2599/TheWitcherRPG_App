@@ -31,7 +31,7 @@
             android:id="@+id/etCharNameLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="32dp"
             android:hint="Character Name"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
@@ -40,7 +40,7 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:layout_constraintStart_toStartOf="@+id/textGender"
-            app:layout_constraintTop_toBottomOf="@+id/textView53"
+            app:layout_constraintTop_toBottomOf="@+id/customTitle"
             app:layout_constraintWidth_percent="0.5"
             tools:ignore="HardcodedText">
 
@@ -96,22 +96,14 @@
             app:layout_constraintVertical_bias="0.0"
             app:layout_constraintWidth_percent="0.38" />
 
-        <TextView
-            android:id="@+id/textView53"
-            android:layout_width="wrap_content"
+        <com.example.thewitcherrpg.core.presentation.CustomTitleView
+            android:id="@+id/customTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="General Information"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.002" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/buttonToSecFrag"
