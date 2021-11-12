@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -25,12 +26,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
+import android.app.Activity
+
+
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var binding: ActivityMainBinding
+    private var characterId: Int = -1
 
     private val mainCharacterViewModel: MainCharacterViewModel by viewModels()
 
@@ -39,9 +45,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val characterId: Int = intent.getIntExtra("CHARACTER_ID", -1)//Get character id
+        characterId = intent.getIntExtra("CHARACTER_ID", -1) //Get character id
 
-        mainCharacterViewModel.getCharacter(characterId) //Initialize viewModel with character data
+        try {
+            mainCharacterViewModel.getCharacter(characterId) //Initialize viewModel with character data
+        } catch (ex: KotlinNullPointerException){
+            Toast.makeText(this, "Unexpected error has occurred", Toast.LENGTH_SHORT).show()
+        }
 
         //Set up navigation drawer
         val drawerLayout = binding.drawerLayout
@@ -119,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     private fun deleteCharacter() {
         val builder = AlertDialog.Builder(this)
         builder.setPositiveButton("Yes"){_, _ ->
-            //mCharListViewModel.deleteChar(characterData)
+            mainCharacterViewModel.deleteCharacter(characterId)
 
             //Deletes the character image associated with this character
             val path = mainCharacterViewModel.image.value.toString()

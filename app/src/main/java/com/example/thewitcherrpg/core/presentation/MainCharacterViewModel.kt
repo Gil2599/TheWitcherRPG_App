@@ -1,8 +1,11 @@
 package com.example.thewitcherrpg.core.presentation
 
 import android.graphics.Bitmap
+import android.util.Log
+//import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +13,8 @@ import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.core.Resource
 import com.example.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.example.thewitcherrpg.core.domain.model.Character
-import com.example.thewitcherrpg.feature_character_creation.presentation.SaveCharacterState
-import com.example.thewitcherrpg.feature_character_list.domain.use_cases.GetCharacterUseCase
+import com.example.thewitcherrpg.feature_character_creation.presentation.CharacterState
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.GetCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.profession_tree.OnProfessionSkillChangeUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
@@ -23,6 +26,7 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.Equi
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,7 +47,8 @@ class MainCharacterViewModel @Inject constructor(
     private val getMagicListUseCase: GetMagicListUseCase,
     private val castMagicUseCase: CastMagicUseCase,
     private val getEquipmentListUseCase: GetEquipmentListUseCase,
-    private val saveCharacterUseCase: SaveCharacterUseCase
+    private val saveCharacterUseCase: SaveCharacterUseCase,
+    private val deleteCharacterUseCase: DeleteCharacterUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -53,11 +58,14 @@ class MainCharacterViewModel @Inject constructor(
     private val _inCharacterCreation = mutableStateOf(false)
     val inCharacterCreation: State<Boolean> = _inCharacterCreation
 
-    private val _addState = MutableStateFlow(SaveCharacterState())
+    private val _addState = MutableStateFlow(CharacterState())
     val addState = _addState.asStateFlow()
 
-    private val _image = mutableStateOf("")
-    val image: State<String> = _image
+    private val _deleteState = MutableStateFlow(CharacterState())
+    val deleteState = _deleteState.asStateFlow()
+
+    private val _image = MutableLiveData("")
+    val image: LiveData<String> = _image
 
     val name = MutableLiveData("")
 
@@ -420,7 +428,7 @@ class MainCharacterViewModel @Inject constructor(
         characterCreationUseCases.addCharacterUseCase(
             Character(
                 id = 0,
-                imagePath = _image.value,
+                imagePath = _image.value!!,
                 name = name.value!!,
                 iP = _ip.value,
                 race = _race.value,
@@ -506,27 +514,27 @@ class MainCharacterViewModel @Inject constructor(
         ).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _addState.value = SaveCharacterState(success = true)
+                    _addState.value = CharacterState(success = true)
                 }
                 is Resource.Error -> {
-                    _addState.value = SaveCharacterState(
+                    _addState.value = CharacterState(
                         error = result.message ?: "An unexpected error occurred"
                     )
                 }
                 is Resource.Loading -> {
-                    _addState.value = SaveCharacterState(isLoading = true)
+                    _addState.value = CharacterState(isLoading = true)
                 }
             }
 
         }.launchIn(viewModelScope)
     }
 
-    fun saveCharacter(){
+    fun saveCharacter() {
 
         saveCharacterUseCase(
             Character(
                 id = _id.value,
-                imagePath = _image.value,
+                imagePath = _image.value!!,
                 name = name.value!!,
                 iP = _ip.value,
                 race = _race.value,
@@ -648,15 +656,15 @@ class MainCharacterViewModel @Inject constructor(
         ).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _addState.value = SaveCharacterState(success = true)
+                    _addState.value = CharacterState(success = true)
                 }
                 is Resource.Error -> {
-                    _addState.value = SaveCharacterState(
+                    _addState.value = CharacterState(
                         error = result.message ?: "An unexpected error occurred"
                     )
                 }
                 is Resource.Loading -> {
-                    _addState.value = SaveCharacterState(isLoading = true)
+                    _addState.value = CharacterState(isLoading = true)
                 }
             }
 
@@ -664,158 +672,190 @@ class MainCharacterViewModel @Inject constructor(
 
     }
 
+    fun deleteCharacter(characterId: Int) {
+        deleteCharacterUseCase(characterId).onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _deleteState.value = CharacterState(success = true)
+                }
+                is Resource.Error -> {
+                    _deleteState.value = CharacterState(
+                        error = result.message ?: "An unexpected error occurred"
+                    )
+                }
+                is Resource.Loading -> {
+                    _deleteState.value = CharacterState(isLoading = true)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
     fun getCharacter(id: Int) {
-        getCharacterUseCase(id).onEach { characterData ->
-            _id.value = characterData.id
-            _image.value = characterData.imagePath
-            name.value = characterData.name
-            _ip.value = characterData.iP
-            _race.value = characterData.race
-            _gender.value = characterData.gender
-            age.value = characterData.age.toString()
-            _profession.value = characterData.profession
-            _definingSkill.value = characterData.definingSkill
-            _definingSkillInfo.value = characterData.definingSkillInfo
-            _crowns.value = characterData.crowns
+        getCharacterUseCase(id).onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    val characterData = result.data!!
+                    _id.value = characterData.id
+                    _image.value = characterData.imagePath
+                    name.value = characterData.name
+                    _ip.value = characterData.iP
+                    _race.value = characterData.race
+                    _gender.value = characterData.gender
+                    age.value = characterData.age.toString()
+                    _profession.value = characterData.profession
+                    _definingSkill.value = characterData.definingSkill
+                    _definingSkillInfo.value = characterData.definingSkillInfo
+                    _crowns.value = characterData.crowns
 
-            //Profession Skills
-            _professionSkillA1.value = characterData.professionSkillA1
-            _professionSkillA2.value = characterData.professionSkillA2
-            _professionSkillA3.value = characterData.professionSkillA3
-            _professionSkillB1.value = characterData.professionSkillB1
-            _professionSkillB2.value = characterData.professionSkillB2
-            _professionSkillB3.value = characterData.professionSkillB3
-            _professionSkillC1.value = characterData.professionSkillC1
-            _professionSkillC2.value = characterData.professionSkillC2
-            _professionSkillC3.value = characterData.professionSkillC3
+                    //Profession Skills
+                    _professionSkillA1.value = characterData.professionSkillA1
+                    _professionSkillA2.value = characterData.professionSkillA2
+                    _professionSkillA3.value = characterData.professionSkillA3
+                    _professionSkillB1.value = characterData.professionSkillB1
+                    _professionSkillB2.value = characterData.professionSkillB2
+                    _professionSkillB3.value = characterData.professionSkillB3
+                    _professionSkillC1.value = characterData.professionSkillC1
+                    _professionSkillC2.value = characterData.professionSkillC2
+                    _professionSkillC3.value = characterData.professionSkillC3
 
-            //Stats
-            _intelligence.value = characterData.intelligence
-            _ref.value = characterData.reflex
-            _dex.value = characterData.dexterity
-            _body.value = characterData.body
-            _spd.value = characterData.speed
-            _emp.value = characterData.empathy
-            _cra.value = characterData.craftsmanship
-            _will.value = characterData.will
-            _luck.value = characterData.luck
-            _stun.value = characterData.stun
-            _run.value = characterData.run
-            _leap.value = characterData.leap
-            _maxHP.value = characterData.MaxHP
-            _hp.value = characterData.hp
-            _maxSta.value = characterData.MaxStamina
-            _sta.value = characterData.stamina
-            _enc.value = characterData.encumbrance
-            _rec.value = characterData.recovery
-            _punch.value = characterData.punch
-            _kick.value = characterData.kick
+                    //Stats
+                    _intelligence.value = characterData.intelligence
+                    _ref.value = characterData.reflex
+                    _dex.value = characterData.dexterity
+                    _body.value = characterData.body
+                    _spd.value = characterData.speed
+                    _emp.value = characterData.empathy
+                    _cra.value = characterData.craftsmanship
+                    _will.value = characterData.will
+                    _luck.value = characterData.luck
+                    _stun.value = characterData.stun
+                    _run.value = characterData.run
+                    _leap.value = characterData.leap
+                    _maxHP.value = characterData.MaxHP
+                    _hp.value = characterData.hp
+                    _maxSta.value = characterData.MaxStamina
+                    _sta.value = characterData.stamina
+                    _enc.value = characterData.encumbrance
+                    _rec.value = characterData.recovery
+                    _punch.value = characterData.punch
+                    _kick.value = characterData.kick
 
-            //Skills
-            _awareness.value = characterData.awareness
-            _business.value = characterData.business
-            _deduction.value = characterData.deduction
-            _education.value = characterData.education
-            _commonSpeech.value = characterData.commonSpeech
-            _elderSpeech.value = characterData.elderSpeech
-            _dwarven.value = characterData.dwarven
-            _monsterLore.value = characterData.monsterLore
-            _socialEtiquette.value = characterData.socialEtiquette
-            _streetwise.value = characterData.streetwise
-            _tactics.value = characterData.tactics
-            _teaching.value = characterData.teaching
-            _wildernessSurvival.value = characterData.wildernessSurvival
-            _brawling.value = characterData.brawling
-            _dodgeEscape.value = characterData.dodgeEscape
-            _melee.value = characterData.melee
-            _riding.value = characterData.riding
-            _sailing.value = characterData.sailing
-            _smallBlades.value = characterData.smallBlades
-            _staffSpear.value = characterData.staffSpear
-            _swordsmanship.value = characterData.swordsmanship
-            _archery.value = characterData.archery
-            _athletics.value = characterData.athletics
-            _crossbow.value = characterData.crossbow
-            _sleightOfHand.value = characterData.sleightOfHand
-            _stealth.value = characterData.stealth
-            _physique.value = characterData.physique
-            _endurance.value = characterData.endurance
-            _charisma.value = characterData.charisma
-            _deceit.value = characterData.deceit
-            _fineArts.value = characterData.fineArts
-            _gambling.value = characterData.gambling
-            _groomingAndStyle.value = characterData.groomingAndStyle
-            _humanPerception.value = characterData.humanPerception
-            _leadership.value = characterData.leadership
-            _persuasion.value = characterData.persuasion
-            _performance.value = characterData.performance
-            _seduction.value = characterData.seduction
-            _alchemy.value = characterData.alchemy
-            _crafting.value = characterData.crafting
-            _disguise.value = characterData.disguise
-            _firstAid.value = characterData.firstAid
-            _forgery.value = characterData.forgery
-            _pickLock.value = characterData.pickLock
-            _trapCrafting.value = characterData.trapCrafting
-            _courage.value = characterData.courage
-            _hexWeaving.value = characterData.hexWeaving
-            _intimidation.value = characterData.intimidation
-            _spellCasting.value = characterData.spellCasting
-            _resistMagic.value = characterData.resistMagic
-            _resistCoercion.value = characterData.resistCoercion
-            _ritualCrafting.value = characterData.ritualCrafting
+                    //Skills
+                    _awareness.value = characterData.awareness
+                    _business.value = characterData.business
+                    _deduction.value = characterData.deduction
+                    _education.value = characterData.education
+                    _commonSpeech.value = characterData.commonSpeech
+                    _elderSpeech.value = characterData.elderSpeech
+                    _dwarven.value = characterData.dwarven
+                    _monsterLore.value = characterData.monsterLore
+                    _socialEtiquette.value = characterData.socialEtiquette
+                    _streetwise.value = characterData.streetwise
+                    _tactics.value = characterData.tactics
+                    _teaching.value = characterData.teaching
+                    _wildernessSurvival.value = characterData.wildernessSurvival
+                    _brawling.value = characterData.brawling
+                    _dodgeEscape.value = characterData.dodgeEscape
+                    _melee.value = characterData.melee
+                    _riding.value = characterData.riding
+                    _sailing.value = characterData.sailing
+                    _smallBlades.value = characterData.smallBlades
+                    _staffSpear.value = characterData.staffSpear
+                    _swordsmanship.value = characterData.swordsmanship
+                    _archery.value = characterData.archery
+                    _athletics.value = characterData.athletics
+                    _crossbow.value = characterData.crossbow
+                    _sleightOfHand.value = characterData.sleightOfHand
+                    _stealth.value = characterData.stealth
+                    _physique.value = characterData.physique
+                    _endurance.value = characterData.endurance
+                    _charisma.value = characterData.charisma
+                    _deceit.value = characterData.deceit
+                    _fineArts.value = characterData.fineArts
+                    _gambling.value = characterData.gambling
+                    _groomingAndStyle.value = characterData.groomingAndStyle
+                    _humanPerception.value = characterData.humanPerception
+                    _leadership.value = characterData.leadership
+                    _persuasion.value = characterData.persuasion
+                    _performance.value = characterData.performance
+                    _seduction.value = characterData.seduction
+                    _alchemy.value = characterData.alchemy
+                    _crafting.value = characterData.crafting
+                    _disguise.value = characterData.disguise
+                    _firstAid.value = characterData.firstAid
+                    _forgery.value = characterData.forgery
+                    _pickLock.value = characterData.pickLock
+                    _trapCrafting.value = characterData.trapCrafting
+                    _courage.value = characterData.courage
+                    _hexWeaving.value = characterData.hexWeaving
+                    _intimidation.value = characterData.intimidation
+                    _spellCasting.value = characterData.spellCasting
+                    _resistMagic.value = characterData.resistMagic
+                    _resistCoercion.value = characterData.resistCoercion
+                    _ritualCrafting.value = characterData.ritualCrafting
 
-            //Magic
-            _vigor.value = characterData.vigor
+                    //Magic
+                    _vigor.value = characterData.vigor
 
-            //Mages
-            _noviceSpellList.value = characterData.noviceSpells
-            _journeymanSpellList.value = characterData.journeymanSpells
-            _masterSpellList.value = characterData.masterSpells
+                    //Mages
+                    _noviceSpellList.value = characterData.noviceSpells
+                    _journeymanSpellList.value = characterData.journeymanSpells
+                    _masterSpellList.value = characterData.masterSpells
 
-            //Priests
-            _noviceDruidInvocations.value = characterData.noviceDruidInvocations
-            _journeymanDruidInvocations.value = characterData.journeymanDruidInvocations
-            _masterDruidInvocations.value = characterData.masterDruidInvocations
+                    //Priests
+                    _noviceDruidInvocations.value = characterData.noviceDruidInvocations
+                    _journeymanDruidInvocations.value = characterData.journeymanDruidInvocations
+                    _masterDruidInvocations.value = characterData.masterDruidInvocations
 
-            _novicePreacherInvocations.value = characterData.novicePreacherInvocations
-            _journeymanPreacherInvocations.value = characterData.journeymanPreacherInvocations
-            _masterPreacherInvocations.value = characterData.masterPreacherInvocations
+                    _novicePreacherInvocations.value = characterData.novicePreacherInvocations
+                    _journeymanPreacherInvocations.value =
+                        characterData.journeymanPreacherInvocations
+                    _masterPreacherInvocations.value = characterData.masterPreacherInvocations
 
-            _archPriestInvocations.value = characterData.archPriestInvocations
+                    _archPriestInvocations.value = characterData.archPriestInvocations
 
-            //Signs
-            _basicSigns.value = characterData.basicSigns
-            _alternateSigns.value = characterData.alternateSigns
+                    //Signs
+                    _basicSigns.value = characterData.basicSigns
+                    _alternateSigns.value = characterData.alternateSigns
 
-            //Rituals
-            _noviceRitualList.value = characterData.noviceRituals
-            _journeymanRitualList.value = characterData.journeymanRituals
-            _masterRitualList.value = characterData.masterRituals
+                    //Rituals
+                    _noviceRitualList.value = characterData.noviceRituals
+                    _journeymanRitualList.value = characterData.journeymanRituals
+                    _masterRitualList.value = characterData.masterRituals
 
-            //Hexes
-            _hexesList.value = characterData.hexes
+                    //Hexes
+                    _hexesList.value = characterData.hexes
 
-            //Equipment
-            _headEquipment.value = characterData.headEquipment
-            _equippedHead.value = characterData.equippedHead
+                    //Equipment
+                    _headEquipment.value = characterData.headEquipment
+                    _equippedHead.value = characterData.equippedHead
 
-            _chestEquipment.value = characterData.chestEquipment
-            _equippedChest.value = characterData.equippedChest
+                    _chestEquipment.value = characterData.chestEquipment
+                    _equippedChest.value = characterData.equippedChest
 
-            _legEquipment.value = characterData.legEquipment
-            _equippedLegs.value = characterData.equippedLegs
+                    _legEquipment.value = characterData.legEquipment
+                    _equippedLegs.value = characterData.equippedLegs
+                }
+                 is Resource.Error -> Log.e("Error", "An unexpected error has occurred.")
+            }
         }.launchIn(viewModelScope)
     }
 
     fun saveImageToInternalStorage(bitmapImage: Bitmap) {
+        //Log.d("test", "In method")
         saveImageUseCase(bitmapImage, _id.value).onEach { result ->
             when (result) {
-                is Resource.Success -> _image.value = result.data!!
-                is Resource.Error -> _image.value = ""
+                is Resource.Success -> {
+                    _image.value = result.data!!
+                    //Log.d("test", result.data)
+                }
+                is Resource.Error -> {
+                    _image.value = ""
+                    //Log.d("test", "Image not saved")
+                }
                 is Resource.Loading -> TODO()
             }
-        }
+        }.launchIn(viewModelScope)
     }
 
     fun setRace(race: String) {
@@ -1920,7 +1960,9 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.add(
                 item
             )
-            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(item)
+            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(
+                item
+            )
         }
     }
 
@@ -1932,7 +1974,9 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.remove(
                 item
             )
-            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.remove(item)
+            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.remove(
+                item
+            )
         }
     }
 

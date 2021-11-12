@@ -22,6 +22,7 @@ import android.provider.MediaStore
 import android.util.Log
 import java.io.*
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.lifecycle.Observer
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -82,15 +83,21 @@ class CharFragment : Fragment() {
 
         val imagePath = mainCharacterViewModel.image.value
 
-        if (imagePath.isNotEmpty()){
+        Log.d("Test", mainCharacterViewModel.image.value!!)
+
+        val imageObserver = Observer<String> { newImagePath ->
+            if (newImagePath.isNotEmpty()){
                 //Make margins 0 if image is found
-            (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+                (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
                 //Load Image into imageview
-            loadImageFromStorage(imagePath)
+                loadImageFromStorage(newImagePath)
+            }
         }
 
+        mainCharacterViewModel.image.observe(viewLifecycleOwner, imageObserver)
+
         //Check whether permission is granted to access internal storage to set character image
-        binding.imageView.setOnClickListener(){
+        binding.imageView.setOnClickListener{
             requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
         
