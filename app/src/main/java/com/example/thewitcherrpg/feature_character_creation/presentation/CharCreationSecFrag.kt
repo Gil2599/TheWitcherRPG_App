@@ -31,6 +31,9 @@ class CharCreationSecFrag : Fragment() {
                 .commitNow()
         }
 
+        binding.customTitle.setTitle("Profession Abilities")
+        binding.customTitle.setTitleSize(20F)
+
         binding.buttonToThirdFrag.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_charCreation_secFrag_to_charCreation_thirdFrag2)
         }

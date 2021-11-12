@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
@@ -16,6 +19,8 @@ import com.example.thewitcherrpg.databinding.CustomDialogWeaponBinding
 import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class EquipmentFragment : Fragment() {
     private var _binding: FragmentEquipmentBinding? = null
@@ -29,40 +34,60 @@ class EquipmentFragment : Fragment() {
     ): View {
         _binding = FragmentEquipmentBinding.inflate(inflater, container, false)
         val view = binding.root
-        
-        binding.imageViewHead.setOnClickListener{
+
+        binding.customTitle.setTitle("Equipment")
+        binding.customTitle.setTitleSize(20F)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mainCharacterViewModel.equippedHead.collectLatest {
+                        binding.equippedRowHead.setItem(mainCharacterViewModel.equippedHead.value)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.equippedChest.collectLatest {
+                        binding.equippedRowChest.setItem(mainCharacterViewModel.equippedChest.value)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.equippedLegs.collectLatest {
+                        binding.equippedRowLegs.setItem(mainCharacterViewModel.equippedLegs.value)
+                    }
+                }
+            }
+        }
+
+        binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
+        binding.equippedRowWeapon.setOnClickListener{
+            //showArmorDialog(mainCharacterViewModel.equippedHead.value)
+        }
+
+        binding.equippedRowShield.setIcon(R.drawable.ic_armor_shield)
+        binding.equippedRowShield.setOnClickListener{
+            //showArmorDialog(mainCharacterViewModel.equippedHead.value)
+        }
+
+        binding.equippedRowHead.setIcon(R.drawable.ic_armor_head)
+        binding.equippedRowHead.setOnClickListener{
             showArmorDialog(mainCharacterViewModel.equippedHead.value)
         }
 
-        binding.imageViewChest.setOnClickListener{
+        binding.equippedRowChest.setIcon(R.drawable.ic_armor_chest)
+        binding.equippedRowChest.setOnClickListener{
             showArmorDialog(mainCharacterViewModel.equippedChest.value)
         }
 
-        binding.imageViewLHand.setOnClickListener{
-            showArmorDialog(mainCharacterViewModel.equippedChest.value, EquipmentTypes.LARM)
+        binding.equippedRowLegs.setIcon(R.drawable.ic_armor_legs)
+        binding.equippedRowLegs.setOnClickListener{
+            showArmorDialog(mainCharacterViewModel.equippedLegs.value)
         }
 
-        binding.imageViewRHand.setOnClickListener{
-            showArmorDialog(mainCharacterViewModel.equippedChest.value, EquipmentTypes.RARM)
-        }
-
-        binding.imageViewRLeg.setOnClickListener{
-            showArmorDialog(mainCharacterViewModel.equippedLegs.value, EquipmentTypes.RLEG)
-        }
-
-        binding.imageViewLLeg.setOnClickListener{
-            showArmorDialog(mainCharacterViewModel.equippedLegs.value, EquipmentTypes.LLEG)
-        }
-
-        binding.imageViewSword.setOnClickListener{
-            showWeaponDialog()
-        }
-
-        binding.buttonAddGear.setOnClickListener{
+        binding.addButton.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_equipmentFragment_to_addArmorFragment2)
         }
-
-        binding.imageViewBelt.setOnClickListener{
+        binding.inventoryButton.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_equipmentFragment_to_inventoryFragment)
         }
 
@@ -106,7 +131,8 @@ class EquipmentFragment : Fragment() {
             val price = "Cost: " + armorItem.cost + " Crowns"
             val type = armorItem.equipmentType
 
-            bind.textViewTitle.text = armorItem.name
+            bind.customTitle.setTitle(armorItem.name)
+            bind.customTitle.setTitleSize(17F)
             bind.textViewSP.text = stoppingPower
             bind.textViewAvailability.text = availability
             bind.textViewAE.text = armorEnhancement
@@ -127,7 +153,6 @@ class EquipmentFragment : Fragment() {
 
             bind.buttonEquipUnequip.text = "Unequip"
             bind.buttonRemove.visibility = View.GONE
-
 
             bind.buttonCancel.setOnClickListener {
                 dialog.dismiss()

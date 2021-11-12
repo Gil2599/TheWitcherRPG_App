@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_creation.domain.use_cases
+package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases
 
 import com.example.thewitcherrpg.core.Resource
 import com.example.thewitcherrpg.core.domain.model.Character
@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class AddCharacterUseCase @Inject constructor(
+class SaveCharacterUseCase @Inject constructor(
     private val repository: CharacterRepository
-) {
+){
 
-    operator fun invoke(character: Character): Flow<Resource<String>> = flow {
+    operator fun invoke(character: Character): Flow<Resource<String>> = flow{
         emit(Resource.Loading())
 
         try {
-            repository.addChar(character)
+            repository.updateChar(character)
             emit(Resource.Success("Character Saved Successfully"))
         } catch (ex: Exception){
             emit(Resource.Error(ex.localizedMessage ?: "An unexpected error occurred"))

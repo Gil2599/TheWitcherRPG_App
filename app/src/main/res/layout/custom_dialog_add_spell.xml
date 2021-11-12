@@ -112,6 +112,7 @@
             android:autoSizeTextType="uniform"
             android:background="@drawable/outline_bkg"
             android:text="Learn Spell"
+            android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.5" />
@@ -123,6 +124,7 @@
             android:background="@drawable/outline_bkg"
             android:text="Cancel"
             android:textSize="12sp"
+            android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="@+id/addSpellbutton"
             app:layout_constraintEnd_toStartOf="@+id/addSpellbutton"
             app:layout_constraintStart_toStartOf="parent"

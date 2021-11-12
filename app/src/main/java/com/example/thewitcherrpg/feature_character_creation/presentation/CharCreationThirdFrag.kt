@@ -31,6 +31,9 @@ class CharCreationThirdFrag : Fragment() {
                 .commitNow()
         }
 
+        binding.customTitle.setTitle("Character Stats")
+        binding.customTitle.setTitleSize(20F)
+
         binding.buttonFinish.setOnClickListener{
             (activity as CharCreationActivity?)?.onSaveFinal()
         }

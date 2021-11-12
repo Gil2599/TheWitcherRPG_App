@@ -44,6 +44,9 @@ class AddItemFragment : Fragment() {
         }
         callback.isEnabled = true
 
+        binding.customTitle.setTitle("New Item")
+        binding.customTitle.setTitleSize(20F)
+
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.equipmentCategories,
@@ -121,7 +124,8 @@ class AddItemFragment : Fragment() {
         val weight = "Weight: " + armorItem.weight
         val price = "Cost: " + armorItem.cost + " Crowns"
 
-        bind.textViewTitle.text = armorItem.name
+        bind.customTitle.setTitle(armorItem.name)
+        bind.customTitle.setTitleSize(17F)
         bind.textViewSP.text = stoppingPower
         bind.textViewAvailability.text = availability
         bind.textViewAE.text = armorEnhancement

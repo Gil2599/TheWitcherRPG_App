@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/dialog_bkg">
+        android:background="@drawable/row_bkg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -67,10 +67,12 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/outline_bkg"
                 android:text="+"
+                android:textColor="@color/gray"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/editText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editText" />
+                app:layout_constraintStart_toEndOf="@+id/editText"
+                app:layout_constraintTop_toTopOf="@+id/editText" />
 
             <Button
                 android:id="@+id/buttonMinus"
@@ -79,6 +81,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/outline_bkg"
+                android:textColor="@color/gray"
                 android:text="-"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/editText"

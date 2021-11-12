@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.CustomTitleBinding
 
-class CustomTitleView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet) :
+class CustomTitleView constructor(context: Context, attributeSet: AttributeSet) :
     ConstraintLayout(context, attributeSet) {
     private var _binding: CustomTitleBinding? = null
     private val binding get() = _binding!!

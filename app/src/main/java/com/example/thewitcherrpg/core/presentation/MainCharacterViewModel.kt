@@ -23,6 +23,7 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.Equi
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -41,7 +42,8 @@ class MainCharacterViewModel @Inject constructor(
     private val onProfessionSkillChangeUseCase: OnProfessionSkillChangeUseCase,
     private val getMagicListUseCase: GetMagicListUseCase,
     private val castMagicUseCase: CastMagicUseCase,
-    private val getEquipmentListUseCase: GetEquipmentListUseCase
+    private val getEquipmentListUseCase: GetEquipmentListUseCase,
+    private val saveCharacterUseCase: SaveCharacterUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -519,6 +521,149 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    fun saveCharacter(){
+
+        saveCharacterUseCase(
+            Character(
+                id = _id.value,
+                imagePath = _image.value,
+                name = name.value!!,
+                iP = _ip.value,
+                race = _race.value,
+                gender = _gender.value,
+                age = age.value.toString().toInt(),
+                profession = _profession.value,
+                definingSkill = _definingSkill.value,
+                definingSkillInfo = _definingSkillInfo.value,
+                crowns = _crowns.value,
+                intelligence = _intelligence.value,
+                reflex = _ref.value,
+                dexterity = _dex.value,
+                body = _body.value,
+                speed = _spd.value,
+                empathy = _emp.value,
+                craftsmanship = _cra.value,
+                will = _will.value,
+                luck = _luck.value,
+                stun = _stun.value,
+                run = _run.value,
+                leap = _leap.value,
+                MaxHP = _maxHP.value,
+                hp = _maxHP.value,
+                MaxStamina = _maxSta.value,
+                stamina = _maxSta.value,
+                encumbrance = _enc.value,
+                recovery = _rec.value,
+                punch = _punch.value,
+                kick = _kick.value,
+                awareness = _awareness.value,
+                business = _business.value,
+                deduction = _deduction.value,
+                education = _education.value,
+                commonSpeech = _commonSpeech.value,
+                elderSpeech = _elderSpeech.value,
+                dwarven = _dwarven.value,
+                monsterLore = _monsterLore.value,
+                socialEtiquette = _socialEtiquette.value,
+                streetwise = _streetwise.value,
+                tactics = _tactics.value,
+                teaching = _teaching.value,
+                wildernessSurvival = _wildernessSurvival.value,
+                brawling = _brawling.value,
+                dodgeEscape = _dodgeEscape.value,
+                melee = _melee.value,
+                riding = _riding.value,
+                sailing = _sailing.value,
+                smallBlades = _smallBlades.value,
+                staffSpear = staffSpear.value,
+                swordsmanship = _swordsmanship.value,
+                archery = _archery.value,
+                athletics = _athletics.value,
+                crossbow = _crossbow.value,
+                sleightOfHand = _sleightOfHand.value,
+                stealth = _stealth.value,
+                physique = _physique.value,
+                endurance = _endurance.value,
+                charisma = _charisma.value,
+                deceit = _deceit.value,
+                fineArts = _fineArts.value,
+                gambling = _gambling.value,
+                groomingAndStyle = _groomingAndStyle.value,
+                humanPerception = _humanPerception.value,
+                leadership = _leadership.value,
+                persuasion = _persuasion.value,
+                performance = _performance.value,
+                seduction = _seduction.value,
+                alchemy = _alchemy.value,
+                crafting = _crafting.value,
+                disguise = _disguise.value,
+                firstAid = _firstAid.value,
+                forgery = _forgery.value,
+                pickLock = _pickLock.value,
+                trapCrafting = _trapCrafting.value,
+                courage = _courage.value,
+                hexWeaving = _hexWeaving.value,
+                intimidation = _intimidation.value,
+                spellCasting = _spellCasting.value,
+                resistMagic = _resistMagic.value,
+                resistCoercion = _resistCoercion.value,
+                ritualCrafting = _ritualCrafting.value,
+
+                professionSkillA1 = _professionSkillA1.value,
+                professionSkillA2 = _professionSkillA2.value,
+                professionSkillA3 = _professionSkillA3.value,
+                professionSkillB1 = _professionSkillB1.value,
+                professionSkillB2 = _professionSkillB2.value,
+                professionSkillB3 = _professionSkillB3.value,
+                professionSkillC1 = _professionSkillC1.value,
+                professionSkillC2 = _professionSkillC2.value,
+                professionSkillC3 = _professionSkillC3.value,
+
+                vigor = _vigor.value,
+                basicSigns = _basicSigns.value,
+                alternateSigns = _alternateSigns.value,
+                noviceRituals = _noviceRitualList.value,
+                journeymanRituals = _journeymanRitualList.value,
+                masterRituals = _masterRitualList.value,
+                hexes = _hexesList.value,
+                noviceSpells = _noviceSpellList.value,
+                journeymanSpells = _journeymanSpellList.value,
+                masterSpells = _masterSpellList.value,
+                noviceDruidInvocations = _noviceDruidInvocations.value,
+                journeymanDruidInvocations = _journeymanDruidInvocations.value,
+                masterDruidInvocations = _masterDruidInvocations.value,
+                novicePreacherInvocations = _novicePreacherInvocations.value,
+                journeymanPreacherInvocations = _journeymanPreacherInvocations.value,
+                masterPreacherInvocations = _masterPreacherInvocations.value,
+                archPriestInvocations = _archPriestInvocations.value,
+
+                headEquipment = _headEquipment.value,
+                equippedHead = _equippedHead.value,
+                chestEquipment = _chestEquipment.value,
+                equippedChest = _equippedChest.value,
+                legEquipment = _legEquipment.value,
+                equippedLegs = _equippedLegs.value
+            )
+
+        ).onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _addState.value = SaveCharacterState(success = true)
+                }
+                is Resource.Error -> {
+                    _addState.value = SaveCharacterState(
+                        error = result.message ?: "An unexpected error occurred"
+                    )
+                }
+                is Resource.Loading -> {
+                    _addState.value = SaveCharacterState(isLoading = true)
+                }
+            }
+
+        }.launchIn(viewModelScope)
+
+    }
+
     fun getCharacter(id: Int) {
         getCharacterUseCase(id).onEach { characterData ->
             _id.value = characterData.id
@@ -651,7 +796,7 @@ class MainCharacterViewModel @Inject constructor(
             //Hexes
             _hexesList.value = characterData.hexes
 
-            /*//Equipment
+            //Equipment
             _headEquipment.value = characterData.headEquipment
             _equippedHead.value = characterData.equippedHead
 
@@ -659,7 +804,7 @@ class MainCharacterViewModel @Inject constructor(
             _equippedChest.value = characterData.equippedChest
 
             _legEquipment.value = characterData.legEquipment
-            _equippedLegs.value = characterData.equippedLegs*/
+            _equippedLegs.value = characterData.equippedLegs
         }.launchIn(viewModelScope)
     }
 
@@ -1775,7 +1920,7 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.add(
                 item
             )
-            EquipmentTypes.LEG -> _legEquipment.value.add(item)
+            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(item)
         }
     }
 
@@ -1787,7 +1932,7 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.remove(
                 item
             )
-            EquipmentTypes.LEG -> _legEquipment.value.remove(item)
+            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.remove(item)
         }
     }
 
@@ -1824,7 +1969,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
 
-            EquipmentTypes.LEG -> {
+            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> {
 
                 //Check if theres an item already equipped in this slot
                 if (_equippedLegs.value != null) {
@@ -1854,7 +1999,7 @@ class MainCharacterViewModel @Inject constructor(
                 _equippedChest.value = null
             }
 
-            EquipmentTypes.LEG -> {
+            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> {
                 _legEquipment.value.add(item)
                 _equippedLegs.value = null
             }
@@ -1862,7 +2007,6 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun onItemSPChange(item: EquipmentItem, increase: Boolean, armorType: EquipmentTypes?): Int {
-
 
         when (armorType) {
             EquipmentTypes.LARM -> {

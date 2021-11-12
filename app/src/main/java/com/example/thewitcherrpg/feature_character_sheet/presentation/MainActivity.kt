@@ -9,6 +9,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
@@ -19,6 +22,8 @@ import com.example.thewitcherrpg.feature_character_sheet.presentation.profession
 import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.io.File
 
 @AndroidEntryPoint
@@ -78,6 +83,22 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(binding.navView)
             true
         }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Repeat when the lifecycle is STARTED, cancel when PAUSED
+                launch {
+                    mainCharacterViewModel.addState.collectLatest {
+                        if (it.success) {
+                            Toast.makeText(this@MainActivity,
+                                "Saved Successfully!",
+                                Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
@@ -114,16 +135,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveCharacter(){
-
-        //val updatedCharacter = mainCharacterViewModel.onSaveFinal()
-        //val charID = characterData.id
-        //updatedCharacter.id = charID
-
-        //Toast.makeText(this, updatedCharacter.professionSkillA1.toString(), Toast.LENGTH_SHORT).show()
-
-        //mCharListViewModel.updateChar(updatedCharacter)
-
-        Toast.makeText(this, "Saved Successfully!", Toast.LENGTH_SHORT).show()
+        mainCharacterViewModel.saveCharacter()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

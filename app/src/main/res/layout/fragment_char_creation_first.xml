@@ -100,7 +100,7 @@
             android:id="@+id/customTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -166,10 +166,11 @@
         <TextView
             android:id="@+id/textDefiningSkill"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/outline_bkg"
             android:gravity="center"
             android:text="Defining SKill: "
+            android:padding="3dp"
             android:textColor="@color/gray"
             android:textSize="20sp"
             android:textStyle="bold|italic"
@@ -183,7 +184,8 @@
         <TextView
             android:id="@+id/textRacePerks"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/outline_bkg"
             android:gravity="center"

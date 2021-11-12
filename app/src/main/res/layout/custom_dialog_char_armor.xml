@@ -8,36 +8,27 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_bkg"
+        android:background="@drawable/row_bkg"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="wrap_content"
+        <com.example.thewitcherrpg.core.presentation.CustomTitleView
+            android:id="@+id/customTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="-20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Armor" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/teal_200"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-            app:layout_constraintWidth_percent="0.97" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewSP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/customTitle"
             tools:text="Stopping Power: 10" />
 
         <TextView
@@ -101,6 +92,7 @@
             android:layout_marginTop="32dp"
             android:background="@drawable/outline_bkg"
             android:text="Cancel"
+            android:textColor="@color/gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textViewCost"
             app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSP" />
@@ -112,6 +104,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/outline_bkg"
             android:text="Remove"
+            android:textColor="@color/gray"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/buttonEquipUnequip"
             app:layout_constraintTop_toTopOf="@+id/buttonEquipUnequip" />
@@ -122,6 +115,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/outline_bkg"
             android:text="Equip"
+            android:textColor="@color/gray"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
@@ -180,8 +174,6 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toEndOf="@+id/textCurrentSP"
             app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
