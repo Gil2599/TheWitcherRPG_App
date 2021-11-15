@@ -43,6 +43,14 @@ class GetEquipmentListUseCase @Inject constructor() {
                 equipmentStringArray,
                 EquipmentTypes.LIGHT_LEGS
             )
+            R.array.legs_medium_armor_data -> getEquipmentListInfo(
+                equipmentStringArray,
+                EquipmentTypes.MEDIUM_LEGS
+            )
+            R.array.legs_heavy_armor_data -> getEquipmentListInfo(
+                equipmentStringArray,
+                EquipmentTypes.HEAVY_LEGS
+            )
 
             else -> arrayListOf()
         }

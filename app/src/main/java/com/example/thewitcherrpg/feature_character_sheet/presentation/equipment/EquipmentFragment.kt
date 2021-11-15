@@ -60,35 +60,37 @@ class EquipmentFragment : Fragment() {
         }
 
         binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
-        binding.equippedRowWeapon.setOnClickListener{
+        binding.equippedRowWeapon.setOnClickListener {
             //showArmorDialog(mainCharacterViewModel.equippedHead.value)
         }
 
         binding.equippedRowShield.setIcon(R.drawable.ic_armor_shield)
-        binding.equippedRowShield.setOnClickListener{
+        binding.equippedRowShield.setOnClickListener {
             //showArmorDialog(mainCharacterViewModel.equippedHead.value)
         }
 
         binding.equippedRowHead.setIcon(R.drawable.ic_armor_head)
-        binding.equippedRowHead.setOnClickListener{
+        binding.equippedRowHead.setOnClickListener {
             showArmorDialog(mainCharacterViewModel.equippedHead.value)
         }
 
         binding.equippedRowChest.setIcon(R.drawable.ic_armor_chest)
-        binding.equippedRowChest.setOnClickListener{
+        binding.equippedRowChest.setOnClickListener {
             showArmorDialog(mainCharacterViewModel.equippedChest.value)
         }
 
         binding.equippedRowLegs.setIcon(R.drawable.ic_armor_legs)
-        binding.equippedRowLegs.setOnClickListener{
+        binding.equippedRowLegs.setOnClickListener {
             showArmorDialog(mainCharacterViewModel.equippedLegs.value)
         }
 
-        binding.addButton.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_equipmentFragment_to_addArmorFragment2)
+        binding.addButton.setOnClickListener {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_equipmentFragment_to_addArmorFragment2)
         }
-        binding.inventoryButton.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_equipmentFragment_to_inventoryFragment)
+        binding.inventoryButton.setOnClickListener {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_equipmentFragment_to_inventoryFragment)
         }
 
         return view
@@ -100,7 +102,7 @@ class EquipmentFragment : Fragment() {
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val bind : CustomDialogWeaponBinding = CustomDialogWeaponBinding.inflate(layoutInflater)
+        val bind: CustomDialogWeaponBinding = CustomDialogWeaponBinding.inflate(layoutInflater)
         bind.textView57.text = mainCharacterViewModel.equippedHead.value?.stoppingPower.toString()
 
 
@@ -113,12 +115,13 @@ class EquipmentFragment : Fragment() {
     * For example, if left arm is clicked, the armorType parameter would be LARM and the left arm stopping power of the chest piece
     * will be displayed.
     */
-    private fun showArmorDialog(armorItem: EquipmentItem?, armorType: EquipmentTypes? = null){
+    private fun showArmorDialog(armorItem: EquipmentItem?) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        val bind : CustomDialogCharArmorBinding = CustomDialogCharArmorBinding.inflate(layoutInflater)
+        val bind: CustomDialogCharArmorBinding =
+            CustomDialogCharArmorBinding.inflate(layoutInflater)
 
         //Check if there is an item equipped in this slot
         if (armorItem != null) {
@@ -141,13 +144,29 @@ class EquipmentFragment : Fragment() {
             bind.textViewWeight.text = weight
             bind.textViewCost.text = price
 
-            when(armorType){
-                EquipmentTypes.LARM -> bind.textCurrentSP.text = armorItem.currentLArmSP.toString()
-                EquipmentTypes.RARM -> bind.textCurrentSP.text = armorItem.currentRArmSP.toString()
-                EquipmentTypes.RLEG -> bind.textCurrentSP.text = armorItem.currentRLegSP.toString()
-                EquipmentTypes.LLEG -> bind.textCurrentSP.text = armorItem.currentLLegSP.toString()
+            when (armorItem.equipmentType) {
+                EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> {
+                    bind.textViewCurrentSP.visibility = View.GONE
+                    bind.textCurrentLeftSP.visibility = View.VISIBLE
+                    bind.textCurrentRightSP.visibility = View.VISIBLE
+                    bind.textCurrentLeftSP.text = armorItem.currentLLegSP.toString()
+                    bind.textCurrentRightSP.text = armorItem.currentRLegSP.toString()
+                    bind.textViewLeftSP.text = "Left Leg SP: "
+                    bind.textViewRightSP.text = "Right Leg SP: "
+                }
 
-                else -> bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+                EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
+                    bind.textCurrentLeftSP.visibility = View.VISIBLE
+                    bind.textCurrentRightSP.visibility = View.VISIBLE
+                    bind.textCurrentLeftSP.text = armorItem.currentLArmSP.toString()
+                    bind.textCurrentRightSP.text = armorItem.currentRArmSP.toString()
+                    bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+                }
+                else -> {
+                    bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+                    bind.textViewLeftSP.visibility = View.GONE
+                    bind.textViewRightSP.visibility = View.GONE
+                }
             }
 
 
@@ -170,23 +189,118 @@ class EquipmentFragment : Fragment() {
                 dialog.dismiss()
             }
 
-            bind.imageViewMinus.setOnClickListener{
-                if (bind.textCurrentSP.text.toString().toInt() > 0){
-                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(armorItem, increase = false, armorType).toString()
+            bind.imageViewMinus.setOnClickListener {
+                if (bind.textCurrentSP.text.toString().toInt() > 0) {
+                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(
+                        armorItem,
+                        increase = false,
+                        armorItem.equipmentType
+                    ).toString()
                 }
             }
 
-            bind.imageViewPlus.setOnClickListener{
-                if (bind.textCurrentSP.text.toString().toInt() < armorItem.stoppingPower){
-                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(armorItem, increase = true, armorType).toString()
+            bind.imageViewPlus.setOnClickListener {
+                if (bind.textCurrentSP.text.toString().toInt() < armorItem.stoppingPower) {
+                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(
+                        armorItem,
+                        increase = true,
+                        armorItem.equipmentType
+                    ).toString()
+                }
+            }
+
+            bind.imageViewPlusLSP.setOnClickListener {
+                if (bind.textCurrentLeftSP.text.toString().toInt() < armorItem.stoppingPower) {
+                    when (armorItem.equipmentType) {
+                        EquipmentTypes.LIGHT_LEGS,
+                        EquipmentTypes.MEDIUM_LEGS,
+                        EquipmentTypes.HEAVY_LEGS ->
+                            bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = true,
+                                EquipmentTypes.LLEG
+                            ).toString()
+
+                        EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
+                            bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = true,
+                                EquipmentTypes.LARM
+                            ).toString()
+                    }
+                }
+            }
+
+            bind.imageViewMinusLSP.setOnClickListener {
+                if (bind.textCurrentLeftSP.text.toString().toInt() > 0) {
+                    when (armorItem.equipmentType) {
+                        EquipmentTypes.LIGHT_LEGS,
+                        EquipmentTypes.MEDIUM_LEGS,
+                        EquipmentTypes.HEAVY_LEGS ->
+                            bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = false,
+                                EquipmentTypes.LLEG
+                            ).toString()
+
+                        EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
+                            bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = false,
+                                EquipmentTypes.LARM
+                            ).toString()
+                    }
+                }
+            }
+
+            bind.imageViewPlusRSP.setOnClickListener {
+                if (bind.textCurrentRightSP.text.toString().toInt() < armorItem.stoppingPower) {
+                    when (armorItem.equipmentType) {
+                        EquipmentTypes.LIGHT_LEGS,
+                        EquipmentTypes.MEDIUM_LEGS,
+                        EquipmentTypes.HEAVY_LEGS ->
+                            bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = true,
+                                EquipmentTypes.RLEG
+                            ).toString()
+
+                        EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
+                            bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = true,
+                                EquipmentTypes.RARM
+                            ).toString()
+                    }
+                }
+            }
+
+            bind.imageViewMinusRSP.setOnClickListener {
+                if (bind.textCurrentRightSP.text.toString().toInt() > 0) {
+                    when (armorItem.equipmentType) {
+                        EquipmentTypes.LIGHT_LEGS,
+                        EquipmentTypes.MEDIUM_LEGS,
+                        EquipmentTypes.HEAVY_LEGS ->
+                            bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = false,
+                                EquipmentTypes.RLEG
+                            ).toString()
+
+                        EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
+                            bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
+                                armorItem,
+                                increase = false,
+                                EquipmentTypes.RARM
+                            ).toString()
+                    }
                 }
             }
 
             dialog.setContentView(bind.root)
 
             dialog.show()
-        }
-        else Toast.makeText(context, "No armor equipped in this slot.", Toast.LENGTH_SHORT).show()
+        } else Toast.makeText(context, "No armor equipped in this slot.", Toast.LENGTH_SHORT).show()
     }
 
 

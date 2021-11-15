@@ -24,10 +24,12 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -48,7 +50,8 @@ class MainCharacterViewModel @Inject constructor(
     private val castMagicUseCase: CastMagicUseCase,
     private val getEquipmentListUseCase: GetEquipmentListUseCase,
     private val saveCharacterUseCase: SaveCharacterUseCase,
-    private val deleteCharacterUseCase: DeleteCharacterUseCase
+    private val deleteCharacterUseCase: DeleteCharacterUseCase,
+    private val getWeaponListUseCase: GetWeaponListUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -1579,6 +1582,7 @@ class MainCharacterViewModel @Inject constructor(
                     _body.value = pair.second
                     _ip.value = pair.first
                     onHpChange(increase = increase)
+                    onStaminaChange(increase = increase)
                     _rec.value = (_body.value + _will.value) / 2
                     _stun.value =
                         if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
@@ -1665,6 +1669,7 @@ class MainCharacterViewModel @Inject constructor(
                     _will.value = pair.second
                     _ip.value = pair.first
                     onHpChange(increase = increase)
+                    onStaminaChange(increase = increase)
                     _rec.value = (_body.value + _will.value) / 2
                     _stun.value =
                         if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
@@ -2084,5 +2089,9 @@ class MainCharacterViewModel @Inject constructor(
             }
         }
 
+    }
+
+    fun getWeaponList(source: Int): ArrayList<WeaponItem>{
+        return getWeaponListUseCase(source)
     }
 }

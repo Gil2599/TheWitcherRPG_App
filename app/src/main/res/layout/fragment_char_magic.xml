@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/teal_200"
+        app:tabIndicatorColor="@color/gray"
         app:tabMode="auto">
 
         <com.google.android.material.tabs.TabItem

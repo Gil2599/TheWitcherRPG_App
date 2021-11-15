@@ -19,7 +19,7 @@ import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
 import com.example.thewitcherrpg.databinding.FragmentInventoryBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
-import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.LightEquipmentListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
 
 class InventoryFragment : Fragment() {
     private var _binding: FragmentInventoryBinding? = null
@@ -27,9 +27,9 @@ class InventoryFragment : Fragment() {
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
-    private lateinit var lightAdapter: LightEquipmentListAdapter
-    private lateinit var mediumAdapter: LightEquipmentListAdapter
-    private lateinit var heavyAdapter: LightEquipmentListAdapter
+    private lateinit var lightAdapter: EquipmentListAdapter
+    private lateinit var mediumAdapter: EquipmentListAdapter
+    private lateinit var heavyAdapter: EquipmentListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +45,9 @@ class InventoryFragment : Fragment() {
                 .navigate(R.id.action_inventoryFragment_to_equipmentFragment)
         }
         callback.isEnabled = true
+
+        binding.customTitle.setTitle("Inventory")
+        binding.customTitle.setTitleSize(20F)
 
         onSpinnerInit()
         listAdaptersInit()
@@ -106,9 +109,17 @@ class InventoryFragment : Fragment() {
                         }
                     }
 
-
                     if (selection == "Leg Armor") {
-                        mainCharacterViewModel.legEquipment.value.let { lightAdapter.setData(it) }
+                        for (item in mainCharacterViewModel.legEquipment.value) {
+                            when (item.equipmentType) {
+                                EquipmentTypes.LIGHT_LEGS -> lightArmorList.add(item)
+                                EquipmentTypes.MEDIUM_LEGS -> mediumArmorList.add(item)
+                                EquipmentTypes.HEAVY_LEGS -> heavyArmorList.add(item)
+                            }
+                        }
+                        lightAdapter.setData(lightArmorList)
+                        mediumAdapter.setData(mediumArmorList)
+                        heavyAdapter.setData(heavyArmorList)
                     }
                 }
 
@@ -121,18 +132,18 @@ class InventoryFragment : Fragment() {
 
     private fun listAdaptersInit() {
 
-        lightAdapter = LightEquipmentListAdapter { item -> showArmorDialog(item) }
+        lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
         binding.rvLightEquipment.adapter = lightAdapter
         binding.rvLightEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvLightEquipment.isNestedScrollingEnabled = false
 
 
-        mediumAdapter = LightEquipmentListAdapter { item -> showArmorDialog(item) }
+        mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
         binding.rvMediumEquipment.adapter = mediumAdapter
         binding.rvMediumEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMediumEquipment.isNestedScrollingEnabled = false
 
-        heavyAdapter = LightEquipmentListAdapter { item -> showArmorDialog(item) }
+        heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
         binding.rvHeavyEquipment.adapter = heavyAdapter
         binding.rvHeavyEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHeavyEquipment.isNestedScrollingEnabled = false
@@ -164,6 +175,31 @@ class InventoryFragment : Fragment() {
         bind.textViewWeight.text = weight
         bind.textViewCost.text = price
         bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+
+        when (armorItem.equipmentType) {
+            EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> {
+                bind.textViewCurrentSP.visibility = View.GONE
+                bind.textCurrentLeftSP.visibility = View.VISIBLE
+                bind.textCurrentRightSP.visibility = View.VISIBLE
+                bind.textCurrentLeftSP.text = armorItem.currentLLegSP.toString()
+                bind.textCurrentRightSP.text = armorItem.currentRLegSP.toString()
+                bind.textViewLeftSP.text = "Left Leg SP: "
+                bind.textViewRightSP.text = "Right Leg SP: "
+            }
+
+            EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
+                bind.textCurrentLeftSP.visibility = View.VISIBLE
+                bind.textCurrentRightSP.visibility = View.VISIBLE
+                bind.textCurrentLeftSP.text = armorItem.currentLArmSP.toString()
+                bind.textCurrentRightSP.text = armorItem.currentRArmSP.toString()
+                bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+            }
+            else -> {
+                bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+                bind.textViewLeftSP.visibility = View.GONE
+                bind.textViewRightSP.visibility = View.GONE
+            }
+        }
 
 
         bind.buttonCancel.setOnClickListener {
@@ -203,6 +239,12 @@ class InventoryFragment : Fragment() {
 
         bind.imageViewMinus.visibility = View.GONE
         bind.imageViewPlus.visibility = View.GONE
+        bind.imageViewMinusLSP.visibility = View.GONE
+        bind.imageViewMinusRSP.visibility = View.GONE
+        bind.imageViewPlusLSP.visibility = View.GONE
+        bind.imageViewPlusRSP.visibility = View.GONE
+
+
 
         dialog.setContentView(bind.root)
 

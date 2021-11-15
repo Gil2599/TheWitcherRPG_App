@@ -85,6 +85,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewWeight"
             tools:text="Cost: 100" />
 
+        <View
+            android:id="@+id/view9"
+            android:layout_width="match_parent"
+            android:layout_height="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
+
         <Button
             android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
@@ -95,7 +103,7 @@
             android:textColor="@color/gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textViewCost"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSP" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewRightSP" />
 
         <Button
             android:id="@+id/buttonRemove"
@@ -124,12 +132,11 @@
             android:id="@+id/textViewCurrentSP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="Current SP: "
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textViewCost"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
+            app:layout_constraintTop_toBottomOf="@+id/view9" />
 
         <ImageView
             android:id="@+id/imageViewMinus"
@@ -175,6 +182,115 @@
             app:layout_constraintStart_toEndOf="@+id/textCurrentSP"
             app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
 
+        <TextView
+            android:id="@+id/textViewLeftSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Left Arm SP: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textViewCost"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSP" />
+
+        <ImageView
+            android:id="@+id/imageViewMinusLSP"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_minus_icon"
+            android:clickable="true"
+            android:foreground="@drawable/outline_bkg"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/textCurrentLeftSP"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textViewLeftSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
+
+        <TextView
+            android:id="@+id/textCurrentLeftSP"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPlusLSP"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageViewMinusLSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
+
+        <ImageView
+            android:id="@+id/imageViewPlusLSP"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ic_baseline_add_24"
+            android:clickable="true"
+            android:foreground="@drawable/outline_bkg"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/textCurrentLeftSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
+
+        <TextView
+            android:id="@+id/textViewRightSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Right Arm SP: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textViewCost"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLeftSP" />
+
+        <ImageView
+            android:id="@+id/imageViewMinusRSP"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_minus_icon"
+            android:clickable="true"
+            android:foreground="@drawable/outline_bkg"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/textCurrentRightSP"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textViewRightSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
+
+        <TextView
+            android:id="@+id/textCurrentRightSP"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPlusRSP"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageViewMinusRSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
+
+        <ImageView
+            android:id="@+id/imageViewPlusRSP"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ic_baseline_add_24"
+            android:clickable="true"
+            android:foreground="@drawable/outline_bkg"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/textCurrentRightSP"
+            app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

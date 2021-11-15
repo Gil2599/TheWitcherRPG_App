@@ -6,30 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".feature_character_sheet.presentation.equipment.AddItemFragment">
 
-    <TextView
-        android:id="@+id/textViewAddItem"
-        android:layout_width="wrap_content"
+    <com.example.thewitcherrpg.core.presentation.CustomTitleView
+        android:id="@+id/customTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="Inventory"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="25sp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view1"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAddItem"
-        app:layout_constraintWidth_percent="0.9" />
-
 
     <Spinner
         android:id="@+id/spinnerAddEquipment"
@@ -54,7 +38,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view1" />
+        app:layout_constraintTop_toBottomOf="@+id/customTitle" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -76,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="Light"
                 android:textStyle="bold|italic"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:gravity="center"/>
 
@@ -101,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="Medium"
                 android:textStyle="bold|italic"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:gravity="center"/>
 
@@ -126,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:text="Heavy"
                 android:textStyle="bold|italic"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:gravity="center"/>
 

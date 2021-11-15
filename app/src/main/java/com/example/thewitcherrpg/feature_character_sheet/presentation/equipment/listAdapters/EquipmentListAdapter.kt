@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 
-class LightEquipmentListAdapter(
+class EquipmentListAdapter(
     val itemClickString: (EquipmentItem) -> Unit
-) : RecyclerView.Adapter<LightEquipmentListAdapter.LightViewHolder>() {
+) : RecyclerView.Adapter<EquipmentListAdapter.ViewHolder>() {
 
     private var armorList = emptyList<EquipmentItem>()
     private lateinit var currentItem: EquipmentItem
 
-    inner class LightViewHolder(private val binding: ArmorRowBinding) :
+    inner class ViewHolder(private val binding: ArmorRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EquipmentItem, position: Int) {
@@ -34,13 +34,13 @@ class LightEquipmentListAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LightViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
             ArmorRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LightViewHolder(itemBinding)
+        return ViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: LightViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         currentItem = armorList[position]
         holder.bind(currentItem, position)
     }
