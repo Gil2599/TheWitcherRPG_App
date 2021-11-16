@@ -12,20 +12,27 @@ import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogAddWeaponBinding
 import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
+import com.example.thewitcherrpg.databinding.CustomDialogCharWeaponBinding
 import com.example.thewitcherrpg.databinding.FragmentInventoryBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter
 
 class InventoryFragment : Fragment() {
     private var _binding: FragmentInventoryBinding? = null
     private val binding get() = _binding!!
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
+    private val selectionArg: InventoryFragmentArgs by navArgs()
 
     private lateinit var lightAdapter: EquipmentListAdapter
     private lateinit var mediumAdapter: EquipmentListAdapter
@@ -50,7 +57,7 @@ class InventoryFragment : Fragment() {
         binding.customTitle.setTitleSize(20F)
 
         onSpinnerInit()
-        listAdaptersInit()
+        listAdaptersSetup()
 
         return view
     }
@@ -66,6 +73,8 @@ class InventoryFragment : Fragment() {
             binding.spinnerAddEquipment.adapter = adapter
         }
 
+        binding.spinnerAddEquipment.setSelection(selectionArg.spinnerSelection)
+
         binding.spinnerAddEquipment.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -75,14 +84,19 @@ class InventoryFragment : Fragment() {
                     id: Long
                 ) {
                     val selection =
-                        binding.spinnerAddEquipment.getItemAtPosition(position).toString()
+                        binding.spinnerAddEquipment.selectedItemPosition
 
                     val lightArmorList = arrayListOf<EquipmentItem>()
                     val mediumArmorList = arrayListOf<EquipmentItem>()
                     val heavyArmorList = arrayListOf<EquipmentItem>()
 
+                    if (selection == 3) {
+                        listAdaptersInit(true)
+                    } else listAdaptersInit(false)
+
                     when (selection) {
-                        "Head Armor" -> {
+                        0 -> {
+                            listAdaptersInit(false)
                             for (item in mainCharacterViewModel.headEquipment.value) {
                                 when (item.equipmentType) {
                                     EquipmentTypes.LIGHT_HEAD -> lightArmorList.add(item)
@@ -95,7 +109,8 @@ class InventoryFragment : Fragment() {
                             heavyAdapter.setData(heavyArmorList)
                         }
 
-                        "Chest Armor" -> {
+                        1 -> {
+                            listAdaptersInit(false)
                             for (item in mainCharacterViewModel.chestEquipment.value) {
                                 when (item.equipmentType) {
                                     EquipmentTypes.LIGHT_CHEST -> lightArmorList.add(item)
@@ -107,19 +122,20 @@ class InventoryFragment : Fragment() {
                             mediumAdapter.setData(mediumArmorList)
                             heavyAdapter.setData(heavyArmorList)
                         }
-                    }
 
-                    if (selection == "Leg Armor") {
-                        for (item in mainCharacterViewModel.legEquipment.value) {
-                            when (item.equipmentType) {
-                                EquipmentTypes.LIGHT_LEGS -> lightArmorList.add(item)
-                                EquipmentTypes.MEDIUM_LEGS -> mediumArmorList.add(item)
-                                EquipmentTypes.HEAVY_LEGS -> heavyArmorList.add(item)
+                        2 -> {
+                            listAdaptersInit(false)
+                            for (item in mainCharacterViewModel.legEquipment.value) {
+                                when (item.equipmentType) {
+                                    EquipmentTypes.LIGHT_LEGS -> lightArmorList.add(item)
+                                    EquipmentTypes.MEDIUM_LEGS -> mediumArmorList.add(item)
+                                    EquipmentTypes.HEAVY_LEGS -> heavyArmorList.add(item)
+                                }
                             }
+                            lightAdapter.setData(lightArmorList)
+                            mediumAdapter.setData(mediumArmorList)
+                            heavyAdapter.setData(heavyArmorList)
                         }
-                        lightAdapter.setData(lightArmorList)
-                        mediumAdapter.setData(mediumArmorList)
-                        heavyAdapter.setData(heavyArmorList)
                     }
                 }
 
@@ -127,26 +143,209 @@ class InventoryFragment : Fragment() {
                     // Nothing happens
                 }
             }
-
     }
 
-    private fun listAdaptersInit() {
+    private fun listAdaptersSetup() {
 
-        lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-        binding.rvLightEquipment.adapter = lightAdapter
         binding.rvLightEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvLightEquipment.isNestedScrollingEnabled = false
 
-
-        mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-        binding.rvMediumEquipment.adapter = mediumAdapter
         binding.rvMediumEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMediumEquipment.isNestedScrollingEnabled = false
 
-        heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-        binding.rvHeavyEquipment.adapter = heavyAdapter
         binding.rvHeavyEquipment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHeavyEquipment.isNestedScrollingEnabled = false
+
+        binding.rvBludgeons.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvBludgeons.isNestedScrollingEnabled = false
+
+        binding.rvPoleArms.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvPoleArms.isNestedScrollingEnabled = false
+
+        binding.rvStaves.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvStaves.isNestedScrollingEnabled = false
+
+        binding.rvThrownWeapons.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvThrownWeapons.isNestedScrollingEnabled = false
+
+        binding.rvBows.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvBows.isNestedScrollingEnabled = false
+
+        binding.rvCrossbows.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvCrossbows.isNestedScrollingEnabled = false
+    }
+
+    private fun listAdaptersInit(weapons: Boolean){
+        if (weapons) {
+            val swords = arrayListOf<WeaponItem>()
+            val smallBlades = arrayListOf<WeaponItem>()
+            val axes = arrayListOf<WeaponItem>()
+            val bludgeons = arrayListOf<WeaponItem>()
+            val poleArms = arrayListOf<WeaponItem>()
+            val staves = arrayListOf<WeaponItem>()
+            val thrownWeapons = arrayListOf<WeaponItem>()
+            val bows = arrayListOf<WeaponItem>()
+            val crossbows = arrayListOf<WeaponItem>()
+
+            for (item in mainCharacterViewModel.weaponEquipment.value){
+                when (item.type){
+                    WeaponTypes.SWORD -> swords.add(item)
+                    WeaponTypes.SMALL_BLADE -> smallBlades.add(item)
+                    WeaponTypes.AXE -> axes.add(item)
+                    WeaponTypes.BLUDGEON -> bludgeons.add(item)
+                    WeaponTypes.POLE_ARM -> poleArms.add(item)
+                    WeaponTypes.STAFF -> staves.add(item)
+                    WeaponTypes.THROWN_WEAPON -> thrownWeapons.add(item)
+                    WeaponTypes.BOW -> bows.add(item)
+                    WeaponTypes.CROSSBOW -> crossbows.add(item)
+                }
+            }
+
+            val swordsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
+            swordsAdapter.setData(swords)
+            binding.rvLightEquipment.adapter = swordsAdapter
+            binding.textViewLight.text = "Swords"
+
+            val smallBladesAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            smallBladesAdapter.setData(smallBlades)
+            binding.rvMediumEquipment.adapter = smallBladesAdapter
+            binding.textViewMedium.text = "Small Blades"
+
+
+            val axesAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            axesAdapter.setData(axes)
+            binding.rvHeavyEquipment.adapter = axesAdapter
+            binding.textViewHeavy.text = "Axes"
+
+            val bludgeonsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            bludgeonsAdapter.setData(bludgeons)
+            binding.rvBludgeons.adapter = bludgeonsAdapter
+            binding.textViewBludgeons.text = "Bludgeons"
+
+            val poleArmsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            poleArmsAdapter.setData(poleArms)
+            binding.rvPoleArms.adapter = poleArmsAdapter
+            binding.textViewPoleArms.text = "Pole Arms"
+
+            val stavesAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            stavesAdapter.setData(staves)
+            binding.rvStaves.adapter = stavesAdapter
+            binding.textViewStaves.text = "Staves"
+
+            val thrownWeaponsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            thrownWeaponsAdapter.setData(thrownWeapons)
+            binding.rvThrownWeapons.adapter = thrownWeaponsAdapter
+            binding.textViewThrownWeapons.text = "Thrown Weapons"
+
+            val bowsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            bowsAdapter.setData(bows)
+            binding.rvBows.adapter = bowsAdapter
+            binding.textViewBows.text = "Bows"
+
+            val crossbowsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
+            crossbowsAdapter.setData(crossbows)
+            binding.rvCrossbows.adapter = crossbowsAdapter
+            binding.textViewCrossbows.text = "Crossbows"
+
+            if (bludgeons.isNotEmpty()){
+                binding.rvBludgeons.visibility = View.VISIBLE
+                binding.textViewBludgeons.visibility = View.VISIBLE
+            } else {
+                binding.rvBludgeons.visibility = View.GONE
+                binding.textViewBludgeons.visibility = View.GONE
+            }
+            if (poleArms.isNotEmpty()){
+                binding.rvPoleArms.visibility = View.VISIBLE
+                binding.textViewPoleArms.visibility = View.VISIBLE
+            } else {
+                binding.rvPoleArms.visibility = View.GONE
+                binding.textViewPoleArms.visibility = View.GONE
+            }
+            if (staves.isNotEmpty()){
+                binding.rvStaves.visibility = View.VISIBLE
+                binding.textViewStaves.visibility = View.VISIBLE
+            } else {
+                binding.rvStaves.visibility = View.GONE
+                binding.textViewStaves.visibility = View.GONE
+            }
+            if (thrownWeapons.isNotEmpty()){
+                binding.rvThrownWeapons.visibility = View.VISIBLE
+                binding.textViewThrownWeapons.visibility = View.VISIBLE
+            } else {
+                binding.rvThrownWeapons.visibility = View.GONE
+                binding.textViewThrownWeapons.visibility = View.GONE
+            }
+            if (bows.isNotEmpty()){
+                binding.rvBows.visibility = View.VISIBLE
+                binding.textViewBows.visibility = View.VISIBLE
+            } else {
+                binding.rvBows.visibility = View.GONE
+                binding.textViewBows.visibility = View.GONE
+            }
+            if (crossbows.isNotEmpty()){
+                binding.rvCrossbows.visibility = View.VISIBLE
+                binding.textViewCrossbows.visibility = View.VISIBLE
+            } else {
+                binding.rvCrossbows.visibility = View.GONE
+                binding.textViewCrossbows.visibility = View.GONE
+            }
+            if (swords.isNotEmpty()){
+                binding.rvLightEquipment.visibility = View.VISIBLE
+                binding.textViewLight.visibility = View.VISIBLE
+            } else {
+                binding.rvLightEquipment.visibility = View.GONE
+                binding.textViewLight.visibility = View.GONE
+            }
+            if (smallBlades.isNotEmpty()){
+                binding.rvMediumEquipment.visibility = View.VISIBLE
+                binding.textViewMedium.visibility = View.VISIBLE
+            } else {
+                binding.rvMediumEquipment.visibility = View.GONE
+                binding.textViewMedium.visibility = View.GONE
+            }
+            if (axes.isNotEmpty()){
+                binding.rvHeavyEquipment.visibility = View.VISIBLE
+                binding.textViewHeavy.visibility = View.VISIBLE
+            } else {
+                binding.rvHeavyEquipment.visibility = View.GONE
+                binding.textViewHeavy.visibility = View.GONE
+            }
+
+
+
+        } else {
+            lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+            binding.rvLightEquipment.adapter = lightAdapter
+
+            mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+            binding.rvMediumEquipment.adapter = mediumAdapter
+
+            heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+            binding.rvHeavyEquipment.adapter = heavyAdapter
+
+            binding.textViewLight.text = "Light"
+            binding.textViewLight.visibility = View.VISIBLE
+            binding.textViewMedium.text = "Medium"
+            binding.textViewMedium.visibility = View.VISIBLE
+            binding.textViewHeavy.text = "Heavy"
+            binding.textViewHeavy.visibility = View.VISIBLE
+
+            binding.rvLightEquipment.visibility = View.VISIBLE
+            binding.rvMediumEquipment.visibility = View.VISIBLE
+            binding.rvHeavyEquipment.visibility = View.VISIBLE
+            binding.rvBludgeons.visibility = View.GONE
+            binding.rvPoleArms.visibility = View.GONE
+            binding.rvStaves.visibility = View.GONE
+            binding.rvThrownWeapons.visibility = View.GONE
+            binding.rvBows.visibility = View.GONE
+            binding.rvCrossbows.visibility = View.GONE
+            binding.textViewBludgeons.visibility = View.GONE
+            binding.textViewPoleArms.visibility = View.GONE
+            binding.textViewStaves.visibility = View.GONE
+            binding.textViewThrownWeapons.visibility = View.GONE
+            binding.textViewBows.visibility = View.GONE
+            binding.textViewCrossbows.visibility = View.GONE
+        }
     }
 
     private fun showArmorDialog(armorItem: EquipmentItem) {
@@ -249,6 +448,42 @@ class InventoryFragment : Fragment() {
         dialog.setContentView(bind.root)
 
         dialog.show()
+    }
+
+    private fun showWeaponDialog(weaponItem: WeaponItem){
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val bind: CustomDialogCharWeaponBinding = CustomDialogCharWeaponBinding.inflate(layoutInflater)
+
+        bind.weaponItem = weaponItem
+
+        bind.customTitle.setTitle(weaponItem.name)
+        bind.customTitle.setTitleSize(17F)
+
+        bind.imageViewPlus.visibility = View.GONE
+        bind.imageViewMinus.visibility = View.GONE
+
+        bind.buttonEquip.setOnClickListener{
+            mainCharacterViewModel.equipWeapon(weaponItem)
+            onSpinnerInit() //Refresh Adapters
+            dialog.dismiss()
+        }
+
+        bind.buttonRemove.setOnClickListener {
+            mainCharacterViewModel.removeWeapon(weaponItem)
+            onSpinnerInit() //Refresh Adapters
+            dialog.dismiss()
+        }
+
+        bind.buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setContentView(bind.root)
+        dialog.show()
+
     }
 
 }

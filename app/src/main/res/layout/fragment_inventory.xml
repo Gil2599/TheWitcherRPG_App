@@ -128,6 +128,157 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewBludgeons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Heavy"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutBludgeons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBludgeons"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewPoleArms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Heavy"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutPoleArms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPoleArms"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewStaves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Heavy"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutStaves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvStaves"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewThrownWeapons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Heavy"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutThrownWeapons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvThrownWeapons"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewBows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Heavy"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutBows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBows"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewCrossbows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Heavy"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutCrossbows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCrossbows"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 

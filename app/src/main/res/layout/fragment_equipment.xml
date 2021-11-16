@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.118"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939"
+        app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@drawable/ic_backpack_icon" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,7 +27,7 @@
         android:backgroundTint="@color/dark_gray"
         android:contentDescription="Add Equipment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/inventoryButton"
         app:srcCompat="@drawable/ic_add_equipment" />
@@ -80,7 +80,6 @@
         android:id="@+id/equippedRowLegs"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginBottom="16dp"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/inventoryButton"
         app:layout_constraintEnd_toEndOf="parent"

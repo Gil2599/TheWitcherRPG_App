@@ -421,6 +421,12 @@ class MainCharacterViewModel @Inject constructor(
     private var _equippedLegs = MutableStateFlow<EquipmentItem?>(null)
     val equippedLegs = _equippedLegs.asStateFlow()
 
+    private var _weaponEquipment = MutableStateFlow(arrayListOf<WeaponItem>())
+    val weaponEquipment = _weaponEquipment.asStateFlow()
+
+    private var _equippedWeapon = MutableStateFlow<WeaponItem?>(null)
+    val equippedWeapon = _equippedWeapon.asStateFlow()
+
 
     fun setInCharCreation(inCharacterCreation: Boolean) {
         _inCharacterCreation.value = inCharacterCreation
@@ -653,7 +659,10 @@ class MainCharacterViewModel @Inject constructor(
                 chestEquipment = _chestEquipment.value,
                 equippedChest = _equippedChest.value,
                 legEquipment = _legEquipment.value,
-                equippedLegs = _equippedLegs.value
+                equippedLegs = _equippedLegs.value,
+
+                weaponEquipment = _weaponEquipment.value,
+                equippedWeapon = _equippedWeapon.value
             )
 
         ).onEach { result ->
@@ -838,8 +847,11 @@ class MainCharacterViewModel @Inject constructor(
 
                     _legEquipment.value = characterData.legEquipment
                     _equippedLegs.value = characterData.equippedLegs
+
+                    _weaponEquipment.value = characterData.weaponEquipment
+                    _equippedWeapon.value = characterData.equippedWeapon
                 }
-                 is Resource.Error -> Log.e("Error", "An unexpected error has occurred.")
+                is Resource.Error -> Log.e("Error", "An unexpected error has occurred.")
             }
         }.launchIn(viewModelScope)
     }
@@ -2091,7 +2103,72 @@ class MainCharacterViewModel @Inject constructor(
 
     }
 
-    fun getWeaponList(source: Int): ArrayList<WeaponItem>{
+    fun getWeaponList(source: Int): ArrayList<WeaponItem> {
         return getWeaponListUseCase(source)
+    }
+
+    fun addWeaponItem(item: WeaponItem) {
+        _weaponEquipment.value.add(item)
+    }
+
+    fun removeWeapon(item: WeaponItem) {
+        _weaponEquipment.value.remove(item)
+    }
+
+    fun equipWeapon(item: WeaponItem) {
+        if (_equippedWeapon.value == null) {
+            _equippedWeapon.value = item
+            _weaponEquipment.value.remove(item)
+        } else {
+            _weaponEquipment.value.add(_equippedWeapon.value!!)
+            _equippedWeapon.value = item
+            _weaponEquipment.value.remove(item)
+        }
+    }
+
+    fun unEquipWeapon(item: WeaponItem) {
+        _weaponEquipment.value.add(_equippedWeapon.value!!)
+        _equippedWeapon.value = null
+    }
+
+    fun onReliabilityChange(item: WeaponItem, increase: Boolean) {
+        if (increase) {
+            if (item.currentReliability < item.reliability)
+                item.currentReliability = item.currentReliability.plus(1)
+        } else {
+            if (item.currentReliability > 0) item.currentReliability =
+                item.currentReliability.minus(1)
+        }
+    }
+
+    fun buyItem(item: EquipmentItem): Boolean {
+        return if (item.cost > _crowns.value) {
+            false
+        } else {
+            _crowns.value = _crowns.value.minus(item.cost)
+
+            when (item.equipmentType) {
+                EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> _headEquipment.value.add(
+                    item
+                )
+                EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.add(
+                    item
+                )
+                EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(
+                    item
+                )
+            }
+            true
+        }
+    }
+
+    fun buyWeapon(item: WeaponItem): Boolean {
+        return if (item.cost > _crowns.value) {
+            false
+        } else {
+            _crowns.value = _crowns.value.minus(item.cost)
+            _weaponEquipment.value.add(item)
+            true
+        }
     }
 }

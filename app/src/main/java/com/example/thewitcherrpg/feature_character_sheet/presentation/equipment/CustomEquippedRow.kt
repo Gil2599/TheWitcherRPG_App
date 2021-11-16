@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.CustomEquippedRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
 
 class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet) :
     LinearLayout(context, attributeSet) {
@@ -27,6 +28,21 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
             }
         else {
             binding.armorNameText.text = "No armor equipped."
+            binding.stoppingPowerText.text = ""
+            binding.weightText.text = ""
+            binding.imageView6.setBackgroundResource(R.drawable.unfocused_outline_bkg)
+        }
+    }
+
+    fun setItem(item: WeaponItem? = null){
+        if (item != null) {
+            binding.armorNameText.text = item.name
+            binding.stoppingPowerText.text = "Reliability: " + item.reliability.toString()
+            binding.weightText.text = "Damage: " + item.damage
+            binding.imageView6.setBackgroundResource(R.drawable.outline_bkg)
+        }
+        else {
+            binding.armorNameText.text = "No weapon equipped."
             binding.stoppingPowerText.text = ""
             binding.weightText.text = ""
             binding.imageView6.setBackgroundResource(R.drawable.unfocused_outline_bkg)

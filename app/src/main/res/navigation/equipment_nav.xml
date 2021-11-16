@@ -14,7 +14,8 @@
             app:destination="@id/addArmorFragment2" />
         <action
             android:id="@+id/action_equipmentFragment_to_inventoryFragment"
-            app:destination="@id/inventoryFragment" />
+            app:destination="@id/inventoryFragment">
+        </action>
     </fragment>
     <fragment
         android:id="@+id/addArmorFragment2"
@@ -29,6 +30,9 @@
         android:id="@+id/inventoryFragment"
         android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.InventoryFragment"
         android:label="InventoryFragment" >
+        <argument
+            android:name="spinnerSelection"
+            app:argType="integer"/>
         <action
             android:id="@+id/action_inventoryFragment_to_equipmentFragment"
             app:destination="@id/equipmentFragment" />

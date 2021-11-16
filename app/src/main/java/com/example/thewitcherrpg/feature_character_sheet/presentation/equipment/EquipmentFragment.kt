@@ -15,6 +15,7 @@ import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
+import com.example.thewitcherrpg.databinding.CustomDialogCharWeaponBinding
 import com.example.thewitcherrpg.databinding.CustomDialogWeaponBinding
 import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
@@ -56,32 +57,57 @@ class EquipmentFragment : Fragment() {
                         binding.equippedRowLegs.setItem(mainCharacterViewModel.equippedLegs.value)
                     }
                 }
+                launch {
+                    mainCharacterViewModel.equippedWeapon.collectLatest {
+                        binding.equippedRowWeapon.setItem(mainCharacterViewModel.equippedWeapon.value)
+                    }
+                }
             }
         }
 
         binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
         binding.equippedRowWeapon.setOnClickListener {
-            //showArmorDialog(mainCharacterViewModel.equippedHead.value)
+            if (mainCharacterViewModel.equippedWeapon.value != null)
+                showWeaponDialog()
+            else {
+                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(3)
+                Navigation.findNavController(view).navigate(action)
+            }
         }
 
         binding.equippedRowShield.setIcon(R.drawable.ic_armor_shield)
         binding.equippedRowShield.setOnClickListener {
-            //showArmorDialog(mainCharacterViewModel.equippedHead.value)
+            showArmorDialog(null)
         }
 
         binding.equippedRowHead.setIcon(R.drawable.ic_armor_head)
         binding.equippedRowHead.setOnClickListener {
-            showArmorDialog(mainCharacterViewModel.equippedHead.value)
+            if (mainCharacterViewModel.equippedHead.value != null)
+                showArmorDialog(mainCharacterViewModel.equippedHead.value)
+            else {
+                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(0)
+                Navigation.findNavController(view).navigate(action)
+            }
         }
 
         binding.equippedRowChest.setIcon(R.drawable.ic_armor_chest)
         binding.equippedRowChest.setOnClickListener {
-            showArmorDialog(mainCharacterViewModel.equippedChest.value)
+            if (mainCharacterViewModel.equippedChest.value != null)
+                showArmorDialog(mainCharacterViewModel.equippedChest.value)
+            else {
+                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(1)
+                Navigation.findNavController(view).navigate(action)
+            }
         }
 
         binding.equippedRowLegs.setIcon(R.drawable.ic_armor_legs)
         binding.equippedRowLegs.setOnClickListener {
-            showArmorDialog(mainCharacterViewModel.equippedLegs.value)
+            if (mainCharacterViewModel.equippedLegs.value != null)
+                showArmorDialog(mainCharacterViewModel.equippedLegs.value)
+            else {
+                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(2)
+                Navigation.findNavController(view).navigate(action)
+            }
         }
 
         binding.addButton.setOnClickListener {
@@ -89,8 +115,8 @@ class EquipmentFragment : Fragment() {
                 .navigate(R.id.action_equipmentFragment_to_addArmorFragment2)
         }
         binding.inventoryButton.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_equipmentFragment_to_inventoryFragment)
+            val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(0)
+            Navigation.findNavController(view).navigate(action)
         }
 
         return view
@@ -101,13 +127,37 @@ class EquipmentFragment : Fragment() {
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val bind: CustomDialogCharWeaponBinding = CustomDialogCharWeaponBinding.inflate(layoutInflater)
 
-        val bind: CustomDialogWeaponBinding = CustomDialogWeaponBinding.inflate(layoutInflater)
-        bind.textView57.text = mainCharacterViewModel.equippedHead.value?.stoppingPower.toString()
+        val weaponItem = mainCharacterViewModel.equippedWeapon.value!!
+        bind.weaponItem = weaponItem
+
+        bind.customTitle.setTitle(weaponItem.name)
+        bind.customTitle.setTitleSize(17F)
+
+        bind.buttonRemove.visibility = View.GONE
+        bind.buttonEquip.text = "Unequip"
+
+        bind.buttonEquip.setOnClickListener{
+            mainCharacterViewModel.unEquipWeapon(weaponItem)
+            dialog.dismiss()
+        }
+
+        bind.buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        bind.imageViewMinus.setOnClickListener{
+            mainCharacterViewModel.onReliabilityChange(weaponItem, false)
+            bind.textCurrentReliability.text = weaponItem.currentReliability.toString()
+        }
+        bind.imageViewPlus.setOnClickListener{
+            mainCharacterViewModel.onReliabilityChange(weaponItem, true)
+            bind.textCurrentReliability.text = weaponItem.currentReliability.toString()
+        }
 
 
         dialog.setContentView(bind.root)
-
         dialog.show()
     }
 

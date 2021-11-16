@@ -16,10 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogAddArmorBinding
+import com.example.thewitcherrpg.databinding.CustomDialogAddWeaponBinding
 import com.example.thewitcherrpg.databinding.FragmentAddItemBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class AddItemFragment : Fragment() {
     private var _binding: FragmentAddItemBinding? = null
@@ -132,48 +135,48 @@ class AddItemFragment : Fragment() {
     private fun listAdaptersInit(weapons: Boolean) {
 
         if (weapons) {
-            val swordsAdapter = WeaponListAdapter {}
+            val swordsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
             swordsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.swords_data))
             binding.rvLightEquipment.adapter = swordsAdapter
             binding.textViewLight.text = "Swords"
 
-            val smallBladesAdapter = WeaponListAdapter {}
+            val smallBladesAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             smallBladesAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.small_blades_data))
             binding.rvMediumEquipment.adapter = smallBladesAdapter
             binding.textViewMedium.text = "Small Blades"
 
 
-            val axesAdapter = WeaponListAdapter {}
+            val axesAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             axesAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.axes_data))
             binding.rvHeavyEquipment.adapter = axesAdapter
             binding.textViewHeavy.text = "Axes"
 
-            val bludgeonsAdapter = WeaponListAdapter {}
+            val bludgeonsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             bludgeonsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.bludgeons_data))
             binding.rvBludgeons.adapter = bludgeonsAdapter
             binding.textViewBludgeons.text = "Bludgeons"
 
-            val poleArmsAdapter = WeaponListAdapter {}
+            val poleArmsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             poleArmsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.pole_arms_data))
             binding.rvPoleArms.adapter = poleArmsAdapter
             binding.textViewPoleArms.text = "Pole Arms"
 
-            val stavesAdapter = WeaponListAdapter {}
+            val stavesAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             stavesAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.staves_data))
             binding.rvStaves.adapter = stavesAdapter
             binding.textViewStaves.text = "Staves"
 
-            val thrownWeaponsAdapter = WeaponListAdapter {}
+            val thrownWeaponsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             thrownWeaponsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.thrown_weapons_data))
             binding.rvThrownWeapons.adapter = thrownWeaponsAdapter
             binding.textViewThrownWeapons.text = "Thrown Weapons"
 
-            val bowsAdapter = WeaponListAdapter {}
+            val bowsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             bowsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.bows_data))
             binding.rvBows.adapter = bowsAdapter
             binding.textViewBows.text = "Bows"
 
-            val crossbowsAdapter = WeaponListAdapter {}
+            val crossbowsAdapter = WeaponListAdapter {item -> showWeaponDialog(item)}
             crossbowsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.crossbows_data))
             binding.rvCrossbows.adapter = crossbowsAdapter
             binding.textViewCrossbows.text = "Crossbows"
@@ -262,11 +265,14 @@ class AddItemFragment : Fragment() {
 
         bind.buttonBuy.setOnClickListener {
 
-            //if (sharedViewModel.buyArmor(armorItem)){
-            // Toast.makeText(context, "${sharedViewModel.name.value} purchased $armorName", Toast.LENGTH_SHORT).show()
-            //}
-            //else Toast.makeText(context, "${sharedViewModel.name.value} does not have enough crowns to purchase $armorName", Toast.LENGTH_SHORT).show()
-
+            if (mainCharacterViewModel.buyItem(armorItem)){
+                Snackbar.make(binding.root, "${armorItem.name} purchased.",
+                    Snackbar.LENGTH_SHORT).show()
+            }
+            else {
+                Snackbar.make(binding.root, "Not enough crowns.",
+                    Snackbar.LENGTH_SHORT).show()
+            }
             dialog.dismiss()
 
         }
@@ -274,6 +280,46 @@ class AddItemFragment : Fragment() {
         dialog.setContentView(bind.root)
 
         dialog.show()
+    }
+
+    private fun showWeaponDialog(weaponItem: WeaponItem){
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val bind: CustomDialogAddWeaponBinding = CustomDialogAddWeaponBinding.inflate(layoutInflater)
+
+        bind.weaponItem = weaponItem
+
+        bind.customTitle.setTitle(weaponItem.name)
+        bind.customTitle.setTitleSize(17F)
+
+        bind.buttonAdd.setOnClickListener{
+            mainCharacterViewModel.addWeaponItem(weaponItem)
+            dialog.dismiss()
+        }
+
+        bind.buttonBuy.setOnClickListener {
+
+            if (mainCharacterViewModel.buyWeapon(weaponItem)){
+                Snackbar.make(binding.root, "${weaponItem.name} purchased.",
+                    Snackbar.LENGTH_SHORT).show()
+            }
+            else {
+                Snackbar.make(binding.root, "Not enough crowns.",
+                    Snackbar.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+            dialog.dismiss()
+        }
+
+        bind.buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setContentView(bind.root)
+        dialog.show()
+
     }
 
 }

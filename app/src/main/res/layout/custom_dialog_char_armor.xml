@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAE"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAvailability"
             tools:text="Effect: N/A" />
 
         <TextView
@@ -135,7 +135,7 @@
             android:text="Current SP: "
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textViewCost"
+            app:layout_constraintStart_toStartOf="@+id/textViewSP"
             app:layout_constraintTop_toBottomOf="@+id/view9" />
 
         <ImageView
@@ -190,7 +190,7 @@
             android:text="Left Arm SP: "
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textViewCost"
+            app:layout_constraintStart_toStartOf="@+id/textViewCurrentSP"
             app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSP" />
 
         <ImageView
@@ -245,7 +245,7 @@
             android:text="Right Arm SP: "
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textViewCost"
+            app:layout_constraintStart_toStartOf="@+id/textViewLeftSP"
             app:layout_constraintTop_toBottomOf="@+id/textViewLeftSP" />
 
         <ImageView

@@ -7,6 +7,7 @@ import androidx.room.TypeConverter
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.parcelize.Parcelize
@@ -150,7 +151,11 @@ data class Character(
     var equippedChest: EquipmentItem? = null,
 
     var legEquipment: ArrayList<EquipmentItem> = arrayListOf(),
-    var equippedLegs: EquipmentItem? = null
+    var equippedLegs: EquipmentItem? = null,
+
+    //Weapons
+    var weaponEquipment: ArrayList<WeaponItem> = arrayListOf(),
+    var equippedWeapon: WeaponItem? = null
 
 ): Parcelable
 
@@ -220,6 +225,29 @@ class MyTypeConverters {
     @TypeConverter
     fun fromJsonToMagicItemArrayList(list: String): ArrayList<MagicItem>{
         val itemType =object :TypeToken<ArrayList<MagicItem>>(){}.type
+        return Gson().fromJson(list, itemType)
+    }
+
+    @TypeConverter
+    fun fromStringToWeaponItem(item: String?): WeaponItem?{
+        val itemType =object :TypeToken<WeaponItem>(){}.type
+        return Gson().fromJson(item, itemType)
+    }
+
+    @TypeConverter
+    fun fromWeaponItem(item: WeaponItem?): String{
+        return Gson().toJson(item)
+    }
+
+
+    @TypeConverter
+    fun fromWeaponItemArrayListToJson(list: ArrayList<WeaponItem?>): String{
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun fromJsonToWeaponItemArrayList(list: String): ArrayList<WeaponItem>{
+        val itemType =object :TypeToken<ArrayList<WeaponItem>>(){}.type
         return Gson().fromJson(list, itemType)
     }
 
