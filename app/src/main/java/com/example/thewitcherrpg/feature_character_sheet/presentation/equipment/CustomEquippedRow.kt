@@ -2,6 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +22,7 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
 
     fun setItem(item: EquipmentItem? = null){
         if (item != null) {
+            Log.d("Test", "init")
             binding.armorNameText.text = item.name
             binding.stoppingPowerText.text = "Stopping Power: " + item.stoppingPower.toString()
             binding.weightText.text = "Weight: " + item.weight.toString()

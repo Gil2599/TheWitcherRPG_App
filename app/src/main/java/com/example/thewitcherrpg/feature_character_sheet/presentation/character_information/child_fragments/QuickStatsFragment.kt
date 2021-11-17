@@ -125,12 +125,14 @@ class QuickStatsFragment : Fragment() {
         bind.editText.requestFocus()
 
         bind.buttonPlus.setOnClickListener{
-            mainCharacterViewModel.onCrownsChange(bind.editText.text.toString().toInt())
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
+            mainCharacterViewModel.onCrownsChange(value)
             dialog.dismiss()
         }
 
         bind.buttonMinus.setOnClickListener{
-            mainCharacterViewModel.onCrownsChange(-kotlin.math.abs(bind.editText.text.toString().toInt()))
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
+            mainCharacterViewModel.onCrownsChange(-value)
             dialog.dismiss() }
         dialog.show()
     }

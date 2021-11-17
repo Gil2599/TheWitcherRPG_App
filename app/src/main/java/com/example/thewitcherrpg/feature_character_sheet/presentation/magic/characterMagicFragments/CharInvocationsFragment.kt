@@ -177,7 +177,8 @@ class CharInvocationsFragment : Fragment() {
         val bind : CustomDialogCharSpellBinding = CustomDialogCharSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        bind.spellNameText.text = item.name
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.rangeText.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.defenseText.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -212,15 +213,12 @@ class CharInvocationsFragment : Fragment() {
             dialog.dismiss()
         }
         bind.removebutton.setOnClickListener(){
-            //Remove the spell in whichever list it is in
-            //sharedViewModel.removeNoviceDruidInvo(spellName)
-            //sharedViewModel.removeJourneymanDruidInvo(spellName)
-            //sharedViewModel.removeMasterDruidInvo(spellName)
-            //sharedViewModel.removeNovicePreacherInvo(spellName)
-            //sharedViewModel.removeJourneymanPreacherInvo(spellName)
-            //sharedViewModel.removeMasterPreacherInvo(spellName)
-            //sharedViewModel.removeArchPriestInvo(spellName)
-            Toast.makeText(context, "${item.name} removed from ${mainCharacterViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            mainCharacterViewModel.removeMagicItem(item)
+            druidListAdaptersInit()
+            preacherListAdaptersInit()
+            archPriestListAdapterInit()
+            Snackbar.make(binding.root, "${item.name} removed from ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 

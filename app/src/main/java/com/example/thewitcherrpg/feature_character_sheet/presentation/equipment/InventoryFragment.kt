@@ -136,6 +136,20 @@ class InventoryFragment : Fragment() {
                             mediumAdapter.setData(mediumArmorList)
                             heavyAdapter.setData(heavyArmorList)
                         }
+
+                        4-> {
+                            listAdaptersInit(false)
+                            for (item in mainCharacterViewModel.shieldEquipment.value) {
+                                when (item.equipmentType) {
+                                    EquipmentTypes.LIGHT_SHIELD -> lightArmorList.add(item)
+                                    EquipmentTypes.MEDIUM_SHIELD -> mediumArmorList.add(item)
+                                    EquipmentTypes.HEAVY_SHIELD -> heavyArmorList.add(item)
+                                }
+                            }
+                            lightAdapter.setData(lightArmorList)
+                            mediumAdapter.setData(mediumArmorList)
+                            heavyAdapter.setData(heavyArmorList)
+                        }
                     }
                 }
 

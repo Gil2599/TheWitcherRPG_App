@@ -62,6 +62,11 @@ class EquipmentFragment : Fragment() {
                         binding.equippedRowWeapon.setItem(mainCharacterViewModel.equippedWeapon.value)
                     }
                 }
+                launch {
+                    mainCharacterViewModel.equippedShield.collectLatest {
+                        binding.equippedRowShield.setItem(mainCharacterViewModel.equippedShield.value)
+                    }
+                }
             }
         }
 
@@ -77,7 +82,12 @@ class EquipmentFragment : Fragment() {
 
         binding.equippedRowShield.setIcon(R.drawable.ic_armor_shield)
         binding.equippedRowShield.setOnClickListener {
-            showArmorDialog(null)
+            if (mainCharacterViewModel.equippedShield.value != null)
+                showArmorDialog(mainCharacterViewModel.equippedShield.value)
+            else {
+                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(4)
+                Navigation.findNavController(view).navigate(action)
+            }
         }
 
         binding.equippedRowHead.setIcon(R.drawable.ic_armor_head)

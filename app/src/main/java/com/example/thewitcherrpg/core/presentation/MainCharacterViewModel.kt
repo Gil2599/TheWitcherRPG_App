@@ -427,6 +427,12 @@ class MainCharacterViewModel @Inject constructor(
     private var _equippedWeapon = MutableStateFlow<WeaponItem?>(null)
     val equippedWeapon = _equippedWeapon.asStateFlow()
 
+    private var _shieldEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
+    val shieldEquipment = _shieldEquipment.asStateFlow()
+
+    private var _equippedShield = MutableStateFlow<EquipmentItem?>(null)
+    val equippedShield = _equippedShield.asStateFlow()
+
 
     fun setInCharCreation(inCharacterCreation: Boolean) {
         _inCharacterCreation.value = inCharacterCreation
@@ -660,6 +666,8 @@ class MainCharacterViewModel @Inject constructor(
                 equippedChest = _equippedChest.value,
                 legEquipment = _legEquipment.value,
                 equippedLegs = _equippedLegs.value,
+                shieldEquipment = _shieldEquipment.value,
+                equippedShield = _equippedShield.value,
 
                 weaponEquipment = _weaponEquipment.value,
                 equippedWeapon = _equippedWeapon.value
@@ -848,6 +856,9 @@ class MainCharacterViewModel @Inject constructor(
                     _legEquipment.value = characterData.legEquipment
                     _equippedLegs.value = characterData.equippedLegs
 
+                    _shieldEquipment.value = characterData.shieldEquipment
+                    _equippedShield.value = characterData.equippedShield
+
                     _weaponEquipment.value = characterData.weaponEquipment
                     _equippedWeapon.value = characterData.equippedWeapon
                 }
@@ -911,6 +922,16 @@ class MainCharacterViewModel @Inject constructor(
         characterCreationUseCases.getDefiningSkillInfoUseCase(definingSkill.value).onEach { info ->
             _definingSkillInfo.value = info
         }.launchIn(viewModelScope)
+    }
+
+    fun getProfessionIndices(): ArrayList<Int> {
+        var indicesArray = arrayListOf<Int>()
+
+        characterCreationUseCases.getProfessionSkillsIndicesUseCase(_profession.value).onEach { array ->
+            indicesArray = array
+        }.launchIn(viewModelScope)
+
+        return indicesArray
     }
 
     fun onSkillChange(skill: String, increase: Boolean) {
@@ -1892,6 +1913,55 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
+    fun removeMagicItem(item: MagicItem) {
+        when (item.type) {
+            MagicType.NOVICE_SPELL -> _noviceSpellList.value.remove(
+                item
+            )
+            MagicType.JOURNEYMAN_SPELL -> _journeymanSpellList.value.remove(
+                item
+            )
+            MagicType.MASTER_SPELL -> _masterSpellList.value.remove(
+                item
+            )
+            MagicType.NOVICE_RITUAL -> _noviceRitualList.value.remove(
+                item
+            )
+            MagicType.JOURNEYMAN_RITUAL -> _journeymanRitualList.value.remove(
+                item
+            )
+            MagicType.MASTER_RITUAL -> _masterRitualList.value.remove(
+                item
+            )
+            MagicType.HEX -> _hexesList.value.remove(item)
+            MagicType.BASIC_SIGN -> _basicSigns.value.remove(item)
+            MagicType.ALTERNATE_SIGN -> _alternateSigns.value.remove(
+                item
+            )
+            MagicType.NOVICE_DRUID_INVOCATION -> _noviceDruidInvocations.value.remove(
+                item
+            )
+            MagicType.JOURNEYMAN_DRUID_INVOCATION -> _journeymanDruidInvocations.value.remove(
+                item
+            )
+            MagicType.MASTER_DRUID_INVOCATION -> _masterDruidInvocations.value.remove(
+                item
+            )
+            MagicType.NOVICE_PREACHER_INVOCATION -> _novicePreacherInvocations.value.remove(
+                item
+            )
+            MagicType.JOURNEYMAN_PREACHER_INVOCATION -> _journeymanPreacherInvocations.value.remove(
+                item
+            )
+            MagicType.MASTER_PREACHER_INVOCATION -> _masterPreacherInvocations.value.remove(
+                item
+            )
+            MagicType.ARCH_PRIEST_INVOCATION -> _archPriestInvocations.value.remove(
+                item
+            )
+        }
+    }
+
     fun getMagicList(source: Int): ArrayList<MagicItem> {
         return getMagicListUseCase(source)
     }
@@ -1965,6 +2035,14 @@ class MainCharacterViewModel @Inject constructor(
         } else _crowns.value = _crowns.value.plus(value)
     }
 
+    fun onIpChange(value: Int) {
+        if (value < 0) {
+            if (value.absoluteValue < _ip.value) {
+                _ip.value = _ip.value.plus(value)
+            } else _ip.value = 0
+        } else _ip.value = _ip.value.plus(value)
+    }
+
     fun getEquipmentList(source: Int): ArrayList<EquipmentItem> {
         return getEquipmentListUseCase(source)
     }
@@ -1980,6 +2058,9 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(
                 item
             )
+            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.add(
+                item
+            )
         }
     }
 
@@ -1992,6 +2073,9 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
             EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.remove(
+                item
+            )
+            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.remove(
                 item
             )
         }
@@ -2044,6 +2128,21 @@ class MainCharacterViewModel @Inject constructor(
                     _equippedLegs.value = item
                 }
             }
+
+            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> {
+
+                //Check if theres an item already equipped in this slot
+                if (_equippedShield.value != null) {
+
+                    _shieldEquipment.value.remove(item)
+                    _shieldEquipment.value.add(_equippedShield.value!!)
+                    _equippedShield.value = item
+
+                } else {
+                    _shieldEquipment.value.remove(item)
+                    _equippedShield.value = item
+                }
+            }
         }
     }
 
@@ -2063,6 +2162,11 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> {
                 _legEquipment.value.add(item)
                 _equippedLegs.value = null
+            }
+
+            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> {
+                _shieldEquipment.value.add(item)
+                _equippedShield.value = null
             }
         }
     }
@@ -2155,6 +2259,9 @@ class MainCharacterViewModel @Inject constructor(
                     item
                 )
                 EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(
+                    item
+                )
+                EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.add(
                     item
                 )
             }

@@ -109,7 +109,8 @@ class CharRitualsFragment : Fragment() {
         val charSta = "<b>" + "STA: " + "</b>" + mainCharacterViewModel.sta.value.toString()
         val vigor = mainCharacterViewModel.vigor.value
 
-        bind.spellNameText.text = item.name
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.rangeText.text = HtmlCompat.fromHtml(preparation, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.defenseText.text = HtmlCompat.fromHtml(components, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -145,11 +146,10 @@ class CharRitualsFragment : Fragment() {
             dialog.dismiss()
         }
         bind.removebutton.setOnClickListener(){
-            //Remove the spell in whichever list it is in
-            //sharedViewModel.removeNoviceRitual(spellName)
-            //sharedViewModel.removeJourneymanRitual(spellName)
-            //sharedViewModel.removeMasterRitual(spellName)
-            Toast.makeText(context, "${item.name} removed from ${mainCharacterViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            mainCharacterViewModel.removeMagicItem(item)
+            listAdaptersInit()
+            Snackbar.make(binding.root, "${item.name} removed from ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 

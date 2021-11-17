@@ -1,10 +1,9 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.stats
 
+import android.app.Dialog
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.thewitcherrpg.databinding.FragmentStatsBinding
 import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.EditorInfo
@@ -14,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 
 
 class StatsFragment : Fragment() {
@@ -35,11 +35,8 @@ class StatsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sharedViewModel = mainCharacterViewModel
 
-        binding.editIP.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                binding.editIP.clearFocus()
-            }
-            false
+        binding.editIP.setOnClickListener {
+            showDialogIP()
         }
 
         statsInit()
@@ -56,10 +53,6 @@ class StatsFragment : Fragment() {
     }
 
     private fun statsInit(){
-
-        binding.editIP.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-            //if (!hasFocus) { characterCreationViewModel.setIP(binding.editIP.text.toString().toInt()) }
-            }
 
         binding.editTextINT.setRawInputType(0)
         binding.editTextINT.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
@@ -187,9 +180,38 @@ class StatsFragment : Fragment() {
         }
     }
 
-    override fun onPause(){
+    override fun onPause() {
         super.onPause()
+        focusedView?.clearFocus()
         focusedView = null
     }
 
+    private fun showDialogIP() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind : CustomDialogEditStatsBinding = CustomDialogEditStatsBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        bind.textViewCurrent.text = "CURRENT IP"
+
+        bind.textView.text = mainCharacterViewModel.ip.value.toString()
+
+        bind.editText.requestFocus()
+
+        bind.buttonPlus.setOnClickListener{
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
+            mainCharacterViewModel.onIpChange(value)
+            dialog.dismiss()
+        }
+
+        bind.buttonMinus.setOnClickListener{
+            val value = if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
+            mainCharacterViewModel.onIpChange(-value)
+            dialog.dismiss() }
+        dialog.show()
+    }
 }

@@ -168,7 +168,6 @@
     </string-array>
 
     <string-array name="profession_indices_array">
-
         <item>Bard:36,29,28,33,35,9,30,37,8,4,5,6</item>
         <item>Criminal:0,22,29,42,47,43,24,18,25,9</item>
         <item>Craftsman:22,38,1,39,3,27,30,35,26,9</item>

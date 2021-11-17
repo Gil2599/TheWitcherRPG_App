@@ -10,10 +10,12 @@ enum class EquipmentTypes {
     LIGHT_LEGS,
     MEDIUM_LEGS,
     HEAVY_LEGS,
-    LEG,
     LARM, //Left arm (same as chest with its on stopping power)
     RARM, //Right arm (same as chest with its on stopping power)
     RLEG, //Right leg (same as legs with its on stopping power)
     LLEG, //Left leg (same as legs with its on stopping power)
+    LIGHT_SHIELD,
+    MEDIUM_SHIELD,
+    HEAVY_SHIELD,
     MISC
 }

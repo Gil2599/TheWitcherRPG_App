@@ -92,6 +92,11 @@ class AddItemFragment : Fragment() {
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_medium_armor_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_heavy_armor_data))
                     }
+                    if (item == "Shield") {
+                        lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_light_data))
+                        mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
+                        heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_heavy_data))
+                    }
                 }
 
                 override fun onNothingSelected(parentView: AdapterView<*>?) {

@@ -52,7 +52,8 @@ object AppModule {
             addCharacterUseCase = AddCharacterUseCase(repository),
             getDefiningSkillInfoUseCase = GetDefiningSkillInfoUseCase(),
             getDefiningSkillUseCase = GetDefiningSkillUseCase(),
-            getRacePerkUseCase = GetRacePerkUseCase()
+            getRacePerkUseCase = GetRacePerkUseCase(),
+            getProfessionSkillsIndicesUseCase = GetProfessionSkillsIndicesUseCase()
         )
     }
 

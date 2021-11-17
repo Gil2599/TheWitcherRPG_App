@@ -81,7 +81,8 @@ class CharHexesFragment : Fragment() {
         val charSta = "<b>" + "STA: " + "</b>" + mainCharacterViewModel.sta.value.toString()
         val vigor = mainCharacterViewModel.vigor.value
 
-        bind.spellNameText.text = item.name
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
         bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.effectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.liftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -115,9 +116,10 @@ class CharHexesFragment : Fragment() {
             dialog.dismiss()
         }
         bind.removebutton.setOnClickListener(){
-            //Remove the spell in whichever list it is in
-            //sharedViewModel.removeHex(spellName)
-            Toast.makeText(context, "${item.name} removed from ${mainCharacterViewModel.name.value}", Toast.LENGTH_SHORT).show()
+            mainCharacterViewModel.removeMagicItem(item)
+            listAdapterInit()
+            Snackbar.make(binding.root, "${item.name} removed from ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT).show()
             dialog.dismiss()
         }
         dialog.show()

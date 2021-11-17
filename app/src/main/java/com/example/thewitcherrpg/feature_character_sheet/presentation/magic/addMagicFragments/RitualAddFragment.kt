@@ -93,7 +93,8 @@ class RitualAddFragment : Fragment() {
         val duration = "<b>" + "Duration: " + "</b>" + item.duration
         val components = "<b>" + "Components: " + "</b>" + item.components
 
-        bind.addSpellNameText.text = item.name
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
         bind.addStaCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addRangeText.text = HtmlCompat.fromHtml(preparation, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addDefenseText.text = HtmlCompat.fromHtml(components, HtmlCompat.FROM_HTML_MODE_LEGACY)

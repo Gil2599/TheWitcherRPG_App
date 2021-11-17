@@ -4,5 +4,6 @@ data class CharacterCreationUseCases(
     val addCharacterUseCase: AddCharacterUseCase,
     val getDefiningSkillInfoUseCase: GetDefiningSkillInfoUseCase,
     val getDefiningSkillUseCase: GetDefiningSkillUseCase,
-    val getRacePerkUseCase: GetRacePerkUseCase
+    val getRacePerkUseCase: GetRacePerkUseCase,
+    val getProfessionSkillsIndicesUseCase: GetProfessionSkillsIndicesUseCase
 )

@@ -139,7 +139,8 @@ class InvocationAddFragment : Fragment() {
         val duration = "<b>" + "Duration: " + "</b>" + item.duration
         val defense = "<b>" + "Defense: " + "</b>" + item.defense
 
-        bind.addSpellNameText.text = item.name
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
         bind.addStaCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addRangeText.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addDefenseText.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)

@@ -73,7 +73,8 @@ class HexesAddFragment : Fragment() {
         val danger = "<b>" + "Danger: " + "</b>" + item.danger
         val lift = "<b>" + "Requirement To Lift: " + "</b>" + item.requirementToLift
 
-        bind.addSpellNameText.text = spellName
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
         bind.addStaCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addEffectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addLiftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
