@@ -116,7 +116,7 @@ data class Character(
     var ritualCrafting: Int = 0,
 
     //##### Magic #################################################
-    var vigor: Int = 0,
+    var vigor: Int = 10,
 
     var basicSigns: ArrayList<MagicItem> = arrayListOf(),
     var alternateSigns: ArrayList<MagicItem> = arrayListOf(),

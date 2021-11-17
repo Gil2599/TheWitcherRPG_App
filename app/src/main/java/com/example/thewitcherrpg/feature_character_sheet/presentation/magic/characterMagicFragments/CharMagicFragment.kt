@@ -32,6 +32,8 @@ class CharMagicFragment : Fragment() {
         val view = binding.root
 
         binding.mainViewModel = mainCharacterViewModel
+        binding.lifecycleOwner = this
+
         setupViewPager()
 
         //Remove or change magic categories depending on profession
