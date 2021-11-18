@@ -215,13 +215,17 @@
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_placeholder.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_profession.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_profession_skill_tree.xml" value="0.26313405797101447" />
+        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_skills.xml" value="0.2934232715008432" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_spell_add.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_spells.xml" value="0.26313405797101447" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_spells_parent.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_stats.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/nav_header.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/spell_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/menu/delete_save_menu.xml" value="0.33" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/menu/nav_drawer_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.37864583333333335" />
       </map>
     </option>
   </component>

@@ -447,7 +447,7 @@ class MainCharacterViewModel @Inject constructor(
 
         when (_profession.value){
             Constants.Professions.MAGE -> startingVigor = 5
-            Constants.Professions.PRIEST -> startingVigor = 3
+            Constants.Professions.PRIEST -> startingVigor = 2
             Constants.Professions.WITCHER -> startingVigor = 2
         }
 
@@ -1767,6 +1767,7 @@ class MainCharacterViewModel @Inject constructor(
 
         when (skill) {
             1 -> {
+                val initialVigor = _vigor.value - _professionSkillA1.value
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillA1.value,
                     _ip.value,
@@ -1776,9 +1777,14 @@ class MainCharacterViewModel @Inject constructor(
                 if (pair != null) {
                     _professionSkillA1.value = pair.second
                     _ip.value = pair.first
+
+                    if (_profession.value == Constants.Professions.PRIEST) {
+                        _vigor.value = initialVigor + _professionSkillA1.value
+                    }
                 }
             }
             2 -> {
+                val initialVigor = _vigor.value - _professionSkillA2.value/2
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillA2.value,
                     _ip.value,
@@ -1788,6 +1794,10 @@ class MainCharacterViewModel @Inject constructor(
                 if (pair != null) {
                     _professionSkillA2.value = pair.second
                     _ip.value = pair.first
+
+                    if (_profession.value == Constants.Professions.WITCHER) {
+                        _vigor.value = initialVigor + _professionSkillA2.value/2
+                    }
                 }
             }
             3 -> {
@@ -1803,6 +1813,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             4 -> {
+                val initialVigor = _vigor.value - _professionSkillB1.value
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillB1.value,
                     _ip.value,
@@ -1812,6 +1823,10 @@ class MainCharacterViewModel @Inject constructor(
                 if (pair != null) {
                     _professionSkillB1.value = pair.second
                     _ip.value = pair.first
+
+                    if (_profession.value == Constants.Professions.PRIEST) {
+                        _vigor.value = initialVigor + _professionSkillB1.value
+                    }
                 }
             }
             5 -> {

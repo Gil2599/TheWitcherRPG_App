@@ -81,10 +81,6 @@ class CharFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mainViewModel = mainCharacterViewModel
 
-        val imagePath = mainCharacterViewModel.image.value
-
-        Log.d("Test", mainCharacterViewModel.image.value!!)
-
         val imageObserver = Observer<String> { newImagePath ->
             if (newImagePath.isNotEmpty()){
                 //Make margins 0 if image is found

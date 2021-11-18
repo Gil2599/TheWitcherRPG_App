@@ -27,8 +27,14 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
 import android.app.Activity
-
-
+import android.graphics.BitmapFactory
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import com.example.thewitcherrpg.databinding.NavHeaderBinding
+import java.io.FileInputStream
+import java.io.FileNotFoundException
 
 
 @AndroidEntryPoint
@@ -93,6 +99,21 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(binding.navView)
             true
         }
+
+        val navHeaderBinding: NavHeaderBinding = DataBindingUtil.inflate(layoutInflater, R.layout.nav_header, binding.navView, true)
+        navHeaderBinding.mainViewModel = mainCharacterViewModel
+        navHeaderBinding.lifecycleOwner = this
+
+        val imageObserver = Observer<String> { newImagePath ->
+            if (newImagePath.isNotEmpty()){
+                //Make margins 0 if image is found
+                (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+                //Load Image into imageview
+                loadImageFromStorage(newImagePath, navHeaderBinding.imageView)
+            }
+        }
+
+        mainCharacterViewModel.image.observe(this, imageObserver)
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -174,6 +195,16 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage("All unsaved changes will be lost.")
         builder.create().show()
 
+    }
+
+    private fun loadImageFromStorage(path: String, img: ImageView) {
+        try {
+            val f = File(path, mainCharacterViewModel.id.value.toString() + ".jpeg")
+            val b = BitmapFactory.decodeStream(FileInputStream(f))
+            img.setImageBitmap(b)
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
     }
 
 }
