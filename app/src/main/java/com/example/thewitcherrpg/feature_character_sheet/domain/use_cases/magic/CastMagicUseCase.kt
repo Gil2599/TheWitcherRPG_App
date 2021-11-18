@@ -6,12 +6,15 @@ import javax.inject.Inject
 
 class CastMagicUseCase @Inject constructor() {
 
-    operator fun invoke(item: MagicItem, stamina: Int, vigor: Int): Resource<Int>{
+    operator fun invoke(item: MagicItem, focus: Int, vigor: Int): Resource<Int>{
 
-        return if (item.staminaCost!! > vigor){
-            val hpCost = 5 * (item.staminaCost!! - vigor)
+        val totalCost = if(item.staminaCost!! - focus > 0) item.staminaCost!! - focus
+        else 1
+
+        return if (totalCost > vigor){
+            val hpCost = 5 * (totalCost - vigor)
             Resource.Error("Not enough vigor.", hpCost)
-        } else Resource.Success(item.staminaCost!!)
+        } else Resource.Success(totalCost)
 
     }
 }

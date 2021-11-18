@@ -23,5 +23,6 @@ data class WeaponItem(
     var weight: Float,
     var cost: Int,
     var type: WeaponTypes,
+    var focus: Int = 0,
     val uniqueID: UUID = UUID.randomUUID()
 ) : Parcelable

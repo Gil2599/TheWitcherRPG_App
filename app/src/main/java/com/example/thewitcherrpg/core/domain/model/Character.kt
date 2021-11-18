@@ -116,7 +116,8 @@ data class Character(
     var ritualCrafting: Int = 0,
 
     //##### Magic #################################################
-    var vigor: Int = 10,
+    var vigor: Int = 0,
+    var focus: Int = 0,
 
     var basicSigns: ArrayList<MagicItem> = arrayListOf(),
     var alternateSigns: ArrayList<MagicItem> = arrayListOf(),
@@ -165,17 +166,6 @@ data class Character(
 class MyTypeConverters {
 
     @TypeConverter
-    fun fromString(value: String?): ArrayList<String>{
-        val listType =object :TypeToken<ArrayList<String>>(){}.type
-        return Gson().fromJson(value, listType)
-    }
-
-    @TypeConverter
-    fun fromArrayList(list: ArrayList<String?>): String{
-        return Gson().toJson(list)
-    }
-
-    @TypeConverter
     fun fromStringToItem(item: String?): EquipmentItem?{
         val itemType =object :TypeToken<EquipmentItem>(){}.type
         return Gson().fromJson(item, itemType)
@@ -207,17 +197,6 @@ class MyTypeConverters {
     fun fromStringToProfession(profession: String): Constants.Professions?{
         val prof = object :TypeToken<Constants.Professions>(){}.type
         return Gson().fromJson(profession, prof)
-    }
-
-    @TypeConverter
-    fun fromStringToMagicItem(item: String?): MagicItem?{
-        val itemType =object :TypeToken<MagicItem>(){}.type
-        return Gson().fromJson(item, itemType)
-    }
-
-    @TypeConverter
-    fun fromMagicItemToString(item: MagicItem?): String{
-        return Gson().toJson(item)
     }
 
     @TypeConverter

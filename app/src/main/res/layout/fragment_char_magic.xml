@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView53"
+                android:id="@+id/textViewVigor"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -35,13 +35,23 @@
                 android:text='@{"Vigor: " + MainViewModel.vigor}' />
 
             <TextView
-                android:id="@+id/textView56"
+                android:id="@+id/textViewFocus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"
+                android:text='@{"Focus: " + MainViewModel.focus}'/>
+
+            <TextView
+                android:id="@+id/textViewStamina"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:autoSizeTextType="uniform"
                 android:text='@{"Stamina: " + MainViewModel.sta}'/>
+
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -102,7 +112,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.93"
             app:srcCompat="@drawable/ic_baseline_add_24"
-            android:contentDescription="Add new character"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+            android:contentDescription="Add new character">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addSignButton"

@@ -346,8 +346,11 @@ class MainCharacterViewModel @Inject constructor(
     val ritualCrafting = _ritualCrafting.asStateFlow()
 
     //##### Magic #################################################
-    private var _vigor = MutableStateFlow(10)
+    private var _vigor = MutableStateFlow(0)
     val vigor = _vigor.asStateFlow()
+
+    private var _focus = MutableStateFlow(0)
+    val focus = _focus.asStateFlow()
 
     //Mages
     private var _noviceSpellList = MutableStateFlow(arrayListOf<MagicItem>())
@@ -440,6 +443,14 @@ class MainCharacterViewModel @Inject constructor(
 
     fun addCharacter() {
 
+        var startingVigor = 0
+
+        when (_profession.value){
+            Constants.Professions.MAGE -> startingVigor = 5
+            Constants.Professions.PRIEST -> startingVigor = 3
+            Constants.Professions.WITCHER -> startingVigor = 2
+        }
+
         characterCreationUseCases.addCharacterUseCase(
             Character(
                 id = 0,
@@ -523,7 +534,8 @@ class MainCharacterViewModel @Inject constructor(
                 spellCasting = _spellCasting.value,
                 resistMagic = _resistMagic.value,
                 resistCoercion = _resistCoercion.value,
-                ritualCrafting = _ritualCrafting.value
+                ritualCrafting = _ritualCrafting.value,
+                vigor = startingVigor
             )
 
         ).onEach { result ->
@@ -643,6 +655,7 @@ class MainCharacterViewModel @Inject constructor(
                 professionSkillC3 = _professionSkillC3.value,
 
                 vigor = _vigor.value,
+                focus = _focus.value,
                 basicSigns = _basicSigns.value,
                 alternateSigns = _alternateSigns.value,
                 noviceRituals = _noviceRitualList.value,
@@ -816,6 +829,7 @@ class MainCharacterViewModel @Inject constructor(
 
                     //Magic
                     _vigor.value = characterData.vigor
+                    _focus.value = characterData.focus
 
                     //Mages
                     _noviceSpellList.value = characterData.noviceSpells
@@ -1825,6 +1839,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             7 -> {
+                val initialVigor = _vigor.value - _professionSkillC1.value*2
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillC1.value,
                     _ip.value,
@@ -1834,6 +1849,10 @@ class MainCharacterViewModel @Inject constructor(
                 if (pair != null) {
                     _professionSkillC1.value = pair.second
                     _ip.value = pair.first
+
+                    if (_profession.value == Constants.Professions.MAGE) {
+                        _vigor.value = initialVigor + _professionSkillC1.value*2
+                    }
                 }
             }
             8 -> {
@@ -1968,7 +1987,7 @@ class MainCharacterViewModel @Inject constructor(
 
     fun onCastMagic(item: MagicItem, ignoreHpLoss: Boolean = false): Resource<Int> {
 
-        when (val result = castMagicUseCase(item, _sta.value, _vigor.value)) {
+        when (val result = castMagicUseCase(item, _focus.value, _vigor.value)) {
 
             is Resource.Error -> {
 
@@ -2224,13 +2243,15 @@ class MainCharacterViewModel @Inject constructor(
             _equippedWeapon.value = item
             _weaponEquipment.value.remove(item)
         } else {
-            _weaponEquipment.value.add(_equippedWeapon.value!!)
+            unEquipWeapon(item)
             _equippedWeapon.value = item
             _weaponEquipment.value.remove(item)
         }
+        _focus.value += item.focus
     }
 
     fun unEquipWeapon(item: WeaponItem) {
+        _focus.value -= item.focus
         _weaponEquipment.value.add(_equippedWeapon.value!!)
         _equippedWeapon.value = null
     }

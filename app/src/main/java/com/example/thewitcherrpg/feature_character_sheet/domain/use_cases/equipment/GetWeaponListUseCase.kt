@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment
 
+import android.util.Log
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
@@ -63,6 +64,7 @@ class GetWeaponListUseCase @Inject constructor() {
     ): ArrayList<WeaponItem> {
 
         val equipmentArray: ArrayList<WeaponItem> = arrayListOf()
+        var focus = 0
 
         for (item in itemList) {
             val pair = item.split(":").toTypedArray()
@@ -74,11 +76,20 @@ class GetWeaponListUseCase @Inject constructor() {
             val reliability = pair[5].toInt()
             val hands = pair[6].toInt()
             val rng = pair[7]
-            val effect = ArrayList(pair[8].split(","))
+            val effects = ArrayList(pair[8].split(","))
             val concealment = pair[9]
             val enhancement = pair[10].toInt()
             val weight = pair[11].toFloat()
             val price = pair[12].toInt()
+
+            if (effects.isNotEmpty()) {
+                for (effect in effects) {
+                    if (effect.contains("Focus (")) {
+                        focus = effect.substringBefore(")").substringAfter("(").toInt()
+                        //Log.d("Test", focus.toString())
+                    }
+                }
+            }
 
             equipmentArray.add(
                 WeaponItem(
@@ -91,12 +102,13 @@ class GetWeaponListUseCase @Inject constructor() {
                     currentReliability = reliability,
                     hands = hands,
                     rng = rng,
-                    effect = effect,
+                    effect = effects,
                     concealment = concealment,
                     enhancements = enhancement,
                     weight = weight,
                     cost = price,
-                    type = type
+                    type = type,
+                    focus = focus
                 )
             )
         }
