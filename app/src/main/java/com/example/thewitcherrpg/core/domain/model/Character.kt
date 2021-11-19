@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.core.domain.model
 
+import android.media.audiofx.DynamicsProcessing
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -157,6 +158,8 @@ data class Character(
     var shieldEquipment: ArrayList<EquipmentItem> = arrayListOf(),
     var equippedShield: EquipmentItem? = null,
 
+    var miscEquipment: ArrayList<EquipmentItem> = arrayListOf(),
+
     //Weapons
     var weaponEquipment: ArrayList<WeaponItem> = arrayListOf(),
     var equippedWeapon: WeaponItem? = null
@@ -220,7 +223,6 @@ class MyTypeConverters {
     fun fromWeaponItem(item: WeaponItem?): String{
         return Gson().toJson(item)
     }
-
 
     @TypeConverter
     fun fromWeaponItemArrayListToJson(list: ArrayList<WeaponItem?>): String{

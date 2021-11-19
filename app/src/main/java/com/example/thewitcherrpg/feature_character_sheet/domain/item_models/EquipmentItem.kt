@@ -8,18 +8,19 @@ import java.util.*
 @Parcelize
 data class EquipmentItem(
     var name: String,
-    var stoppingPower: Int,
-    var currentStoppingPower: Int,
+    var stoppingPower: Int = 0,
+    var currentStoppingPower: Int = stoppingPower,
     var currentRArmSP: Int = stoppingPower,
     var currentLArmSP: Int = stoppingPower,
     var currentRLegSP: Int = stoppingPower,
     var currentLLegSP: Int = stoppingPower,
-    var availability: String,
-    var armorEnhancement: String,
+    var availability: String = "",
+    var armorEnhancement: String = "",
     var effect: String,
-    var encumbranceValue: Int,
+    var encumbranceValue: Int = 0,
     var weight: Float,
     var cost: Int,
+    val quantity: Int = 1,
     val equipmentType: EquipmentTypes,
     val uniqueID: UUID = UUID.randomUUID()
 ) : Parcelable

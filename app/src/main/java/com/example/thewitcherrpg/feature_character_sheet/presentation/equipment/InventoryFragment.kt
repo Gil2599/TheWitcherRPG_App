@@ -145,6 +145,13 @@ class InventoryFragment : Fragment() {
                         mediumAdapter.setData(mediumArmorList)
                         heavyAdapter.setData(heavyArmorList)
                     }
+                    5 -> {
+                        listAdaptersInit(false)
+                        for (item in mainCharacterViewModel.miscEquipment.value) {
+                            lightArmorList.add(item)
+                        }
+                        lightAdapter.setData(lightArmorList)
+                    }
                 }
             }
     }

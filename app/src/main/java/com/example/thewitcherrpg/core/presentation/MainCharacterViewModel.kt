@@ -436,6 +436,9 @@ class MainCharacterViewModel @Inject constructor(
     private var _equippedShield = MutableStateFlow<EquipmentItem?>(null)
     val equippedShield = _equippedShield.asStateFlow()
 
+    private var _miscEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
+    val miscEquipment = _miscEquipment.asStateFlow()
+
 
     fun setInCharCreation(inCharacterCreation: Boolean) {
         _inCharacterCreation.value = inCharacterCreation
@@ -445,7 +448,7 @@ class MainCharacterViewModel @Inject constructor(
 
         var startingVigor = 0
 
-        when (_profession.value){
+        when (_profession.value) {
             Constants.Professions.MAGE -> startingVigor = 5
             Constants.Professions.PRIEST -> startingVigor = 2
             Constants.Professions.WITCHER -> startingVigor = 2
@@ -941,9 +944,10 @@ class MainCharacterViewModel @Inject constructor(
     fun getProfessionIndices(): ArrayList<Int> {
         var indicesArray = arrayListOf<Int>()
 
-        characterCreationUseCases.getProfessionSkillsIndicesUseCase(_profession.value).onEach { array ->
-            indicesArray = array
-        }.launchIn(viewModelScope)
+        characterCreationUseCases.getProfessionSkillsIndicesUseCase(_profession.value)
+            .onEach { array ->
+                indicesArray = array
+            }.launchIn(viewModelScope)
 
         return indicesArray
     }
@@ -1784,7 +1788,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             2 -> {
-                val initialVigor = _vigor.value - _professionSkillA2.value/2
+                val initialVigor = _vigor.value - _professionSkillA2.value / 2
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillA2.value,
                     _ip.value,
@@ -1796,7 +1800,7 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value = pair.first
 
                     if (_profession.value == Constants.Professions.WITCHER) {
-                        _vigor.value = initialVigor + _professionSkillA2.value/2
+                        _vigor.value = initialVigor + _professionSkillA2.value / 2
                     }
                 }
             }
@@ -1854,7 +1858,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             7 -> {
-                val initialVigor = _vigor.value - _professionSkillC1.value*2
+                val initialVigor = _vigor.value - _professionSkillC1.value * 2
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillC1.value,
                     _ip.value,
@@ -1866,7 +1870,7 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value = pair.first
 
                     if (_profession.value == Constants.Professions.MAGE) {
-                        _vigor.value = initialVigor + _professionSkillC1.value*2
+                        _vigor.value = initialVigor + _professionSkillC1.value * 2
                     }
                 }
             }
@@ -2095,6 +2099,7 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.add(
                 item
             )
+            EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.add(item)
         }
     }
 

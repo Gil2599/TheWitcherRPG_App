@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAvailability"
+            app:layout_constraintTop_toBottomOf="@+id/textViewEffect"
             tools:text="Armor Enhancement: 1" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEffect"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAE"
             tools:text="Encumbrance Value: 1" />
 
         <TextView
