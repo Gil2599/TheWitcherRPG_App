@@ -1,6 +1,7 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments
 
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -145,8 +146,8 @@ class InvocationAddFragment : Fragment() {
         bind.addRangeText.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addDefenseText.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addEffectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addEffectText.typeface = Typeface.DEFAULT
         bind.addDurationText.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        bind.addSpellbutton.text = "Learn Invocation"
 
         bind.addSpellbutton.setOnClickListener{
 

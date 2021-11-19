@@ -38,7 +38,7 @@ class CharCreationSecFrag : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_charCreation_secFrag_to_charCreation_thirdFrag2)
         }
         binding.buttonToFirstFrag.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_charCreation_secFrag_to_charCreation_firstFrag)
+            Navigation.findNavController(view).navigateUp()
         }
 
         return view

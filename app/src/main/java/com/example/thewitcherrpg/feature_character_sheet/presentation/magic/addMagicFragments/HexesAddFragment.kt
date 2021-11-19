@@ -1,6 +1,7 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments
 
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -77,6 +78,7 @@ class HexesAddFragment : Fragment() {
         bind.customTitle.setTitleSize(18F)
         bind.addStaCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addEffectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addEffectText.typeface = Typeface.DEFAULT
         bind.addLiftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addDangerText.text = HtmlCompat.fromHtml(danger, HtmlCompat.FROM_HTML_MODE_LEGACY)
 

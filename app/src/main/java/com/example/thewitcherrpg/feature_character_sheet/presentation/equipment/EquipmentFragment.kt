@@ -125,7 +125,7 @@ class EquipmentFragment : Fragment() {
                 .navigate(R.id.action_equipmentFragment_to_addArmorFragment2)
         }
         binding.inventoryButton.setOnClickListener {
-            val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(0)
+            val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(-1)
             Navigation.findNavController(view).navigate(action)
         }
 

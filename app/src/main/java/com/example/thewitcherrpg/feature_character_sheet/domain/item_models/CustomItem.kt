@@ -6,18 +6,10 @@ import kotlinx.parcelize.Parcelize
 import java.util.*
 
 @Parcelize
-data class EquipmentItem(
+data class CustomItem(
     var name: String,
-    var stoppingPower: Int,
-    var currentStoppingPower: Int,
-    var currentRArmSP: Int = stoppingPower,
-    var currentLArmSP: Int = stoppingPower,
-    var currentRLegSP: Int = stoppingPower,
-    var currentLLegSP: Int = stoppingPower,
-    var availability: String,
-    var armorEnhancement: String,
-    var effect: String,
-    var encumbranceValue: Int,
+    var quantity: Int,
+    var description: String,
     var weight: Float,
     var cost: Int,
     val equipmentType: EquipmentTypes,

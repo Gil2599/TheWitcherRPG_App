@@ -17,4 +17,13 @@
 
         <item name="android:textColor">@color/gray_400</item>
     </style>
+
+
+    <style name="TextInputLayoutStyle"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/red</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="errorEnabled">false</item>
+        <item name="hintTextColor">@color/red</item>
+    </style>
 </resources>

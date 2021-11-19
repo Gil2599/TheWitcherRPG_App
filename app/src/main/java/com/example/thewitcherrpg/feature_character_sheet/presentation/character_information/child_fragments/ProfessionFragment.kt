@@ -2,6 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.character
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -80,6 +81,7 @@ class ProfessionFragment : Fragment() {
         dialog.setContentView(bind.root)
 
         bind.textViewInfo.text = resources.getString(R.string.profession_help)
+        bind.textViewInfo.typeface = Typeface.DEFAULT
         bind.textViewTitle.text = "Your Profession"
 
         dialog.show()

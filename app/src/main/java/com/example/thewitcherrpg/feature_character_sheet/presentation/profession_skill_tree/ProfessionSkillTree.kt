@@ -2,6 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.professio
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -532,6 +533,7 @@ class ProfessionSkillTree : Fragment() {
         dialog.setContentView(bind.root)
 
         bind.textViewInfo.text = resources.getString(R.string.profession_skill_tree_help)
+        bind.textViewInfo.typeface = Typeface.DEFAULT
 
         bind.textViewTitle.text = "Profession Skill Tree"
         //textview.setText(Html.fromHtml(resources.getString(R.string.text)));

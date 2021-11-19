@@ -14,10 +14,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.example.thewitcherrpg.databinding.CustomDialogAddArmorBinding
-import com.example.thewitcherrpg.databinding.CustomDialogAddWeaponBinding
-import com.example.thewitcherrpg.databinding.FragmentAddItemBinding
+import com.example.thewitcherrpg.databinding.*
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
@@ -52,26 +51,13 @@ class AddItemFragment : Fragment() {
         binding.customTitle.setTitle("New Item")
         binding.customTitle.setTitleSize(20F)
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.equipmentCategories,
-            android.R.layout.simple_spinner_dropdown_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.spinnerAddEquipment.adapter = adapter
-        }
-
         listAdaptersInit()
 
-        binding.spinnerAddEquipment.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    val item = binding.spinnerAddEquipment.getItemAtPosition(position).toString()
+        binding.autoCompleteTextViewItemType.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                val types =
+                    TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.equipmentCategories)
+                types?.get(position)?.let { item ->
 
                     if (item == "Weapon") {
                         listAdaptersInit(true)
@@ -97,12 +83,33 @@ class AddItemFragment : Fragment() {
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_heavy_data))
                     }
-                }
 
-                override fun onNothingSelected(parentView: AdapterView<*>?) {
-                    // Nothing happens
+                    if (item == "Miscellaneous"){
+                        showCustomItemDialog()
+                    }
                 }
             }
+
+        binding.rvLightEquipment.visibility = View.GONE
+        binding.rvMediumEquipment.visibility = View.GONE
+        binding.rvHeavyEquipment.visibility = View.GONE
+        binding.rvBludgeons.visibility = View.GONE
+        binding.rvPoleArms.visibility = View.GONE
+        binding.rvStaves.visibility = View.GONE
+        binding.rvThrownWeapons.visibility = View.GONE
+        binding.rvBows.visibility = View.GONE
+        binding.rvCrossbows.visibility = View.GONE
+        binding.textViewLight.visibility = View.GONE
+        binding.textViewMedium.visibility = View.GONE
+        binding.textViewHeavy.visibility = View.GONE
+        binding.textViewBludgeons.visibility = View.GONE
+        binding.textViewPoleArms.visibility = View.GONE
+        binding.textViewStaves.visibility = View.GONE
+        binding.textViewThrownWeapons.visibility = View.GONE
+        binding.textViewBows.visibility = View.GONE
+        binding.textViewCrossbows.visibility = View.GONE
+
+        binding.autoCompleteTextViewItemType.showDropDown()
 
         return view
     }
@@ -186,18 +193,25 @@ class AddItemFragment : Fragment() {
             binding.rvCrossbows.adapter = crossbowsAdapter
             binding.textViewCrossbows.text = "Crossbows"
 
+            binding.rvLightEquipment.visibility = View.VISIBLE
+            binding.rvMediumEquipment.visibility = View.VISIBLE
+            binding.rvHeavyEquipment.visibility = View.VISIBLE
             binding.rvBludgeons.visibility = View.VISIBLE
             binding.rvPoleArms.visibility = View.VISIBLE
             binding.rvStaves.visibility = View.VISIBLE
             binding.rvThrownWeapons.visibility = View.VISIBLE
             binding.rvBows.visibility = View.VISIBLE
             binding.rvCrossbows.visibility = View.VISIBLE
+            binding.textViewLight.visibility = View.VISIBLE
+            binding.textViewMedium.visibility = View.VISIBLE
+            binding.textViewHeavy.visibility = View.VISIBLE
             binding.textViewBludgeons.visibility = View.VISIBLE
             binding.textViewPoleArms.visibility = View.VISIBLE
             binding.textViewStaves.visibility = View.VISIBLE
             binding.textViewThrownWeapons.visibility = View.VISIBLE
             binding.textViewBows.visibility = View.VISIBLE
             binding.textViewCrossbows.visibility = View.VISIBLE
+
         } else {
             lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
             binding.rvLightEquipment.adapter = lightAdapter
@@ -212,12 +226,18 @@ class AddItemFragment : Fragment() {
             binding.textViewMedium.text = "Medium"
             binding.textViewHeavy.text = "Heavy"
 
+            binding.rvLightEquipment.visibility = View.VISIBLE
+            binding.rvMediumEquipment.visibility = View.VISIBLE
+            binding.rvHeavyEquipment.visibility = View.VISIBLE
             binding.rvBludgeons.visibility = View.GONE
             binding.rvPoleArms.visibility = View.GONE
             binding.rvStaves.visibility = View.GONE
             binding.rvThrownWeapons.visibility = View.GONE
             binding.rvBows.visibility = View.GONE
             binding.rvCrossbows.visibility = View.GONE
+            binding.textViewLight.visibility = View.VISIBLE
+            binding.textViewMedium.visibility = View.VISIBLE
+            binding.textViewHeavy.visibility = View.VISIBLE
             binding.textViewBludgeons.visibility = View.GONE
             binding.textViewPoleArms.visibility = View.GONE
             binding.textViewStaves.visibility = View.GONE
@@ -327,4 +347,41 @@ class AddItemFragment : Fragment() {
 
     }
 
+    private fun showCustomItemDialog(){
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val bind: CustomDialogAddCustomItemBinding = CustomDialogAddCustomItemBinding.inflate(layoutInflater)
+
+
+        bind.customTitle.setTitle("Custom Item")
+        bind.customTitle.setTitleSize(17F)
+
+        /*bind.buttonAdd.setOnClickListener{
+            //mainCharacterViewModel.addWeaponItem(weaponItem)
+            dialog.dismiss()
+        }
+
+        bind.buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }*/
+
+        dialog.setContentView(bind.root)
+        dialog.show()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.equipmentCategories,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.autoCompleteTextViewItemType.setAdapter(adapter)
+        }
+    }
 }

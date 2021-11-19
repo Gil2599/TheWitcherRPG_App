@@ -11,16 +11,18 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharCreationFirstBinding
-import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
+import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 class CharCreationFirstFrag : Fragment() {
     private var _binding: FragmentCharCreationFirstBinding? = null
@@ -28,10 +30,12 @@ class CharCreationFirstFrag : Fragment() {
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
-    lateinit var defSkill: String
-    lateinit var race: String
-    lateinit var racePerks: String
-    lateinit var defSkillInfo: String
+    private lateinit var defSkill: String
+    private lateinit var race: String
+    private lateinit var gender: String
+    private lateinit var professionString: String
+    private lateinit var racePerks: String
+    private lateinit var defSkillInfo: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +51,7 @@ class CharCreationFirstFrag : Fragment() {
         onInit()
 
         binding.buttonToSecFrag.setOnClickListener{
-            if (saveData()){
+            if (checkData()){
                 Navigation.findNavController(view).navigate(R.id.action_charCreation_firstFrag_to_charCreation_secFrag)
             }
         }
@@ -62,88 +66,61 @@ class CharCreationFirstFrag : Fragment() {
 
         mainCharacterViewModel.setInCharCreation(true)
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.gender_array,
-            android.R.layout.simple_spinner_dropdown_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.genderSpinner.adapter = adapter
-        }
+        binding.autoCompleteTextViewRace.onItemClickListener =
+            OnItemClickListener { _, _, position, _ ->
+                val races = TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.races_array)
+                races?.get(position)?.let {
+                    mainCharacterViewModel.setRace(it)
+                    race = it
+                }
+            }
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.races_array,
-            android.R.layout.simple_spinner_dropdown_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.raceSpinner.adapter = adapter
-        }
+        binding.autoCompleteTextViewProfession.onItemClickListener =
+            OnItemClickListener { _, _, position, _ ->
+                val races = TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.prof_array)
+                races?.get(position)?.let {
+                    mainCharacterViewModel.setProfession(it)
+                    professionString = it
+                }
+            }
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.prof_array,
-            android.R.layout.simple_spinner_dropdown_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.profSpinner.adapter = adapter
-        }
-
-        binding.raceSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parentView: AdapterView<*>?,
-                selectedItemView: View?,
-                position: Int,
-                id: Long
-            ) {
-                race = binding.raceSpinner.selectedItem.toString()
-                binding.textRacePerks.text = "Perks: $race"
-                mainCharacterViewModel.setRace(race)
+        binding.autoCompleteTextViewGender.onItemClickListener =
+            OnItemClickListener { _, _, position, _ ->
+                val genders = TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.gender_array)
+                genders?.get(position)?.let {
+                    mainCharacterViewModel.setGender(it)
+                    gender = it
+                }
             }
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // Nothing happens
-            }
-        }
-
-        binding.profSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parentView: AdapterView<*>?,
-                selectedItemView: View?,
-                position: Int,
-                id: Long
-            ) {
-                mainCharacterViewModel.setProfession(binding.profSpinner.selectedItem.toString())
-            }
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // Nothing happens
-            }
-        }
-
-        binding.genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                mainCharacterViewModel.setGender(binding.genderSpinner.selectedItem.toString())
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                // Nothing happens
-            }
-        }
 
         binding.textDefiningSkill.setOnClickListener {
-            val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle(defSkill)
-            alertDialogBuilder.setMessage(defSkillInfo)
-            val alertDialog: AlertDialog = alertDialogBuilder.create()
-            alertDialog.setCanceledOnTouchOutside(true)
-            alertDialog.show()
+            if (this::professionString.isInitialized) {
+                val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
+                alertDialogBuilder.setTitle(defSkill)
+                alertDialogBuilder.setMessage(defSkillInfo)
+                val alertDialog: AlertDialog = alertDialogBuilder.create()
+                alertDialog.setCanceledOnTouchOutside(true)
+                alertDialog.show()
+            }
+            else {
+                Snackbar.make(binding.root, "Please select character profession",
+                    Snackbar.LENGTH_SHORT).show()
+            }
         }
 
         binding.textRacePerks.setOnClickListener {
-            val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle(race)
-            alertDialogBuilder.setMessage(racePerks)
-            val alertDialog: AlertDialog = alertDialogBuilder.create()
-            alertDialog.setCanceledOnTouchOutside(true)
-            alertDialog.show()
+            if (this::race.isInitialized) {
+                val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
+                alertDialogBuilder.setTitle(race)
+                alertDialogBuilder.setMessage(racePerks)
+                val alertDialog: AlertDialog = alertDialogBuilder.create()
+                alertDialog.setCanceledOnTouchOutside(true)
+                alertDialog.show()
+            }
+            else{
+                Snackbar.make(binding.root, "Please select character race",
+                    Snackbar.LENGTH_SHORT).show()
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -158,6 +135,7 @@ class CharCreationFirstFrag : Fragment() {
                 launch {
                     mainCharacterViewModel.perks.collectLatest {
                         racePerks = it
+                        binding.textRacePerks.text = "Perks: ${mainCharacterViewModel.race.value}"
                     }
                 }
                 launch {
@@ -167,33 +145,76 @@ class CharCreationFirstFrag : Fragment() {
                 }
             }
         }
+
     }
 
-    private fun saveData(): Boolean {
+    private fun checkData(): Boolean {
 
         if (binding.etCharName.text?.isEmpty() == true) {
-            Toast.makeText(context, "Character name cannot be empty", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Character name cannot be empty",
+                Snackbar.LENGTH_SHORT).show()
             return false
         }
 
         if(binding.etCharAge.text?.isEmpty() == true) {
-            Toast.makeText(context, "Character age cannot be empty", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Character age cannot be empty",
+                Snackbar.LENGTH_SHORT).show()
             return false
         }
 
-        /*sharedViewModel.setName(binding.etCharName.text.toString())
-        sharedViewModel.setGender(binding.genderSpinner.selectedItem.toString())
-        sharedViewModel.setRace(binding.raceSpinner.selectedItem.toString())
-        sharedViewModel.setAge(binding.etAge.text.toString().toInt())
-        sharedViewModel.setProfession(binding.profSpinner.selectedItem.toString())
-        sharedViewModel.setDefiningSkill(defSkill)*/
+        if (!this::race.isInitialized){
+            Snackbar.make(binding.root, "Please select character race",
+                Snackbar.LENGTH_SHORT).show()
+            return false
+        }
 
+        if (!this::gender.isInitialized){
+            Snackbar.make(binding.root, "Please select character gender",
+                Snackbar.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (!this::professionString.isInitialized){
+            Snackbar.make(binding.root, "Please select character profession",
+                Snackbar.LENGTH_SHORT).show()
+            return false
+        }
         return true
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.races_array,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.autoCompleteTextViewRace.setAdapter(adapter)
+        }
+
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.gender_array,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.autoCompleteTextViewGender.setAdapter(adapter)
+        }
+
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.prof_array,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.autoCompleteTextViewProfession.setAdapter(adapter)
+        }
     }
 }

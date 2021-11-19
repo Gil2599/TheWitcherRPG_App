@@ -1,6 +1,7 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments
 
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -98,6 +99,7 @@ class SpellAddFragment : Fragment() {
         bind.addRangeText.text = HtmlCompat.fromHtml(range, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addDefenseText.text = HtmlCompat.fromHtml(defense, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addEffectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addEffectText.typeface = Typeface.DEFAULT
         bind.addDurationText.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addSpellElementText.text = element
 

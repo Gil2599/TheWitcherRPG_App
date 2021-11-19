@@ -12,7 +12,6 @@
         <item>Male</item>
         <item>Female</item>
         <item>Non-Binary</item>
-        <item>Other</item>
     </string-array>
 
     <string-array name="prof_array">

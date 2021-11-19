@@ -17,5 +17,5 @@ enum class EquipmentTypes {
     LIGHT_SHIELD,
     MEDIUM_SHIELD,
     HEAVY_SHIELD,
-    MISC
+    MISC_CUSTOM
 }

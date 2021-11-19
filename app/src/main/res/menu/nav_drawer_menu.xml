@@ -3,35 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/Character"
-        android:title="Character Information"
-        android:icon="@drawable/ic_sharp_person_24"/>
+    <item android:title="Character Tabs">
 
-    <item
-        android:id="@+id/Stats"
-        android:title="Stats"
-        android:icon="@drawable/ic_round_stats_24"/>
+        <menu>
 
-    <item
-        android:id="@+id/Skills"
-        android:title="Skills"
-        android:icon="@drawable/ic_skills_icon"/>
+            <item
+                android:id="@+id/Character"
+                android:title="Character Information"
+                android:icon="@drawable/ic_sharp_person_24"/>
 
-    <item
-        android:id="@+id/ProfessionSkillTree"
-        android:title="Profession Skill Tree"
-        android:icon="@drawable/ic_baseline_tree_icon"/>
+            <item
+                android:id="@+id/Stats"
+                android:title="Stats"
+                android:icon="@drawable/ic_round_stats_24"/>
 
-    <item
-        android:id="@+id/Magic"
-        android:title="Magic"
-        android:icon="@drawable/ic_magic_icon" />
+            <item
+                android:id="@+id/Skills"
+                android:title="Skills"
+                android:icon="@drawable/ic_skills_icon"/>
 
-    <item
-        android:id="@+id/Equipment"
-        android:title="Equipment"
-        android:icon="@drawable/ic_armor_head" />
+            <item
+                android:id="@+id/ProfessionSkillTree"
+                android:title="Profession Skill Tree"
+                android:icon="@drawable/ic_baseline_tree_icon"/>
 
+            <item
+                android:id="@+id/Magic"
+                android:title="Magic"
+                android:icon="@drawable/ic_magic_icon" />
+
+            <item
+                android:id="@+id/Equipment"
+                android:title="Equipment"
+                android:icon="@drawable/ic_armor_head" />
+
+        </menu>
+
+    </item>
 
 </menu>
