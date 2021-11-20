@@ -49,6 +49,59 @@
         <item>Peasant:N/A</item>
     </string-array>
 
+    <string-array name="professions_skills_array">
+        <item>Bard:Charisma,Deceit,Performance,Language (Choose 1),Human Perception,
+        Persuasion,Streetwise,Fine Arts,Seduction,Social Etiquette</item>
+        <item>Criminal:Athletics,Awareness,Deceit,Forgery,Intimidate,
+        Pick Locks,Sleight of Hand,Small Blades,Stealth,Streetwise</item>
+        <item>Craftsman:Athletics,Alchemy,Business,Crafting,Education,
+        Endurance,Fine Arts,Persuasion,Physique,Streetwise</item>
+        <item>Doctor:Alchemy,Business,Charisma,Courage,Deduction,Human Perception,
+        Resist Coercion,Small Blades,Social Etiquette,Wilderness Survival</item>
+        <item>Mage:Education,Grooming and Style,Hex Weaving,Human Perception,
+        Resist Magic,Ritual Crafting,Seduction,Social Etiquette,Spell Casting,Staff/Spear</item>
+        <item>Man At Arms:Any 5 Combat Skills,Courage,Dodge/Escape,Intimidation,Physique,
+        Wilderness Survival</item>
+        <item>Priest:Charisma,Courage,First Aid,Hex Weaving,Human Perception,Leadership,
+        Ritual Crafting,Spell Casting,Teaching,Wilderness Survival</item>
+        <item>Witcher:Alchemy,Athletics,Awareness,Deduction,Dodge/Escape,
+        Ride,Spell Casting,Stealth,Swordsmanship,Wilderness Survival</item>
+        <item>Merchant:Business,Charisma,Education,Gambling,Human Perception,Language (Choose 2),
+            Persuasion,Resist Coercion,Small Blades,Streetwise</item>
+        <item>Noble:N/A</item>
+        <item>Peasant:N/A</item>
+    </string-array>
+
+    <string-array name="professions_gear_array">
+        <item>Bard:Dice poker board,Gwent deck,Hand mirror,An instrument,
+        Flask of spirits,Dagger,Perfume/cologne,Belt pouch,Garter sheath, A journal with a lock</item>
+        <item>Criminal:Brass knuckles,Bullseye lantern,Chloroform,Loaded dice,Satchel,Secret pocket,
+        Sleeve sheath,Stiletto,Thieves\'s tools,Throwing knives x5</item>
+        <item>Craftsman:50 crowns of components,Alchemy set,Crafting tools,Hourglass,Iron long sword,
+        Lock,Mace,Merchant\'s tools,Small chest,Tinker\'s forge</item>
+        <item>Doctor:Blanket,Candles x10,Clotting powder x10,Dagger,Hourglass,Large tent,
+        Numbing herbs x10,Sterilizing fluid x10,Surgeon\'s kit,Writing kit</item>
+        <item>Mage:100 crowns of components,Belt pouch,Dagger,Garter sheath,Hand mirror,Hourglass,
+        Journal,Makeup kit,Staff,Writing kit</item>
+        <item>Man At Arms:Armored trousers,Battle axe,Brigandine,Chain coif, Crossbow and bols x20,
+        Kord,Satchel,Spear,Steel buckler,Throwing knives x5</item>
+        <item>Priest:100 crowns of components,Alchemy set,Clotting powder x5,Dagger,Holy symbol,Hourglass,
+        Numbing herbs x5,Staff,Sterilizing fluid x5,Surgeon\'s kit</item>
+        <item>Witcher:Alchemy set,Double woven gambeson,Hand crossbow,Horse,Throwing knives x5</item>
+        <item>Merchant:Crossbow and bols x20,Dagger,Journal,Large tent,Merchant\'s tools,Writing kit</item>
+        <item>Noble:N/A</item>
+        <item>Peasant:N/A</item>
+    </string-array>
+
+    <string-array name="professions_special_array">
+        <item>Mage:5 Novice Spells, 1 Novice Ritual, 1 Low Danger Hex</item>
+        <item>Witcher:Decoction formulae, Oil formulae x2, Potion formulae x2, Witcher medallion,
+            Witcher\'s steel sword, Witcher\'s silver sword</item>
+        <item>Merchant:A mule and a cart with 1000 crowns of common or everyday items</item>
+        <item>Noble:N/A</item>
+        <item>Peasant:N/A</item>
+    </string-array>
+
     <string-array name="defSkills_data_array">
 
         <item>Busking (EMP):A Bard is a wonderful thing to have around,
@@ -180,7 +233,7 @@
         <item>Witcher:38,22,0,2,14,16,48,25,20,12</item>
         <item>Noble:1</item>
     </string-array>
-    
+
     <string-array name="profession_skill_trees">
 
         <item>Busking (EMP):The Charmer,The Informant,The Manipulator,

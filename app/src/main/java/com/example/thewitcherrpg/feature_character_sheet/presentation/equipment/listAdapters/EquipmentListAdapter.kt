@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 
 class EquipmentListAdapter(
     val itemClickString: (EquipmentItem) -> Unit
@@ -18,17 +19,33 @@ class EquipmentListAdapter(
 
         fun bind(item: EquipmentItem, position: Int) {
 
-            val weight = "Weight: " + item.weight.toString()
-            val stoppingPower = "Stopping Power: " + item.stoppingPower.toString()
+            if (item.equipmentType != EquipmentTypes.MISC_CUSTOM) {
+                val weight = "Weight: " + item.weight.toString()
+                val stoppingPower = "Stopping Power: " + item.stoppingPower.toString()
 
-            with(binding) {
-                armorNameText.text = item.name
-                weightText.text = weight
-                stoppingPowerText.text = stoppingPower
+                with(binding) {
+                    armorNameText.text = item.name
+                    weightText.text = weight
+                    stoppingPowerText.text = stoppingPower
 
-                rowLayout.setOnClickListener {
-                    itemClickString(armorList[position])
+                    rowLayout.setOnClickListener {
+                        itemClickString(armorList[position])
 
+                    }
+                }
+            } else {
+                val weight = "Quantity: " + item.quantity.toString()
+                val stoppingPower = "Total Cost: " + item.totalCost.toString()
+
+                with(binding) {
+                    armorNameText.text = item.name
+                    weightText.text = weight
+                    stoppingPowerText.text = stoppingPower
+
+                    rowLayout.setOnClickListener {
+                        itemClickString(armorList[position])
+
+                    }
                 }
             }
         }

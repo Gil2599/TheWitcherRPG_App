@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEffect"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAvailability"
             tools:text="Armor Enhancement: 1" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAvailability"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCost"
             tools:text="Effect: N/A" />
 
         <TextView
@@ -91,7 +91,7 @@
             android:layout_height="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewEffect" />
 
         <Button
             android:id="@+id/buttonCancel"

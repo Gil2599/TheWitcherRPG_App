@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import kotlinx.parcelize.Parcelize
 import java.util.*
+import kotlin.math.cos
 
 @Parcelize
 data class EquipmentItem(
@@ -20,7 +21,8 @@ data class EquipmentItem(
     var encumbranceValue: Int = 0,
     var weight: Float,
     var cost: Int,
-    val quantity: Int = 1,
+    var quantity: Int = 1,
+    var totalCost: Int = cost*quantity,
     val equipmentType: EquipmentTypes,
     val uniqueID: UUID = UUID.randomUUID()
 ) : Parcelable

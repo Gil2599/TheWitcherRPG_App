@@ -29,6 +29,9 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.Equip
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionGearUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionSkillsUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionSpecialUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -51,7 +54,10 @@ class MainCharacterViewModel @Inject constructor(
     private val getEquipmentListUseCase: GetEquipmentListUseCase,
     private val saveCharacterUseCase: SaveCharacterUseCase,
     private val deleteCharacterUseCase: DeleteCharacterUseCase,
-    private val getWeaponListUseCase: GetWeaponListUseCase
+    private val getWeaponListUseCase: GetWeaponListUseCase,
+    private val getProfessionSkillsUseCase: GetProfessionSkillsUseCase,
+    private val getProfessionGearUseCase: GetProfessionGearUseCase,
+    private val getProfessionSpecialUseCase: GetProfessionSpecialUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -684,6 +690,7 @@ class MainCharacterViewModel @Inject constructor(
                 equippedLegs = _equippedLegs.value,
                 shieldEquipment = _shieldEquipment.value,
                 equippedShield = _equippedShield.value,
+                miscEquipment = _miscEquipment.value,
 
                 weaponEquipment = _weaponEquipment.value,
                 equippedWeapon = _equippedWeapon.value
@@ -878,6 +885,8 @@ class MainCharacterViewModel @Inject constructor(
 
                     _weaponEquipment.value = characterData.weaponEquipment
                     _equippedWeapon.value = characterData.equippedWeapon
+
+                    _miscEquipment.value = characterData.miscEquipment
                 }
                 is Resource.Error -> Log.e("Error", "An unexpected error has occurred.")
             }
@@ -950,6 +959,18 @@ class MainCharacterViewModel @Inject constructor(
             }.launchIn(viewModelScope)
 
         return indicesArray
+    }
+
+    fun getProfessionSkills(): ArrayList<String> {
+        return getProfessionSkillsUseCase(_profession.value)
+    }
+
+    fun getProfessionGear(): ArrayList<String> {
+        return getProfessionGearUseCase(_profession.value)
+    }
+
+    fun getProfessionSpecial(): String {
+        return getProfessionSpecialUseCase(_profession.value)
     }
 
     fun onSkillChange(skill: String, increase: Boolean) {
@@ -2117,6 +2138,7 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.remove(
                 item
             )
+            EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.remove(item)
         }
     }
 
@@ -2235,6 +2257,12 @@ class MainCharacterViewModel @Inject constructor(
                 item.currentRLegSP = if (increase) item.currentRLegSP.plus(1)
                 else item.currentRLegSP.minus(1)
                 return item.currentRLegSP
+            }
+
+            EquipmentTypes.MISC_CUSTOM -> {
+                item.quantity = if (increase) item.quantity.plus(1)
+                else item.quantity.minus(1)
+                return item.quantity
             }
 
             else -> {

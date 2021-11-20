@@ -15,4 +15,5 @@ object Constants {
         NOBLE,
         PEASANT
     }
+
 }

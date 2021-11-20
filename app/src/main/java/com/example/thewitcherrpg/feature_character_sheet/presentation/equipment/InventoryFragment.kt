@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -25,9 +24,6 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.Equip
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter
-import android.os.Build
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 
 
 class InventoryFragment : Fragment() {
@@ -150,6 +146,7 @@ class InventoryFragment : Fragment() {
                         for (item in mainCharacterViewModel.miscEquipment.value) {
                             lightArmorList.add(item)
                         }
+                        listAdaptersInit(weapons = false, customItem = true)
                         lightAdapter.setData(lightArmorList)
                     }
                 }
@@ -186,7 +183,7 @@ class InventoryFragment : Fragment() {
         binding.rvCrossbows.isNestedScrollingEnabled = false
     }
 
-    private fun listAdaptersInit(weapons: Boolean) {
+    private fun listAdaptersInit(weapons: Boolean, customItem: Boolean = false) {
         if (weapons) {
             val swords = arrayListOf<WeaponItem>()
             val smallBlades = arrayListOf<WeaponItem>()
@@ -324,25 +321,32 @@ class InventoryFragment : Fragment() {
 
 
         } else {
-            lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-            binding.rvLightEquipment.adapter = lightAdapter
+            if (!customItem) {
+                lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+                binding.rvLightEquipment.adapter = lightAdapter
 
-            mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-            binding.rvMediumEquipment.adapter = mediumAdapter
+                mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+                binding.rvMediumEquipment.adapter = mediumAdapter
 
-            heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-            binding.rvHeavyEquipment.adapter = heavyAdapter
+                heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+                binding.rvHeavyEquipment.adapter = heavyAdapter
 
-            binding.textViewLight.text = "Light"
-            binding.textViewLight.visibility = View.VISIBLE
-            binding.textViewMedium.text = "Medium"
-            binding.textViewMedium.visibility = View.VISIBLE
-            binding.textViewHeavy.text = "Heavy"
-            binding.textViewHeavy.visibility = View.VISIBLE
+                binding.textViewLight.text = "Light"
+                binding.textViewLight.visibility = View.VISIBLE
+                binding.textViewMedium.text = "Medium"
+                binding.textViewMedium.visibility = View.VISIBLE
+                binding.textViewHeavy.text = "Heavy"
+                binding.textViewHeavy.visibility = View.VISIBLE
+                binding.rvMediumEquipment.visibility = View.VISIBLE
+                binding.rvHeavyEquipment.visibility = View.VISIBLE
+            } else {
+                binding.textViewLight.text = "Custom Items"
+                binding.textViewLight.visibility = View.VISIBLE
+                binding.textViewMedium.visibility = View.GONE
+                binding.textViewHeavy.visibility = View.GONE
+            }
 
             binding.rvLightEquipment.visibility = View.VISIBLE
-            binding.rvMediumEquipment.visibility = View.VISIBLE
-            binding.rvHeavyEquipment.visibility = View.VISIBLE
             binding.rvBludgeons.visibility = View.GONE
             binding.rvPoleArms.visibility = View.GONE
             binding.rvStaves.visibility = View.GONE
@@ -358,7 +362,7 @@ class InventoryFragment : Fragment() {
         }
     }
 
-    private fun showArmorDialog(armorItem: EquipmentItem) {
+    private fun showArmorDialog(item: EquipmentItem) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -366,15 +370,15 @@ class InventoryFragment : Fragment() {
         val bind: CustomDialogCharArmorBinding =
             CustomDialogCharArmorBinding.inflate(layoutInflater)
 
-        val stoppingPower = "Stopping Power (SP): " + armorItem.stoppingPower
-        val availability = "Availability: " + armorItem.availability
-        val armorEnhancement = "Armor Enhancement: " + armorItem.armorEnhancement
-        val effect = "Effect: " + armorItem.effect
-        val encValue = "Encumbrance Value: " + armorItem.encumbranceValue
-        val weight = "Weight: " + armorItem.weight
-        val price = "Cost: " + armorItem.cost + " Crowns"
+        val stoppingPower = "Stopping Power (SP): " + item.stoppingPower
+        val availability = "Availability: " + item.availability
+        val armorEnhancement = "Armor Enhancement: " + item.armorEnhancement
+        val effect = "Effect: " + item.effect
+        val encValue = "Encumbrance Value: " + item.encumbranceValue
+        val weight = "Weight: " + item.weight
+        val price = "Cost: " + item.cost + " Crowns"
 
-        bind.customTitle.setTitle(armorItem.name)
+        bind.customTitle.setTitle(item.name)
         bind.customTitle.setTitleSize(17F)
         bind.textViewSP.text = stoppingPower
         bind.textViewAvailability.text = availability
@@ -383,15 +387,22 @@ class InventoryFragment : Fragment() {
         bind.textViewEV.text = encValue
         bind.textViewWeight.text = weight
         bind.textViewCost.text = price
-        bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+        bind.textCurrentSP.text = item.currentStoppingPower.toString()
 
-        when (armorItem.equipmentType) {
+        bind.imageViewMinus.visibility = View.GONE
+        bind.imageViewPlus.visibility = View.GONE
+        bind.imageViewMinusLSP.visibility = View.GONE
+        bind.imageViewMinusRSP.visibility = View.GONE
+        bind.imageViewPlusLSP.visibility = View.GONE
+        bind.imageViewPlusRSP.visibility = View.GONE
+
+        when (item.equipmentType) {
             EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> {
                 bind.textViewCurrentSP.visibility = View.GONE
                 bind.textCurrentLeftSP.visibility = View.VISIBLE
                 bind.textCurrentRightSP.visibility = View.VISIBLE
-                bind.textCurrentLeftSP.text = armorItem.currentLLegSP.toString()
-                bind.textCurrentRightSP.text = armorItem.currentRLegSP.toString()
+                bind.textCurrentLeftSP.text = item.currentLLegSP.toString()
+                bind.textCurrentRightSP.text = item.currentRLegSP.toString()
                 bind.textViewLeftSP.text = "Left Leg SP: "
                 bind.textViewRightSP.text = "Right Leg SP: "
             }
@@ -399,12 +410,28 @@ class InventoryFragment : Fragment() {
             EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> {
                 bind.textCurrentLeftSP.visibility = View.VISIBLE
                 bind.textCurrentRightSP.visibility = View.VISIBLE
-                bind.textCurrentLeftSP.text = armorItem.currentLArmSP.toString()
-                bind.textCurrentRightSP.text = armorItem.currentRArmSP.toString()
-                bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+                bind.textCurrentLeftSP.text = item.currentLArmSP.toString()
+                bind.textCurrentRightSP.text = item.currentRArmSP.toString()
+                bind.textCurrentSP.text = item.currentStoppingPower.toString()
+            }
+
+            EquipmentTypes.MISC_CUSTOM -> {
+                bind.textViewEV.visibility = View.GONE
+                bind.textViewSP.visibility = View.GONE
+                bind.textViewAvailability.visibility = View.GONE
+                bind.textViewAE.visibility = View.GONE
+                bind.textViewLeftSP.visibility = View.GONE
+                bind.textViewRightSP.visibility = View.GONE
+
+                bind.imageViewMinus.visibility = View.VISIBLE
+                bind.imageViewPlus.visibility = View.VISIBLE
+                bind.textCurrentSP.text = item.quantity.toString()
+                bind.textViewCurrentSP.text = "Quantity: "
+                bind.buttonEquipUnequip.visibility = View.GONE
+                bind.textViewEffect.text = "Description: " + item.effect
             }
             else -> {
-                bind.textCurrentSP.text = armorItem.currentStoppingPower.toString()
+                bind.textCurrentSP.text = item.currentStoppingPower.toString()
                 bind.textViewLeftSP.visibility = View.GONE
                 bind.textViewRightSP.visibility = View.GONE
             }
@@ -416,7 +443,7 @@ class InventoryFragment : Fragment() {
         }
 
         bind.buttonRemove.setOnClickListener {
-            mainCharacterViewModel.removeEquipment(armorItem)
+            mainCharacterViewModel.removeEquipment(item)
 
             updateRVs()
 
@@ -424,20 +451,26 @@ class InventoryFragment : Fragment() {
         }
 
         bind.buttonEquipUnequip.setOnClickListener {
-            mainCharacterViewModel.equipItem(armorItem)
+            mainCharacterViewModel.equipItem(item)
             Navigation.findNavController(binding.root)
                 .navigateUp()
             dialog.dismiss()
         }
 
-        bind.imageViewMinus.visibility = View.GONE
-        bind.imageViewPlus.visibility = View.GONE
-        bind.imageViewMinusLSP.visibility = View.GONE
-        bind.imageViewMinusRSP.visibility = View.GONE
-        bind.imageViewPlusLSP.visibility = View.GONE
-        bind.imageViewPlusRSP.visibility = View.GONE
+        bind.imageViewMinus.setOnClickListener {
+            if (bind.textCurrentSP.text.toString().toInt() > 0) {
+                bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(
+                    item,
+                    increase = false,
+                    EquipmentTypes.MISC_CUSTOM
+                ).toString()
+            }
+        }
 
-
+        bind.imageViewPlus.setOnClickListener {
+            mainCharacterViewModel.onItemSPChange(item, increase = true, EquipmentTypes.MISC_CUSTOM)
+            bind.textCurrentSP.text = item.quantity.toString()
+        }
 
         dialog.setContentView(bind.root)
 
@@ -561,6 +594,14 @@ class InventoryFragment : Fragment() {
                 lightAdapter.setData(lightArmorList)
                 mediumAdapter.setData(mediumArmorList)
                 heavyAdapter.setData(heavyArmorList)
+            }
+            "Miscellaneous" -> {
+                listAdaptersInit(false)
+                for (item in mainCharacterViewModel.miscEquipment.value) {
+                    lightArmorList.add(item)
+                }
+                listAdaptersInit(weapons = false, customItem = true)
+                lightAdapter.setData(lightArmorList)
             }
         }
     }

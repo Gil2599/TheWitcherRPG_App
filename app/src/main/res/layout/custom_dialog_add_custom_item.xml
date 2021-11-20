@@ -16,18 +16,20 @@
             android:id="@+id/etNameLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:hint="Item Name"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxStrokeWidth="0dp"
+
             app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/etWeightLayout"
             app:layout_constraintEnd_toStartOf="@+id/etQuantityLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customTitle"
+            app:layout_constraintVertical_chainStyle="spread"
             app:layout_constraintWidth_percent="0.50"
             tools:ignore="HardcodedText">
 
@@ -72,14 +74,15 @@
             android:id="@+id/etWeightLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:hint="Item Weight"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxStrokeWidth="0dp"
+
             app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/etDescriptionLayout"
             app:layout_constraintEnd_toStartOf="@+id/etCostLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/etNameLayout"
@@ -101,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:hint="Item Cost"
+            android:hint="Cost Per Item"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
@@ -129,7 +132,6 @@
             android:id="@+id/etDescriptionLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="32dp"
             android:hint="Item Description"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
@@ -137,7 +139,7 @@
             app:boxCornerRadiusTopStart="5dp"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonAddItem"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
             app:layout_constraintEnd_toEndOf="@+id/etQuantityLayout"
             app:layout_constraintHeight_percent="0.4"
             app:layout_constraintHorizontal_bias="0.5"
@@ -172,9 +174,9 @@
             android:background="@drawable/outline_bkg"
             android:text="ADD"
             android:textColor="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonCancel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonCancel"
             app:layout_constraintVertical_bias="0.96" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -187,7 +189,7 @@
             android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etDescriptionLayout"
             app:layout_constraintVertical_bias="0.96" />
 
 
