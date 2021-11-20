@@ -80,6 +80,16 @@ class CharCreationFirstFrag : Fragment() {
                 val races = TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.prof_array)
                 races?.get(position)?.let {
                     mainCharacterViewModel.setProfession(it)
+
+                    if (it == "Witcher"){
+                        binding.autoCompleteTextViewRace.setText(it, false)
+                        mainCharacterViewModel.setRace(it)
+                        race = it
+                    } else if (binding.autoCompleteTextViewRace.text.toString() == "Witcher"){
+                        binding.autoCompleteTextViewRace.setText("Human", false)
+                        mainCharacterViewModel.setRace("Human")
+                        race = "Human"
+                    }
                     professionString = it
                 }
             }
@@ -141,6 +151,19 @@ class CharCreationFirstFrag : Fragment() {
                 launch {
                     mainCharacterViewModel.definingSkillInfo.collectLatest {
                         defSkillInfo = it
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.race.collectLatest {
+                        if (it == "Witcher"){
+                            binding.autoCompleteTextViewProfession.setText(it, false)
+                            mainCharacterViewModel.setProfession(it)
+                            professionString = it
+                        } else if (binding.autoCompleteTextViewProfession.text.toString() == "Witcher"){
+                            binding.autoCompleteTextViewProfession.setText("Bard", false)
+                            mainCharacterViewModel.setProfession("Bard")
+                            professionString = "Bard"
+                        }
                     }
                 }
             }

@@ -80,11 +80,11 @@ class MainCharacterViewModel @Inject constructor(
 
     val age = MutableLiveData("")
 
-    private val _gender = mutableStateOf("")
-    val gender: State<String> = _gender
+    private val _gender = MutableStateFlow("")
+    val gender = _gender.asStateFlow()
 
-    private val _race = mutableStateOf("")
-    val race: State<String> = _race
+    private val _race = MutableStateFlow("")
+    val race = _race.asStateFlow()
 
     private val _profession = mutableStateOf(Constants.Professions.BARD)
     val profession: State<Constants.Professions> = _profession

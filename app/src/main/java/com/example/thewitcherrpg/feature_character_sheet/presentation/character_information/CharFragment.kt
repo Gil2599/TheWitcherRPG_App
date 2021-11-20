@@ -98,8 +98,8 @@ class CharFragment : Fragment() {
         }
         
         //Setting up viewPager
-        val numTabs = 5
-        val tabTitles = listOf("Quick Stats", "Profession", "Armor", "Equipment", "Profession")
+        val numTabs = 4
+        val tabTitles = listOf("Quick Stats", "Profession", "Appearance/Background", "Placeholder")
 
         tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, numTabs)
 
