@@ -1788,6 +1788,11 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
+    fun onLongRest() {
+        _hp.value = _maxHP.value
+        _sta.value = _maxSta.value
+    }
+
     fun onProfessionSkillChange(skill: Int, increase: Boolean) {
 
         when (skill) {

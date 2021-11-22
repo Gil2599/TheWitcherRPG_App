@@ -33,6 +33,8 @@ import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.thewitcherrpg.databinding.NavHeaderBinding
+import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag
+import com.google.android.material.snackbar.Snackbar
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 
@@ -140,6 +142,18 @@ class MainActivity : AppCompatActivity() {
         }
         if(item.itemId == R.id.menu_save){
             saveCharacter()
+        }
+        if(item.itemId == R.id.menu_long_rest){
+            mainCharacterViewModel.onLongRest()
+            Snackbar.make(
+                binding.root, "${mainCharacterViewModel.name.value} has long rested.",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
+        if (item.itemId == R.id.menu_edit_character){
+            val fragmentManager = supportFragmentManager
+            fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharCreationFirstFrag())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
         }
         if(toggle.onOptionsItemSelected(item)){
             return true
