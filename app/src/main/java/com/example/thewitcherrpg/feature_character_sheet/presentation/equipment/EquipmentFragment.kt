@@ -16,9 +16,8 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
 import com.example.thewitcherrpg.databinding.CustomDialogCharWeaponBinding
-import com.example.thewitcherrpg.databinding.CustomDialogWeaponBinding
 import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

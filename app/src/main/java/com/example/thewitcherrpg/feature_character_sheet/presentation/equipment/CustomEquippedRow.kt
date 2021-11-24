@@ -5,11 +5,10 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.CustomEquippedRowBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 
 class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet) :
     LinearLayout(context, attributeSet) {

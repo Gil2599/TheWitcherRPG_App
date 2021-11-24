@@ -18,8 +18,8 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.*
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter

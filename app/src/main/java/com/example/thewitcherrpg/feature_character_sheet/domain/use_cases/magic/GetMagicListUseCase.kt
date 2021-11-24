@@ -2,7 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic
 
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import javax.inject.Inject
 

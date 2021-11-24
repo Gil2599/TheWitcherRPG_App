@@ -19,7 +19,7 @@
                 app:showAsAction="never"/>
 
             <item android:id="@+id/menu_long_rest"
-                android:title="Long Rest"
+                android:title="Recovery"
                 android:icon="@drawable/ic_long_rest"
                 app:showAsAction="never"/>
 

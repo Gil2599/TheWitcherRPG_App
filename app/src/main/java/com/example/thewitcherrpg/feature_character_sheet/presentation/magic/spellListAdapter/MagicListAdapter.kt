@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.databinding.SpellRowBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 
 class MagicListAdapter(val itemClick: (MagicItem) -> Unit) :

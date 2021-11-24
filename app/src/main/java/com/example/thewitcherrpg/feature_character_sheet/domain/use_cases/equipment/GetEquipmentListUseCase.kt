@@ -2,7 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equip
 
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import javax.inject.Inject
 

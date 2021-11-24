@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 
 class WeaponListAdapter (
     val itemClickString: (WeaponItem) -> Unit

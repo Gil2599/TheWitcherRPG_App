@@ -14,6 +14,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Item Name"
@@ -21,9 +22,9 @@
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidth="1dp"
 
-            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidthFocused="1dp"
             app:layout_constraintBottom_toTopOf="@+id/etWeightLayout"
             app:layout_constraintEnd_toStartOf="@+id/etQuantityLayout"
             app:layout_constraintHorizontal_bias="0.5"
@@ -45,6 +46,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etQuantityLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Quantity"
@@ -52,8 +54,8 @@
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/etNameLayout"
@@ -72,6 +74,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etWeightLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Item Weight"
@@ -79,9 +82,9 @@
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidth="1dp"
 
-            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidthFocused="1dp"
             app:layout_constraintBottom_toTopOf="@+id/etDescriptionLayout"
             app:layout_constraintEnd_toStartOf="@+id/etCostLayout"
             app:layout_constraintHorizontal_bias="0.5"
@@ -101,6 +104,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etCostLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -109,8 +113,8 @@
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
             app:layout_constraintBottom_toBottomOf="@+id/etWeightLayout"
             app:layout_constraintEnd_toEndOf="@+id/etQuantityLayout"
             app:layout_constraintHorizontal_bias="0.5"
@@ -130,6 +134,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etDescriptionLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:hint="Item Description"
@@ -137,8 +142,8 @@
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
             app:layout_constraintEnd_toEndOf="@+id/etQuantityLayout"
             app:layout_constraintHeight_percent="0.4"

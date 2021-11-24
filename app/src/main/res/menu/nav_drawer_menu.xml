@@ -37,6 +37,11 @@
                 android:title="Equipment"
                 android:icon="@drawable/ic_armor_head" />
 
+            <item
+                android:id="@+id/Campaign_Notes"
+                android:title="Campaign Notes"
+                android:icon="@drawable/ic_papyrus" />
+
         </menu>
 
     </item>

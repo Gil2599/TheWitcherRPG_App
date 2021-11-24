@@ -1,14 +1,14 @@
 package com.example.thewitcherrpg.core.domain.model
 
-import android.media.audiofx.DynamicsProcessing
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.example.thewitcherrpg.core.Constants
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.LifeEvent
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.parcelize.Parcelize
@@ -26,8 +26,19 @@ data class Character(
     var age: Int,
     var profession: Constants.Professions,
     var definingSkill: String,
+    var racePerks: String,
     var definingSkillInfo: String,
     var crowns: Int = 0,
+    var clothing: String = "",
+    var hairStyle: String = "",
+    var personality: String = "",
+    var affectations: String = "",
+    var valuedPerson: String = "",
+    var values: String = "",
+    var feelingsOnPeople: String = "",
+    var socialStanding: String = "",
+    var reputation: String = "",
+    var lifeEvents: ArrayList<LifeEvent> = arrayListOf(),
 
     //Profession Skills
     var professionSkillA1: Int = 0,
@@ -232,6 +243,28 @@ class MyTypeConverters {
     @TypeConverter
     fun fromJsonToWeaponItemArrayList(list: String): ArrayList<WeaponItem>{
         val itemType =object :TypeToken<ArrayList<WeaponItem>>(){}.type
+        return Gson().fromJson(list, itemType)
+    }
+
+    @TypeConverter
+    fun fromStringToLifeEventItem(item: String?): LifeEvent?{
+        val itemType =object :TypeToken<LifeEvent>(){}.type
+        return Gson().fromJson(item, itemType)
+    }
+
+    @TypeConverter
+    fun fromLifeEventItem(item: LifeEvent?): String{
+        return Gson().toJson(item)
+    }
+
+    @TypeConverter
+    fun fromLifeEventArrayListToJson(list: ArrayList<LifeEvent?>): String{
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun fromJsonToLifeEventArrayList(list: String): ArrayList<LifeEvent>{
+        val itemType =object :TypeToken<ArrayList<LifeEvent>>(){}.type
         return Gson().fromJson(list, itemType)
     }
 

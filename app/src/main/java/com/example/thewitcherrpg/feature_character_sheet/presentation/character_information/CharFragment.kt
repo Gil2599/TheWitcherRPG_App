@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
-import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments.ViewPagerAdapter
+import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments.adapters.ViewPagerAdapter
 import com.example.thewitcherrpg.databinding.FragmentCharBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -99,7 +99,7 @@ class CharFragment : Fragment() {
         
         //Setting up viewPager
         val numTabs = 4
-        val tabTitles = listOf("Quick Stats", "Profession", "Appearance/Background", "Placeholder")
+        val tabTitles = listOf("Quick Stats", "Profession", "Personal", "Background")
 
         tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, numTabs)
 

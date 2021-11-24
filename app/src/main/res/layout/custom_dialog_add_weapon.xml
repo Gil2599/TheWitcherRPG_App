@@ -7,7 +7,7 @@
 
         <variable
             name="weaponItem"
-            type="com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem" />
+            type="com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem" />
 
     </data>
 

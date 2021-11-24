@@ -1,6 +1,5 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -26,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
-import android.app.Activity
 import android.graphics.BitmapFactory
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -34,6 +32,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.thewitcherrpg.databinding.NavHeaderBinding
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag
+import com.example.thewitcherrpg.feature_character_sheet.presentation.campaign_notes.CampaignNotesFragment
 import com.google.android.material.snackbar.Snackbar
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -76,25 +75,31 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.Character -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharFragment())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharFragment(), "CharacterInfo")
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                }
                 R.id.Skills -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit() }
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment(), "Skills")
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                }
                 R.id.Stats -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, StatsFragment())
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, StatsFragment(), "Stats")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.ProfessionSkillTree -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, ProfessionSkillTree())
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, ProfessionSkillTree(), "SkillTree")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Magic -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, MagicParentFragment())
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, MagicParentFragment(), "Magic")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Equipment -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, EquipmentParentFragment())
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, EquipmentParentFragment(), "Equipment")
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                }
+                R.id.Campaign_Notes -> {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CampaignNotesFragment(), "Campaign_Notes")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
             }
@@ -146,13 +151,14 @@ class MainActivity : AppCompatActivity() {
         if(item.itemId == R.id.menu_long_rest){
             mainCharacterViewModel.onLongRest()
             Snackbar.make(
-                binding.root, "${mainCharacterViewModel.name.value} has long rested.",
+                binding.root, "${mainCharacterViewModel.name.value} has recovered.",
                 Snackbar.LENGTH_SHORT
             ).show()
         }
         if (item.itemId == R.id.menu_edit_character){
+            val editFragment = CharCreationFirstFrag.newInstance(inEditMode = true)
             val fragmentManager = supportFragmentManager
-            fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharCreationFirstFrag())
+            fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, editFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
         }
         if(toggle.onOptionsItemSelected(item)){

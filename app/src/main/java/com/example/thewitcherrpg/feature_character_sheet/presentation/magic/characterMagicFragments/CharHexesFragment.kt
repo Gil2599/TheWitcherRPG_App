@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
@@ -19,7 +18,7 @@ import com.example.thewitcherrpg.core.Resource
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogCharHexBinding
 import com.example.thewitcherrpg.databinding.FragmentCharHexesBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest

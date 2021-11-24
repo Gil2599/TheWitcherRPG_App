@@ -17,7 +17,7 @@ import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 
 class SpellAddFragment : Fragment() {
     private var _binding: FragmentSpellAddBinding? = null

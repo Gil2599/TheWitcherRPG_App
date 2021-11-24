@@ -1,9 +1,8 @@
 package com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment
 
-import android.util.Log
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import javax.inject.Inject
 

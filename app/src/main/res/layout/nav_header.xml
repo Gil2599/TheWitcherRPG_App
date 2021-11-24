@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            android:text='@{mainViewModel.name}'
+            android:text="@{mainViewModel.name}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/textViewHealth"
             app:layout_constraintStart_toEndOf="@+id/cardView"

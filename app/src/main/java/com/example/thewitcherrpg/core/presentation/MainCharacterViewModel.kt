@@ -22,11 +22,12 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.charac
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.EquipmentItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.WeaponItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.LifeEvent
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionGearUseCase
@@ -80,6 +81,19 @@ class MainCharacterViewModel @Inject constructor(
 
     val age = MutableLiveData("")
 
+    val clothing = MutableLiveData("")
+    val hairStyle = MutableLiveData("")
+    val personality = MutableLiveData("")
+    val affectations = MutableLiveData("")
+    val valuedPerson = MutableLiveData("")
+    val values = MutableLiveData("")
+    val feelingsOnPeople = MutableLiveData("")
+    val socialStanding = MutableLiveData("")
+    val reputation = MutableLiveData("")
+
+    private var _lifeEvents = MutableStateFlow(arrayListOf<LifeEvent>())
+    val lifeEvents = _lifeEvents.asStateFlow()
+
     private val _gender = MutableStateFlow("")
     val gender = _gender.asStateFlow()
 
@@ -95,8 +109,8 @@ class MainCharacterViewModel @Inject constructor(
     private val _definingSkillInfo = MutableStateFlow("")
     val definingSkillInfo = _definingSkillInfo.asStateFlow()
 
-    private val _perks = MutableStateFlow("")
-    val perks = _perks.asStateFlow()
+    private val _racePerks = MutableStateFlow("")
+    val racePerks = _racePerks.asStateFlow()
 
     private var _ip = MutableStateFlow(70)
     val ip = _ip.asStateFlow()
@@ -472,6 +486,7 @@ class MainCharacterViewModel @Inject constructor(
                 profession = _profession.value,
                 definingSkill = _definingSkill.value,
                 definingSkillInfo = _definingSkillInfo.value,
+                racePerks = _racePerks.value,
                 intelligence = _intelligence.value,
                 reflex = _ref.value,
                 dexterity = _dex.value,
@@ -579,7 +594,17 @@ class MainCharacterViewModel @Inject constructor(
                 profession = _profession.value,
                 definingSkill = _definingSkill.value,
                 definingSkillInfo = _definingSkillInfo.value,
+                racePerks = _racePerks.value,
                 crowns = _crowns.value,
+                clothing = clothing.value!!,
+                hairStyle = hairStyle.value!!,
+                personality = personality.value!!,
+                affectations = affectations.value!!,
+                valuedPerson = valuedPerson.value!!,
+                values = values.value!!,
+                feelingsOnPeople = feelingsOnPeople.value!!,
+                socialStanding = socialStanding.value!!,
+                reputation = reputation.value!!,
                 intelligence = _intelligence.value,
                 reflex = _ref.value,
                 dexterity = _dex.value,
@@ -748,7 +773,17 @@ class MainCharacterViewModel @Inject constructor(
                     _profession.value = characterData.profession
                     _definingSkill.value = characterData.definingSkill
                     _definingSkillInfo.value = characterData.definingSkillInfo
+                    _racePerks.value = characterData.racePerks
                     _crowns.value = characterData.crowns
+                    clothing.value = characterData.clothing
+                    hairStyle.value = characterData.hairStyle
+                    personality.value = characterData.personality
+                    affectations.value = characterData.affectations
+                    valuedPerson.value = characterData.valuedPerson
+                    values.value = characterData.values
+                    feelingsOnPeople.value = characterData.feelingsOnPeople
+                    socialStanding.value = characterData.socialStanding
+                    reputation.value = characterData.reputation
 
                     //Profession Skills
                     _professionSkillA1.value = characterData.professionSkillA1
@@ -914,7 +949,7 @@ class MainCharacterViewModel @Inject constructor(
         _race.value = race
 
         characterCreationUseCases.getRacePerkUseCase(race).onEach {
-            _perks.value = it
+            _racePerks.value = it
         }.launchIn(viewModelScope)
     }
 
@@ -1789,8 +1824,20 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun onLongRest() {
-        _hp.value = _maxHP.value
-        _sta.value = _maxSta.value
+        if (_hp.value < _maxHP.value){
+            if (_hp.value + _rec.value > _maxHP.value) {
+                _hp.value = _maxHP.value
+            }
+            else {
+                _hp.value += _rec.value
+            }
+        }
+    }
+
+    fun onSaveEdit(name:String, age:String, gender: String){
+        this.name.value = name
+        this.age.value = age
+        _gender.value = gender
     }
 
     fun onProfessionSkillChange(skill: Int, increase: Boolean) {

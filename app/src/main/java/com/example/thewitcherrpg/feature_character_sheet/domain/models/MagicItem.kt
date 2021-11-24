@@ -1,4 +1,4 @@
-package com.example.thewitcherrpg.feature_character_sheet.domain.item_models
+package com.example.thewitcherrpg.feature_character_sheet.domain.models
 
 import android.os.Parcelable
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType

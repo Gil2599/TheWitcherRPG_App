@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etSocialStandingLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="Social Standing"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSocialStanding"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.socialStanding}"
+                        android:inputType="textCapSentences|text"
+                        android:maxLength="20" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etReputationLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="Social Standing"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etSocialStandingLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etReputation"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.reputation}"
+                        android:inputType="textCapSentences|text"
+                        android:maxLength="20" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etClothingLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="Clothing"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etReputationLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etClothing"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.clothing}"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:maxLines="4"
+                        android:lines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etHairLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Hair Style"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/etClothingLayout"
+                    app:layout_constraintStart_toStartOf="@+id/etClothingLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/etClothingLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etHair"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.hairStyle}"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:maxLines="4"
+                        android:lines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPersonalityLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Personality"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/etHairLayout"
+                    app:layout_constraintStart_toStartOf="@+id/etClothingLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/etHairLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPersonality"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.personality}"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:maxLines="4"
+                        android:lines="4" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etAffectationsLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Affectations"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/etPersonalityLayout"
+                    app:layout_constraintStart_toStartOf="@+id/etPersonalityLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/etPersonalityLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etAffectations"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.affectations}"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:maxLines="4"
+                        android:lines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etValuedPersonLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Valued Person"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/etAffectationsLayout"
+                    app:layout_constraintStart_toStartOf="@+id/etAffectationsLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/etAffectationsLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etValuedPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.valuedPerson}"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:maxLines="4"
+                        android:lines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etValuesLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Values"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/etValuedPersonLayout"
+                    app:layout_constraintStart_toStartOf="@+id/etValuedPersonLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/etValuedPersonLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etValues"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.values}"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:maxLines="4"
+                        android:lines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etFeelingsOnPeopleLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Feelings On People"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/etValuedPersonLayout"
+                    app:layout_constraintStart_toStartOf="@+id/etValuedPersonLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/etValuesLayout"
+                    tools:ignore="HardcodedText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFeelingsOnPeople"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={MainViewModel.feelingsOnPeople}"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:maxLines="4"
+                        android:lines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

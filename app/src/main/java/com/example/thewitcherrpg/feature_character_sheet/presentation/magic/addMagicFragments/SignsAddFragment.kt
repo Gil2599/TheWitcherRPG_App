@@ -16,7 +16,7 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentSignsAddBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.item_models.MagicItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 
 class SignsAddFragment : Fragment() {

@@ -39,8 +39,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:inputType="text"
-                android:maxLength="19"
-                android:text="@={MainViewModel.name}" />
+                android:maxLength="19"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -67,8 +66,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:inputType="number"
-                android:maxLength="4"
-                android:text="@={MainViewModel.age}" />
+                android:maxLength="4"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.example.thewitcherrpg.core.presentation.CustomTitleView
@@ -92,6 +90,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.96" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/outline_bkg"
+            android:text="Cancel"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonToSecFrag"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonToSecFrag" />
 
         <TextView
             android:id="@+id/textDefiningSkill"

@@ -1,15 +1,16 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters
+package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.LifeEvent
 
-class EquipmentListAdapter(
-    val itemClickString: (EquipmentItem) -> Unit
-) : RecyclerView.Adapter<EquipmentListAdapter.ViewHolder>() {
+class LifeEventsListAdapter (
+    val itemClickString: (LifeEvent) -> Unit
+) : RecyclerView.Adapter<LifeEventsListAdapter.ViewHolder>() {
 
     private var armorList = emptyList<EquipmentItem>()
     private lateinit var currentItem: EquipmentItem
@@ -29,7 +30,7 @@ class EquipmentListAdapter(
                     stoppingPowerText.text = stoppingPower
 
                     rowLayout.setOnClickListener {
-                        itemClickString(armorList[position])
+                        //itemClickString(armorList[position])
 
                     }
                 }
@@ -43,7 +44,7 @@ class EquipmentListAdapter(
                     stoppingPowerText.text = stoppingPower
 
                     rowLayout.setOnClickListener {
-                        itemClickString(armorList[position])
+                        //itemClickString(armorList[position])
 
                     }
                 }
