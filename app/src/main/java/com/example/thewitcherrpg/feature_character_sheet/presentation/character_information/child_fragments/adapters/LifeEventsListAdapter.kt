@@ -8,47 +8,29 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.Equip
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.LifeEvent
 
-class LifeEventsListAdapter (
+class LifeEventsListAdapter(
     val itemClickString: (LifeEvent) -> Unit
 ) : RecyclerView.Adapter<LifeEventsListAdapter.ViewHolder>() {
 
-    private var armorList = emptyList<EquipmentItem>()
-    private lateinit var currentItem: EquipmentItem
+    private var eventList = emptyList<LifeEvent>()
+    private lateinit var currentItem: LifeEvent
 
     inner class ViewHolder(private val binding: ArmorRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: EquipmentItem, position: Int) {
+        fun bind(item: LifeEvent, position: Int) {
 
-            if (item.equipmentType != EquipmentTypes.MISC_CUSTOM) {
-                val weight = "Weight: " + item.weight.toString()
-                val stoppingPower = "Stopping Power: " + item.stoppingPower.toString()
+            val age = "Age: " + item.age.toString()
 
-                with(binding) {
-                    armorNameText.text = item.name
-                    weightText.text = weight
-                    stoppingPowerText.text = stoppingPower
+            with(binding) {
+                armorNameText.text = item.name
+                stoppingPowerText.text = age
 
-                    rowLayout.setOnClickListener {
-                        //itemClickString(armorList[position])
-
-                    }
-                }
-            } else {
-                val weight = "Quantity: " + item.quantity.toString()
-                val stoppingPower = "Total Cost: " + item.totalCost.toString()
-
-                with(binding) {
-                    armorNameText.text = item.name
-                    weightText.text = weight
-                    stoppingPowerText.text = stoppingPower
-
-                    rowLayout.setOnClickListener {
-                        //itemClickString(armorList[position])
-
-                    }
+                rowLayout.setOnClickListener {
+                    itemClickString(eventList[position])
                 }
             }
+
         }
     }
 
@@ -59,16 +41,16 @@ class LifeEventsListAdapter (
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        currentItem = armorList[position]
+        currentItem = eventList[position]
         holder.bind(currentItem, position)
     }
 
     override fun getItemCount(): Int {
-        return armorList.size
+        return eventList.size
     }
 
-    fun setData(itemList: ArrayList<EquipmentItem>) {
-        this.armorList = itemList
+    fun setData(itemList: ArrayList<LifeEvent>) {
+        this.eventList = itemList
         notifyDataSetChanged()
     }
 

@@ -605,6 +605,7 @@ class MainCharacterViewModel @Inject constructor(
                 feelingsOnPeople = feelingsOnPeople.value!!,
                 socialStanding = socialStanding.value!!,
                 reputation = reputation.value!!,
+                lifeEvents = _lifeEvents.value,
                 intelligence = _intelligence.value,
                 reflex = _ref.value,
                 dexterity = _dex.value,
@@ -784,6 +785,7 @@ class MainCharacterViewModel @Inject constructor(
                     feelingsOnPeople.value = characterData.feelingsOnPeople
                     socialStanding.value = characterData.socialStanding
                     reputation.value = characterData.reputation
+                    _lifeEvents.value = characterData.lifeEvents
 
                     //Profession Skills
                     _professionSkillA1.value = characterData.professionSkillA1
@@ -1006,6 +1008,10 @@ class MainCharacterViewModel @Inject constructor(
 
     fun getProfessionSpecial(): String {
         return getProfessionSpecialUseCase(_profession.value)
+    }
+
+    fun addLifeEvent(lifeEvent: LifeEvent){
+        _lifeEvents.value.add(lifeEvent)
     }
 
     fun onSkillChange(skill: String, increase: Boolean) {

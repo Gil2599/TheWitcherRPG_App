@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCampaignNotesBinding
 import com.example.thewitcherrpg.databinding.FragmentInventoryBinding
@@ -23,6 +24,8 @@ class CampaignNotesFragment : Fragment() {
 
         binding.customTitle.setTitle("Campaign Notes")
         binding.customTitle.setTitleSize(20F)
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         return view
     }
