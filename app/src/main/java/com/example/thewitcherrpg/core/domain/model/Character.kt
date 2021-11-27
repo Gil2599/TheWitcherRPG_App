@@ -5,10 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.example.thewitcherrpg.core.Constants
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.LifeEvent
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.parcelize.Parcelize
@@ -173,7 +170,11 @@ data class Character(
 
     //Weapons
     var weaponEquipment: ArrayList<WeaponItem> = arrayListOf(),
-    var equippedWeapon: WeaponItem? = null
+    var equippedWeapon: WeaponItem? = null,
+
+    //Campaign Notes
+    var campaignNotes: ArrayList<CampaignNote> = arrayListOf()
+
 
 ): Parcelable
 
@@ -189,7 +190,6 @@ class MyTypeConverters {
     fun fromItem(item: EquipmentItem?): String{
         return Gson().toJson(item)
     }
-
 
     @TypeConverter
     fun fromItemArrayListToJson(list: ArrayList<EquipmentItem?>): String{
@@ -247,17 +247,6 @@ class MyTypeConverters {
     }
 
     @TypeConverter
-    fun fromStringToLifeEventItem(item: String?): LifeEvent?{
-        val itemType =object :TypeToken<LifeEvent>(){}.type
-        return Gson().fromJson(item, itemType)
-    }
-
-    @TypeConverter
-    fun fromLifeEventItem(item: LifeEvent?): String{
-        return Gson().toJson(item)
-    }
-
-    @TypeConverter
     fun fromLifeEventArrayListToJson(list: ArrayList<LifeEvent?>): String{
         return Gson().toJson(list)
     }
@@ -265,6 +254,17 @@ class MyTypeConverters {
     @TypeConverter
     fun fromJsonToLifeEventArrayList(list: String): ArrayList<LifeEvent>{
         val itemType =object :TypeToken<ArrayList<LifeEvent>>(){}.type
+        return Gson().fromJson(list, itemType)
+    }
+
+    @TypeConverter
+    fun fromCampaignNoteArrayListToJson(list: ArrayList<CampaignNote?>): String{
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun fromJsonToCampaignNoteArrayList(list: String): ArrayList<CampaignNote>{
+        val itemType =object :TypeToken<ArrayList<CampaignNote>>(){}.type
         return Gson().fromJson(list, itemType)
     }
 

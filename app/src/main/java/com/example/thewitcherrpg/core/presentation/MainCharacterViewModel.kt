@@ -22,17 +22,16 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.charac
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.LifeEvent
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.*
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionGearUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionSkillsUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionSpecialUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorFromArmorSetUseCase
+import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorSetListUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,7 +57,9 @@ class MainCharacterViewModel @Inject constructor(
     private val getWeaponListUseCase: GetWeaponListUseCase,
     private val getProfessionSkillsUseCase: GetProfessionSkillsUseCase,
     private val getProfessionGearUseCase: GetProfessionGearUseCase,
-    private val getProfessionSpecialUseCase: GetProfessionSpecialUseCase
+    private val getProfessionSpecialUseCase: GetProfessionSpecialUseCase,
+    private val getArmorSetListUseCase: GetArmorSetListUseCase,
+    private val getArmorFromArmorSetUseCase: GetArmorFromArmorSetUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -460,6 +461,9 @@ class MainCharacterViewModel @Inject constructor(
     val miscEquipment = _miscEquipment.asStateFlow()
 
 
+    private var _campaignNotes = MutableStateFlow(arrayListOf<CampaignNote>())
+    val campaignNotes = _campaignNotes.asStateFlow()
+
     fun setInCharCreation(inCharacterCreation: Boolean) {
         _inCharacterCreation.value = inCharacterCreation
     }
@@ -719,7 +723,9 @@ class MainCharacterViewModel @Inject constructor(
                 miscEquipment = _miscEquipment.value,
 
                 weaponEquipment = _weaponEquipment.value,
-                equippedWeapon = _equippedWeapon.value
+                equippedWeapon = _equippedWeapon.value,
+
+                campaignNotes = _campaignNotes.value
             )
 
         ).onEach { result ->
@@ -924,6 +930,8 @@ class MainCharacterViewModel @Inject constructor(
                     _equippedWeapon.value = characterData.equippedWeapon
 
                     _miscEquipment.value = characterData.miscEquipment
+
+                    _campaignNotes.value = characterData.campaignNotes
                 }
                 is Resource.Error -> Log.e("Error", "An unexpected error has occurred.")
             }
@@ -1010,8 +1018,23 @@ class MainCharacterViewModel @Inject constructor(
         return getProfessionSpecialUseCase(_profession.value)
     }
 
-    fun addLifeEvent(lifeEvent: LifeEvent){
+    fun addLifeEvent(lifeEvent: LifeEvent) {
         _lifeEvents.value.add(lifeEvent)
+        _lifeEvents.value = ArrayList(_lifeEvents.value.sortedWith(compareBy { it.age }))
+    }
+
+    fun updateLifeEvent(updatedEvent: LifeEvent) {
+        for (event in _lifeEvents.value) {
+            if (updatedEvent.uniqueID == event.uniqueID) {
+                _lifeEvents.value.remove(event)
+                addLifeEvent(updatedEvent)
+            }
+        }
+    }
+
+    fun removeLifeEvent(lifeEvent: LifeEvent) {
+        _lifeEvents.value.remove(lifeEvent)
+        _lifeEvents.value = ArrayList(_lifeEvents.value.sortedWith(compareBy { it.age }))
     }
 
     fun onSkillChange(skill: String, increase: Boolean) {
@@ -1830,17 +1853,16 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun onLongRest() {
-        if (_hp.value < _maxHP.value){
+        if (_hp.value < _maxHP.value) {
             if (_hp.value + _rec.value > _maxHP.value) {
                 _hp.value = _maxHP.value
-            }
-            else {
+            } else {
                 _hp.value += _rec.value
             }
         }
     }
 
-    fun onSaveEdit(name:String, age:String, gender: String){
+    fun onSaveEdit(name: String, age: String, gender: String) {
         this.name.value = name
         this.age.value = age
         _gender.value = gender
@@ -2182,6 +2204,22 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
+    fun addArmorSet(armorSet: ArmorSet){
+        val armorArray = getArmorFromArmorSetUseCase(armorSet)
+        for (armor in armorArray){
+            addEquipmentItem(armor)
+        }
+    }
+
+    fun buyArmorSet(armorSet: ArmorSet): Boolean {
+        if (armorSet.cost > _crowns.value){
+            return false
+        } else {
+            addArmorSet(armorSet)
+            return true
+        }
+    }
+
     fun removeEquipment(item: EquipmentItem) {
         when (item.equipmentType) {
             EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> _headEquipment.value.remove(
@@ -2372,6 +2410,10 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
+    fun getArmorSetList(source: Int): ArrayList<ArmorSet>{
+        return getArmorSetListUseCase(source)
+    }
+
     fun buyItem(item: EquipmentItem): Boolean {
         return if (item.cost > _crowns.value) {
             false
@@ -2405,4 +2447,23 @@ class MainCharacterViewModel @Inject constructor(
             true
         }
     }
+
+    fun addCampaignNote(campaignNote: CampaignNote) {
+        _campaignNotes.value.add(campaignNote)
+        _campaignNotes.value = ArrayList(_campaignNotes.value.sortedWith(compareBy { it.date }))
+    }
+
+    fun updateCampaignNote(campaignNote: CampaignNote) {
+        for (note in _campaignNotes.value) {
+            if (campaignNote.uniqueID == note.uniqueID) {
+                _campaignNotes.value.remove(note)
+                addCampaignNote(note)
+            }
+        }
+    }
+
+    fun removeCampaignNote(campaignNote: CampaignNote) {
+        _campaignNotes.value.remove(campaignNote)
+    }
+
 }

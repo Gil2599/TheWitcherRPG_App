@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet
 
 class EquipmentListAdapter(
     val itemClickString: (EquipmentItem) -> Unit
@@ -20,12 +21,12 @@ class EquipmentListAdapter(
         fun bind(item: EquipmentItem, position: Int) {
 
             if (item.equipmentType != EquipmentTypes.MISC_CUSTOM) {
-                val weight = "Weight: " + item.weight.toString()
+                val weight = "Cost: " + item.cost.toString()
                 val stoppingPower = "Stopping Power: " + item.stoppingPower.toString()
 
                 with(binding) {
                     armorNameText.text = item.name
-                    weightText.text = weight
+                    costText.text = weight
                     stoppingPowerText.text = stoppingPower
 
                     rowLayout.setOnClickListener {
@@ -39,13 +40,30 @@ class EquipmentListAdapter(
 
                 with(binding) {
                     armorNameText.text = item.name
-                    weightText.text = weight
+                    costText.text = weight
                     stoppingPowerText.text = stoppingPower
 
                     rowLayout.setOnClickListener {
                         itemClickString(armorList[position])
 
                     }
+                }
+            }
+        }
+
+        fun bind(item: ArmorSet, position: Int) {
+
+            val weight = "Cost: " + item.cost.toString()
+            val stoppingPower = "Stopping Power: " + item.stoppingPower.toString()
+
+            with(binding) {
+                armorNameText.text = item.name
+                costText.text = weight
+                stoppingPowerText.text = stoppingPower
+
+                rowLayout.setOnClickListener {
+                    itemClickString(armorList[position])
+
                 }
             }
         }
@@ -70,5 +88,4 @@ class EquipmentListAdapter(
         this.armorList = itemList
         notifyDataSetChanged()
     }
-
 }

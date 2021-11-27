@@ -1200,6 +1200,7 @@
 
                         <EditText
                             android:id="@+id/editText24"
+                            android:tag="Crossbow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="false"

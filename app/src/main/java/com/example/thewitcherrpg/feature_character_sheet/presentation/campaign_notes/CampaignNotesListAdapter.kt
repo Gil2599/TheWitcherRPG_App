@@ -1,34 +1,33 @@
-package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments.adapters
+package com.example.thewitcherrpg.feature_character_sheet.presentation.campaign_notes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
-import com.example.thewitcherrpg.feature_character_sheet.domain.models.LifeEvent
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.CampaignNote
 
-class LifeEventsListAdapter(
-    val itemClickString: (LifeEvent) -> Unit
-) : RecyclerView.Adapter<LifeEventsListAdapter.ViewHolder>() {
+class CampaignNotesListAdapter(
+    val itemClickString: (CampaignNote) -> Unit
+) : RecyclerView.Adapter<CampaignNotesListAdapter.ViewHolder>() {
 
-    private var eventList = emptyList<LifeEvent>()
-    private lateinit var currentItem: LifeEvent
+    private var noteList = emptyList<CampaignNote>()
+    private lateinit var currentItem: CampaignNote
 
     inner class ViewHolder(private val binding: ArmorRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: LifeEvent, position: Int) {
+        fun bind(item: CampaignNote, position: Int) {
 
-            val age = "Age: " + item.age.toString()
+            val date = "Date Added: " + item.date
 
             with(binding) {
                 armorNameText.text = item.title
-                stoppingPowerText.text = age
+                stoppingPowerText.text = date
 
                 rowLayout.setOnClickListener {
-                    itemClickString(eventList[position])
+                    itemClickString(noteList[position])
                 }
             }
-
         }
     }
 
@@ -39,16 +38,16 @@ class LifeEventsListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        currentItem = eventList[position]
+        currentItem = noteList[position]
         holder.bind(currentItem, position)
     }
 
     override fun getItemCount(): Int {
-        return eventList.size
+        return noteList.size
     }
 
-    fun setData(itemList: ArrayList<LifeEvent>) {
-        this.eventList = itemList
+    fun setData(itemList: ArrayList<CampaignNote>) {
+        this.noteList = itemList
         notifyDataSetChanged()
     }
 

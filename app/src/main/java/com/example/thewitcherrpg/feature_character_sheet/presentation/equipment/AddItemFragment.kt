@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -21,6 +20,8 @@ import com.example.thewitcherrpg.databinding.*
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import com.example.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet
+import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.ArmorSetListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -85,7 +86,9 @@ class AddItemFragment : Fragment() {
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_heavy_data))
                     }
-
+                    if (item == "Armor Set") {
+                        listAdaptersInit(weapons = false, armorSet = true)
+                    }
                     if (item == "Miscellaneous") {
                         showCustomItemDialog()
                     }
@@ -146,7 +149,7 @@ class AddItemFragment : Fragment() {
         binding.rvCrossbows.isNestedScrollingEnabled = false
     }
 
-    private fun listAdaptersInit(weapons: Boolean) {
+    private fun listAdaptersInit(weapons: Boolean, armorSet: Boolean = false) {
 
         if (weapons) {
             val swordsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
@@ -215,14 +218,34 @@ class AddItemFragment : Fragment() {
             binding.textViewCrossbows.visibility = View.VISIBLE
 
         } else {
-            lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-            binding.rvLightEquipment.adapter = lightAdapter
+            if (!armorSet) {
+                lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+                binding.rvLightEquipment.adapter = lightAdapter
 
-            mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-            binding.rvMediumEquipment.adapter = mediumAdapter
+                mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+                binding.rvMediumEquipment.adapter = mediumAdapter
 
-            heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-            binding.rvHeavyEquipment.adapter = heavyAdapter
+                heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
+                binding.rvHeavyEquipment.adapter = heavyAdapter
+            } else {
+                val lightArmorSetAdapter = ArmorSetListAdapter {
+                    item -> showArmorSetDialog(item)
+                }
+                lightArmorSetAdapter.setData(mainCharacterViewModel.getArmorSetList(R.array.armor_set_light_data))
+                binding.rvLightEquipment.adapter = lightArmorSetAdapter
+
+                val mediumArmorSetAdapter = ArmorSetListAdapter {
+                    item -> showArmorSetDialog(item)
+                }
+                mediumArmorSetAdapter.setData(mainCharacterViewModel.getArmorSetList(R.array.armor_set_medium_data))
+                binding.rvMediumEquipment.adapter = mediumArmorSetAdapter
+
+                val heavyArmorSetAdapter = ArmorSetListAdapter {
+                    item -> showArmorSetDialog(item)
+                }
+                heavyArmorSetAdapter.setData(mainCharacterViewModel.getArmorSetList(R.array.armor_set_heavy_data))
+                binding.rvHeavyEquipment.adapter = heavyArmorSetAdapter
+            }
 
             binding.textViewLight.text = "Light"
             binding.textViewMedium.text = "Medium"
@@ -281,12 +304,10 @@ class AddItemFragment : Fragment() {
         bind.buttonAdd.setOnClickListener {
 
             mainCharacterViewModel.addEquipmentItem(armorItem)
-            Toast.makeText(
-                context,
-                "Item added to ${mainCharacterViewModel.name.value}",
-                Toast.LENGTH_SHORT
+            Snackbar.make(
+                binding.root, "Item added to ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT,
             ).show()
-
             dialog.dismiss()
         }
 
@@ -361,7 +382,6 @@ class AddItemFragment : Fragment() {
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        //dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         val bind: CustomDialogAddCustomItemBinding =
             CustomDialogAddCustomItemBinding.inflate(layoutInflater)
@@ -370,16 +390,32 @@ class AddItemFragment : Fragment() {
         bind.customTitle.setTitleSize(17F)
 
         bind.buttonAddItem.setOnClickListener {
-            val customItem = EquipmentItem(
-                name = bind.etName.text.toString(),
-                quantity = bind.etQuantity.text.toString().toInt(),
-                weight = bind.etWeight.text.toString().toFloat(),
-                cost = bind.etCost.text.toString().toInt(),
-                effect = bind.etDescription.text.toString(),
-                equipmentType = EquipmentTypes.MISC_CUSTOM
-            )
-            mainCharacterViewModel.addEquipmentItem(customItem)
-            dialog.dismiss()
+            if (bind.etName.text.toString().isNotBlank() &&
+                bind.etQuantity.text.toString().isNotBlank() &&
+                bind.etWeight.text.toString().isNotBlank() &&
+                bind.etCost.text.toString().isNotBlank() &&
+                bind.etDescription.text.toString().isNotBlank()
+            ) {
+                val customItem = EquipmentItem(
+                    name = bind.etName.text.toString(),
+                    quantity = bind.etQuantity.text.toString().toInt(),
+                    weight = bind.etWeight.text.toString().toFloat(),
+                    cost = bind.etCost.text.toString().toInt(),
+                    effect = bind.etDescription.text.toString(),
+                    equipmentType = EquipmentTypes.MISC_CUSTOM
+                )
+                mainCharacterViewModel.addEquipmentItem(customItem)
+                Snackbar.make(
+                    binding.root, "${customItem.name} added to inventory.",
+                    Snackbar.LENGTH_SHORT,
+                ).show()
+                dialog.dismiss()
+            } else {
+                Snackbar.make(
+                    bind.root, "Please fill out every field.",
+                    Snackbar.LENGTH_SHORT,
+                ).show()
+            }
         }
 
         bind.buttonCancel.setOnClickListener {
@@ -402,5 +438,66 @@ class AddItemFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.autoCompleteTextViewItemType.setAdapter(adapter)
         }
+    }
+
+    private fun showArmorSetDialog(armorItem: ArmorSet) {
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val bind: CustomDialogAddArmorBinding = CustomDialogAddArmorBinding.inflate(layoutInflater)
+
+        val stoppingPower = "Stopping Power: " + armorItem.stoppingPower
+        val availability = "Covers: " + armorItem.cover
+        val armorEnhancement = "Armor Enhancement: " + armorItem.armorEnhancement
+        val effect = "Effect: " + armorItem.effect
+        val encValue = "Encumbrance Value: " + armorItem.encumbranceValue
+        val weight = "Weight: " + armorItem.weight
+        val price = "Cost: " + armorItem.cost + " Crowns"
+
+        bind.customTitle.setTitle(armorItem.name)
+        bind.customTitle.setTitleSize(17F)
+        bind.textViewSP.text = stoppingPower
+        bind.textViewAvailability.text = availability
+        bind.textViewAE.text = armorEnhancement
+        bind.textViewEffect.text = effect
+        bind.textViewEV.text = encValue
+        bind.textViewWeight.text = weight
+        bind.textViewCost.text = price
+
+        bind.buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        bind.buttonAdd.setOnClickListener {
+
+            mainCharacterViewModel.addArmorSet(armorItem)
+            Snackbar.make(
+                binding.root, "Armor Set items individually added.",
+                Snackbar.LENGTH_SHORT,
+            ).show()
+            dialog.dismiss()
+        }
+
+        bind.buttonBuy.setOnClickListener {
+
+            if (mainCharacterViewModel.buyArmorSet(armorItem)) {
+                Snackbar.make(
+                    binding.root, "${armorItem.name} purchased. Armor Set items individually added.",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } else {
+                Snackbar.make(
+                    binding.root, "Not enough crowns.",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+            dialog.dismiss()
+
+        }
+
+        dialog.setContentView(bind.root)
+
+        dialog.show()
     }
 }

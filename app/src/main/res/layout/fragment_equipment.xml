@@ -6,31 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".feature_character_sheet.presentation.equipment.EquipmentFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/inventoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/dark_gray"
         android:contentDescription="Add Equipment"
+        android:text="Inventory"
+        app:icon="@drawable/ic_backpack_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintEnd_toStartOf="@+id/addButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942"
-        app:srcCompat="@drawable/ic_backpack_icon" />
+        app:layout_constraintVertical_bias="0.959" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/dark_gray"
         android:contentDescription="Add Equipment"
+        android:text="Add New Item"
+        app:icon="@drawable/ic_add_equipment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inventoryButton"
-        app:srcCompat="@drawable/ic_add_equipment" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/inventoryButton"
+        app:layout_constraintTop_toTopOf="@+id/inventoryButton" />
 
     <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
         android:id="@+id/equippedRowWeapon"

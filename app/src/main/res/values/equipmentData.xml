@@ -7,6 +7,18 @@
         <item>Leg Armor</item>
         <item>Weapon</item>
         <item>Shield</item>
+        <item>Armor Set</item>
+        <item>Miscellaneous</item>
+
+    </string-array>
+
+    <string-array name="inventoryCategories">
+
+        <item>Head Armor</item>
+        <item>Chest Armor</item>
+        <item>Leg Armor</item>
+        <item>Weapon</item>
+        <item>Shield</item>
         <item>Miscellaneous</item>
 
     </string-array>
@@ -90,6 +102,7 @@
         <item>Leather Shield:4:E:0::0:0.5:50</item>
         <item>Steel Buckler:6:C:0::0:1:150</item>
         <item>Temerian Shield:8:C:1::0:1.5:225</item>
+        <item>Gnomish Buckler:15:R:2::0:1:450</item>
 
     </string-array>
 
@@ -98,6 +111,7 @@
         <item>Skellige Raider Shield:10:P:1::0:2:325</item>
         <item>Kaedweni Shield:14:P:1::0:2.5:400</item>
         <item>Steel Kite Shield:16:C:0::0:3:400</item>
+        <item>Elven Shield:25:R:2::0:3:700</item>
 
     </string-array>
 
@@ -105,6 +119,28 @@
 
         <item>Pavise:20:P:0:Full Cover:1:4:400</item>
         <item>Nilfgaardian Pavise:25:R:1:Full Cover:1:5:600</item>
+        <item>Mahakaman Pavise:35:R:2:Full Cover:1:5.5:1050</item>
+
+    </string-array>
+
+    <string-array name="armor_set_light_data">
+
+        <item>Halfling Protective Doublet:8:R:1:See Pg. 84:chest:0:1:375</item>
+        <item>Gnomish Chain:10:R:1:Resistance-Slash:head,chest,legs:0:5:975</item>
+
+    </string-array>
+
+    <string-array name="armor_set_medium_data">
+
+        <item>Dwarven Cloak:16:R:1::head,chest,legs:0:5:1400</item>
+        <item>Scoia\'tael Armor:20:R:2:See Pg. 84:head,chest,legs:1:12:2325</item>
+
+    </string-array>
+
+    <string-array name="armor_set_heavy_data">
+
+        <item>Gnomish Dragoon Armor:25:R:2:Resistance-Slash,Resistance-Piercing,See Pg. 84:head,chest,legs:2:20:2850</item>
+        <item>Mahakaman Plate Armor:30:R:3:Resistance-Slash,Resistance-Piercing,Resistance-Bludgeon:head,chest,legs:2:30:3525</item>
 
     </string-array>
 

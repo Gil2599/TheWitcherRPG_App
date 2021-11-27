@@ -520,7 +520,7 @@ class InventoryFragment : Fragment() {
 
         ArrayAdapter.createFromResource(
             requireContext(),
-            R.array.equipmentCategories,
+            R.array.inventoryCategories,
             android.R.layout.simple_spinner_dropdown_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

@@ -14,6 +14,13 @@
         <item>Kord:S/P:+0:R:5d6:15:1:N/A:Bleeding (25%):N/A:1:1.5:725</item>
         <item>Vicovarian Blade:S/P:+0:R:5d6+4:15:2:N/A:Balanced:N/A:1:1.5:955</item>
         <item>Torrwr:S/P:+0:R:6d6:15:2:N/A:Bleeding (50%):N/A:2:2:1075</item>
+        <item>Elven Messer:S/P:+2:R:3d6+4:15:1:N/A::L:2:2:595</item>
+        <item>Vrihedd Cavalry Sword:S/P:+3:R:4d6+4:15:1:N/A:Bleed (25%):L:0:2.5:745</item>
+        <item>Meteorite Sword:S/P:+1:R:5d6:20:2:N/A:Balanced,Meteorite:N/A:2:3:875</item>
+        <item>Gnomish Gwyhyr:S/P:+3:R:5d6+3:15:2:N/A:Bleed (50%):N/A:2:2.5:1090</item>
+        <item>Tir Tochair Blade:S/P:+3:R:6d6:15:2:N/A:Bleed (25%):N/A:2:3:1175</item>
+        <item>Witcher\'s Steel Sword:S/P:+0::4d6+2:15:1:N/A:Armor Piercing,Meteorite:N/A:2:2.5:0</item>
+        <item>Witcher\'s Silver Sword:S/P:+0::1d6+2:10:1:N/A:Silver(3d6):N/A:2:1.5:0</item>
 
     </string-array>
 
@@ -23,6 +30,8 @@
         <item>Stiletto:S/P:+2:C:1d6:5:1:N/A:Concealment:T:1:0.5:275</item>
         <item>Poniard:S/P:+1:P:2d6+2:10:1:N/A:Bleed (25%):S:0:1:350</item>
         <item>Jambiya:S/P:+2:R:2d6:10:1:N/A:Bleed (25%),Armor Piercing:S:1:0.5:440</item>
+        <item>Halfling Rondel:S/P:+2:R:2d6+2:10:1:N/A:Armor Piercing:S:1:1:485</item>
+        <item>Dwarven Cleaver:S/B:+2:R:3d6:15:1:N/A::S:1:1.5:500</item>
 
     </string-array>
 
@@ -31,6 +40,8 @@
         <item>Hand Axe:S:+0:E:2d6+1:10:1:N/A::S:0:1:205</item>
         <item>Battle Axe:S:+0:C:5d6:15:1:N/A::L:0:2:525</item>
         <item>Berserker\'s Axe:S:+0:P:6d6:15:2:N/A:Ablating,Bleeding (25%):N/A:1:3:960</item>
+        <item>Dwarven Axe:S:+3:R:5d6+3:15:1:N/A::L:1:4:740</item>
+        <item>Gnomish Black Axe:S:+2:R:6d6+2:15:2:N/A::N/A:2:2.5:910</item>
 
     </string-array>
 
@@ -39,6 +50,8 @@
         <item>Brass Knuckles:B:+1:E:1d6:15:1:N/A:Brawling:T:1:0.5:50</item>
         <item>Mace:B:+0:C:5d6:15:1:N/A::L:0:2:525</item>
         <item>Highland Mauler:B:+0:R:6d6+2:20:2:N/A:Stun (-2),Meteorite:N/A:1:3:1100</item>
+        <item>Mahakaman Martell:B:+0:R:5d6:15:2:N/A:Armor Piercing:L:1:3.5:750</item>
+        <item>Meteorite Chain Mace:B:+2:R:6d6:20:1:N/A:Grappling,Meteorite:N/A:2:4:900</item>
 
     </string-array>
 
@@ -47,6 +60,8 @@
         <item>Spear:P/B:+0:E:3d6:10:2:Body x2m:Long Reach:N/A:1:3.5:375</item>
         <item>Pole Axe:S/P/B:+0:P:4d6+2:10:2:N/A:Long Reach:N/A:0:3:460</item>
         <item>Red Halberd:S/P/B:+0:P:6d6+3:10:2:N/A:Long Reach:N/A:1:4:865</item>
+        <item>Dwarven Pole Hammer:P/B:+0:R:5d6+2:15:2:N/A:Long Reach,Stun (-2):N/A:1:4:835</item>
+        <item>Elven Glaive:S/P/B:+2:R:4d6+3:10:2:N/A:Long Reach,Bleed (25%):N/A:2:3:925</item>
 
     </string-array>
 
@@ -56,6 +71,8 @@
         <item>Hooked Staff:P/B:+0:P:2d6:10:2:N/A:Long Reach,Focus (1),Grappling:N/A:1:3.5:550</item>
         <item>Iron Staff:B:+0:P:3d6:15:2:N/A:Long Reach,Focus (2):N/A:1:4:675</item>
         <item>Crystal Staff:B:+0:R:2d6+2:5:2:N/A:Long Reach,Focus (3),Greater Focus:N/A:2:2.5:835</item>
+        <item>Gnomish Staff:B:+1:R:3d6+2:15:2:N/A:Long Reach,Focus (3):L:2:2.5:910</item>
+        <item>Elven Walking Staff:B:+1:R:3d6:10:2:N/A:Long Reach,Focus (3),Greater Focus:N/A:2:1.5:975</item>
 
     </string-array>
 
@@ -72,6 +89,8 @@
         <item>Short Bow:P:+0:E:3d6+3:10:2:100m::L:0:1:290</item>
         <item>Long Bow:P:+0:E:4d6:10:2:200m::N/A:1:2:475</item>
         <item>War Bow:P:+0:C:6d6:15:2:300m::N/A:1:3:835</item>
+        <item>Elven Travel Bow:P:+1:R:4d6:10:2:200m::L:1:1:575</item>
+        <item>Elven Zefhar:P:+2:R:6d6:10:2:350m:Improved Armor Piercing:N/A:2:2.5:1100</item>
 
     </string-array>
 
@@ -80,6 +99,8 @@
         <item>Hand Crossbow:P:+1:E:2d6+2:5:1:50m:Slow Reload:L:1:0.5:285</item>
         <item>Crossbow:P:+1:E:4d6+2:5:2:100m:Slow Reload:N/A:1:3:455</item>
         <item>Monster Hunter\'s Crossbow:P:+1:R:6d6:15:2:200m:Slow Reload,Armor Piercing:N/A:1:4:1125</item>
+        <item>Gnomish Hand Crossbow:P:+3:R:2d6:10:1:100m:Slow Reload:S:1:1:425</item>
+        <item>Dwarven Heavy Crossbow:P:+3:R:5d6:15:2:300m:Slow Reload:N/A:2:3.5:850</item>
 
     </string-array>
 

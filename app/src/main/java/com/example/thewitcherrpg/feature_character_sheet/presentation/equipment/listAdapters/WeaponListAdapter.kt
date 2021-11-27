@@ -23,7 +23,7 @@ class WeaponListAdapter (
 
             with(binding) {
                 armorNameText.text = item.name
-                weightText.text = weight
+                costText.text = weight
                 stoppingPowerText.text = stoppingPower
 
                 rowLayout.setOnClickListener {
