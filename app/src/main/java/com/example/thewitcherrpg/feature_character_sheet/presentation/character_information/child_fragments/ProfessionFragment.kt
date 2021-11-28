@@ -117,7 +117,14 @@ class ProfessionFragment : Fragment() {
 
         bind.textViewInfo.text = resources.getString(R.string.profession_help)
         bind.textViewInfo.typeface = Typeface.DEFAULT
-        bind.textViewTitle.text = "Your Profession"
+        bind.customTitle.setTitle("Your Profession")
+        bind.customTitle.setTitleSize(18F)
+        bind.checkBox.visibility = View.GONE
+
+
+        bind.okButton.setOnClickListener {
+            dialog.dismiss()
+        }
 
         dialog.show()
     }

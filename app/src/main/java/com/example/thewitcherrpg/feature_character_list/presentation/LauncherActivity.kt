@@ -1,6 +1,8 @@
 package com.example.thewitcherrpg.feature_character_list.presentation
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +15,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ActivityScenario.launch
+import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.Constants.dataStore
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
+import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,15 +63,13 @@ class LauncherActivity : AppCompatActivity() {
                         adapter.setData(it)
                     }
                 }
-                launch {
-                    save("disclaimer", true)
-                }
-                launch { 
-                    if (read("disclaimer") == true){
-                        Toast.makeText(this@LauncherActivity, "Disclaimer accepted", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this@LauncherActivity, "Disclaimer not accepted", Toast.LENGTH_SHORT).show()
-                    }
+            }
+        }
+
+        lifecycleScope.launch {
+            launch {
+                if (read("disclaimer") != true){
+                    showDialogDisclaimer()
                 }
             }
         }
@@ -85,4 +88,31 @@ class LauncherActivity : AppCompatActivity() {
         return preferences[dataStoreKey]
     }
 
+    private fun showDialogDisclaimer() {
+        val dialog = Dialog(this)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind : CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        bind.textViewInfo.text = resources.getString(R.string.disclaimer)
+        bind.textViewInfo.typeface = Typeface.DEFAULT
+
+        bind.customTitle.setTitle("Disclaimer")
+        bind.customTitle.setTitleSize(18F)
+
+        bind.okButton.setOnClickListener {
+            if (bind.checkBox.hasSelection()){
+                lifecycleScope.launch {
+                    launch {
+                        save("disclaimer", true)
+                    }
+                }
+            }
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
 }

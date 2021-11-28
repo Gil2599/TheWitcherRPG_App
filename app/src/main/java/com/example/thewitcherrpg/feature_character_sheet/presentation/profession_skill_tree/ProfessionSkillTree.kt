@@ -535,8 +535,13 @@ class ProfessionSkillTree : Fragment() {
         bind.textViewInfo.text = resources.getString(R.string.profession_skill_tree_help)
         bind.textViewInfo.typeface = Typeface.DEFAULT
 
-        bind.textViewTitle.text = "Profession Skill Tree"
-        //textview.setText(Html.fromHtml(resources.getString(R.string.text)));
+        bind.customTitle.setTitle("Profession Skill Tree")
+        bind.customTitle.setTitleSize(18F)
+        bind.checkBox.visibility = View.GONE
+
+        bind.okButton.setOnClickListener {
+            dialog.dismiss()
+        }
 
         dialog.show()
     }
