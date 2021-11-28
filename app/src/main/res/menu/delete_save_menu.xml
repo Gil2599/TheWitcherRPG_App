@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/returnHome"
+        app:showAsAction="ifRoom"
+        android:title=""
+        android:icon="@drawable/ic_outline_home_24">
+
+    </item>
+
+    <item
         app:showAsAction="ifRoom"
         android:title=""
         android:icon="@drawable/ic_baseline_more_vert_24">
@@ -10,22 +18,23 @@
         <menu>
             <item android:id="@+id/menu_save"
                 android:title="Save"
-                android:icon="@drawable/ic_baseline_save_24"
+                android:iconTintMode="src_over"
+                android:icon="@drawable/ic_outline_save_24"
                 app:showAsAction="never"/>
 
             <item android:id="@+id/menu_edit_character"
                 android:title="Edit Character"
-                android:icon="@drawable/ic_edit"
+                android:icon="@drawable/ic_editing"
                 app:showAsAction="never"/>
 
             <item android:id="@+id/menu_long_rest"
                 android:title="Recovery"
-                android:icon="@drawable/ic_long_rest"
+                android:icon="@drawable/ic_regeneration"
                 app:showAsAction="never"/>
 
             <item android:id="@+id/menu_delete"
                 android:title="Delete"
-                android:icon="@drawable/ic_baseline_delete_24"
+                android:icon="@drawable/ic_outline_delete_24"
                 app:showAsAction="never"/>
         </menu>
     </item>

@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.thewitcherrpg.core.data.data_source.CharacterDao
 import com.example.thewitcherrpg.core.data.data_source.CharacterDatabase
 import com.example.thewitcherrpg.core.data.repository.CharacterRepositoryImpl
+import com.example.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
 import com.example.thewitcherrpg.core.domain.repository.CharacterRepository
 import com.example.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.example.thewitcherrpg.feature_character_list.domain.use_cases.CharacterListUseCases
@@ -17,6 +18,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideDataStoreRepository(context: Application): DataStoreRepository {
+        return DataStoreRepository(context)
+    }
 
     @Provides
     @Singleton
@@ -35,7 +42,6 @@ object AppModule {
     fun provideDao(characterDatabase: CharacterDatabase): CharacterDao {
         return characterDatabase.getDao()
     }
-
 
     @Provides
     @Singleton
@@ -56,5 +62,4 @@ object AppModule {
             getProfessionSkillsIndicesUseCase = GetProfessionSkillsIndicesUseCase()
         )
     }
-
 }

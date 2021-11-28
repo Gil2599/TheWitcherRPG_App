@@ -161,6 +161,9 @@ class MainActivity : AppCompatActivity() {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, editFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
         }
+        if(item.itemId == R.id.returnHome){
+            onBackPressed()
+        }
         if(toggle.onOptionsItemSelected(item)){
             return true
         }

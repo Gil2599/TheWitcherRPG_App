@@ -151,12 +151,10 @@
             android:layout_width="34dp"
             android:layout_height="33dp"
             android:background="@drawable/ic_baseline_help_outline_24"
-            app:layout_constraintBottom_toTopOf="@+id/arrow3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.757"
             app:layout_constraintStart_toEndOf="@+id/buttonDefiningSkill"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.225" />
+            app:layout_constraintTop_toTopOf="@+id/textView55" />
 
         <TextView
             android:id="@+id/firstSkillTitle"

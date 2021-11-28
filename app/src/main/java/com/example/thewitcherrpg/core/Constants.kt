@@ -20,8 +20,4 @@ object Constants {
         NOBLE,
         PEASANT
     }
-
-    val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-
-
 }

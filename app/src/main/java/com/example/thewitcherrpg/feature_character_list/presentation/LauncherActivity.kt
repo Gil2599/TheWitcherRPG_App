@@ -1,30 +1,34 @@
 package com.example.thewitcherrpg.feature_character_list.presentation
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ActivityScenario.launch
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.core.Constants.dataStore
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
+import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -65,36 +69,35 @@ class LauncherActivity : AppCompatActivity() {
                 }
             }
         }
-
         lifecycleScope.launch {
-            launch {
-                if (read("disclaimer") != true){
-                    showDialogDisclaimer()
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
+                    if (disclaimerIsEnabled) {
+                        showDialogDisclaimer(true)
+                    }
                 }
             }
         }
     }
 
-    private suspend fun save(key: String, value: Boolean){
-        val dataStoreKey = booleanPreferencesKey(key)
-        dataStore.edit { settings ->
-            settings[dataStoreKey] = value
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.information){
+            showDialogDisclaimer(false)
         }
+        return super.onOptionsItemSelected(item)
     }
 
-    private suspend fun read(key: String): Boolean?{
-        val dataStoreKey = booleanPreferencesKey(key)
-        val preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.launcher_activity_app_bar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
-    private fun showDialogDisclaimer() {
+    private fun showDialogDisclaimer(showCheckbox: Boolean) {
         val dialog = Dialog(this)
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val bind : CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
         bind.textViewInfo.text = resources.getString(R.string.disclaimer)
@@ -103,13 +106,15 @@ class LauncherActivity : AppCompatActivity() {
         bind.customTitle.setTitle("Disclaimer")
         bind.customTitle.setTitleSize(18F)
 
+        if (!showCheckbox){
+            bind.checkBox.visibility = View.GONE
+        } else {
+            bind.checkBox.visibility = View.VISIBLE
+        }
+
         bind.okButton.setOnClickListener {
-            if (bind.checkBox.hasSelection()){
-                lifecycleScope.launch {
-                    launch {
-                        save("disclaimer", true)
-                    }
-                }
+            if (bind.checkBox.visibility == View.VISIBLE) {
+                mCharListViewModel.saveDisclaimerMode(!bind.checkBox.isChecked)
             }
             dialog.dismiss()
         }

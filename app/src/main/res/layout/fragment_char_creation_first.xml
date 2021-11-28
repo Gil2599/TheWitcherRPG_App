@@ -16,6 +16,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etCharNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -24,8 +25,7 @@
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidthFocused="1dp"
             app:layout_constraintEnd_toStartOf="@+id/etCharAgeLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etCharAgeLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Age"
@@ -51,8 +52,8 @@
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:boxStrokeWidth="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/etCharNameLayout"
@@ -147,7 +148,8 @@
             app:layout_constraintEnd_toEndOf="@+id/etCharAgeLayout"
             app:layout_constraintStart_toStartOf="@+id/etCharNameLayout"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-            app:startIconDrawable="@drawable/ic_baseline_race_icon">
+            app:startIconDrawable="@drawable/ic_baseline_race_icon"
+            app:startIconTint="@color/white">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewRace"
@@ -170,7 +172,8 @@
             app:layout_constraintEnd_toEndOf="@+id/etCharAgeLayout"
             app:layout_constraintStart_toStartOf="@+id/etCharNameLayout"
             app:layout_constraintTop_toBottomOf="@+id/etCharNameLayout"
-            app:startIconDrawable="@drawable/ic_gender_icon">
+            app:startIconDrawable="@drawable/ic_gender_icon"
+            app:startIconTint="@color/white">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewGender"
@@ -193,7 +196,8 @@
             app:layout_constraintEnd_toEndOf="@+id/etCharAgeLayout"
             app:layout_constraintStart_toStartOf="@+id/etCharNameLayout"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:startIconDrawable="@drawable/ic_profession_icon">
+            app:startIconDrawable="@drawable/ic_profession_icon"
+            app:startIconTint="@color/white">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewProfession"
