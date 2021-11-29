@@ -18,5 +18,6 @@ data class ArmorSet(
     var weight: Float,
     var cost: Int,
     val equipmentType: EquipmentTypes,
+    var isRelic: Boolean = false,
     val uniqueID: UUID = UUID.randomUUID()
 ) : Parcelable

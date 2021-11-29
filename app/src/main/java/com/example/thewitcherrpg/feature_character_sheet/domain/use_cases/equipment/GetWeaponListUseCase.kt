@@ -80,15 +80,14 @@ class GetWeaponListUseCase @Inject constructor() {
             val enhancement = pair[10].toInt()
             val weight = pair[11].toFloat()
             val price = pair[12].toInt()
-            var relict = false
+            var relic = false
 
             try {
                 pair[13]
-                relict = true
+                relic = true
             } catch (ex: ArrayIndexOutOfBoundsException) {
 
             }
-
 
             if (effects.isNotEmpty()) {
                 for (effect in effects) {
@@ -117,7 +116,7 @@ class GetWeaponListUseCase @Inject constructor() {
                     cost = price,
                     type = type,
                     focus = focus,
-                    isRelict = relict
+                    isRelic = relic
                 )
             )
         }

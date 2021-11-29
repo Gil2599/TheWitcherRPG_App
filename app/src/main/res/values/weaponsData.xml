@@ -22,6 +22,13 @@
         <item>Witcher\'s Steel Sword:S/P:+0::4d6+2:15:1:N/A:Armor Piercing,Meteorite:N/A:2:2.5:0</item>
         <item>Witcher\'s Silver Sword:S/P:+0::1d6+2:10:1:N/A:Silver(3d6):N/A:2:1.5:0</item>
         <item>Devine:S/P:+0::10d6:20:2:N/A:Greater Focus - Air Magic,Stun (2),Armor Piercing,Meteorite:N/A:3:2:0:relict</item>
+        <item>Cleaver Hood:S/P:+0::8d6+2:20:2:N/A:Armor Piercing,Balanced (+5),Meteorite:N/A:3:3:0:relict</item>
+        <item>Wolf:S/P:+2::7d6:15:2:N/A:Armor Piercing,Bleed (75%),Meteorite:N/A:3:4:0:relict</item>
+        <item>Caroline:S/P:+3::9d6:15:2:N/A:Greater Focus - Water,+25 Health Points,Balanced,Bleed (75%):N/A:3:3:0:relict</item>
+        <item>Fate (Silver Sword):S/P:+3::2d6+1:10:2:N/A:Greater Focus - Water and Fire,Silver (6d6+4),Stagger (75%):N/A:3:4:0:relict</item>
+        <item>Moon Blade (Silver Sword):S/P:+1::3d6:10:2:N/A:Greater Focus,Silver (7d6+4):N/A:3:4:0:relict</item>
+        <item>Maugrim (Silver Sword):S/P:+0::2d6:10:2:N/A:Greater Focus - Earth and Water,Silver (6d6+4),Balanced,Freeze (75%):N/A:3:6:0:relict</item>
+
 
     </string-array>
 
@@ -33,6 +40,8 @@
         <item>Jambiya:S/P:+2:R:2d6:10:1:N/A:Bleed (25%),Armor Piercing:S:1:0.5:440</item>
         <item>Halfling Rondel:S/P:+2:R:2d6+2:10:1:N/A:Armor Piercing:S:1:1:485</item>
         <item>Dwarven Cleaver:S/B:+2:R:3d6:15:1:N/A::S:1:1.5:500</item>
+        <item>Thorn:S/P:+3::3d6:15:1:Body x2m:Bleed (75%),Poison (100%):J:3:0.5:0:relict</item>
+
 
     </string-array>
 
@@ -43,6 +52,8 @@
         <item>Berserker\'s Axe:S:+0:P:6d6:15:2:N/A:Ablating,Bleeding (25%):N/A:1:3:960</item>
         <item>Dwarven Axe:S:+3:R:5d6+3:15:1:N/A::L:1:4:740</item>
         <item>Gnomish Black Axe:S:+2:R:6d6+2:15:2:N/A::N/A:2:2.5:910</item>
+        <item>Decapitator:S:+0::10d6:20:2:N/A:Balanced,Bleed (100%),Meteorite:N/A:3:4:0:relict</item>
+
 
     </string-array>
 
@@ -53,6 +64,8 @@
         <item>Highland Mauler:B:+0:R:6d6+2:20:2:N/A:Stun (-2),Meteorite:N/A:1:3:1100</item>
         <item>Mahakaman Martell:B:+0:R:5d6:15:2:N/A:Armor Piercing:L:1:3.5:750</item>
         <item>Meteorite Chain Mace:B:+2:R:6d6:20:1:N/A:Grappling,Meteorite:N/A:2:4:900</item>
+        <item>Ogh\'r:B:+0::10d6:15:2:N/A:Stun (4),Balanced:N/A:3:5:0:relict</item>
+
 
     </string-array>
 
@@ -63,6 +76,7 @@
         <item>Red Halberd:S/P/B:+0:P:6d6+3:10:2:N/A:Long Reach:N/A:1:4:865</item>
         <item>Dwarven Pole Hammer:P/B:+0:R:5d6+2:15:2:N/A:Long Reach,Stun (-2):N/A:1:4:835</item>
         <item>Elven Glaive:S/P/B:+2:R:4d6+3:10:2:N/A:Long Reach,Bleed (25%):N/A:2:3:925</item>
+        <item>The Abyss Guard:B/P:+2::7d6+4:10:2:Body x2m:Greater Focus - Water,Freeze (75%),Long Reach:N/A:3:4:0:relict</item>
 
     </string-array>
 
@@ -74,6 +88,7 @@
         <item>Crystal Staff:B:+0:R:2d6+2:5:2:N/A:Long Reach,Focus (3),Greater Focus:N/A:2:2.5:835</item>
         <item>Gnomish Staff:B:+1:R:3d6+2:15:2:N/A:Long Reach,Focus (3):L:2:2.5:910</item>
         <item>Elven Walking Staff:B:+1:R:3d6:10:2:N/A:Long Reach,Focus (3),Greater Focus:N/A:2:1.5:975</item>
+        <item>Succubu\'s Wand:B:+0::3d6+4:5:2:N/A:Greater Focus - Fire,Focus (5),Long Reach,Fire (25%),+2 Seduction:N/A:3:2:0:relict</item>
 
     </string-array>
 
@@ -92,6 +107,7 @@
         <item>War Bow:P:+0:C:6d6:15:2:300m::N/A:1:3:835</item>
         <item>Elven Travel Bow:P:+1:R:4d6:10:2:200m::L:1:1:575</item>
         <item>Elven Zefhar:P:+2:R:6d6:10:2:350m:Improved Armor Piercing:N/A:2:2.5:1100</item>
+        <item>The Moon Bow:P:+1::8d6+2:10:2:200m:Freeze (75%),Balanced,+3 Damage to Wraiths:N/A:3:2:0:relict</item>
 
     </string-array>
 
@@ -102,6 +118,7 @@
         <item>Monster Hunter\'s Crossbow:P:+1:R:6d6:15:2:200m:Slow Reload,Armor Piercing:N/A:1:4:1125</item>
         <item>Gnomish Hand Crossbow:P:+3:R:2d6:10:1:100m:Slow Reload:S:1:1:425</item>
         <item>Dwarven Heavy Crossbow:P:+3:R:5d6:15:2:300m:Slow Reload:N/A:2:3.5:850</item>
+        <item>Red Death:P:+2::10d6:15:2:300m:Poison (100%),+3 Hex Weaving and Resist Magic:N/A:3:2.5:0:relict</item>
 
     </string-array>
 

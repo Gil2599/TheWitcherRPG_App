@@ -50,6 +50,7 @@ data class Character(
 
     //Stats
     var intelligence: Int = 0,
+    var intelligenceModifier: Int = 0,
     var reflex: Int = 0,
     var dexterity: Int = 0,
     var body: Int = 0,

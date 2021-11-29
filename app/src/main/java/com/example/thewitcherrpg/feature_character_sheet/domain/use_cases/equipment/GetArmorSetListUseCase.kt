@@ -52,6 +52,14 @@ class GetArmorSetListUseCase @Inject constructor() {
             val encValue = pair[6].toInt()
             val weight = pair[7].toFloat()
             val price = pair[8].toInt()
+            var relic = false
+
+            try {
+                pair[9]
+                relic = true
+            } catch (ex: ArrayIndexOutOfBoundsException) {
+
+            }
 
             equipmentArray.add(
                 ArmorSet(
@@ -64,7 +72,8 @@ class GetArmorSetListUseCase @Inject constructor() {
                     encumbranceValue = encValue,
                     weight = weight,
                     cost = price,
-                    equipmentType = type
+                    equipmentType = type,
+                    isRelic = relic
                 )
             )
         }

@@ -23,5 +23,6 @@ data class EquipmentItem(
     var quantity: Int = 1,
     var totalCost: Int = cost*quantity,
     val equipmentType: EquipmentTypes,
+    var isRelic: Boolean = false,
     val uniqueID: UUID = UUID.randomUUID()
 ) : Parcelable

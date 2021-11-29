@@ -2,7 +2,10 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet
@@ -28,6 +31,27 @@ class ArmorSetListAdapter(
                 costText.text = weight
                 stoppingPowerText.text = stoppingPower
 
+                if (item.isRelic) {
+                    armorNameText.setTextColor(
+                        ContextCompat.getColor(
+                            TheWitcherTRPGApp.getContext()!!,
+                            R.color.relic
+                        )
+                    )
+                    costText.setTextColor(
+                        ContextCompat.getColor(
+                            TheWitcherTRPGApp.getContext()!!,
+                            R.color.relic
+                        )
+                    )
+                    stoppingPowerText.setTextColor(
+                        ContextCompat.getColor(
+                            TheWitcherTRPGApp.getContext()!!,
+                            R.color.relic
+                        )
+                    )
+                }
+
                 rowLayout.setOnClickListener {
                     itemClickString(armorList[position])
                 }
@@ -35,23 +59,23 @@ class ArmorSetListAdapter(
         }
     }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val itemBinding =
-                ArmorRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ViewHolder(itemBinding)
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            currentItem = armorList[position]
-            holder.bind(currentItem, position)
-        }
-
-        override fun getItemCount(): Int {
-            return armorList.size
-        }
-
-        fun setData(itemList: ArrayList<ArmorSet>) {
-            this.armorList = itemList
-            notifyDataSetChanged()
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemBinding =
+            ArmorRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(itemBinding)
     }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        currentItem = armorList[position]
+        holder.bind(currentItem, position)
+    }
+
+    override fun getItemCount(): Int {
+        return armorList.size
+    }
+
+    fun setData(itemList: ArrayList<ArmorSet>) {
+        this.armorList = itemList
+        notifyDataSetChanged()
+    }
+}

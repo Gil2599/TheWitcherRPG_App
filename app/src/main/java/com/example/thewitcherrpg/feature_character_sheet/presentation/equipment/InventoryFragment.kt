@@ -444,10 +444,8 @@ class InventoryFragment : Fragment() {
 
         bind.buttonRemove.setOnClickListener {
             mainCharacterViewModel.removeEquipment(item)
-
-            updateRVs()
-
             dialog.dismiss()
+            updateRVs()
         }
 
         bind.buttonEquipUnequip.setOnClickListener {
@@ -502,7 +500,7 @@ class InventoryFragment : Fragment() {
 
         bind.buttonRemove.setOnClickListener {
             mainCharacterViewModel.removeWeapon(weaponItem)
-            onSpinnerInit() //Refresh Adapters
+            updateRVs()
             dialog.dismiss()
         }
 

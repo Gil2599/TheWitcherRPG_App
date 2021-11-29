@@ -152,6 +152,9 @@ class MainCharacterViewModel @Inject constructor(
     private var _intelligence = MutableStateFlow(0)
     val intelligence = _intelligence.asStateFlow()
 
+    private var _intelligenceModifier = MutableStateFlow(0)
+    val intelligenceModifier = _intelligenceModifier.asStateFlow()
+
     private var _ref = MutableStateFlow(0)
     val ref = _ref.asStateFlow()
 
@@ -1676,6 +1679,183 @@ class MainCharacterViewModel @Inject constructor(
                     _intelligence.value = pair.second
                     _ip.value = pair.first
                 }
+            }
+            "REF" -> {
+                val pair = onStatChangeUseCase(
+                    _ref.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _ref.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "DEX" -> {
+                val pair = onStatChangeUseCase(
+                    _dex.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _dex.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "BODY" -> {
+                val pair = onStatChangeUseCase(
+                    _body.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _body.value = pair.second
+                    _ip.value = pair.first
+                    onHpChange(increase = increase)
+                    onStaminaChange(increase = increase)
+                    _rec.value = (_body.value + _will.value) / 2
+                    _stun.value =
+                        if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
+                        else 10
+                    _enc.value = _body.value * 10
+                    when (_body.value) {
+                        1, 2 -> {
+                            _punch.value = "1d6 - 4"
+                            _kick.value = "1d6"
+                        }
+                        3, 4 -> {
+                            _punch.value = "1d6 - 2"
+                            _kick.value = "1d6 + 2"
+                        }
+                        5, 6 -> {
+                            _punch.value = "1d6"
+                            _kick.value = "1d6 + 4"
+                        }
+                        7, 8 -> {
+                            _punch.value = "1d6 + 2"
+                            _kick.value = "1d6 + 6"
+                        }
+                        9, 10 -> {
+                            _punch.value = "1d6 + 4"
+                            _kick.value = "1d6 + 8"
+                        }
+                        11, 12 -> {
+                            _punch.value = "1d6 + 6"
+                            _kick.value = "1d6 + 10"
+                        }
+                        13 -> {
+                            _punch.value = "1d6 + 8"
+                            _kick.value = "1d6 + 12"
+                        }
+                    }
+                }
+            }
+            "SPD" -> {
+                val pair = onStatChangeUseCase(
+                    _spd.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _spd.value = pair.second
+                    _ip.value = pair.first
+                    _run.value = _spd.value * 3
+                    _leap.value = (_spd.value * 3) / 5
+                }
+            }
+            "EMP" -> {
+                val pair = onStatChangeUseCase(
+                    _emp.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _emp.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "CRA" -> {
+                val pair = onStatChangeUseCase(
+                    _cra.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _cra.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "WILL" -> {
+                val pair = onStatChangeUseCase(
+                    _will.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _will.value = pair.second
+                    _ip.value = pair.first
+                    onHpChange(increase = increase)
+                    onStaminaChange(increase = increase)
+                    _rec.value = (_body.value + _will.value) / 2
+                    _stun.value =
+                        if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
+                        else 10
+                }
+            }
+            "LUCK" -> {
+                val pair = onStatChangeUseCase(
+                    _luck.value,
+                    _ip.value,
+                    increase,
+                    _inCharacterCreation.value
+                ).data
+                if (pair != null) {
+                    _luck.value = pair.second
+                    _ip.value = pair.first
+                }
+            }
+            "STUN" -> {
+                _stun.value = if (increase) _stun.value.plus(1) else _enc.value.minus(1)
+            }
+            "RUN" -> {
+                _run.value = if (increase) _run.value.plus(1) else _enc.value.minus(1)
+
+            }
+            "LEAP" -> {
+                _leap.value = if (increase) _leap.value.plus(1) else _enc.value.minus(1)
+
+            }
+            "MaxHP" -> {
+                _maxHP.value = if (increase) _maxHP.value.plus(1) else _enc.value.minus(1)
+
+            }
+            "MaxSTA" -> {
+                _maxSta.value = if (increase) _maxSta.value.plus(1) else _enc.value.minus(1)
+            }
+            "ENC" -> {
+                _enc.value = if (increase) _enc.value.plus(1) else _enc.value.minus(1)
+            }
+            "REC" -> {
+                _rec.value = if (increase) _rec.value.plus(1) else _enc.value.minus(1)
+
+            }
+        }
+    }
+
+    fun onStatModifierChange(stat: String, increase: Boolean) {
+
+        when (stat) {
+
+            "INT" -> {
+                if (increase) _intelligenceModifier.value = _intelligenceModifier.value.plus(1)
+                else _intelligenceModifier.value = _intelligenceModifier.value.minus(1)
             }
             "REF" -> {
                 val pair = onStatChangeUseCase(

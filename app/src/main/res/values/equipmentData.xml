@@ -127,6 +127,7 @@
 
         <item>Halfling Protective Doublet:8:R:1:See Pg. 84:chest:0:1:375</item>
         <item>Gnomish Chain:10:R:1:Resistance-Slash:head,chest,legs:0:5:975</item>
+        <item>Raven\'s Armor:12:R:3:Resistance-Poison and Bleeding,+15 Health Points,+3 Courage:chest,legs:0:12:0:relic</item>
 
     </string-array>
 
@@ -134,6 +135,7 @@
 
         <item>Dwarven Cloak:16:R:1::head,chest,legs:0:5:1400</item>
         <item>Scoia\'tael Armor:20:R:2:See Pg. 84:head,chest,legs:1:12:2325</item>
+        <item>Mountain Folk Armor:24:R:3:Resistance-Poison,Resistance-Piercing,Resistance-Bludgeoning,Resistance-Slashing:head,chest,legs:0:15:0:relic</item>
 
     </string-array>
 
@@ -141,6 +143,7 @@
 
         <item>Gnomish Dragoon Armor:25:R:2:Resistance-Slash,Resistance-Piercing,See Pg. 84:head,chest,legs:2:20:2850</item>
         <item>Mahakaman Plate Armor:30:R:3:Resistance-Slash,Resistance-Piercing,Resistance-Bludgeon:head,chest,legs:2:30:3525</item>
+        <item>Draug Armor:36:R:3:Resistance-Fire,Resistance-Bleeding,Resistance-Poison,+25 Health Point,+2 Resist Magic,+2 Spell Casting:head,chest,legs:3:37:0:relic</item>
 
     </string-array>
 

@@ -255,7 +255,6 @@
             android:gravity="center"
             android:inputType="textPersonName"
             android:tag="INT"
-            android:text='@{"INT: " + sharedViewModel.intelligence}'
             android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editTextREF"

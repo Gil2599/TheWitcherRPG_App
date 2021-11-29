@@ -26,6 +26,7 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                             effect = armorSet.effect.toString(),
                             weight = armorSet.weight,
                             cost = armorSet.cost,
+                            isRelic = armorSet.isRelic,
                             equipmentType = when (armorSet.equipmentType) {
                                 EquipmentTypes.MEDIUM_ARMOR_SET -> EquipmentTypes.MEDIUM_HEAD
                                 EquipmentTypes.HEAVY_ARMOR_SET -> EquipmentTypes.HEAVY_HEAD
@@ -47,6 +48,7 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                             effect = armorSet.effect.toString(),
                             weight = armorSet.weight,
                             cost = armorSet.cost,
+                            isRelic = armorSet.isRelic,
                             equipmentType = when (armorSet.equipmentType) {
                                 EquipmentTypes.MEDIUM_ARMOR_SET -> EquipmentTypes.MEDIUM_CHEST
                                 EquipmentTypes.HEAVY_ARMOR_SET -> EquipmentTypes.HEAVY_CHEST
@@ -68,6 +70,7 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                             effect = armorSet.effect.toString(),
                             weight = armorSet.weight,
                             cost = armorSet.cost,
+                            isRelic = armorSet.isRelic,
                             equipmentType = when (armorSet.equipmentType) {
                                 EquipmentTypes.MEDIUM_ARMOR_SET -> EquipmentTypes.MEDIUM_LEGS
                                 EquipmentTypes.HEAVY_ARMOR_SET -> EquipmentTypes.HEAVY_LEGS
