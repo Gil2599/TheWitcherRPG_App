@@ -70,11 +70,9 @@ class LauncherActivity : AppCompatActivity() {
             }
         }
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
-                    if (disclaimerIsEnabled) {
-                        showDialogDisclaimer(true)
-                    }
+            mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
+                if (disclaimerIsEnabled) {
+                    showDialogDisclaimer(true)
                 }
             }
         }
@@ -82,7 +80,7 @@ class LauncherActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == R.id.information){
+        if (item.itemId == R.id.information) {
             showDialogDisclaimer(false)
         }
         return super.onOptionsItemSelected(item)
@@ -106,7 +104,7 @@ class LauncherActivity : AppCompatActivity() {
         bind.customTitle.setTitle("Disclaimer")
         bind.customTitle.setTitleSize(18F)
 
-        if (!showCheckbox){
+        if (!showCheckbox) {
             bind.checkBox.visibility = View.GONE
         } else {
             bind.checkBox.visibility = View.VISIBLE

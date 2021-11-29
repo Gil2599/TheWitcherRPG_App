@@ -25,6 +25,8 @@ class CharCreationActivity : AppCompatActivity() {
             ActivityCharCreationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mainCharacterViewModel.setInCharCreation(true)
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED

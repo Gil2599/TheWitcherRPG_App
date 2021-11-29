@@ -23,5 +23,6 @@ data class WeaponItem(
     var cost: Int,
     var type: WeaponTypes,
     var focus: Int = 0,
+    var isRelict: Boolean = false,
     val uniqueID: UUID = UUID.randomUUID()
 ) : Parcelable

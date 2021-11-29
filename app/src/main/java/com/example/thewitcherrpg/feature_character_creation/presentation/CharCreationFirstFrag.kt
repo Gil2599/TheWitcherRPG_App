@@ -124,7 +124,6 @@ class CharCreationFirstFrag : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun onInit(inEditMode: Boolean) {
 
-        mainCharacterViewModel.setInCharCreation(true)
         if (!inEditMode) binding.buttonCancel.visibility = View.GONE
 
         binding.autoCompleteTextViewRace.onItemClickListener =

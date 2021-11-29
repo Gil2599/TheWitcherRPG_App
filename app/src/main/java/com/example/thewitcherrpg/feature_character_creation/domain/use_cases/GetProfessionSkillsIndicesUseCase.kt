@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class GetProfessionSkillsIndicesUseCase @Inject constructor() {
 
-    operator fun invoke(profession: Constants.Professions): Flow<ArrayList<Int>> = flow {
+    operator fun invoke(profession: Constants.Professions): ArrayList<Int> {
 
         val tags = TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.profession_indices_array)
 
@@ -40,10 +40,10 @@ class GetProfessionSkillsIndicesUseCase @Inject constructor() {
                     for (index in indices){
                         indicesArray.add(index.toInt())
                     }
-                    emit(indicesArray)
-                    break
+                    return indicesArray
                 }
             }
         }
+        return arrayListOf()
     }
 }

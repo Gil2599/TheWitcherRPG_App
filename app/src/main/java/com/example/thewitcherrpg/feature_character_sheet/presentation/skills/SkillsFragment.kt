@@ -14,6 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.databinding.FragmentSkillsBinding
@@ -44,8 +45,10 @@ class SkillsFragment : Fragment() {
 
         skillsInit()
 
-        if (mainCharacterViewModel.inCharacterCreation.value)
-            charCreation()
+        lifecycleScope.launchWhenCreated {
+            if (mainCharacterViewModel.inCharacterCreation.value)
+                charCreation()
+        }
 
         binding.editIP.setOnClickListener {
             showDialogIP()

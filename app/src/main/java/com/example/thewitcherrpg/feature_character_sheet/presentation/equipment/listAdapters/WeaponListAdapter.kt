@@ -2,7 +2,9 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.compose.ui.res.colorResource
 import androidx.recyclerview.widget.RecyclerView
+import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 
@@ -25,6 +27,12 @@ class WeaponListAdapter (
                 armorNameText.text = item.name
                 costText.text = weight
                 stoppingPowerText.text = stoppingPower
+
+                if (item.isRelict){
+                    armorNameText.setTextColor(R.color.relic)
+                    costText.setTextColor(R.color.relic)
+                    stoppingPowerText.setTextColor(R.color.relic)
+                }
 
                 rowLayout.setOnClickListener {
                     itemClickString(armorList[position])

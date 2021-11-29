@@ -19,6 +19,7 @@ import com.example.thewitcherrpg.databinding.CustomDialogCharWeaponBinding
 import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -69,7 +70,19 @@ class EquipmentFragment : Fragment() {
             }
         }
 
-        binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
+        when (mainCharacterViewModel.equippedWeapon.value?.type){
+            WeaponTypes.SWORD -> binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
+            WeaponTypes.SMALL_BLADE -> binding.equippedRowWeapon.setIcon(R.drawable.ic_dagger)
+            WeaponTypes.AXE -> binding.equippedRowWeapon.setIcon(R.drawable.ic_axe)
+            WeaponTypes.BLUDGEON -> binding.equippedRowWeapon.setIcon(R.drawable.ic_mallet)
+            WeaponTypes.POLE_ARM -> binding.equippedRowWeapon.setIcon(R.drawable.ic_spears)
+            WeaponTypes.STAFF -> binding.equippedRowWeapon.setIcon(R.drawable.ic_staff)
+            WeaponTypes.THROWN_WEAPON -> binding.equippedRowWeapon.setIcon(R.drawable.ic_knife)
+            WeaponTypes.BOW -> binding.equippedRowWeapon.setIcon(R.drawable.ic_bow)
+            WeaponTypes.CROSSBOW -> binding.equippedRowWeapon.setIcon(R.drawable.ic_crossbow)
+
+            else -> binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
+        }
         binding.equippedRowWeapon.setOnClickListener {
             if (mainCharacterViewModel.equippedWeapon.value != null)
                 showWeaponDialog()

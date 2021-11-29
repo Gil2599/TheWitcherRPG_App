@@ -38,6 +38,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.absoluteValue
 
@@ -996,14 +997,7 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun getProfessionIndices(): ArrayList<Int> {
-        var indicesArray = arrayListOf<Int>()
-
-        characterCreationUseCases.getProfessionSkillsIndicesUseCase(_profession.value)
-            .onEach { array ->
-                indicesArray = array
-            }.launchIn(viewModelScope)
-
-        return indicesArray
+        return characterCreationUseCases.getProfessionSkillsIndicesUseCase(_profession.value)
     }
 
     fun getProfessionSkills(): ArrayList<String> {
