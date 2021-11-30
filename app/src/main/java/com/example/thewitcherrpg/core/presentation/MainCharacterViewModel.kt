@@ -257,6 +257,11 @@ class MainCharacterViewModel @Inject constructor(
     private var _kick = MutableStateFlow("1d6 +6")
     val kick = _kick.asStateFlow()
 
+    private var _maxHPWithModifier = MutableStateFlow(0)
+    val maxHPWithModifier = _maxHPWithModifier.asStateFlow()
+
+    private var _maxSTAWithModifier = MutableStateFlow(0)
+    val maxSTAWithModifier = _maxSTAWithModifier.asStateFlow()
 
     //Skills
     private var _awareness = MutableStateFlow(0)
@@ -660,23 +665,39 @@ class MainCharacterViewModel @Inject constructor(
                 reputation = reputation.value!!,
                 lifeEvents = _lifeEvents.value,
                 intelligence = _intelligence.value,
+                intelligenceModifier = _intelligenceModifier.value,
                 reflex = _ref.value,
+                reflexModifier = _refModifier.value,
                 dexterity = _dex.value,
+                dexterityModifier = _dexModifier.value,
                 body = _body.value,
+                bodyModifier = _bodyModifier.value,
                 speed = _spd.value,
+                speedModifier = _spdModifier.value,
                 empathy = _emp.value,
+                empathyModifier = _empModifier.value,
                 craftsmanship = _cra.value,
+                craftsmanshipModifier = _craModifier.value,
                 will = _will.value,
+                willModifier = _willModifier.value,
                 luck = _luck.value,
+                luckModifier = _luckModifier.value,
                 stun = _stun.value,
+                stunModifier = _stunModifier.value,
                 run = _run.value,
+                runModifier = _runModifier.value,
                 leap = _leap.value,
+                leapModifier = _leapModifier.value,
                 MaxHP = _maxHP.value,
+                hpModifier = _hpModifier.value,
                 hp = _hp.value,
                 MaxStamina = _maxSta.value,
+                staModifier = _staModifier.value,
                 stamina = _sta.value,
                 encumbrance = _enc.value,
+                encumbranceModifier = _encModifier.value,
                 recovery = _rec.value,
+                recoveryModifier = _recModifier.value,
                 punch = _punch.value,
                 kick = _kick.value,
                 awareness = _awareness.value,
@@ -855,25 +876,43 @@ class MainCharacterViewModel @Inject constructor(
 
                     //Stats
                     _intelligence.value = characterData.intelligence
+                    _intelligenceModifier.value = characterData.intelligenceModifier
                     _ref.value = characterData.reflex
+                    _refModifier.value = characterData.reflexModifier
                     _dex.value = characterData.dexterity
+                    _dexModifier.value = characterData.dexterityModifier
                     _body.value = characterData.body
+                    _bodyModifier.value = characterData.bodyModifier
                     _spd.value = characterData.speed
+                    _spdModifier.value = characterData.speedModifier
                     _emp.value = characterData.empathy
+                    _empModifier.value = characterData.empathyModifier
                     _cra.value = characterData.craftsmanship
+                    _craModifier.value = characterData.craftsmanshipModifier
                     _will.value = characterData.will
+                    _willModifier.value = characterData.willModifier
                     _luck.value = characterData.luck
+                    _luckModifier.value = characterData.luckModifier
                     _stun.value = characterData.stun
+                    _stunModifier.value = characterData.stunModifier
                     _run.value = characterData.run
+                    _runModifier.value = characterData.runModifier
                     _leap.value = characterData.leap
+                    _leapModifier.value = characterData.leapModifier
                     _maxHP.value = characterData.MaxHP
+                    _hpModifier.value = characterData.hpModifier
                     _hp.value = characterData.hp
                     _maxSta.value = characterData.MaxStamina
+                    _staModifier.value = characterData.staModifier
                     _sta.value = characterData.stamina
                     _enc.value = characterData.encumbrance
+                    _encModifier.value = characterData.encumbranceModifier
                     _rec.value = characterData.recovery
+                    _recModifier.value = characterData.recoveryModifier
                     _punch.value = characterData.punch
                     _kick.value = characterData.kick
+                    _maxHPWithModifier.value = _maxHP.value.plus(_hpModifier.value)
+                    _maxSTAWithModifier.value = _maxSta.value.plus(_staModifier.value)
 
                     //Skills
                     _awareness.value = characterData.awareness
@@ -1867,28 +1906,30 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             "STUN" -> {
-                _stun.value = if (increase) _stun.value.plus(1) else _enc.value.minus(1)
+                _stun.value = if (increase) _stun.value.plus(1) else _stun.value.minus(1)
             }
             "RUN" -> {
-                _run.value = if (increase) _run.value.plus(1) else _enc.value.minus(1)
+                _run.value = if (increase) _run.value.plus(1) else _run.value.minus(1)
 
             }
             "LEAP" -> {
-                _leap.value = if (increase) _leap.value.plus(1) else _enc.value.minus(1)
+                _leap.value = if (increase) _leap.value.plus(1) else _leap.value.minus(1)
 
             }
             "MaxHP" -> {
-                _maxHP.value = if (increase) _maxHP.value.plus(1) else _enc.value.minus(1)
+                _maxHP.value = if (increase) _maxHP.value.plus(1) else _maxHP.value.minus(1)
+                _maxHPWithModifier.value = _maxHP.value.plus(_hpModifier.value)
 
             }
             "MaxSTA" -> {
-                _maxSta.value = if (increase) _maxSta.value.plus(1) else _enc.value.minus(1)
+                _maxSta.value = if (increase) _maxSta.value.plus(1) else _maxSta.value.minus(1)
+                _maxSTAWithModifier.value = _maxSta.value.plus(_staModifier.value)
             }
             "ENC" -> {
                 _enc.value = if (increase) _enc.value.plus(1) else _enc.value.minus(1)
             }
             "REC" -> {
-                _rec.value = if (increase) _rec.value.plus(1) else _enc.value.minus(1)
+                _rec.value = if (increase) _rec.value.plus(1) else _rec.value.minus(1)
 
             }
         }
@@ -1939,25 +1980,31 @@ class MainCharacterViewModel @Inject constructor(
                 else _stunModifier.value = _stunModifier.value.minus(1)
             }
             "RUN" -> {
-                _run.value = if (increase) _run.value.plus(1) else _enc.value.minus(1)
+                if (increase) _runModifier.value = _runModifier.value.plus(1)
+                else _runModifier.value = _runModifier.value.minus(1)
 
             }
             "LEAP" -> {
-                _leap.value = if (increase) _leap.value.plus(1) else _enc.value.minus(1)
-
+                if (increase) _leapModifier.value = _leapModifier.value.plus(1)
+                else _leapModifier.value = _leapModifier.value.minus(1)
             }
             "MaxHP" -> {
-                _maxHP.value = if (increase) _maxHP.value.plus(1) else _enc.value.minus(1)
-
+                if (increase) _hpModifier.value = _hpModifier.value.plus(1)
+                else _hpModifier.value = _hpModifier.value.minus(1)
+                _maxHPWithModifier.value = _maxHP.value.plus(_hpModifier.value)
             }
             "MaxSTA" -> {
-                _maxSta.value = if (increase) _maxSta.value.plus(1) else _enc.value.minus(1)
+                if (increase) _staModifier.value = _staModifier.value.plus(1)
+                else _staModifier.value = _staModifier.value.minus(1)
+                _maxSTAWithModifier.value = _maxSta.value.plus(_staModifier.value)
             }
             "ENC" -> {
-                _enc.value = if (increase) _enc.value.plus(1) else _enc.value.minus(1)
+                if (increase) _encModifier.value = _encModifier.value.plus(1)
+                else _encModifier.value = _encModifier.value.minus(1)
             }
             "REC" -> {
-                _rec.value = if (increase) _rec.value.plus(1) else _enc.value.minus(1)
+                if (increase) _recModifier.value = _recModifier.value.plus(1)
+                else _recModifier.value = _recModifier.value.minus(1)
 
             }
         }
@@ -2315,15 +2362,15 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
-    fun addArmorSet(armorSet: ArmorSet){
+    fun addArmorSet(armorSet: ArmorSet) {
         val armorArray = getArmorFromArmorSetUseCase(armorSet)
-        for (armor in armorArray){
+        for (armor in armorArray) {
             addEquipmentItem(armor)
         }
     }
 
     fun buyArmorSet(armorSet: ArmorSet): Boolean {
-        if (armorSet.cost > _crowns.value){
+        if (armorSet.cost > _crowns.value) {
             return false
         } else {
             addArmorSet(armorSet)
@@ -2521,7 +2568,7 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
-    fun getArmorSetList(source: Int): ArrayList<ArmorSet>{
+    fun getArmorSetList(source: Int): ArrayList<ArmorSet> {
         return getArmorSetListUseCase(source)
     }
 

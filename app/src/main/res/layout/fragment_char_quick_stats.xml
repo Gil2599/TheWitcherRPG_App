@@ -47,7 +47,7 @@
                 android:layout_height="0dp"
                 android:layout_weight= "0.5"
                 android:background="@drawable/transparent_bkg"
-                android:text='@{sharedViewModel.hp + "/" + sharedViewModel.maxHp}'
+                android:text='@{sharedViewModel.hp + "/" + sharedViewModel.maxHPWithModifier}'
                 android:textColor="@color/gray_400"
                 android:textSize="25sp"
                 android:gravity="center|top"
@@ -84,7 +84,7 @@
                 android:layout_height="0dp"
                 android:layout_weight= "0.5"
                 android:background="@drawable/transparent_bkg"
-                android:text='@{sharedViewModel.sta + "/" + sharedViewModel.maxSta}'
+                android:text='@{sharedViewModel.sta + "/" + sharedViewModel.maxSTAWithModifier}'
                 android:textColor="@color/gray_400"
                 android:textSize="25sp"
                 android:gravity="center|top"

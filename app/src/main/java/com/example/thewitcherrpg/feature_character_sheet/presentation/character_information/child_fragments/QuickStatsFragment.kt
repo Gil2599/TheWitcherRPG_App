@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +10,15 @@ import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.example.thewitcherrpg.databinding.FragmentCharQuickStatsBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class QuickStatsFragment : Fragment() {
@@ -21,6 +27,7 @@ class QuickStatsFragment : Fragment() {
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,15 +39,41 @@ class QuickStatsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sharedViewModel = mainCharacterViewModel
 
-        binding.buttonHP.setOnClickListener(){
+        binding.buttonHP.setOnClickListener {
             showDialogHP()
         }
-        binding.buttonSTA.setOnClickListener(){
+        binding.buttonSTA.setOnClickListener {
             showDialogSTA()
         }
-        binding.buttonCROWNS.setOnClickListener(){
+        binding.buttonCROWNS.setOnClickListener {
             showDialogCrowns()
         }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                /*launch {
+                    mainCharacterViewModel.hpModifier.collect { value ->
+                        binding.buttonHP.text = "${mainCharacterViewModel.hp.value}/${mainCharacterViewModel.maxHp.value + value}"
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.hp.collect { value ->
+                        binding.buttonHP.text = "${value}/${mainCharacterViewModel.maxHp.value + mainCharacterViewModel.hpModifier.value}"
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.staModifier.collect { value ->
+                        binding.buttonHP.text = "${mainCharacterViewModel.sta.value}/${mainCharacterViewModel.maxSta.value + value}"
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.sta.collect { value ->
+                        binding.buttonHP.text = "${value}/${mainCharacterViewModel.sta.value + mainCharacterViewModel.staModifier.value}"
+                    }
+                }*/
+            }
+        }
+
 
         return view
     }

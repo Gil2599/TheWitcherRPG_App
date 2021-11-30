@@ -51,9 +51,6 @@ class StatsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sharedViewModel = mainCharacterViewModel
 
-        lifecycleScope.launch { setObservers() }
-
-
         binding.editIP.setOnClickListener {
             showDialogIP()
         }
@@ -66,6 +63,10 @@ class StatsFragment : Fragment() {
 
         binding.buttonMinus.setOnClickListener {
             decreaseButton()
+        }
+
+        lifecycleScope.launch {
+            setObservers()
         }
 
         return view
@@ -360,10 +361,25 @@ class StatsFragment : Fragment() {
                 binding.editTextRUN.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg)
                 editModifier = false
+                binding.editTextRUN.text = getSpannableString(
+                    "RUN: ${
+                        mainCharacterViewModel.run.value.plus(
+                            mainCharacterViewModel.runModifier.value
+                        )
+                    }", editModifier, mainCharacterViewModel.run.value
+                )
             } else {
                 focusedView = binding.editTextRUN
                 binding.editTextRUN.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg)
+            }
+        }
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            binding.editTextRUN.setOnLongClickListener {
+                binding.editTextRUN.requestFocus()
+                binding.editTextRUN.setText("RUN: ${mainCharacterViewModel.run.value}" + " [${mainCharacterViewModel.runModifier.value}]")
+                editModifier = true
+                true
             }
         }
 
@@ -373,10 +389,25 @@ class StatsFragment : Fragment() {
                 binding.editTextLEAP.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg)
                 editModifier = false
+                binding.editTextLEAP.text = getSpannableString(
+                    "LEAP: ${
+                        mainCharacterViewModel.leap.value.plus(
+                            mainCharacterViewModel.leapModifier.value
+                        )
+                    }", editModifier, mainCharacterViewModel.leap.value
+                )
             } else {
                 focusedView = binding.editTextLEAP
                 binding.editTextLEAP.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg)
+            }
+        }
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            binding.editTextLEAP.setOnLongClickListener {
+                binding.editTextLEAP.requestFocus()
+                binding.editTextLEAP.setText("LEAP: ${mainCharacterViewModel.leap.value}" + " [${mainCharacterViewModel.leapModifier.value}]")
+                editModifier = true
+                true
             }
         }
 
@@ -386,10 +417,25 @@ class StatsFragment : Fragment() {
                 binding.editTextMaxHP.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg)
                 editModifier = false
+                binding.editTextMaxHP.text = getSpannableString(
+                    "MAX HP: ${
+                        mainCharacterViewModel.maxHp.value.plus(
+                            mainCharacterViewModel.hpModifier.value
+                        )
+                    }", editModifier, mainCharacterViewModel.maxHp.value
+                )
             } else {
                 focusedView = binding.editTextMaxHP
                 binding.editTextMaxHP.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg)
+            }
+        }
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            binding.editTextMaxHP.setOnLongClickListener {
+                binding.editTextMaxHP.requestFocus()
+                binding.editTextMaxHP.setText("MAX HP: ${mainCharacterViewModel.maxHp.value}" + " [${mainCharacterViewModel.hpModifier.value}]")
+                editModifier = true
+                true
             }
         }
 
@@ -399,10 +445,25 @@ class StatsFragment : Fragment() {
                 binding.editTextMaxSTA.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg)
                 editModifier = false
+                binding.editTextMaxSTA.text = getSpannableString(
+                    "MAX STA: ${
+                        mainCharacterViewModel.maxSta.value.plus(
+                            mainCharacterViewModel.staModifier.value
+                        )
+                    }", editModifier, mainCharacterViewModel.maxSta.value
+                )
             } else {
                 focusedView = binding.editTextMaxSTA
                 binding.editTextMaxSTA.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg)
+            }
+        }
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            binding.editTextMaxSTA.setOnLongClickListener {
+                binding.editTextMaxSTA.requestFocus()
+                binding.editTextMaxSTA.setText("MAX STA: ${mainCharacterViewModel.maxSta.value}" + " [${mainCharacterViewModel.staModifier.value}]")
+                editModifier = true
+                true
             }
         }
 
@@ -412,10 +473,25 @@ class StatsFragment : Fragment() {
                 binding.editTextENC.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg)
                 editModifier = false
+                binding.editTextENC.text = getSpannableString(
+                    "ENC: ${
+                        mainCharacterViewModel.enc.value.plus(
+                            mainCharacterViewModel.encModifier.value
+                        )
+                    }", editModifier, mainCharacterViewModel.enc.value
+                )
             } else {
                 focusedView = binding.editTextENC
                 binding.editTextENC.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg)
+            }
+        }
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            binding.editTextENC.setOnLongClickListener {
+                binding.editTextENC.requestFocus()
+                binding.editTextENC.setText("ENC: ${mainCharacterViewModel.enc.value}" + " [${mainCharacterViewModel.encModifier.value}]")
+                editModifier = true
+                true
             }
         }
 
@@ -425,10 +501,25 @@ class StatsFragment : Fragment() {
                 binding.editTextREC.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.unfocused_outline_bkg)
                 editModifier = false
+                binding.editTextREC.text = getSpannableString(
+                    "REC: ${
+                        mainCharacterViewModel.rec.value.plus(
+                            mainCharacterViewModel.recModifier.value
+                        )
+                    }", editModifier, mainCharacterViewModel.rec.value
+                )
             } else {
                 focusedView = binding.editTextREC
                 binding.editTextREC.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.outline_bkg)
+            }
+        }
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            binding.editTextREC.setOnLongClickListener {
+                binding.editTextREC.requestFocus()
+                binding.editTextREC.setText("REC: ${mainCharacterViewModel.rec.value}" + " [${mainCharacterViewModel.recModifier.value}]")
+                editModifier = true
+                true
             }
         }
 
@@ -510,8 +601,7 @@ class StatsFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private suspend fun setObservers() = withContext(Dispatchers.IO) {
-
+    private suspend fun setObservers() = withContext(Dispatchers.Main) {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             launch {
                 mainCharacterViewModel.intelligenceModifier.collect { value ->
@@ -657,7 +747,7 @@ class StatsFragment : Fragment() {
                     )
                 }
             }
-            /*launch {
+            launch {
                 mainCharacterViewModel.stunModifier.collect { value ->
                     if (editModifier) binding.editTextSTUN.setText("STUN: ${mainCharacterViewModel.stun.value}" + " [$value]")
                 }
@@ -672,7 +762,103 @@ class StatsFragment : Fragment() {
                         }", editModifier, value
                     )
                 }
-            }*/
+            }
+            launch {
+                mainCharacterViewModel.runModifier.collect { value ->
+                    if (editModifier) binding.editTextRUN.setText("RUN: ${mainCharacterViewModel.run.value}" + " [$value]")
+                }
+            }
+            launch {
+                mainCharacterViewModel.run.collect { value ->
+                    binding.editTextRUN.text = getSpannableString(
+                        "RUN: ${
+                            value.plus(
+                                mainCharacterViewModel.runModifier.value
+                            )
+                        }", editModifier, value
+                    )
+                }
+            }
+            launch {
+                mainCharacterViewModel.leapModifier.collect { value ->
+                    if (editModifier) binding.editTextLEAP.setText("LEAP: ${mainCharacterViewModel.leap.value}" + " [$value]")
+                }
+            }
+            launch {
+                mainCharacterViewModel.leap.collect { value ->
+                    binding.editTextLEAP.text = getSpannableString(
+                        "LEAP: ${
+                            value.plus(
+                                mainCharacterViewModel.leapModifier.value
+                            )
+                        }", editModifier, value
+                    )
+                }
+            }
+            launch {
+                mainCharacterViewModel.hpModifier.collect { value ->
+                    if (editModifier) binding.editTextMaxHP.setText("MAX HP: ${mainCharacterViewModel.maxHp.value}" + " [$value]")
+                }
+            }
+            launch {
+                mainCharacterViewModel.maxHp.collect { value ->
+                    binding.editTextMaxHP.text = getSpannableString(
+                        "MAX HP: ${
+                            value.plus(
+                                mainCharacterViewModel.hpModifier.value
+                            )
+                        }", editModifier, value
+                    )
+                }
+            }
+            launch {
+                mainCharacterViewModel.staModifier.collect { value ->
+                    if (editModifier) binding.editTextMaxSTA.setText("MAX STA: ${mainCharacterViewModel.maxSta.value}" + " [$value]")
+                }
+            }
+            launch {
+                mainCharacterViewModel.maxSta.collect { value ->
+                    binding.editTextMaxSTA.text = getSpannableString(
+                        "MAX STA: ${
+                            value.plus(
+                                mainCharacterViewModel.staModifier.value
+                            )
+                        }", editModifier, value
+                    )
+                }
+            }
+            launch {
+                mainCharacterViewModel.encModifier.collect { value ->
+                    if (editModifier) binding.editTextENC.setText("ENC: ${mainCharacterViewModel.enc.value}" + " [$value]")
+                }
+            }
+            launch {
+                mainCharacterViewModel.enc.collect { value ->
+                    binding.editTextENC.text = getSpannableString(
+                        "ENC: ${
+                            value.plus(
+                                mainCharacterViewModel.encModifier.value
+                            )
+                        }", editModifier, value
+                    )
+                }
+            }
+            launch {
+                mainCharacterViewModel.recModifier.collect { value ->
+                    if (editModifier) binding.editTextREC.setText("REC: ${mainCharacterViewModel.rec.value}" + " [$value]")
+                }
+            }
+            launch {
+                mainCharacterViewModel.rec.collect { value ->
+                    binding.editTextREC.text = getSpannableString(
+                        "REC: ${
+                            value.plus(
+                                mainCharacterViewModel.recModifier.value
+                            )
+                        }", editModifier, value
+                    )
+                }
+            }
         }
     }
 

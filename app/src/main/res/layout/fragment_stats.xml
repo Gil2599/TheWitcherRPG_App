@@ -56,7 +56,7 @@
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/outline_bkg"
+            android:background="@color/red"
             app:layout_constraintBottom_toBottomOf="@+id/editTextKick"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"EMP: " + sharedViewModel.emp}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextCRA"
@@ -121,7 +120,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"CRA: " + sharedViewModel.cra}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextWILL"
@@ -140,7 +138,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"WILL: " + sharedViewModel.will}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextLUCK"
@@ -159,7 +156,6 @@
             android:gravity="center"
             android:inputType="textPersonName"
             android:tag="LUCK"
-            android:text='@{"LUCK: " + sharedViewModel.luck}'
             android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/buttonMinus"
@@ -215,7 +211,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"BODY: " + sharedViewModel.body}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextSPD"
@@ -234,7 +229,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"SPD: " + sharedViewModel.spd}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextEMP"
@@ -272,7 +266,6 @@
             android:gravity="center"
             android:inputType="textPersonName"
             android:tag="STUN"
-            android:text='@{"STUN: " + sharedViewModel.stun}'
             android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editTextRUN"
@@ -292,7 +285,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"RUN: " + sharedViewModel.run}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextLEAP"
@@ -311,7 +303,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"LEAP: " + sharedViewModel.leap}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextMaxHP"
@@ -330,7 +321,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"MAX HP: " + sharedViewModel.maxHp}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextMaxSTA"
@@ -349,7 +339,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"MAX STA: " + sharedViewModel.maxSta}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextENC"
@@ -368,7 +357,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"ENC: " + sharedViewModel.enc}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextREC"
@@ -387,7 +375,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"REC: " + sharedViewModel.rec}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextPunch"
