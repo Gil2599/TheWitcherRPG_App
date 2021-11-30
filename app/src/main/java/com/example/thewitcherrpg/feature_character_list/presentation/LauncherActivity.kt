@@ -70,7 +70,7 @@ class LauncherActivity : AppCompatActivity() {
             }
         }
         lifecycleScope.launch {
-            mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
+            mCharListViewModel.disclaimerMode.onEach { disclaimerIsEnabled ->
                 if (disclaimerIsEnabled) {
                     showDialogDisclaimer(true)
                 }

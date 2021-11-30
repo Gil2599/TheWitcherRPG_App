@@ -158,38 +158,74 @@ class MainCharacterViewModel @Inject constructor(
     private var _ref = MutableStateFlow(0)
     val ref = _ref.asStateFlow()
 
+    private var _refModifier = MutableStateFlow(0)
+    val refModifier = _refModifier.asStateFlow()
+
     private var _dex = MutableStateFlow(0)
     val dex = _dex.asStateFlow()
+
+    private var _dexModifier = MutableStateFlow(0)
+    val dexModifier = _dexModifier.asStateFlow()
 
     private var _body = MutableStateFlow(0)
     val body = _body.asStateFlow()
 
+    private var _bodyModifier = MutableStateFlow(0)
+    val bodyModifier = _bodyModifier.asStateFlow()
+
     private var _spd = MutableStateFlow(0)
     val spd = _spd.asStateFlow()
+
+    private var _spdModifier = MutableStateFlow(0)
+    val spdModifier = _spdModifier.asStateFlow()
 
     private var _emp = MutableStateFlow(0)
     val emp = _emp.asStateFlow()
 
+    private var _empModifier = MutableStateFlow(0)
+    val empModifier = _empModifier.asStateFlow()
+
     private var _cra = MutableStateFlow(0)
     val cra = _cra.asStateFlow()
+
+    private var _craModifier = MutableStateFlow(0)
+    val craModifier = _craModifier.asStateFlow()
 
     private var _will = MutableStateFlow(0)
     val will = _will.asStateFlow()
 
+    private var _willModifier = MutableStateFlow(0)
+    val willModifier = _willModifier.asStateFlow()
+
     private var _luck = MutableStateFlow(0)
     val luck = _luck.asStateFlow()
+
+    private var _luckModifier = MutableStateFlow(0)
+    val luckModifier = _luckModifier.asStateFlow()
 
     private var _stun = MutableStateFlow(0)
     val stun = _stun.asStateFlow()
 
+    private var _stunModifier = MutableStateFlow(0)
+    val stunModifier = _stunModifier.asStateFlow()
+
     private var _run = MutableStateFlow(0)
     val run = _run.asStateFlow()
+
+    private var _runModifier = MutableStateFlow(0)
+    val runModifier = _runModifier.asStateFlow()
 
     private var _leap = MutableStateFlow(0)
     val leap = _leap.asStateFlow()
 
+    private var _leapModifier = MutableStateFlow(0)
+    val leapModifier = _leapModifier.asStateFlow()
+
     private var _maxHP = MutableStateFlow(0)
     val maxHp = _maxHP.asStateFlow()
+
+    private var _hpModifier = MutableStateFlow(0)
+    val hpModifier = _hpModifier.asStateFlow()
 
     private var _hp = MutableStateFlow(0)
     val hp = _hp.asStateFlow()
@@ -197,14 +233,23 @@ class MainCharacterViewModel @Inject constructor(
     private var _maxSta = MutableStateFlow(0)
     val maxSta = _maxSta.asStateFlow()
 
+    private var _staModifier = MutableStateFlow(0)
+    val staModifier = _staModifier.asStateFlow()
+
     private var _sta = MutableStateFlow(0)
     val sta = _sta.asStateFlow()
 
     private var _enc = MutableStateFlow(0)
     val enc = _enc.asStateFlow()
 
+    private var _encModifier = MutableStateFlow(0)
+    val encModifier = _encModifier.asStateFlow()
+
     private var _rec = MutableStateFlow(0)
     val rec = _rec.asStateFlow()
+
+    private var _recModifier = MutableStateFlow(0)
+    val recModifier = _recModifier.asStateFlow()
 
     private var _punch = MutableStateFlow("1d6 +2")
     val punch = _punch.asStateFlow()
@@ -1858,148 +1903,40 @@ class MainCharacterViewModel @Inject constructor(
                 else _intelligenceModifier.value = _intelligenceModifier.value.minus(1)
             }
             "REF" -> {
-                val pair = onStatChangeUseCase(
-                    _ref.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _ref.value = pair.second
-                    _ip.value = pair.first
-                }
+                if (increase) _refModifier.value = _refModifier.value.plus(1)
+                else _refModifier.value = _refModifier.value.minus(1)
             }
             "DEX" -> {
-                val pair = onStatChangeUseCase(
-                    _dex.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _dex.value = pair.second
-                    _ip.value = pair.first
-                }
+                if (increase) _dexModifier.value = _dexModifier.value.plus(1)
+                else _dexModifier.value = _dexModifier.value.minus(1)
             }
             "BODY" -> {
-                val pair = onStatChangeUseCase(
-                    _body.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _body.value = pair.second
-                    _ip.value = pair.first
-                    onHpChange(increase = increase)
-                    onStaminaChange(increase = increase)
-                    _rec.value = (_body.value + _will.value) / 2
-                    _stun.value =
-                        if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
-                        else 10
-                    _enc.value = _body.value * 10
-                    when (_body.value) {
-                        1, 2 -> {
-                            _punch.value = "1d6 - 4"
-                            _kick.value = "1d6"
-                        }
-                        3, 4 -> {
-                            _punch.value = "1d6 - 2"
-                            _kick.value = "1d6 + 2"
-                        }
-                        5, 6 -> {
-                            _punch.value = "1d6"
-                            _kick.value = "1d6 + 4"
-                        }
-                        7, 8 -> {
-                            _punch.value = "1d6 + 2"
-                            _kick.value = "1d6 + 6"
-                        }
-                        9, 10 -> {
-                            _punch.value = "1d6 + 4"
-                            _kick.value = "1d6 + 8"
-                        }
-                        11, 12 -> {
-                            _punch.value = "1d6 + 6"
-                            _kick.value = "1d6 + 10"
-                        }
-                        13 -> {
-                            _punch.value = "1d6 + 8"
-                            _kick.value = "1d6 + 12"
-                        }
-                    }
-                }
+                if (increase) _bodyModifier.value = _bodyModifier.value.plus(1)
+                else _bodyModifier.value = _bodyModifier.value.minus(1)
             }
             "SPD" -> {
-                val pair = onStatChangeUseCase(
-                    _spd.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _spd.value = pair.second
-                    _ip.value = pair.first
-                    _run.value = _spd.value * 3
-                    _leap.value = (_spd.value * 3) / 5
-                }
+                if (increase) _spdModifier.value = _spdModifier.value.plus(1)
+                else _spdModifier.value = _spdModifier.value.minus(1)
             }
             "EMP" -> {
-                val pair = onStatChangeUseCase(
-                    _emp.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _emp.value = pair.second
-                    _ip.value = pair.first
-                }
+                if (increase) _empModifier.value = _empModifier.value.plus(1)
+                else _empModifier.value = _empModifier.value.minus(1)
             }
             "CRA" -> {
-                val pair = onStatChangeUseCase(
-                    _cra.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _cra.value = pair.second
-                    _ip.value = pair.first
-                }
+                if (increase) _craModifier.value = _craModifier.value.plus(1)
+                else _craModifier.value = _craModifier.value.minus(1)
             }
             "WILL" -> {
-                val pair = onStatChangeUseCase(
-                    _will.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _will.value = pair.second
-                    _ip.value = pair.first
-                    onHpChange(increase = increase)
-                    onStaminaChange(increase = increase)
-                    _rec.value = (_body.value + _will.value) / 2
-                    _stun.value =
-                        if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
-                        else 10
-                }
+                if (increase) _willModifier.value = _willModifier.value.plus(1)
+                else _willModifier.value = _willModifier.value.minus(1)
             }
             "LUCK" -> {
-                val pair = onStatChangeUseCase(
-                    _luck.value,
-                    _ip.value,
-                    increase,
-                    _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _luck.value = pair.second
-                    _ip.value = pair.first
-                }
+                if (increase) _luckModifier.value = _luckModifier.value.plus(1)
+                else _luckModifier.value = _luckModifier.value.minus(1)
             }
             "STUN" -> {
-                _stun.value = if (increase) _stun.value.plus(1) else _enc.value.minus(1)
+                if (increase) _stunModifier.value = _stunModifier.value.plus(1)
+                else _stunModifier.value = _stunModifier.value.minus(1)
             }
             "RUN" -> {
                 _run.value = if (increase) _run.value.plus(1) else _enc.value.minus(1)

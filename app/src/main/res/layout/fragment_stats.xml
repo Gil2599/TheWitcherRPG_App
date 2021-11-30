@@ -179,7 +179,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"REF: " + sharedViewModel.ref}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextDEX"
@@ -198,7 +197,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text='@{"DEX: " + sharedViewModel.dex}'
             android:textStyle="bold"
             android:textSize="21sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextBODY"
