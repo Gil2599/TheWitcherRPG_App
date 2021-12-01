@@ -8,4 +8,6 @@
     <string name="HP"><u><b>HP</b></u></string>
     <string name="Stamina"><u><b>STAMINA</b></u></string>
     <string name="Crowns"><u><b>CROWNS</b></u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

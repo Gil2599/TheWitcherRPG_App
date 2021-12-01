@@ -862,7 +862,6 @@ class StatsFragment : Fragment() {
         }
     }
 
-
     private fun getSpannableString(
         string: String,
         editModifierMode: Boolean,

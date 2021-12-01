@@ -33,6 +33,7 @@ import androidx.lifecycle.Observer
 import com.example.thewitcherrpg.databinding.NavHeaderBinding
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag
 import com.example.thewitcherrpg.feature_character_sheet.presentation.campaign_notes.CampaignNotesFragment
+import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragmentOverhaul
 import com.google.android.material.snackbar.Snackbar
 import java.io.FileInputStream
 import java.io.FileNotFoundException
