@@ -1118,7 +1118,7 @@ class MainCharacterViewModel @Inject constructor(
         _lifeEvents.value = ArrayList(_lifeEvents.value.sortedWith(compareBy { it.age }))
     }
 
-    fun onSkillChange(skill: String, increase: Boolean) {
+    fun onSkillChange(skill: String, increase: Boolean): Int {
 
         when (skill) {
             "Awareness" -> {
@@ -1132,6 +1132,7 @@ class MainCharacterViewModel @Inject constructor(
                     _awareness.value = pair.second
                     _ip.value = pair.first
                 }
+                return _awareness.value
             }
             "Business" -> {
                 val pair = onSkillChangeUseCase(
@@ -1746,6 +1747,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
         }
+        return 0
     }
 
     fun onStatChange(stat: String, increase: Boolean) {
