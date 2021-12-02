@@ -857,57 +857,107 @@ class MainCharacterViewModel @Inject constructor(
                 punch = _punch.value,
                 kick = _kick.value,
                 awareness = _awareness.value,
-                business = _business.value,
+                awarenessModifier = _awarenessModifier.value,
+                businessModifier = _businessModifier.value,
                 deduction = _deduction.value,
+                deductionModifier = _deductionModifier.value,
                 education = _education.value,
+                educationModifier = _educationModifier.value,
                 commonSpeech = _commonSpeech.value,
+                commonSpeechModifier = _commonSpeechModifier.value,
                 elderSpeech = _elderSpeech.value,
+                elderSpeechModifier = _elderSpeechModifier.value,
                 dwarven = _dwarven.value,
+                dwarvenModifier = _dwarvenModifier.value,
                 monsterLore = _monsterLore.value,
+                monsterLoreModifier = _monsterLoreModifier.value,
                 socialEtiquette = _socialEtiquette.value,
+                socialEtiquetteModifier = _socialEtiquetteModifier.value,
                 streetwise = _streetwise.value,
+                streetwiseModifier = _streetwiseModifier.value,
                 tactics = _tactics.value,
+                tacticsModifier = _tacticsModifier.value,
                 teaching = _teaching.value,
+                teachingModifier = _teachingModifier.value,
                 wildernessSurvival = _wildernessSurvival.value,
+                wildernessSurvivalModifier = _wildernessSurvivalModifier.value,
                 brawling = _brawling.value,
+                brawlingModifier = _brawlingModifier.value,
                 dodgeEscape = _dodgeEscape.value,
+                dodgeEscapeModifier = _dodgeEscapeModifier.value,
                 melee = _melee.value,
+                meleeModifier = _meleeModifier.value,
                 riding = _riding.value,
-                sailing = _sailing.value,
+                ridingModifier = _ridingModifier.value,
+                sailingModifier = _sailingModifier.value,
                 smallBlades = _smallBlades.value,
+                smallBladesModifier = _smallBladesModifier.value,
                 staffSpear = staffSpear.value,
+                staffSpearModifier = staffSpearModifier.value,
                 swordsmanship = _swordsmanship.value,
+                swordsmanshipModifier = _swordsmanshipModifier.value,
                 archery = _archery.value,
+                archeryModifier = _archeryModifier.value,
                 athletics = _athletics.value,
+                athleticsModifier = _athleticsModifier.value,
                 crossbow = _crossbow.value,
+                crossbowModifier = _crossbowModifier.value,
                 sleightOfHand = _sleightOfHand.value,
+                sleightOfHandModifier = _sleightOfHandModifier.value,
                 stealth = _stealth.value,
+                stealthModifier = _stealthModifier.value,
                 physique = _physique.value,
+                physiqueModifier = _physiqueModifier.value,
                 endurance = _endurance.value,
+                enduranceModifier = _enduranceModifier.value,
                 charisma = _charisma.value,
+                charismaModifier = _charismaModifier.value,
                 deceit = _deceit.value,
+                deceitModifier = _deceitModifier.value,
                 fineArts = _fineArts.value,
+                fineArtsModifier = _fineArtsModifier.value,
                 gambling = _gambling.value,
+                gamblingModifier = _gamblingModifier.value,
                 groomingAndStyle = _groomingAndStyle.value,
+                groomingAndStyleModifier = _groomingAndStyleModifier.value,
                 humanPerception = _humanPerception.value,
+                humanPerceptionModifier = _humanPerceptionModifier.value,
                 leadership = _leadership.value,
+                leadershipModifier = _leadershipModifier.value,
                 persuasion = _persuasion.value,
+                persuasionModifier = _persuasionModifier.value,
                 performance = _performance.value,
+                performanceModifier = _performanceModifier.value,
                 seduction = _seduction.value,
+                seductionModifier = _seductionModifier.value,
                 alchemy = _alchemy.value,
+                alchemyModifier = _alchemyModifier.value,
                 crafting = _crafting.value,
+                craftingModifier = _craftingModifier.value,
                 disguise = _disguise.value,
+                disguiseModifier = _disguiseModifier.value,
                 firstAid = _firstAid.value,
+                firstAidModifier = _firstAidModifier.value,
                 forgery = _forgery.value,
+                forgeryModifier = _forgeryModifier.value,
                 pickLock = _pickLock.value,
+                pickLockModifier = _pickLockModifier.value,
                 trapCrafting = _trapCrafting.value,
+                trapCraftingModifier = _trapCraftingModifier.value,
                 courage = _courage.value,
+                courageModifier = _courageModifier.value,
                 hexWeaving = _hexWeaving.value,
+                hexWeavingModifier = _hexWeavingModifier.value,
                 intimidation = _intimidation.value,
+                intimidationModifier = _intimidationModifier.value,
                 spellCasting = _spellCasting.value,
+                spellCastingModifier = _spellCastingModifier.value,
                 resistMagic = _resistMagic.value,
+                resistMagicModifier = _resistMagicModifier.value,
                 resistCoercion = _resistCoercion.value,
+                resistCoercionModifier = _resistCoercionModifier.value,
                 ritualCrafting = _ritualCrafting.value,
+                ritualCraftingModifier = _ritualCraftingModifier.value,
 
                 professionSkillA1 = _professionSkillA1.value,
                 professionSkillA2 = _professionSkillA2.value,
@@ -1072,57 +1122,109 @@ class MainCharacterViewModel @Inject constructor(
 
                     //Skills
                     _awareness.value = characterData.awareness
+                    _awarenessModifier.value = characterData.awarenessModifier
                     _business.value = characterData.business
+                    _businessModifier.value = characterData.businessModifier
                     _deduction.value = characterData.deduction
+                    _deductionModifier.value = characterData.deductionModifier
                     _education.value = characterData.education
+                    _educationModifier.value = characterData.educationModifier
                     _commonSpeech.value = characterData.commonSpeech
+                    _commonSpeechModifier.value = characterData.commonSpeechModifier
                     _elderSpeech.value = characterData.elderSpeech
+                    _elderSpeechModifier.value = characterData.elderSpeechModifier
                     _dwarven.value = characterData.dwarven
+                    _dwarvenModifier.value = characterData.dwarvenModifier
                     _monsterLore.value = characterData.monsterLore
+                    _monsterLoreModifier.value = characterData.monsterLoreModifier
                     _socialEtiquette.value = characterData.socialEtiquette
+                    _socialEtiquetteModifier.value = characterData.socialEtiquetteModifier
                     _streetwise.value = characterData.streetwise
+                    _streetwiseModifier.value = characterData.streetwiseModifier
                     _tactics.value = characterData.tactics
+                    _tacticsModifier.value = characterData.tacticsModifier
                     _teaching.value = characterData.teaching
+                    _teachingModifier.value = characterData.teachingModifier
                     _wildernessSurvival.value = characterData.wildernessSurvival
+                    _wildernessSurvivalModifier.value = characterData.wildernessSurvivalModifier
                     _brawling.value = characterData.brawling
+                    _brawlingModifier.value = characterData.brawlingModifier
                     _dodgeEscape.value = characterData.dodgeEscape
+                    _dodgeEscapeModifier.value = characterData.dodgeEscapeModifier
                     _melee.value = characterData.melee
+                    _meleeModifier.value = characterData.meleeModifier
                     _riding.value = characterData.riding
+                    _ridingModifier.value = characterData.ridingModifier
                     _sailing.value = characterData.sailing
+                    _sailingModifier.value = characterData.sailingModifier
                     _smallBlades.value = characterData.smallBlades
+                    _smallBladesModifier.value = characterData.smallBladesModifier
                     _staffSpear.value = characterData.staffSpear
+                    _staffSpearModifier.value = characterData.staffSpearModifier
                     _swordsmanship.value = characterData.swordsmanship
+                    _swordsmanshipModifier.value = characterData.swordsmanshipModifier
                     _archery.value = characterData.archery
+                    _archeryModifier.value = characterData.archeryModifier
                     _athletics.value = characterData.athletics
+                    _athleticsModifier.value = characterData.athleticsModifier
                     _crossbow.value = characterData.crossbow
+                    _crossbowModifier.value = characterData.crossbowModifier
                     _sleightOfHand.value = characterData.sleightOfHand
+                    _sleightOfHandModifier.value = characterData.sleightOfHandModifier
                     _stealth.value = characterData.stealth
+                    _stealthModifier.value = characterData.stealthModifier
                     _physique.value = characterData.physique
+                    _physiqueModifier.value = characterData.physiqueModifier
                     _endurance.value = characterData.endurance
+                    _enduranceModifier.value = characterData.enduranceModifier
                     _charisma.value = characterData.charisma
+                    _charismaModifier.value = characterData.charismaModifier
                     _deceit.value = characterData.deceit
+                    _deceitModifier.value = characterData.deceitModifier
                     _fineArts.value = characterData.fineArts
+                    _fineArtsModifier.value = characterData.fineArtsModifier
                     _gambling.value = characterData.gambling
+                    _gamblingModifier.value = characterData.gamblingModifier
                     _groomingAndStyle.value = characterData.groomingAndStyle
+                    _groomingAndStyleModifier.value = characterData.groomingAndStyleModifier
                     _humanPerception.value = characterData.humanPerception
+                    _humanPerceptionModifier.value = characterData.humanPerceptionModifier
                     _leadership.value = characterData.leadership
+                    _leadershipModifier.value = characterData.leadershipModifier
                     _persuasion.value = characterData.persuasion
+                    _persuasionModifier.value = characterData.persuasionModifier
                     _performance.value = characterData.performance
+                    _performanceModifier.value = characterData.performanceModifier
                     _seduction.value = characterData.seduction
+                    _seductionModifier.value = characterData.seductionModifier
                     _alchemy.value = characterData.alchemy
+                    _alchemyModifier.value = characterData.alchemyModifier
                     _crafting.value = characterData.crafting
+                    _craftingModifier.value = characterData.craftingModifier
                     _disguise.value = characterData.disguise
+                    _disguiseModifier.value = characterData.disguiseModifier
                     _firstAid.value = characterData.firstAid
+                    _firstAidModifier.value = characterData.firstAidModifier
                     _forgery.value = characterData.forgery
+                    _forgeryModifier.value = characterData.forgeryModifier
                     _pickLock.value = characterData.pickLock
+                    _pickLockModifier.value = characterData.pickLockModifier
                     _trapCrafting.value = characterData.trapCrafting
+                    _trapCraftingModifier.value = characterData.trapCraftingModifier
                     _courage.value = characterData.courage
+                    _courageModifier.value = characterData.courageModifier
                     _hexWeaving.value = characterData.hexWeaving
+                    _hexWeavingModifier.value = characterData.hexWeavingModifier
                     _intimidation.value = characterData.intimidation
+                    _intimidationModifier.value = characterData.intimidationModifier
                     _spellCasting.value = characterData.spellCasting
+                    _spellCastingModifier.value = characterData.spellCastingModifier
                     _resistMagic.value = characterData.resistMagic
+                    _resistMagicModifier.value = characterData.resistMagicModifier
                     _resistCoercion.value = characterData.resistCoercion
+                    _resistCoercionModifier.value = characterData.resistCoercionModifier
                     _ritualCrafting.value = characterData.ritualCrafting
+                    _ritualCraftingModifier.value = characterData.ritualCraftingModifier
 
                     //Magic
                     _vigor.value = characterData.vigor
@@ -1952,6 +2054,273 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value = pair.first
                 }
                 return _ritualCrafting.value
+            }
+        }
+        return 0
+    }
+
+    fun onSkillModifierChange(skill: String, increase: Boolean): Int {
+
+        when (skill) {
+            "Awareness" -> {
+                if (increase) _awarenessModifier.value = _awarenessModifier.value.plus(1)
+                else _awarenessModifier.value = _awarenessModifier.value.minus(1)
+                return _awarenessModifier.value
+            }
+            "Business" -> {
+                if (increase) _businessModifier.value = _businessModifier.value.plus(1)
+                else _businessModifier.value = _businessModifier.value.minus(1)
+                return _businessModifier.value
+            }
+            "Deduction" -> {
+                if (increase) _deductionModifier.value = _deductionModifier.value.plus(1)
+                else _deductionModifier.value = _deductionModifier.value.minus(1)
+                return _deductionModifier.value
+            }
+            "Education" -> {
+                if (increase) _educationModifier.value = _educationModifier.value.plus(1)
+                else _educationModifier.value = _educationModifier.value.minus(1)
+                return _educationModifier.value
+            }
+            "Common Speech" -> {
+                if (increase) _commonSpeechModifier.value = _commonSpeechModifier.value.plus(1)
+                else _commonSpeechModifier.value = _commonSpeechModifier.value.minus(1)
+                return _commonSpeechModifier.value
+            }
+            "Elder Speech" -> {
+                if (increase) _elderSpeechModifier.value = _elderSpeechModifier.value.plus(1)
+                else _elderSpeechModifier.value = _elderSpeechModifier.value.minus(1)
+                return _elderSpeechModifier.value
+            }
+            "Dwarven" -> {
+                if (increase) _dwarvenModifier.value = _dwarvenModifier.value.plus(1)
+                else _dwarvenModifier.value = _dwarvenModifier.value.minus(1)
+                return _dwarvenModifier.value
+            }
+            "Monster Lore" -> {
+                if (increase) _monsterLoreModifier.value = _monsterLoreModifier.value.plus(1)
+                else _monsterLoreModifier.value = _monsterLoreModifier.value.minus(1)
+                return _monsterLoreModifier.value
+            }
+            "Social Etiquette" -> {
+                if (increase) _socialEtiquetteModifier.value = _socialEtiquetteModifier.value.plus(1)
+                else _socialEtiquetteModifier.value = _socialEtiquetteModifier.value.minus(1)
+                return _socialEtiquetteModifier.value
+            }
+            "Streetwise" -> {
+                if (increase) _streetwiseModifier.value = _streetwiseModifier.value.plus(1)
+                else _streetwiseModifier.value = _streetwiseModifier.value.minus(1)
+                return _streetwiseModifier.value
+            }
+            "Tactics" -> {
+                if (increase) _tacticsModifier.value = _tacticsModifier.value.plus(1)
+                else _tacticsModifier.value = _tacticsModifier.value.minus(1)
+                return _tacticsModifier.value
+            }
+            "Teaching" -> {
+                if (increase) _teachingModifier.value = _teachingModifier.value.plus(1)
+                else _teachingModifier.value = _teachingModifier.value.minus(1)
+                return _teachingModifier.value
+            }
+            "Wilderness Survival" -> {
+                if (increase) _wildernessSurvivalModifier.value = _wildernessSurvivalModifier.value.plus(1)
+                else _wildernessSurvivalModifier.value = _wildernessSurvivalModifier.value.minus(1)
+                return _wildernessSurvivalModifier.value
+            }
+            "Brawling" -> {
+                if (increase) _brawlingModifier.value = _brawlingModifier.value.plus(1)
+                else _brawlingModifier.value = _brawlingModifier.value.minus(1)
+                return _brawlingModifier.value
+            }
+            "Dodge/Escape" -> {
+                if (increase) _dodgeEscapeModifier.value = _dodgeEscapeModifier.value.plus(1)
+                else _dodgeEscapeModifier.value = _dodgeEscapeModifier.value.minus(1)
+                return _dodgeEscapeModifier.value
+            }
+            "Melee" -> {
+                if (increase) _meleeModifier.value = _meleeModifier.value.plus(1)
+                else _meleeModifier.value = _meleeModifier.value.minus(1)
+                return _meleeModifier.value
+            }
+            "Riding" -> {
+                if (increase) _ridingModifier.value = _ridingModifier.value.plus(1)
+                else _ridingModifier.value = _ridingModifier.value.minus(1)
+                return _ridingModifier.value
+            }
+            "Sailing" -> {
+                if (increase) _sailingModifier.value = _sailingModifier.value.plus(1)
+                else _sailingModifier.value = _sailingModifier.value.minus(1)
+                return _sailingModifier.value
+            }
+            "Small Blades" -> {
+                if (increase) _smallBladesModifier.value = _smallBladesModifier.value.plus(1)
+                else _smallBladesModifier.value = _smallBladesModifier.value.minus(1)
+                return _smallBladesModifier.value
+            }
+            "Staff/Spear" -> {
+                if (increase) _staffSpearModifier.value = _staffSpearModifier.value.plus(1)
+                else _staffSpearModifier.value = _staffSpearModifier.value.minus(1)
+                return _staffSpearModifier.value
+            }
+            "Swordsmanship" -> {
+                if (increase) _swordsmanshipModifier.value = _swordsmanshipModifier.value.plus(1)
+                else _swordsmanshipModifier.value = _swordsmanshipModifier.value.minus(1)
+                return _swordsmanshipModifier.value
+            }
+            "Archery" -> {
+                if (increase) _archeryModifier.value = _archeryModifier.value.plus(1)
+                else _archeryModifier.value = _archeryModifier.value.minus(1)
+                return _archeryModifier.value
+            }
+            "Athletics" -> {
+                if (increase) _athleticsModifier.value = _athleticsModifier.value.plus(1)
+                else _athleticsModifier.value = _athleticsModifier.value.minus(1)
+                return _athleticsModifier.value
+            }
+            "Crossbow" -> {
+                if (increase) _crossbowModifier.value = _crossbowModifier.value.plus(1)
+                else _crossbowModifier.value = _crossbowModifier.value.minus(1)
+                return _crossbowModifier.value
+            }
+            "Sleight of Hand" -> {
+                if (increase) _sleightOfHandModifier.value = _sleightOfHandModifier.value.plus(1)
+                else _sleightOfHandModifier.value = _sleightOfHandModifier.value.minus(1)
+                return _sleightOfHandModifier.value
+            }
+            "Stealth" -> {
+                if (increase) _stealthModifier.value = _stealthModifier.value.plus(1)
+                else _stealthModifier.value = _stealthModifier.value.minus(1)
+                return _stealthModifier.value
+            }
+            "Physique" -> {
+                if (increase) _physiqueModifier.value = _physiqueModifier.value.plus(1)
+                else _physiqueModifier.value = _physiqueModifier.value.minus(1)
+                return _physiqueModifier.value
+            }
+            "Endurance" -> {
+                if (increase) _enduranceModifier.value = _enduranceModifier.value.plus(1)
+                else _enduranceModifier.value = _enduranceModifier.value.minus(1)
+                return _enduranceModifier.value
+            }
+            "Charisma" -> {
+                if (increase) _charismaModifier.value = _charismaModifier.value.plus(1)
+                else _charismaModifier.value = _charismaModifier.value.minus(1)
+                return _charismaModifier.value
+            }
+            "Deceit" -> {
+                if (increase) _deceitModifier.value = _deceitModifier.value.plus(1)
+                else _deceitModifier.value = _deceitModifier.value.minus(1)
+                return _deceitModifier.value
+            }
+            "Fine Arts" -> {
+                if (increase) _fineArtsModifier.value = _fineArtsModifier.value.plus(1)
+                else _fineArtsModifier.value = _fineArtsModifier.value.minus(1)
+                return _fineArtsModifier.value
+            }
+            "Gambling" -> {
+                if (increase) _gamblingModifier.value = _gamblingModifier.value.plus(1)
+                else _gamblingModifier.value = _gamblingModifier.value.minus(1)
+                return _gamblingModifier.value
+            }
+            "Grooming and Style" -> {
+                if (increase) _groomingAndStyleModifier.value = _groomingAndStyleModifier.value.plus(1)
+                else _groomingAndStyleModifier.value = _groomingAndStyleModifier.value.minus(1)
+                return _groomingAndStyleModifier.value
+            }
+            "Human Perception" -> {
+                if (increase) _humanPerceptionModifier.value = _humanPerceptionModifier.value.plus(1)
+                else _humanPerceptionModifier.value = _humanPerceptionModifier.value.minus(1)
+                return _humanPerceptionModifier.value
+            }
+            "Leadership" -> {
+                if (increase) _leadershipModifier.value = _leadershipModifier.value.plus(1)
+                else _leadershipModifier.value = _leadershipModifier.value.minus(1)
+                return _leadershipModifier.value
+            }
+            "Persuasion" -> {
+                if (increase) _persuasionModifier.value = _persuasionModifier.value.plus(1)
+                else _persuasionModifier.value = _persuasionModifier.value.minus(1)
+                return _persuasionModifier.value
+            }
+            "Performance" -> {
+                if (increase) _performanceModifier.value = _performanceModifier.value.plus(1)
+                else _performanceModifier.value = _performanceModifier.value.minus(1)
+                return _performanceModifier.value
+            }
+            "Seduction" -> {
+                if (increase) _seductionModifier.value = _seductionModifier.value.plus(1)
+                else _seductionModifier.value = _seductionModifier.value.minus(1)
+                return _seductionModifier.value
+            }
+            "Alchemy" -> {
+                if (increase) _alchemyModifier.value = _alchemyModifier.value.plus(1)
+                else _alchemyModifier.value = _alchemyModifier.value.minus(1)
+                return _alchemyModifier.value
+            }
+            "Crafting" -> {
+                if (increase) _craftingModifier.value = _craftingModifier.value.plus(1)
+                else _craftingModifier.value = _craftingModifier.value.minus(1)
+                return _craftingModifier.value
+            }
+            "Disguise" -> {
+                if (increase) _disguiseModifier.value = _disguiseModifier.value.plus(1)
+                else _disguiseModifier.value = _disguiseModifier.value.minus(1)
+                return _disguiseModifier.value
+            }
+            "First Aid" -> {
+                if (increase) _firstAidModifier.value = _firstAidModifier.value.plus(1)
+                else _firstAidModifier.value = _firstAidModifier.value.minus(1)
+                return _firstAidModifier.value
+            }
+            "Forgery" -> {
+                if (increase) _forgeryModifier.value = _forgeryModifier.value.plus(1)
+                else _forgeryModifier.value = _forgeryModifier.value.minus(1)
+                return _forgeryModifier.value
+            }
+            "Pick Lock" -> {
+                if (increase) _pickLockModifier.value = _pickLockModifier.value.plus(1)
+                else _pickLockModifier.value = _pickLockModifier.value.minus(1)
+                return _pickLockModifier.value
+            }
+            "Trap Crafting" -> {
+                if (increase) _trapCraftingModifier.value = _trapCraftingModifier.value.plus(1)
+                else _trapCraftingModifier.value = _trapCraftingModifier.value.minus(1)
+                return _trapCraftingModifier.value
+            }
+            "Courage" -> {
+                if (increase) _courageModifier.value = _courageModifier.value.plus(1)
+                else _courageModifier.value = _courageModifier.value.minus(1)
+                return _courageModifier.value
+            }
+            "Hex Weaving" -> {
+                if (increase) _hexWeavingModifier.value = _hexWeavingModifier.value.plus(1)
+                else _hexWeavingModifier.value = _hexWeavingModifier.value.minus(1)
+                return _hexWeavingModifier.value
+            }
+            "Intimidation" -> {
+                if (increase) _intimidationModifier.value = _intimidationModifier.value.plus(1)
+                else _intimidationModifier.value = _intimidationModifier.value.minus(1)
+                return _intimidationModifier.value
+            }
+            "Spell Casting" -> {
+                if (increase) _spellCastingModifier.value = _spellCastingModifier.value.plus(1)
+                else _spellCastingModifier.value = _spellCastingModifier.value.minus(1)
+                return _spellCastingModifier.value
+            }
+            "Resist Magic" -> {
+                if (increase) _resistMagic.value = _resistMagic.value.plus(1)
+                else _resistMagic.value = _resistMagic.value.minus(1)
+                return _resistMagic.value
+            }
+            "Resist Coercion" -> {
+                if (increase) _resistCoercion.value = _resistCoercion.value.plus(1)
+                else _resistCoercion.value = _resistCoercion.value.minus(1)
+                return _resistCoercion.value
+            }
+            "Ritual Crafting" -> {
+                if (increase) _ritualCraftingModifier.value = _ritualCraftingModifier.value.plus(1)
+                else _ritualCraftingModifier.value = _ritualCraftingModifier.value.minus(1)
+                return _ritualCraftingModifier.value
             }
         }
         return 0

@@ -6,17 +6,25 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.widget.EditText
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
+import androidx.databinding.*
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.databinding.CustomSkillRowBinding
+
+
+@InverseBindingMethods(InverseBindingMethod(type = CustomSkillRow::class,attribute = "modifier", method = "setModifier"))
 
 class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
     LinearLayout(context, attributeSet) {
     private var _binding: CustomSkillRowBinding? = null
     private val binding get() = _binding!!
 
-    private var editModifier: Boolean = false
+    var editModifier: Boolean = false
+    var modifierValue = 0
 
     init {
         _binding = CustomSkillRowBinding.inflate(
@@ -26,14 +34,14 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
 
         binding.editTextNumber.setRawInputType(0)
         binding.editTextNumber.setOnLongClickListener {
-            Log.d("test", "long click")
+            binding.textViewModifier.visibility = View.VISIBLE
             binding.editTextNumber.requestFocus()
             editModifier = true
             true
         }
         binding.editTextNumber.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                Log.d("test", "lost focus")
+                if (modifierValue == 0) binding.textViewModifier.visibility = View.INVISIBLE
                 editModifier = false
             } else
             {
@@ -57,10 +65,29 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
 
     @SuppressLint("SetTextI18n")
     fun setModifier(value: Int){
-        if (value >= 0){
+        if (value >= 0) {
             binding.textViewModifier.text = "+$value"
+            if (value > 0){
+                binding.textViewModifier.setTextColor(
+                    ContextCompat.getColor(
+                        TheWitcherTRPGApp.getContext()!!,
+                        R.color.green))
+            }
+        }
+        else {
+            binding.textViewModifier.text = value.toString()
+            binding.textViewModifier.setTextColor(
+                ContextCompat.getColor(
+                    TheWitcherTRPGApp.getContext()!!,
+                    R.color.light_red))
         }
 
+        if (value == 0) {
+            if (!editModifier) binding.textViewModifier.visibility = View.INVISIBLE
+        }
+        else binding.textViewModifier.visibility = View.VISIBLE
+
+        modifierValue = value
     }
 
     fun getEditText(): EditText{
@@ -73,5 +100,18 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
 
     fun setSkillValue(value: Int){
         binding.editTextNumber.setText(value.toString())
+    }
+
+    private fun getModifier(): String{
+        return binding.textViewModifier.text.toString()
+    }
+
+    companion object {
+        @BindingAdapter(value = ["app:modifier"])
+        @JvmStatic
+        fun setModifier(view: CustomSkillRow, value: Int): Int {
+            view.setModifier(value)
+            return value
+        }
     }
 }

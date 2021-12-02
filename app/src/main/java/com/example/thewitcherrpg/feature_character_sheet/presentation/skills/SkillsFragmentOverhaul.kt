@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.EditText
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
-import com.example.thewitcherrpg.databinding.FragmentSkillsBinding
 import com.example.thewitcherrpg.databinding.FragmentSkillsOverhaulBinding
+import kotlin.properties.Delegates.observable
 
 class SkillsFragmentOverhaul : Fragment() {
     private var _binding: FragmentSkillsOverhaulBinding? = null
@@ -62,57 +62,46 @@ class SkillsFragmentOverhaul : Fragment() {
         if (inCharCreation) allEditTexts.add(binding.editText1)
         binding.editText1.setSkillText("Awareness:")
         binding.editText1.setSkillValue(mainCharacterViewModel.awareness.value)
-        binding.editText1.setModifier(mainCharacterViewModel.awarenessModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText2)
         binding.editText2.setSkillText("Business:")
         binding.editText2.setSkillValue(mainCharacterViewModel.business.value)
-        binding.editText2.setModifier(mainCharacterViewModel.businessModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText3)
         binding.editText3.setSkillText("Deduction:")
         binding.editText3.setSkillValue(mainCharacterViewModel.deduction.value)
-        binding.editText3.setModifier(mainCharacterViewModel.deductionModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText4)
         binding.editText4.setSkillText("Education:")
         binding.editText4.setSkillValue(mainCharacterViewModel.education.value)
-        binding.editText4.setModifier(mainCharacterViewModel.educationModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText5)
         binding.editText5.setSkillText("Common Speech:")
         binding.editText5.setSkillValue(mainCharacterViewModel.commonSpeech.value)
-        binding.editText5.setModifier(mainCharacterViewModel.commonSpeechModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText6)
         binding.editText6.setSkillText("Elder Speech:")
         binding.editText6.setSkillValue(mainCharacterViewModel.elderSpeech.value)
-        binding.editText6.setModifier(mainCharacterViewModel.elderSpeechModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText7)
         binding.editText7.setSkillText("Dwarven:")
         binding.editText7.setSkillValue(mainCharacterViewModel.dwarven.value)
-        binding.editText7.setModifier(mainCharacterViewModel.dwarvenModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText8)
         binding.editText8.setSkillText("Monster Lore:")
         binding.editText8.setSkillValue(mainCharacterViewModel.monsterLore.value)
-        binding.editText8.setModifier(mainCharacterViewModel.monsterLoreModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText9)
         binding.editText9.setSkillText("Social Etiquette:")
         binding.editText9.setSkillValue(mainCharacterViewModel.socialEtiquette.value)
-        binding.editText9.setModifier(mainCharacterViewModel.socialEtiquetteModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText10)
         binding.editText10.setSkillText("Streetwise:")
         binding.editText10.setSkillValue(mainCharacterViewModel.streetwise.value)
-        binding.editText10.setModifier(mainCharacterViewModel.streetwiseModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText11)
         binding.editText11.setSkillText("Tactics:")
         binding.editText11.setSkillValue(mainCharacterViewModel.tactics.value)
-        binding.editText11.setModifier(mainCharacterViewModel.tacticsModifier.value)
 
         if (inCharCreation) allEditTexts.add(binding.editText12)
         binding.editText12.setSkillText("Teaching:")
@@ -324,8 +313,10 @@ class SkillsFragmentOverhaul : Fragment() {
     private fun increaseButton() {
         if (activity?.currentFocus is EditText){
             val skill = (activity?.currentFocus as EditText).tag
-            if (skill != null){
-                (activity?.currentFocus as EditText).setText(mainCharacterViewModel.onSkillChange(skill.toString(),  true).toString())
+            if (skill != null) {
+                val row = getCustomRow(skill.toString())
+                if (row.editModifier) mainCharacterViewModel.onSkillModifierChange(skill.toString(),  true)
+                else (activity?.currentFocus as EditText).setText(mainCharacterViewModel.onSkillChange(skill.toString(),  true).toString())
             }
         }
     }
@@ -333,10 +324,70 @@ class SkillsFragmentOverhaul : Fragment() {
     private fun decreaseButton() {
         if (activity?.currentFocus is EditText){
             val skill = (activity?.currentFocus as EditText).tag
-            if (skill != null){
-                (activity?.currentFocus as EditText).setText(mainCharacterViewModel.onSkillChange(skill.toString(),  false).toString())
+            if (skill != null) {
+                val row = getCustomRow(skill.toString())
+                if (row.editModifier) mainCharacterViewModel.onSkillModifierChange(skill.toString(),  false)
+                else (activity?.currentFocus as EditText).setText(mainCharacterViewModel.onSkillChange(skill.toString(),  false).toString())
             }
         }
+    }
+
+    private fun getCustomRow(tag: String): CustomSkillRow{
+        when (tag){
+            "Awareness" -> return binding.editText1
+            "Business" -> return binding.editText2
+            "Deduction" -> return binding.editText3
+            "Education" -> return binding.editText4
+            "Common Speech" -> return binding.editText5
+            "Elder Speech" -> return binding.editText6
+            "Dwarven" -> return binding.editText7
+            "Monster Lore" -> return binding.editText8
+            "Social Etiquette" -> return binding.editText9
+            "Streetwise" -> return binding.editText10
+            "Tactics" -> return binding.editText11
+            "Teaching" -> return binding.editText12
+            "Wilderness Survival" -> return binding.editText13
+            "Brawling" -> return binding.editText14
+            "Dodge/Escape" -> return binding.editText15
+            "Melee" -> return binding.editText16
+            "Riding" -> return binding.editText17
+            "Sailing" -> return binding.editText18
+            "Small Blades" -> return binding.editText19
+            "Staff/Spear" -> return binding.editText20
+            "Swordsmanship" -> return binding.editText21
+            "Archery" -> return binding.editText22
+            "Athletics" -> return binding.editText23
+            "Crossbow" -> return binding.editText24
+            "Sleight of Hand" -> return binding.editText25
+            "Stealth" -> return binding.editText26
+            "Physique" -> return binding.editText27
+            "Endurance" -> return binding.editText28
+            "Charisma" -> return binding.editText29
+            "Deceit" -> return binding.editText30
+            "Fine Arts" -> return binding.editText31
+            "Gambling" -> return binding.editText32
+            "Grooming and Style" -> return binding.editText33
+            "Human Perception" -> return binding.editText34
+            "Leadership" -> return binding.editText35
+            "Persuasion" -> return binding.editText36
+            "Performance" -> return binding.editText37
+            "Seduction" -> return binding.editText38
+            "Alchemy" -> return binding.editText39
+            "Crafting" -> return binding.editText40
+            "Disguise" -> return binding.editText41
+            "First Aid" -> return binding.editText42
+            "Forgery" -> return binding.editText43
+            "Pick Lock" -> return binding.editText44
+            "Trap Crafting" -> return binding.editText45
+            "Courage" -> return binding.editText46
+            "Hex Weaving" -> return binding.editText47
+            "Intimidation" -> return binding.editText48
+            "Spell Casting" -> return binding.editText49
+            "Resist Magic" -> return binding.editText50
+            "Resist Coercion" -> return binding.editText51
+            "Ritual Crafting" -> return binding.editText52
+        }
+        return binding.editText1
     }
 
     private fun showDialogIP() {
