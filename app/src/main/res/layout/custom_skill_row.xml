@@ -19,7 +19,6 @@
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
             android:layout_marginEnd="5dp"
-            android:text="Awareness:"
             android:textStyle="bold"
             android:textSize="16sp"/>
 
@@ -39,8 +38,6 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="start|center_vertical"
-            android:text="+1"
-            android:visibility="invisible"
             android:textSize="16sp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 

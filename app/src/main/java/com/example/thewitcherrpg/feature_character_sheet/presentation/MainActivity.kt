@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Skills -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment(), "Skills")
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragmentOverhaul(), "Skills")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Stats -> {

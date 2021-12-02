@@ -267,158 +267,314 @@ class MainCharacterViewModel @Inject constructor(
     private var _awareness = MutableStateFlow(0)
     val awareness = _awareness.asStateFlow()
 
+    private var _awarenessModifier = MutableStateFlow(0)
+    val awarenessModifier = _awarenessModifier.asStateFlow()
+
     private var _business = MutableStateFlow(0)
     val business = _business.asStateFlow()
+
+    private var _businessModifier = MutableStateFlow(0)
+    val businessModifier = _businessModifier.asStateFlow()
 
     private var _deduction = MutableStateFlow(0)
     val deduction = _deduction.asStateFlow()
 
+    private var _deductionModifier = MutableStateFlow(0)
+    val deductionModifier = _deductionModifier.asStateFlow()
+
     private var _education = MutableStateFlow(0)
     val education = _education.asStateFlow()
+
+    private var _educationModifier = MutableStateFlow(0)
+    val educationModifier = _educationModifier.asStateFlow()
 
     private var _commonSpeech = MutableStateFlow(0)
     val commonSpeech = _commonSpeech.asStateFlow()
 
+    private var _commonSpeechModifier = MutableStateFlow(0)
+    val commonSpeechModifier = _commonSpeechModifier.asStateFlow()
+
     private var _elderSpeech = MutableStateFlow(0)
     val elderSpeech = _elderSpeech.asStateFlow()
+
+    private var _elderSpeechModifier = MutableStateFlow(0)
+    val elderSpeechModifier = _elderSpeechModifier.asStateFlow()
 
     private var _dwarven = MutableStateFlow(0)
     val dwarven = _dwarven.asStateFlow()
 
+    private var _dwarvenModifier = MutableStateFlow(0)
+    val dwarvenModifier = _dwarvenModifier.asStateFlow()
+
     private var _monsterLore = MutableStateFlow(0)
     val monsterLore = _monsterLore.asStateFlow()
+
+    private var _monsterLoreModifier = MutableStateFlow(0)
+    val monsterLoreModifier = _monsterLoreModifier.asStateFlow()
 
     private var _socialEtiquette = MutableStateFlow(0)
     val socialEtiquette = _socialEtiquette.asStateFlow()
 
+    private var _socialEtiquetteModifier = MutableStateFlow(0)
+    val socialEtiquetteModifier = _socialEtiquetteModifier.asStateFlow()
+
     private var _streetwise = MutableStateFlow(0)
     val streetwise = _streetwise.asStateFlow()
+
+    private var _streetwiseModifier = MutableStateFlow(0)
+    val streetwiseModifier = _streetwiseModifier.asStateFlow()
 
     private var _tactics = MutableStateFlow(0)
     val tactics = _tactics.asStateFlow()
 
+    private var _tacticsModifier = MutableStateFlow(0)
+    val tacticsModifier = _tacticsModifier.asStateFlow()
+
     private var _teaching = MutableStateFlow(0)
     val teaching = _teaching.asStateFlow()
+
+    private var _teachingModifier = MutableStateFlow(0)
+    val teachingModifier = _teachingModifier.asStateFlow()
 
     private var _wildernessSurvival = MutableStateFlow(0)
     val wildernessSurvival = _wildernessSurvival.asStateFlow()
 
+    private var _wildernessSurvivalModifier = MutableStateFlow(0)
+    val wildernessSurvivalModifier = _wildernessSurvivalModifier.asStateFlow()
+
     private var _brawling = MutableStateFlow(0)
     val brawling = _brawling.asStateFlow()
+
+    private var _brawlingModifier = MutableStateFlow(0)
+    val brawlingModifier = _brawlingModifier.asStateFlow()
 
     private var _dodgeEscape = MutableStateFlow(0)
     val dodgeEscape = _dodgeEscape.asStateFlow()
 
+    private var _dodgeEscapeModifier = MutableStateFlow(0)
+    val dodgeEscapeModifier = _dodgeEscapeModifier.asStateFlow()
+
     private var _melee = MutableStateFlow(0)
     val melee = _melee.asStateFlow()
+
+    private var _meleeModifier = MutableStateFlow(0)
+    val meleeModifier = _meleeModifier.asStateFlow()
 
     private var _riding = MutableStateFlow(0)
     val riding = _riding.asStateFlow()
 
+    private var _ridingModifier = MutableStateFlow(0)
+    val ridingModifier = _ridingModifier.asStateFlow()
+
     private var _sailing = MutableStateFlow(0)
     val sailing = _sailing.asStateFlow()
+
+    private var _sailingModifier = MutableStateFlow(0)
+    val sailingModifier = _sailingModifier.asStateFlow()
 
     private var _smallBlades = MutableStateFlow(0)
     val smallBlades = _smallBlades.asStateFlow()
 
+    private var _smallBladesModifier = MutableStateFlow(0)
+    val smallBladesModifier = _smallBladesModifier.asStateFlow()
+
     private var _staffSpear = MutableStateFlow(0)
     val staffSpear = _staffSpear.asStateFlow()
+
+    private var _staffSpearModifier = MutableStateFlow(0)
+    val staffSpearModifier = _staffSpearModifier.asStateFlow()
 
     private var _swordsmanship = MutableStateFlow(0)
     val swordsmanship = _swordsmanship.asStateFlow()
 
+    private var _swordsmanshipModifier = MutableStateFlow(0)
+    val swordsmanshipModifier = _swordsmanshipModifier.asStateFlow()
+
     private var _archery = MutableStateFlow(0)
     val archery = _archery.asStateFlow()
+
+    private var _archeryModifier = MutableStateFlow(0)
+    val archeryModifier = _archeryModifier.asStateFlow()
 
     private var _athletics = MutableStateFlow(0)
     val athletics = _athletics.asStateFlow()
 
+    private var _athleticsModifier = MutableStateFlow(0)
+    val athleticsModifier = _athleticsModifier.asStateFlow()
+
     private var _crossbow = MutableStateFlow(0)
     val crossbow = _crossbow.asStateFlow()
+
+    private var _crossbowModifier = MutableStateFlow(0)
+    val crossbowModifier = _crossbowModifier.asStateFlow()
 
     private var _sleightOfHand = MutableStateFlow(0)
     val sleightOfHand = _sleightOfHand.asStateFlow()
 
+    private var _sleightOfHandModifier = MutableStateFlow(0)
+    val sleightOfHandModifier = _sleightOfHandModifier.asStateFlow()
+
     private var _stealth = MutableStateFlow(0)
     val stealth = _stealth.asStateFlow()
+
+    private var _stealthModifier = MutableStateFlow(0)
+    val stealthModifier = _stealthModifier.asStateFlow()
 
     private var _physique = MutableStateFlow(0)
     val physique = _physique.asStateFlow()
 
+    private var _physiqueModifier = MutableStateFlow(0)
+    val physiqueModifier = _physiqueModifier.asStateFlow()
+
     private var _endurance = MutableStateFlow(0)
     val endurance = _endurance.asStateFlow()
+
+    private var _enduranceModifier = MutableStateFlow(0)
+    val enduranceModifier = _enduranceModifier.asStateFlow()
 
     private var _charisma = MutableStateFlow(0)
     val charisma = _charisma.asStateFlow()
 
+    private var _charismaModifier = MutableStateFlow(0)
+    val charismaModifier = _charismaModifier.asStateFlow()
+
     private var _deceit = MutableStateFlow(0)
     val deceit = _deceit.asStateFlow()
+
+    private var _deceitModifier = MutableStateFlow(0)
+    val deceitModifier = _deceitModifier.asStateFlow()
 
     private var _fineArts = MutableStateFlow(0)
     val fineArts = _fineArts.asStateFlow()
 
+    private var _fineArtsModifier = MutableStateFlow(0)
+    val fineArtsModifier = _fineArtsModifier.asStateFlow()
+
     private var _gambling = MutableStateFlow(0)
     val gambling = _gambling.asStateFlow()
+
+    private var _gamblingModifier = MutableStateFlow(0)
+    val gamblingModifier = _gamblingModifier.asStateFlow()
 
     private var _groomingAndStyle = MutableStateFlow(0)
     val groomingAndStyle = _groomingAndStyle.asStateFlow()
 
+    private var _groomingAndStyleModifier = MutableStateFlow(0)
+    val groomingAndStyleModifier = _groomingAndStyleModifier.asStateFlow()
+
     private var _humanPerception = MutableStateFlow(0)
     val humanPerception = _humanPerception.asStateFlow()
+
+    private var _humanPerceptionModifier = MutableStateFlow(0)
+    val humanPerceptionModifier = _humanPerceptionModifier.asStateFlow()
 
     private var _leadership = MutableStateFlow(0)
     val leadership = _leadership.asStateFlow()
 
+    private var _leadershipModifier = MutableStateFlow(0)
+    val leadershipModifier = _leadershipModifier.asStateFlow()
+
     private var _persuasion = MutableStateFlow(0)
     val persuasion = _persuasion.asStateFlow()
+
+    private var _persuasionModifier = MutableStateFlow(0)
+    val persuasionModifier = _persuasionModifier.asStateFlow()
 
     private var _performance = MutableStateFlow(0)
     val performance = _performance.asStateFlow()
 
+    private var _performanceModifier = MutableStateFlow(0)
+    val performanceModifier = _performanceModifier.asStateFlow()
+
     private var _seduction = MutableStateFlow(0)
     val seduction = _seduction.asStateFlow()
+
+    private var _seductionModifier = MutableStateFlow(0)
+    val seductionModifier = _seductionModifier.asStateFlow()
 
     private var _alchemy = MutableStateFlow(0)
     val alchemy = _alchemy.asStateFlow()
 
+    private var _alchemyModifier = MutableStateFlow(0)
+    val alchemyModifier = _alchemyModifier.asStateFlow()
+
     private var _crafting = MutableStateFlow(0)
     val crafting = _crafting.asStateFlow()
+
+    private var _craftingModifier = MutableStateFlow(0)
+    val craftingModifier = _craftingModifier.asStateFlow()
 
     private var _disguise = MutableStateFlow(0)
     val disguise = _disguise.asStateFlow()
 
+    private var _disguiseModifier = MutableStateFlow(0)
+    val disguiseModifier = _disguiseModifier.asStateFlow()
+
     private var _firstAid = MutableStateFlow(0)
     val firstAid = _firstAid.asStateFlow()
+
+    private var _firstAidModifier = MutableStateFlow(0)
+    val firstAidModifier = _firstAidModifier.asStateFlow()
 
     private var _forgery = MutableStateFlow(0)
     val forgery = _forgery.asStateFlow()
 
+    private var _forgeryModifier = MutableStateFlow(0)
+    val forgeryModifier = _forgeryModifier.asStateFlow()
+
     private var _pickLock = MutableStateFlow(0)
     val pickLock = _pickLock.asStateFlow()
+
+    private var _pickLockModifier = MutableStateFlow(0)
+    val pickLockModifier = _pickLockModifier.asStateFlow()
 
     private var _trapCrafting = MutableStateFlow(0)
     val trapCrafting = _trapCrafting.asStateFlow()
 
+    private var _trapCraftingModifier = MutableStateFlow(0)
+    val trapCraftingModifier = _trapCraftingModifier.asStateFlow()
+
     private var _courage = MutableStateFlow(0)
     val courage = _courage.asStateFlow()
+
+    private var _courageModifier = MutableStateFlow(0)
+    val courageModifier = _courageModifier.asStateFlow()
 
     private var _hexWeaving = MutableStateFlow(0)
     val hexWeaving = _hexWeaving.asStateFlow()
 
+    private var _hexWeavingModifier = MutableStateFlow(0)
+    val hexWeavingModifier = _hexWeavingModifier.asStateFlow()
+
     private var _intimidation = MutableStateFlow(0)
     val intimidation = _intimidation.asStateFlow()
+
+    private var _intimidationModifier = MutableStateFlow(0)
+    val intimidationModifier = _intimidationModifier.asStateFlow()
 
     private var _spellCasting = MutableStateFlow(0)
     val spellCasting = _spellCasting.asStateFlow()
 
+    private var _spellCastingModifier = MutableStateFlow(0)
+    val spellCastingModifier = _spellCastingModifier.asStateFlow()
+
     private var _resistMagic = MutableStateFlow(0)
     val resistMagic = _resistMagic.asStateFlow()
+
+    private var _resistMagicModifier = MutableStateFlow(0)
+    val resistMagicModifier = _resistMagicModifier.asStateFlow()
 
     private var _resistCoercion = MutableStateFlow(0)
     val resistCoercion = _resistCoercion.asStateFlow()
 
+    private var _resistCoercionModifier = MutableStateFlow(0)
+    val resistCoercionModifier = _resistCoercionModifier.asStateFlow()
+
     private var _ritualCrafting = MutableStateFlow(0)
     val ritualCrafting = _ritualCrafting.asStateFlow()
+
+    private var _ritualCraftingModifier = MutableStateFlow(0)
+    val ritualCraftingModifier = _ritualCraftingModifier.asStateFlow()
 
     //##### Magic #################################################
     private var _vigor = MutableStateFlow(0)
@@ -1145,6 +1301,7 @@ class MainCharacterViewModel @Inject constructor(
                     _business.value = pair.second
                     _ip.value = pair.first
                 }
+                return _business.value
             }
             "Deduction" -> {
                 val pair = onSkillChangeUseCase(
@@ -1157,6 +1314,7 @@ class MainCharacterViewModel @Inject constructor(
                     _deduction.value = pair.second
                     _ip.value = pair.first
                 }
+                return _deduction.value
             }
             "Education" -> {
                 val pair = onSkillChangeUseCase(
@@ -1169,6 +1327,7 @@ class MainCharacterViewModel @Inject constructor(
                     _education.value = pair.second
                     _ip.value = pair.first
                 }
+                return _education.value
             }
             "Common Speech" -> {
                 val pair = onSkillChangeUseCase(
@@ -1181,6 +1340,7 @@ class MainCharacterViewModel @Inject constructor(
                     _commonSpeech.value = pair.second
                     _ip.value = pair.first
                 }
+                return _commonSpeech.value
             }
             "Elder Speech" -> {
                 val pair = onSkillChangeUseCase(
@@ -1193,6 +1353,7 @@ class MainCharacterViewModel @Inject constructor(
                     _elderSpeech.value = pair.second
                     _ip.value = pair.first
                 }
+                return _elderSpeech.value
             }
             "Dwarven" -> {
                 val pair = onSkillChangeUseCase(
@@ -1205,6 +1366,7 @@ class MainCharacterViewModel @Inject constructor(
                     _dwarven.value = pair.second
                     _ip.value = pair.first
                 }
+                return _dwarven.value
             }
             "Monster Lore" -> {
                 val pair = onSkillChangeUseCase(
@@ -1217,6 +1379,7 @@ class MainCharacterViewModel @Inject constructor(
                     _monsterLore.value = pair.second
                     _ip.value = pair.first
                 }
+                return _monsterLore.value
             }
             "Social Etiquette" -> {
                 val pair = onSkillChangeUseCase(
@@ -1229,6 +1392,7 @@ class MainCharacterViewModel @Inject constructor(
                     _socialEtiquette.value = pair.second
                     _ip.value = pair.first
                 }
+                return _socialEtiquette.value
             }
             "Streetwise" -> {
                 val pair = onSkillChangeUseCase(
@@ -1241,6 +1405,7 @@ class MainCharacterViewModel @Inject constructor(
                     _streetwise.value = pair.second
                     _ip.value = pair.first
                 }
+                return _streetwise.value
             }
             "Tactics" -> {
                 val pair = onSkillChangeUseCase(
@@ -1253,6 +1418,7 @@ class MainCharacterViewModel @Inject constructor(
                     _tactics.value = pair.second
                     _ip.value = pair.first
                 }
+                return _tactics.value
             }
             "Teaching" -> {
                 val pair = onSkillChangeUseCase(
@@ -1265,6 +1431,7 @@ class MainCharacterViewModel @Inject constructor(
                     _teaching.value = pair.second
                     _ip.value = pair.first
                 }
+                return _teaching.value
             }
             "Wilderness Survival" -> {
                 val pair = onSkillChangeUseCase(
@@ -1277,6 +1444,7 @@ class MainCharacterViewModel @Inject constructor(
                     _wildernessSurvival.value = pair.second
                     _ip.value = pair.first
                 }
+                return _wildernessSurvival.value
             }
             "Brawling" -> {
                 val pair = onSkillChangeUseCase(
@@ -1289,6 +1457,7 @@ class MainCharacterViewModel @Inject constructor(
                     _brawling.value = pair.second
                     _ip.value = pair.first
                 }
+                return _brawling.value
             }
             "Dodge/Escape" -> {
                 val pair = onSkillChangeUseCase(
@@ -1301,6 +1470,7 @@ class MainCharacterViewModel @Inject constructor(
                     _dodgeEscape.value = pair.second
                     _ip.value = pair.first
                 }
+                return _dodgeEscape.value
             }
             "Melee" -> {
                 val pair = onSkillChangeUseCase(
@@ -1313,6 +1483,7 @@ class MainCharacterViewModel @Inject constructor(
                     _melee.value = pair.second
                     _ip.value = pair.first
                 }
+                return _melee.value
             }
             "Riding" -> {
                 val pair = onSkillChangeUseCase(
@@ -1325,6 +1496,7 @@ class MainCharacterViewModel @Inject constructor(
                     _riding.value = pair.second
                     _ip.value = pair.first
                 }
+                return _riding.value
             }
             "Sailing" -> {
                 val pair = onSkillChangeUseCase(
@@ -1337,6 +1509,7 @@ class MainCharacterViewModel @Inject constructor(
                     _sailing.value = pair.second
                     _ip.value = pair.first
                 }
+                return _sailing.value
             }
             "Small Blades" -> {
                 val pair = onSkillChangeUseCase(
@@ -1349,6 +1522,7 @@ class MainCharacterViewModel @Inject constructor(
                     _smallBlades.value = pair.second
                     _ip.value = pair.first
                 }
+                return _smallBlades.value
             }
             "Staff/Spear" -> {
                 val pair = onSkillChangeUseCase(
@@ -1361,6 +1535,7 @@ class MainCharacterViewModel @Inject constructor(
                     _staffSpear.value = pair.second
                     _ip.value = pair.first
                 }
+                return _staffSpear.value
             }
             "Swordsmanship" -> {
                 val pair = onSkillChangeUseCase(
@@ -1373,6 +1548,7 @@ class MainCharacterViewModel @Inject constructor(
                     _swordsmanship.value = pair.second
                     _ip.value = pair.first
                 }
+                return _swordsmanship.value
             }
             "Archery" -> {
                 val pair = onSkillChangeUseCase(
@@ -1385,6 +1561,7 @@ class MainCharacterViewModel @Inject constructor(
                     _archery.value = pair.second
                     _ip.value = pair.first
                 }
+                return _archery.value
             }
             "Athletics" -> {
                 val pair = onSkillChangeUseCase(
@@ -1397,6 +1574,7 @@ class MainCharacterViewModel @Inject constructor(
                     _athletics.value = pair.second
                     _ip.value = pair.first
                 }
+                return _athletics.value
             }
             "Crossbow" -> {
                 val pair = onSkillChangeUseCase(
@@ -1409,6 +1587,7 @@ class MainCharacterViewModel @Inject constructor(
                     _crossbow.value = pair.second
                     _ip.value = pair.first
                 }
+                return _crossbow.value
             }
             "Sleight of Hand" -> {
                 val pair = onSkillChangeUseCase(
@@ -1421,6 +1600,7 @@ class MainCharacterViewModel @Inject constructor(
                     _sleightOfHand.value = pair.second
                     _ip.value = pair.first
                 }
+                return _sleightOfHand.value
             }
             "Stealth" -> {
                 val pair = onSkillChangeUseCase(
@@ -1433,6 +1613,7 @@ class MainCharacterViewModel @Inject constructor(
                     _stealth.value = pair.second
                     _ip.value = pair.first
                 }
+                return _stealth.value
             }
             "Physique" -> {
                 val pair = onSkillChangeUseCase(
@@ -1445,6 +1626,7 @@ class MainCharacterViewModel @Inject constructor(
                     _physique.value = pair.second
                     _ip.value = pair.first
                 }
+                return _physique.value
             }
             "Endurance" -> {
                 val pair = onSkillChangeUseCase(
@@ -1457,6 +1639,7 @@ class MainCharacterViewModel @Inject constructor(
                     _endurance.value = pair.second
                     _ip.value = pair.first
                 }
+                return _endurance.value
             }
             "Charisma" -> {
                 val pair = onSkillChangeUseCase(
@@ -1469,6 +1652,7 @@ class MainCharacterViewModel @Inject constructor(
                     _charisma.value = pair.second
                     _ip.value = pair.first
                 }
+                return _charisma.value
             }
             "Deceit" -> {
                 val pair = onSkillChangeUseCase(
@@ -1481,6 +1665,7 @@ class MainCharacterViewModel @Inject constructor(
                     _deceit.value = pair.second
                     _ip.value = pair.first
                 }
+                return _deceit.value
             }
             "Fine Arts" -> {
                 val pair = onSkillChangeUseCase(
@@ -1493,6 +1678,7 @@ class MainCharacterViewModel @Inject constructor(
                     _fineArts.value = pair.second
                     _ip.value = pair.first
                 }
+                return _fineArts.value
             }
             "Gambling" -> {
                 val pair = onSkillChangeUseCase(
@@ -1505,6 +1691,7 @@ class MainCharacterViewModel @Inject constructor(
                     _gambling.value = pair.second
                     _ip.value = pair.first
                 }
+                return _gambling.value
             }
             "Grooming and Style" -> {
                 val pair = onSkillChangeUseCase(
@@ -1517,6 +1704,7 @@ class MainCharacterViewModel @Inject constructor(
                     _groomingAndStyle.value = pair.second
                     _ip.value = pair.first
                 }
+                return _groomingAndStyle.value
             }
             "Human Perception" -> {
                 val pair = onSkillChangeUseCase(
@@ -1529,6 +1717,7 @@ class MainCharacterViewModel @Inject constructor(
                     _humanPerception.value = pair.second
                     _ip.value = pair.first
                 }
+                return _humanPerception.value
             }
             "Leadership" -> {
                 val pair = onSkillChangeUseCase(
@@ -1541,6 +1730,7 @@ class MainCharacterViewModel @Inject constructor(
                     _leadership.value = pair.second
                     _ip.value = pair.first
                 }
+                return _leadership.value
             }
             "Persuasion" -> {
                 val pair = onSkillChangeUseCase(
@@ -1553,6 +1743,7 @@ class MainCharacterViewModel @Inject constructor(
                     _persuasion.value = pair.second
                     _ip.value = pair.first
                 }
+                return _persuasion.value
             }
             "Performance" -> {
                 val pair = onSkillChangeUseCase(
@@ -1565,6 +1756,7 @@ class MainCharacterViewModel @Inject constructor(
                     _performance.value = pair.second
                     _ip.value = pair.first
                 }
+                return _performance.value
             }
             "Seduction" -> {
                 val pair = onSkillChangeUseCase(
@@ -1577,6 +1769,7 @@ class MainCharacterViewModel @Inject constructor(
                     _seduction.value = pair.second
                     _ip.value = pair.first
                 }
+                return _seduction.value
             }
             "Alchemy" -> {
                 val pair = onSkillChangeUseCase(
@@ -1589,6 +1782,7 @@ class MainCharacterViewModel @Inject constructor(
                     _alchemy.value = pair.second
                     _ip.value = pair.first
                 }
+                return _alchemy.value
             }
             "Crafting" -> {
                 val pair = onSkillChangeUseCase(
@@ -1601,6 +1795,7 @@ class MainCharacterViewModel @Inject constructor(
                     _crafting.value = pair.second
                     _ip.value = pair.first
                 }
+                return _crafting.value
             }
             "Disguise" -> {
                 val pair = onSkillChangeUseCase(
@@ -1613,6 +1808,7 @@ class MainCharacterViewModel @Inject constructor(
                     _disguise.value = pair.second
                     _ip.value = pair.first
                 }
+                return _disguise.value
             }
             "First Aid" -> {
                 val pair = onSkillChangeUseCase(
@@ -1625,6 +1821,7 @@ class MainCharacterViewModel @Inject constructor(
                     _firstAid.value = pair.second
                     _ip.value = pair.first
                 }
+                return _firstAid.value
             }
             "Forgery" -> {
                 val pair = onSkillChangeUseCase(
@@ -1637,6 +1834,7 @@ class MainCharacterViewModel @Inject constructor(
                     _forgery.value = pair.second
                     _ip.value = pair.first
                 }
+                return _forgery.value
             }
             "Pick Lock" -> {
                 val pair = onSkillChangeUseCase(
@@ -1649,6 +1847,7 @@ class MainCharacterViewModel @Inject constructor(
                     _pickLock.value = pair.second
                     _ip.value = pair.first
                 }
+                return _pickLock.value
             }
             "Trap Crafting" -> {
                 val pair = onSkillChangeUseCase(
@@ -1661,6 +1860,7 @@ class MainCharacterViewModel @Inject constructor(
                     _trapCrafting.value = pair.second
                     _ip.value = pair.first
                 }
+                return _trapCrafting.value
             }
             "Courage" -> {
                 val pair = onSkillChangeUseCase(
@@ -1673,6 +1873,7 @@ class MainCharacterViewModel @Inject constructor(
                     _courage.value = pair.second
                     _ip.value = pair.first
                 }
+                return _courage.value
             }
             "Hex Weaving" -> {
                 val pair = onSkillChangeUseCase(
@@ -1685,6 +1886,7 @@ class MainCharacterViewModel @Inject constructor(
                     _hexWeaving.value = pair.second
                     _ip.value = pair.first
                 }
+                return _hexWeaving.value
             }
             "Intimidation" -> {
                 val pair = onSkillChangeUseCase(
@@ -1697,6 +1899,7 @@ class MainCharacterViewModel @Inject constructor(
                     _intimidation.value = pair.second
                     _ip.value = pair.first
                 }
+                return _intimidation.value
             }
             "Spell Casting" -> {
                 val pair = onSkillChangeUseCase(
@@ -1709,6 +1912,7 @@ class MainCharacterViewModel @Inject constructor(
                     _spellCasting.value = pair.second
                     _ip.value = pair.first
                 }
+                return _spellCasting.value
             }
             "Resist Magic" -> {
                 val pair = onSkillChangeUseCase(
@@ -1721,6 +1925,7 @@ class MainCharacterViewModel @Inject constructor(
                     _resistMagic.value = pair.second
                     _ip.value = pair.first
                 }
+                return _resistMagic.value
             }
             "Resist Coercion" -> {
                 val pair = onSkillChangeUseCase(
@@ -1733,6 +1938,7 @@ class MainCharacterViewModel @Inject constructor(
                     _resistCoercion.value = pair.second
                     _ip.value = pair.first
                 }
+                return _resistCoercion.value
             }
             "Ritual Crafting" -> {
                 val pair = onSkillChangeUseCase(
@@ -1745,6 +1951,7 @@ class MainCharacterViewModel @Inject constructor(
                     _ritualCrafting.value = pair.second
                     _ip.value = pair.first
                 }
+                return _ritualCrafting.value
             }
         }
         return 0
