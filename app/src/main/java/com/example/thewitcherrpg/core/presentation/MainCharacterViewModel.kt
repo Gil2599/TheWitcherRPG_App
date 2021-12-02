@@ -2308,14 +2308,14 @@ class MainCharacterViewModel @Inject constructor(
                 return _spellCastingModifier.value
             }
             "Resist Magic" -> {
-                if (increase) _resistMagic.value = _resistMagic.value.plus(1)
-                else _resistMagic.value = _resistMagic.value.minus(1)
-                return _resistMagic.value
+                if (increase) _resistMagicModifier.value = _resistMagicModifier.value.plus(1)
+                else _resistMagicModifier.value = _resistMagicModifier.value.minus(1)
+                return _resistMagicModifier.value
             }
             "Resist Coercion" -> {
-                if (increase) _resistCoercion.value = _resistCoercion.value.plus(1)
-                else _resistCoercion.value = _resistCoercion.value.minus(1)
-                return _resistCoercion.value
+                if (increase) _resistCoercionModifier.value = _resistCoercionModifier.value.plus(1)
+                else _resistCoercionModifier.value = _resistCoercionModifier.value.minus(1)
+                return _resistCoercionModifier.value
             }
             "Ritual Crafting" -> {
                 if (increase) _ritualCraftingModifier.value = _ritualCraftingModifier.value.plus(1)

@@ -64,13 +64,20 @@ class LauncherActivity : AppCompatActivity() {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
                 launch {
                     mCharListViewModel.characterList.collectLatest {
+                        if (it.isEmpty()){
+                            binding.textViewNoCharacters.visibility = View.VISIBLE
+                            binding.textViewTapAdd.visibility = View.VISIBLE
+                        } else {
+                            binding.textViewNoCharacters.visibility = View.GONE
+                            binding.textViewTapAdd.visibility = View.GONE
+                        }
                         adapter.setData(it)
                     }
                 }
             }
         }
         lifecycleScope.launch {
-            mCharListViewModel.disclaimerMode.onEach { disclaimerIsEnabled ->
+            mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
                 if (disclaimerIsEnabled) {
                     showDialogDisclaimer(true)
                 }
@@ -111,7 +118,7 @@ class LauncherActivity : AppCompatActivity() {
         }
 
         bind.okButton.setOnClickListener {
-            if (bind.checkBox.visibility == View.VISIBLE) {
+            if (bind.checkBox.visibility == View.VISIBLE && bind.checkBox.isChecked) {
                 mCharListViewModel.saveDisclaimerMode(!bind.checkBox.isChecked)
             }
             dialog.dismiss()

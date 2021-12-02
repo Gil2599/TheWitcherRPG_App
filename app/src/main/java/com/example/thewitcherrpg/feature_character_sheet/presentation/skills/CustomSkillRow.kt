@@ -4,16 +4,19 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.*
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.databinding.CustomSkillRowBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 @InverseBindingMethods(InverseBindingMethod(type = CustomSkillRow::class,attribute = "modifier", method = "setModifier"))
@@ -37,15 +40,14 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
             binding.textViewModifier.visibility = View.VISIBLE
             binding.editTextNumber.requestFocus()
             editModifier = true
+            binding.imageView3.visibility = View.VISIBLE
             true
         }
         binding.editTextNumber.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 if (modifierValue == 0) binding.textViewModifier.visibility = View.INVISIBLE
                 editModifier = false
-            } else
-            {
-                Log.d("test", "has focus")
+                binding.imageView3.visibility = View.INVISIBLE
             }
         }
 
