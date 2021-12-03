@@ -1,101 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".feature_character_sheet.presentation.equipment.EquipmentFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/inventoryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="Add Equipment"
-        android:text="Inventory"
-        app:icon="@drawable/ic_backpack_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
+    <data>
+        <variable
+            name="MainViewModel"
+            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
+    </data>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="Add Equipment"
-        android:text="Add New Item"
-        app:icon="@drawable/ic_add_equipment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/inventoryButton"
-        app:layout_constraintTop_toTopOf="@+id/inventoryButton" />
-
-    <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
-        android:id="@+id/equippedRowWeapon"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/equippedRowShield"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customTitle" />
+        android:layout_height="match_parent"
+        tools:context=".feature_character_sheet.presentation.equipment.EquipmentFragment">
 
-    <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
-        android:id="@+id/equippedRowShield"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/equippedRowHead"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/equippedRowWeapon" />
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/inventoryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_gray"
+            android:contentDescription="Add Equipment"
+            android:text="Inventory"
+            app:icon="@drawable/ic_backpack_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.959" />
 
-    <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
-        android:id="@+id/equippedRowHead"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/equippedRowChest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/equippedRowShield" />
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_gray"
+            android:contentDescription="Add Equipment"
+            android:text="Add New Item"
+            app:icon="@drawable/ic_add_equipment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/inventoryButton"
+            app:layout_constraintTop_toTopOf="@+id/inventoryButton" />
 
-    <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
-        android:id="@+id/equippedRowChest"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/equippedRowLegs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/equippedRowHead" />
+        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+            android:id="@+id/equippedRowWeapon"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/equippedRowShield"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
-    <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
-        android:id="@+id/equippedRowLegs"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/inventoryButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/equippedRowChest" />
+        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+            android:id="@+id/equippedRowShield"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/equippedRowHead"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/equippedRowWeapon" />
 
-    <com.example.thewitcherrpg.core.presentation.CustomTitleView
-        android:id="@+id/customTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+            android:id="@+id/equippedRowHead"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/equippedRowChest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/equippedRowShield" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+            android:id="@+id/equippedRowChest"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/equippedRowLegs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/equippedRowHead" />
+
+        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+            android:id="@+id/equippedRowLegs"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/inventoryButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/equippedRowChest" />
+
+        <com.example.thewitcherrpg.core.presentation.CustomTitleView
+            android:id="@+id/customTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:text="@{`` + MainViewModel.currentEnc + `/` + MainViewModel.encWithModifier}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

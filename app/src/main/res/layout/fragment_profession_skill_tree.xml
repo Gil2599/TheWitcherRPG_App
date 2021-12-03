@@ -19,25 +19,27 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toBottomOf="@+id/arrow5"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutB2"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutB2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutB2"
-            app:tint="@color/green"/>
+            app:layout_constraintTop_toTopOf="@+id/arrow5"
+            app:tint="@color/green" />
 
         <ImageView
             android:id="@+id/arrow8"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toBottomOf="@+id/arrow6"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutC1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutC1"
-            app:tint="@color/light_red"/>
+            app:layout_constraintTop_toTopOf="@+id/arrow6"
+            app:tint="@color/light_red" />
 
         <ImageView
             android:id="@+id/arrow7"
@@ -45,82 +47,90 @@
             android:layout_height="0dp"
             android:layout_marginTop="1dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toBottomOf="@+id/arrow9"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutC2"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutC2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutC2"
-            app:tint="@color/light_red"/>
+            app:layout_constraintTop_toTopOf="@+id/arrow9"
+            app:tint="@color/light_red" />
 
         <ImageView
             android:id="@+id/arrow6"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toBottomOf="@+id/arrow4"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutB1"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutB1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutB1"
-            app:tint="@color/green"/>
+            app:layout_constraintTop_toTopOf="@+id/arrow4"
+            app:tint="@color/green" />
 
         <ImageView
             android:id="@+id/arrow5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutA3"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA2"
             app:layout_constraintHeight_percent="0.11"
-            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutA2"
-            app:tint="@color/purple_200"/>
+            app:tint="@color/purple_200" />
 
         <ImageView
             android:id="@+id/arrow4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutA2"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
             app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutA1"
-            app:tint="@color/purple_200"/>
+            app:tint="@color/purple_200" />
 
         <ImageView
             android:id="@+id/arrow3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toBottomOf="@+id/arrow2"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/arrow2"
-            app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
-            app:tint="@color/light_red"/>
+            app:layout_constraintTop_toTopOf="@+id/arrow2"
+            app:tint="@color/light_red" />
 
         <ImageView
             android:id="@+id/arrow2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toBottomOf="@+id/arrow1"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/arrow3"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/arrow1"
-            app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
-            app:tint="@color/green"/>
+            app:layout_constraintTop_toTopOf="@+id/arrow1"
+            app:tint="@color/green" />
 
         <ImageView
             android:id="@+id/arrow1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:layout_constraintBottom_toTopOf="@+id/firstSkillTitle"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/arrow2"
             app:layout_constraintHeight_percent="0.11"
@@ -132,29 +142,21 @@
 
         <Button
             android:id="@+id/buttonDefiningSkill"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:autoSizeTextType="uniform"
             android:background="@drawable/outline_bkg"
             android:text='@{MainViewModel.definingSkill}'
             android:textColor="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintBottom_toTopOf="@+id/arrow1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.074" />
-
-        <Button
-            android:id="@+id/buttonHelp"
-            android:layout_width="34dp"
-            android:layout_height="33dp"
-            android:background="@drawable/ic_baseline_help_outline_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.757"
-            app:layout_constraintStart_toEndOf="@+id/buttonDefiningSkill"
-            app:layout_constraintTop_toTopOf="@+id/textView55" />
+            app:layout_constraintTop_toBottomOf="@+id/etIPLayout"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/firstSkillTitle"
@@ -164,8 +166,10 @@
             android:gravity="center"
             android:textColor="@color/purple_200"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutA1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
             app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
             app:layout_constraintTop_toBottomOf="@+id/arrow1"
             app:layout_constraintWidth_percent="0.27" />
@@ -174,11 +178,14 @@
             android:id="@+id/linearLayoutA3"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/outline_bkg"
             android:backgroundTint="@color/gray"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
             app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
             app:layout_constraintTop_toBottomOf="@+id/arrow5"
             app:layout_constraintWidth_percent="0.3">
@@ -197,21 +204,21 @@
                 android:id="@+id/linearLayoutA3Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonA3Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillA3"
@@ -226,17 +233,17 @@
 
                 <TextView
                     android:id="@+id/buttonA3Plus"
-                    android:tag="A3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="A3"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -249,10 +256,12 @@
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
             android:backgroundTint="@color/gray"
-            android:orientation="vertical"
             android:clickable="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/arrow5"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
             app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
             app:layout_constraintTop_toBottomOf="@+id/arrow4"
             app:layout_constraintWidth_percent="0.3">
@@ -271,21 +280,21 @@
                 android:id="@+id/linearLayoutA2Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonA2Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillA2"
@@ -300,17 +309,17 @@
 
                 <TextView
                     android:id="@+id/buttonA2Plus"
-                    android:tag="A2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="A2"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -326,8 +335,10 @@
             android:backgroundTint="@color/purple_200"
             android:clickable="true"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/arrow4"
             app:layout_constraintEnd_toStartOf="@+id/linearLayoutB1"
             app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/firstSkillTitle"
             app:layout_constraintWidth_percent="0.3">
@@ -346,21 +357,21 @@
                 android:id="@+id/linearLayoutA1Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonA1Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillA1"
@@ -375,17 +386,17 @@
 
                 <TextView
                     android:id="@+id/buttonA1Plus"
-                    android:tag="A1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="A1"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -396,16 +407,16 @@
             android:id="@+id/secondSkillTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="1dp"
             android:autoSizeTextType="uniform"
             android:gravity="center"
             android:textColor="@color/green"
             android:textSize="17sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/firstSkillTitle"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutB1"
             app:layout_constraintHeight_percent="0.04"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutB1"
-            app:layout_constraintTop_toBottomOf="@+id/arrow2"
+            app:layout_constraintTop_toTopOf="@+id/firstSkillTitle"
             app:layout_constraintWidth_percent="0.27" />
 
         <LinearLayout
@@ -417,10 +428,11 @@
             android:backgroundTint="@color/green"
             android:clickable="true"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutA3"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutB2"
             app:layout_constraintHeight_percent="0.13"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutB2"
-            app:layout_constraintTop_toBottomOf="@+id/arrow9"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutA3"
             app:layout_constraintWidth_percent="0.3">
 
             <TextView
@@ -437,21 +449,21 @@
                 android:id="@+id/linearLayoutB3Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonB3Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillB3"
@@ -466,17 +478,17 @@
 
                 <TextView
                     android:id="@+id/buttonB3Plus"
-                    android:tag="B3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="B3"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -491,10 +503,11 @@
             android:backgroundTint="@color/green"
             android:clickable="true"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutA2"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutB1"
             app:layout_constraintHeight_percent="0.13"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutB1"
-            app:layout_constraintTop_toBottomOf="@+id/arrow6"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutA2"
             app:layout_constraintWidth_percent="0.3">
 
             <TextView
@@ -511,21 +524,21 @@
                 android:id="@+id/linearLayoutB2Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonB2Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillB2"
@@ -540,17 +553,17 @@
 
                 <TextView
                     android:id="@+id/buttonB2Plus"
-                    android:tag="B2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="B2"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -565,11 +578,12 @@
             android:backgroundTint="@color/green"
             android:clickable="true"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutA1"
             app:layout_constraintEnd_toStartOf="@+id/linearLayoutC1"
             app:layout_constraintHeight_percent="0.13"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linearLayoutA1"
-            app:layout_constraintTop_toBottomOf="@+id/secondSkillTitle"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutA1"
             app:layout_constraintWidth_percent="0.3">
 
             <TextView
@@ -586,21 +600,21 @@
                 android:id="@+id/linearLayoutB1Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonB1Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillB1"
@@ -615,17 +629,17 @@
 
                 <TextView
                     android:id="@+id/buttonB1Plus"
-                    android:tag="B1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="B1"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -636,17 +650,18 @@
             android:id="@+id/thirdSkillTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.04"
             android:layout_marginTop="1dp"
+            android:autoSizeMinTextSize="13sp"
+            android:autoSizeTextType="uniform"
             android:gravity="center"
             android:textColor="@color/light_red"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/secondSkillTitle"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
+            app:layout_constraintHeight_percent="0.04"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutC1"
-            app:layout_constraintTop_toBottomOf="@+id/arrow3"
+            app:layout_constraintTop_toTopOf="@+id/secondSkillTitle"
             app:layout_constraintWidth_percent="0.27" />
 
         <LinearLayout
@@ -655,13 +670,14 @@
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
             android:backgroundTint="@color/light_red"
-            android:orientation="vertical"
             android:clickable="true"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutB1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.13"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linearLayoutB1"
-            app:layout_constraintTop_toBottomOf="@+id/thirdSkillTitle"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutB1"
             app:layout_constraintWidth_percent="0.3">
 
             <TextView
@@ -678,21 +694,21 @@
                 android:id="@+id/linearLayoutC1Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonC1Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillC1"
@@ -707,17 +723,17 @@
 
                 <TextView
                     android:id="@+id/buttonC1Plus"
-                    android:tag="C1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="C1"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -731,10 +747,11 @@
             android:backgroundTint="@color/light_red"
             android:clickable="true"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutB2"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
             app:layout_constraintHeight_percent="0.13"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutC1"
-            app:layout_constraintTop_toBottomOf="@+id/arrow8"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutB2"
             app:layout_constraintWidth_percent="0.3">
 
             <TextView
@@ -751,21 +768,21 @@
                 android:id="@+id/linearLayoutC2Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonC2Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillC2"
@@ -780,17 +797,17 @@
 
                 <TextView
                     android:id="@+id/buttonC2Plus"
-                    android:tag="C2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="C2"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -805,10 +822,11 @@
             android:backgroundTint="@color/light_red"
             android:clickable="true"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutB3"
             app:layout_constraintEnd_toEndOf="@+id/arrow7"
             app:layout_constraintHeight_percent="0.13"
             app:layout_constraintStart_toStartOf="@+id/arrow7"
-            app:layout_constraintTop_toBottomOf="@+id/arrow7"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutB3"
             app:layout_constraintWidth_percent="0.3">
 
             <TextView
@@ -825,21 +843,21 @@
                 android:id="@+id/linearLayoutC3Skill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/buttonC3Minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/SkillC3"
@@ -854,17 +872,17 @@
 
                 <TextView
                     android:id="@+id/buttonC3Plus"
-                    android:tag="C3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="35sp"
-                    android:clickable="true"
                     android:background="@drawable/transparent_bkg"
+                    android:clickable="true"
                     android:foreground="@drawable/ripple_bkg"
-                    android:visibility="invisible"/>
+                    android:gravity="center"
+                    android:tag="C3"
+                    android:text="+"
+                    android:textSize="35sp"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
@@ -872,19 +890,63 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView55"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textSize="18sp"
+            android:id="@+id/textIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text='@{"IP: " + MainViewModel.ip}'
-            android:textColor="@color/white"
+            android:text="Improvement Points:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp"
             android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/buttonDefiningSkill"
-            app:layout_constraintEnd_toEndOf="@+id/buttonDefiningSkill"
-            app:layout_constraintStart_toStartOf="@+id/buttonDefiningSkill"
+            app:layout_constraintBottom_toBottomOf="@+id/etIPLayout"
+            app:layout_constraintEnd_toStartOf="@+id/etIPLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etIPLayout"
+            app:layout_constraintVertical_bias="0.52" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etIPLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonHelp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textIP"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.753" />
+            tools:ignore="HardcodedText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etIP"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="5"
+                android:text="@{`` + MainViewModel.ip}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/buttonHelp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_outline_info_24"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/etIPLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etIPLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

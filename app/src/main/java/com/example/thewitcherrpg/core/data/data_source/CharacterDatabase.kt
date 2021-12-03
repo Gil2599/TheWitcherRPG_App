@@ -10,7 +10,7 @@ import com.example.thewitcherrpg.core.domain.model.MyTypeConverters
 
 @Database(
     entities = [Character::class],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(MyTypeConverters::class)

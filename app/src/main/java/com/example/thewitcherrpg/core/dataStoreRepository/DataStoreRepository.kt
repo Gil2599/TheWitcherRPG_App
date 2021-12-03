@@ -23,6 +23,10 @@ class DataStoreRepository @Inject constructor(@ApplicationContext appContext: Co
 
     private object PreferenceKeys {
         val disclaimerMode = booleanPreferencesKey("disclaimer")
+        val characterInformation = booleanPreferencesKey("charInfo")
+        val statsInfo = booleanPreferencesKey("statsInfo")
+        val skillsInfo = booleanPreferencesKey("skillsInfo")
+        val skillTreeInfo = booleanPreferencesKey("skillTreeInfo")
     }
 
     private val settingsDataStore = appContext.dataStore
@@ -30,6 +34,30 @@ class DataStoreRepository @Inject constructor(@ApplicationContext appContext: Co
     suspend fun setDisclaimerMode(enabled: Boolean) {
         settingsDataStore.edit { settings ->
             settings[PreferenceKeys.disclaimerMode] = enabled
+        }
+    }
+
+    suspend fun setCharacterInfoMode(enabled: Boolean){
+        settingsDataStore.edit { settings ->
+            settings[PreferenceKeys.characterInformation] = enabled
+        }
+    }
+
+    suspend fun setStatsInfoMode(enabled: Boolean){
+        settingsDataStore.edit { settings ->
+            settings[PreferenceKeys.statsInfo] = enabled
+        }
+    }
+
+    suspend fun setSkillsInfoMode(enabled: Boolean){
+        settingsDataStore.edit { settings ->
+            settings[PreferenceKeys.skillsInfo] = enabled
+        }
+    }
+
+    suspend fun setSkillTreeInfoMode(enabled: Boolean){
+        settingsDataStore.edit { settings ->
+            settings[PreferenceKeys.skillTreeInfo] = enabled
         }
     }
 
@@ -45,5 +73,61 @@ class DataStoreRepository @Inject constructor(@ApplicationContext appContext: Co
         .map { preference ->
             val disclaimerMode = preference[PreferenceKeys.disclaimerMode] ?: true
             disclaimerMode
+        }
+
+    val readCharInfoMode: Flow<Boolean> = settingsDataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preference ->
+            val charInfoMode = preference[PreferenceKeys.characterInformation] ?: true
+            charInfoMode
+        }
+
+    val readStatsInfoMode: Flow<Boolean> = settingsDataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preference ->
+            val statsInfoMode = preference[PreferenceKeys.statsInfo] ?: true
+            statsInfoMode
+        }
+
+    val readSkillsInfoMode: Flow<Boolean> = settingsDataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preference ->
+            val skillsInfoMode = preference[PreferenceKeys.skillsInfo] ?: true
+            skillsInfoMode
+        }
+
+    val readSkillTreeInfoMode: Flow<Boolean> = settingsDataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preference ->
+            val skillTreeInfo = preference[PreferenceKeys.skillTreeInfo] ?: true
+            skillTreeInfo
         }
 }

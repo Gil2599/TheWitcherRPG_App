@@ -15,16 +15,23 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import android.graphics.Bitmap
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
+import android.graphics.Typeface
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
 import java.io.*
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class CharFragment : Fragment() {
@@ -112,6 +119,18 @@ class CharFragment : Fragment() {
             tab.text = tabTitles[position]
         }.attach()
 
+        lifecycleScope.launch {
+            mainCharacterViewModel.charInfoMode.collect { infoIsEnabled ->
+                if (infoIsEnabled) {
+                    showDialogDisclaimer()
+                }
+            }
+        }
+
+        binding.buttonHelp.setOnClickListener {
+            showDialogDisclaimer()
+        }
+
         return view
 
     }
@@ -130,5 +149,26 @@ class CharFragment : Fragment() {
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }
+    }
+
+    private fun showDialogDisclaimer() {
+        val dialog = Dialog(requireContext())
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        bind.textViewInfo.text = resources.getString(R.string.characterInformation_info)
+        bind.textViewInfo.typeface = Typeface.DEFAULT
+
+        bind.customTitle.setTitle("Character Information")
+        bind.customTitle.setTitleSize(18F)
+        bind.checkBox.visibility = View.GONE
+
+        bind.okButton.setOnClickListener {
+            mainCharacterViewModel.saveCharInfoMode(false)
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }

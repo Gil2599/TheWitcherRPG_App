@@ -2,6 +2,8 @@ package com.example.thewitcherrpg.feature_character_creation.presentation
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +22,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.CharFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
@@ -97,7 +100,7 @@ class CharCreationFirstFrag : Fragment() {
                 .replace(R.id.fragmentContainerView3, CharFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE).commit()
         }
-        
+
         binding.customTitle.setTitle("General Information")
         binding.customTitle.setTitleSize(20F)
 
@@ -168,12 +171,7 @@ class CharCreationFirstFrag : Fragment() {
         binding.textDefiningSkill.setOnClickListener {
             if (!inEditMode) {
                 if (professionString.isNotEmpty()) {
-                    val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    alertDialogBuilder.setTitle(defSkill)
-                    alertDialogBuilder.setMessage(defSkillInfo)
-                    val alertDialog: AlertDialog = alertDialogBuilder.create()
-                    alertDialog.setCanceledOnTouchOutside(true)
-                    alertDialog.show()
+                    showDialogHelp(defSkillInfo, defSkill)
                 } else {
                     Snackbar.make(
                         binding.root, "Please select character profession",
@@ -181,40 +179,28 @@ class CharCreationFirstFrag : Fragment() {
                     ).show()
                 }
             } else {
-
-                val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-                alertDialogBuilder.setTitle(mainCharacterViewModel.definingSkill.value)
-                alertDialogBuilder.setMessage(mainCharacterViewModel.definingSkillInfo.value)
-                val alertDialog: AlertDialog = alertDialogBuilder.create()
-                alertDialog.setCanceledOnTouchOutside(true)
-                alertDialog.show()
-
+                showDialogHelp(
+                    mainCharacterViewModel.definingSkillInfo.value,
+                    mainCharacterViewModel.definingSkill.value
+                )
             }
         }
 
         binding.textRacePerks.setOnClickListener {
             if (!inEditMode) {
                 if (this::race.isInitialized) {
-                    val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    alertDialogBuilder.setTitle(race)
-                    alertDialogBuilder.setMessage(racePerks)
-                    val alertDialog: AlertDialog = alertDialogBuilder.create()
-                    alertDialog.setCanceledOnTouchOutside(true)
-                    alertDialog.show()
+                    showDialogHelp(racePerks, race)
                 } else {
                     Snackbar.make(
                         binding.root, "Please select character race",
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
-            }
-            else {
-                val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-                alertDialogBuilder.setTitle(mainCharacterViewModel.race.value)
-                alertDialogBuilder.setMessage(mainCharacterViewModel.racePerks.value)
-                val alertDialog: AlertDialog = alertDialogBuilder.create()
-                alertDialog.setCanceledOnTouchOutside(true)
-                alertDialog.show()
+            } else {
+                showDialogHelp(
+                    mainCharacterViewModel.racePerks.value,
+                    mainCharacterViewModel.race.value
+                )
             }
         }
 
@@ -336,5 +322,28 @@ class CharCreationFirstFrag : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.autoCompleteTextViewProfession.setAdapter(adapter)
         }
+    }
+
+    private fun showDialogHelp(text: String, title: String) {
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        bind.textViewInfo.text = text
+        bind.textViewInfo.typeface = Typeface.DEFAULT
+
+        bind.customTitle.setTitle(title)
+        bind.customTitle.setTitleSize(18F)
+        bind.checkBox.visibility = View.GONE
+
+        bind.okButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

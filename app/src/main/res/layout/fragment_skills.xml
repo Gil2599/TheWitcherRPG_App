@@ -10,678 +10,187 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/TopConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="HardcodedText"
-        tools:context=".feature_character_sheet.presentation.skills.SkillsFragment">
-
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textIP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:gravity="center"
             android:text="Improvement Points:"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="20sp"
             android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="@+id/editIP"
-            app:layout_constraintEnd_toStartOf="@+id/editIP"
+            app:layout_constraintBottom_toBottomOf="@+id/etIPLayout"
+            app:layout_constraintEnd_toStartOf="@+id/etIPLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editIP" />
+            app:layout_constraintTop_toTopOf="@+id/etIPLayout"
+            app:layout_constraintVertical_bias="0.52" />
 
-        <TextView
-            android:id="@+id/editIP"
-            android:layout_width="50dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etIPLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/outline_bkg"
-            android:clickable="true"
-            android:gravity="center"
-            android:maxLength="4"
-            android:autoSizeTextType="uniform"
-            android:padding="6dp"
-            android:text='@{`` + MainViewModel.ip}'
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.05"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonHelp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textIP"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etIP"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:gravity="center"
+                android:clickable="true"
+                android:inputType="number"
+                android:maxLength="5"
+                android:text="@{`` + MainViewModel.ip}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/buttonHelp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_outline_info_24"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/etIPLayout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPlus"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.77"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="NestedWeights, Autofill,LabelFor,TextFields">
+            app:layout_constraintTop_toBottomOf="@+id/etIPLayout">
 
             <LinearLayout
-                android:id="@+id/topLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="10dp">
+                tools:context=".feature_character_sheet.presentation.skills.SkillsFragment">
 
                 <TextView
                     android:id="@+id/textViewInt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="4dp"
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
+                    android:padding="4dp"
                     android:text="Intelligence Skills"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
 
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.awarenessModifier}"
+                    app:myTag="Awareness" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView1"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Awareness:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText1"
-                            android:tag="Awareness"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.awareness}'/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.businessModifier}"
+                    app:myTag="Business" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Business:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText2"
-                            android:tag="Business"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.business}'/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.deductionModifier}"
+                    app:myTag="Deduction" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Deduction:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText3"
-                            android:tag="Deduction"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.deduction}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText4"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.educationModifier}"
+                    app:myTag="Education" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Education:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText4"
-                            android:tag="Education"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.education}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText5"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.commonSpeechModifier}"
+                    app:myTag="Common Speech" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Common Speech:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText5"
-                            android:tag="Common Speech"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.commonSpeech}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText6"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.elderSpeechModifier}"
+                    app:myTag="Elder Speech" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Elder Speech:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText6"
-                            android:tag="Elder Speech"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.elderSpeech}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText7"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.dwarvenModifier}"
+                    app:myTag="Dwarven" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Dwarven:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText7"
-                            android:tag="Dwarven"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.dwarven}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText8"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.monsterLoreModifier}"
+                    app:myTag="Monster Lore" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Monster Lore:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText8"
-                            android:tag="Monster Lore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.monsterLore}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText9"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.socialEtiquetteModifier}"
+                    app:myTag="Social Etiquette" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Social Etiquette:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText9"
-                            android:tag="Social Etiquette"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.socialEtiquette}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText10"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.streetwiseModifier}"
+                    app:myTag="Streetwise" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView10"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Streetwise:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText10"
-                            android:tag="Streetwise"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.streetwise}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText11"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.tacticsModifier}"
+                    app:myTag="Tactics" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView11"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Tactics:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText11"
-                            android:tag="Tactics"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.tactics}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText12"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.teachingModifier}"
+                    app:myTag="Teaching" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView12"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Teaching:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText12"
-                            android:tag="Teaching"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.teaching}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText13"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView13"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Wilderness Survival:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText13"
-                            android:tag="Wilderness Survival"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.wildernessSurvival}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.wildernessSurvivalModifier}"
+                    app:myTag="Wilderness Survival" />
 
                 <TextView
                     android:id="@+id/textViewRef"
@@ -689,380 +198,67 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
-                    android:text="Reflex Skills"
                     android:padding="4dp"
+                    android:text="Reflex Skills"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
 
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText14"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.brawlingModifier}"
+                    app:myTag="Brawling" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView14"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Brawling:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText14"
-                            android:tag="Brawling"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.brawling}'
-                            tools:ignore="TooManyViews" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText15"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.dodgeEscapeModifier}"
+                    app:myTag="Dodge/Escape" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView15"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Dodge/Escape:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText15"
-                            android:tag="Dodge/Escape"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.dodgeEscape}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText16"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.meleeModifier}"
+                    app:myTag="Melee" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView16"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Melee:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText16"
-                            android:tag="Melee"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.melee}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText17"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.ridingModifier}"
+                    app:myTag="Riding" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView17"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Riding:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText17"
-                            android:tag="Riding"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.riding}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText18"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.sailingModifier}"
+                    app:myTag="Sailing" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView18"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Sailing:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText18"
-                            android:tag="Sailing"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.sailing}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText19"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.smallBladesModifier}"
+                    app:myTag="Small Blades" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView19"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Small Blades:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText19"
-                            android:tag="Small Blades"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.smallBlades}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText20"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.staffSpearModifier}"
+                    app:myTag="Staff/Spear" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView20"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Staff/Spear:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText20"
-                            android:tag="Staff/Spear"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.staffSpear}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText21"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView21"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Swordsmanship:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText21"
-                            android:tag="Swordsmanship"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.swordsmanship}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.swordsmanshipModifier}"
+                    app:myTag="Swordsmanship" />
 
                 <TextView
                     android:id="@+id/textViewDex"
@@ -1070,241 +266,46 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
-                    android:text="Dexterity Skills"
                     android:padding="4dp"
+                    android:text="Dexterity Skills"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
 
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText22"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.archeryModifier}"
+                    app:myTag="Archery" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Archery:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText22"
-                            android:tag="Archery"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.archery}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText23"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.athleticsModifier}"
+                    app:myTag="Athletics" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView23"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Athletics:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText23"
-                            android:tag="Athletics"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.athletics}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText24"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.crossbowModifier}"
+                    app:myTag="Crossbow" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView24"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Crossbow:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText24"
-                            android:tag="Crossbow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.crossbow}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText25"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.sleightOfHandModifier}"
+                    app:myTag="Sleight of Hand" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView25"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Sleight of Hand:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText25"
-                            android:tag="Sleight of Hand"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.sleightOfHand}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText26"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView26"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Stealth:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText26"
-                            android:tag="Stealth"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.stealth}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.stealthModifier}"
+                    app:myTag="Stealth" />
 
                 <TextView
                     android:id="@+id/textViewBody"
@@ -1312,103 +313,25 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
-                    android:text="Body Skills"
                     android:padding="4dp"
+                    android:text="Body Skills"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
 
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText27"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.physiqueModifier}"
+                    app:myTag="Physique" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView27"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Physique:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText27"
-                            android:tag="Physique"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.physique}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText28"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView28"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Endurance:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText28"
-                            android:tag="Endurance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.endurance}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.enduranceModifier}"
+                    app:myTag="Endurance" />
 
                 <TextView
                     android:id="@+id/textViewEmp"
@@ -1416,471 +339,81 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
-                    android:text="Empathy Skills"
                     android:padding="4dp"
+                    android:text="Empathy Skills"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
 
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText29"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.charismaModifier}"
+                    app:myTag="Charisma" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView29"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Charisma:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText29"
-                            android:tag="Charisma"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.charisma}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText30"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.deceitModifier}"
+                    app:myTag="Deceit" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView30"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Deceit:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText30"
-                            android:tag="Deceit"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.deceit}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText31"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.fineArtsModifier}"
+                    app:myTag="Fine Arts" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView31"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Fine Arts:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText31"
-                            android:tag="Fine Arts"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.fineArts}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText32"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.gamblingModifier}"
+                    app:myTag="Gambling" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView32"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Gambling:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText32"
-                            android:tag="Gambling"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.gambling}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText33"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.groomingAndStyleModifier}"
+                    app:myTag="Grooming and Style" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView33"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Grooming and Style:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText33"
-                            android:tag="Grooming and Style"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.groomingAndStyle}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText34"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.humanPerceptionModifier}"
+                    app:myTag="Human Perception" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView34"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Human Perception:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText34"
-                            android:tag="Human Perception"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.humanPerception}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText35"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.leadershipModifier}"
+                    app:myTag="Leadership" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView35"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Leadership:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText35"
-                            android:tag="Leadership"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.leadership}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText36"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.persuasionModifier}"
+                    app:myTag="Persuasion" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView36"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Persuasion:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText36"
-                            android:tag="Persuasion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.persuasion}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText37"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.performanceModifier}"
+                    app:myTag="Performance" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView37"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Performance:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText37"
-                            android:tag="Performance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.performance}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText38"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView38"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Seduction:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText38"
-                            android:tag="Seduction"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.seduction}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.seductionModifier}"
+                    app:myTag="Seduction" />
 
                 <TextView
                     android:id="@+id/textViewCraft"
@@ -1888,333 +421,60 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
-                    android:text="Craft Skills"
                     android:padding="4dp"
+                    android:text="Craft Skills"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
 
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText39"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.alchemyModifier}"
+                    app:myTag="Alchemy" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView39"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Alchemy:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText39"
-                            android:tag="Alchemy"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.alchemy}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText40"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.craftingModifier}"
+                    app:myTag="Crafting" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView40"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Crafting:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText40"
-                            android:tag="Crafting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.crafting}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText41"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.disguiseModifier}"
+                    app:myTag="Disguise" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView41"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Disguise:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText41"
-                            android:tag="Disguise"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.disguise}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText42"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.firstAidModifier}"
+                    app:myTag="First Aid" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView42"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="First Aid:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText42"
-                            android:tag="First Aid"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.firstAid}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText43"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.forgeryModifier}"
+                    app:myTag="Forgery" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView43"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Forgery:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText43"
-                            android:tag="Forgery"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.forgery}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText44"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.pickLockModifier}"
+                    app:myTag="Pick Lock" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView44"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Pick Lock:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText44"
-                            android:tag="Pick Lock"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.pickLock}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText45"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView45"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Trap Crafting:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText45"
-                            android:tag="Trap Crafting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.trapCrafting}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.trapCraftingModifier}"
+                    app:myTag="Trap Crafting" />
 
                 <TextView
                     android:id="@+id/textViewWill"
@@ -2222,333 +482,60 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
-                    android:text="Will Skills"
                     android:padding="4dp"
+                    android:text="Will Skills"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
 
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText46"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.courageModifier}"
+                    app:myTag="Courage" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView46"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Courage:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText46"
-                            android:tag="Courage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.courage}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText47"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.hexWeavingModifier}"
+                    app:myTag="Hex Weaving" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView47"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Hex Weaving:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText47"
-                            android:tag="Hex Weaving"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.hexWeaving}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText48"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.intimidationModifier}"
+                    app:myTag="Intimidation" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView48"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Intimidation:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText48"
-                            android:tag="Intimidation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.intimidation}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText49"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.spellCastingModifier}"
+                    app:myTag="Spell Casting" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView49"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Spell Casting:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText49"
-                            android:tag="Spell Casting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.spellCasting}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText50"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.resistMagicModifier}"
+                    app:myTag="Resist Magic" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView50"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Resist Magic:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText50"
-                            android:tag="Resist Magic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.resistMagic}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText51"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.resistCoercionModifier}"
+                    app:myTag="Resist Coercion" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView51"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Resist Coercion:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText51"
-                            android:tag="Resist Coercion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.resistCoercion}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/editText52"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2">
-
-                        <TextView
-                            android:id="@+id/textView52"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:text="Ritual Crafting:"
-                            android:textStyle="bold"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-
-                        <EditText
-                            android:id="@+id/editText52"
-                            android:tag="Ritual Crafting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="false"
-                            android:ems="2"
-                            android:gravity="center"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:text='@{`` + MainViewModel.ritualCrafting}' />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    app:modifier="@{MainViewModel.ritualCraftingModifier}"
+                    app:myTag="Ritual Crafting" />
 
             </LinearLayout>
         </ScrollView>
@@ -2558,28 +545,27 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/outline_bkg"
-            android:textColor="@color/gray"
             android:text="+"
+            android:textColor="@color/gray"
             android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@id/TopConstraintLayout"
-            app:layout_constraintEnd_toEndOf="@id/TopConstraintLayout"
-            app:layout_constraintStart_toEndOf="@+id/buttonMinus"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonMinus" />
 
         <Button
             android:id="@+id/buttonMinus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/outline_bkg"
-            android:textColor="@color/gray"
             android:text="-"
+            android:textColor="@color/gray"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/buttonPlus"
             app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/buttonPlus" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

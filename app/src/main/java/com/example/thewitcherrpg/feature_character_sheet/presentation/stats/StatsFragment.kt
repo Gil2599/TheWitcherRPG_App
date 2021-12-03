@@ -2,6 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.stats
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.*
 import android.text.style.ForegroundColorSpan
@@ -25,6 +26,7 @@ import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
+import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -51,8 +53,17 @@ class StatsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sharedViewModel = mainCharacterViewModel
 
-        binding.editIP.setOnClickListener {
+        binding.etIP.setRawInputType(0)
+        binding.etIP.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                showDialogIP()
+            }
+        }
+        binding.etIP.setOnClickListener {
             showDialogIP()
+        }
+        binding.buttonHelp.setOnClickListener {
+            showDialogDisclaimer()
         }
 
         statsInit()
@@ -67,6 +78,16 @@ class StatsFragment : Fragment() {
 
         lifecycleScope.launch {
             setObservers()
+        }
+
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            lifecycleScope.launch {
+                mainCharacterViewModel.statsInfoMode.collect { infoIsEnabled ->
+                    if (infoIsEnabled) {
+                        showDialogDisclaimer()
+                    }
+                }
+            }
         }
 
         return view
@@ -895,5 +916,26 @@ class StatsFragment : Fragment() {
             )
         }
         return spannable
+    }
+
+    private fun showDialogDisclaimer() {
+        val dialog = Dialog(requireContext())
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        bind.textViewInfo.text = resources.getString(R.string.characterStats_info)
+        bind.textViewInfo.typeface = Typeface.DEFAULT
+
+        bind.customTitle.setTitle("Character Stats")
+        bind.customTitle.setTitleSize(18F)
+        bind.checkBox.visibility = View.GONE
+
+        bind.okButton.setOnClickListener {
+            mainCharacterViewModel.saveStatsInfoMode(false)
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }

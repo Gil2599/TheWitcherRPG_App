@@ -1153,18 +1153,14 @@
     </string-array>
 
     <string name="profession_skill_tree_help">
-         Each Profession in the Witcher TRPG has
+        This is the profession skill tree section.
+        Each Profession in the Witcher TRPG has
         a Profession Skill Tree which offers many
-        variations on the core Profession. Each
-        tree has three paths that represent different approaches to that Profession. At the
-        very bottom is the starting ability for the
-        Profession. As you proceed through the
-        game you can use Improvement Points to
-        travel down any of these paths, or venture
-        down all of them a bit. When you have 5
-        points in an ability, you can use the next
-        ability in that Profession Path at a value of
-        0.\n\n
+        variations on the core Profession. Click and hold
+        on any skill to see its description. You may need to
+        manually adjust any skills or modifiers that a particular
+        profession skill affects. Vigor will be adjusted automatically
+        when applicable.\n\n
 
         Gaining points for each new ability works
         the same as gaining points in any new skill.

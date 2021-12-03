@@ -1,21 +1,20 @@
 package com.example.thewitcherrpg.feature_character_creation.presentation
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.FragmentCharCreationSecBinding
-import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
+import com.example.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
 
 class CharCreationSecFrag : Fragment() {
     private var _binding: FragmentCharCreationSecBinding? = null
     private val binding get() = _binding!!
 
-    private val fragment = SkillsFragment()
+    private val fragment = StatsFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +30,7 @@ class CharCreationSecFrag : Fragment() {
                 .commitNow()
         }
 
-        binding.customTitle.setTitle("Profession Abilities")
+        binding.customTitle.setTitle("Character Stats")
         binding.customTitle.setTitleSize(20F)
 
         binding.buttonToThirdFrag.setOnClickListener{

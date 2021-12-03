@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -18,8 +19,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentProfessionSkillTreeBinding
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -56,6 +59,24 @@ class ProfessionSkillTree : Fragment() {
         onInit()
 
         createObservers()
+
+        binding.etIP.setRawInputType(0)
+        binding.etIP.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                showDialogIP()
+            }
+        }
+        binding.etIP.setOnClickListener {
+            showDialogDisclaimer()
+        }
+
+        lifecycleScope.launch {
+            mainCharacterViewModel.skillTreeInfoMode.collect { infoIsEnabled ->
+                if (infoIsEnabled) {
+                    showDialogDisclaimer()
+                }
+            }
+        }
 
         return view
     }
@@ -140,7 +161,7 @@ class ProfessionSkillTree : Fragment() {
         }
 
         binding.buttonHelp.setOnClickListener{
-            showDialogHelp()
+            showDialogDisclaimer()
         }
 
         //Create all of the button click listeners and long click listeners for skill info dialog
@@ -523,13 +544,11 @@ class ProfessionSkillTree : Fragment() {
 
     }
 
-    private fun showDialogHelp() {
+    private fun showDialogDisclaimer() {
         val dialog = Dialog(requireContext())
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val bind : CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
         bind.textViewInfo.text = resources.getString(R.string.profession_skill_tree_help)
@@ -540,9 +559,42 @@ class ProfessionSkillTree : Fragment() {
         bind.checkBox.visibility = View.GONE
 
         bind.okButton.setOnClickListener {
+            mainCharacterViewModel.saveSkillTreeInfoMode(false)
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun showDialogIP() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind: CustomDialogEditStatsBinding =
+            CustomDialogEditStatsBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        bind.textViewCurrent.text = getString(R.string.current_ip)
+
+        bind.textView.text = mainCharacterViewModel.ip.value.toString()
+
+        bind.editText.requestFocus()
+
+        bind.buttonPlus.setOnClickListener {
+            val value =
+                if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
+            mainCharacterViewModel.onIpChange(value)
             dialog.dismiss()
         }
 
+        bind.buttonMinus.setOnClickListener {
+            val value =
+                if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
+            mainCharacterViewModel.onIpChange(-value)
+            dialog.dismiss()
+        }
         dialog.show()
     }
 }

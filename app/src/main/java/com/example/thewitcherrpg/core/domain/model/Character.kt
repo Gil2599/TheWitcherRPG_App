@@ -81,6 +81,7 @@ data class Character(
     var stamina: Int = 0,
     var encumbrance: Int = 0,
     var encumbranceModifier: Int = 0,
+    var currentEncumbrance: Float = 0F,
     var recovery: Int = 0,
     var recoveryModifier: Int = 0,
     var punch: String = "",

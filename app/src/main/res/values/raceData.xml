@@ -71,6 +71,64 @@
             Dexterity that can raise both stats above 10. (Lightning Reflexes)</item>
 
         <item>Halfling:N/A</item>
+
+        <item>Gnome: \nAcross the continent, gnomes are
+            known for their fun-loving joyous personalities and
+            puckish nature. Among humans, gnomes are often considered the most pleasant of the Non-humans. Gnomes
+            gain an inherent +1 to Charisma. (Pleasant Demeanor)\n\n
+
+            While elves and dwarves are among
+            the greatest craftsmen in the world, gnomes possess the finest eye for detail on the entire continent
+            making them excellent at many different crafts. It’s
+            not unusual to find a gnome who trades in gem-cutting, sword smith, and alchemy all at the same time.
+            Gnomes gain an inherent +2 to any 3 Craft Skills
+            they choose. This bonus ignores the modifier for
+            learning Difficult Skill. (Eye for Detail)\n\n
+
+            A gnome\`s keen sense for detail
+            extends to all their senses including their sense of smell.
+            Gnomes gain an inherent +1 to their Awareness skill, as
+            well as the ability to track things by scent alone. (Scent Tracking)\n\n
+
+            Gnomes are the smallest race on the
+            Continent, measuring in around 1m tall on average.
+            While they can be just as resilient as other races, they
+            are generally physically weaker. Gnomes take an inherent -5 to Physique and calculate their hand-to-hand
+            damage, bonus melee damage, and Encumbrance as
+            though their BODY was 3 points lower. However, a
+            gnome can slip into any area at least 0.5m wide with no
+            issue and can fully conceal themselves behind an item
+            or creature at least 1m by 1m (Small Stature)</item>
+
+        <item>Vran: \nVran are known by many to be heartless creatures with no empathy to speak of. However,
+            this is far from the truth. Vran have as much capability for empathy as any human but they are far more
+            reserved and less likely to show their emotion. Vran
+            gain an inherent +1 Resist Coercion. (Calm Hearted)\n\n
+
+            While the vran are known to use weapons, they are also capable of dealing grievous harm to
+            their enemies with their natural claws and fangs. A
+            vran has two natural weapons that cannot be disarmed.
+            A vran\'s punches and kicks deal lethal damage and they
+            can make a Melee attack with their fangs, which deals
+            3d6 damage with a 50% chance of poisoning the target. (Claws and Fangs)\n\n
+
+            Vran have a natural layer of scales which
+            grant them a certain amount of natural resistance to
+            damage. A vran\’s scales have a natural stopping power
+            of 4. This SP cannot be lowered via weapon attacks or
+            ablation damage. (Scaled Hide)\n\n
+
+            The vran are the only accepted
+            sapient race that is also reptilian and they\’re physiology differs ever so slightly from that of humans
+            and other non-human races. This difference may be
+            small, but it makes a big impact in two ways. First, a
+            vran\’s body is different enough that any doctor who
+            is not a vran and has not treated a vran successfully
+            in the past takes a -2 penalty when using First Aid on
+            a wounded vran and a -5 penalty when attempting
+            to stabilize or treat Critical Wounds on a wounded
+            vran. Second, if a vran is affected by the Frozen condition, they take a -2 to all actions until 1d6 rounds
+            after the condition is ended. (Reptilian Physiology)</item>
     </string-array>
 
 </resources>

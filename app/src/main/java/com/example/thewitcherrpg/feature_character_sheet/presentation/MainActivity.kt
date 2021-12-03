@@ -1,40 +1,39 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
+import com.example.thewitcherrpg.databinding.NavHeaderBinding
+import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag
+import com.example.thewitcherrpg.feature_character_sheet.presentation.campaign_notes.CampaignNotesFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.CharFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentParentFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.MagicParentFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.profession_skill_tree.ProfessionSkillTree
 import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
 import com.example.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
-import android.graphics.BitmapFactory
-import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import com.example.thewitcherrpg.databinding.NavHeaderBinding
-import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag
-import com.example.thewitcherrpg.feature_character_sheet.presentation.campaign_notes.CampaignNotesFragment
-import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragmentOverhaul
-import com.google.android.material.snackbar.Snackbar
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 
@@ -80,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Skills -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragmentOverhaul(), "Skills")
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment(), "Skills")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                 }
                 R.id.Stats -> {

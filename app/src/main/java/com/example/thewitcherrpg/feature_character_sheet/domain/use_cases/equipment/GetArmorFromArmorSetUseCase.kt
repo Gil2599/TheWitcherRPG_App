@@ -24,7 +24,7 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                             armorEnhancement = armorSet.armorEnhancement,
                             encumbranceValue = armorSet.encumbranceValue,
                             effect = armorSet.effect.toString(),
-                            weight = armorSet.weight,
+                            weight = 0F,
                             cost = armorSet.cost,
                             isRelic = armorSet.isRelic,
                             equipmentType = when (armorSet.equipmentType) {
@@ -68,7 +68,7 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                             armorEnhancement = armorSet.armorEnhancement,
                             encumbranceValue = armorSet.encumbranceValue,
                             effect = armorSet.effect.toString(),
-                            weight = armorSet.weight,
+                            weight = 0F,
                             cost = armorSet.cost,
                             isRelic = armorSet.isRelic,
                             equipmentType = when (armorSet.equipmentType) {

@@ -5,17 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
 import com.example.thewitcherrpg.databinding.FragmentCharCreationThirdBinding
+import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
 
 class CharCreationThirdFrag : Fragment() {
     private var _binding: FragmentCharCreationThirdBinding? = null
     private val binding get() = _binding!!
 
-    private val fragment = StatsFragment()
+    private val fragment = SkillsFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +30,7 @@ class CharCreationThirdFrag : Fragment() {
                 .commitNow()
         }
 
-        binding.customTitle.setTitle("Character Stats")
+        binding.customTitle.setTitle("Profession Abilities")
         binding.customTitle.setTitleSize(20F)
 
         binding.buttonFinish.setOnClickListener{

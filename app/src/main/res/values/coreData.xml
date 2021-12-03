@@ -3,7 +3,9 @@
 
     <string name="disclaimer">
         Please note that The Witcher Tabletop RPG\'s rules and mechanics differ from
-        traditional Dungeons and Dragons. Use of The Witcher Tabletop RPG Core Rulebook
+        traditional Dungeons and Dragons. This application serves as a tool meant to be used
+        alongside The Witcher Tabletop RPG Core Rulebook and follows the rules and mechanics set
+        by it. Use of The Witcher Tabletop RPG Core Rulebook
         is strongly recommended as this application does not contain all of the necessary
         information to learn how to play. This is an unofficial application and is not
         approved/endorsed by CD PROJEKT RED or R. Talsorian Games. This application is not a
@@ -12,12 +14,47 @@
         to their respective owners.
     </string>
 
+    <string name="characterInformation_info">
+        This is the character information section. Here you will be able to access common stats such
+        as your current health, stamina, and crowns. You can also add a character image, access information regarding your
+        profession, edit character personal information, and add background events. To navigate through the
+        rest of the application, tap the navigation drawer icon at the top left of the screen.
+    </string>
+
+    <string name="characterSkills_info">
+        This is the character skills section. Skills
+        can have between 0 and 10 points in them
+        and can never go higher than 10 points.
+        Bonuses like racial modifiers can raise a
+        skill above 10. When first making your
+        character, your skills cap at 6. To increase a skill point,
+        the current level of that skill will be subtracted from your improvement
+        point total. To edit a skill\'s modifier, click and hold on the skill until
+        the modifier indicator appears next to the skill level. Keep in mind that modifiers
+        do not reduce your improvement points total and are usually obtained from racial perks, items,
+        equipment, injuries, or consumables.
+    </string>
+
+    <string name="characterStats_info">
+        This is the statistics section. The Statistic
+        Cap is 10, however, Mutations and Racial
+        traits can raise Statistics above
+        this cap. The numbers displayed include your raw stat
+        value plus any modifiers. To edit a stat\'s modifier, click and hold a stat until
+        the modifier is shown. Keep in mind that modifiers
+        do not reduce your improvement points total and are usually obtained from racial perks, items,
+        equipment, injuries, or consumables.
+    </string>
+
     <string-array name="races_array">
         <item>Human</item>
         <item>Dwarf</item>
         <item>Elf</item>
         <item>Witcher</item>
         <item>Halfling</item>
+        <item>Gnome</item>
+        <item>Vran</item>
+        <item>Werebbub</item>
     </string-array>
 
     <string-array name="gender_array">

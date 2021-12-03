@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thewitcherrpg.core.Constants
 import com.example.thewitcherrpg.core.Resource
+import com.example.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
 import com.example.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.example.thewitcherrpg.core.domain.model.Character
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharacterState
@@ -34,6 +35,7 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipm
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorSetListUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -60,7 +62,8 @@ class MainCharacterViewModel @Inject constructor(
     private val getProfessionGearUseCase: GetProfessionGearUseCase,
     private val getProfessionSpecialUseCase: GetProfessionSpecialUseCase,
     private val getArmorSetListUseCase: GetArmorSetListUseCase,
-    private val getArmorFromArmorSetUseCase: GetArmorFromArmorSetUseCase
+    private val getArmorFromArmorSetUseCase: GetArmorFromArmorSetUseCase,
+    private val dataStore: DataStoreRepository
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -75,6 +78,11 @@ class MainCharacterViewModel @Inject constructor(
 
     private val _deleteState = MutableStateFlow(CharacterState())
     val deleteState = _deleteState.asStateFlow()
+
+    val charInfoMode = dataStore.readCharInfoMode
+    val statsInfoMode = dataStore.readStatsInfoMode
+    val skillsInfoMode = dataStore.readSkillsInfoMode
+    val skillTreeInfoMode = dataStore.readSkillTreeInfoMode
 
     private val _image = MutableLiveData("")
     val image: LiveData<String> = _image
@@ -244,6 +252,12 @@ class MainCharacterViewModel @Inject constructor(
 
     private var _encModifier = MutableStateFlow(0)
     val encModifier = _encModifier.asStateFlow()
+
+    private var _currentEnc = MutableStateFlow(0F)
+    val currentEnc = _currentEnc.asStateFlow()
+
+    private var _encWithModifier = MutableStateFlow(0)
+    val encWithModifier = _encWithModifier.asStateFlow()
 
     private var _rec = MutableStateFlow(0)
     val rec = _rec.asStateFlow()
@@ -773,6 +787,74 @@ class MainCharacterViewModel @Inject constructor(
                 resistMagic = _resistMagic.value,
                 resistCoercion = _resistCoercion.value,
                 ritualCrafting = _ritualCrafting.value,
+                intelligenceModifier = _intelligenceModifier.value,
+                reflexModifier = _refModifier.value,
+                dexterityModifier = _dexModifier.value,
+                bodyModifier = _bodyModifier.value,
+                speedModifier = _spdModifier.value,
+                empathyModifier = _empModifier.value,
+                craftsmanshipModifier = _craModifier.value,
+                willModifier = _willModifier.value,
+                luckModifier = _luckModifier.value,
+                stunModifier = _stunModifier.value,
+                runModifier = _runModifier.value,
+                leapModifier = _leapModifier.value,
+                hpModifier = _hpModifier.value,
+                staModifier = _staModifier.value,
+                encumbranceModifier = _encModifier.value,
+                recoveryModifier = _recModifier.value,
+                awarenessModifier = _awarenessModifier.value,
+                businessModifier = _businessModifier.value,
+                deductionModifier = _deductionModifier.value,
+                educationModifier = _educationModifier.value,
+                commonSpeechModifier = _commonSpeechModifier.value,
+                elderSpeechModifier = _elderSpeechModifier.value,
+                dwarvenModifier = _dwarvenModifier.value,
+                monsterLoreModifier = _monsterLoreModifier.value,
+                socialEtiquetteModifier = _socialEtiquetteModifier.value,
+                streetwiseModifier = _streetwiseModifier.value,
+                tacticsModifier = _tacticsModifier.value,
+                teachingModifier = _teachingModifier.value,
+                wildernessSurvivalModifier = _wildernessSurvivalModifier.value,
+                brawlingModifier = _brawlingModifier.value,
+                dodgeEscapeModifier = _dodgeEscapeModifier.value,
+                meleeModifier = _meleeModifier.value,
+                ridingModifier = _ridingModifier.value,
+                sailingModifier = _sailingModifier.value,
+                smallBladesModifier = _smallBladesModifier.value,
+                staffSpearModifier = _staffSpearModifier.value,
+                swordsmanshipModifier = _swordsmanshipModifier.value,
+                archeryModifier = _archeryModifier.value,
+                athleticsModifier = _athleticsModifier.value,
+                crossbowModifier = _crossbowModifier.value,
+                sleightOfHandModifier = _sleightOfHandModifier.value,
+                stealthModifier = _stealthModifier.value,
+                physiqueModifier = _physiqueModifier.value,
+                enduranceModifier = _enduranceModifier.value,
+                charismaModifier = _charismaModifier.value,
+                deceitModifier = _deceitModifier.value,
+                fineArtsModifier = _fineArtsModifier.value,
+                gamblingModifier = _gamblingModifier.value,
+                groomingAndStyleModifier = _groomingAndStyleModifier.value,
+                humanPerceptionModifier = _humanPerceptionModifier.value,
+                leadershipModifier = _leadershipModifier.value,
+                persuasionModifier = _persuasionModifier.value,
+                performanceModifier = _performanceModifier.value,
+                seductionModifier = _seductionModifier.value,
+                alchemyModifier = _alchemyModifier.value,
+                craftingModifier = _craftingModifier.value,
+                disguiseModifier = _disguiseModifier.value,
+                firstAidModifier = _firstAidModifier.value,
+                forgeryModifier = _forgeryModifier.value,
+                pickLockModifier = _pickLockModifier.value,
+                trapCraftingModifier = _trapCraftingModifier.value,
+                courageModifier = _courageModifier.value,
+                hexWeavingModifier = _hexWeavingModifier.value,
+                intimidationModifier = _intimidationModifier.value,
+                spellCastingModifier = _spellCastingModifier.value,
+                resistMagicModifier = _resistMagicModifier.value,
+                resistCoercionModifier = _resistCoercionModifier.value,
+                ritualCraftingModifier = _ritualCraftingModifier.value,
                 vigor = startingVigor
             )
 
@@ -852,6 +934,7 @@ class MainCharacterViewModel @Inject constructor(
                 stamina = _sta.value,
                 encumbrance = _enc.value,
                 encumbranceModifier = _encModifier.value,
+                currentEncumbrance = _currentEnc.value,
                 recovery = _rec.value,
                 recoveryModifier = _recModifier.value,
                 punch = _punch.value,
@@ -1119,6 +1202,8 @@ class MainCharacterViewModel @Inject constructor(
                     _kick.value = characterData.kick
                     _maxHPWithModifier.value = _maxHP.value.plus(_hpModifier.value)
                     _maxSTAWithModifier.value = _maxSta.value.plus(_staModifier.value)
+                    _encWithModifier.value = _enc.value.plus(_encModifier.value)
+                    _currentEnc.value = characterData.currentEncumbrance
 
                     //Skills
                     _awareness.value = characterData.awareness
@@ -1307,6 +1392,9 @@ class MainCharacterViewModel @Inject constructor(
         characterCreationUseCases.getRacePerkUseCase(race).onEach {
             _racePerks.value = it
         }.launchIn(viewModelScope)
+
+        clearModifiers()
+        setRaceModifiers()
     }
 
     fun setGender(gender: String) {
@@ -1339,6 +1427,113 @@ class MainCharacterViewModel @Inject constructor(
         characterCreationUseCases.getDefiningSkillInfoUseCase(definingSkill.value).onEach { info ->
             _definingSkillInfo.value = info
         }.launchIn(viewModelScope)
+    }
+
+    private fun setRaceModifiers() {
+        when (_race.value) {
+            "Human" -> {
+                _charismaModifier.value = _charismaModifier.value.plus(1)
+                _seductionModifier.value = _seductionModifier.value.plus(1)
+                _persuasionModifier.value = _persuasionModifier.value.plus(1)
+                _deductionModifier.value = _deductionModifier.value.plus(1)
+            }
+            "Dwarf" -> {
+                _physiqueModifier.value = _physiqueModifier.value.plus(1)
+                _enc.value = _enc.value.plus(25)
+                _businessModifier.value = _businessModifier.value.plus(1)
+            }
+            "Elf" -> {
+                _fineArtsModifier.value = _fineArtsModifier.value.plus(1)
+                _archeryModifier.value = _archeryModifier.value.plus(1)
+            }
+            "Witcher" -> {
+                _awarenessModifier.value = _awarenessModifier.value.plus(1)
+                _empModifier.value = _empModifier.value.minus(4)
+                _refModifier.value = _refModifier.value.plus(1)
+                _dexModifier.value = _dexModifier.value.plus(1)
+            }
+            "Halfling" -> {}
+            "Gnome" -> {
+                _charismaModifier.value = _charismaModifier.value.plus(1)
+                _awarenessModifier.value = _awarenessModifier.value.plus(1)
+                _physiqueModifier.value = _physiqueModifier.value.minus(5)
+            }
+            "Vran" -> {
+
+            }
+        }
+    }
+
+    private fun clearModifiers() {
+        _intelligenceModifier.value = 0
+        _refModifier.value = 0
+        _dexModifier.value = 0
+        _bodyModifier.value = 0
+        _spdModifier.value = 0
+        _empModifier.value = 0
+        _craModifier.value = 0
+        _willModifier.value = 0
+        _luckModifier.value = 0
+        _stunModifier.value = 0
+        _runModifier.value = 0
+        _leapModifier.value = 0
+        _hpModifier.value = 0
+        _staModifier.value = 0
+        _enc.value = 0
+        _encModifier.value = 0
+        _recModifier.value = 0
+        _awarenessModifier.value = 0
+        _businessModifier.value = 0
+        _deductionModifier.value = 0
+        _educationModifier.value = 0
+        _commonSpeechModifier.value = 0
+        _elderSpeechModifier.value = 0
+        _dwarvenModifier.value = 0
+        _monsterLoreModifier.value = 0
+        _socialEtiquetteModifier.value = 0
+        _streetwiseModifier.value = 0
+        _tacticsModifier.value = 0
+        _teachingModifier.value = 0
+        _wildernessSurvivalModifier.value = 0
+        _brawlingModifier.value = 0
+        _dodgeEscapeModifier.value = 0
+        _meleeModifier.value = 0
+        _ridingModifier.value = 0
+        _sailingModifier.value = 0
+        _smallBladesModifier.value = 0
+        _staffSpearModifier.value = 0
+        _swordsmanshipModifier.value = 0
+        _archeryModifier.value = 0
+        _athleticsModifier.value = 0
+        _crossbowModifier.value = 0
+        _sleightOfHandModifier.value = 0
+        _stealthModifier.value = 0
+        _physiqueModifier.value = 0
+        _enduranceModifier.value = 0
+        _charismaModifier.value = 0
+        _deceitModifier.value = 0
+        _fineArtsModifier.value = 0
+        _gamblingModifier.value = 0
+        _groomingAndStyleModifier.value = 0
+        _humanPerceptionModifier.value = 0
+        _leadershipModifier.value = 0
+        _persuasionModifier.value = 0
+        _performanceModifier.value = 0
+        _seductionModifier.value = 0
+        _alchemyModifier.value = 0
+        _craftingModifier.value = 0
+        _disguiseModifier.value = 0
+        _firstAidModifier.value = 0
+        _forgeryModifier.value = 0
+        _pickLockModifier.value = 0
+        _trapCraftingModifier.value = 0
+        _courageModifier.value = 0
+        _hexWeavingModifier.value = 0
+        _intimidationModifier.value = 0
+        _spellCastingModifier.value = 0
+        _resistMagicModifier.value = 0
+        _resistCoercionModifier.value = 0
+        _ritualCraftingModifier.value = 0
     }
 
     fun getProfessionIndices(): ArrayList<Int> {
@@ -2103,7 +2298,8 @@ class MainCharacterViewModel @Inject constructor(
                 return _monsterLoreModifier.value
             }
             "Social Etiquette" -> {
-                if (increase) _socialEtiquetteModifier.value = _socialEtiquetteModifier.value.plus(1)
+                if (increase) _socialEtiquetteModifier.value =
+                    _socialEtiquetteModifier.value.plus(1)
                 else _socialEtiquetteModifier.value = _socialEtiquetteModifier.value.minus(1)
                 return _socialEtiquetteModifier.value
             }
@@ -2123,7 +2319,8 @@ class MainCharacterViewModel @Inject constructor(
                 return _teachingModifier.value
             }
             "Wilderness Survival" -> {
-                if (increase) _wildernessSurvivalModifier.value = _wildernessSurvivalModifier.value.plus(1)
+                if (increase) _wildernessSurvivalModifier.value =
+                    _wildernessSurvivalModifier.value.plus(1)
                 else _wildernessSurvivalModifier.value = _wildernessSurvivalModifier.value.minus(1)
                 return _wildernessSurvivalModifier.value
             }
@@ -2223,12 +2420,14 @@ class MainCharacterViewModel @Inject constructor(
                 return _gamblingModifier.value
             }
             "Grooming and Style" -> {
-                if (increase) _groomingAndStyleModifier.value = _groomingAndStyleModifier.value.plus(1)
+                if (increase) _groomingAndStyleModifier.value =
+                    _groomingAndStyleModifier.value.plus(1)
                 else _groomingAndStyleModifier.value = _groomingAndStyleModifier.value.minus(1)
                 return _groomingAndStyleModifier.value
             }
             "Human Perception" -> {
-                if (increase) _humanPerceptionModifier.value = _humanPerceptionModifier.value.plus(1)
+                if (increase) _humanPerceptionModifier.value =
+                    _humanPerceptionModifier.value.plus(1)
                 else _humanPerceptionModifier.value = _humanPerceptionModifier.value.minus(1)
                 return _humanPerceptionModifier.value
             }
@@ -2382,7 +2581,8 @@ class MainCharacterViewModel @Inject constructor(
                     _stun.value =
                         if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
                         else 10
-                    _enc.value = _body.value * 10
+                    onEncumbranceChange(increase = increase)
+                    _encWithModifier.value = _encModifier.value.plus(_enc.value)
                     when (_body.value) {
                         1, 2 -> {
                             _punch.value = "1d6 - 4"
@@ -2505,6 +2705,7 @@ class MainCharacterViewModel @Inject constructor(
             }
             "ENC" -> {
                 _enc.value = if (increase) _enc.value.plus(1) else _enc.value.minus(1)
+                _encWithModifier.value = _encModifier.value.plus(_enc.value)
             }
             "REC" -> {
                 _rec.value = if (increase) _rec.value.plus(1) else _rec.value.minus(1)
@@ -2579,6 +2780,7 @@ class MainCharacterViewModel @Inject constructor(
             "ENC" -> {
                 if (increase) _encModifier.value = _encModifier.value.plus(1)
                 else _encModifier.value = _encModifier.value.minus(1)
+                _encWithModifier.value = _encModifier.value.plus(_enc.value)
             }
             "REC" -> {
                 if (increase) _recModifier.value = _recModifier.value.plus(1)
@@ -2902,6 +3104,16 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
+    private fun onEncumbranceChange(increase: Boolean) {
+        if (increase) {
+            val encBonus = _body.value * 10
+            _enc.value = _enc.value - (((_body.value - 1) * 10 )) + encBonus
+        } else {
+            val encBonus = _body.value * 10
+            _enc.value = _enc.value - (((_body.value + 1) * 10 )) + encBonus
+        }
+    }
+
     fun onCrownsChange(value: Int) {
         if (value < 0) {
             if (value.absoluteValue < _crowns.value) {
@@ -2938,6 +3150,7 @@ class MainCharacterViewModel @Inject constructor(
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.add(item)
         }
+        _currentEnc.value = _currentEnc.value.plus(item.weight)
     }
 
     fun addArmorSet(armorSet: ArmorSet) {
@@ -2972,6 +3185,7 @@ class MainCharacterViewModel @Inject constructor(
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.remove(item)
         }
+        _currentEnc.value = _currentEnc.value.minus(item.weight)
     }
 
     fun equipItem(item: EquipmentItem) {
@@ -3112,10 +3326,12 @@ class MainCharacterViewModel @Inject constructor(
 
     fun addWeaponItem(item: WeaponItem) {
         _weaponEquipment.value.add(item)
+        _currentEnc.value = _currentEnc.value.plus(item.weight)
     }
 
     fun removeWeapon(item: WeaponItem) {
         _weaponEquipment.value.remove(item)
+        _currentEnc.value = _currentEnc.value.minus(item.weight)
     }
 
     fun equipWeapon(item: WeaponItem) {
@@ -3137,10 +3353,8 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun onReliabilityChange(item: WeaponItem, increase: Boolean) {
-        if (increase) {
-            if (item.currentReliability < item.reliability)
-                item.currentReliability = item.currentReliability.plus(1)
-        } else {
+        if (increase) item.currentReliability = item.currentReliability.plus(1)
+        else {
             if (item.currentReliability > 0) item.currentReliability =
                 item.currentReliability.minus(1)
         }
@@ -3155,21 +3369,7 @@ class MainCharacterViewModel @Inject constructor(
             false
         } else {
             _crowns.value = _crowns.value.minus(item.cost)
-
-            when (item.equipmentType) {
-                EquipmentTypes.LIGHT_HEAD, EquipmentTypes.MEDIUM_HEAD, EquipmentTypes.HEAVY_HEAD -> _headEquipment.value.add(
-                    item
-                )
-                EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST -> _chestEquipment.value.add(
-                    item
-                )
-                EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(
-                    item
-                )
-                EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.add(
-                    item
-                )
-            }
+            addEquipmentItem(item)
             true
         }
     }
@@ -3179,7 +3379,7 @@ class MainCharacterViewModel @Inject constructor(
             false
         } else {
             _crowns.value = _crowns.value.minus(item.cost)
-            _weaponEquipment.value.add(item)
+            addWeaponItem(item)
             true
         }
     }
@@ -3202,4 +3402,19 @@ class MainCharacterViewModel @Inject constructor(
         _campaignNotes.value.remove(campaignNote)
     }
 
+    fun saveCharInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+        dataStore.setCharacterInfoMode(mode)
+    }
+
+    fun saveStatsInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+        dataStore.setStatsInfoMode(mode)
+    }
+
+    fun saveSkillsInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+        dataStore.setSkillsInfoMode(mode)
+    }
+
+    fun saveSkillTreeInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+        dataStore.setSkillTreeInfoMode(mode)
+    }
 }

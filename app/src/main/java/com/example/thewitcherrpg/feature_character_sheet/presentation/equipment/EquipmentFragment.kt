@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogCharArmorBinding
 import com.example.thewitcherrpg.databinding.CustomDialogCharWeaponBinding
@@ -35,6 +37,9 @@ class EquipmentFragment : Fragment() {
     ): View {
         _binding = FragmentEquipmentBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainCharacterViewModel
 
         binding.customTitle.setTitle("Equipment")
         binding.customTitle.setTitleSize(20F)
@@ -67,10 +72,29 @@ class EquipmentFragment : Fragment() {
                         binding.equippedRowShield.setItem(mainCharacterViewModel.equippedShield.value)
                     }
                 }
+                launch {
+                    mainCharacterViewModel.currentEnc.collectLatest { value ->
+                        if (value > mainCharacterViewModel.encWithModifier.value) {
+                            binding.textView53.setTextColor(
+                                ContextCompat.getColor(
+                                    TheWitcherTRPGApp.getContext()!!,
+                                    R.color.light_red
+                                )
+                            )
+                        } else {
+                            binding.textView53.setTextColor(
+                                ContextCompat.getColor(
+                                    TheWitcherTRPGApp.getContext()!!,
+                                    R.color.white
+                                )
+                            )
+                        }
+                    }
+                }
             }
         }
 
-        when (mainCharacterViewModel.equippedWeapon.value?.type){
+        when (mainCharacterViewModel.equippedWeapon.value?.type) {
             WeaponTypes.SWORD -> binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
             WeaponTypes.SMALL_BLADE -> binding.equippedRowWeapon.setIcon(R.drawable.ic_dagger)
             WeaponTypes.AXE -> binding.equippedRowWeapon.setIcon(R.drawable.ic_axe)
@@ -87,7 +111,8 @@ class EquipmentFragment : Fragment() {
             if (mainCharacterViewModel.equippedWeapon.value != null)
                 showWeaponDialog()
             else {
-                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(3)
+                val action =
+                    EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(3)
                 Navigation.findNavController(view).navigate(action)
             }
         }
@@ -97,7 +122,8 @@ class EquipmentFragment : Fragment() {
             if (mainCharacterViewModel.equippedShield.value != null)
                 showArmorDialog(mainCharacterViewModel.equippedShield.value)
             else {
-                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(4)
+                val action =
+                    EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(4)
                 Navigation.findNavController(view).navigate(action)
             }
         }
@@ -107,7 +133,8 @@ class EquipmentFragment : Fragment() {
             if (mainCharacterViewModel.equippedHead.value != null)
                 showArmorDialog(mainCharacterViewModel.equippedHead.value)
             else {
-                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(0)
+                val action =
+                    EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(0)
                 Navigation.findNavController(view).navigate(action)
             }
         }
@@ -117,7 +144,8 @@ class EquipmentFragment : Fragment() {
             if (mainCharacterViewModel.equippedChest.value != null)
                 showArmorDialog(mainCharacterViewModel.equippedChest.value)
             else {
-                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(1)
+                val action =
+                    EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(1)
                 Navigation.findNavController(view).navigate(action)
             }
         }
@@ -127,7 +155,8 @@ class EquipmentFragment : Fragment() {
             if (mainCharacterViewModel.equippedLegs.value != null)
                 showArmorDialog(mainCharacterViewModel.equippedLegs.value)
             else {
-                val action = EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(2)
+                val action =
+                    EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(2)
                 Navigation.findNavController(view).navigate(action)
             }
         }
@@ -149,7 +178,8 @@ class EquipmentFragment : Fragment() {
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        val bind: CustomDialogCharWeaponBinding = CustomDialogCharWeaponBinding.inflate(layoutInflater)
+        val bind: CustomDialogCharWeaponBinding =
+            CustomDialogCharWeaponBinding.inflate(layoutInflater)
 
         val weaponItem = mainCharacterViewModel.equippedWeapon.value!!
         bind.weaponItem = weaponItem
@@ -160,7 +190,7 @@ class EquipmentFragment : Fragment() {
         bind.buttonRemove.visibility = View.GONE
         bind.buttonEquip.text = "Unequip"
 
-        bind.buttonEquip.setOnClickListener{
+        bind.buttonEquip.setOnClickListener {
             mainCharacterViewModel.unEquipWeapon(weaponItem)
             dialog.dismiss()
         }
@@ -169,11 +199,11 @@ class EquipmentFragment : Fragment() {
             dialog.dismiss()
         }
 
-        bind.imageViewMinus.setOnClickListener{
+        bind.imageViewMinus.setOnClickListener {
             mainCharacterViewModel.onReliabilityChange(weaponItem, false)
             bind.textCurrentReliability.text = weaponItem.currentReliability.toString()
         }
-        bind.imageViewPlus.setOnClickListener{
+        bind.imageViewPlus.setOnClickListener {
             mainCharacterViewModel.onReliabilityChange(weaponItem, true)
             bind.textCurrentReliability.text = weaponItem.currentReliability.toString()
         }
@@ -272,34 +302,30 @@ class EquipmentFragment : Fragment() {
             }
 
             bind.imageViewPlus.setOnClickListener {
-                if (bind.textCurrentSP.text.toString().toInt() < armorItem.stoppingPower) {
-                    bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(
-                        armorItem,
-                        increase = true,
-                        armorItem.equipmentType
-                    ).toString()
-                }
+                bind.textCurrentSP.text = mainCharacterViewModel.onItemSPChange(
+                    armorItem,
+                    increase = true,
+                    armorItem.equipmentType
+                ).toString()
             }
 
             bind.imageViewPlusLSP.setOnClickListener {
-                if (bind.textCurrentLeftSP.text.toString().toInt() < armorItem.stoppingPower) {
-                    when (armorItem.equipmentType) {
-                        EquipmentTypes.LIGHT_LEGS,
-                        EquipmentTypes.MEDIUM_LEGS,
-                        EquipmentTypes.HEAVY_LEGS ->
-                            bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
-                                armorItem,
-                                increase = true,
-                                EquipmentTypes.LLEG
-                            ).toString()
+                when (armorItem.equipmentType) {
+                    EquipmentTypes.LIGHT_LEGS,
+                    EquipmentTypes.MEDIUM_LEGS,
+                    EquipmentTypes.HEAVY_LEGS ->
+                        bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
+                            armorItem,
+                            increase = true,
+                            EquipmentTypes.LLEG
+                        ).toString()
 
-                        EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
-                            bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
-                                armorItem,
-                                increase = true,
-                                EquipmentTypes.LARM
-                            ).toString()
-                    }
+                    EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
+                        bind.textCurrentLeftSP.text = mainCharacterViewModel.onItemSPChange(
+                            armorItem,
+                            increase = true,
+                            EquipmentTypes.LARM
+                        ).toString()
                 }
             }
 
@@ -326,24 +352,22 @@ class EquipmentFragment : Fragment() {
             }
 
             bind.imageViewPlusRSP.setOnClickListener {
-                if (bind.textCurrentRightSP.text.toString().toInt() < armorItem.stoppingPower) {
-                    when (armorItem.equipmentType) {
-                        EquipmentTypes.LIGHT_LEGS,
-                        EquipmentTypes.MEDIUM_LEGS,
-                        EquipmentTypes.HEAVY_LEGS ->
-                            bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
-                                armorItem,
-                                increase = true,
-                                EquipmentTypes.RLEG
-                            ).toString()
+                when (armorItem.equipmentType) {
+                    EquipmentTypes.LIGHT_LEGS,
+                    EquipmentTypes.MEDIUM_LEGS,
+                    EquipmentTypes.HEAVY_LEGS ->
+                        bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
+                            armorItem,
+                            increase = true,
+                            EquipmentTypes.RLEG
+                        ).toString()
 
-                        EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
-                            bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
-                                armorItem,
-                                increase = true,
-                                EquipmentTypes.RARM
-                            ).toString()
-                    }
+                    EquipmentTypes.LIGHT_CHEST, EquipmentTypes.MEDIUM_CHEST, EquipmentTypes.HEAVY_CHEST ->
+                        bind.textCurrentRightSP.text = mainCharacterViewModel.onItemSPChange(
+                            armorItem,
+                            increase = true,
+                            EquipmentTypes.RARM
+                        ).toString()
                 }
             }
 

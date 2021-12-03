@@ -28,7 +28,7 @@
             android:exported="true"
             android:label="Character Sheet"
             android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
-            android:windowSoftInputMode="adjustNothing"
+            android:windowSoftInputMode="adjustResize"
             tools:node="merge"
             />
         <activity

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Witcher RPG</string>
+    <string name="app_name">The Witcher TRPG Companion App</string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>
@@ -13,4 +13,5 @@
     <string name="no_characters">No Characters</string>
     <string name="add_new_character">Add new character</string>
     <string name="tap_the_add_button_to_create_a_character">Tap the Add button to create a character.</string>
+    <string name="current_ip">CURRENT IP</string>
 </resources>
