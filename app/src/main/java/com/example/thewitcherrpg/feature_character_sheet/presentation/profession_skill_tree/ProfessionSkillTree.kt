@@ -67,7 +67,7 @@ class ProfessionSkillTree : Fragment() {
             }
         }
         binding.etIP.setOnClickListener {
-            showDialogDisclaimer()
+            showDialogIP()
         }
 
         lifecycleScope.launch {

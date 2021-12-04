@@ -28,7 +28,9 @@
                 android:layout_marginLeft="-20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="-20dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewType"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,117 +39,130 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:text='@{"Damage Type: " + weaponItem.damageType}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewWA"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/customTitle"
-                android:text='@{"Damage Type: " + weaponItem.damageType}' />
+                app:layout_constraintTop_toBottomOf="@+id/customTitle" />
 
             <TextView
                 android:id="@+id/textViewWA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Weapon Accuracy: " + weaponItem.weaponAccuracy}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewAvailability"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewType"
-                android:text='@{"Weapon Accuracy: " + weaponItem.weaponAccuracy}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewType" />
 
             <TextView
                 android:id="@+id/textViewAvailability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Availability: " + weaponItem.availability}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewDamage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewWA"
-                android:text='@{"Availability: " + weaponItem.availability}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewWA" />
 
             <TextView
                 android:id="@+id/textViewDamage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Damage: " + weaponItem.damage}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewReliability"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAvailability"
-                android:text='@{"Damage: " + weaponItem.damage}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewAvailability" />
 
             <TextView
                 android:id="@+id/textViewReliability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Reliability: " + weaponItem.reliability}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewHands"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDamage"
-                android:text='@{"Reliability: " + weaponItem.reliability}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewDamage" />
 
             <TextView
                 android:id="@+id/textViewHands"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Hands: " + weaponItem.hands}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewRNG"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewReliability"
-                android:text='@{"Hands: " + weaponItem.hands}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewReliability" />
 
             <TextView
                 android:id="@+id/textViewRNG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Range: " + weaponItem.rng}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewEffect"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewHands"
-                android:text='@{"Range: " + weaponItem.rng}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewHands" />
 
             <TextView
                 android:id="@+id/textViewEffect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Effect: " + weaponItem.effect}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewConc"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRNG"
-                android:text='@{"Effect: " + weaponItem.effect}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewRNG" />
 
             <TextView
                 android:id="@+id/textViewConc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Concealment: " + weaponItem.concealment}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewEN"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewEffect"
-                android:text='@{"Concealment: " + weaponItem.concealment}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewEffect" />
 
             <TextView
                 android:id="@+id/textViewEN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Enhancements: " + weaponItem.enhancements}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewWeight"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewConc"
-                android:text='@{"Enhancements: " + weaponItem.enhancements}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewConc" />
 
             <TextView
                 android:id="@+id/textViewWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Weight: " + weaponItem.weight}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewCost"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewEN"
-                android:text='@{"Weight: " + weaponItem.weight}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewEN" />
 
             <TextView
                 android:id="@+id/textViewCost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text='@{"Cost: " + weaponItem.cost}'
+                app:layout_constraintBottom_toTopOf="@+id/textViewCurrentReliability"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewWeight"
-                android:text='@{"Cost: " + weaponItem.cost}' />
+                app:layout_constraintTop_toBottomOf="@+id/textViewWeight" />
 
             <TextView
                 android:id="@+id/textViewCurrentReliability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="Current Reliability: "
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/etNotesLayout"
                 app:layout_constraintStart_toStartOf="@+id/textViewCost"
                 app:layout_constraintTop_toBottomOf="@+id/textViewCost" />
 
@@ -195,17 +210,49 @@
                 app:layout_constraintStart_toEndOf="@+id/textCurrentReliability"
                 app:layout_constraintTop_toTopOf="@+id/textViewCurrentReliability" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etNotesLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Equipment Notes"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="1dp"
+                app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCurrentReliability"
+                tools:ignore="HardcodedText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="4"
+                    android:maxLength="150"
+                    android:maxLines="4"
+                    android:text="@={weaponItem.equipmentNote}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/buttonCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/outline_bkg"
                 android:text="Cancel"
                 android:textColor="@color/gray"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textViewCost"
-                app:layout_constraintTop_toBottomOf="@+id/textViewCurrentReliability" />
+                app:layout_constraintTop_toBottomOf="@+id/etNotesLayout" />
 
             <Button
                 android:id="@+id/buttonRemove"

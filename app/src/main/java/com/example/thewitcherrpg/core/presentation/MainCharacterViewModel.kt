@@ -278,6 +278,9 @@ class MainCharacterViewModel @Inject constructor(
     val maxSTAWithModifier = _maxSTAWithModifier.asStateFlow()
 
     //Skills
+    private var _definingSkillValue = MutableStateFlow(0)
+    val definingSkillValue = _definingSkillValue.asStateFlow()
+
     private var _awareness = MutableStateFlow(0)
     val awareness = _awareness.asStateFlow()
 

@@ -370,24 +370,10 @@ class InventoryFragment : Fragment() {
         val bind: CustomDialogCharArmorBinding =
             CustomDialogCharArmorBinding.inflate(layoutInflater)
 
-        val stoppingPower = "Stopping Power (SP): " + item.stoppingPower
-        val availability = "Availability: " + item.availability
-        val armorEnhancement = "Armor Enhancement: " + item.armorEnhancement
-        val effect = "Effect: " + item.effect
-        val encValue = "Encumbrance Value: " + item.encumbranceValue
-        val weight = "Weight: " + item.weight
-        val price = "Cost: " + item.cost + " Crowns"
+        bind.equipmentItem = item
 
         bind.customTitle.setTitle(item.name)
         bind.customTitle.setTitleSize(17F)
-        bind.textViewSP.text = stoppingPower
-        bind.textViewAvailability.text = availability
-        bind.textViewAE.text = armorEnhancement
-        bind.textViewEffect.text = effect
-        bind.textViewEV.text = encValue
-        bind.textViewWeight.text = weight
-        bind.textViewCost.text = price
-        bind.textCurrentSP.text = item.currentStoppingPower.toString()
 
         bind.imageViewMinus.visibility = View.GONE
         bind.imageViewPlus.visibility = View.GONE

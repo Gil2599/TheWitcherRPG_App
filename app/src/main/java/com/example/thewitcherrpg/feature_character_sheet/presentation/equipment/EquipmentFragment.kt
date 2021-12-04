@@ -225,26 +225,13 @@ class EquipmentFragment : Fragment() {
         val bind: CustomDialogCharArmorBinding =
             CustomDialogCharArmorBinding.inflate(layoutInflater)
 
+        bind.equipmentItem = armorItem
+
         //Check if there is an item equipped in this slot
         if (armorItem != null) {
-            val stoppingPower = "Stopping Power (SP): " + armorItem.stoppingPower
-            val availability = "Availability: " + armorItem.availability
-            val armorEnhancement = "Armor Enhancement: " + armorItem.armorEnhancement
-            val effect = "Effect: " + armorItem.effect
-            val encumbValue = "Encumbrance Value: " + armorItem.encumbranceValue
-            val weight = "Weight: " + armorItem.weight
-            val price = "Cost: " + armorItem.cost + " Crowns"
-            val type = armorItem.equipmentType
 
             bind.customTitle.setTitle(armorItem.name)
             bind.customTitle.setTitleSize(17F)
-            bind.textViewSP.text = stoppingPower
-            bind.textViewAvailability.text = availability
-            bind.textViewAE.text = armorEnhancement
-            bind.textViewEffect.text = effect
-            bind.textViewEV.text = encumbValue
-            bind.textViewWeight.text = weight
-            bind.textViewCost.text = price
 
             when (armorItem.equipmentType) {
                 EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> {

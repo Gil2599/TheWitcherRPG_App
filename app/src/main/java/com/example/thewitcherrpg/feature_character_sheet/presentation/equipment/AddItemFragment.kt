@@ -279,23 +279,10 @@ class AddItemFragment : Fragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         val bind: CustomDialogAddArmorBinding = CustomDialogAddArmorBinding.inflate(layoutInflater)
 
-        val stoppingPower = "Stopping Power: " + armorItem.stoppingPower
-        val availability = "Availability: " + armorItem.availability
-        val armorEnhancement = "Armor Enhancement: " + armorItem.armorEnhancement
-        val effect = "Effect: " + armorItem.effect
-        val encValue = "Encumbrance Value: " + armorItem.encumbranceValue
-        val weight = "Weight: " + armorItem.weight
-        val price = "Cost: " + armorItem.cost + " Crowns"
+        bind.equipmentItem = armorItem
 
         bind.customTitle.setTitle(armorItem.name)
         bind.customTitle.setTitleSize(17F)
-        bind.textViewSP.text = stoppingPower
-        bind.textViewAvailability.text = availability
-        bind.textViewAE.text = armorEnhancement
-        bind.textViewEffect.text = effect
-        bind.textViewEV.text = encValue
-        bind.textViewWeight.text = weight
-        bind.textViewCost.text = price
 
         bind.buttonCancel.setOnClickListener {
             dialog.dismiss()
@@ -447,23 +434,11 @@ class AddItemFragment : Fragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         val bind: CustomDialogAddArmorBinding = CustomDialogAddArmorBinding.inflate(layoutInflater)
 
-        val stoppingPower = "Stopping Power: " + armorItem.stoppingPower
-        val availability = "Covers: " + armorItem.cover
-        val armorEnhancement = "Armor Enhancement: " + armorItem.armorEnhancement
-        val effect = "Effect: " + armorItem.effect
-        val encValue = "Encumbrance Value: " + armorItem.encumbranceValue
-        val weight = "Weight: " + armorItem.weight
-        val price = "Cost: " + armorItem.cost + " Crowns"
+        bind.equipmentItem = null
+        bind.armorSetItem = armorItem
 
         bind.customTitle.setTitle(armorItem.name)
         bind.customTitle.setTitleSize(17F)
-        bind.textViewSP.text = stoppingPower
-        bind.textViewAvailability.text = availability
-        bind.textViewAE.text = armorEnhancement
-        bind.textViewEffect.text = effect
-        bind.textViewEV.text = encValue
-        bind.textViewWeight.text = weight
-        bind.textViewCost.text = price
 
         bind.buttonCancel.setOnClickListener {
             dialog.dismiss()

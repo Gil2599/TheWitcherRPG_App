@@ -34,7 +34,8 @@
         <activity
             android:name=".feature_character_list.presentation.LauncherActivity"
             android:exported="true"
-            tools:node="merge">
+            tools:node="merge"
+            android:label="The Witcher TRPG">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

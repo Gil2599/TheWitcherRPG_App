@@ -1,328 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="equipmentItem"
+            type="com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem" />
+
+        <variable
+            name="armorSetItem"
+            type="com.example.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet" />
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/row_bkg"
-        android:padding="20dp">
+        android:layout_height="wrap_content">
 
-        <com.example.thewitcherrpg.core.presentation.CustomTitleView
-            android:id="@+id/customTitle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="-20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@drawable/row_bkg"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/textViewSP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customTitle"
-            tools:text="Stopping Power: 10" />
-
-        <TextView
-            android:id="@+id/textViewAvailability"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSP"
-            tools:text="Availability: C" />
-
-        <TextView
-            android:id="@+id/textViewAE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAvailability"
-            tools:text="Armor Enhancement: 1" />
-
-        <TextView
-            android:id="@+id/textViewEffect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCost"
-            tools:text="Effect: N/A" />
-
-        <TextView
-            android:id="@+id/textViewEV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAE"
-            tools:text="Encumbrance Value: 1" />
-
-        <TextView
-            android:id="@+id/textViewWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEV"
-            tools:text="Weight: 1.5" />
-
-        <TextView
-            android:id="@+id/textViewCost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewWeight"
-            tools:text="Cost: 100" />
-
-        <View
-            android:id="@+id/view9"
-            android:layout_width="match_parent"
-            android:layout_height="32sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEffect" />
-
-        <Button
-            android:id="@+id/buttonCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/outline_bkg"
-            android:text="Cancel"
-            android:textColor="@color/gray"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textViewCost"
-            app:layout_constraintTop_toBottomOf="@+id/etNotesLayout" />
-
-        <Button
-            android:id="@+id/buttonRemove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/outline_bkg"
-            android:text="Remove"
-            android:textColor="@color/gray"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/buttonEquipUnequip"
-            app:layout_constraintTop_toTopOf="@+id/buttonEquipUnequip" />
-
-        <Button
-            android:id="@+id/buttonEquipUnequip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline_bkg"
-            android:text="Equip"
-            android:textColor="@color/gray"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
-
-        <TextView
-            android:id="@+id/textViewCurrentSP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Current SP: "
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textViewSP"
-            app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-        <ImageView
-            android:id="@+id/imageViewMinus"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/ic_minus_icon"
-            android:clickable="true"
-            android:foreground="@drawable/outline_bkg"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/textCurrentSP"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/textViewCurrentSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
-
-        <TextView
-            android:id="@+id/textCurrentSP"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="0"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewPlus"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageViewMinus"
-            app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
-
-        <ImageView
-            android:id="@+id/imageViewPlus"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/ic_baseline_add_24"
-            android:clickable="true"
-            android:foreground="@drawable/outline_bkg"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toEndOf="@+id/textCurrentSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
-
-        <TextView
-            android:id="@+id/textViewLeftSP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Left Arm SP: "
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textViewCurrentSP"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSP" />
-
-        <ImageView
-            android:id="@+id/imageViewMinusLSP"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/ic_minus_icon"
-            android:clickable="true"
-            android:foreground="@drawable/outline_bkg"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/textCurrentLeftSP"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/textViewLeftSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
-
-        <TextView
-            android:id="@+id/textCurrentLeftSP"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="0"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewPlusLSP"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageViewMinusLSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
-
-        <ImageView
-            android:id="@+id/imageViewPlusLSP"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/ic_baseline_add_24"
-            android:clickable="true"
-            android:foreground="@drawable/outline_bkg"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toEndOf="@+id/textCurrentLeftSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
-
-        <TextView
-            android:id="@+id/textViewRightSP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Right Arm SP: "
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/etNotesLayout"
-            app:layout_constraintStart_toStartOf="@+id/textViewLeftSP"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLeftSP" />
-
-        <ImageView
-            android:id="@+id/imageViewMinusRSP"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/ic_minus_icon"
-            android:clickable="true"
-            android:foreground="@drawable/outline_bkg"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/textCurrentRightSP"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/textViewRightSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
-
-        <TextView
-            android:id="@+id/textCurrentRightSP"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="0"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewPlusRSP"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageViewMinusRSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
-
-        <ImageView
-            android:id="@+id/imageViewPlusRSP"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/ic_baseline_add_24"
-            android:clickable="true"
-            android:foreground="@drawable/outline_bkg"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toEndOf="@+id/textCurrentRightSP"
-            app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etNotesLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Equipment Notes"
-            app:boxCornerRadiusBottomEnd="5dp"
-            app:boxCornerRadiusBottomStart="5dp"
-            app:boxCornerRadiusTopEnd="5dp"
-            app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="1dp"
-            app:boxStrokeWidthFocused="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/textViewRightSP"
-            app:layout_constraintTop_toBottomOf="@+id/textViewRightSP"
-            tools:ignore="HardcodedText">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNotes"
+            <com.example.thewitcherrpg.core.presentation.CustomTitleView
+                android:id="@+id/customTitle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textCapSentences|textMultiLine"
-                android:lines="4"
-                android:maxLength="150"
-                android:maxLines="4"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="-20dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewSP"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/textViewSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewAvailability"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customTitle"
+                tools:text='@{equipmentItem != null ? "Stopping Power: " + equipmentItem.stoppingPower : "Stopping Power: " + armorSetItem.stoppingPower}' />
+
+            <TextView
+                android:id="@+id/textViewAvailability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewAE"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSP"
+                tools:text='@{equipmentItem != null ? "Availablity: " + equipmentItem.availability : "Availablity: " + armorSetItem.availability}' />
+
+            <TextView
+                android:id="@+id/textViewAE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewEV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAvailability"
+                tools:text='@{equipmentItem != null ? "Armor Enhancement: " + equipmentItem.armorEnhancement : "Armor Enhancement: " + armorSetItem.armorEnhancement}' />
+
+            <TextView
+                android:id="@+id/textViewEffect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewCurrentSP"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCost"
+                tools:text='@{equipmentItem != null ? "Effect: " + equipmentItem.effect : "Effect: " + armorSetItem.effect}' />
+
+            <TextView
+                android:id="@+id/textViewEV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewWeight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAE"
+                tools:text='@{equipmentItem != null ? "Encumbrance Value: " + equipmentItem.encumbranceValue : "Encumbrance Value: " + armorSetItem.encumbranceValue}' />
+
+            <TextView
+                android:id="@+id/textViewWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewCost"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEV"
+                tools:text='@{equipmentItem != null ? "Weight: " + equipmentItem.weight : "Weight: " + armorSetItem.weight}' />
+
+            <TextView
+                android:id="@+id/textViewCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewEffect"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewWeight"
+                tools:text='@{equipmentItem != null ? "Cost: " + equipmentItem.cost : "Cost: " + armorSetItem.cost}' />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/outline_bkg"
+                android:text="Cancel"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textViewCost"
+                app:layout_constraintTop_toBottomOf="@+id/etNotesLayout" />
+
+            <Button
+                android:id="@+id/buttonRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/outline_bkg"
+                android:text="Remove"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/buttonEquipUnequip"
+                app:layout_constraintTop_toTopOf="@+id/buttonEquipUnequip" />
+
+            <Button
+                android:id="@+id/buttonEquipUnequip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/outline_bkg"
+                android:text="Equip"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
+
+            <TextView
+                android:id="@+id/textViewCurrentSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Current SP: "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textViewLeftSP"
+                app:layout_constraintStart_toStartOf="@+id/textViewSP"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEffect" />
+
+            <ImageView
+                android:id="@+id/imageViewMinus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_minus_icon"
+                android:clickable="true"
+                android:foreground="@drawable/outline_bkg"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/textCurrentSP"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/textViewCurrentSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
+
+            <TextView
+                android:id="@+id/textCurrentSP"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewPlus"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageViewMinus"
+                app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP"
+                tools:text='@{``+ equipmentItem.currentStoppingPower}' />
+
+            <ImageView
+                android:id="@+id/imageViewPlus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/ic_baseline_add_24"
+                android:clickable="true"
+                android:foreground="@drawable/outline_bkg"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSP"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toEndOf="@+id/textCurrentSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
+
+            <TextView
+                android:id="@+id/textViewLeftSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Left Arm SP: "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textViewRightSP"
+                app:layout_constraintStart_toStartOf="@+id/textViewCurrentSP"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSP" />
+
+            <ImageView
+                android:id="@+id/imageViewMinusLSP"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_minus_icon"
+                android:clickable="true"
+                android:foreground="@drawable/outline_bkg"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/textCurrentLeftSP"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/textViewLeftSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
+
+            <TextView
+                android:id="@+id/textCurrentLeftSP"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="0"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewPlusLSP"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageViewMinusLSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
+
+            <ImageView
+                android:id="@+id/imageViewPlusLSP"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/ic_baseline_add_24"
+                android:clickable="true"
+                android:foreground="@drawable/outline_bkg"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewLeftSP"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toEndOf="@+id/textCurrentLeftSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewLeftSP" />
+
+            <TextView
+                android:id="@+id/textViewRightSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Right Arm SP: "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/etNotesLayout"
+                app:layout_constraintStart_toStartOf="@+id/textViewLeftSP"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLeftSP"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <ImageView
+                android:id="@+id/imageViewMinusRSP"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_minus_icon"
+                android:clickable="true"
+                android:foreground="@drawable/outline_bkg"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/textCurrentRightSP"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/textViewRightSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
+
+            <TextView
+                android:id="@+id/textCurrentRightSP"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="0"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewPlusRSP"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageViewMinusRSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
+
+            <ImageView
+                android:id="@+id/imageViewPlusRSP"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/ic_baseline_add_24"
+                android:clickable="true"
+                android:foreground="@drawable/outline_bkg"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewRightSP"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toEndOf="@+id/textCurrentRightSP"
+                app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etNotesLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Equipment Notes"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="1dp"
+                app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/textViewRightSP"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRightSP"
+                tools:ignore="HardcodedText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="4"
+                    android:text="@={equipmentItem.equipmentNote}"
+                    android:maxLength="150"
+                    android:maxLines="4" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

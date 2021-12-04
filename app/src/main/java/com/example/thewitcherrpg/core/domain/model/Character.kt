@@ -88,6 +88,7 @@ data class Character(
     var kick: String = "",
 
     //Skills
+    var definingSkillValue: Int = 0,
     var awareness: Int = 0,
     var awarenessModifier: Int = 0,
     var business: Int = 0,
