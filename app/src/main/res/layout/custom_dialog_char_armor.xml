@@ -97,13 +97,14 @@
             android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/outline_bkg"
             android:text="Cancel"
             android:textColor="@color/gray"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textViewCost"
-            app:layout_constraintTop_toBottomOf="@+id/textViewRightSP" />
+            app:layout_constraintTop_toBottomOf="@+id/etNotesLayout" />
 
         <Button
             android:id="@+id/buttonRemove"
@@ -245,6 +246,7 @@
             android:text="Right Arm SP: "
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/etNotesLayout"
             app:layout_constraintStart_toStartOf="@+id/textViewLeftSP"
             app:layout_constraintTop_toBottomOf="@+id/textViewLeftSP" />
 
@@ -291,6 +293,36 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toEndOf="@+id/textCurrentRightSP"
             app:layout_constraintTop_toTopOf="@+id/textViewRightSP" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etNotesLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Equipment Notes"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/textViewRightSP"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRightSP"
+            tools:ignore="HardcodedText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNotes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textCapSentences|textMultiLine"
+                android:lines="4"
+                android:maxLength="150"
+                android:maxLines="4"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

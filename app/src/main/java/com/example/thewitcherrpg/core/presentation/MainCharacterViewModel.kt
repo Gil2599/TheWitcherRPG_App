@@ -1631,7 +1631,8 @@ class MainCharacterViewModel @Inject constructor(
                     _commonSpeech.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _commonSpeech.value = pair.second
@@ -1644,7 +1645,8 @@ class MainCharacterViewModel @Inject constructor(
                     _elderSpeech.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _elderSpeech.value = pair.second
@@ -1657,7 +1659,8 @@ class MainCharacterViewModel @Inject constructor(
                     _dwarven.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _dwarven.value = pair.second
@@ -1670,7 +1673,8 @@ class MainCharacterViewModel @Inject constructor(
                     _monsterLore.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _monsterLore.value = pair.second
@@ -1709,7 +1713,8 @@ class MainCharacterViewModel @Inject constructor(
                     _tactics.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _tactics.value = pair.second
@@ -2073,7 +2078,8 @@ class MainCharacterViewModel @Inject constructor(
                     _alchemy.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _alchemy.value = pair.second
@@ -2086,7 +2092,8 @@ class MainCharacterViewModel @Inject constructor(
                     _crafting.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _crafting.value = pair.second
@@ -2151,7 +2158,8 @@ class MainCharacterViewModel @Inject constructor(
                     _trapCrafting.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _trapCrafting.value = pair.second
@@ -2177,7 +2185,8 @@ class MainCharacterViewModel @Inject constructor(
                     _hexWeaving.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _hexWeaving.value = pair.second
@@ -2203,7 +2212,8 @@ class MainCharacterViewModel @Inject constructor(
                     _spellCasting.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _spellCasting.value = pair.second
@@ -2216,7 +2226,8 @@ class MainCharacterViewModel @Inject constructor(
                     _resistMagic.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _resistMagic.value = pair.second
@@ -2242,7 +2253,8 @@ class MainCharacterViewModel @Inject constructor(
                     _ritualCrafting.value,
                     _ip.value,
                     increase,
-                    _inCharacterCreation.value
+                    _inCharacterCreation.value,
+                    doubleCost = true
                 ).data
                 if (pair != null) {
                     _ritualCrafting.value = pair.second

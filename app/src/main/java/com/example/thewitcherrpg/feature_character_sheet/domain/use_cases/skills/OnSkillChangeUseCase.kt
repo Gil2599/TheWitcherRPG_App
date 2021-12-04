@@ -11,7 +11,8 @@ class OnSkillChangeUseCase @Inject constructor() {
         value: Int,
         ip: Int,
         increase: Boolean,
-        inCharacterCreation: Boolean
+        inCharacterCreation: Boolean,
+        doubleCost: Boolean = false
     ): Resource<Pair<Int, Int>> {
 
         var newIP = ip
@@ -19,12 +20,12 @@ class OnSkillChangeUseCase @Inject constructor() {
 
         if (!inCharacterCreation) {
             if (increase) {
-                if (ip >= newVal) {
+                if (ip >= newVal || (doubleCost && ip >= newVal*2)) {
                     if (newVal == 0) {
                         newVal = 1
-                        newIP -= 1
+                        newIP -= if (doubleCost) 2 else 1
                     } else {
-                        newIP -= newVal
+                        newIP -= if (doubleCost) newVal*2 else newVal
                         newVal += 1
                     }
                 } else return Resource.Error("Not enough IP")
@@ -33,8 +34,10 @@ class OnSkillChangeUseCase @Inject constructor() {
             if (!increase) {
                 if (newVal > 0) {
 
-                    newIP += if (newVal == 1) 1
-                    else (newVal - 1)
+                    newIP += if (newVal == 1){
+                        if (doubleCost) 2 else 1
+                    }
+                    else if (!doubleCost) (newVal - 1) else (newVal - 1)*2
                     newVal -= 1
 
                 } else return Resource.Error("Cannot go below 0")
@@ -42,7 +45,7 @@ class OnSkillChangeUseCase @Inject constructor() {
         } else {
             if (increase) {
                 if (ip > 0 && newVal < 6) {
-                    newIP -= 1
+                    newIP -= if (doubleCost) 2 else 1
                     newVal += 1
                 } else return Resource.Error("Not enough IP")
             }
@@ -50,7 +53,7 @@ class OnSkillChangeUseCase @Inject constructor() {
             if (!increase) {
                 if (newVal > 0) {
 
-                    newIP += 1
+                    newIP += if (doubleCost) 2 else 1
                     newVal -= 1
                 } else return Resource.Error("Cannot go below 0")
             }
