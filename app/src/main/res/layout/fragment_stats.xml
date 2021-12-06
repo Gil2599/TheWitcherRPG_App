@@ -13,6 +13,8 @@
         android:id="@+id/TopConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="beforeDescendants"
         android:orientation="vertical"
         tools:context=".feature_character_sheet.presentation.stats.StatsFragment">
 

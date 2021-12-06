@@ -11,7 +11,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="beforeDescendants">
 
         <TextView
             android:id="@+id/textIP"
@@ -54,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:gravity="center"
                 android:clickable="true"
                 android:inputType="number"
@@ -102,10 +105,43 @@
                     android:textStyle="bold|italic" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etPracticedParanoia"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etMagicTraining"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etWitcherTraining"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etWellTraveled"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
                     android:id="@+id/editText1"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.awarenessModifier}"
+                    app:skillValue="@{MainViewModel.awareness}"
                     app:myTag="Awareness" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -113,6 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.businessModifier}"
+                    app:skillValue="@{MainViewModel.business}"
                     app:myTag="Business" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -120,6 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.deductionModifier}"
+                    app:skillValue="@{MainViewModel.deduction}"
                     app:myTag="Deduction" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -127,6 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.educationModifier}"
+                    app:skillValue="@{MainViewModel.education}"
                     app:myTag="Education" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -134,6 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.commonSpeechModifier}"
+                    app:skillValue="@{MainViewModel.commonSpeech}"
                     app:myTag="Common Speech" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -141,6 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.elderSpeechModifier}"
+                    app:skillValue="@{MainViewModel.elderSpeech}"
                     app:myTag="Elder Speech" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -148,6 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.dwarvenModifier}"
+                    app:skillValue="@{MainViewModel.dwarven}"
                     app:myTag="Dwarven" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -155,6 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.monsterLoreModifier}"
+                    app:skillValue="@{MainViewModel.monsterLore}"
                     app:myTag="Monster Lore" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -162,6 +205,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.socialEtiquetteModifier}"
+                    app:skillValue="@{MainViewModel.socialEtiquette}"
                     app:myTag="Social Etiquette" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -169,6 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.streetwiseModifier}"
+                    app:skillValue="@{MainViewModel.streetwise}"
                     app:myTag="Streetwise" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -176,6 +221,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.tacticsModifier}"
+                    app:skillValue="@{MainViewModel.tactics}"
                     app:myTag="Tactics" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -183,6 +229,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.teachingModifier}"
+                    app:skillValue="@{MainViewModel.teaching}"
                     app:myTag="Teaching" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -190,6 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.wildernessSurvivalModifier}"
+                    app:skillValue="@{MainViewModel.wildernessSurvival}"
                     app:myTag="Wilderness Survival" />
 
                 <TextView
@@ -209,6 +257,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.brawlingModifier}"
+                    app:skillValue="@{MainViewModel.brawling}"
                     app:myTag="Brawling" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -216,6 +265,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.dodgeEscapeModifier}"
+                    app:skillValue="@{MainViewModel.dodgeEscape}"
                     app:myTag="Dodge/Escape" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -223,6 +273,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.meleeModifier}"
+                    app:skillValue="@{MainViewModel.melee}"
                     app:myTag="Melee" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -230,6 +281,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.ridingModifier}"
+                    app:skillValue="@{MainViewModel.riding}"
                     app:myTag="Riding" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -237,6 +289,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.sailingModifier}"
+                    app:skillValue="@{MainViewModel.sailing}"
                     app:myTag="Sailing" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -244,6 +297,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.smallBladesModifier}"
+                    app:skillValue="@{MainViewModel.smallBlades}"
                     app:myTag="Small Blades" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -251,6 +305,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.staffSpearModifier}"
+                    app:skillValue="@{MainViewModel.staffSpear}"
                     app:myTag="Staff/Spear" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -258,6 +313,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.swordsmanshipModifier}"
+                    app:skillValue="@{MainViewModel.swordsmanship}"
                     app:myTag="Swordsmanship" />
 
                 <TextView
@@ -277,6 +333,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.archeryModifier}"
+                    app:skillValue="@{MainViewModel.archery}"
                     app:myTag="Archery" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -284,6 +341,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.athleticsModifier}"
+                    app:skillValue="@{MainViewModel.athletics}"
                     app:myTag="Athletics" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -291,6 +349,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.crossbowModifier}"
+                    app:skillValue="@{MainViewModel.crossbow}"
                     app:myTag="Crossbow" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -298,6 +357,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.sleightOfHandModifier}"
+                    app:skillValue="@{MainViewModel.sleightOfHand}"
                     app:myTag="Sleight of Hand" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -305,6 +365,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.stealthModifier}"
+                    app:skillValue="@{MainViewModel.stealth}"
                     app:myTag="Stealth" />
 
                 <TextView
@@ -320,10 +381,19 @@
                     android:textStyle="bold|italic" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etToughAsNails"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
                     android:id="@+id/editText27"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.physiqueModifier}"
+                    app:skillValue="@{MainViewModel.physique}"
                     app:myTag="Physique" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -331,6 +401,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.enduranceModifier}"
+                    app:skillValue="@{MainViewModel.endurance}"
                     app:myTag="Endurance" />
 
                 <TextView
@@ -346,10 +417,27 @@
                     android:textStyle="bold|italic" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etInitiativeOfTheGods"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etBusking"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
                     android:id="@+id/editText29"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.charismaModifier}"
+                    app:skillValue="@{MainViewModel.charisma}"
                     app:myTag="Charisma" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -357,6 +445,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.deceitModifier}"
+                    app:skillValue="@{MainViewModel.deceit}"
                     app:myTag="Deceit" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -364,6 +453,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.fineArtsModifier}"
+                    app:skillValue="@{MainViewModel.fineArts}"
                     app:myTag="Fine Arts" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -371,6 +461,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.gamblingModifier}"
+                    app:skillValue="@{MainViewModel.gambling}"
                     app:myTag="Gambling" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -378,6 +469,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.groomingAndStyleModifier}"
+                    app:skillValue="@{MainViewModel.groomingAndStyle}"
                     app:myTag="Grooming and Style" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -385,6 +477,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.humanPerceptionModifier}"
+                    app:skillValue="@{MainViewModel.humanPerception}"
                     app:myTag="Human Perception" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -392,6 +485,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.leadershipModifier}"
+                    app:skillValue="@{MainViewModel.leadership}"
                     app:myTag="Leadership" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -399,6 +493,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.persuasionModifier}"
+                    app:skillValue="@{MainViewModel.persuasion}"
                     app:myTag="Persuasion" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -406,6 +501,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.performanceModifier}"
+                    app:skillValue="@{MainViewModel.performance}"
                     app:myTag="Performance" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -413,6 +509,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.seductionModifier}"
+                    app:skillValue="@{MainViewModel.seduction}"
                     app:myTag="Seduction" />
 
                 <TextView
@@ -428,10 +525,27 @@
                     android:textStyle="bold|italic" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etPatchJob"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                    android:id="@+id/etHealingHands"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    app:skillValue="@{MainViewModel.definingSkillValue}"
+                    app:myTag="DefiningSkill" />
+
+                <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
                     android:id="@+id/editText39"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.alchemyModifier}"
+                    app:skillValue="@{MainViewModel.alchemy}"
                     app:myTag="Alchemy" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -439,6 +553,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.craftingModifier}"
+                    app:skillValue="@{MainViewModel.crafting}"
                     app:myTag="Crafting" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -446,6 +561,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.disguiseModifier}"
+                    app:skillValue="@{MainViewModel.disguise}"
                     app:myTag="Disguise" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -453,6 +569,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.firstAidModifier}"
+                    app:skillValue="@{MainViewModel.firstAid}"
                     app:myTag="First Aid" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -460,6 +577,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.forgeryModifier}"
+                    app:skillValue="@{MainViewModel.forgery}"
                     app:myTag="Forgery" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -467,6 +585,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.pickLockModifier}"
+                    app:skillValue="@{MainViewModel.pickLock}"
                     app:myTag="Pick Lock" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -474,6 +593,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.trapCraftingModifier}"
+                    app:skillValue="@{MainViewModel.trapCrafting}"
                     app:myTag="Trap Crafting" />
 
                 <TextView
@@ -493,6 +613,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.courageModifier}"
+                    app:skillValue="@{MainViewModel.courage}"
                     app:myTag="Courage" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -500,6 +621,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.hexWeavingModifier}"
+                    app:skillValue="@{MainViewModel.hexWeaving}"
                     app:myTag="Hex Weaving" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -507,6 +629,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.intimidationModifier}"
+                    app:skillValue="@{MainViewModel.intimidation}"
                     app:myTag="Intimidation" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -514,6 +637,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.spellCastingModifier}"
+                    app:skillValue="@{MainViewModel.spellCasting}"
                     app:myTag="Spell Casting" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -521,6 +645,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.resistMagicModifier}"
+                    app:skillValue="@{MainViewModel.resistMagic}"
                     app:myTag="Resist Magic" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -528,6 +653,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.resistCoercionModifier}"
+                    app:skillValue="@{MainViewModel.resistCoercion}"
                     app:myTag="Resist Coercion" />
 
                 <com.example.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
@@ -535,6 +661,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     app:modifier="@{MainViewModel.ritualCraftingModifier}"
+                    app:skillValue="@{MainViewModel.ritualCrafting}"
                     app:myTag="Ritual Crafting" />
 
             </LinearLayout>

@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="beforeDescendants"
         tools:context=".feature_character_sheet.presentation.profession_skill_tree.ProfessionSkillTree">
 
         <ImageView
@@ -931,6 +933,7 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="5"

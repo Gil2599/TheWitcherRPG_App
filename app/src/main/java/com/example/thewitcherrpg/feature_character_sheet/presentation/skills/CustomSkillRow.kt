@@ -24,8 +24,14 @@ import com.google.android.material.snackbar.Snackbar
         type = CustomSkillRow::class,
         attribute = "modifier",
         method = "setModifier"
+    ),
+    InverseBindingMethod(
+        type = CustomSkillRow::class,
+        attribute = "skillValue",
+        method = "setSkillValue"
     )
 )
+
 
 class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
     LinearLayout(context, attributeSet) {
@@ -113,10 +119,12 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
 
         if (!professionSkill) {
             binding.editTextNumber.isEnabled = false
-            binding.textViewSkill.setTextColor(ContextCompat.getColor(
-                TheWitcherTRPGApp.getContext()!!,
-                R.color.disabledText
-            ))
+            binding.textViewSkill.setTextColor(
+                ContextCompat.getColor(
+                    TheWitcherTRPGApp.getContext()!!,
+                    R.color.disabledText
+                )
+            )
         }
 
         binding.editTextNumber.setOnLongClickListener {
@@ -125,16 +133,17 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
         inCharCreation = true
     }
 
-    fun hideModifier() {
-        binding.textViewModifier.visibility = View.INVISIBLE
-    }
-
     fun setSkillValue(value: Int) {
         binding.editTextNumber.setText(value.toString())
     }
 
-    private fun getModifier(): String {
-        return binding.textViewModifier.text.toString()
+    fun setDefSkillColor() {
+        binding.textViewSkill.setTextColor(
+            ContextCompat.getColor(
+                TheWitcherTRPGApp.getContext()!!,
+                R.color.relic
+            )
+        )
     }
 
     companion object {
@@ -142,6 +151,13 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
         @JvmStatic
         fun setModifier(view: CustomSkillRow, value: Int): Int {
             view.setModifier(value)
+            return value
+        }
+
+        @BindingAdapter(value = ["app:skillValue"])
+        @JvmStatic
+        fun setSkillValue(view: CustomSkillRow, value: Int): Int {
+            view.setSkillValue(value)
             return value
         }
     }

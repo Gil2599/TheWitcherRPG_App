@@ -116,6 +116,7 @@
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/drawable/ic_armor_right_hand.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/drawable/ic_armor_right_leg.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/drawable/ic_armor_shield.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/drawable/ic_axe.xml" value="0.1625" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/drawable/ic_backpack_icon.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/drawable/ic_baseline_add_a_photo_24.xml" value="0.26614583333333336" />
@@ -176,8 +177,8 @@
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_personal_info.xml" value="0.2804020100502513" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_profession.xml" value="0.2" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_profession_skill_tree.xml" value="0.264" />
-        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_skills.xml" value="0.264" />
-        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_skills_overhaul.xml" value="0.1" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_skills.xml" value="0.1727105101413645" />
+        <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_skills_overhaul.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_spell_add.xml" value="0.2" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/fragment_stats.xml" value="0.264" />
         <entry key="..\:/Users/School PC/AndroidStudioProjects/TheWitcherTRPG_App/app/src/main/res/layout/nav_header.xml" value="0.4" />
@@ -247,22 +248,17 @@
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/transparent_bkg.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/drawable/unfocused_outline_bkg.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/activity_char_creation.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/activity_launcher.xml" value="0.25" />
+        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/activity_launcher.xml" value="0.33" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/activity_main.xml" value="0.16289592760180996" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/app_bar.xml" value="0.67" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/armor_row.xml" value="0.7907647907647908" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_add_spell.xml" value="0.22" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_add_weapon.xml" value="0.529277566539924" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_char_armor.xml" value="0.33" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_char_spell.xml" value="0.17806484295845998" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_char_weapon.xml" value="0.25" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_edit_stats.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_help_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_dialog_spell.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_equipped_row.xml" value="0.674937965260546" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_row.xml" value="0.33" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_skill_row.xml" value="0.5" />
-        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_title.xml" value="0.5" />
+        <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/custom_row.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_campaign_notes.xml" value="0.25" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/TheWitcherRPG_App/app/src/main/res/layout/fragment_char_creation_first.xml" value="0.20520833333333333" />

@@ -20,7 +20,7 @@ class OnSkillChangeUseCase @Inject constructor() {
 
         if (!inCharacterCreation) {
             if (increase) {
-                if (ip >= newVal || (doubleCost && ip >= newVal*2)) {
+                if (((ip >= newVal && ip > 0) || (doubleCost && ip >= newVal*2)) && newVal < 10) {
                     if (newVal == 0) {
                         newVal = 1
                         newIP -= if (doubleCost) 2 else 1

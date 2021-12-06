@@ -2,6 +2,7 @@
     <declare-styleable name="CustomSkillRow">
         <attr name="myTag" format="string" />
         <attr name="modifier" format="integer"/>
+        <attr name="skillValue" format="integer"/>
         <attr name="exampleDimension" format="dimension" />
         <attr name="exampleColor" format="color" />
         <attr name="exampleDrawable" format="color|reference" />
