@@ -130,6 +130,13 @@ class MainActivity : AppCompatActivity() {
                         loadImageFromStorage(newImage, navHeaderBinding.imageView)
                     }
                 }
+                launch {
+                    mainCharacterViewModel.dataChangedState.collectLatest {
+                        if (!it.success){
+
+                        }
+                    }
+                }
             }
         }
     }
@@ -200,19 +207,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         //If no callbacks are set by fragments, ask user if they would like to save character or cancel
-        val builder = AlertDialog.Builder(this)
-        builder.setPositiveButton("Yes"){_, _ ->
-            saveCharacter()
-            finish()
+        if (mainCharacterViewModel.checkIfDataChanged()){
+            val builder = AlertDialog.Builder(this)
+            builder.setPositiveButton("Yes"){_, _ ->
+                saveCharacter()
+                finish()
             }
-        builder.setNegativeButton("No"){_, _ -> finish()}
+            builder.setNegativeButton("No"){_, _ -> finish()}
 
-        builder.setNeutralButton("Cancel"){_, _ -> }
+            builder.setNeutralButton("Cancel"){_, _ -> }
 
-        builder.setTitle("Save changes to character?")
-        builder.setMessage("All unsaved changes will be lost.")
-        builder.create().show()
-
+            builder.setTitle("Save changes to character?")
+            builder.setMessage("All unsaved changes will be lost.")
+            builder.create().show()
+        }
+        else finish()
     }
 
     private fun loadImageFromStorage(path: String, img: ImageView) {

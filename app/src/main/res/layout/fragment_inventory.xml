@@ -40,6 +40,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ScrollView
+        android:id="@+id/scrollView6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
@@ -57,11 +58,11 @@
                 android:id="@+id/textViewLight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Light"
-                android:textStyle="bold|italic"
                 android:textColor="@color/gray"
                 android:textSize="20sp"
-                android:gravity="center"/>
+                android:textStyle="bold|italic" />
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutLight"
@@ -70,7 +71,7 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice" >
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvLightEquipment"
@@ -82,11 +83,11 @@
                 android:id="@+id/textViewMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Medium"
-                android:textStyle="bold|italic"
                 android:textColor="@color/gray"
                 android:textSize="20sp"
-                android:gravity="center"/>
+                android:textStyle="bold|italic" />
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutMedium"
@@ -95,7 +96,7 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice" >
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvMediumEquipment"
@@ -107,11 +108,11 @@
                 android:id="@+id/textViewHeavy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Heavy"
-                android:textStyle="bold|italic"
                 android:textColor="@color/gray"
                 android:textSize="20sp"
-                android:gravity="center"/>
+                android:textStyle="bold|italic" />
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutHeavy"
@@ -120,7 +121,7 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice" >
+                app:layout_constraintTop_toBottomOf="@+id/textNovice">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHeavyEquipment"
@@ -280,5 +281,30 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textViewNoEquipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_equipment"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+    <TextView
+        android:id="@+id/textViewAddEquipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:text="@string/add_equipment_from_the_new_item_screen"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNoEquipment"
+        app:layout_constraintStart_toStartOf="@+id/textViewNoEquipment"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNoEquipment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

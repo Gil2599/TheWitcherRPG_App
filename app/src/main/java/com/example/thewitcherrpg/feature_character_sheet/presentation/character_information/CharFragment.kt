@@ -85,7 +85,7 @@ class CharFragment : Fragment() {
         binding.imageView.setOnClickListener{
             requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
-        
+
         //Setting up viewPager
         val numTabs = 4
         val tabTitles = listOf("Quick Stats", "Profession", "Personal", "Background")

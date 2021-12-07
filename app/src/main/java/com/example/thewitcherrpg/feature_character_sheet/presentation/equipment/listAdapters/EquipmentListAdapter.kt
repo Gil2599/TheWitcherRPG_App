@@ -109,7 +109,7 @@ class EquipmentListAdapter(
     }
 
     fun setData(itemList: ArrayList<EquipmentItem>) {
-        this.armorList = itemList
+        armorList = itemList
         notifyDataSetChanged()
     }
 }

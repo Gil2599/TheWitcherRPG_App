@@ -2,11 +2,13 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -55,102 +57,17 @@ class InventoryFragment : Fragment() {
         binding.customTitle.setTitle("Inventory")
         binding.customTitle.setTitleSize(20F)
 
-        onSpinnerInit()
+        binding.autoCompleteTextViewItemType.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, _, _ ->
+                updateRVs(binding.autoCompleteTextViewItemType.text.toString())
+            }
         listAdaptersSetup()
 
-        var selection = "Head Armor"
-        when (selectionArg.spinnerSelection) {
-            1 -> selection = "Chest Armor"
-            2 -> selection = "Leg Armor"
-            3 -> selection = "Weapon"
-            4 -> selection = "Shield"
-        }
-        binding.autoCompleteTextViewItemType.setText(selection, false)
-        updateRVs()
+        binding.autoCompleteTextViewItemType.setText("Head Armor", false)
+        updateRVs(binding.autoCompleteTextViewItemType.text.toString())
 
 
         return view
-    }
-
-    private fun onSpinnerInit() {
-
-        binding.autoCompleteTextViewItemType.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-
-                val lightArmorList = arrayListOf<EquipmentItem>()
-                val mediumArmorList = arrayListOf<EquipmentItem>()
-                val heavyArmorList = arrayListOf<EquipmentItem>()
-
-                if (position == 3) {
-                    listAdaptersInit(true)
-                } else listAdaptersInit(false)
-
-                when (position) {
-                    0 -> {
-                        listAdaptersInit(false)
-                        for (item in mainCharacterViewModel.headEquipment.value) {
-                            when (item.equipmentType) {
-                                EquipmentTypes.LIGHT_HEAD -> lightArmorList.add(item)
-                                EquipmentTypes.MEDIUM_HEAD -> mediumArmorList.add(item)
-                                EquipmentTypes.HEAVY_HEAD -> heavyArmorList.add(item)
-                            }
-                        }
-                        lightAdapter.setData(lightArmorList)
-                        mediumAdapter.setData(mediumArmorList)
-                        heavyAdapter.setData(heavyArmorList)
-                    }
-
-                    1 -> {
-                        listAdaptersInit(false)
-                        for (item in mainCharacterViewModel.chestEquipment.value) {
-                            when (item.equipmentType) {
-                                EquipmentTypes.LIGHT_CHEST -> lightArmorList.add(item)
-                                EquipmentTypes.MEDIUM_CHEST -> mediumArmorList.add(item)
-                                EquipmentTypes.HEAVY_CHEST -> heavyArmorList.add(item)
-                            }
-                        }
-                        lightAdapter.setData(lightArmorList)
-                        mediumAdapter.setData(mediumArmorList)
-                        heavyAdapter.setData(heavyArmorList)
-                    }
-
-                    2 -> {
-                        listAdaptersInit(false)
-                        for (item in mainCharacterViewModel.legEquipment.value) {
-                            when (item.equipmentType) {
-                                EquipmentTypes.LIGHT_LEGS -> lightArmorList.add(item)
-                                EquipmentTypes.MEDIUM_LEGS -> mediumArmorList.add(item)
-                                EquipmentTypes.HEAVY_LEGS -> heavyArmorList.add(item)
-                            }
-                        }
-                        lightAdapter.setData(lightArmorList)
-                        mediumAdapter.setData(mediumArmorList)
-                        heavyAdapter.setData(heavyArmorList)
-                    }
-
-                    4 -> {
-                        listAdaptersInit(false)
-                        for (item in mainCharacterViewModel.shieldEquipment.value) {
-                            when (item.equipmentType) {
-                                EquipmentTypes.LIGHT_SHIELD -> lightArmorList.add(item)
-                                EquipmentTypes.MEDIUM_SHIELD -> mediumArmorList.add(item)
-                                EquipmentTypes.HEAVY_SHIELD -> heavyArmorList.add(item)
-                            }
-                        }
-                        lightAdapter.setData(lightArmorList)
-                        mediumAdapter.setData(mediumArmorList)
-                        heavyAdapter.setData(heavyArmorList)
-                    }
-                    5 -> {
-                        listAdaptersInit(false)
-                        for (item in mainCharacterViewModel.miscEquipment.value) {
-                            lightArmorList.add(item)
-                        }
-                        listAdaptersInit(weapons = false, customItem = true)
-                        lightAdapter.setData(lightArmorList)
-                    }
-                }
-            }
     }
 
     private fun listAdaptersSetup() {
@@ -319,6 +236,21 @@ class InventoryFragment : Fragment() {
                 binding.textViewHeavy.visibility = View.GONE
             }
 
+            if (swords.size == 0 &&
+                smallBlades.size == 0 &&
+                axes.size == 0 &&
+                bludgeons.size == 0 &&
+                poleArms.size == 0 &&
+                staves.size == 0 &&
+                thrownWeapons.size == 0 &&
+                bows.size == 0 &&
+                crossbows.size == 0) {
+                binding.textViewNoEquipment.visibility = View.VISIBLE
+                binding.textViewAddEquipment.visibility = View.VISIBLE
+            } else {
+                binding.textViewNoEquipment.visibility = View.INVISIBLE
+                binding.textViewAddEquipment.visibility = View.INVISIBLE
+            }
 
         } else {
             if (!customItem) {
@@ -332,9 +264,7 @@ class InventoryFragment : Fragment() {
                 binding.rvHeavyEquipment.adapter = heavyAdapter
 
                 binding.textViewLight.text = "Light"
-                binding.textViewLight.visibility = View.VISIBLE
                 binding.textViewMedium.text = "Medium"
-                binding.textViewMedium.visibility = View.VISIBLE
                 binding.textViewHeavy.text = "Heavy"
                 binding.textViewHeavy.visibility = View.VISIBLE
                 binding.rvMediumEquipment.visibility = View.VISIBLE
@@ -431,7 +361,7 @@ class InventoryFragment : Fragment() {
         bind.buttonRemove.setOnClickListener {
             mainCharacterViewModel.removeEquipment(item)
             dialog.dismiss()
-            updateRVs()
+            updateRVs(binding.autoCompleteTextViewItemType.text.toString())
         }
 
         bind.buttonEquipUnequip.setOnClickListener {
@@ -486,7 +416,7 @@ class InventoryFragment : Fragment() {
 
         bind.buttonRemove.setOnClickListener {
             mainCharacterViewModel.removeWeapon(weaponItem)
-            updateRVs()
+            updateRVs(binding.autoCompleteTextViewItemType.text.toString())
             dialog.dismiss()
         }
 
@@ -512,20 +442,18 @@ class InventoryFragment : Fragment() {
         }
     }
 
-    private fun updateRVs() {
-        val position = binding.autoCompleteTextViewItemType.text.toString()
-
+    private fun updateRVs(position: String) {
         val lightArmorList = arrayListOf<EquipmentItem>()
         val mediumArmorList = arrayListOf<EquipmentItem>()
         val heavyArmorList = arrayListOf<EquipmentItem>()
 
         if (position == "Weapon") {
             listAdaptersInit(true)
-        } else listAdaptersInit(false)
+            return
+        }
 
         when (position) {
             "Head Armor" -> {
-                listAdaptersInit(false)
                 for (item in mainCharacterViewModel.headEquipment.value) {
                     when (item.equipmentType) {
                         EquipmentTypes.LIGHT_HEAD -> lightArmorList.add(item)
@@ -533,6 +461,7 @@ class InventoryFragment : Fragment() {
                         EquipmentTypes.HEAVY_HEAD -> heavyArmorList.add(item)
                     }
                 }
+                listAdaptersInit(false)
                 lightAdapter.setData(lightArmorList)
                 mediumAdapter.setData(mediumArmorList)
                 heavyAdapter.setData(heavyArmorList)
@@ -587,6 +516,20 @@ class InventoryFragment : Fragment() {
                 listAdaptersInit(weapons = false, customItem = true)
                 lightAdapter.setData(lightArmorList)
             }
+        }
+        if (lightArmorList.size == 0) binding.textViewLight.visibility = View.INVISIBLE
+        else binding.textViewLight.visibility = View.VISIBLE
+        if (mediumArmorList.size == 0) binding.textViewMedium.visibility = View.INVISIBLE
+        else binding.textViewMedium.visibility = View.VISIBLE
+        if (heavyArmorList.size == 0) binding.textViewHeavy.visibility = View.INVISIBLE
+        else binding.textViewHeavy.visibility = View.VISIBLE
+
+        if (lightArmorList.size == 0 && mediumArmorList.size == 0 && heavyArmorList.size == 0) {
+            binding.textViewNoEquipment.visibility = View.VISIBLE
+            binding.textViewAddEquipment.visibility = View.VISIBLE
+        } else {
+            binding.textViewNoEquipment.visibility = View.INVISIBLE
+            binding.textViewAddEquipment.visibility = View.INVISIBLE
         }
     }
 }

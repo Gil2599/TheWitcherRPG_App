@@ -14,4 +14,6 @@
     <string name="add_new_character">Add new character</string>
     <string name="tap_the_add_button_to_create_a_character">Tap the Add button to create a character.</string>
     <string name="current_ip">CURRENT IP</string>
+    <string name="no_equipment">No Equipment</string>
+    <string name="add_equipment_from_the_new_item_screen">Add equipment from the New Item Screen</string>
 </resources>
