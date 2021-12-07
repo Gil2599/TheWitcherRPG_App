@@ -130,13 +130,6 @@ class MainActivity : AppCompatActivity() {
                         loadImageFromStorage(newImage, navHeaderBinding.imageView)
                     }
                 }
-                launch {
-                    mainCharacterViewModel.dataChangedState.collectLatest {
-                        if (!it.success){
-
-                        }
-                    }
-                }
             }
         }
     }
@@ -152,6 +145,13 @@ class MainActivity : AppCompatActivity() {
         }
         if(item.itemId == R.id.menu_long_rest){
             mainCharacterViewModel.onRest(longRest = true)
+            Snackbar.make(
+                binding.root, "${mainCharacterViewModel.name.value} has rested.",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
+        if(item.itemId == R.id.menu_short_rest){
+            mainCharacterViewModel.onRest(longRest = false)
             Snackbar.make(
                 binding.root, "${mainCharacterViewModel.name.value} has recovered.",
                 Snackbar.LENGTH_SHORT

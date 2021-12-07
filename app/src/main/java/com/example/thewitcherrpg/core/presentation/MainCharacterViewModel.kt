@@ -2797,7 +2797,7 @@ class MainCharacterViewModel @Inject constructor(
         } else {
             if (_sta.value < _maxSTAWithModifier.value) {
                 if (_sta.value + _rec.value > _maxSTAWithModifier.value) _sta.value = _maxSTAWithModifier.value
-                else _sta.value += _rec.value
+                else _sta.value = _sta.value.plus(_rec.value)
             }
         }
     }

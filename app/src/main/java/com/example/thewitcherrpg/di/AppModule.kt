@@ -7,8 +7,6 @@ import com.example.thewitcherrpg.core.data.repository.CharacterRepositoryImpl
 import com.example.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
 import com.example.thewitcherrpg.core.domain.repository.CharacterRepository
 import com.example.thewitcherrpg.feature_character_creation.domain.use_cases.*
-import com.example.thewitcherrpg.feature_character_list.domain.use_cases.CharacterListUseCases
-import com.example.thewitcherrpg.feature_character_list.domain.use_cases.GetCharacterListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,14 +39,6 @@ object AppModule {
     @Singleton
     fun provideDao(characterDatabase: CharacterDatabase): CharacterDao {
         return characterDatabase.getDao()
-    }
-
-    @Provides
-    @Singleton
-    fun provideCharacterSheetUseCases(repository: CharacterRepository): CharacterListUseCases {
-        return CharacterListUseCases(
-            getCharacterListUseCase = GetCharacterListUseCase(repository)
-        )
     }
 
     @Provides

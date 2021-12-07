@@ -1,5 +1,6 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
@@ -63,7 +64,15 @@ class InventoryFragment : Fragment() {
             }
         listAdaptersSetup()
 
-        binding.autoCompleteTextViewItemType.setText("Head Armor", false)
+        var selection = "Head Armor"
+        when (selectionArg.spinnerSelection) {
+            1 -> selection = "Chest Armor"
+            2 -> selection = "Leg Armor"
+            3 -> selection = "Weapon"
+            4 -> selection = "Shield"
+        }
+
+        binding.autoCompleteTextViewItemType.setText(selection, false)
         updateRVs(binding.autoCompleteTextViewItemType.text.toString())
 
 
@@ -100,6 +109,7 @@ class InventoryFragment : Fragment() {
         binding.rvCrossbows.isNestedScrollingEnabled = false
     }
 
+    @SuppressLint("SetTextI18n")
     private fun listAdaptersInit(weapons: Boolean, customItem: Boolean = false) {
         if (weapons) {
             val swords = arrayListOf<WeaponItem>()
@@ -245,6 +255,7 @@ class InventoryFragment : Fragment() {
                 thrownWeapons.size == 0 &&
                 bows.size == 0 &&
                 crossbows.size == 0) {
+                binding.textViewNoEquipment.text = "No " + binding.autoCompleteTextViewItemType.text + " Equipment"
                 binding.textViewNoEquipment.visibility = View.VISIBLE
                 binding.textViewAddEquipment.visibility = View.VISIBLE
             } else {
@@ -442,6 +453,7 @@ class InventoryFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateRVs(position: String) {
         val lightArmorList = arrayListOf<EquipmentItem>()
         val mediumArmorList = arrayListOf<EquipmentItem>()
@@ -525,6 +537,7 @@ class InventoryFragment : Fragment() {
         else binding.textViewHeavy.visibility = View.VISIBLE
 
         if (lightArmorList.size == 0 && mediumArmorList.size == 0 && heavyArmorList.size == 0) {
+            binding.textViewNoEquipment.text = "No " + binding.autoCompleteTextViewItemType.text + " Equipment"
             binding.textViewNoEquipment.visibility = View.VISIBLE
             binding.textViewAddEquipment.visibility = View.VISIBLE
         } else {

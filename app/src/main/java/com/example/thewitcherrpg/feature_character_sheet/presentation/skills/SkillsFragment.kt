@@ -277,9 +277,9 @@ class SkillsFragment : Fragment() {
                 binding.etToughAsNails.setDefSkillColor()
             }
             Constants.Professions.PRIEST -> {
-                binding.etInitiativeOfTheGods.visibility = View.VISIBLE
-                binding.etInitiativeOfTheGods.setSkillText("Initiative of The Gods:")
-                binding.etInitiativeOfTheGods.setDefSkillColor()
+                binding.etInitiateOfTheGods.visibility = View.VISIBLE
+                binding.etInitiateOfTheGods.setSkillText("Initiate of The Gods:")
+                binding.etInitiateOfTheGods.setDefSkillColor()
             }
             Constants.Professions.WITCHER -> {
                 binding.etWitcherTraining.visibility = View.VISIBLE
