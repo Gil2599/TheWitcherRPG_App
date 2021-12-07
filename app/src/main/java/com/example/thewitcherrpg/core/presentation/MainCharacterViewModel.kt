@@ -1,6 +1,7 @@
 package com.example.thewitcherrpg.core.presentation
 
 import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
 //import android.util.Log
 import androidx.compose.runtime.State
@@ -84,8 +85,8 @@ class MainCharacterViewModel @Inject constructor(
     val skillsInfoMode = dataStore.readSkillsInfoMode
     val skillTreeInfoMode = dataStore.readSkillTreeInfoMode
 
-    private val _image = MutableLiveData("")
-    val image: LiveData<String> = _image
+    private val _image = MutableStateFlow("")
+    val image = _image.asStateFlow()
 
     val name = MutableLiveData("")
 
@@ -1377,9 +1378,9 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun saveImageToInternalStorage(bitmapImage: Bitmap) {
+    fun saveImageToInternalStorage(uri: Uri) {
         //Log.d("test", "In method")
-        saveImageUseCase(bitmapImage, _id.value).onEach { result ->
+        saveImageUseCase(uri, _id.value).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _image.value = result.data!!
@@ -1467,7 +1468,10 @@ class MainCharacterViewModel @Inject constructor(
                 _physiqueModifier.value = _physiqueModifier.value.minus(5)
             }
             "Vran" -> {
-
+                _resistCoercionModifier.value = _resistCoercionModifier.value.plus(1)
+            }
+            "Werebbub" -> {
+                _courageModifier.value = _courageModifier.value.plus(1)
             }
         }
     }
@@ -2712,6 +2716,8 @@ class MainCharacterViewModel @Inject constructor(
             "BODY" -> {
                 if (increase) _bodyModifier.value = _bodyModifier.value.plus(1)
                 else _bodyModifier.value = _bodyModifier.value.minus(1)
+                onHpChange(increase = increase)
+                onStaminaChange(increase = increase)
             }
             "SPD" -> {
                 if (increase) _spdModifier.value = _spdModifier.value.plus(1)
@@ -2728,6 +2734,8 @@ class MainCharacterViewModel @Inject constructor(
             "WILL" -> {
                 if (increase) _willModifier.value = _willModifier.value.plus(1)
                 else _willModifier.value = _willModifier.value.minus(1)
+                onHpChange(increase = increase)
+                onStaminaChange(increase = increase)
             }
             "LUCK" -> {
                 if (increase) _luckModifier.value = _luckModifier.value.plus(1)
@@ -2769,12 +2777,17 @@ class MainCharacterViewModel @Inject constructor(
         }
     }
 
-    fun onLongRest() {
-        if (_hp.value < _maxHP.value) {
-            if (_hp.value + _rec.value > _maxHP.value) {
-                _hp.value = _maxHP.value
-            } else {
-                _hp.value += _rec.value
+    fun onRest(longRest: Boolean) {
+        if (longRest) {
+            if (_hp.value < _maxHPWithModifier.value) {
+                if (_hp.value + _rec.value > _maxHPWithModifier.value) _hp.value = _maxHPWithModifier.value
+                else _hp.value += _rec.value
+            }
+            if (_sta.value < _maxSTAWithModifier.value) _sta.value = _maxSTAWithModifier.value
+        } else {
+            if (_sta.value < _maxSTAWithModifier.value) {
+                if (_sta.value + _rec.value > _maxSTAWithModifier.value) _sta.value = _maxSTAWithModifier.value
+                else _sta.value += _rec.value
             }
         }
     }
@@ -3048,15 +3061,19 @@ class MainCharacterViewModel @Inject constructor(
 
     fun onHpChange(value: Int? = null, increase: Boolean) {
         if (value == null) {
+            val bodyPlusModifier = _body.value + _bodyModifier.value
+            val willPlusModifier = _will.value + _willModifier.value
+
             if (increase) {
-                val hpBonus = ((_body.value + _will.value) / 2) * 5
+                val hpBonus = ((bodyPlusModifier + willPlusModifier) / 2) * 5
                 _maxHP.value =
-                    (_maxHP.value - ((((_body.value - 1) + _will.value) / 2) * 5)) + hpBonus
+                    (_maxHP.value - ((((bodyPlusModifier - 1) + willPlusModifier) / 2) * 5)) + hpBonus
             } else {
-                val hpBonus = ((_body.value + _will.value) / 2) * 5
+                val hpBonus = ((bodyPlusModifier + willPlusModifier) / 2) * 5
                 _maxHP.value =
-                    (_maxHP.value - ((((_body.value + 1) + _will.value) / 2) * 5)) + hpBonus
+                    (_maxHP.value - ((((bodyPlusModifier + 1) + willPlusModifier) / 2) * 5)) + hpBonus
             }
+            _maxHPWithModifier.value = _maxHP.value + _hpModifier.value
         } else {
             if (increase) _hp.value += value
             else _hp.value -= value
@@ -3071,15 +3088,19 @@ class MainCharacterViewModel @Inject constructor(
                 } else _sta.value = 0
             } else _sta.value = _sta.value.plus(value)
         } else {
+            val bodyPlusModifier = _body.value + _bodyModifier.value
+            val willPlusModifier = _will.value + _willModifier.value
+
             if (increase) {
-                val staBonus = ((_body.value + _will.value) / 2) * 5
+                val staBonus = ((bodyPlusModifier + willPlusModifier) / 2) * 5
                 _maxSta.value =
-                    (_maxSta.value - ((((_body.value - 1) + _will.value) / 2) * 5)) + staBonus
+                    (_maxSta.value - ((((bodyPlusModifier - 1) + willPlusModifier) / 2) * 5)) + staBonus
             } else {
-                val staBonus = ((_body.value + _will.value) / 2) * 5
+                val staBonus = ((bodyPlusModifier + willPlusModifier) / 2) * 5
                 _maxSta.value =
-                    (_maxSta.value - ((((_body.value + 1) + _will.value) / 2) * 5)) + staBonus
+                    (_maxSta.value - ((((bodyPlusModifier + 1) + willPlusModifier) / 2) * 5)) + staBonus
             }
+            _maxSTAWithModifier.value = _maxSta.value + _staModifier.value
         }
     }
 

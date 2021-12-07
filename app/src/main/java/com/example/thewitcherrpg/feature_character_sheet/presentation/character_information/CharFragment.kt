@@ -1,37 +1,37 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information
 
 import android.Manifest
-import android.net.Uri
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.activityViewModels
-import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments.adapters.ViewPagerAdapter
-import com.example.thewitcherrpg.databinding.FragmentCharBinding
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import android.graphics.Bitmap
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.graphics.Typeface
-import android.os.Build
-import android.provider.MediaStore
+import android.net.Uri
+import android.os.Bundle
 import android.util.Log
-import java.io.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.core.net.toFile
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
+import com.example.thewitcherrpg.databinding.FragmentCharBinding
+import com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments.adapters.ViewPagerAdapter
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileNotFoundException
 
 
 class CharFragment : Fragment() {
@@ -45,16 +45,9 @@ class CharFragment : Fragment() {
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
             uri: Uri? -> binding.imageView.setImageURI(uri)
         try {
-            val bitmap: Bitmap = when {
-                Build.VERSION.SDK_INT < 28 -> MediaStore.Images.Media.getBitmap(
-                    requireActivity().contentResolver, uri
-                )
-                else -> {
-                    val source = ImageDecoder.createSource(requireActivity().contentResolver, uri!!)
-                    ImageDecoder.decodeBitmap(source)
-                }
+            if (uri != null) {
+                mainCharacterViewModel.saveImageToInternalStorage(uri)
             }
-            mainCharacterViewModel.saveImageToInternalStorage(bitmap)
             (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
         }
         catch (e: NullPointerException){
@@ -88,17 +81,6 @@ class CharFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mainViewModel = mainCharacterViewModel
 
-        val imageObserver = Observer<String> { newImagePath ->
-            if (newImagePath.isNotEmpty()){
-                //Make margins 0 if image is found
-                (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
-                //Load Image into imageview
-                loadImageFromStorage(newImagePath)
-            }
-        }
-
-        mainCharacterViewModel.image.observe(viewLifecycleOwner, imageObserver)
-
         //Check whether permission is granted to access internal storage to set character image
         binding.imageView.setOnClickListener{
             requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -120,9 +102,17 @@ class CharFragment : Fragment() {
         }.attach()
 
         lifecycleScope.launch {
-            mainCharacterViewModel.charInfoMode.collect { infoIsEnabled ->
-                if (infoIsEnabled) {
-                    showDialogDisclaimer()
+            launch {
+                mainCharacterViewModel.charInfoMode.collect { infoIsEnabled ->
+                    if (infoIsEnabled) {
+                        showDialogDisclaimer()
+                    }
+                }
+            }
+            launch {
+                mainCharacterViewModel.image.collect { newImage ->
+                    (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+                    loadImageFromStorage(newImage)
                 }
             }
         }
@@ -142,7 +132,7 @@ class CharFragment : Fragment() {
 
     private fun loadImageFromStorage(path: String) {
         try {
-            val f = File(path, mainCharacterViewModel.id.value.toString() + ".jpeg")
+            val f = File(path)
             val b = BitmapFactory.decodeStream(FileInputStream(f))
             val img = binding.imageView
             img.setImageBitmap(b)

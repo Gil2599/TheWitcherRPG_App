@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
@@ -31,6 +30,7 @@ import com.example.thewitcherrpg.feature_character_sheet.presentation.skills.Ski
 import com.example.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
@@ -111,17 +111,6 @@ class MainActivity : AppCompatActivity() {
         navHeaderBinding.mainViewModel = mainCharacterViewModel
         navHeaderBinding.lifecycleOwner = this
 
-        val imageObserver = Observer<String> { newImagePath ->
-            if (newImagePath.isNotEmpty()){
-                //Make margins 0 if image is found
-                (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
-                //Load Image into imageview
-                loadImageFromStorage(newImagePath, navHeaderBinding.imageView)
-            }
-        }
-
-        mainCharacterViewModel.image.observe(this, imageObserver)
-
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
@@ -133,6 +122,12 @@ class MainActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT)
                                 .show()
                         }
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.image.collect { newImage ->
+                        (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+                        loadImageFromStorage(newImage, navHeaderBinding.imageView)
                     }
                 }
             }
@@ -149,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             saveCharacter()
         }
         if(item.itemId == R.id.menu_long_rest){
-            mainCharacterViewModel.onLongRest()
+            mainCharacterViewModel.onRest(longRest = true)
             Snackbar.make(
                 binding.root, "${mainCharacterViewModel.name.value} has recovered.",
                 Snackbar.LENGTH_SHORT
@@ -222,7 +217,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadImageFromStorage(path: String, img: ImageView) {
         try {
-            val f = File(path, mainCharacterViewModel.id.value.toString() + ".jpeg")
+            val f = File(path)
             val b = BitmapFactory.decodeStream(FileInputStream(f))
             img.setImageBitmap(b)
         } catch (e: FileNotFoundException) {

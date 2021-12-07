@@ -27,9 +27,14 @@
                 android:icon="@drawable/ic_editing"
                 app:showAsAction="never"/>
 
-            <item android:id="@+id/menu_long_rest"
+            <item android:id="@+id/menu_short_rest"
                 android:title="Recovery"
                 android:icon="@drawable/ic_regeneration"
+                app:showAsAction="never"/>
+
+            <item android:id="@+id/menu_long_rest"
+                android:title="Rest"
+                android:icon="@drawable/ic_sleep__1_"
                 app:showAsAction="never"/>
 
             <item android:id="@+id/menu_delete"

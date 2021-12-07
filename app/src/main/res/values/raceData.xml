@@ -129,6 +129,41 @@
             to stabilize or treat Critical Wounds on a wounded
             vran. Second, if a vran is affected by the Frozen condition, they take a -2 to all actions until 1d6 rounds
             after the condition is ended. (Reptilian Physiology)</item>
+
+        <item>Werebbub: \nWerebbubs are not the largest race on the
+            continent but they are among the bravest. Their culture
+            values heroism and young Werebbubs hear tales of
+            ancient ancestral heroes. Werebbubs gain an inherent
+            +1 to Courage. (Lionhearted)\n\n
+
+            A werebbub\’s body and metabolism work in a manner entirely alien to humans and
+            most other elder races. When grievously wounded,
+            some aspect of a werebbub\’s physiology goes into high
+            gear, often allowing them to survive wound that would
+            quickly kill any other person. Whenever a werebbub
+            takes a Critical Wound, they can roll an Endurance
+            check with a DC equal to the DC required to Stabilize the Critical Wound. If they succeed, the Critical
+            Wound is immediately considered Stabilized. Players
+            may only make this roll in the moment the werebbub
+            takes the wound and cannot be attempted again in the
+            case of a failure. (Strange Physiology)\n\n
+
+            While werebbub don\’t possess the powerful jaws
+            and venomous fangs of the vran, their teeth are
+            razor sharp and honed to a fine edge. A werebbub can
+            make a Melee attack with their fangs which deals 2d6
+            damage and has Improved Armor Piercing. (Razor Teeth)\n\n
+
+            In general, werebbub suffer from
+            poor eyesight. While their keen hearing allows them
+            to navigate the world without any significant problems,
+            they are far from the most perceptive race on
+            the Continent. Werebbubs take an inherent -4 on
+            Awareness checks thanks to this poor vision. If a
+            werebbub is called on to make a perception check
+            based only on hearing (such as hearing footsteps
+            upstairs or listening for growling wolves)
+            this penalty does not apply. (Poor Eyesight)</item>
     </string-array>
 
 </resources>

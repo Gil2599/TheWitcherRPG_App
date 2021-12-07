@@ -107,7 +107,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.intelligence.value.plus(
                             mainCharacterViewModel.intelligenceModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.intelligence.value
+                    }", mainCharacterViewModel.intelligenceModifier.value
                 )
             } else {
                 focusedView = binding.editTextINT
@@ -135,7 +135,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.ref.value.plus(
                             mainCharacterViewModel.refModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.ref.value
+                    }", mainCharacterViewModel.refModifier.value
                 )
             } else {
                 focusedView = binding.editTextREF
@@ -163,7 +163,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.dex.value.plus(
                             mainCharacterViewModel.dexModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.dex.value
+                    }", mainCharacterViewModel.dexModifier.value
                 )
             } else {
                 focusedView = binding.editTextDEX
@@ -191,7 +191,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.body.value.plus(
                             mainCharacterViewModel.bodyModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.body.value
+                    }", mainCharacterViewModel.bodyModifier.value
                 )
             } else {
                 focusedView = binding.editTextBODY
@@ -219,7 +219,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.spd.value.plus(
                             mainCharacterViewModel.spdModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.spd.value
+                    }", mainCharacterViewModel.spdModifier.value
                 )
             } else {
                 focusedView = binding.editTextSPD
@@ -247,7 +247,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.emp.value.plus(
                             mainCharacterViewModel.empModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.emp.value
+                    }", mainCharacterViewModel.empModifier.value
                 )
             } else {
                 focusedView = binding.editTextEMP
@@ -275,7 +275,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.cra.value.plus(
                             mainCharacterViewModel.craModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.cra.value
+                    }", mainCharacterViewModel.craModifier.value
                 )
             } else {
                 focusedView = binding.editTextCRA
@@ -303,7 +303,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.will.value.plus(
                             mainCharacterViewModel.willModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.will.value
+                    }", mainCharacterViewModel.willModifier.value
                 )
             } else {
                 focusedView = binding.editTextWILL
@@ -331,7 +331,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.luck.value.plus(
                             mainCharacterViewModel.luckModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.luck.value
+                    }", mainCharacterViewModel.luckModifier.value
                 )
             } else {
                 focusedView = binding.editTextLUCK
@@ -359,7 +359,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.stun.value.plus(
                             mainCharacterViewModel.stunModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.stun.value
+                    }", mainCharacterViewModel.stunModifier.value
                 )
             } else {
                 focusedView = binding.editTextSTUN
@@ -387,7 +387,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.run.value.plus(
                             mainCharacterViewModel.runModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.run.value
+                    }", mainCharacterViewModel.runModifier.value
                 )
             } else {
                 focusedView = binding.editTextRUN
@@ -415,7 +415,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.leap.value.plus(
                             mainCharacterViewModel.leapModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.leap.value
+                    }", mainCharacterViewModel.leapModifier.value
                 )
             } else {
                 focusedView = binding.editTextLEAP
@@ -443,7 +443,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.maxHp.value.plus(
                             mainCharacterViewModel.hpModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.maxHp.value
+                    }", mainCharacterViewModel.hpModifier.value
                 )
             } else {
                 focusedView = binding.editTextMaxHP
@@ -471,7 +471,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.maxSta.value.plus(
                             mainCharacterViewModel.staModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.maxSta.value
+                    }", mainCharacterViewModel.staModifier.value
                 )
             } else {
                 focusedView = binding.editTextMaxSTA
@@ -499,7 +499,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.enc.value.plus(
                             mainCharacterViewModel.encModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.enc.value
+                    }", mainCharacterViewModel.encModifier.value
                 )
             } else {
                 focusedView = binding.editTextENC
@@ -527,7 +527,7 @@ class StatsFragment : Fragment() {
                         mainCharacterViewModel.rec.value.plus(
                             mainCharacterViewModel.recModifier.value
                         )
-                    }", editModifier, mainCharacterViewModel.rec.value
+                    }", mainCharacterViewModel.recModifier.value
                 )
             } else {
                 focusedView = binding.editTextREC
@@ -636,7 +636,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.intelligenceModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.intelligenceModifier.value
                     )
                 }
             }
@@ -652,7 +652,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.refModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.refModifier.value
                     )
                 }
             }
@@ -668,7 +668,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.dexModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.dexModifier.value
                     )
                 }
             }
@@ -684,7 +684,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.bodyModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.bodyModifier.value
                     )
                 }
             }
@@ -700,7 +700,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.spdModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.spdModifier.value
                     )
                 }
             }
@@ -716,7 +716,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.empModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.empModifier.value
                     )
                 }
             }
@@ -732,7 +732,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.craModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.craModifier.value
                     )
                 }
             }
@@ -748,7 +748,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.willModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.willModifier.value
                     )
                 }
             }
@@ -764,7 +764,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.luckModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.luckModifier.value
                     )
                 }
             }
@@ -780,7 +780,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.stunModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.stunModifier.value
                     )
                 }
             }
@@ -796,7 +796,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.runModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.runModifier.value
                     )
                 }
             }
@@ -812,7 +812,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.leapModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.leapModifier.value
                     )
                 }
             }
@@ -828,7 +828,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.hpModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.hpModifier.value
                     )
                 }
             }
@@ -844,7 +844,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.staModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.staModifier.value
                     )
                 }
             }
@@ -860,7 +860,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.encModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.encModifier.value
                     )
                 }
             }
@@ -876,7 +876,7 @@ class StatsFragment : Fragment() {
                             value.plus(
                                 mainCharacterViewModel.recModifier.value
                             )
-                        }", editModifier, value
+                        }", mainCharacterViewModel.recModifier.value
                     )
                 }
             }
@@ -885,18 +885,14 @@ class StatsFragment : Fragment() {
 
     private fun getSpannableString(
         string: String,
-        editModifierMode: Boolean,
-        statValue: Int
+        modifierValue: Int
     ): SpannableStringBuilder {
-        var value = ""
         var stat = ""
-        if (!editModifierMode) {
-            val stringArray = string.split(": ").toTypedArray()
-            stat = stringArray[0]
-            value = stringArray[1]
-        }
+        val stringArray = string.split(": ").toTypedArray()
+        stat = stringArray[0]
+
         val spannable = SpannableStringBuilder(string)
-        if (value.toInt() > statValue) {
+        if (modifierValue > 0) {
             spannable.setSpan(
                 ForegroundColorSpan(
                     ContextCompat.getColor(
@@ -905,7 +901,7 @@ class StatsFragment : Fragment() {
                     )
                 ), stat.length + 1, string.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
-        } else if (value.toInt() < statValue) {
+        } else if (modifierValue < 0) {
             spannable.setSpan(
                 ForegroundColorSpan(
                     ContextCompat.getColor(

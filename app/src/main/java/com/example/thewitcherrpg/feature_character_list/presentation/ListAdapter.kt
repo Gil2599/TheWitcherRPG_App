@@ -31,7 +31,7 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
                 IPText.text = ip
                 textRace.text = character.race
 
-                if (character.imagePath.isNotEmpty()) loadImageFromStorage(character.imagePath, character.id.toString(), imageView)
+                if (character.imagePath.isNotEmpty()) loadImageFromStorage(character.imagePath, imageView)
                 else imageView.setImageDrawable(null)
 
                 rowLayout.setOnClickListener{
@@ -43,9 +43,9 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
             }
         }
 
-        private fun loadImageFromStorage(path: String, charID: String, imageView: ImageView) {
+        private fun loadImageFromStorage(path: String, imageView: ImageView) {
             try {
-                val f = File(path, "$charID.jpeg")
+                val f = File(path)
                 val b = BitmapFactory.decodeStream(FileInputStream(f))
                 imageView.setImageBitmap(b)
             } catch (e: FileNotFoundException) {
