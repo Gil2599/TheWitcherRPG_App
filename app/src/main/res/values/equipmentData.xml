@@ -6,7 +6,7 @@
         <item>Chest Armor</item>
         <item>Leg Armor</item>
         <item>Weapon</item>
-        <item>Shield</item>
+        <item>Shield/Accessory</item>
         <item>Armor Set</item>
         <item>Miscellaneous</item>
 
@@ -18,7 +18,7 @@
         <item>Chest Armor</item>
         <item>Leg Armor</item>
         <item>Weapon</item>
-        <item>Shield</item>
+        <item>Shield/Accessory</item>
         <item>Miscellaneous</item>
 
     </string-array>

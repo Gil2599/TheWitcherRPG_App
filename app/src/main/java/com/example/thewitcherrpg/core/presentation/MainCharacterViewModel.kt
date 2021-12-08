@@ -24,6 +24,7 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.*
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.CheckIfDataChangedUseCase
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
@@ -1088,6 +1089,7 @@ class MainCharacterViewModel @Inject constructor(
             equippedLegs = _equippedLegs.value,
             accessoryEquipment = _accessoryEquipment.value,
             equippedSecondHandShield = _equippedSecondHandShield.value,
+            equippedSecondHandWeapon = _equippedSecondHandWeapon.value,
             miscEquipment = _miscEquipment.value,
 
             weaponEquipment = _weaponEquipment.value,
@@ -1374,6 +1376,7 @@ class MainCharacterViewModel @Inject constructor(
 
                     _accessoryEquipment.value = characterData.accessoryEquipment
                     _equippedSecondHandShield.value = characterData.equippedSecondHandShield
+                    _equippedSecondHandWeapon.value = characterData.equippedSecondHandWeapon
 
                     _weaponEquipment.value = characterData.weaponEquipment
                     _equippedWeapon.value = characterData.equippedWeapon
@@ -3355,20 +3358,30 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun equipWeapon(item: WeaponItem) {
+        if (item.type == WeaponTypes.AMULET){
+            if (_equippedSecondHandWeapon.value != null){
+                unEquipWeapon(_equippedSecondHandWeapon.value!!)
+            }
+            if (_equippedSecondHandShield.value != null){
+                _accessoryEquipment.value.add(_equippedSecondHandShield.value!!)
+                _equippedSecondHandShield.value = null
+            }
+            _equippedSecondHandWeapon.value = item
+            _weaponEquipment.value.remove(item)
+            _focus.value += item.focus
+            return
+        }
         if (_equippedWeapon.value == null) {
             if (_equippedSecondHandWeapon.value != null) {
                 if (item.hands == 1) {
                     _equippedWeapon.value = item
                     _weaponEquipment.value.remove(item)
-                }
-                else {
-                    _weaponEquipment.value.add(_equippedSecondHandWeapon.value!!)
-                    _equippedSecondHandWeapon.value = null
+                } else {
+                    unEquipWeapon(_equippedSecondHandWeapon.value!!)
                     _equippedWeapon.value = item
                     _weaponEquipment.value.remove(item)
                 }
-            }
-            else {
+            } else {
                 _equippedWeapon.value = item
                 _weaponEquipment.value.remove(item)
             }
@@ -3395,15 +3408,11 @@ class MainCharacterViewModel @Inject constructor(
                 _weaponEquipment.value.remove(item)
             }
         }
-        //Log.e("test", item.uniqueID.toString())
-        //Log.e("test", item.uniqueID.toString())
-
         _focus.value += item.focus
     }
 
     fun unEquipWeapon(item: WeaponItem) {
         if (_equippedWeapon.value != null) {
-            Log.e("test", item.uniqueID.toString() + " - " + _equippedWeapon.value!!.uniqueID.toString())
             if (item.uniqueID == _equippedWeapon.value!!.uniqueID) {
                 _focus.value -= item.focus
                 _weaponEquipment.value.add(_equippedWeapon.value!!)
@@ -3411,7 +3420,6 @@ class MainCharacterViewModel @Inject constructor(
             }
         }
         if (_equippedSecondHandWeapon.value != null) {
-            Log.e("test", item.uniqueID.toString() + " - " + _equippedSecondHandWeapon.value!!.uniqueID.toString())
             if (item.uniqueID == _equippedSecondHandWeapon.value!!.uniqueID) {
                 _focus.value -= item.focus
                 _weaponEquipment.value.add(_equippedSecondHandWeapon.value!!)

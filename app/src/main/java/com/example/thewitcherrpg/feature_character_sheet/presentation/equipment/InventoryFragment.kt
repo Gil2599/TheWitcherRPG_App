@@ -37,6 +37,7 @@ class InventoryFragment : Fragment() {
     private lateinit var lightAdapter: EquipmentListAdapter
     private lateinit var mediumAdapter: EquipmentListAdapter
     private lateinit var heavyAdapter: EquipmentListAdapter
+    private var amulets = arrayListOf<WeaponItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +68,7 @@ class InventoryFragment : Fragment() {
             1 -> selection = "Chest Armor"
             2 -> selection = "Leg Armor"
             3 -> selection = "Weapon"
-            4 -> selection = "Shield"
+            4 -> selection = "Shield/Accessory"
         }
 
         binding.autoCompleteTextViewItemType.setText(selection, false)
@@ -108,7 +109,7 @@ class InventoryFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun listAdaptersInit(weapons: Boolean, customItem: Boolean = false) {
+    private fun listAdaptersInit(weapons: Boolean, customItem: Boolean = false, accessories: Boolean = false) {
         if (weapons) {
             val swords = arrayListOf<WeaponItem>()
             val smallBlades = arrayListOf<WeaponItem>()
@@ -278,6 +279,27 @@ class InventoryFragment : Fragment() {
                 binding.textViewHeavy.visibility = View.VISIBLE
                 binding.rvMediumEquipment.visibility = View.VISIBLE
                 binding.rvHeavyEquipment.visibility = View.VISIBLE
+
+                if (accessories){
+                    val bludgeonsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
+                    for (item in mainCharacterViewModel.weaponEquipment.value)
+                        if (item.type == WeaponTypes.AMULET)
+                            amulets.add(item)
+                    bludgeonsAdapter.setData(amulets)
+                    binding.rvBludgeons.adapter = bludgeonsAdapter
+                    binding.textViewBludgeons.text = "Amulets"
+                    if (amulets.isNotEmpty()) {
+                        binding.textViewNoEquipment.visibility = View.INVISIBLE
+                        binding.textViewAddEquipment.visibility = View.INVISIBLE
+                        binding.rvBludgeons.visibility = View.VISIBLE
+                        binding.textViewBludgeons.visibility = View.VISIBLE
+                    }
+                }
+                else{
+                    binding.rvBludgeons.visibility = View.GONE
+                    binding.textViewBludgeons.visibility = View.GONE
+                }
+
             } else {
                 binding.textViewLight.text = "Custom Items"
                 binding.textViewLight.visibility = View.VISIBLE
@@ -286,13 +308,11 @@ class InventoryFragment : Fragment() {
             }
 
             binding.rvLightEquipment.visibility = View.VISIBLE
-            binding.rvBludgeons.visibility = View.GONE
             binding.rvPoleArms.visibility = View.GONE
             binding.rvStaves.visibility = View.GONE
             binding.rvThrownWeapons.visibility = View.GONE
             binding.rvBows.visibility = View.GONE
             binding.rvCrossbows.visibility = View.GONE
-            binding.textViewBludgeons.visibility = View.GONE
             binding.textViewPoleArms.visibility = View.GONE
             binding.textViewStaves.visibility = View.GONE
             binding.textViewThrownWeapons.visibility = View.GONE
@@ -456,6 +476,7 @@ class InventoryFragment : Fragment() {
         val lightArmorList = arrayListOf<EquipmentItem>()
         val mediumArmorList = arrayListOf<EquipmentItem>()
         val heavyArmorList = arrayListOf<EquipmentItem>()
+        amulets = arrayListOf()
 
         if (position == "Weapon") {
             listAdaptersInit(true)
@@ -505,8 +526,8 @@ class InventoryFragment : Fragment() {
                 heavyAdapter.setData(heavyArmorList)
             }
 
-            "Shield" -> {
-                listAdaptersInit(false)
+            "Shield/Accessory" -> {
+                listAdaptersInit(false, accessories = true)
                 for (item in mainCharacterViewModel.accessoryEquipment.value) {
                     when (item.equipmentType) {
                         EquipmentTypes.LIGHT_SHIELD -> lightArmorList.add(item)
@@ -534,7 +555,7 @@ class InventoryFragment : Fragment() {
         if (heavyArmorList.size == 0) binding.textViewHeavy.visibility = View.INVISIBLE
         else binding.textViewHeavy.visibility = View.VISIBLE
 
-        if (lightArmorList.size == 0 && mediumArmorList.size == 0 && heavyArmorList.size == 0) {
+        if (lightArmorList.size == 0 && mediumArmorList.size == 0 && heavyArmorList.size == 0 && amulets.size == 0) {
             binding.textViewNoEquipment.text = "No " + binding.autoCompleteTextViewItemType.text + " Equipment"
             binding.textViewNoEquipment.visibility = View.VISIBLE
             binding.textViewAddEquipment.visibility = View.VISIBLE

@@ -124,8 +124,8 @@
 
     <string-array name="amulets_data">
 
-        <item>Gemstone Amulet::+0:::0:0::Focus (3)::0:0:0</item>
-        <item>Simple Amulet::+0:::0:0::Focus (1)::0:0:0</item>
+        <item>Gemstone Amulet::+0:R::0:0::Focus (3):T:0:0.1:500</item>
+        <item>Simple Amulet::+0:R::0:0::Focus (1):T:0:0.1:250</item>
 
     </string-array>
 

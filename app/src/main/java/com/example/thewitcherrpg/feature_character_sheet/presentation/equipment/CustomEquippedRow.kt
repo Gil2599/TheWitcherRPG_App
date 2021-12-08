@@ -156,8 +156,8 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
                 WeaponTypes.THROWN_WEAPON -> binding.imageView6.setImageResource(R.drawable.ic_knife)
                 WeaponTypes.BOW -> binding.imageView6.setImageResource(R.drawable.ic_bow)
                 WeaponTypes.CROSSBOW -> binding.imageView6.setImageResource(R.drawable.ic_crossbow)
+                WeaponTypes.AMULET -> binding.imageView6.setImageResource(R.drawable.ic_amulet)
 
-                else -> binding.imageView6.setImageResource(R.drawable.ic_sword)
             }
         } else {
             binding.armorNameText.text = "No weapon equipped."

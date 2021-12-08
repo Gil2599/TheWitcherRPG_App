@@ -86,7 +86,7 @@ class AddItemFragment : Fragment() {
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_medium_armor_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_heavy_armor_data))
                     }
-                    if (item == "Shield") {
+                    if (item == "Shield/Accessory") {
                         listAdaptersInit(weapons = false, accessories = true)
                         lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_light_data))
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
@@ -354,8 +354,13 @@ class AddItemFragment : Fragment() {
 
         bind.buttonAdd.setOnClickListener {
             mainCharacterViewModel.addWeaponItem(weaponItem)
+            Snackbar.make(
+                binding.root, "Item added to ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT,
+            ).show()
             dialog.dismiss()
-            listAdaptersInit(true)
+            if (binding.autoCompleteTextViewItemType.text.toString() != "Shield/Accessory")
+                listAdaptersInit(true)
         }
 
         bind.buttonBuy.setOnClickListener {
