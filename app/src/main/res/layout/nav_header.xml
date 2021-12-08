@@ -30,7 +30,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/ic_baseline_add_a_photo_24"
                 android:contentDescription="Character Image"
                 android:scaleType="centerCrop"

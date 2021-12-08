@@ -1,17 +1,17 @@
 package com.example.thewitcherrpg.feature_character_list.presentation
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -20,30 +20,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
+import com.example.thewitcherrpg.databinding.ActivityMainBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
-import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationFirstFrag
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
+    lateinit var binding: ActivityLauncherBinding
 
     private lateinit var mCharListViewModel: CharacterListViewModel
+    private var darkMode = false
 
     lateinit var recyclerView: RecyclerView
     private lateinit var addButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityLauncherBinding = ActivityLauncherBinding.inflate(layoutInflater)
+        binding = ActivityLauncherBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         recyclerView = binding.recyclerView
         addButton = binding.addButton
@@ -77,20 +77,42 @@ class LauncherActivity : AppCompatActivity() {
             }
         }
         lifecycleScope.launch {
-            mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
-                if (disclaimerIsEnabled) {
-                    showDialogDisclaimer(true)
+            launch {
+                mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
+                    if (disclaimerIsEnabled) {
+                        showDialogDisclaimer(true)
+                    }
+                }
+            }
+            launch {
+                mCharListViewModel.darkMode.collect { darkModeIsEnabled ->
+                    darkMode = darkModeIsEnabled
+                    if (darkModeIsEnabled) {
+                        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_night_mode)
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    } else {
+                        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_day_mode)
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    }
                 }
             }
         }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (item.itemId == R.id.information) {
-            showDialogDisclaimer(false)
+        return when (item.itemId) {
+            android.R.id.home -> {
+                mCharListViewModel.saveDarkMode(!darkMode)
+                true
+            }
+            R.id.information -> {
+                showDialogDisclaimer(false)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -124,5 +146,9 @@ class LauncherActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    private fun animateDarkModeToggle(){
+
     }
 }

@@ -248,7 +248,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/outline_bkg"
                 android:text="Cancel"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textViewCost"
@@ -261,7 +261,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/outline_bkg"
                 android:text="Remove"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/buttonEquip"
                 app:layout_constraintTop_toTopOf="@+id/buttonEquip" />
@@ -272,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/outline_bkg"
                 android:text="Equip"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/buttonCancel" />

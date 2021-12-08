@@ -111,8 +111,8 @@ class CharFragment : Fragment() {
             }
             launch {
                 mainCharacterViewModel.image.collect { newImage ->
-                    (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
-                    loadImageFromStorage(newImage)
+                    if (loadImageFromStorage(newImage))
+                        (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
                 }
             }
         }
@@ -130,14 +130,16 @@ class CharFragment : Fragment() {
         _binding = null
     }
 
-    private fun loadImageFromStorage(path: String) {
-        try {
+    private fun loadImageFromStorage(path: String): Boolean {
+        return try {
             val f = File(path)
             val b = BitmapFactory.decodeStream(FileInputStream(f))
             val img = binding.imageView
             img.setImageBitmap(b)
+            true
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
+            false
         }
     }
 

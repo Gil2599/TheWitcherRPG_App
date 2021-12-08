@@ -22,6 +22,7 @@ private val Context.dataStore by preferencesDataStore(PREFERENCE_NAME)
 class DataStoreRepository @Inject constructor(@ApplicationContext appContext: Context) {
 
     private object PreferenceKeys {
+        val darkMode = booleanPreferencesKey("darkMode")
         val disclaimerMode = booleanPreferencesKey("disclaimer")
         val characterInformation = booleanPreferencesKey("charInfo")
         val statsInfo = booleanPreferencesKey("statsInfo")
@@ -58,6 +59,12 @@ class DataStoreRepository @Inject constructor(@ApplicationContext appContext: Co
     suspend fun setSkillTreeInfoMode(enabled: Boolean){
         settingsDataStore.edit { settings ->
             settings[PreferenceKeys.skillTreeInfo] = enabled
+        }
+    }
+
+    suspend fun setDarkMode(enabled: Boolean){
+        settingsDataStore.edit { settings ->
+            settings[PreferenceKeys.darkMode] = enabled
         }
     }
 
@@ -129,5 +136,19 @@ class DataStoreRepository @Inject constructor(@ApplicationContext appContext: Co
         .map { preference ->
             val skillTreeInfo = preference[PreferenceKeys.skillTreeInfo] ?: true
             skillTreeInfo
+        }
+
+    val readDarkMode: Flow<Boolean> = settingsDataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preference ->
+            val darkMode = preference[PreferenceKeys.darkMode] ?: true
+            darkMode
         }
 }

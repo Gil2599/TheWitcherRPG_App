@@ -31,7 +31,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/ic_baseline_add_a_photo_24"
                 android:contentDescription="Character Image"
                 android:scaleType="centerCrop"
@@ -62,7 +62,7 @@
             app:layout_constraintBottom_toTopOf="@+id/viewPager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewName"
-            app:tabIndicatorColor="@color/gray"
+            app:tabIndicatorColor="?colorAccent"
             app:tabMode="scrollable">
 
 
@@ -76,7 +76,7 @@
             android:text="@{MainViewModel.name}"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor = "@color/white"
+            android:textColor = "?android:textColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />

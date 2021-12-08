@@ -126,8 +126,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 launch {
                     mainCharacterViewModel.image.collect { newImage ->
-                        (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
-                        loadImageFromStorage(newImage, navHeaderBinding.imageView)
+                        if (loadImageFromStorage(newImage, navHeaderBinding.imageView))
+                            (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
                     }
                 }
             }
@@ -224,13 +224,15 @@ class MainActivity : AppCompatActivity() {
         else finish()
     }
 
-    private fun loadImageFromStorage(path: String, img: ImageView) {
-        try {
+    private fun loadImageFromStorage(path: String, img: ImageView): Boolean {
+        return try {
             val f = File(path)
             val b = BitmapFactory.decodeStream(FileInputStream(f))
             img.setImageBitmap(b)
+            true
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
+            false
         }
     }
 

@@ -12,6 +12,10 @@ import com.example.thewitcherrpg.databinding.CustomEquippedRowBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
+import android.util.TypedValue
+
+
+
 
 class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet) :
     LinearLayout(context, attributeSet) {
@@ -26,6 +30,10 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
     }
 
     fun setItem(item: EquipmentItem? = null) {
+        val value = TypedValue()
+        context.theme.resolveAttribute(R.attr.textFillColor, value, true)
+        val textColor = value.data
+
         if (item != null) {
             Log.d("Test", "init")
             binding.armorNameText.text = item.name
@@ -54,22 +62,13 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
                 binding.imageView6.setBackgroundResource(R.drawable.relic_outline_bkg)
             } else {
                 binding.armorNameText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.white
-                    )
+                    textColor
                 )
                 binding.stoppingPowerText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.white
-                    )
+                    textColor
                 )
                 binding.weightText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.white
-                    )
+                    textColor
                 )
                 binding.imageView6.setBackgroundResource(R.drawable.outline_bkg)
             }
@@ -79,27 +78,22 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
             binding.weightText.text = ""
             binding.imageView6.setBackgroundResource(R.drawable.unfocused_outline_bkg)
             binding.armorNameText.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.white
-                )
+                textColor
             )
             binding.stoppingPowerText.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.white
-                )
+                textColor
             )
             binding.weightText.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.white
-                )
+                textColor
             )
         }
     }
 
     fun setItem(item: WeaponItem? = null) {
+        val value = TypedValue()
+        context.theme.resolveAttribute(R.attr.textFillColor, value, true)
+        val textColor = value.data
+
         if (item != null) {
             binding.armorNameText.text = item.name
             binding.stoppingPowerText.text = "Reliability: " + item.reliability.toString()
@@ -127,22 +121,13 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
                 binding.imageView6.setBackgroundResource(R.drawable.relic_outline_bkg)
             } else {
                 binding.armorNameText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.white
-                    )
+                    textColor
                 )
                 binding.stoppingPowerText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.white
-                    )
+                    textColor
                 )
                 binding.weightText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.white
-                    )
+                    textColor
                 )
                 binding.imageView6.setBackgroundResource(R.drawable.outline_bkg)
             }
@@ -165,22 +150,13 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
             binding.weightText.text = ""
             binding.imageView6.setBackgroundResource(R.drawable.unfocused_outline_bkg)
             binding.armorNameText.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.white
-                )
+                textColor
             )
             binding.stoppingPowerText.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.white
-                )
+                textColor
             )
             binding.weightText.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.white
-                )
+                textColor
             )
         }
     }

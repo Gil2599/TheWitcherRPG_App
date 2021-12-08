@@ -150,7 +150,7 @@
             android:autoSizeTextType="uniform"
             android:background="@drawable/outline_bkg"
             android:text='@{MainViewModel.definingSkill}'
-            android:textColor="@color/gray"
+            android:textColor="?colorAccent"
             app:layout_constraintWidth_percent="0.8"
             app:layout_constraintBottom_toTopOf="@+id/arrow1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +182,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="?colorAccent"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
@@ -200,7 +200,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/gray" />
+                android:textColor="?colorAccent" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutA3Skill"
@@ -257,7 +257,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="?colorAccent"
             android:clickable="false"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/arrow5"
@@ -276,7 +276,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/gray" />
+                android:textColor="?colorAccent" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutA2Skill"

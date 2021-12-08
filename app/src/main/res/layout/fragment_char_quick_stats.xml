@@ -38,7 +38,7 @@
                 android:layout_weight= "0.5"
                 android:gravity="center"
                 android:text="@string/HP"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="30sp" />
 
             <Button
@@ -48,7 +48,7 @@
                 android:layout_weight= "0.5"
                 android:background="@drawable/transparent_bkg"
                 android:text='@{sharedViewModel.hp + "/" + sharedViewModel.maxHPWithModifier}'
-                android:textColor="@color/gray_400"
+                android:textColor="?android:textColor"
                 android:textSize="25sp"
                 android:gravity="center|top"
                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
                 android:gravity="center"
                 android:paddingHorizontal="8dp"
                 android:text="@string/Stamina"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="30sp" />
 
             <Button
@@ -85,7 +85,7 @@
                 android:layout_weight= "0.5"
                 android:background="@drawable/transparent_bkg"
                 android:text='@{sharedViewModel.sta + "/" + sharedViewModel.maxSTAWithModifier}'
-                android:textColor="@color/gray_400"
+                android:textColor="?android:textColor"
                 android:textSize="25sp"
                 android:gravity="center|top"
                 android:textStyle="bold" />
@@ -111,7 +111,7 @@
                 android:gravity="center"
                 android:paddingHorizontal="8dp"
                 android:text="@string/Crowns"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="30sp" />
 
             <Button
@@ -121,7 +121,7 @@
                 android:layout_weight= "0.5"
                 android:background="@drawable/transparent_bkg"
                 android:text='@{`` + sharedViewModel.crowns}'
-                android:textColor="@color/gray_400"
+                android:textColor="?android:textColor"
                 android:textSize="25sp"
                 android:gravity="center|top"
                 android:textStyle="bold" />

@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Novice Spells"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view2"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
                 android:id="@+id/view2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/gray"
+                android:background="?colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textNovice"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Journeyman Spells"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutNovice" />
@@ -69,7 +69,7 @@
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/gray"
+                android:background="?colorAccent"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/textJourneyman"
                 app:layout_constraintWidth_percent="0.9" />
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Master Spells"
-                android:textColor="@color/gray"
+                android:textColor="?colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textJourneyman"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutJourneyman" />
@@ -104,7 +104,7 @@
                 android:id="@+id/view4"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/gray"
+                android:background="?colorAccent"
                 app:layout_constraintStart_toStartOf="@+id/textMaster"
                 app:layout_constraintTop_toBottomOf="@+id/textMaster"
                 app:layout_constraintWidth_percent="0.9" />
