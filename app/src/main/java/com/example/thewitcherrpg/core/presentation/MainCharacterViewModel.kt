@@ -1,12 +1,10 @@
 package com.example.thewitcherrpg.core.presentation
 
-import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 //import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -38,11 +36,10 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipm
 import com.example.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
 
 @HiltViewModel
@@ -683,15 +680,17 @@ class MainCharacterViewModel @Inject constructor(
     private var _equippedWeapon = MutableStateFlow<WeaponItem?>(null)
     val equippedWeapon = _equippedWeapon.asStateFlow()
 
-    private var _shieldEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
-    val shieldEquipment = _shieldEquipment.asStateFlow()
+    private var _accessoryEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
+    val accessoryEquipment = _accessoryEquipment.asStateFlow()
 
-    private var _equippedShield = MutableStateFlow<EquipmentItem?>(null)
-    val equippedShield = _equippedShield.asStateFlow()
+    private var _equippedSecondHandShield = MutableStateFlow<EquipmentItem?>(null)
+    val equippedSecondHandShield = _equippedSecondHandShield.asStateFlow()
+
+    private var _equippedSecondHandWeapon = MutableStateFlow<WeaponItem?>(null)
+    val equippedSecondHandWeapon = _equippedSecondHandWeapon.asStateFlow()
 
     private var _miscEquipment = MutableStateFlow(arrayListOf<EquipmentItem>())
     val miscEquipment = _miscEquipment.asStateFlow()
-
 
     private var _campaignNotes = MutableStateFlow(arrayListOf<CampaignNote>())
     val campaignNotes = _campaignNotes.asStateFlow()
@@ -884,7 +883,7 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun fromViewModelToCharacter(): Character{
+    private fun fromViewModelToCharacter(): Character {
         return Character(
             id = _id.value,
             imagePath = _image.value!!,
@@ -1087,8 +1086,8 @@ class MainCharacterViewModel @Inject constructor(
             equippedChest = _equippedChest.value,
             legEquipment = _legEquipment.value,
             equippedLegs = _equippedLegs.value,
-            shieldEquipment = _shieldEquipment.value,
-            equippedShield = _equippedShield.value,
+            accessoryEquipment = _accessoryEquipment.value,
+            equippedSecondHandShield = _equippedSecondHandShield.value,
             miscEquipment = _miscEquipment.value,
 
             weaponEquipment = _weaponEquipment.value,
@@ -1373,8 +1372,8 @@ class MainCharacterViewModel @Inject constructor(
                     _legEquipment.value = characterData.legEquipment
                     _equippedLegs.value = characterData.equippedLegs
 
-                    _shieldEquipment.value = characterData.shieldEquipment
-                    _equippedShield.value = characterData.equippedShield
+                    _accessoryEquipment.value = characterData.accessoryEquipment
+                    _equippedSecondHandShield.value = characterData.equippedSecondHandShield
 
                     _weaponEquipment.value = characterData.weaponEquipment
                     _equippedWeapon.value = characterData.equippedWeapon
@@ -2790,13 +2789,15 @@ class MainCharacterViewModel @Inject constructor(
     fun onRest(longRest: Boolean) {
         if (longRest) {
             if (_hp.value < _maxHPWithModifier.value) {
-                if (_hp.value + _rec.value > _maxHPWithModifier.value) _hp.value = _maxHPWithModifier.value
+                if (_hp.value + _rec.value > _maxHPWithModifier.value) _hp.value =
+                    _maxHPWithModifier.value
                 else _hp.value += _rec.value
             }
             if (_sta.value < _maxSTAWithModifier.value) _sta.value = _maxSTAWithModifier.value
         } else {
             if (_sta.value < _maxSTAWithModifier.value) {
-                if (_sta.value + _rec.value > _maxSTAWithModifier.value) _sta.value = _maxSTAWithModifier.value
+                if (_sta.value + _rec.value > _maxSTAWithModifier.value) _sta.value =
+                    _maxSTAWithModifier.value
                 else _sta.value = _sta.value.plus(_rec.value)
             }
         }
@@ -3117,10 +3118,10 @@ class MainCharacterViewModel @Inject constructor(
     private fun onEncumbranceChange(increase: Boolean) {
         if (increase) {
             val encBonus = _body.value * 10
-            _enc.value = _enc.value - (((_body.value - 1) * 10 )) + encBonus
+            _enc.value = _enc.value - (((_body.value - 1) * 10)) + encBonus
         } else {
             val encBonus = _body.value * 10
-            _enc.value = _enc.value - (((_body.value + 1) * 10 )) + encBonus
+            _enc.value = _enc.value - (((_body.value + 1) * 10)) + encBonus
         }
     }
 
@@ -3155,7 +3156,7 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.add(
                 item
             )
-            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.add(
+            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _accessoryEquipment.value.add(
                 item
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.add(item)
@@ -3190,7 +3191,7 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_LEGS, EquipmentTypes.MEDIUM_LEGS, EquipmentTypes.HEAVY_LEGS -> _legEquipment.value.remove(
                 item
             )
-            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _shieldEquipment.value.remove(
+            EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> _accessoryEquipment.value.remove(
                 item
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.remove(item)
@@ -3249,15 +3250,24 @@ class MainCharacterViewModel @Inject constructor(
             EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> {
 
                 //Check if theres an item already equipped in this slot
-                if (_equippedShield.value != null) {
+                when {
+                    _equippedSecondHandShield.value != null -> {
 
-                    _shieldEquipment.value.remove(item)
-                    _shieldEquipment.value.add(_equippedShield.value!!)
-                    _equippedShield.value = item
-
-                } else {
-                    _shieldEquipment.value.remove(item)
-                    _equippedShield.value = item
+                        _accessoryEquipment.value.remove(item)
+                        _accessoryEquipment.value.add(_equippedSecondHandShield.value!!)
+                        _equippedSecondHandShield.value = item
+                    }
+                    _equippedSecondHandWeapon.value != null -> {
+                        _accessoryEquipment.value.remove(item)
+                        _weaponEquipment.value.add(_equippedSecondHandWeapon.value!!)
+                        _focus.value -= _equippedSecondHandWeapon.value!!.focus
+                        _equippedSecondHandWeapon.value = null
+                        _equippedSecondHandShield.value = item
+                    }
+                    else -> {
+                        _accessoryEquipment.value.remove(item)
+                        _equippedSecondHandShield.value = item
+                    }
                 }
             }
         }
@@ -3282,8 +3292,8 @@ class MainCharacterViewModel @Inject constructor(
             }
 
             EquipmentTypes.LIGHT_SHIELD, EquipmentTypes.MEDIUM_SHIELD, EquipmentTypes.HEAVY_SHIELD -> {
-                _shieldEquipment.value.add(item)
-                _equippedShield.value = null
+                _accessoryEquipment.value.add(item)
+                _equippedSecondHandShield.value = null
             }
         }
     }
@@ -3346,20 +3356,68 @@ class MainCharacterViewModel @Inject constructor(
 
     fun equipWeapon(item: WeaponItem) {
         if (_equippedWeapon.value == null) {
-            _equippedWeapon.value = item
-            _weaponEquipment.value.remove(item)
+            if (_equippedSecondHandWeapon.value != null) {
+                if (item.hands == 1) {
+                    _equippedWeapon.value = item
+                    _weaponEquipment.value.remove(item)
+                }
+                else {
+                    _weaponEquipment.value.add(_equippedSecondHandWeapon.value!!)
+                    _equippedSecondHandWeapon.value = null
+                    _equippedWeapon.value = item
+                    _weaponEquipment.value.remove(item)
+                }
+            }
+            else {
+                _equippedWeapon.value = item
+                _weaponEquipment.value.remove(item)
+            }
+
         } else {
-            unEquipWeapon(item)
-            _equippedWeapon.value = item
-            _weaponEquipment.value.remove(item)
+
+            if (_equippedWeapon.value!!.hands == 1 && item.hands == 1) {
+                if (_equippedSecondHandShield.value == null && _equippedSecondHandWeapon.value == null) {
+                    _equippedSecondHandWeapon.value = item
+                    _weaponEquipment.value.remove(item)
+                } else if (_equippedSecondHandWeapon.value != null) {
+                    _focus.value -= item.focus
+                    _weaponEquipment.value.add(_equippedSecondHandWeapon.value!!)
+                    _equippedSecondHandWeapon.value = item
+                } else if (_equippedSecondHandShield.value != null) {
+                    _weaponEquipment.value.remove(item)
+                    _accessoryEquipment.value.add(_equippedSecondHandShield.value!!)
+                    _equippedSecondHandShield.value = null
+                    _equippedSecondHandWeapon.value = item
+                }
+            } else {
+                unEquipWeapon(_equippedWeapon.value!!)
+                _equippedWeapon.value = item
+                _weaponEquipment.value.remove(item)
+            }
         }
+        //Log.e("test", item.uniqueID.toString())
+        //Log.e("test", item.uniqueID.toString())
+
         _focus.value += item.focus
     }
 
     fun unEquipWeapon(item: WeaponItem) {
-        _focus.value -= item.focus
-        _weaponEquipment.value.add(_equippedWeapon.value!!)
-        _equippedWeapon.value = null
+        if (_equippedWeapon.value != null) {
+            Log.e("test", item.uniqueID.toString() + " - " + _equippedWeapon.value!!.uniqueID.toString())
+            if (item.uniqueID == _equippedWeapon.value!!.uniqueID) {
+                _focus.value -= item.focus
+                _weaponEquipment.value.add(_equippedWeapon.value!!)
+                _equippedWeapon.value = null
+            }
+        }
+        if (_equippedSecondHandWeapon.value != null) {
+            Log.e("test", item.uniqueID.toString() + " - " + _equippedSecondHandWeapon.value!!.uniqueID.toString())
+            if (item.uniqueID == _equippedSecondHandWeapon.value!!.uniqueID) {
+                _focus.value -= item.focus
+                _weaponEquipment.value.add(_equippedSecondHandWeapon.value!!)
+                _equippedSecondHandWeapon.value = null
+            }
+        }
     }
 
     fun onReliabilityChange(item: WeaponItem, increase: Boolean) {
@@ -3412,19 +3470,19 @@ class MainCharacterViewModel @Inject constructor(
         _campaignNotes.value.remove(campaignNote)
     }
 
-    fun saveCharInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+    fun saveCharInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.setCharacterInfoMode(mode)
     }
 
-    fun saveStatsInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+    fun saveStatsInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.setStatsInfoMode(mode)
     }
 
-    fun saveSkillsInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+    fun saveSkillsInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.setSkillsInfoMode(mode)
     }
 
-    fun saveSkillTreeInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO){
+    fun saveSkillTreeInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.setSkillTreeInfoMode(mode)
     }
 }

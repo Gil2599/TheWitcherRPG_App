@@ -2,6 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 class AddItemFragment : Fragment() {
     private var _binding: FragmentAddItemBinding? = null
@@ -64,24 +66,28 @@ class AddItemFragment : Fragment() {
 
                     if (item == "Weapon") {
                         listAdaptersInit(true)
-                    } else listAdaptersInit(false)
+                    }
 
                     if (item == "Head Armor") {
+                        listAdaptersInit(false)
                         lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_light_armor_data))
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_medium_armor_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_heavy_armor_data))
                     }
                     if (item == "Chest Armor") {
+                        listAdaptersInit(false)
                         lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_light_armor_data))
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_medium_armor_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_heavy_armor_data))
                     }
                     if (item == "Leg Armor") {
+                        listAdaptersInit(false)
                         lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_light_armor_data))
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_medium_armor_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_heavy_armor_data))
                     }
                     if (item == "Shield") {
+                        listAdaptersInit(weapons = false, accessories = true)
                         lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_light_data))
                         mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
                         heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_heavy_data))
@@ -149,7 +155,7 @@ class AddItemFragment : Fragment() {
         binding.rvCrossbows.isNestedScrollingEnabled = false
     }
 
-    private fun listAdaptersInit(weapons: Boolean, armorSet: Boolean = false) {
+    private fun listAdaptersInit(weapons: Boolean, armorSet: Boolean = false, accessories: Boolean = false) {
 
         if (weapons) {
             val swordsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
@@ -227,6 +233,20 @@ class AddItemFragment : Fragment() {
 
                 heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
                 binding.rvHeavyEquipment.adapter = heavyAdapter
+
+                if (accessories){
+                    val bludgeonsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
+                    bludgeonsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.amulets_data))
+                    binding.rvBludgeons.adapter = bludgeonsAdapter
+                    binding.textViewBludgeons.text = "Amulets"
+                    binding.rvBludgeons.visibility = View.VISIBLE
+                    binding.textViewBludgeons.visibility = View.VISIBLE
+                }
+                else{
+                    binding.rvBludgeons.visibility = View.GONE
+                    binding.textViewBludgeons.visibility = View.GONE
+                }
+
             } else {
                 val lightArmorSetAdapter = ArmorSetListAdapter {
                     item -> showArmorSetDialog(item)
@@ -250,11 +270,10 @@ class AddItemFragment : Fragment() {
             binding.textViewLight.text = "Light"
             binding.textViewMedium.text = "Medium"
             binding.textViewHeavy.text = "Heavy"
-
             binding.rvLightEquipment.visibility = View.VISIBLE
             binding.rvMediumEquipment.visibility = View.VISIBLE
             binding.rvHeavyEquipment.visibility = View.VISIBLE
-            binding.rvBludgeons.visibility = View.GONE
+
             binding.rvPoleArms.visibility = View.GONE
             binding.rvStaves.visibility = View.GONE
             binding.rvThrownWeapons.visibility = View.GONE
@@ -263,7 +282,6 @@ class AddItemFragment : Fragment() {
             binding.textViewLight.visibility = View.VISIBLE
             binding.textViewMedium.visibility = View.VISIBLE
             binding.textViewHeavy.visibility = View.VISIBLE
-            binding.textViewBludgeons.visibility = View.GONE
             binding.textViewPoleArms.visibility = View.GONE
             binding.textViewStaves.visibility = View.GONE
             binding.textViewThrownWeapons.visibility = View.GONE
@@ -295,6 +313,7 @@ class AddItemFragment : Fragment() {
                 binding.root, "Item added to ${mainCharacterViewModel.name.value}",
                 Snackbar.LENGTH_SHORT,
             ).show()
+
             dialog.dismiss()
         }
 
@@ -336,6 +355,7 @@ class AddItemFragment : Fragment() {
         bind.buttonAdd.setOnClickListener {
             mainCharacterViewModel.addWeaponItem(weaponItem)
             dialog.dismiss()
+            listAdaptersInit(true)
         }
 
         bind.buttonBuy.setOnClickListener {

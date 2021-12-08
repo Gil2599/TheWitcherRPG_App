@@ -122,4 +122,11 @@
 
     </string-array>
 
+    <string-array name="amulets_data">
+
+        <item>Gemstone Amulet::+0:::0:0::Focus (3)::0:0:0</item>
+        <item>Simple Amulet::+0:::0:0::Focus (1)::0:0:0</item>
+
+    </string-array>
+
 </resources>

@@ -25,5 +25,5 @@ data class EquipmentItem(
     val equipmentType: EquipmentTypes,
     var equipmentNote: String = "",
     var isRelic: Boolean = false,
-    val uniqueID: UUID = UUID.randomUUID()
+    var uniqueID: UUID = UUID.randomUUID()
 ) : Parcelable

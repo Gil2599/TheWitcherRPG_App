@@ -68,8 +68,19 @@ class EquipmentFragment : Fragment() {
                     }
                 }
                 launch {
-                    mainCharacterViewModel.equippedShield.collectLatest {
-                        binding.equippedRowShield.setItem(mainCharacterViewModel.equippedShield.value)
+                    mainCharacterViewModel.equippedSecondHandShield.collectLatest {
+                        if (it != null)
+                            binding.equippedSecondHand.setItem(it)
+                        else if (mainCharacterViewModel.equippedSecondHandWeapon.value == null)
+                            binding.equippedSecondHand.setItem(mainCharacterViewModel.equippedSecondHandWeapon.value)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.equippedSecondHandWeapon.collectLatest {
+                        if (it != null)
+                            binding.equippedSecondHand.setItem(it)
+                        else if (mainCharacterViewModel.equippedSecondHandShield.value == null)
+                            binding.equippedSecondHand.setItem(mainCharacterViewModel.equippedSecondHandShield.value)
                     }
                 }
                 launch {
@@ -94,22 +105,13 @@ class EquipmentFragment : Fragment() {
             }
         }
 
-        when (mainCharacterViewModel.equippedWeapon.value?.type) {
-            WeaponTypes.SWORD -> binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
-            WeaponTypes.SMALL_BLADE -> binding.equippedRowWeapon.setIcon(R.drawable.ic_dagger)
-            WeaponTypes.AXE -> binding.equippedRowWeapon.setIcon(R.drawable.ic_axe)
-            WeaponTypes.BLUDGEON -> binding.equippedRowWeapon.setIcon(R.drawable.ic_mallet)
-            WeaponTypes.POLE_ARM -> binding.equippedRowWeapon.setIcon(R.drawable.ic_spears)
-            WeaponTypes.STAFF -> binding.equippedRowWeapon.setIcon(R.drawable.ic_staff)
-            WeaponTypes.THROWN_WEAPON -> binding.equippedRowWeapon.setIcon(R.drawable.ic_knife)
-            WeaponTypes.BOW -> binding.equippedRowWeapon.setIcon(R.drawable.ic_bow)
-            WeaponTypes.CROSSBOW -> binding.equippedRowWeapon.setIcon(R.drawable.ic_crossbow)
-
-            else -> binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
+        if (mainCharacterViewModel.equippedWeapon.value == null) {
+            binding.equippedRowWeapon.setIcon(R.drawable.ic_sword)
         }
+
         binding.equippedRowWeapon.setOnClickListener {
             if (mainCharacterViewModel.equippedWeapon.value != null)
-                showWeaponDialog()
+                showWeaponDialog(secondHand = false)
             else {
                 val action =
                     EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(3)
@@ -117,14 +119,20 @@ class EquipmentFragment : Fragment() {
             }
         }
 
-        binding.equippedRowShield.setIcon(R.drawable.ic_armor_shield)
-        binding.equippedRowShield.setOnClickListener {
-            if (mainCharacterViewModel.equippedShield.value != null)
-                showArmorDialog(mainCharacterViewModel.equippedShield.value)
-            else {
-                val action =
-                    EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(4)
-                Navigation.findNavController(view).navigate(action)
+        binding.equippedSecondHand.setIcon(R.drawable.ic_armor_shield)
+        binding.equippedSecondHand.setOnClickListener {
+            when {
+                mainCharacterViewModel.equippedSecondHandShield.value != null -> showArmorDialog(
+                    mainCharacterViewModel.equippedSecondHandShield.value
+                )
+                mainCharacterViewModel.equippedSecondHandWeapon.value != null -> showWeaponDialog(
+                    secondHand = true
+                )
+                else -> {
+                    val action =
+                        EquipmentFragmentDirections.actionEquipmentFragmentToInventoryFragment(4)
+                    Navigation.findNavController(view).navigate(action)
+                }
             }
         }
 
@@ -173,7 +181,7 @@ class EquipmentFragment : Fragment() {
         return view
     }
 
-    private fun showWeaponDialog() {
+    private fun showWeaponDialog(secondHand: Boolean) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -181,7 +189,8 @@ class EquipmentFragment : Fragment() {
         val bind: CustomDialogCharWeaponBinding =
             CustomDialogCharWeaponBinding.inflate(layoutInflater)
 
-        val weaponItem = mainCharacterViewModel.equippedWeapon.value!!
+        val weaponItem = if (secondHand) mainCharacterViewModel.equippedSecondHandWeapon.value!! else mainCharacterViewModel.equippedWeapon.value!!
+
         bind.weaponItem = weaponItem
 
         bind.customTitle.setTitle(weaponItem.name)

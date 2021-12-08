@@ -233,8 +233,9 @@ data class Character(
     var legEquipment: ArrayList<EquipmentItem> = arrayListOf(),
     var equippedLegs: EquipmentItem? = null,
 
-    var shieldEquipment: ArrayList<EquipmentItem> = arrayListOf(),
-    var equippedShield: EquipmentItem? = null,
+    var accessoryEquipment: ArrayList<EquipmentItem> = arrayListOf(),
+    var equippedSecondHandShield: EquipmentItem? = null,
+    var equippedSecondHandWeapon: WeaponItem? = null,
 
     var miscEquipment: ArrayList<EquipmentItem> = arrayListOf(),
 

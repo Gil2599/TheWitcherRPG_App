@@ -47,14 +47,14 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:clickable="true"
-            app:layout_constraintBottom_toTopOf="@+id/equippedRowShield"
+            app:layout_constraintBottom_toTopOf="@+id/equippedSecondHand"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
         <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
-            android:id="@+id/equippedRowShield"
+            android:id="@+id/equippedSecondHand"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:clickable="true"
@@ -73,7 +73,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/equippedRowShield" />
+            app:layout_constraintTop_toBottomOf="@+id/equippedSecondHand" />
 
         <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
             android:id="@+id/equippedRowChest"

@@ -51,6 +51,10 @@ class GetWeaponListUseCase @Inject constructor() {
                 equipmentStringArray,
                 WeaponTypes.CROSSBOW
             )
+            R.array.amulets_data -> getEquipmentListInfo(
+                equipmentStringArray,
+                WeaponTypes.AMULET
+            )
 
             else -> arrayListOf()
         }

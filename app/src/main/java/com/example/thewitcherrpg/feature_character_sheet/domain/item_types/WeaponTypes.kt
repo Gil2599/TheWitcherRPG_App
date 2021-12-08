@@ -9,5 +9,6 @@ enum class WeaponTypes {
     STAFF,
     THROWN_WEAPON,
     BOW,
-    CROSSBOW
+    CROSSBOW,
+    AMULET
 }
