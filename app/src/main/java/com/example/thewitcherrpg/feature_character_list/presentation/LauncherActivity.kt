@@ -156,7 +156,4 @@ class LauncherActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun animateDarkModeToggle(){
-
-    }
 }

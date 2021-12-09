@@ -97,7 +97,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutA1"
-            app:tint="@color/purple_200" />
+            app:tint="?colorOnPrimaryContainer" />
 
         <ImageView
             android:id="@+id/arrow3"
@@ -111,7 +111,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/arrow2"
             app:layout_constraintTop_toTopOf="@+id/arrow2"
-            app:tint="@color/light_red" />
+            app:tint="?colorContainer" />
 
         <ImageView
             android:id="@+id/arrow2"
@@ -125,7 +125,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/arrow1"
             app:layout_constraintTop_toTopOf="@+id/arrow1"
-            app:tint="@color/green" />
+            app:tint="?colorOnSecondaryContainer" />
 
         <ImageView
             android:id="@+id/arrow1"
@@ -140,7 +140,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
-            app:tint="@color/purple_200" />
+            app:tint="?colorOnPrimaryContainer" />
 
         <Button
             android:id="@+id/buttonDefiningSkill"
@@ -166,7 +166,7 @@
             android:layout_height="0dp"
             android:autoSizeTextType="uniform"
             android:gravity="center"
-            android:textColor="@color/purple_200"
+            android:textColor="?colorOnPrimaryContainer"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutA1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
@@ -229,7 +229,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillA3}'
-                    android:textColor="@color/purple_200"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -305,7 +305,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillA2}'
-                    android:textColor="@color/purple_200"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -334,7 +334,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="1dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/purple_200"
+            android:backgroundTint="?colorOnPrimaryContainer"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/arrow4"
@@ -353,7 +353,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/purple_200" />
+                android:textColor="?colorOnPrimaryContainer" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutA1Skill"
@@ -382,7 +382,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillA1}'
-                    android:textColor="@color/purple_200"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -411,7 +411,7 @@
             android:layout_height="0dp"
             android:autoSizeTextType="uniform"
             android:gravity="center"
-            android:textColor="@color/green"
+            android:textColor="?colorOnSecondaryContainer"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/firstSkillTitle"
@@ -427,7 +427,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="1dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="?colorOnSecondaryContainer"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayoutA3"
@@ -445,7 +445,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/green" />
+                android:textColor="?colorOnSecondaryContainer" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutB3Skill"
@@ -502,7 +502,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="?colorOnSecondaryContainer"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayoutA2"
@@ -520,7 +520,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/green" />
+                android:textColor="?colorOnSecondaryContainer" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutB2Skill"
@@ -577,7 +577,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="?colorOnSecondaryContainer"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayoutA1"
@@ -596,7 +596,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/green" />
+                android:textColor="?colorOnSecondaryContainer" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutB1Skill"
@@ -625,7 +625,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillB1}'
-                    android:textColor="@color/green"
+                    android:textColor="?colorOnSecondaryContainer"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -656,7 +656,7 @@
             android:autoSizeMinTextSize="13sp"
             android:autoSizeTextType="uniform"
             android:gravity="center"
-            android:textColor="@color/light_red"
+            android:textColor="?colorContainer"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/secondSkillTitle"
@@ -671,7 +671,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/light_red"
+            android:backgroundTint="?colorContainer"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayoutB1"
@@ -690,7 +690,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/light_red" />
+                android:textColor="?colorContainer" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutC1Skill"
@@ -719,7 +719,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillC1}'
-                    android:textColor="@color/light_red"
+                    android:textColor="?colorContainer"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -746,7 +746,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/light_red"
+            android:backgroundTint="?colorContainer"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayoutB2"
@@ -764,7 +764,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/light_red" />
+                android:textColor="?colorContainer" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutC2Skill"
@@ -793,7 +793,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillC2}'
-                    android:textColor="@color/light_red"
+                    android:textColor="?colorContainer"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -821,7 +821,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/outline_bkg"
-            android:backgroundTint="@color/light_red"
+            android:backgroundTint="?colorContainer"
             android:clickable="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayoutB3"
@@ -839,7 +839,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:textColor="@color/light_red" />
+                android:textColor="?colorContainer" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutC3Skill"
@@ -868,7 +868,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text='@{`` + MainViewModel.professionSkillC3}'
-                    android:textColor="@color/light_red"
+                    android:textColor="?colorContainer"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 

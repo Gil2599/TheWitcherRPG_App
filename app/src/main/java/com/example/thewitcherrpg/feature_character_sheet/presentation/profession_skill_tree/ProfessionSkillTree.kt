@@ -2,8 +2,10 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.professio
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -291,6 +293,18 @@ class ProfessionSkillTree : Fragment() {
 
     //Create observers for each skill in order to make next skills in branch editable when a value of 5 is reached
     private fun createObservers(){
+        val value = TypedValue()
+        context?.theme?.resolveAttribute(R.attr.colorOnPrimaryContainer, value, true)
+        val purple = value.data
+
+        context?.theme?.resolveAttribute(R.attr.colorOnSecondaryContainer, value, true)
+        val green = value.data
+
+        context?.theme?.resolveAttribute(R.attr.colorContainer, value, true)
+        val red = value.data
+
+        context?.theme?.resolveAttribute(R.attr.colorAccent, value, true)
+        val disabled = value.data
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -308,17 +322,17 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonA2Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonA2Plus
                             }
-                            binding.linearLayoutA2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
-                            binding.SkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                            binding.textViewSkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                            binding.arrow4.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
+                            binding.linearLayoutA2.backgroundTintList = ColorStateList.valueOf(purple)
+                            binding.SkillA2.setTextColor(purple)
+                            binding.textViewSkillA2.setTextColor(purple)
+                            binding.arrow4.imageTintList = ColorStateList.valueOf(purple)
                         }
                         else{
                             binding.linearLayoutA2.setOnClickListener(null)
-                            binding.linearLayoutA2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                            binding.SkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.textViewSkillA2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.arrow4.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.linearLayoutA2.backgroundTintList = ColorStateList.valueOf(disabled)
+                            binding.SkillA2.setTextColor(disabled)
+                            binding.textViewSkillA2.setTextColor(disabled)
+                            binding.arrow4.imageTintList = ColorStateList.valueOf(disabled)
                         }
                     }
                 }
@@ -335,17 +349,17 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonA3Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonA3Plus
                             }
-                            binding.linearLayoutA3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
-                            binding.SkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                            binding.textViewSkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
-                            binding.arrow5.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.purple_200)
+                            binding.linearLayoutA3.backgroundTintList = ColorStateList.valueOf(purple)
+                            binding.SkillA3.setTextColor(purple)
+                            binding.textViewSkillA3.setTextColor(purple)
+                            binding.arrow5.imageTintList = ColorStateList.valueOf(purple)
                         }
                         else{
                             binding.linearLayoutA3.setOnClickListener(null)
-                            binding.linearLayoutA3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                            binding.SkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.textViewSkillA3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.arrow5.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.linearLayoutA3.backgroundTintList = ColorStateList.valueOf(disabled)
+                            binding.SkillA3.setTextColor(disabled)
+                            binding.textViewSkillA3.setTextColor(disabled)
+                            binding.arrow5.imageTintList = ColorStateList.valueOf(disabled)
                         }
                     }
                 }
@@ -362,17 +376,17 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonB2Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonB2Plus
                             }
-                            binding.linearLayoutB2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
-                            binding.SkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                            binding.textViewSkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                            binding.arrow6.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+                            binding.linearLayoutB2.backgroundTintList = ColorStateList.valueOf(green)
+                            binding.SkillB2.setTextColor(green)
+                            binding.textViewSkillB2.setTextColor(green)
+                            binding.arrow6.imageTintList = ColorStateList.valueOf(green)
                         }
                         else{
                             binding.linearLayoutB2.setOnClickListener(null)
-                            binding.linearLayoutB2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                            binding.SkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.textViewSkillB2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.arrow6.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.linearLayoutB2.backgroundTintList = ColorStateList.valueOf(disabled)
+                            binding.SkillB2.setTextColor(disabled)
+                            binding.textViewSkillB2.setTextColor(disabled)
+                            binding.arrow6.imageTintList = ColorStateList.valueOf(disabled)
                         }
                     }
                 }
@@ -389,17 +403,17 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonB3Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonB3Plus
                             }
-                            binding.linearLayoutB3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
-                            binding.SkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                            binding.textViewSkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
-                            binding.arrow9.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+                            binding.linearLayoutB3.backgroundTintList = ColorStateList.valueOf(green)
+                            binding.SkillB3.setTextColor(green)
+                            binding.textViewSkillB3.setTextColor(green)
+                            binding.arrow9.imageTintList = ColorStateList.valueOf(green)
                         }
                         else{
                             binding.linearLayoutB3.setOnClickListener(null)
-                            binding.linearLayoutB3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                            binding.SkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.textViewSkillB3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.arrow9.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.linearLayoutB3.backgroundTintList = ColorStateList.valueOf(disabled)
+                            binding.SkillB3.setTextColor(disabled)
+                            binding.textViewSkillB3.setTextColor(disabled)
+                            binding.arrow9.imageTintList = ColorStateList.valueOf(disabled)
                         }
                     }
                 }
@@ -416,17 +430,17 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonC2Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonC2Plus
                             }
-                            binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
-                            binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
-                            binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
-                            binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
+                            binding.linearLayoutC2.backgroundTintList = ColorStateList.valueOf(red)
+                            binding.SkillC2.setTextColor(red)
+                            binding.textViewSkillC2.setTextColor(red)
+                            binding.arrow8.imageTintList = ColorStateList.valueOf(red)
                         }
                         else{
                             binding.linearLayoutC2.setOnClickListener(null)
-                            binding.linearLayoutC2.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                            binding.SkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.textViewSkillC2.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.arrow8.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.linearLayoutC2.backgroundTintList = ColorStateList.valueOf(disabled)
+                            binding.SkillC2.setTextColor(disabled)
+                            binding.textViewSkillC2.setTextColor(disabled)
+                            binding.arrow8.imageTintList = ColorStateList.valueOf(disabled)
                         }
                     }
                 }
@@ -443,17 +457,17 @@ class ProfessionSkillTree : Fragment() {
                                 binding.buttonC3Plus.visibility = View.VISIBLE
                                 focusedTextViews[1] = binding.buttonC3Plus
                             }
-                            binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
-                            binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
-                            binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_red))
-                            binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.light_red)
+                            binding.linearLayoutC3.backgroundTintList = ColorStateList.valueOf(red)
+                            binding.SkillC3.setTextColor(red)
+                            binding.textViewSkillC3.setTextColor(red)
+                            binding.arrow7.imageTintList = ColorStateList.valueOf(red)
                         }
                         else{
                             binding.linearLayoutC3.setOnClickListener(null)
-                            binding.linearLayoutC3.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
-                            binding.SkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.textViewSkillC3.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-                            binding.arrow7.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.gray)
+                            binding.linearLayoutC3.backgroundTintList = ColorStateList.valueOf(disabled)
+                            binding.SkillC3.setTextColor(disabled)
+                            binding.textViewSkillC3.setTextColor(disabled)
+                            binding.arrow7.imageTintList = ColorStateList.valueOf(disabled)
                         }
                     }
                 }
