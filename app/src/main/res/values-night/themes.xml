@@ -12,7 +12,6 @@
         <item name="colorOnSecondary">@color/red</item>
         <item name="colorAccent">@color/gray</item>
         <item name="textFillColor">@color/gray_400</item>
-
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <item name="fontFamily">@font/witcher_font</item>

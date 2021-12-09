@@ -3,7 +3,9 @@ package com.example.thewitcherrpg.feature_character_list.presentation
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +22,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
+import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
@@ -76,6 +80,10 @@ class LauncherActivity : AppCompatActivity() {
                 }
             }
         }
+        val value = TypedValue()
+        theme.resolveAttribute(R.attr.colorOnPrimary, value, true)
+        val textColor = value.data
+
         lifecycleScope.launch {
             launch {
                 mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
