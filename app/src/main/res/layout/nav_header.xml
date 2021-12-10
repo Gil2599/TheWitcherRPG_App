@@ -46,7 +46,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
             android:text="@{mainViewModel.name}"
-            android:textColor="@color/white"
+            android:textColor="?textFillColor"
             app:layout_constraintBottom_toTopOf="@+id/textViewHealth"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/cardView" />
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text='@{"Health: " + mainViewModel.hp + "/" + mainViewModel.maxHPWithModifier}'
-            android:textColor="@color/white"
+            android:textColor="?textFillColor"
             app:layout_constraintBottom_toTopOf="@+id/textViewStamina"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text='@{"Stamina: " + mainViewModel.sta + "/" + mainViewModel.maxSTAWithModifier}'
-            android:textColor="@color/white"
+            android:textColor="?textFillColor"
             app:layout_constraintBottom_toTopOf="@+id/textViewCrowns"
             app:layout_constraintStart_toStartOf="@+id/textViewHealth"
             app:layout_constraintTop_toBottomOf="@+id/textViewHealth" />
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text='@{"Crowns: " + mainViewModel.crowns}'
-            android:textColor="@color/white"
+            android:textColor="?textFillColor"
             app:layout_constraintBottom_toBottomOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/textViewStamina"
             app:layout_constraintTop_toBottomOf="@+id/textViewStamina" />

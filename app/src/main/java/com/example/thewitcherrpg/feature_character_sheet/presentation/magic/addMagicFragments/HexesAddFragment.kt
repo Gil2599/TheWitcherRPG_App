@@ -80,6 +80,7 @@ class HexesAddFragment : Fragment() {
         bind.addEffectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.addEffectText.typeface = Typeface.DEFAULT
         bind.addLiftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addLiftText.typeface = Typeface.DEFAULT
         bind.addDangerText.text = HtmlCompat.fromHtml(danger, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         //Check spell level to add it to correct character spell list

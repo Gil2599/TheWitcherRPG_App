@@ -105,6 +105,15 @@ class GetProfessionSkillsUseCase @Inject constructor() {
                         return skills
                     }
                 }
+                Constants.Professions.NOBLE -> {
+                    if (pair[0] == "Noble") {
+                        val skillList = pair[1].split(",").toTypedArray()
+                        for (skill in skillList) {
+                            skills.add(skill)
+                        }
+                        return skills
+                    }
+                }
             }
         }
         return arrayListOf()

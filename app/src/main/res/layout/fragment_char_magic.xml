@@ -102,7 +102,7 @@
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/dark_gray"
+            android:backgroundTint="?colorOnPrimary"
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +145,7 @@
             app:layout_constraintEnd_toEndOf="@+id/addRitualButton"
             app:layout_constraintStart_toStartOf="@+id/addRitualButton"
             app:srcCompat="@drawable/ic_magic_icon"
-            app:tint="@color/purple_200">
+            app:tint="?colorOnPrimaryContainer">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
@@ -161,7 +161,7 @@
             app:layout_constraintEnd_toEndOf="@+id/addSignButton"
             app:layout_constraintStart_toStartOf="@+id/addSignButton"
             app:srcCompat="@drawable/ic_hex_icon"
-            app:tint="@color/white">
+            app:tint="?textFillColor">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
@@ -177,7 +177,7 @@
             app:layout_constraintEnd_toEndOf="@+id/addHexButton"
             app:layout_constraintStart_toStartOf="@+id/addHexButton"
             app:srcCompat="@drawable/ic_ritual_icon"
-            app:tint="@color/light_red">
+            app:tint="?colorContainer">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 

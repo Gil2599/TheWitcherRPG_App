@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.databinding.ArmorRowBinding
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 
 class WeaponListAdapter(
@@ -21,13 +22,17 @@ class WeaponListAdapter(
 
         fun bind(item: WeaponItem, position: Int) {
 
-            val weight = "Damage: " + item.damage
-            val stoppingPower = "Reliability: " + item.reliability.toString()
+            if (item.type == WeaponTypes.AMULET){
+                binding.stoppingPowerText.text = "Effect: " + item.effect.toString()
+                binding.costText.text = "Cost: " + item.cost
+            }
+            else {
+                binding.stoppingPowerText.text = "Reliability: " + item.reliability.toString()
+                binding.costText.text = "Damage: " + item.damage
+            }
 
             with(binding) {
                 armorNameText.text = item.name
-                costText.text = weight
-                stoppingPowerText.text = stoppingPower
 
                 if (item.isRelic) {
                     armorNameText.setTextColor(

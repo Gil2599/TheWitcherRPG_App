@@ -37,6 +37,11 @@ class GetProfessionSpecialUseCase @Inject constructor() {
                         return pair[1]
                     }
                 }
+                Constants.Professions.NOBLE -> {
+                    if (pair[0] == "Noble") {
+                        return pair[1]
+                    }
+                }
             }
         }
         return ""

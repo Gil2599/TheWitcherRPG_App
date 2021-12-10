@@ -21,6 +21,7 @@ import com.example.thewitcherrpg.databinding.*
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
+import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.ArmorSetListAdapter
 import com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
@@ -375,6 +376,19 @@ class AddItemFragment : Fragment() {
                     binding.root, "Not enough crowns.",
                     Snackbar.LENGTH_SHORT
                 ).show()
+            }
+
+            if (weaponItem.type == WeaponTypes.AMULET){
+                with(bind){
+                    textViewType.visibility = View.GONE
+                    textViewWA.visibility = View.GONE
+                    textViewAvailability.visibility = View.GONE
+                    textViewDamage.visibility = View.GONE
+                    textViewReliability.visibility = View.GONE
+                    textViewHands.visibility = View.GONE
+                    textViewRNG.visibility = View.GONE
+                    textViewEN.visibility = View.GONE
+                }
             }
             dialog.dismiss()
             dialog.dismiss()

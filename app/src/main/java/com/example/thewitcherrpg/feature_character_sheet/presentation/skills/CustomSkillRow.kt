@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -82,31 +83,26 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
 
     @SuppressLint("SetTextI18n")
     fun setModifier(value: Int) {
+        val colors = TypedValue()
+        context?.theme?.resolveAttribute(R.attr.colorContainer, colors, true)
+        val red = colors.data
+
+        context?.theme?.resolveAttribute(R.attr.colorOnSecondaryContainer, colors, true)
+        val green = colors.data
+
+        context?.theme?.resolveAttribute(R.attr.textFillColor, colors, true)
+        val textColor = colors.data
+
         if (value >= 0) {
             binding.textViewModifier.text = "+$value"
             if (value > 0) {
-                binding.textViewModifier.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.green
-                    )
-                )
+                binding.textViewModifier.setTextColor(green)
             } else {
-                binding.textViewModifier.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.white
-                    )
-                )
+                binding.textViewModifier.setTextColor(textColor)
             }
         } else {
             binding.textViewModifier.text = value.toString()
-            binding.textViewModifier.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.light_red
-                )
-            )
+            binding.textViewModifier.setTextColor(red)
         }
         if (value == 0) {
             if (!editModifier) binding.textViewModifier.visibility = View.INVISIBLE
@@ -116,15 +112,13 @@ class CustomSkillRow constructor(context: Context, attributeSet: AttributeSet) :
     }
 
     fun setInCharCreationMode(professionSkill: Boolean) {
+        val colors = TypedValue()
+        context?.theme?.resolveAttribute(R.attr.colorError, colors, true)
+        val disabled = colors.data
 
         if (!professionSkill) {
             binding.editTextNumber.isEnabled = false
-            binding.textViewSkill.setTextColor(
-                ContextCompat.getColor(
-                    TheWitcherTRPGApp.getContext()!!,
-                    R.color.disabledText
-                )
-            )
+            binding.textViewSkill.setTextColor(disabled)
         }
 
         binding.editTextNumber.setOnLongClickListener {

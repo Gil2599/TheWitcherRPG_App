@@ -3,11 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/information"
         app:showAsAction="ifRoom"
         android:title=""
-        android:icon="@drawable/ic_outline_info_24">
+        android:icon="@drawable/ic_baseline_more_vert_24">
 
+        <menu>
+            <item android:id="@+id/disclaimer"
+                android:title="Disclaimer"
+                android:icon="@drawable/ic_outline_info_24"
+                app:showAsAction="never"/>
+
+            <item android:id="@+id/about"
+                android:title="About"
+                android:icon="@drawable/ic_baseline_help_outline_24"
+                app:showAsAction="never"/>
+
+        </menu>
     </item>
 
 </menu>

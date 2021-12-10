@@ -291,6 +291,11 @@ class SkillsFragment : Fragment() {
                 binding.etWellTraveled.setSkillText("Well Traveled:")
                 binding.etWellTraveled.setDefSkillColor()
             }
+            Constants.Professions.NOBLE -> {
+                binding.etNotoriety.visibility = View.VISIBLE
+                binding.etNotoriety.setSkillText("Notoriety:")
+                binding.etNotoriety.setDefSkillColor()
+            }
         }
     }
 

@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.text.*
 import android.text.style.ForegroundColorSpan
+import android.util.TypedValue
 import android.view.*
 import androidx.fragment.app.Fragment
 import com.example.thewitcherrpg.databinding.FragmentStatsBinding
@@ -891,24 +892,21 @@ class StatsFragment : Fragment() {
         val stringArray = string.split(": ").toTypedArray()
         stat = stringArray[0]
 
+        val value = TypedValue()
+        context?.theme?.resolveAttribute(R.attr.colorContainer, value, true)
+        val red = value.data
+
+        context?.theme?.resolveAttribute(R.attr.colorOnSecondaryContainer, value, true)
+        val green = value.data
+
         val spannable = SpannableStringBuilder(string)
         if (modifierValue > 0) {
             spannable.setSpan(
-                ForegroundColorSpan(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.green
-                    )
-                ), stat.length + 1, string.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                ForegroundColorSpan(green), stat.length + 1, string.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         } else if (modifierValue < 0) {
             spannable.setSpan(
-                ForegroundColorSpan(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.light_red
-                    )
-                ), stat.length + 1, string.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                ForegroundColorSpan(red), stat.length + 1, string.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
         return spannable

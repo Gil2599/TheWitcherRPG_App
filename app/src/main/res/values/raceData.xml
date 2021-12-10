@@ -70,7 +70,26 @@
             They gain a permanent +1 to their Reflex and
             Dexterity that can raise both stats above 10. (Lightning Reflexes)</item>
 
-        <item>Halfling:N/A</item>
+        <item>Halfling: \nHalflings are naturally nimble and dexterous
+            people. Halflings gain an inherent +1 to their
+            Athletics skill. (Nimble)\n\n
+
+            Halflings are often drawn to agriculture, thanks
+            to years of tradition and an apparently inborn
+            aptitude at animal husbandry. Halflings gain an
+            inherent +2 to their Wilderness Survival skill
+            and when calming, taming, or controlling animals.
+            (Farmhand)\n\n
+
+            For unknown reasons, halflings are resistant to
+            certain forces of magic. Halflings gain an inherent +5 to their Resist Magic skill and are able to
+            roll Resist Magic to negate the effects of any spell
+            that would affect their mind even if it would not
+            normally be allowed. However, Witcher potions
+            and other magic potions do not positively affect
+            halflings (even if they succeed at the Endurance
+            check). (Magic Resistant)
+    </item>
 
         <item>Gnome: \nAcross the continent, gnomes are
             known for their fun-loving joyous personalities and

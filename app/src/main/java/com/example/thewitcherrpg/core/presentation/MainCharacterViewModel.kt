@@ -1473,7 +1473,11 @@ class MainCharacterViewModel @Inject constructor(
                 _refModifier.value = _refModifier.value.plus(1)
                 _dexModifier.value = _dexModifier.value.plus(1)
             }
-            "Halfling" -> {}
+            "Halfling" -> {
+                _athleticsModifier.value = _athleticsModifier.value.plus(1)
+                _wildernessSurvivalModifier.value = _wildernessSurvivalModifier.value.plus(2)
+                _resistMagicModifier.value = _resistMagicModifier.value.plus(5)
+            }
             "Gnome" -> {
                 _charismaModifier.value = _charismaModifier.value.plus(1)
                 _awarenessModifier.value = _awarenessModifier.value.plus(1)

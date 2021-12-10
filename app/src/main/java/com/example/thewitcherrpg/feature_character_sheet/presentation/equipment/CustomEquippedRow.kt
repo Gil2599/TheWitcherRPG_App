@@ -15,8 +15,6 @@ import com.example.thewitcherrpg.feature_character_sheet.domain.models.WeaponIte
 import android.util.TypedValue
 
 
-
-
 class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet) :
     LinearLayout(context, attributeSet) {
     private var _binding: CustomEquippedRowBinding? = null
@@ -34,31 +32,18 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
         context.theme.resolveAttribute(R.attr.textFillColor, value, true)
         val textColor = value.data
 
+        context.theme.resolveAttribute(R.attr.colorOnError, value, true)
+        val relic = value.data
+
         if (item != null) {
-            Log.d("Test", "init")
             binding.armorNameText.text = item.name
             binding.stoppingPowerText.text = "Stopping Power: " + item.stoppingPower.toString()
             binding.weightText.text = "Weight: " + item.weight.toString()
 
             if (item.isRelic) {
-                binding.armorNameText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.relic
-                    )
-                )
-                binding.stoppingPowerText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.relic
-                    )
-                )
-                binding.weightText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.relic
-                    )
-                )
+                binding.armorNameText.setTextColor(relic)
+                binding.stoppingPowerText.setTextColor(relic)
+                binding.weightText.setTextColor(relic)
                 binding.imageView6.setBackgroundResource(R.drawable.relic_outline_bkg)
             } else {
                 binding.armorNameText.setTextColor(
@@ -94,30 +79,23 @@ class CustomEquippedRow constructor(context: Context, attributeSet: AttributeSet
         context.theme.resolveAttribute(R.attr.textFillColor, value, true)
         val textColor = value.data
 
+        context.theme.resolveAttribute(R.attr.colorOnError, value, true)
+        val relic = value.data
+
         if (item != null) {
             binding.armorNameText.text = item.name
-            binding.stoppingPowerText.text = "Reliability: " + item.reliability.toString()
-            binding.weightText.text = "Damage: " + item.damage
+            if (item.type == WeaponTypes.AMULET) {
+                binding.stoppingPowerText.text = "Effect: " + item.effect.toString()
+                binding.weightText.text = "Cost: " + item.cost
+            } else {
+                binding.stoppingPowerText.text = "Reliability: " + item.reliability.toString()
+                binding.weightText.text = "Damage: " + item.damage
+            }
 
             if (item.isRelic) {
-                binding.armorNameText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.relic
-                    )
-                )
-                binding.stoppingPowerText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.relic
-                    )
-                )
-                binding.weightText.setTextColor(
-                    ContextCompat.getColor(
-                        TheWitcherTRPGApp.getContext()!!,
-                        R.color.relic
-                    )
-                )
+                binding.armorNameText.setTextColor(relic)
+                binding.stoppingPowerText.setTextColor(relic)
+                binding.weightText.setTextColor(relic)
                 binding.imageView6.setBackgroundResource(R.drawable.relic_outline_bkg)
             } else {
                 binding.armorNameText.setTextColor(

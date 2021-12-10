@@ -130,6 +130,7 @@ class ProfessionSkillTree : Fragment() {
             Constants.Professions.MERCHANT -> tags = resources.getStringArray(R.array.merchant_skills_info)
             Constants.Professions.PRIEST -> tags = resources.getStringArray(R.array.priest_skills_info)
             Constants.Professions.WITCHER -> tags = resources.getStringArray(R.array.witcher_skills_info)
+            Constants.Professions.NOBLE -> tags = resources.getStringArray(R.array.noble_skills_info)
         }
 
         for (tag in tags) {

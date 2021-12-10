@@ -2,6 +2,7 @@ package com.example.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,13 @@ class EquipmentFragment : Fragment() {
 
         binding.customTitle.setTitle("Equipment")
         binding.customTitle.setTitleSize(20F)
+
+        val value = TypedValue()
+        context?.theme?.resolveAttribute(R.attr.textFillColor, value, true)
+        val textColor = value.data
+
+        context?.theme?.resolveAttribute(R.attr.colorContainer, value, true)
+        val red = value.data
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -86,19 +94,9 @@ class EquipmentFragment : Fragment() {
                 launch {
                     mainCharacterViewModel.currentEnc.collectLatest { value ->
                         if (value > mainCharacterViewModel.encWithModifier.value) {
-                            binding.textView53.setTextColor(
-                                ContextCompat.getColor(
-                                    TheWitcherTRPGApp.getContext()!!,
-                                    R.color.light_red
-                                )
-                            )
+                            binding.textView53.setTextColor(red)
                         } else {
-                            binding.textView53.setTextColor(
-                                ContextCompat.getColor(
-                                    TheWitcherTRPGApp.getContext()!!,
-                                    R.color.white
-                                )
-                            )
+                            binding.textView53.setTextColor(textColor)
                         }
                     }
                 }
@@ -217,6 +215,22 @@ class EquipmentFragment : Fragment() {
             bind.textCurrentReliability.text = weaponItem.currentReliability.toString()
         }
 
+        if (weaponItem.type == WeaponTypes.AMULET){
+            with(bind){
+                textViewType.visibility = View.GONE
+                textViewWA.visibility = View.GONE
+                textViewAvailability.visibility = View.GONE
+                textViewDamage.visibility = View.GONE
+                textViewReliability.visibility = View.GONE
+                textViewHands.visibility = View.GONE
+                textViewRNG.visibility = View.GONE
+                textViewEN.visibility = View.GONE
+                textViewCurrentReliability.visibility = View.GONE
+                textCurrentReliability.visibility = View.GONE
+                imageViewMinus.visibility = View.GONE
+                imageViewPlus.visibility = View.GONE
+            }
+        }
 
         dialog.setContentView(bind.root)
         dialog.show()

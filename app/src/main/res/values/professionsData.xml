@@ -45,7 +45,7 @@
         <item>Priest:Initiate of the Gods (EMP)</item>
         <item>Witcher:Witcher Training (INT)</item>
         <item>Merchant:Well Traveled (INT)</item>
-        <item>Noble:N/A</item>
+        <item>Noble:Notoriety</item>
         <item>Peasant:N/A</item>
     </string-array>
 
@@ -68,7 +68,8 @@
         Ride,Spell Casting,Stealth,Swordsmanship,Wilderness Survival</item>
         <item>Merchant:Business,Charisma,Education,Gambling,Human Perception,Language (Choose 2),
             Persuasion,Resist Coercion,Small Blades,Streetwise</item>
-        <item>Noble:N/A</item>
+        <item>Noble:Awareness,1 Combat Skill,Deceit,Education,Grooming and Style,Human Perception,
+        Leadership,Persuasion,Riding,Social Etiquette</item>
         <item>Peasant:N/A</item>
     </string-array>
 
@@ -89,7 +90,8 @@
         Numbing herbs x5,Staff,Sterilizing fluid x5,Surgeon\'s kit</item>
         <item>Witcher:Alchemy set,Double woven gambeson,Hand crossbow,Horse,Throwing knives x5</item>
         <item>Merchant:Crossbow and bols x20,Dagger,Journal,Large tent,Merchant\'s tools,Writing kit</item>
-        <item>Noble:N/A</item>
+        <item>Noble:Esboda,Fashionable clothing,Horse,Invisible ink,Jewelry,Journal with a lock,
+        Makeup kit,Perfume/cologne,Secret pocket,Writing kit</item>
         <item>Peasant:N/A</item>
     </string-array>
 
@@ -98,7 +100,7 @@
         <item>Witcher:Decoction formulae, Oil formulae x2, Potion formulae x2, Witcher medallion,
             Witcher\'s steel sword, Witcher\'s silver sword</item>
         <item>Merchant:A mule and a cart with 1000 crowns of common or everyday items</item>
-        <item>Noble:N/A</item>
+        <item>Noble:200 crows x 2d6 or 1200 average</item>
         <item>Peasant:N/A</item>
     </string-array>
 
@@ -215,7 +217,18 @@
             question, calling on memories of the last time
             they travelled through the applicable area.</item>
 
-        <item>N/A:No defining skill information.</item>
+        <item>Notoriety:Nobility, whether earned by noble deeds or
+            conferred by birth, grants a person a grandeur
+            that must be acknowledged. Peasants may
+            curse a noble\’s name and mock them in the
+            safety of their hovels but most dare not insult
+            a noble to their face. A Noble adds their Notoriety
+            value to their Reputation score when
+            in their home country or a country allied with
+            their homeland. If a Noble travels to a kingdom or
+            territory that is actively at war with, or
+            neutral toward their homeland, they gain only
+            half their Notoriety value.</item>
         <item>N/A:No defining skill information.</item>
 
     </string-array>
@@ -231,7 +244,7 @@
         <item>Merchant:1,28,3,31,33,4,5,6,35,50,18,9</item>
         <item>Priest:28,45,41,46,33,34,51,48,11,12</item>
         <item>Witcher:38,22,0,2,14,16,48,25,20,12</item>
-        <item>Noble:1</item>
+        <item>Noble:0</item>
     </string-array>
 
     <string-array name="profession_skill_trees">
@@ -281,7 +294,10 @@
             Rookery (EMP),Insider (INT),Treasure Map (INT),
             Well Connected (WILL),Fence (INT),Warrior Debt (EMP)</item>
 
-        <item>Noble:N/A</item>
+        <item>Notoriety:The Dilettante,The Leader,The Knight,
+            Dabble,Expert Guise (EMP),Host (EMP),
+            Command (WILL),Servants,Estate,
+            Resolute,Chevalier (EMP),Armored Buffer (REF)</item>
         <item>Peasant:N/A</item>
 
 
@@ -1149,6 +1165,110 @@
             and move 2m each round. Doing
             anything else or being hit
             halts the Whirl.</item>
+
+    </string-array>
+
+    <string-array name="noble_skills_info">
+
+        <item>Dabble:Each time a Noble buys a
+            rank in Dabble, they gain
+            two free skill points to
+            spend. These points must be
+            spent to buy a rank in a skill
+            the Noble has zero ranks in
+            and cannot raise a skill\’s value beyond rank one. To buy
+            a Difficult skill at rank 1, the
+            Noble must spend both free
+            points.</item>
+
+        <item>Expert Guise (EMP):By rolling Expert Guise
+            against a target’s Resist Coercion, the
+            Noble can permanently convince a person
+            of the Noble\’s expertise in a
+            specific subject. The target
+            then defers to the Noble and
+            the Noble gains a +3 to Deceit checks against the target
+            when that specific topic is
+            involved.</item>
+
+        <item>Host (EMP):By taking a day and spending an amount of money
+            equal to their Host value
+            times 100, a Noble can arrange a festive gathering.
+            While at this gathering, the
+            Noble gains a +3 to Charisma, Seduction, and Persuasion. Anyone the Noble
+            invites must make a Resist
+            Coercion check against the
+            Noble\’s Host check to not
+            attend. </item>
+
+        <item>Command (WILL):As an action, a Noble can
+            command a target to perform a specific task on their
+            next turn. If the Noble\’s
+            Command check beats a
+            DC equal to the target’s
+            WILLx3, the target gains a
+            bonus to one check involved
+            in this task equal to one-half
+            the Noble\’s Command value
+            (minimum 1).</item>
+
+        <item>Servants:A Noble gains a number of
+            servants equal to half their
+            Servants value (minimum
+            1). These subjects follow the
+            Noble\’s orders to the best
+            of their ability but must be
+            commanded or persuaded
+            to risk their lives. If a servant can no longer serve for
+            any reason, the Noble can
+            request a new one from
+            their household be sent.</item>
+
+        <item>Estate:A Noble personally owns an
+            estate that consists of a main
+            house, a stable, and a parcel
+            of land. The Noble decides
+            where this estate is located
+            (within reason). The Noble
+            serves as the land\’s manager and gains benefit from it.
+            Anyone living on the land is
+            their subject. More details
+            can be found on page 12.</item>
+
+        <item>Resolute:A Noble can add their
+            Resolute value to their Courage
+            and Resist Coercion checks.
+            If they succeed a Courage
+            or Resist Coercion check,
+            any ally who witnesses them
+            do so gains a bonus on their
+            own Courage or Resist Coercion check equal
+            to onehalf the Noble\’s Resolute
+            value (minimum 1) until
+            the end of the scene.</item>
+
+        <item>Chevalier (EMP):By taking an hour, a Noble
+            can make a Chevalier check
+            against a mount\’s WILLx3
+            to permanently bond with
+            it. When being ridden by
+            the Noble, the mount\’s Control Modifier is raised by
+            half the Noble\’s Chevalier
+            value. The Noble can also
+            lower the result of a control
+            loss by half this value.</item>
+
+        <item>Armored Buffer (REF):If an enemy scores a critical
+            wound on a Noble, the Noble can immediately make
+            an Armored Buffer check
+            against a DC equal to the
+            enemy\’s original Attack
+            Check. If the Noble succeeds, they can negate the
+            critical wound by sacrificing
+            the armor in the hit location. The armor suffers 1d10
+            ablation damage per level of
+            the critical wound to the hit
+            location.</item>
 
     </string-array>
 

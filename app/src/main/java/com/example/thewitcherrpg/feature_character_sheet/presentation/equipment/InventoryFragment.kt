@@ -453,6 +453,20 @@ class InventoryFragment : Fragment() {
             dialog.dismiss()
         }
 
+        if (weaponItem.type == WeaponTypes.AMULET){
+            with(bind){
+                textViewType.visibility = View.GONE
+                textViewWA.visibility = View.GONE
+                textViewAvailability.visibility = View.GONE
+                textViewDamage.visibility = View.GONE
+                textViewReliability.visibility = View.GONE
+                textViewHands.visibility = View.GONE
+                textViewRNG.visibility = View.GONE
+                textViewEN.visibility = View.GONE
+                textViewCurrentReliability.visibility = View.GONE
+            }
+        }
+
         dialog.setContentView(bind.root)
         dialog.show()
 

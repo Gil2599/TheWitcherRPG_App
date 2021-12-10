@@ -115,8 +115,12 @@ class LauncherActivity : AppCompatActivity() {
                 mCharListViewModel.saveDarkMode(!darkMode)
                 true
             }
-            R.id.information -> {
+            R.id.disclaimer -> {
                 showDialogDisclaimer(false)
+                true
+            }
+            R.id.about -> {
+                showDialogAbout()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -151,6 +155,26 @@ class LauncherActivity : AppCompatActivity() {
             if (bind.checkBox.visibility == View.VISIBLE && bind.checkBox.isChecked) {
                 mCharListViewModel.saveDisclaimerMode(!bind.checkBox.isChecked)
             }
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun showDialogAbout() {
+        val dialog = Dialog(this)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        bind.textViewInfo.text = resources.getString(R.string.about)
+        bind.textViewInfo.typeface = Typeface.DEFAULT
+        bind.checkBox.visibility = View.GONE
+
+        bind.customTitle.setTitle("About")
+        bind.customTitle.setTitleSize(18F)
+
+        bind.okButton.setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()

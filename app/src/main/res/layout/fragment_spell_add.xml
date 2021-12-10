@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="All Spells"
-                android:textColor="@color/purple_200"
+                android:textColor="?colorOnPrimaryContainer"
                 android:textSize="25sp"
                 android:gravity="center"
                 android:textStyle="bold|italic"
@@ -36,7 +36,7 @@
                 android:id="@+id/view1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/purple_200"
+                android:background="?colorOnPrimaryContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/allSpellsText"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Novice Spells"
-                android:textColor="@color/purple_200"
+                android:textColor="?colorOnPrimaryContainer"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view1"
                 app:layout_constraintTop_toBottomOf="@+id/view1" />
@@ -57,7 +57,7 @@
                 android:id="@+id/view2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/purple_200"
+                android:background="?colorOnPrimaryContainer"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/textNovice"
                 app:layout_constraintWidth_percent="0.9" />
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Journeyman Spells"
-                android:textColor="@color/purple_200"
+                android:textColor="?colorOnPrimaryContainer"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutNovice" />
@@ -92,7 +92,7 @@
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/purple_200"
+                android:background="?colorOnPrimaryContainer"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
                 app:layout_constraintTop_toBottomOf="@+id/textJourneyman"
                 app:layout_constraintWidth_percent="0.9" />
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Master Spells"
-                android:textColor="@color/purple_200"
+                android:textColor="?colorOnPrimaryContainer"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textJourneyman"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutJourneyman" />
@@ -127,7 +127,7 @@
                 android:id="@+id/view4"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/purple_200"
+                android:background="?colorOnPrimaryContainer"
                 app:layout_constraintStart_toStartOf="@+id/textMaster"
                 app:layout_constraintTop_toBottomOf="@+id/textMaster"
                 app:layout_constraintWidth_percent="0.9" />

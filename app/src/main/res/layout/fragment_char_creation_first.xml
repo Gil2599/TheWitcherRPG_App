@@ -148,8 +148,7 @@
             app:layout_constraintEnd_toEndOf="@+id/etCharAgeLayout"
             app:layout_constraintStart_toStartOf="@+id/etCharNameLayout"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-            app:startIconDrawable="@drawable/ic_baseline_race_icon"
-            app:startIconTint="@color/white">
+            app:startIconDrawable="@drawable/ic_baseline_race_icon">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewRace"
@@ -172,8 +171,7 @@
             app:layout_constraintEnd_toEndOf="@+id/etCharAgeLayout"
             app:layout_constraintStart_toStartOf="@+id/etCharNameLayout"
             app:layout_constraintTop_toBottomOf="@+id/etCharNameLayout"
-            app:startIconDrawable="@drawable/ic_gender_icon"
-            app:startIconTint="@color/white">
+            app:startIconDrawable="@drawable/ic_gender_icon">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewGender"
@@ -196,8 +194,7 @@
             app:layout_constraintEnd_toEndOf="@+id/etCharAgeLayout"
             app:layout_constraintStart_toStartOf="@+id/etCharNameLayout"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:startIconDrawable="@drawable/ic_profession_icon"
-            app:startIconTint="@color/white">
+            app:startIconDrawable="@drawable/ic_profession_icon">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewProfession"

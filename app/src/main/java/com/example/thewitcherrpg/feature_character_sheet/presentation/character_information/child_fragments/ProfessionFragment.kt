@@ -77,6 +77,7 @@ class ProfessionFragment : Fragment() {
 
         when (mainCharacterViewModel.profession.value){
             Constants.Professions.MAGE -> binding.textSpecial.text = "Special: ${mainCharacterViewModel.getProfessionSpecial()}"
+            Constants.Professions.NOBLE -> binding.textSpecial.text = "Starting Coin: ${mainCharacterViewModel.getProfessionSpecial()}"
             Constants.Professions.WITCHER -> {
                 binding.textViewGear.text = "Gear (Pick 2)"
                 binding.textSpecial.text =
