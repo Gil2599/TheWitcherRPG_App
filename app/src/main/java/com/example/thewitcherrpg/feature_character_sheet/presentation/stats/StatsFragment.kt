@@ -81,15 +81,14 @@ class StatsFragment : Fragment() {
             setObservers()
         }
 
-        if (!mainCharacterViewModel.inCharacterCreation.value) {
-            lifecycleScope.launch {
-                mainCharacterViewModel.statsInfoMode.collect { infoIsEnabled ->
-                    if (infoIsEnabled) {
-                        showDialogDisclaimer()
-                    }
+        lifecycleScope.launch {
+            mainCharacterViewModel.statsInfoMode.collect { infoIsEnabled ->
+                if (infoIsEnabled) {
+                    showDialogDisclaimer()
                 }
             }
         }
+
 
         return view
     }
@@ -902,11 +901,17 @@ class StatsFragment : Fragment() {
         val spannable = SpannableStringBuilder(string)
         if (modifierValue > 0) {
             spannable.setSpan(
-                ForegroundColorSpan(green), stat.length + 1, string.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                ForegroundColorSpan(green),
+                stat.length + 1,
+                string.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         } else if (modifierValue < 0) {
             spannable.setSpan(
-                ForegroundColorSpan(red), stat.length + 1, string.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                ForegroundColorSpan(red),
+                stat.length + 1,
+                string.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
         return spannable
@@ -927,9 +932,9 @@ class StatsFragment : Fragment() {
         bind.checkBox.visibility = View.GONE
 
         bind.okButton.setOnClickListener {
-            mainCharacterViewModel.saveStatsInfoMode(false)
             dialog.dismiss()
         }
+        mainCharacterViewModel.saveStatsInfoMode(false)
         dialog.show()
     }
 }

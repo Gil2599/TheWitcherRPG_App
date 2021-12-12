@@ -17,20 +17,17 @@ class OnStatChangeUseCase @Inject constructor() {
 
         if (!inCharacterCreation) {
             if (increase) {
-                if (ip >= newVal * 10) {
-                    if (newVal == 0 && ip >= 10) {
-                        newVal = 1
-                        newIP -= 10
-                    } else {
-                        newIP -= newVal * 10
-                        newVal += 1
-                    }
+                if (newVal == 0 && ip >= 10) {
+                    newVal = 1
+                    newIP -= 10
+                } else if (ip >= (newVal * 10) && newVal > 0 && newVal < 10) {
+                    newIP -= newVal * 10
+                    newVal += 1
                 } else return Resource.Error("Not enough IP")
             }
 
             if (!increase) {
                 if (newVal > 0) {
-
                     newIP += if (newVal == 1) 10
                     else ((newVal - 1) * 10)
 

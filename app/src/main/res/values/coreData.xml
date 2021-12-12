@@ -35,7 +35,7 @@
     <string name="characterSkills_info">
         This is the character skills section. Skills
         can have between 0 and 10 points in them
-        and can never go higher than 10 points.
+        and can never go higher than 10 points. Defining skills are indicated by the orange text.
         Bonuses like racial modifiers can raise a
         skill above 10. When first making your
         character, your skills cap at 6. To increase a skill point,

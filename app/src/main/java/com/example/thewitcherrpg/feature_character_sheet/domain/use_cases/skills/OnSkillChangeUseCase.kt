@@ -19,16 +19,26 @@ class OnSkillChangeUseCase @Inject constructor() {
         var newVal = value
 
         if (!inCharacterCreation) {
-            if (increase) {
-                if (((ip >= newVal && ip > 0) || (doubleCost && ip >= newVal*2)) && newVal < 10) {
-                    if (newVal == 0) {
+            if (increase && newVal < 10) {
+                if (doubleCost){
+                    if (newVal == 0 && ip >= 2) {
                         newVal = 1
-                        newIP -= if (doubleCost) 2 else 1
-                    } else {
-                        newIP -= if (doubleCost) newVal*2 else newVal
+                        newIP -= 2
+                    } else if (ip >= newVal*2 && newVal != 0) {
+                        newIP -= newVal*2
                         newVal += 1
                     }
-                } else return Resource.Error("Not enough IP")
+                } else {
+                    if (ip >= newVal && ip > 0){
+                        if (newVal == 0) {
+                            newVal = 1
+                            newIP -= 1
+                        } else {
+                            newIP -= newVal
+                            newVal += 1
+                        }
+                    }
+                }
             }
 
             if (!increase) {

@@ -64,7 +64,7 @@ class SkillsFragment : Fragment() {
             decreaseButton()
         }
 
-        if (!mainCharacterViewModel.inCharacterCreation.value) {
+
             lifecycleScope.launch {
                 mainCharacterViewModel.skillsInfoMode.collect { infoIsEnabled ->
                     if (infoIsEnabled) {
@@ -72,7 +72,7 @@ class SkillsFragment : Fragment() {
                     }
                 }
             }
-        }
+
 
         return view
     }
@@ -439,9 +439,9 @@ class SkillsFragment : Fragment() {
         bind.checkBox.visibility = View.GONE
 
         bind.okButton.setOnClickListener {
-            mainCharacterViewModel.saveSkillsInfoMode(false)
             dialog.dismiss()
         }
+        mainCharacterViewModel.saveSkillsInfoMode(false)
         dialog.show()
     }
 }

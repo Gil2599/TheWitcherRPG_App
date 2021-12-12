@@ -80,9 +80,6 @@ class LauncherActivity : AppCompatActivity() {
                 }
             }
         }
-        val value = TypedValue()
-        theme.resolveAttribute(R.attr.colorOnPrimary, value, true)
-        val textColor = value.data
 
         lifecycleScope.launch {
             launch {
