@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.thewitcherrpg">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE">
-
-    </uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:name=".TheWitcherTRPGApp"
@@ -17,25 +15,29 @@
         android:theme="@style/Theme.WitcherDD"
         tools:node="merge">
         <activity
+            android:name=".about_section.AboutActivity"
+            android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
+            android:label="About Application"
+            android:exported="false" />
+        <activity
             android:name=".feature_character_creation.presentation.CharCreationActivity"
             android:exported="true"
+            android:label="Create Character"
             android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
             android:windowSoftInputMode="adjustNothing"
-            tools:node="merge"
-            android:label="Create Character"/>
+            tools:node="merge" />
         <activity
             android:name=".feature_character_sheet.presentation.MainActivity"
             android:exported="true"
             android:label="Character Sheet"
             android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
             android:windowSoftInputMode="adjustResize"
-            tools:node="merge"
-            />
+            tools:node="merge" />
         <activity
             android:name=".feature_character_list.presentation.LauncherActivity"
             android:exported="true"
-            tools:node="merge"
-            android:label="The Witcher TRPG">
+            android:label="The Witcher TRPG"
+            tools:node="merge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,7 +7,7 @@
         alongside The Witcher Tabletop RPG Core Rulebook and follows the rules and mechanics set
         by it. Use of The Witcher Tabletop RPG Core Rulebook
         is strongly recommended as this application does not contain all of the
-        information necessary to learn how to play. This is an unofficial application and is not
+        information necessary to learn how to play. \n\nThis is an unofficial application and is not
         approved/endorsed by CD PROJEKT RED or R. Talsorian Games. This application is not a
         licensed product. I do not claim ownership of any information, icons, or images used throughout
         the app. Copyrights and/or trademarks of any information, icons, and/or images used belong
@@ -17,13 +17,22 @@
     <string name="about">
         Thank you for downloading The Witcher TRPG Companion App. This application is a passion/learning
         project and it is meant to speed up character creation and role-playing while playing
-        The Witcher Tabletop RPG. Since I am the sole contributor to the application,
+        The Witcher Tabletop RPG. You will be able to edit your character information, skills, stats, profession skills,
+        magic, equipment, and add notes.\n\nSince I am the sole contributor to the application,
         some key features have not been implemented to reduce complexity and development time. Some of which
         include crafting, armor/weapon enhancements, and mutations. I have implemented alternatives such as
         custom items, equipment notes, and stat/skill modifiers to have a similar functionality as said features.
-        If you have any feedback or concerns regarding the application or it\'s content, please do not hesitate
-        to leave a review and I will try to respond to it as soon as possible.
+        \n\nIf you have any feedback or concerns regarding the application or it\'s content, do not hesitate
+        to leave a review with any suggestions you may have.
     </string>
+
+    <string name="attributions">
+        Freepik:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Icons by Freepik</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">Icons by SmashIcons</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
 
     <string name="characterInformation_info">
         This is the character information section. Here you will be able to access common stats such

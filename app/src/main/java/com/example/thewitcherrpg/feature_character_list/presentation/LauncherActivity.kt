@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
+import com.example.thewitcherrpg.about_section.AboutActivity
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
 import com.example.thewitcherrpg.databinding.ActivityMainBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
@@ -85,7 +86,7 @@ class LauncherActivity : AppCompatActivity() {
             launch {
                 mCharListViewModel.disclaimerMode.collect { disclaimerIsEnabled ->
                     if (disclaimerIsEnabled) {
-                        showDialogDisclaimer(true)
+                        showDialogDisclaimer()
                     }
                 }
             }
@@ -112,12 +113,9 @@ class LauncherActivity : AppCompatActivity() {
                 mCharListViewModel.saveDarkMode(!darkMode)
                 true
             }
-            R.id.disclaimer -> {
-                showDialogDisclaimer(false)
-                true
-            }
             R.id.about -> {
-                showDialogAbout()
+                val intent = Intent(this, AboutActivity::class.java)
+                this.startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -129,7 +127,7 @@ class LauncherActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun showDialogDisclaimer(showCheckbox: Boolean) {
+    private fun showDialogDisclaimer() {
         val dialog = Dialog(this)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
@@ -141,12 +139,6 @@ class LauncherActivity : AppCompatActivity() {
 
         bind.customTitle.setTitle("Disclaimer")
         bind.customTitle.setTitleSize(18F)
-
-        if (!showCheckbox) {
-            bind.checkBox.visibility = View.GONE
-        } else {
-            bind.checkBox.visibility = View.VISIBLE
-        }
 
         bind.okButton.setOnClickListener {
             if (bind.checkBox.visibility == View.VISIBLE && bind.checkBox.isChecked) {
