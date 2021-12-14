@@ -18,6 +18,7 @@ import com.example.thewitcherrpg.databinding.CustomDialogAddHexBinding
 import com.example.thewitcherrpg.databinding.FragmentHexesAddBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class HexesAddFragment : Fragment() {
     private var _binding: FragmentHexesAddBinding? = null
@@ -68,7 +69,6 @@ class HexesAddFragment : Fragment() {
         val bind : CustomDialogAddHexBinding = CustomDialogAddHexBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val spellName = item.name
         val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
         val effect = "<b>" + "Effect: " + "</b>" + item.description
         val danger = "<b>" + "Danger: " + "</b>" + item.danger
@@ -86,6 +86,10 @@ class HexesAddFragment : Fragment() {
         //Check spell level to add it to correct character spell list
         bind.addSpellbutton.setOnClickListener{
             mainCharacterViewModel.addMagicItem(item)
+            Snackbar.make(
+                binding.root, "${item.name} added to ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT
+            ).show()
             dialog.dismiss()
         }
 

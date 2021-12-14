@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -293,6 +294,9 @@ class InventoryFragment : Fragment() {
                         binding.textViewAddEquipment.visibility = View.INVISIBLE
                         binding.rvBludgeons.visibility = View.VISIBLE
                         binding.textViewBludgeons.visibility = View.VISIBLE
+                    } else {
+                        binding.rvBludgeons.visibility = View.INVISIBLE
+                        binding.textViewBludgeons.visibility = View.INVISIBLE
                     }
                 }
                 else{

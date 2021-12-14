@@ -22,5 +22,6 @@ class AboutActivity : AppCompatActivity() {
         binding.textViewFreepik.movementMethod = LinkMovementMethod.getInstance()
         binding.textViewSmashIcons.movementMethod = LinkMovementMethod.getInstance()
         binding.textViewBookLink.movementMethod = LinkMovementMethod.getInstance()
+        binding.textViewAppIcon.movementMethod = LinkMovementMethod.getInstance()
     }
 }

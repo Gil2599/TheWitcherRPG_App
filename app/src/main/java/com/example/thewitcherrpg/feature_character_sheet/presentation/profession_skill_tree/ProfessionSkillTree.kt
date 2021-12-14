@@ -118,19 +118,19 @@ class ProfessionSkillTree : Fragment() {
     //Retrieve skill description
     private fun getSkillInfo(skill: String): String{
 
-        var tags = resources.getStringArray(R.array.bard_skills_info)
-
         //Toast.makeText(context, sharedViewModel.profession.value.toString(), Toast.LENGTH_SHORT).show()
-        when (mainCharacterViewModel.profession.value) {
-            Constants.Professions.CRAFTSMAN -> tags = resources.getStringArray(R.array.craftsman_skills_info)
-            Constants.Professions.CRIMINAL -> tags = resources.getStringArray(R.array.criminal_skills_info)
-            Constants.Professions.DOCTOR -> tags = resources.getStringArray(R.array.doctor_skills_info)
-            Constants.Professions.MAGE -> tags = resources.getStringArray(R.array.mage_skills_info)
-            Constants.Professions.MAN_AT_ARMS -> tags = resources.getStringArray(R.array.man_at_arms_skills_info)
-            Constants.Professions.MERCHANT -> tags = resources.getStringArray(R.array.merchant_skills_info)
-            Constants.Professions.PRIEST -> tags = resources.getStringArray(R.array.priest_skills_info)
-            Constants.Professions.WITCHER -> tags = resources.getStringArray(R.array.witcher_skills_info)
-            Constants.Professions.NOBLE -> tags = resources.getStringArray(R.array.noble_skills_info)
+        val tags: Array<String> = when (mainCharacterViewModel.profession.value) {
+            Constants.Professions.BARD -> resources.getStringArray(R.array.bard_skills_info)
+            Constants.Professions.CRAFTSMAN -> resources.getStringArray(R.array.craftsman_skills_info)
+            Constants.Professions.CRIMINAL -> resources.getStringArray(R.array.criminal_skills_info)
+            Constants.Professions.DOCTOR -> resources.getStringArray(R.array.doctor_skills_info)
+            Constants.Professions.MAGE -> resources.getStringArray(R.array.mage_skills_info)
+            Constants.Professions.MAN_AT_ARMS -> resources.getStringArray(R.array.man_at_arms_skills_info)
+            Constants.Professions.MERCHANT -> resources.getStringArray(R.array.merchant_skills_info)
+            Constants.Professions.PRIEST -> resources.getStringArray(R.array.priest_skills_info)
+            Constants.Professions.WITCHER -> resources.getStringArray(R.array.witcher_skills_info)
+            Constants.Professions.NOBLE -> resources.getStringArray(R.array.noble_skills_info)
+            Constants.Professions.PEASANT -> resources.getStringArray(R.array.peasant_skills_info)
         }
 
         for (tag in tags) {

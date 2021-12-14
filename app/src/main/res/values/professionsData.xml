@@ -46,7 +46,7 @@
         <item>Witcher:Witcher Training (INT)</item>
         <item>Merchant:Well Traveled (INT)</item>
         <item>Noble:Notoriety</item>
-        <item>Peasant:N/A</item>
+        <item>Peasant:Intolerance (WILL)</item>
     </string-array>
 
     <string-array name="professions_skills_array">
@@ -70,7 +70,8 @@
             Persuasion,Resist Coercion,Small Blades,Streetwise</item>
         <item>Noble:Awareness,1 Combat Skill,Deceit,Education,Grooming and Style,Human Perception,
         Leadership,Persuasion,Riding,Social Etiquette</item>
-        <item>Peasant:N/A</item>
+        <item>Peasant:Athletics,Brawling,Courage,Crafting,Endurance,First Aid,Gambling,
+        Physique,Small Blades,Wilderness Survival</item>
     </string-array>
 
     <string-array name="professions_gear_array">
@@ -92,7 +93,8 @@
         <item>Merchant:Crossbow and bols x20,Dagger,Journal,Large tent,Merchant\'s tools,Writing kit</item>
         <item>Noble:Esboda,Fashionable clothing,Horse,Invisible ink,Jewelry,Journal with a lock,
         Makeup kit,Perfume/cologne,Secret pocket,Writing kit</item>
-        <item>Peasant:N/A</item>
+        <item>Peasant:Beer,Another Beer,Cart,Cold Weather Clothing,Cooking Tools,Flint and Steel,
+        Gwent Deck,Holy Symbol,Pipe with Tobacco,Sack</item>
     </string-array>
 
     <string-array name="professions_special_array">
@@ -101,7 +103,7 @@
             Witcher\'s steel sword, Witcher\'s silver sword</item>
         <item>Merchant:A mule and a cart with 1000 crowns of common or everyday items</item>
         <item>Noble:200 crows x 2d6 or 1200 average</item>
-        <item>Peasant:N/A</item>
+        <item>Peasant:20 crows x 2d6 or 120 average</item>
     </string-array>
 
     <string-array name="defSkills_data_array">
@@ -229,7 +231,21 @@
             territory that is actively at war with, or
             neutral toward their homeland, they gain only
             half their Notoriety value.</item>
-        <item>N/A:No defining skill information.</item>
+
+        <item>Intolerance (WILL):Peasants are a fearful lot and often for good
+            reason. There\’s a lot out in the world that could
+            easily kill them. Fear can be fuel for strength,
+            however. When first encountering a sapient
+            being with a Social Standing of Feared or
+            Hated, they can make an Intolerance
+            roll against a DC equal to the target\’s
+            EMPx3. If the peasant succeeds, their fear
+            turns to rage and grants them a bonus to
+            Resist Coercion and Courage equal to their
+            Intolerance value vs. that being for the
+            remainder of the encounter. The Peasant also gains a bonus equal to half their
+            Intolerance value to Leadership when rallying
+            other peasants.</item>
 
     </string-array>
 
@@ -244,7 +260,8 @@
         <item>Merchant:1,28,3,31,33,4,5,6,35,50,18,9</item>
         <item>Priest:28,45,41,46,33,34,51,48,11,12</item>
         <item>Witcher:38,22,0,2,14,16,48,25,20,12</item>
-        <item>Noble:0</item>
+        <item>Noble:0,29,3,32,33,34,16,8,10,13,14,15,18,19,20,21,22,23</item>
+        <item>Peasant:22,13,45,39,27,41,31,26,18,12</item>
     </string-array>
 
     <string-array name="profession_skill_trees">
@@ -298,7 +315,11 @@
             Dabble,Expert Guise (EMP),Host (EMP),
             Command (WILL),Servants,Estate,
             Resolute,Chevalier (EMP),Armored Buffer (REF)</item>
-        <item>Peasant:N/A</item>
+
+        <item>Intolerance (WILL):The Farmer,The Cook,The Laborer,
+        Harvest Time,Animal Whisper (EMP),Farm Wisdom (CRA),
+        Butchery (CRA),Cure All (CRA),Ma\’s Stew (CRA),
+        Ditch Digger,Grog (CRA),Bite The Ear (BODY)</item>
 
 
     </string-array>
@@ -1269,6 +1290,105 @@
             ablation damage per level of
             the critical wound to the hit
             location.</item>
+
+    </string-array>
+
+    <string-array name="peasant_skills_info">
+
+        <item>Harvest Time:Knowing the proper time and
+            way to harvest a crop is a skill
+            that takes years to master. When
+            foraging for plant-based alchemical components the peasant
+            gains an extra number of units
+            equal to half their HarvestTime
+            value (Minimum 1).</item>
+
+        <item>Animal Whisper (EMP):By taking an action, the Peasant
+            can roll an Animal Whisperer check against a DC equal to
+            the animal\’s WILLx3, to convey commands and requests
+            to any domesticated animal. If
+            the check succeeds, the animal
+            carries out these commands to
+            the best of its ability.</item>
+
+        <item>Farm Wisdom (CRA):While magic may not be a talent for everyone, there are some
+            tricks that the layperson can
+            learn to tip the scale of life in their
+            favor. A Peasant can take one action and roll Farm Wisdom to
+            perform one of the folk rituals
+            in the sidebar. Each ritual has its
+            own DC and requirements.</item>
+
+        <item>Butchery (CRA):When a Peasant loots a monster
+            or animal with a physical form,
+            they can roll a Butchery roll at
+            a DC based on the beasts complexity. If they succeed, they are
+            able to gain the maximum number of units of one organic loot
+            item from the animal. This roll
+            can be made multiple times on
+            a single corpse but the peasant
+            cannot make two attempts on
+            the same part of the beast.</item>
+
+        <item>Cure All (CRA):By taking 10 minutes and using
+            one unit of three different types
+            of alchemical component, the
+            Peasant can create a folk cure all.
+            This concoction has a percentage chance of curing the person
+            who consumes it of the poison, intoxication, and nausea conditions. The percentage is equal
+            to the Peasant\’s Cure All value
+            times 5%. This Cure All lasts for
+            24 hours before going bad. Once
+            used, this cure all is consumed.</item>
+
+        <item>Ma\’s Stew (CRA):Once per day, if a Peasant has
+            access to cooking tools and the
+            ingredients required, they can
+            spend 1 hour to create a stew
+            from an old family recipe. This
+            stew is large enough to feed 6
+            people and its effects are based
+            on what basic ingredients are
+            added (See the table in the sidebar). Effects conferred by the
+            stew last for a full 24 hours.</item>
+
+        <item>Ditch Digger:Years of manual labor have
+            strengthened the Peasant’s body
+            and taught them technique to
+            make even the most grueling
+            labor manageable. The Peasant
+            adds double their Ditch Digger
+            value to their ENC. Also, when
+            making Physique or Endurance
+            rolls to perform manual labor,
+            the Peasant can add half their
+            Ditch Digger value.</item>
+
+        <item>Grog (CRA):A peasant knows how to get the
+            most out of any brew. By taking
+            an action to mix one unit of an
+            alchemical component with a
+            serving of alcohol, a Peasant can
+            make a Grog roll at a DC of 14.
+            If the Peasant succeeds anyone
+            who drinks the alcohol must
+            make an Endurance check at a
+            DC equal to the peasant\’s Grog
+            value plus 12 or become intoxicated. Once the peasant has a
+            Grog value of 5, the effects of the
+            intoxication condition are doubled.</item>
+
+        <item>Bite The Ear (BODY):When grappled or pinned by a
+            creature or person, the Peasant
+            can take an action to make a Bite
+            the Ear roll against the target\’s
+            DEXx3. If the peasant succeeds
+            they bite off part of the ear (or
+            other superficial body part) of
+            the target, breaking the grapple/
+            pin immediately, dealing 1d6
+            unmodified damage, and giving the target a permanent -1 to
+            Charisma and Seduction checks.</item>
 
     </string-array>
 

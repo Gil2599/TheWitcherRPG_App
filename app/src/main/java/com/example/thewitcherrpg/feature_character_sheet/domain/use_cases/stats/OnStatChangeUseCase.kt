@@ -33,7 +33,7 @@ class OnStatChangeUseCase @Inject constructor() {
 
                     newVal -= 1
 
-                } else return Resource.Error("Cannot go below 0")
+                }
             }
         } else {
             if (increase) {
@@ -47,7 +47,7 @@ class OnStatChangeUseCase @Inject constructor() {
                 if (newVal > 0) {
                     newIP += 1
                     newVal -= 1
-                } else return Resource.Error("Cannot go below 0")
+                }
             }
         }
         return Resource.Success(Pair(newIP, newVal))

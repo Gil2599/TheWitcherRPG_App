@@ -18,6 +18,7 @@ import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentRitualAddBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class RitualAddFragment : Fragment() {
     private var _binding: FragmentRitualAddBinding? = null
@@ -109,6 +110,10 @@ class RitualAddFragment : Fragment() {
         //Check spell level to add it to correct character spell list
         bind.addSpellbutton.setOnClickListener{
             mainCharacterViewModel.addMagicItem(item)
+            Snackbar.make(
+                binding.root, "${item.name} added to ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT
+            ).show()
             dialog.dismiss()
         }
         bind.addSpellCancelButton.setOnClickListener{

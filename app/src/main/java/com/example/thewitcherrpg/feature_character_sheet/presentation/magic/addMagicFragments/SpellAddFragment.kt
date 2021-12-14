@@ -18,6 +18,7 @@ import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spel
 import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentSpellAddBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
+import com.google.android.material.snackbar.Snackbar
 
 class SpellAddFragment : Fragment() {
     private var _binding: FragmentSpellAddBinding? = null
@@ -35,7 +36,8 @@ class SpellAddFragment : Fragment() {
         //Adds a callback to back button to return to previous fragment in nav graph instead of destroying activity
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             // Handle the back button event
-            Navigation.findNavController(view).navigate(R.id.action_spellAddFragment_to_charMagicFragment)
+            Navigation.findNavController(view)
+                .navigate(R.id.action_spellAddFragment_to_charMagicFragment)
         }
         callback.isEnabled = true
 
@@ -44,21 +46,21 @@ class SpellAddFragment : Fragment() {
         return view
     }
 
-    private fun listAdaptersInit(){
+    private fun listAdaptersInit() {
 
         //Receive information from recyclerView adapter
-        val noviceAdapter = MagicListAdapter{
-            spell -> showSpellDialog(spell)
+        val noviceAdapter = MagicListAdapter { spell ->
+            showSpellDialog(spell)
         }
         noviceAdapter.setData(mainCharacterViewModel.getMagicList(R.array.novice_spells_list_data))
 
-        val journeymanAdapter = MagicListAdapter{
-                spell -> showSpellDialog(spell)
+        val journeymanAdapter = MagicListAdapter { spell ->
+            showSpellDialog(spell)
         }
         journeymanAdapter.setData(mainCharacterViewModel.getMagicList(R.array.journeyman_spells_list_data))
 
-        val masterAdapter = MagicListAdapter{
-                spell -> showSpellDialog(spell)
+        val masterAdapter = MagicListAdapter { spell ->
+            showSpellDialog(spell)
         }
         masterAdapter.setData(mainCharacterViewModel.getMagicList(R.array.master_spells_list_data))
 
@@ -83,7 +85,7 @@ class SpellAddFragment : Fragment() {
         dialog.setCanceledOnTouchOutside(true)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val bind : CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
+        val bind: CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
         val staCost = "<b>" + "STA Cost: " + "</b>" + item.staminaCost
@@ -104,13 +106,17 @@ class SpellAddFragment : Fragment() {
         bind.addSpellElementText.text = element
 
         //Check spell level to add it to correct character spell list
-        bind.addSpellbutton.setOnClickListener{
+        bind.addSpellbutton.setOnClickListener {
 
             mainCharacterViewModel.addMagicItem(item)
+            Snackbar.make(
+                binding.root, "${item.name} added to ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT
+            ).show()
             dialog.dismiss()
         }
 
-        bind.addSpellCancelButton.setOnClickListener(){
+        bind.addSpellCancelButton.setOnClickListener() {
             dialog.dismiss()
         }
 

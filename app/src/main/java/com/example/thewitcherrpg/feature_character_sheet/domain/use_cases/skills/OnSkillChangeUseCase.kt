@@ -27,7 +27,7 @@ class OnSkillChangeUseCase @Inject constructor() {
                     } else if (ip >= newVal*2 && newVal != 0) {
                         newIP -= newVal*2
                         newVal += 1
-                    }
+                    } else return Resource.Error("Not enough IP")
                 } else {
                     if (ip >= newVal && ip > 0){
                         if (newVal == 0) {
@@ -38,6 +38,7 @@ class OnSkillChangeUseCase @Inject constructor() {
                             newVal += 1
                         }
                     }
+                    else return Resource.Error("Not enough IP")
                 }
             }
 
@@ -50,13 +51,15 @@ class OnSkillChangeUseCase @Inject constructor() {
                     else if (!doubleCost) (newVal - 1) else (newVal - 1)*2
                     newVal -= 1
 
-                } else return Resource.Error("Cannot go below 0")
+                }
             }
         } else {
             if (increase) {
-                if (ip > 0 && newVal < 6) {
-                    newIP -= if (doubleCost) 2 else 1
-                    newVal += 1
+                if (ip > 0) {
+                    if (newVal < 6) {
+                        newIP -= if (doubleCost) 2 else 1
+                        newVal += 1
+                    } else return Resource.Error("Skill may not increase above 6 in character creation.")
                 } else return Resource.Error("Not enough IP")
             }
 
@@ -65,7 +68,7 @@ class OnSkillChangeUseCase @Inject constructor() {
 
                     newIP += if (doubleCost) 2 else 1
                     newVal -= 1
-                } else return Resource.Error("Cannot go below 0")
+                }
             }
         }
         return Resource.Success(Pair(newIP, newVal))

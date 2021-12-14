@@ -25,9 +25,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.TheWitcherTRPGApp
+import com.example.thewitcherrpg.core.Resource
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -563,7 +565,13 @@ class StatsFragment : Fragment() {
         if (focusedView != null) {
             val stat = focusedView!!.tag.toString()
             if (!editModifier) {
-                mainCharacterViewModel.onStatChange(stat, true)
+                val result  = mainCharacterViewModel.onStatChange(stat, true)
+                if (result is Resource.Error){
+                    Snackbar.make(
+                        binding.root, result.message.toString(),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             } else {
                 mainCharacterViewModel.onStatModifierChange(stat, true)
             }

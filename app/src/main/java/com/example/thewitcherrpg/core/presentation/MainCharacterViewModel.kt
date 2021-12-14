@@ -713,7 +713,7 @@ class MainCharacterViewModel @Inject constructor(
         characterCreationUseCases.addCharacterUseCase(
             Character(
                 id = 0,
-                imagePath = _image.value!!,
+                imagePath = _image.value,
                 name = name.value!!,
                 iP = _ip.value,
                 race = _race.value,
@@ -1599,7 +1599,7 @@ class MainCharacterViewModel @Inject constructor(
         _lifeEvents.value = ArrayList(_lifeEvents.value.sortedWith(compareBy { it.age }))
     }
 
-    fun onSkillChange(skill: String, increase: Boolean) {
+    fun onSkillChange(skill: String, increase: Boolean): Resource<Pair<Int, Int>>? {
 
         when (skill) {
             "Awareness" -> {
@@ -1608,11 +1608,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _awareness.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _awareness.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Business" -> {
                 val pair = onSkillChangeUseCase(
@@ -1620,11 +1620,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _business.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _business.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Deduction" -> {
                 val pair = onSkillChangeUseCase(
@@ -1632,11 +1632,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _deduction.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _deduction.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Education" -> {
                 val pair = onSkillChangeUseCase(
@@ -1644,11 +1644,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _education.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _education.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Common Speech" -> {
                 val pair = onSkillChangeUseCase(
@@ -1657,11 +1657,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _commonSpeech.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _commonSpeech.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Elder Speech" -> {
                 val pair = onSkillChangeUseCase(
@@ -1670,11 +1670,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _elderSpeech.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _elderSpeech.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Dwarven" -> {
                 val pair = onSkillChangeUseCase(
@@ -1683,11 +1683,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _dwarven.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _dwarven.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Monster Lore" -> {
                 val pair = onSkillChangeUseCase(
@@ -1696,11 +1696,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _monsterLore.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _monsterLore.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Social Etiquette" -> {
                 val pair = onSkillChangeUseCase(
@@ -1708,11 +1708,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _socialEtiquette.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _socialEtiquette.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Streetwise" -> {
                 val pair = onSkillChangeUseCase(
@@ -1720,11 +1720,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _streetwise.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _streetwise.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Tactics" -> {
                 val pair = onSkillChangeUseCase(
@@ -1733,11 +1733,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _tactics.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _tactics.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Teaching" -> {
                 val pair = onSkillChangeUseCase(
@@ -1745,11 +1745,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _teaching.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _teaching.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Wilderness Survival" -> {
                 val pair = onSkillChangeUseCase(
@@ -1757,11 +1757,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _wildernessSurvival.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _wildernessSurvival.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Brawling" -> {
                 val pair = onSkillChangeUseCase(
@@ -1769,11 +1769,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _brawling.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _brawling.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Dodge/Escape" -> {
                 val pair = onSkillChangeUseCase(
@@ -1781,11 +1781,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _dodgeEscape.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _dodgeEscape.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Melee" -> {
                 val pair = onSkillChangeUseCase(
@@ -1793,11 +1793,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _melee.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _melee.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Riding" -> {
                 val pair = onSkillChangeUseCase(
@@ -1805,11 +1805,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _riding.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _riding.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Sailing" -> {
                 val pair = onSkillChangeUseCase(
@@ -1817,11 +1817,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _sailing.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _sailing.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Small Blades" -> {
                 val pair = onSkillChangeUseCase(
@@ -1829,11 +1829,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _smallBlades.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _smallBlades.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Staff/Spear" -> {
                 val pair = onSkillChangeUseCase(
@@ -1841,11 +1841,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _staffSpear.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _staffSpear.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Swordsmanship" -> {
                 val pair = onSkillChangeUseCase(
@@ -1853,11 +1853,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _swordsmanship.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _swordsmanship.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Archery" -> {
                 val pair = onSkillChangeUseCase(
@@ -1865,11 +1865,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _archery.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _archery.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Athletics" -> {
                 val pair = onSkillChangeUseCase(
@@ -1877,11 +1877,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _athletics.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _athletics.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Crossbow" -> {
                 val pair = onSkillChangeUseCase(
@@ -1889,11 +1889,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _crossbow.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _crossbow.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Sleight of Hand" -> {
                 val pair = onSkillChangeUseCase(
@@ -1901,11 +1901,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _sleightOfHand.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _sleightOfHand.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Stealth" -> {
                 val pair = onSkillChangeUseCase(
@@ -1913,11 +1913,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _stealth.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _stealth.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Physique" -> {
                 val pair = onSkillChangeUseCase(
@@ -1925,11 +1925,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _physique.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _physique.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Endurance" -> {
                 val pair = onSkillChangeUseCase(
@@ -1937,11 +1937,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _endurance.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _endurance.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Charisma" -> {
                 val pair = onSkillChangeUseCase(
@@ -1949,11 +1949,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _charisma.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _charisma.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Deceit" -> {
                 val pair = onSkillChangeUseCase(
@@ -1961,11 +1961,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _deceit.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _deceit.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Fine Arts" -> {
                 val pair = onSkillChangeUseCase(
@@ -1973,11 +1973,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _fineArts.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _fineArts.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Gambling" -> {
                 val pair = onSkillChangeUseCase(
@@ -1985,11 +1985,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _gambling.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _gambling.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Grooming and Style" -> {
                 val pair = onSkillChangeUseCase(
@@ -1997,11 +1997,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _groomingAndStyle.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _groomingAndStyle.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Human Perception" -> {
                 val pair = onSkillChangeUseCase(
@@ -2009,11 +2009,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _humanPerception.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _humanPerception.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Leadership" -> {
                 val pair = onSkillChangeUseCase(
@@ -2021,11 +2021,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _leadership.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _leadership.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Persuasion" -> {
                 val pair = onSkillChangeUseCase(
@@ -2033,11 +2033,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _persuasion.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _persuasion.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Performance" -> {
                 val pair = onSkillChangeUseCase(
@@ -2045,11 +2045,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _performance.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _performance.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Seduction" -> {
                 val pair = onSkillChangeUseCase(
@@ -2057,11 +2057,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _seduction.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _seduction.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Alchemy" -> {
                 val pair = onSkillChangeUseCase(
@@ -2070,11 +2070,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _alchemy.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _alchemy.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Crafting" -> {
                 val pair = onSkillChangeUseCase(
@@ -2083,11 +2083,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _crafting.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _crafting.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Disguise" -> {
                 val pair = onSkillChangeUseCase(
@@ -2095,11 +2095,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _disguise.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _disguise.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "First Aid" -> {
                 val pair = onSkillChangeUseCase(
@@ -2107,11 +2107,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _firstAid.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _firstAid.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Forgery" -> {
                 val pair = onSkillChangeUseCase(
@@ -2119,11 +2119,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _forgery.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _forgery.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Pick Lock" -> {
                 val pair = onSkillChangeUseCase(
@@ -2131,11 +2131,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _pickLock.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _pickLock.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Trap Crafting" -> {
                 val pair = onSkillChangeUseCase(
@@ -2144,11 +2144,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _trapCrafting.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _trapCrafting.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Courage" -> {
                 val pair = onSkillChangeUseCase(
@@ -2156,11 +2156,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _courage.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _courage.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Hex Weaving" -> {
                 val pair = onSkillChangeUseCase(
@@ -2169,11 +2169,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _hexWeaving.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _hexWeaving.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Intimidation" -> {
                 val pair = onSkillChangeUseCase(
@@ -2181,11 +2181,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _intimidation.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _intimidation.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Spell Casting" -> {
                 val pair = onSkillChangeUseCase(
@@ -2194,11 +2194,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _spellCasting.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _spellCasting.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Resist Magic" -> {
                 val pair = onSkillChangeUseCase(
@@ -2207,11 +2207,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _resistMagic.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _resistMagic.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Resist Coercion" -> {
                 val pair = onSkillChangeUseCase(
@@ -2219,11 +2219,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _resistCoercion.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _resistCoercion.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "Ritual Crafting" -> {
                 val pair = onSkillChangeUseCase(
@@ -2232,11 +2232,11 @@ class MainCharacterViewModel @Inject constructor(
                     increase,
                     _inCharacterCreation.value,
                     doubleCost = true
-                ).data
-                if (pair != null) {
-                    _ritualCrafting.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _ritualCrafting.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "DefiningSkill" -> {
                 val pair = onSkillChangeUseCase(
@@ -2244,13 +2244,14 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _definingSkillValue.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _definingSkillValue.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
         }
+        return null
     }
 
     fun onSkillModifierChange(skill: String, increase: Boolean): Int {
@@ -2524,7 +2525,7 @@ class MainCharacterViewModel @Inject constructor(
         return 0
     }
 
-    fun onStatChange(stat: String, increase: Boolean) {
+    fun onStatChange(stat: String, increase: Boolean): Resource<Pair<Int, Int>>? {
 
         when (stat) {
 
@@ -2534,11 +2535,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _intelligence.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _intelligence.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "REF" -> {
                 val pair = onStatChangeUseCase(
@@ -2546,11 +2547,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _ref.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _ref.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "DEX" -> {
                 val pair = onStatChangeUseCase(
@@ -2558,11 +2559,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _dex.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _dex.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "BODY" -> {
                 val pair = onStatChangeUseCase(
@@ -2570,10 +2571,10 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _body.value = pair.second
-                    _ip.value = pair.first
+                )
+                if (pair.data != null) {
+                    _body.value = pair.data.second
+                    _ip.value = pair.data.first
                     onHpChange(increase = increase)
                     onStaminaChange(increase = increase)
                     _rec.value = (_body.value + _will.value) / 2
@@ -2612,7 +2613,7 @@ class MainCharacterViewModel @Inject constructor(
                             _kick.value = "1d6 + 12"
                         }
                     }
-                }
+                } else return pair
             }
             "SPD" -> {
                 val pair = onStatChangeUseCase(
@@ -2620,13 +2621,13 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _spd.value = pair.second
-                    _ip.value = pair.first
+                )
+                if (pair.data != null) {
+                    _spd.value = pair.data.second
+                    _ip.value = pair.data.first
                     _run.value = _spd.value * 3
                     _leap.value = (_spd.value * 3) / 5
-                }
+                } else return pair
             }
             "EMP" -> {
                 val pair = onStatChangeUseCase(
@@ -2634,11 +2635,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _emp.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _emp.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "CRA" -> {
                 val pair = onStatChangeUseCase(
@@ -2646,11 +2647,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _cra.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _cra.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "WILL" -> {
                 val pair = onStatChangeUseCase(
@@ -2658,17 +2659,17 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _will.value = pair.second
-                    _ip.value = pair.first
+                )
+                if (pair.data != null) {
+                    _will.value = pair.data.second
+                    _ip.value = pair.data.first
                     onHpChange(increase = increase)
                     onStaminaChange(increase = increase)
                     _rec.value = (_body.value + _will.value) / 2
                     _stun.value =
                         if (((_body.value + _will.value) / 2) < 10) ((_body.value + _will.value) / 2)
                         else 10
-                }
+                } else return pair
             }
             "LUCK" -> {
                 val pair = onStatChangeUseCase(
@@ -2676,11 +2677,11 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value,
                     increase,
                     _inCharacterCreation.value
-                ).data
-                if (pair != null) {
-                    _luck.value = pair.second
-                    _ip.value = pair.first
-                }
+                )
+                if (pair.data != null) {
+                    _luck.value = pair.data.second
+                    _ip.value = pair.data.first
+                } else return pair
             }
             "STUN" -> {
                 _stun.value = if (increase) _stun.value.plus(1) else _stun.value.minus(1)
@@ -2711,6 +2712,7 @@ class MainCharacterViewModel @Inject constructor(
 
             }
         }
+        return null
     }
 
     fun onStatModifierChange(stat: String, increase: Boolean) {
@@ -3168,7 +3170,35 @@ class MainCharacterViewModel @Inject constructor(
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.add(item)
         }
-        _currentEnc.value = _currentEnc.value.plus(item.weight)
+        calculateCurrentEncumbrance()
+    }
+
+    private fun calculateCurrentEncumbrance(){
+        var currentEncumbrance = 0F
+
+        for (item in _headEquipment.value){
+            currentEncumbrance += item.weight
+        }
+        for (item in _chestEquipment.value){
+            currentEncumbrance += item.weight
+        }
+        for (item in _legEquipment.value){
+            currentEncumbrance += item.weight
+        }
+        for (item in _weaponEquipment.value){
+            currentEncumbrance += item.weight
+        }
+        for (item in _miscEquipment.value){
+            currentEncumbrance += item.weight
+        }
+        currentEncumbrance += _equippedHead.value?.weight ?: 0F
+        currentEncumbrance += _equippedChest.value?.weight ?: 0F
+        currentEncumbrance += _equippedLegs.value?.weight ?: 0F
+        currentEncumbrance += _equippedWeapon.value?.weight ?: 0F
+        currentEncumbrance += _equippedSecondHandWeapon.value?.weight ?: 0F
+        currentEncumbrance += _equippedSecondHandShield.value?.weight ?: 0F
+
+        _currentEnc.value = currentEncumbrance
     }
 
     fun addArmorSet(armorSet: ArmorSet) {
@@ -3203,7 +3233,7 @@ class MainCharacterViewModel @Inject constructor(
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.remove(item)
         }
-        _currentEnc.value = _currentEnc.value.minus(item.weight)
+        calculateCurrentEncumbrance()
     }
 
     fun equipItem(item: EquipmentItem) {
@@ -3353,12 +3383,12 @@ class MainCharacterViewModel @Inject constructor(
 
     fun addWeaponItem(item: WeaponItem) {
         _weaponEquipment.value.add(item)
-        _currentEnc.value = _currentEnc.value.plus(item.weight)
+        calculateCurrentEncumbrance()
     }
 
     fun removeWeapon(item: WeaponItem) {
         _weaponEquipment.value.remove(item)
-        _currentEnc.value = _currentEnc.value.minus(item.weight)
+        calculateCurrentEncumbrance()
     }
 
     fun equipWeapon(item: WeaponItem) {

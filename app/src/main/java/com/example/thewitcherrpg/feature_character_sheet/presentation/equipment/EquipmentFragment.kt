@@ -23,6 +23,7 @@ import com.example.thewitcherrpg.databinding.FragmentEquipmentBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.example.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -199,6 +200,10 @@ class EquipmentFragment : Fragment() {
 
         bind.buttonEquip.setOnClickListener {
             mainCharacterViewModel.unEquipWeapon(weaponItem)
+            Snackbar.make(
+                binding.root, "${mainCharacterViewModel.name.value} has unequipped ${weaponItem.name}",
+                Snackbar.LENGTH_SHORT
+            ).show()
             dialog.dismiss()
         }
 
@@ -292,10 +297,9 @@ class EquipmentFragment : Fragment() {
             bind.buttonEquipUnequip.setOnClickListener {
 
                 mainCharacterViewModel.unEquipItem(armorItem)
-                Toast.makeText(
-                    context,
-                    "${mainCharacterViewModel.name.value} has unequipped ${armorItem.name}",
-                    Toast.LENGTH_SHORT
+                Snackbar.make(
+                    binding.root, "${mainCharacterViewModel.name.value} has unequipped ${armorItem.name}",
+                    Snackbar.LENGTH_SHORT
                 ).show()
 
                 dialog.dismiss()

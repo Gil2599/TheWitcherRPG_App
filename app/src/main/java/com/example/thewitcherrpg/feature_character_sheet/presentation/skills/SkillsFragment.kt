@@ -14,10 +14,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.thewitcherrpg.R
 import com.example.thewitcherrpg.core.Constants
+import com.example.thewitcherrpg.core.Resource
 import com.example.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.example.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.databinding.FragmentSkillsBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -296,6 +298,11 @@ class SkillsFragment : Fragment() {
                 binding.etNotoriety.setSkillText("Notoriety:")
                 binding.etNotoriety.setDefSkillColor()
             }
+            Constants.Professions.PEASANT -> {
+                binding.etIntolerance.visibility = View.VISIBLE
+                binding.etIntolerance.setSkillText("Intolerance:")
+                binding.etIntolerance.setDefSkillColor()
+            }
         }
     }
 
@@ -308,10 +315,17 @@ class SkillsFragment : Fragment() {
                     skill.toString(),
                     true
                 )
-                else mainCharacterViewModel.onSkillChange(
-                    skill.toString(),
-                    true
-                )
+                else {
+                    val result = mainCharacterViewModel.onSkillChange(
+                        skill.toString(),
+                        true)
+                    if (result is Resource.Error){
+                        Snackbar.make(
+                            binding.root, result.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         }
     }

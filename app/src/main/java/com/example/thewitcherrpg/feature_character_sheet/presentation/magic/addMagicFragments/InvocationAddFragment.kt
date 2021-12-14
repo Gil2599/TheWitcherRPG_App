@@ -18,6 +18,7 @@ import com.example.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.example.thewitcherrpg.databinding.FragmentInvocationAddBinding
 import com.example.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.example.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class InvocationAddFragment : Fragment() {
     private var _binding: FragmentInvocationAddBinding? = null
@@ -150,8 +151,11 @@ class InvocationAddFragment : Fragment() {
         bind.addDurationText.text = HtmlCompat.fromHtml(duration, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.addSpellbutton.setOnClickListener{
-
             mainCharacterViewModel.addMagicItem(item)
+            Snackbar.make(
+                binding.root, "${item.name} added to ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT
+            ).show()
             dialog.dismiss()
         }
 

@@ -183,8 +183,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageViewPlus"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageViewMinus"
-                app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP"
-                tools:text='@{``+ equipmentItem.currentStoppingPower}' />
+                app:layout_constraintTop_toTopOf="@+id/textViewCurrentSP" />
 
             <ImageView
                 android:id="@+id/imageViewPlus"

@@ -18,7 +18,7 @@ class OnProfessionSkillChangeUseCase @Inject constructor() {
         if (increase) {
             if (value >= 10) return Resource.Error("Cannot go past 10")
 
-            if (ip >= newVal) {
+            if (ip >= newVal && ip > 0) {
                 if (newVal == 0) {
                     newVal = 1
                     newIP -= 1
