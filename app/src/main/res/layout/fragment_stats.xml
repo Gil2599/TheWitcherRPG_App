@@ -6,7 +6,7 @@
     <data>
         <variable
             name="sharedViewModel"
-            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
+            type="com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

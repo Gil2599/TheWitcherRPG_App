@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/spellAddFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.SpellAddFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.SpellAddFragment"
         android:label="fragment_spell_add"
         tools:layout="@layout/fragment_spell_add" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/charMagicFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments.CharMagicFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments.CharMagicFragment"
         android:label="CharMagicFragment" >
         <action
             android:id="@+id/action_charMagicFragment_to_spellAddFragment"
@@ -39,12 +39,12 @@
     </fragment>
     <fragment
         android:id="@+id/noMagicFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.NoMagicFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.NoMagicFragment"
         android:label="fragment_no_magic"
         tools:layout="@layout/fragment_no_magic" />
     <fragment
         android:id="@+id/invocationAddFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.InvocationAddFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.InvocationAddFragment"
         android:label="InvocationAddFragment" >
         <action
             android:id="@+id/action_invocationAddFragment_to_charMagicFragment"
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/signsAddFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.SignsAddFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.SignsAddFragment"
         android:label="SignsAddFragment" >
         <action
             android:id="@+id/action_signsAddFragment_to_charMagicFragment"
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/ritualAddFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.RitualAddFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.RitualAddFragment"
         android:label="fragment_ritual_add"
         tools:layout="@layout/fragment_ritual_add" >
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/hexesAddFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.HexesAddFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.HexesAddFragment"
         android:label="fragment_hexes_add"
         tools:layout="@layout/fragment_hexes_add" >
         <action

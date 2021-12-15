@@ -12,7 +12,7 @@
         android:paddingEnd="15dp"
         app:layout_constraintHeight_max="500dp">
 
-        <com.example.thewitcherrpg.core.presentation.CustomTitleView
+        <com.witcher.thewitcherrpg.core.presentation.CustomTitleView
             android:id="@+id/customTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

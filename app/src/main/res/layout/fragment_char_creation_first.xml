@@ -6,7 +6,7 @@
     <data>
         <variable
             name="MainViewModel"
-            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
+            type="com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,7 +70,7 @@
                 android:maxLength="4"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.example.thewitcherrpg.core.presentation.CustomTitleView
+        <com.witcher.thewitcherrpg.core.presentation.CustomTitleView
             android:id="@+id/customTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

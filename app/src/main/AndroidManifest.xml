@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.thewitcherrpg">
+    package="com.witcher.thewitcherrpg">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
     <application
-        android:name=".TheWitcherTRPGApp"
+        android:name="com.witcher.thewitcherrpg.TheWitcherTRPGApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,29 +15,29 @@
         android:theme="@style/Theme.WitcherDD"
         tools:node="merge">
         <activity
-            android:name=".about_section.AboutActivity"
-            android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
+            android:name="com.witcher.thewitcherrpg.about_section.AboutActivity"
+            android:parentActivityName="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
             android:label="About Application"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".feature_character_creation.presentation.CharCreationActivity"
+            android:name="com.witcher.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity"
             android:exported="true"
             android:label="Create Character"
             android:screenOrientation="portrait"
-            android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
+            android:parentActivityName="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
             android:windowSoftInputMode="adjustNothing"
             tools:node="merge" />
         <activity
-            android:name=".feature_character_sheet.presentation.MainActivity"
+            android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity"
             android:exported="true"
             android:label="Character Sheet"
             android:screenOrientation="portrait"
-            android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
+            android:parentActivityName="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
             android:windowSoftInputMode="adjustResize"
             tools:node="merge" />
         <activity
-            android:name=".feature_character_list.presentation.LauncherActivity"
+            android:name="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
             android:exported="true"
             android:label="The Witcher TRPG"
             android:screenOrientation="portrait"

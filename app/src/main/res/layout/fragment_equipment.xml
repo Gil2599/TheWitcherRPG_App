@@ -6,7 +6,7 @@
     <data>
         <variable
             name="MainViewModel"
-            type="com.example.thewitcherrpg.core.presentation.MainCharacterViewModel" />
+            type="com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
             app:layout_constraintStart_toEndOf="@+id/inventoryButton"
             app:layout_constraintTop_toTopOf="@+id/inventoryButton" />
 
-        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
             android:id="@+id/equippedRowWeapon"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
-        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
             android:id="@+id/equippedSecondHand"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -64,7 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/equippedRowWeapon" />
 
-        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
             android:id="@+id/equippedRowHead"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -75,7 +75,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/equippedSecondHand" />
 
-        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
             android:id="@+id/equippedRowChest"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -86,7 +86,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/equippedRowHead" />
 
-        <com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
+        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.CustomEquippedRow
             android:id="@+id/equippedRowLegs"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -97,7 +97,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/equippedRowChest" />
 
-        <com.example.thewitcherrpg.core.presentation.CustomTitleView
+        <com.witcher.thewitcherrpg.core.presentation.CustomTitleView
             android:id="@+id/customTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

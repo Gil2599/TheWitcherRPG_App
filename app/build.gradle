@@ -8,6 +8,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\School PC\\Desktop\\The Witcher TRPG Key\\keystore.jks')
+            storePassword 'Kiko2599!'
+            keyAlias 'key0'
+            keyPassword 'Kiko2599!'
+        }
+    }
     compileSdk 31
 
     buildFeatures{
@@ -16,7 +24,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.thewitcherrpg"
+        applicationId "com.witcher.thewitcherrpg"
         minSdk 26
         targetSdk 31
         versionCode 1
@@ -25,12 +33,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

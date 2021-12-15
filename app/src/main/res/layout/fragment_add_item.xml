@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".feature_character_sheet.presentation.equipment.AddItemFragment">
 
-    <com.example.thewitcherrpg.core.presentation.CustomTitleView
+    <com.witcher.thewitcherrpg.core.presentation.CustomTitleView
         android:id="@+id/customTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

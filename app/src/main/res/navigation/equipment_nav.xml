@@ -6,7 +6,7 @@
     app:startDestination="@id/equipmentFragment">
     <fragment
         android:id="@+id/equipmentFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentFragment"
         android:label="fragment_equipment"
         tools:layout="@layout/fragment_equipment" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/addArmorFragment2"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.AddItemFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.AddItemFragment"
         android:label="fragment_add_armor"
         tools:layout="@layout/fragment_add_item" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/inventoryFragment"
-        android:name="com.example.thewitcherrpg.feature_character_sheet.presentation.equipment.InventoryFragment"
+        android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.InventoryFragment"
         android:label="InventoryFragment" >
         <argument
             android:name="spinnerSelection"
