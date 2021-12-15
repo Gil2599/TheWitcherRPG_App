@@ -18,11 +18,13 @@
             android:name=".about_section.AboutActivity"
             android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
             android:label="About Application"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".feature_character_creation.presentation.CharCreationActivity"
             android:exported="true"
             android:label="Create Character"
+            android:screenOrientation="portrait"
             android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
             android:windowSoftInputMode="adjustNothing"
             tools:node="merge" />
@@ -30,6 +32,7 @@
             android:name=".feature_character_sheet.presentation.MainActivity"
             android:exported="true"
             android:label="Character Sheet"
+            android:screenOrientation="portrait"
             android:parentActivityName=".feature_character_list.presentation.LauncherActivity"
             android:windowSoftInputMode="adjustResize"
             tools:node="merge" />
@@ -37,6 +40,7 @@
             android:name=".feature_character_list.presentation.LauncherActivity"
             android:exported="true"
             android:label="The Witcher TRPG"
+            android:screenOrientation="portrait"
             tools:node="merge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -743,6 +743,7 @@ class MainCharacterViewModel @Inject constructor(
                 recovery = _rec.value,
                 punch = _punch.value,
                 kick = _kick.value,
+                definingSkillValue = _definingSkillValue.value,
                 awareness = _awareness.value,
                 business = _business.value,
                 deduction = _deduction.value,

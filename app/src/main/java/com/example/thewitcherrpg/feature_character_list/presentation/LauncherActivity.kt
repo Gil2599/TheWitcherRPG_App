@@ -3,18 +3,12 @@ package com.example.thewitcherrpg.feature_character_list.presentation
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -22,10 +16,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thewitcherrpg.R
-import com.example.thewitcherrpg.TheWitcherTRPGApp
 import com.example.thewitcherrpg.about_section.AboutActivity
 import com.example.thewitcherrpg.databinding.ActivityLauncherBinding
-import com.example.thewitcherrpg.databinding.ActivityMainBinding
 import com.example.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.example.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -33,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
@@ -144,26 +135,6 @@ class LauncherActivity : AppCompatActivity() {
             if (bind.checkBox.visibility == View.VISIBLE && bind.checkBox.isChecked) {
                 mCharListViewModel.saveDisclaimerMode(!bind.checkBox.isChecked)
             }
-            dialog.dismiss()
-        }
-        dialog.show()
-    }
-
-    private fun showDialogAbout() {
-        val dialog = Dialog(this)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
-        dialog.setContentView(bind.root)
-
-        bind.textViewInfo.text = resources.getString(R.string.about)
-        bind.textViewInfo.typeface = Typeface.DEFAULT
-        bind.checkBox.visibility = View.GONE
-
-        bind.customTitle.setTitle("About")
-        bind.customTitle.setTitleSize(18F)
-
-        bind.okButton.setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()

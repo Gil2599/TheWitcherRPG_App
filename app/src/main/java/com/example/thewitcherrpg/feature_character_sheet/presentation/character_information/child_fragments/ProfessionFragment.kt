@@ -1,7 +1,6 @@
 package com.example.thewitcherrpg.feature_character_sheet.presentation.character_information.child_fragments
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Typeface
 import android.os.Bundle
@@ -94,35 +93,29 @@ class ProfessionFragment : Fragment() {
         binding.textViewProfessionTitle.text = mainCharacterViewModel.profession.value.toString()
 
         binding.textDefiningSkill.setOnClickListener{
-            val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-            alertDialogBuilder.setTitle(mainCharacterViewModel.definingSkill.value)
-            alertDialogBuilder.setMessage(mainCharacterViewModel.definingSkillInfo.value)
-            val alertDialog: AlertDialog = alertDialogBuilder.create()
-            alertDialog.setCanceledOnTouchOutside(true)
-            alertDialog.show()
+            showDialogInfo(mainCharacterViewModel.definingSkillInfo.value, mainCharacterViewModel.definingSkill.value)
         }
 
         binding.buttonHelp.setOnClickListener(){
-            showDialogHelp()
+            showDialogInfo(resources.getString(R.string.profession_help), "Your Profession")
         }
     }
 
-    private fun showDialogHelp() {
+    private fun showDialogInfo(text: String, title: String) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.custom_dialog_help_info)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val bind : CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
+        val bind: CustomDialogHelpInfoBinding = CustomDialogHelpInfoBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        bind.textViewInfo.text = resources.getString(R.string.profession_help)
+        bind.textViewInfo.text = text
         bind.textViewInfo.typeface = Typeface.DEFAULT
-        bind.customTitle.setTitle("Your Profession")
+
+        bind.customTitle.setTitle(title)
         bind.customTitle.setTitleSize(18F)
         bind.checkBox.visibility = View.GONE
-
 
         bind.okButton.setOnClickListener {
             dialog.dismiss()
