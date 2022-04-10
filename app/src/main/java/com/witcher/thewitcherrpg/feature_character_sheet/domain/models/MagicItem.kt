@@ -3,6 +3,7 @@ package com.witcher.thewitcherrpg.feature_character_sheet.domain.models
 import android.os.Parcelable
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
 @Parcelize
 data class MagicItem(
@@ -19,4 +20,4 @@ data class MagicItem(
     var components: String? = null,
     var requirementToLift: String? = null,
     var danger: String? = null
-) : Parcelable
+) : Parcelable, Serializable

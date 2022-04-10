@@ -3,6 +3,7 @@ package com.witcher.thewitcherrpg.feature_character_sheet.domain.models
 import android.os.Parcelable
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 import java.util.*
 
 @Parcelize
@@ -26,4 +27,4 @@ data class WeaponItem(
     var equipmentNote: String = "",
     var isRelic: Boolean = false,
     var uniqueID: UUID = UUID.randomUUID()
-) : Parcelable
+) : Parcelable, Serializable
