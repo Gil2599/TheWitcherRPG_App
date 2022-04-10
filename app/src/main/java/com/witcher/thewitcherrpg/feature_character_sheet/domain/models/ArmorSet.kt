@@ -3,6 +3,7 @@ package com.witcher.thewitcherrpg.feature_character_sheet.domain.models
 import android.os.Parcelable
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -20,4 +21,4 @@ data class ArmorSet(
     val equipmentType: EquipmentTypes,
     var isRelic: Boolean = false,
     val uniqueID: UUID = UUID.randomUUID()
-) : Parcelable
+) : Parcelable, Serializable

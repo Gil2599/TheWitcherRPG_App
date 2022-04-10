@@ -2,6 +2,7 @@ package com.witcher.thewitcherrpg.feature_character_sheet.domain.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 import java.util.*
 
 @Parcelize
@@ -10,4 +11,4 @@ data class LifeEvent(
     var description: String,
     var age: Int,
     val uniqueID: UUID = UUID.randomUUID()
-) : Parcelable
+) : Parcelable, Serializable

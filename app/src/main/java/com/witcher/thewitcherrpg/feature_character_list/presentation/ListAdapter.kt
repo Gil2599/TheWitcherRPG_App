@@ -31,12 +31,17 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
                 IPText.text = ip
                 textRace.text = character.race
 
-                if (character.imagePath.isNotEmpty())
-                    if (loadImageFromStorage(character.imagePath, imageView))
-                        (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
-
-
-                    else imageView.setImageDrawable(null)
+                if (character.imagePath.isNotEmpty()) {
+                    if (loadImageFromStorage(character.imagePath, imageView)) {
+                        (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(
+                            0,
+                            0,
+                            0,
+                            0
+                        )
+                    }
+                }
+                else imageView.setImageDrawable(null)
 
                 rowLayout.setOnClickListener{
                     val intent = Intent(context, MainActivity::class.java).also {

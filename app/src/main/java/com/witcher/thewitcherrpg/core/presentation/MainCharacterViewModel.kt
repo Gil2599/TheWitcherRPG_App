@@ -1,8 +1,8 @@
 package com.witcher.thewitcherrpg.core.presentation
 
+//import android.util.Log
 import android.net.Uri
 import android.util.Log
-//import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
@@ -11,34 +11,33 @@ import androidx.lifecycle.viewModelScope
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
-import com.witcher.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.witcher.thewitcherrpg.core.domain.model.Character
+import com.witcher.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharacterState
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.GetCharacterUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.profession_tree.OnProfessionSkillChangeUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.*
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.CheckIfDataChangedUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.GetCharacterUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.*
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorFromArmorSetUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorSetListUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.profession_tree.OnProfessionSkillChangeUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
 
 @HiltViewModel
@@ -1586,11 +1585,15 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun updateLifeEvent(updatedEvent: LifeEvent) {
+        var eventToRemove: LifeEvent? = null
         for (event in _lifeEvents.value) {
             if (updatedEvent.uniqueID == event.uniqueID) {
-                _lifeEvents.value.remove(event)
-                addLifeEvent(updatedEvent)
+                eventToRemove = event
             }
+        }
+        if (eventToRemove != null) {
+            _lifeEvents.value.remove(eventToRemove)
+            addLifeEvent(updatedEvent)
         }
     }
 
@@ -3500,11 +3503,16 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun updateCampaignNote(campaignNote: CampaignNote) {
+        var noteToRemove: CampaignNote? = null
         for (note in _campaignNotes.value) {
             if (campaignNote.uniqueID == note.uniqueID) {
-                _campaignNotes.value.remove(note)
-                addCampaignNote(note)
+                noteToRemove = note
             }
+        }
+        if (noteToRemove != null) {
+            _campaignNotes.value.remove(noteToRemove)
+            campaignNote.date = noteToRemove.date
+            addCampaignNote(campaignNote)
         }
     }
 
