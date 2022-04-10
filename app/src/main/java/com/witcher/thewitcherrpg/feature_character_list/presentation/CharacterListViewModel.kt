@@ -54,10 +54,18 @@ class CharacterListViewModel @Inject constructor(
     }
 
     fun getCharacterFromFile(inputStream: InputStream): Character? {
-        return characterToFileUseCase.readObjectFromFile(inputStream)
+        return try {
+            characterToFileUseCase.readObjectFromFile(inputStream)
+        } catch (e: Exception){
+            null
+        }
     }
 
     fun addSharedCharacter(character: Character) {
+        if (character in characterList.value){
+            character.name = character.name + " (Copy)"
+            character.id = characterList.value.last().id + 1
+        }
         characterCreationUseCases.addCharacterUseCase.invoke(character).onEach { result ->
             when (result) {
                 is Resource.Success -> {

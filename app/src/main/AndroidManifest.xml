@@ -55,9 +55,9 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="file"
                     android:mimeType="*/*"
-                    android:pathPattern=".*\\.cha"/>
+                    android:pathPattern=".*\\.wch"/>
                 <data android:scheme="content"
-                    android:pathPattern=".*\\.cha"
+                    android:pathPattern=".*\\.wch"
                     android:mimeType="application/octet-stream" />
                 <!-- <data android:host="*"/> -->
             </intent-filter>

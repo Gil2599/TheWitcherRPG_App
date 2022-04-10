@@ -85,21 +85,6 @@ class CharFragment : Fragment() {
             requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
 
-        binding.buttonShare.setOnClickListener {
-            val file = mainCharacterViewModel.getCharacterFile()
-
-            if (file != null && file.exists()){
-                val intentShare = Intent(Intent.ACTION_SEND)
-                intentShare.type = "application/cha"
-                intentShare.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(requireContext(), "com.witcher.thewitcherrpg", file))
-
-                startActivity(Intent.createChooser(intentShare, "Share character..."))
-            }
-            else {
-                Log.e("testing", "file is null...")
-            }
-        }
-
         //Setting up viewPager
         val numTabs = 4
         val tabTitles = listOf("Quick Stats", "Profession", "Personal", "Background")

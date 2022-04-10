@@ -1,5 +1,6 @@
 package com.witcher.thewitcherrpg.feature_character_sheet.presentation
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
@@ -142,6 +144,16 @@ class MainActivity : AppCompatActivity() {
         }
         if(item.itemId == R.id.menu_save){
             saveCharacter()
+        }
+        if(item.itemId == R.id.menu_share){
+            val file = mainCharacterViewModel.getCharacterFile()
+            if (file != null && file.exists()){
+                val intentShare = Intent(Intent.ACTION_SEND)
+                intentShare.type = "application/cha"
+                intentShare.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, "com.witcher.thewitcherrpg", file))
+
+                startActivity(Intent.createChooser(intentShare, "Share character..."))
+            }
         }
         if(item.itemId == R.id.menu_long_rest){
             mainCharacterViewModel.onRest(longRest = true)

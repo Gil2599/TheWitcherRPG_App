@@ -10,7 +10,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
@@ -71,9 +73,12 @@ class LauncherActivity : AppCompatActivity() {
                 val character: Character? = mCharListViewModel.getCharacterFromFile(inputStream)
 
                 if (character != null){
-                    mCharListViewModel.addSharedCharacter(character)
+                    addSharedCharacter(character)
+                } else {
+                    Toast.makeText(this, "Unexpected Error Occurred", Toast.LENGTH_SHORT).show()
                 }
             }
+            intent.data = null
         }
 
         lifecycleScope.launch {
@@ -159,6 +164,19 @@ class LauncherActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    private fun addSharedCharacter(character: Character) {
+        val builder = AlertDialog.Builder(this)
+        builder.setPositiveButton("Yes"){_, _ ->
+            mCharListViewModel.addSharedCharacter(character)
+
+            Toast.makeText(this, "Character Added!", Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("No"){_, _ -> }
+        builder.setTitle("Add Character?")
+        builder.setMessage("All character data except image will be added.")
+        builder.create().show()
     }
 
 }

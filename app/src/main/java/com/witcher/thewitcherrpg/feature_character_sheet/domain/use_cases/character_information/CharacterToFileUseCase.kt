@@ -1,9 +1,7 @@
 package com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information
 
 import android.app.Application
-import android.content.Context
 import android.content.ContextWrapper
-import android.util.Log
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.domain.model.Character
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +17,7 @@ class CharacterToFileUseCase @Inject constructor(
         val cw = ContextWrapper(application.applicationContext)
         val directory: File? = cw.getExternalFilesDir("characterDir")
 
-        val myPath = File(directory, "${character.name}.cha")
+        val myPath = File(directory, "${character.name}.wch")
 
         writeObjectToFile(character, myPath)
         emit(Resource.Success(myPath))
