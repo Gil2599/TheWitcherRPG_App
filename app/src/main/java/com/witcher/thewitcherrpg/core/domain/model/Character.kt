@@ -9,6 +9,7 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
 @Parcelize
 @Entity(tableName = "character_table")
@@ -247,7 +248,7 @@ data class Character(
     var campaignNotes: ArrayList<CampaignNote> = arrayListOf()
 
 
-): Parcelable
+): Parcelable, Serializable
 
 class MyTypeConverters {
 

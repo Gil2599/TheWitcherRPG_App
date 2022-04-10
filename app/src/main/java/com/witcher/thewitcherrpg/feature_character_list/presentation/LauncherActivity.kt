@@ -1,14 +1,20 @@
 package com.witcher.thewitcherrpg.feature_character_list.presentation
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
+import androidx.core.net.toFile
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -21,10 +27,13 @@ import com.witcher.thewitcherrpg.databinding.ActivityLauncherBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.witcher.thewitcherrpg.core.domain.model.Character
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.io.File
 
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
@@ -55,12 +64,24 @@ class LauncherActivity : AppCompatActivity() {
 
         mCharListViewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
 
+        val uri = intent.data
+        if (uri != null) {
+            val inputStream = contentResolver.openInputStream(uri)
+            if (inputStream != null) {
+                val character: Character? = mCharListViewModel.getCharacterFromFile(inputStream)
+
+                if (character != null){
+                    mCharListViewModel.addSharedCharacter(character)
+                }
+            }
+        }
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
                 launch {
                     mCharListViewModel.characterList.collectLatest {
-                        if (it.isEmpty()){
+                        if (it.isEmpty()) {
                             binding.textViewNoCharacters.visibility = View.VISIBLE
                             binding.textViewTapAdd.visibility = View.VISIBLE
                         } else {

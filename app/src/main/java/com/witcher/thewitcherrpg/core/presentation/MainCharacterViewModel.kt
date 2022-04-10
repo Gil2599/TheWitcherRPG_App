@@ -18,7 +18,6 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.GetCha
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.profession_tree.OnProfessionSkillChangeUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.SaveImageUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
@@ -29,9 +28,7 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.*
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.CheckIfDataChangedUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.DeleteCharacterUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionGearUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionSkillsUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.GetProfessionSpecialUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.*
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorFromArmorSetUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorSetListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
@@ -39,6 +36,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
@@ -63,7 +61,8 @@ class MainCharacterViewModel @Inject constructor(
     private val getProfessionSpecialUseCase: GetProfessionSpecialUseCase,
     private val getArmorSetListUseCase: GetArmorSetListUseCase,
     private val getArmorFromArmorSetUseCase: GetArmorFromArmorSetUseCase,
-    private val dataStore: DataStoreRepository
+    private val dataStore: DataStoreRepository,
+    private val characterToFileUseCase: CharacterToFileUseCase
 ) : ViewModel() {
 
     private var _id = MutableStateFlow(70)
@@ -3527,5 +3526,17 @@ class MainCharacterViewModel @Inject constructor(
 
     fun saveSkillTreeInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.setSkillTreeInfoMode(mode)
+    }
+
+    fun getCharacterFile(): File? {
+        var file: File? = null
+        characterToFileUseCase.invoke(fromViewModelToCharacter()).onEach {result ->
+            file = if (result is Resource.Success) {
+                result.data
+            } else {
+                null
+            }
+        }.launchIn(viewModelScope)
+        return file
     }
 }

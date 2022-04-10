@@ -48,8 +48,6 @@ class SaveImageUseCase @Inject constructor(
                 emit(Resource.Error("Unexpected Error", e.toString()))
             }
         }
-
-        //return directory.absolutePath
     }
 
     fun getContent(uri: Uri): Bitmap?{

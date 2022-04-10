@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.witcher.thewitcherrpg">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE">
+
+    </uses-permission>
 
     <application
         android:name="com.witcher.thewitcherrpg.TheWitcherTRPGApp"
@@ -44,10 +46,34 @@
             tools:node="merge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="file"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.cha"/>
+                <data android:scheme="content"
+                    android:pathPattern=".*\\.cha"
+                    android:mimeType="application/octet-stream" />
+                <!-- <data android:host="*"/> -->
+            </intent-filter>
+
         </activity>
+        
+        <provider
+            android:authorities="com.witcher.thewitcherrpg"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:enabled="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>

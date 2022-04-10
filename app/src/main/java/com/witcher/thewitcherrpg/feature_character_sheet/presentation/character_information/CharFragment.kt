@@ -3,6 +3,7 @@ package com.witcher.thewitcherrpg.feature_character_sheet.presentation.character
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
 import android.net.Uri
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -81,6 +83,21 @@ class CharFragment : Fragment() {
         //Check whether permission is granted to access internal storage to set character image
         binding.imageView.setOnClickListener{
             requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+
+        binding.buttonShare.setOnClickListener {
+            val file = mainCharacterViewModel.getCharacterFile()
+
+            if (file != null && file.exists()){
+                val intentShare = Intent(Intent.ACTION_SEND)
+                intentShare.type = "application/cha"
+                intentShare.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(requireContext(), "com.witcher.thewitcherrpg", file))
+
+                startActivity(Intent.createChooser(intentShare, "Share character..."))
+            }
+            else {
+                Log.e("testing", "file is null...")
+            }
         }
 
         //Setting up viewPager
