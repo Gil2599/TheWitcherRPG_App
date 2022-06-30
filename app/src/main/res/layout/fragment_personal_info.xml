@@ -48,10 +48,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSocialStanding"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.socialStanding}"
-                        android:inputType="textCapSentences|text"
-                        android:maxLength="20" />
+                        android:inputType="textCapSentences|textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -77,10 +76,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etReputation"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.reputation}"
-                        android:inputType="textCapSentences|text"
-                        android:maxLength="20" />
+                        android:inputType="textCapSentences|textMultiLine"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -106,12 +104,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etClothing"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.clothing}"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:maxLength="150"
-                        android:maxLines="4"
-                        android:lines="4" />
+                        android:inputType="textCapSentences|textMultiLine"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -135,12 +130,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etHair"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.hairStyle}"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:maxLength="150"
-                        android:maxLines="4"
-                        android:lines="2" />
+                        android:inputType="textCapSentences|textMultiLine"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -164,12 +156,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPersonality"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.personality}"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:maxLength="150"
-                        android:maxLines="4"
-                        android:lines="4" />
+                        android:inputType="textCapSentences|textMultiLine"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,12 +183,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etAffectations"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.affectations}"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:maxLength="150"
-                        android:maxLines="4"
-                        android:lines="2" />
+                        android:inputType="textCapSentences|textMultiLine"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -223,12 +209,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etValuedPerson"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.valuedPerson}"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:maxLength="150"
-                        android:maxLines="4"
-                        android:lines="2" />
+                        android:inputType="textCapSentences|textMultiLine"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -252,12 +235,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etValues"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.values}"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:maxLength="150"
-                        android:maxLines="4"
-                        android:lines="4" />
+                        android:inputType="textCapSentences|textMultiLine"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -281,12 +261,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFeelingsOnPeople"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@={MainViewModel.feelingsOnPeople}"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:maxLength="150"
-                        android:maxLines="4"
-                        android:lines="4" />
+                        android:inputType="textCapSentences|textMultiLine"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
