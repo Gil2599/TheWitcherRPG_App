@@ -192,7 +192,7 @@
             same faith, though they will likely be able to
             offer less than a fully supplied church. Keep in
             mind that Initiate of the Gods does not work
-            with members of other faiths.</item>
+            with members of other faiths. May be used for any charisma checks.</item>
 
         <item>Witcher Training (INT):Most of a Witcher’s early life is spent within
             the walls of their keep, studying huge, dusty
@@ -296,10 +296,10 @@
             Bloodhound (INT),Booby Trap (CRA),Tactical Awareness (INT),
             Fury (WILL),Zweihand (BODY),Shrug It Off (BODY)</item>
 
-        <item>Initiate of the Gods (EMP):The Preacher,The Druid,The Fanatic,
+        <item>Initiate of the Gods (EMP):The Preacher,The Warrior,The Empath,
             Divine Power,Divine Authority (EMP),Precognition (WILL),
-            Nature Attunement,Read Nature (INT),Animal Compact (WILL),
-            Blood Rituals (WILL),Fervor (EMP),Word of God (EMP)</item>
+            Divine Strike (BODY),Fear (WILL),Kreve\'s Protection,
+            The Golden Rule,Priest Charming,Word of God (EMP)</item>
 
         <item>Witcher Training (INT):The Spellsword,The Mutant,The Slayer,
             Meditation,Magical Source,Heliotrope (WILL),
@@ -1030,7 +1030,7 @@
             Such visions are composed of
             symbolism and metaphors.</item>
 
-        <item>Nature Attunement:A Priest can become more in
+        <item>Divine Strike (BODY):A Priest can become more in
             tune with nature, gaining 1
             point of Vigor threshold per
             skill level in Nature Attunement. This brings your Vigor
@@ -1039,7 +1039,7 @@
             stacks with Divine Power. The
             Vigor thresholds are not separate.</item>
 
-        <item>Read Nature (INT):When in a purely
+        <item>Fear (WILL):When in a purely
             natural environment a druid can roll Read
             Nature at a DC set by the GM.
             On a success, the druid reads
@@ -1050,7 +1050,7 @@
             a very localized picture and
             cannot track things.</item>
 
-        <item>Animal Compact (WILL):Druid adds
+        <item>Kreve\'s Protection:Druid adds
             Animal Compact to any Wilderness
             Survival rolls they make to handle
             animals. A Druid can also make
@@ -1062,7 +1062,7 @@
             their Animal Compact value.
             Monsters are unaffected.</item>
 
-        <item>Blood Rituals (WILL):A Priest casting a ritual can
+        <item>The Golden Rule:A Priest casting a ritual can
             make a Blood Ritual check
             against the casting DC of the
             ritual. If they succeed, they can
@@ -1074,7 +1074,7 @@
             but must be spilled at the time
             of the ritual.</item>
 
-        <item>Fervor (EMP):A Priest can roll Fervor against
+        <item>Priest Charming:A Priest can roll Fervor against
             a target’s current INTx3. On
             success, the rallying power of
             the Priest’s words grants 1d6

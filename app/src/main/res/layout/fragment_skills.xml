@@ -107,7 +107,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Intelligence Skills"
+                    android:text="@{`Intelligence Skills +` + (MainViewModel.intelligence + MainViewModel.intelligenceModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
@@ -263,7 +263,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Reflex Skills"
+                    android:text="@{`Reflex Skills +` + (MainViewModel.ref + MainViewModel.refModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
@@ -339,7 +339,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Dexterity Skills"
+                    android:text="@{`Dexterity Skills +` + (MainViewModel.dex + MainViewModel.dexModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
@@ -391,7 +391,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Body Skills"
+                    android:text="@{`Body Skills +` + (MainViewModel.body + MainViewModel.bodyModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
@@ -427,7 +427,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Empathy Skills"
+                    android:text="@{`Empathy Skills +` + (MainViewModel.emp + MainViewModel.empModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
@@ -535,7 +535,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Craft Skills"
+                    android:text="@{`Craft Skills +` + (MainViewModel.crafting + MainViewModel.craftingModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
@@ -619,7 +619,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Will Skills"
+                    android:text="@{`Will Skills +` + (MainViewModel.will + MainViewModel.willModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
