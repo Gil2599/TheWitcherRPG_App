@@ -34,8 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="About"
-                android:textSize="20dp"
+                android:text="@string/about_header"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/view2"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,8 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Disclaimer"
-                android:textSize="20dp"
+                android:text="@string/disclaimer_header"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewAboutInfo"
                 app:layout_constraintTop_toBottomOf="@+id/textViewAboutInfo" />
 
@@ -85,8 +85,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Attributions"
-                android:textSize="20dp"
+                android:text="@string/attributions_header"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewDisclaimerInfo"
                 app:layout_constraintTop_toBottomOf="@+id/textViewDisclaimerInfo" />
 
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:justificationMode="inter_word"
-                android:text="Icons used in Application:"
+                android:text="@string/icons_used_in_application"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/view2"
                 app:layout_constraintStart_toStartOf="@+id/view3"
@@ -152,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:justificationMode="inter_word"
-                android:text="The Witcher TRPG Core Rulebook:"
+                android:text="@string/the_witcher_trpg_core_rulebook"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/view2"
                 app:layout_constraintStart_toStartOf="@+id/view3"

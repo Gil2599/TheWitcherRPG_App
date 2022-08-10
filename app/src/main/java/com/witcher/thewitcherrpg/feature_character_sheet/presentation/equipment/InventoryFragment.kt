@@ -132,6 +132,7 @@ class InventoryFragment : Fragment() {
                     WeaponTypes.THROWN_WEAPON -> thrownWeapons.add(item)
                     WeaponTypes.BOW -> bows.add(item)
                     WeaponTypes.CROSSBOW -> crossbows.add(item)
+                    else -> {}
                 }
             }
 
@@ -507,6 +508,7 @@ class InventoryFragment : Fragment() {
                         EquipmentTypes.LIGHT_HEAD -> lightArmorList.add(item)
                         EquipmentTypes.MEDIUM_HEAD -> mediumArmorList.add(item)
                         EquipmentTypes.HEAVY_HEAD -> heavyArmorList.add(item)
+                        else -> {}
                     }
                 }
                 listAdaptersInit(false)
@@ -522,6 +524,7 @@ class InventoryFragment : Fragment() {
                         EquipmentTypes.LIGHT_CHEST -> lightArmorList.add(item)
                         EquipmentTypes.MEDIUM_CHEST -> mediumArmorList.add(item)
                         EquipmentTypes.HEAVY_CHEST -> heavyArmorList.add(item)
+                        else -> {}
                     }
                 }
                 lightAdapter.setData(lightArmorList)
@@ -536,6 +539,7 @@ class InventoryFragment : Fragment() {
                         EquipmentTypes.LIGHT_LEGS -> lightArmorList.add(item)
                         EquipmentTypes.MEDIUM_LEGS -> mediumArmorList.add(item)
                         EquipmentTypes.HEAVY_LEGS -> heavyArmorList.add(item)
+                        else -> {}
                     }
                 }
                 lightAdapter.setData(lightArmorList)
@@ -550,6 +554,7 @@ class InventoryFragment : Fragment() {
                         EquipmentTypes.LIGHT_SHIELD -> lightArmorList.add(item)
                         EquipmentTypes.MEDIUM_SHIELD -> mediumArmorList.add(item)
                         EquipmentTypes.HEAVY_SHIELD -> heavyArmorList.add(item)
+                        else -> {}
                     }
                 }
                 lightAdapter.setData(lightArmorList)

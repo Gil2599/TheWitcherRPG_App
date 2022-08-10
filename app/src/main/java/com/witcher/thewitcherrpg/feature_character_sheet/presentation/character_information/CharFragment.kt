@@ -14,10 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.test.core.app.ActivityScenario.launch
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
@@ -76,6 +78,18 @@ class CharFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentCharBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        lifecycleScope.launch {
+            launch {
+                mainCharacterViewModel.isDarkModeEnabled.collect { darkModeIsEnabled ->
+                    if (darkModeIsEnabled) {
+                        binding.lottieAnimationView.setAnimation("border_animation.json")
+                    } else {
+                        binding.lottieAnimationView.setAnimation("border_animation_blue.json")
+                    }
+                }
+            }
+        }
 
         binding.lifecycleOwner = this
         binding.mainViewModel = mainCharacterViewModel

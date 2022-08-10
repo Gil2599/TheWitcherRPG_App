@@ -78,31 +78,31 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.Character -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharFragment(), "CharacterInfo")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Skills -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment(), "Skills")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Stats -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, StatsFragment(), "Stats")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.ProfessionSkillTree -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, ProfessionSkillTree(), "SkillTree")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Magic -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, MagicParentFragment(), "Magic")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Equipment -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, EquipmentParentFragment(), "Equipment")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Campaign_Notes -> {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CampaignNotesFragment(), "Campaign_Notes")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
             }
             drawerLayout.closeDrawer(binding.navView)
@@ -130,6 +130,15 @@ class MainActivity : AppCompatActivity() {
                     mainCharacterViewModel.image.collect { newImage ->
                         if (loadImageFromStorage(newImage, navHeaderBinding.imageView))
                             (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+                    }
+                }
+                launch {
+                    mainCharacterViewModel.isDarkModeEnabled.collect { darkModeIsEnabled ->
+                        if (darkModeIsEnabled) {
+                            navHeaderBinding.lottieAnimationView.setAnimation("border_animation.json")
+                        } else {
+                            navHeaderBinding.lottieAnimationView.setAnimation("border_animation_blue.json")
+                        }
                     }
                 }
             }

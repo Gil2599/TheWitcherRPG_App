@@ -11,11 +11,14 @@
         tools:layout="@layout/fragment_equipment" >
         <action
             android:id="@+id/action_equipmentFragment_to_addArmorFragment2"
-            app:destination="@id/addArmorFragment2" />
+            app:destination="@id/addArmorFragment2"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_equipmentFragment_to_inventoryFragment"
-            app:destination="@id/inventoryFragment">
-        </action>
+            app:destination="@id/inventoryFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"></action>
     </fragment>
     <fragment
         android:id="@+id/addArmorFragment2"
@@ -24,7 +27,8 @@
         tools:layout="@layout/fragment_add_item" >
         <action
             android:id="@+id/action_addArmorFragment2_to_equipmentFragment"
-            app:destination="@id/equipmentFragment" />
+            app:destination="@id/equipmentFragment"
+            app:enterAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/inventoryFragment"
@@ -35,6 +39,8 @@
             app:argType="integer"/>
         <action
             android:id="@+id/action_inventoryFragment_to_equipmentFragment"
-            app:destination="@id/equipmentFragment" />
+            app:destination="@id/equipmentFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
     </fragment>
 </navigation>

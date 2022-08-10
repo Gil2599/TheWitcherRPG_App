@@ -64,6 +64,8 @@ class MainCharacterViewModel @Inject constructor(
     private val characterToFileUseCase: CharacterToFileUseCase
 ) : ViewModel() {
 
+    val isDarkModeEnabled = dataStore.readDarkMode
+
     private var _id = MutableStateFlow(70)
     val id = _id.asStateFlow()
 
@@ -706,6 +708,7 @@ class MainCharacterViewModel @Inject constructor(
             Constants.Professions.MAGE -> startingVigor = 5
             Constants.Professions.PRIEST -> startingVigor = 2
             Constants.Professions.WITCHER -> startingVigor = 2
+            else -> {}
         }
 
         characterCreationUseCases.addCharacterUseCase(
@@ -1385,6 +1388,7 @@ class MainCharacterViewModel @Inject constructor(
                     _campaignNotes.value = characterData.campaignNotes
                 }
                 is Resource.Error -> Log.e("Error", "An unexpected error has occurred.")
+                else -> {}
             }
         }.launchIn(viewModelScope)
     }
@@ -3172,6 +3176,7 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.add(item)
+            else -> {}
         }
         calculateCurrentEncumbrance()
     }
@@ -3235,6 +3240,7 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
             EquipmentTypes.MISC_CUSTOM -> _miscEquipment.value.remove(item)
+            else -> {}
         }
         calculateCurrentEncumbrance()
     }
@@ -3310,6 +3316,7 @@ class MainCharacterViewModel @Inject constructor(
                     }
                 }
             }
+            else -> {}
         }
     }
 
@@ -3335,6 +3342,7 @@ class MainCharacterViewModel @Inject constructor(
                 _accessoryEquipment.value.add(item)
                 _equippedSecondHandShield.value = null
             }
+            else -> {}
         }
     }
 

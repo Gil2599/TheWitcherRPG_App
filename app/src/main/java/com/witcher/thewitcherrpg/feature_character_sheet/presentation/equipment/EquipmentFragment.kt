@@ -338,6 +338,7 @@ class EquipmentFragment : Fragment() {
                             increase = true,
                             EquipmentTypes.LARM
                         ).toString()
+                    else -> {}
                 }
             }
 
@@ -359,6 +360,7 @@ class EquipmentFragment : Fragment() {
                                 increase = false,
                                 EquipmentTypes.LARM
                             ).toString()
+                        else -> {}
                     }
                 }
             }
@@ -380,6 +382,7 @@ class EquipmentFragment : Fragment() {
                             increase = true,
                             EquipmentTypes.RARM
                         ).toString()
+                    else -> {}
                 }
             }
 
@@ -401,6 +404,7 @@ class EquipmentFragment : Fragment() {
                                 increase = false,
                                 EquipmentTypes.RARM
                             ).toString()
+                        else -> {}
                     }
                 }
             }

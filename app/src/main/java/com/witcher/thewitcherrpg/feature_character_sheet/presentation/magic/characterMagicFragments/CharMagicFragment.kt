@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
@@ -50,11 +52,14 @@ class CharMagicFragment : Fragment() {
         }
         //If Mage, go to add spells fragment, otherwise (Priest) go to add invocations fragment
         binding.addSpellButton.setOnClickListener {
-            if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE)
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_charMagicFragment_to_spellAddFragment)
-            else Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_invocationAddFragment)
+            if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE) {
+                val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.SPELLS)
+                findNavController().navigate(action)
+            }
+            else {
+                val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.INVOCATIONS)
+                findNavController().navigate(action)
+            }
         }
         //Go to add signs fragment
         binding.addSignButton.setOnClickListener {
@@ -211,6 +216,7 @@ class CharMagicFragment : Fragment() {
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
             }
 
+            else -> {}
         }
         if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE) tabsLayout.getTabAt(
             0

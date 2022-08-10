@@ -104,4 +104,13 @@
         <item>Feared</item>
         <item>Hated</item>
     </string-array>
+
+    <string-array name="sortBy">
+        <item>Default</item>
+        <item>A-Z ↓</item>
+        <item>A-Z ↑</item>
+        <item>Element</item>
+        <item>Range</item>
+        <item>STA Cost</item>
+    </string-array>
 </resources>

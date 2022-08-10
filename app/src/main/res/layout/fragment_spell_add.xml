@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".feature_character_sheet.presentation.magic.addMagicFragments.SpellAddFragment">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="All Spells"
+                android:text="@string/all_spells"
                 android:textColor="?colorOnPrimaryContainer"
                 android:textSize="25sp"
                 android:gravity="center"
@@ -47,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Novice Spells"
+                android:text="@string/novice_spells"
                 android:textColor="?colorOnPrimaryContainer"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view1"
@@ -82,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Journeyman Spells"
+                android:text="@string/journeyman_spells"
                 android:textColor="?colorOnPrimaryContainer"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textNovice"
@@ -117,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Master Spells"
+                android:text="@string/master_spells"
                 android:textColor="?colorOnPrimaryContainer"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textJourneyman"

@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Improvement Points:"
+            android:text="@string/improvement_points"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="20sp"
             android:textStyle="bold|italic"
@@ -535,7 +535,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="@{`Craft Skills +` + (MainViewModel.crafting + MainViewModel.craftingModifier)}"
+                    android:text="@{`Craft Skills +` + (MainViewModel.cra + MainViewModel.craModifier)}"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold|italic" />
