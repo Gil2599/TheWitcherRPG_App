@@ -150,6 +150,29 @@
             target can roll 1d10. If they roll under their INT the effect ends.
             :8m:INT roll ends:Resist Magic</item>
 
+        <item>Berries of Nourishment:2:Create 5 blueberries, each providing full
+            nourishment and hydration for 24h. Expire after 24h if they are not
+            consumed.
+            :Self:1 day:None</item>
+
+        <item>Alert:3:Create a 15m cube centered on you which alerts you if
+            any creature crosses the threshold. Can choose what creatures do not
+            trigger the threshold and you are alerted even if asleep as long as
+            you are within 1 mile of the cube.
+            :Self:8 hours:None</item>
+
+        <item>Blessing of the Resolute:3:Grants the target a bonus of +2 to
+            Courage and Resist Coercion for 10 minutes.
+            :10m:10 minutes:None</item>
+
+        <item>Blessing of Leadership:3:Grants the target a bonus of +3 to
+            Leadership for 10 minutes.
+            :10m:10 minutes:None</item>
+
+        <item>The Abacus:3:Choose a resource, you now know the exact
+            quantity of that resource as long as you have line of sight to it.
+            :20m:Immediate:None</item>
+
     </string-array>
 
     <string-array name="journeyman_preacherInvo_list_data">
