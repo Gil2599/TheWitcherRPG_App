@@ -56,8 +56,18 @@ class LauncherActivity : AppCompatActivity() {
         addButton = binding.addButton
 
         addButton.setOnClickListener() {
-            val intent = Intent(this, CharCreationActivity::class.java)
-            this.startActivity(intent)
+            mCharListViewModel.setInAddMode(!mCharListViewModel.inAddMode.value)
+        }
+
+        binding.overlayView.setOnClickListener {
+            mCharListViewModel.setInAddMode(false)
+        }
+
+        binding.lottieAnimationCharacterBorder.setOnClickListener {
+            goToCharCreation()
+        }
+        binding.textViewNewCharacter.setOnClickListener {
+            goToCharCreation()
         }
 
         val adapter = ListAdapter(this)
@@ -119,6 +129,9 @@ class LauncherActivity : AppCompatActivity() {
                     }
                 }
             }
+            mCharListViewModel.inAddMode.collect { inAddMode ->
+                inAddMode(inAddMode)
+            }
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -179,4 +192,73 @@ class LauncherActivity : AppCompatActivity() {
         builder.create().show()
     }
 
+    private fun inAddMode(mode: Boolean){
+        if (mode){
+            binding.lottieAnimationMagicBorder.visibility = View.VISIBLE
+            binding.lottieAnimationMagic.visibility = View.VISIBLE
+            binding.lottieAnimationMagic.playAnimation()
+            binding.lottieAnimationMagicBorder.playAnimation()
+
+            binding.lottieAnimationEquipmentBorder.visibility = View.VISIBLE
+            binding.lottieAnimationEquipment.visibility = View.VISIBLE
+            binding.lottieAnimationEquipment.playAnimation()
+            binding.lottieAnimationEquipmentBorder.playAnimation()
+
+            binding.lottieAnimationCharacterBorder.visibility = View.VISIBLE
+            binding.lottieAnimationCharacter.visibility = View.VISIBLE
+            binding.lottieAnimationCharacter.playAnimation()
+            binding.lottieAnimationCharacterBorder.playAnimation()
+
+            binding.overlayView.visibility = View.VISIBLE
+            binding.overlayView.alpha = 0.8F
+            binding.overlayView.bringToFront()
+
+            binding.lottieAnimationMagic.bringToFront()
+            binding.lottieAnimationMagicBorder.bringToFront()
+            binding.lottieAnimationEquipment.bringToFront()
+            binding.lottieAnimationEquipmentBorder.bringToFront()
+            binding.lottieAnimationCharacter.bringToFront()
+            binding.lottieAnimationCharacterBorder.bringToFront()
+
+            binding.textViewNewCharacter.visibility = View.VISIBLE
+            binding.textViewNewCharacter.bringToFront()
+            binding.textViewNewMagic.visibility = View.VISIBLE
+            binding.textViewNewMagic.bringToFront()
+            binding.textViewNewEquipment.visibility = View.VISIBLE
+            binding.textViewNewEquipment.bringToFront()
+            binding.recyclerView.isEnabled = false
+
+            binding.addButton.animate().rotation(135F)
+
+        } else {
+            binding.lottieAnimationMagicBorder.visibility = View.GONE
+            binding.lottieAnimationMagic.visibility = View.GONE
+            binding.lottieAnimationMagic.pauseAnimation()
+            binding.lottieAnimationMagicBorder.pauseAnimation()
+
+            binding.lottieAnimationEquipmentBorder.visibility = View.GONE
+            binding.lottieAnimationEquipment.visibility = View.GONE
+            binding.lottieAnimationEquipment.pauseAnimation()
+            binding.lottieAnimationEquipmentBorder.pauseAnimation()
+
+            binding.lottieAnimationCharacterBorder.visibility = View.GONE
+            binding.lottieAnimationCharacter.visibility = View.GONE
+            binding.lottieAnimationCharacter.pauseAnimation()
+            binding.lottieAnimationCharacterBorder.pauseAnimation()
+
+            binding.overlayView.visibility = View.GONE
+            binding.recyclerView.isEnabled = true
+
+            binding.textViewNewCharacter.visibility = View.GONE
+            binding.textViewNewMagic.visibility = View.GONE
+            binding.textViewNewEquipment.visibility = View.GONE
+
+            binding.addButton.animate().rotation(0F).duration = 300
+        }
+    }
+
+    fun goToCharCreation(){
+        val intent = Intent(this, CharCreationActivity::class.java)
+        this.startActivity(intent)
+    }
 }

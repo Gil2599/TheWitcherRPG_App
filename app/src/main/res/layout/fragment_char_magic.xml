@@ -150,6 +150,23 @@
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+        <!--
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/addSpellButton"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/addSpellButton"
+            app:layout_constraintStart_toStartOf="@+id/addSpellButton"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="fire_animation.json"
+            android:backgroundTint="?colorOnPrimary"
+            android:background="@drawable/ripple_bkg"
+            android:clickable="true"
+            app:lottie_loop="true" />
+            -->
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addHexButton"
             android:layout_width="wrap_content"

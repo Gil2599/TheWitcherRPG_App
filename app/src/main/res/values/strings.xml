@@ -107,4 +107,7 @@
     <string name="all_spells">All Spells</string>
     <string name="sort_by">Sort by</string>
     <string name="default_string">Default</string>
+    <string name="new_character">New Character</string>
+    <string name="custom_magic">Custom Magic</string>
+    <string name="custom_equipment">Custom Equipment</string>
 </resources>

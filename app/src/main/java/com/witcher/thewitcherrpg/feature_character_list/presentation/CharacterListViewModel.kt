@@ -35,6 +35,9 @@ class CharacterListViewModel @Inject constructor(
     val disclaimerMode = dataStore.readDisclaimerMode
     val darkMode = dataStore.readDarkMode
 
+    private val _inAddMode = MutableStateFlow(false)
+    val inAddMode = _inAddMode.asStateFlow()
+
     init{
         getCharacters()
     }
@@ -82,5 +85,9 @@ class CharacterListViewModel @Inject constructor(
             }
 
         }.launchIn(viewModelScope)
+    }
+
+    fun setInAddMode(mode: Boolean) {
+        _inAddMode.value = mode
     }
 }

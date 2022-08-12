@@ -16,11 +16,13 @@
         android:descendantFocusability="beforeDescendants"
         tools:context=".feature_character_sheet.presentation.profession_skill_tree.ProfessionSkillTree">
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow9"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="@+id/arrow5"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutB2"
@@ -30,11 +32,13 @@
             app:layout_constraintTop_toTopOf="@+id/arrow5"
             app:tint="@color/green" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow8"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="@+id/arrow6"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutC1"
@@ -43,12 +47,13 @@
             app:layout_constraintTop_toTopOf="@+id/arrow6"
             app:tint="@color/light_red" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow7"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="1dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="@+id/arrow9"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutC2"
@@ -57,81 +62,91 @@
             app:layout_constraintTop_toTopOf="@+id/arrow9"
             app:tint="@color/light_red" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow6"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="@+id/arrow4"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutB1"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutB1"
-            app:layout_constraintTop_toTopOf="@+id/arrow4"
-            app:tint="@color/green" />
+            app:layout_constraintTop_toTopOf="@+id/arrow4"/>
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
+            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutA3"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA2"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutA2"
-            app:tint="@color/purple_200" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutA2" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow4"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
+            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutA2"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutA1"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutA1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutA1"
-            app:tint="?colorOnPrimaryContainer" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutA1"/>
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="@+id/arrow2"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/arrow2"
-            app:layout_constraintTop_toTopOf="@+id/arrow2"
-            app:tint="?colorContainer" />
+            app:layout_constraintTop_toTopOf="@+id/arrow2" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="@+id/arrow1"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/arrow3"
             app:layout_constraintHeight_percent="0.11"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/arrow1"
-            app:layout_constraintTop_toTopOf="@+id/arrow1"
-            app:tint="?colorOnSecondaryContainer" />
+            app:layout_constraintTop_toTopOf="@+id/arrow1" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrow1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="gray_arrow_animation.json"
+            app:lottie_loop="true"
+            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toTopOf="@+id/firstSkillTitle"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/arrow2"
@@ -139,8 +154,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill"
-            app:tint="?colorOnPrimaryContainer" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill" />
 
         <Button
             android:id="@+id/buttonDefiningSkill"

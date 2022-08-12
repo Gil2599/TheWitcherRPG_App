@@ -84,7 +84,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
                 }
                 if (mainCharacterViewModel.novicePreacherInvocations.value.size > 0){
                     itemList.add(MagicHeader("Novice Preacher Invocations"))
-                    itemList.addAll(mainCharacterViewModel.noviceDruidInvocations.value)
+                    itemList.addAll(mainCharacterViewModel.novicePreacherInvocations.value)
                 }
                 if (mainCharacterViewModel.journeymanPreacherInvocations.value.size > 0){
                     itemList.add(MagicHeader("Journeyman Preacher Invocations"))

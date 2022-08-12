@@ -11,26 +11,21 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.addCallback
-import androidx.compose.ui.text.toLowerCase
 import androidx.core.text.HtmlCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.witcher.thewitcherrpg.R
-import com.witcher.thewitcherrpg.TheWitcherTRPGApp
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.witcher.thewitcherrpg.databinding.FragmentMagicAddBinding
-import com.witcher.thewitcherrpg.databinding.FragmentSpellAddBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicHeader
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.MagicViewPagerAdapter
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.CharacterMagicListAdapter
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.MagicListAdapter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -78,17 +73,26 @@ class MagicAddFragment : Fragment() {
         }
 
         binding.autoCompleteTextViewSortBy.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                when (position) {
-                    0 -> sortSpellList(SortBy.DEFAULT)
-                    1 -> sortSpellList(SortBy.A_Z_DEC)
-                    2 -> sortSpellList(SortBy.A_Z_INC)
-                    3 -> sortSpellList(SortBy.ELEMENT)
-                    4 -> sortSpellList(SortBy.RANGE)
-                    5 -> sortSpellList(SortBy.STA_COST)
+            AdapterView.OnItemClickListener { _, _, _, _ ->
+                val sortByArray = resources.getStringArray(R.array.sortBy)
+                val selection: String = binding.autoCompleteTextViewSortBy.text.toString()
+
+                if (sortByArray.contains(selection)) {
+                    when (selection) {
+                        sortByArray[0] -> sortSpellList(SortBy.DEFAULT)
+                        sortByArray[1] -> sortSpellList(SortBy.A_Z_DEC)
+                        sortByArray[2] -> sortSpellList(SortBy.A_Z_INC)
+                        sortByArray[3] -> sortSpellList(SortBy.ELEMENT)
+                        sortByArray[4] -> sortSpellList(SortBy.RANGE)
+                        sortByArray[5] -> sortSpellList(SortBy.STA_COST)
+                    }
+                } else if (selection == "Difficulty") {
+                    sortSpellList(SortBy.DIFFICULTY)
+                } else if (selection == "Danger") {
+                    sortSpellList(SortBy.DANGER)
                 }
             }
-        
+
         return view
     }
 
@@ -131,49 +135,31 @@ class MagicAddFragment : Fragment() {
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.archPriestInvo_list_data))
             }
             MagicViewPagerAdapter.FragmentName.RITUALS -> {
-                if (mainCharacterViewModel.noviceRitualList.value.size > 0) {
-                    itemList.add(MagicHeader("Novice Rituals"))
-                    itemList.addAll(mainCharacterViewModel.noviceRitualList.value)
-                }
-                if (mainCharacterViewModel.journeymanRitualList.value.size > 0) {
-                    itemList.add(MagicHeader("Journeyman Rituals"))
-                    itemList.addAll(mainCharacterViewModel.journeymanRitualList.value)
-                }
-                if (mainCharacterViewModel.masterRitualList.value.size > 0) {
-                    itemList.add(MagicHeader("Master Rituals"))
-                    itemList.addAll(mainCharacterViewModel.masterRitualList.value)
-                }
-                if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Rituals Added"))
-                }
+                newItemList.add(MagicHeader("Novice Rituals"))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_rituals_list_data))
+
+                newItemList.add(MagicHeader("Journeyman Rituals"))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_rituals_list_data))
+
+                newItemList.add(MagicHeader("Master Rituals"))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_rituals_list_data))
             }
             MagicViewPagerAdapter.FragmentName.HEXES -> {
-                if (mainCharacterViewModel.hexesList.value.size > 0) {
-                    itemList.add(MagicHeader("Hexes"))
-                    itemList.addAll(mainCharacterViewModel.hexesList.value)
-                }
-                if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Hexes Added"))
-                }
+                newItemList.add(MagicHeader("Hexes"))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.hexes_list_data))
             }
             MagicViewPagerAdapter.FragmentName.SIGNS -> {
-                if (mainCharacterViewModel.basicSigns.value.size > 0) {
-                    itemList.add(MagicHeader("Basic Signs"))
-                    itemList.addAll(mainCharacterViewModel.basicSigns.value)
-                }
-                if (mainCharacterViewModel.alternateSigns.value.size > 0) {
-                    itemList.add(MagicHeader("Alternate Signs"))
-                    itemList.addAll(mainCharacterViewModel.alternateSigns.value)
-                }
-                if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Signs Added"))
-                }
+                newItemList.add(MagicHeader("Basic Signs"))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.basic_signs_list_data))
+
+                newItemList.add(MagicHeader("Alternate Signs"))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.alternate_signs_list_data))
             }
         }
         itemList = newItemList
     }
 
-    private fun setAdapterData(){
+    private fun setAdapterData() {
         magicAdapter.setData(itemList)
         binding.magicAddRv.scheduleLayoutAnimation()
     }
@@ -202,45 +188,43 @@ class MagicAddFragment : Fragment() {
         val magicItemList: ArrayList<MagicItem> =
             ArrayList(itemList.mapNotNull { if (it is MagicItem) it else null })
 
-        when (magicType) {
-            MagicViewPagerAdapter.FragmentName.SPELLS, MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
-                when (sortBy) {
-                    SortBy.DEFAULT -> {
-                        val tempList = itemList
-                        val tempList2 = arrayListOf<Any>()
-                        listAdaptersInit()
-                        for (item in itemList){
-                            if (item in tempList){
-                                tempList2.add(item)
-                            }
-                        }
-                        itemList = tempList2
-                        setAdapterData()
-                        return
-                    }
-                    SortBy.A_Z_DEC -> {
-                        magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy { it.name })
-                    }
-                    SortBy.A_Z_INC -> {
-                        magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenByDescending { it.name })
-                    }
-                    SortBy.ELEMENT -> {
-                        magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy { it.element })
-                    }
-                    SortBy.RANGE -> {
-                        magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy {
-                            if (!it.range?.filter(Char::isDigit).isNullOrBlank()) it.range?.filter(
-                                Char::isDigit
-                            )
-                                ?.toInt() else 0
-                        })
-                    }
-                    SortBy.STA_COST -> {
-                        magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy { it.staminaCost })
+        when (sortBy) {
+            SortBy.DEFAULT, SortBy.DANGER -> {
+                val tempList = itemList
+                val tempList2 = arrayListOf<Any>()
+                listAdaptersInit()
+                for (item in itemList) {
+                    if (item in tempList) {
+                        tempList2.add(item)
                     }
                 }
+                itemList = tempList2
+                setAdapterData()
+                return
             }
-            else -> {}
+            SortBy.A_Z_DEC -> {
+                magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy { it.name })
+            }
+            SortBy.A_Z_INC -> {
+                magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenByDescending { it.name })
+            }
+            SortBy.ELEMENT -> {
+                magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy { it.element })
+            }
+            SortBy.RANGE -> {
+                magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy {
+                    if (!it.range?.filter(Char::isDigit).isNullOrBlank()) it.range?.filter(
+                        Char::isDigit
+                    )
+                        ?.toInt() else 0
+                })
+            }
+            SortBy.STA_COST -> {
+                magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy { it.staminaCost })
+            }
+            SortBy.DIFFICULTY -> {
+                magicItemList.sortWith(compareBy<MagicItem> { it.type }.thenBy { it.difficulty })
+            }
         }
         addHeadersToList(magicItemList)
     }
@@ -329,7 +313,48 @@ class MagicAddFragment : Fragment() {
                     tempItemList.add(item)
                 }
             }
-            else -> {}
+            MagicViewPagerAdapter.FragmentName.RITUALS -> {
+                if (magicList.any { it.type == MagicType.NOVICE_RITUAL }) {
+                    tempItemList.add(MagicHeader("Novice Rituals"))
+                }
+                for (item in magicList) {
+
+                    if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_RITUAL) {
+                        tempItemList.add(MagicHeader("Journeyman Rituals"))
+                        tempItemList.add(item)
+                        journeymanHeaderAdded = true
+                        continue
+                    }
+
+                    if (!masterHeaderAdded && item.type == MagicType.MASTER_RITUAL) {
+                        tempItemList.add(MagicHeader("Master Rituals"))
+                        tempItemList.add(item)
+                        masterHeaderAdded = true
+                        continue
+                    }
+                    tempItemList.add(item)
+                }
+            }
+            MagicViewPagerAdapter.FragmentName.HEXES -> {
+                tempItemList.add(MagicHeader("Hexes"))
+                tempItemList.addAll(magicList)
+            }
+            MagicViewPagerAdapter.FragmentName.SIGNS -> {
+                if (magicList.any { it.type == MagicType.BASIC_SIGN }) {
+                    tempItemList.add(MagicHeader("Basic Signs"))
+                }
+                for (item in magicList) {
+
+                    if (!journeymanHeaderAdded && item.type == MagicType.ALTERNATE_SIGN) {
+                        tempItemList.add(MagicHeader("Alternate Signs"))
+                        tempItemList.add(item)
+                        journeymanHeaderAdded = true
+                        continue
+                    }
+
+                    tempItemList.add(item)
+                }
+            }
         }
         itemList = tempItemList
         setAdapterData()
@@ -382,14 +407,39 @@ class MagicAddFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.sortBy,
-            android.R.layout.simple_spinner_dropdown_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.autoCompleteTextViewSortBy.setAdapter(adapter)
+        val sortByArray = resources.getStringArray(R.array.sortBy).toMutableList()
+        val iterator = sortByArray.iterator()
+        while (iterator.hasNext()) {
+            val item = iterator.next()
+            when (magicType) {
+                MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
+                    if (item == "Element") {
+                        iterator.remove()
+                    }
+                }
+                MagicViewPagerAdapter.FragmentName.RITUALS, MagicViewPagerAdapter.FragmentName.HEXES -> {
+                    if (item == "Element" || item == "Range") {
+                        iterator.remove()
+                    }
+                }
+                else -> {}
+            }
         }
+
+        if (magicType == MagicViewPagerAdapter.FragmentName.RITUALS) {
+            sortByArray.add("Difficulty")
+        }
+        if (magicType == MagicViewPagerAdapter.FragmentName.HEXES) {
+            sortByArray.add("Danger")
+        }
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            sortByArray
+        )
+        binding.autoCompleteTextViewSortBy.setAdapter(adapter)
+
     }
 
     enum class SortBy {
@@ -398,6 +448,8 @@ class MagicAddFragment : Fragment() {
         A_Z_INC,
         ELEMENT,
         RANGE,
-        STA_COST
+        STA_COST,
+        DIFFICULTY,
+        DANGER
     }
 }

@@ -63,20 +63,20 @@ class CharMagicFragment : Fragment() {
         }
         //Go to add signs fragment
         binding.addSignButton.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_signsAddFragment)
+            val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.SIGNS)
+            findNavController().navigate(action)
         }
 
         //Go to add rituals fragment
         binding.addRitualButton.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_ritualAddFragment)
+            val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.RITUALS)
+            findNavController().navigate(action)
         }
 
         //Go to add hexes fragment
         binding.addHexButton.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_hexesAddFragment)
+            val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.HEXES)
+            findNavController().navigate(action)
         }
 
         //Initial animations

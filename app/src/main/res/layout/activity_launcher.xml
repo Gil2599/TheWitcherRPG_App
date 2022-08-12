@@ -5,7 +5,21 @@
     android:layout_width="match_parent"
     android:background="?colorPrimaryVariant"
     android:layout_height="match_parent"
+    android:id="@+id/launcher_layout"
     tools:context=".feature_character_list.presentation.LauncherActivity">
+
+    <View
+        android:id="@+id/overlay_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        android:background="@color/black"
+        android:clickable="true"/>
+
 
     <TextView
         android:id="@+id/textViewNoCharacters"
@@ -14,10 +28,152 @@
         android:text="@string/no_characters"
         android:textSize="20sp"
         android:visibility="invisible"
+        tools:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNewCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="@string/new_character"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/lottieAnimationMagicBorder"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationCharacterBorder"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationCharacterBorder"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textViewNewMagic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/custom_magic"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationMagicBorder"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationMagicBorder"
+        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationMagicBorder"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textViewNewEquipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/custom_equipment"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationEquipmentBorder"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationEquipmentBorder"
+        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationEquipmentBorder"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationMagicBorder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:background="@drawable/ripple_bkg"
+        app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationEquipmentBorder"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.16"
+        app:layout_constraintTop_toTopOf="@+id/lottieAnimationEquipmentBorder"
+        app:lottie_fileName="border_animation_multicolor.json"
+        app:lottie_loop="true"
+        app:lottie_speed="2"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationMagic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationMagicBorder"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationMagicBorder"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationMagicBorder"
+        app:layout_constraintTop_toTopOf="@+id/lottieAnimationMagicBorder"
+        app:lottie_fileName="fire_animation.json"
+        app:lottie_loop="true"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationEquipmentBorder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:background="@drawable/ripple_bkg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62"
+        app:lottie_fileName="border_animation_multicolor.json"
+        app:lottie_loop="true"
+        app:lottie_speed="2"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationEquipment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationEquipmentBorder"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationEquipmentBorder"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationEquipmentBorder"
+        app:layout_constraintTop_toTopOf="@+id/lottieAnimationEquipmentBorder"
+        app:lottie_fileName="swords_animation.json"
+        app:lottie_loop="true"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationCharacterBorder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:background="@drawable/ripple_bkg"
+        app:layout_constraintBottom_toTopOf="@+id/textViewNewCharacter"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationMagicBorder"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationEquipmentBorder"
+        app:lottie_fileName="border_animation_multicolor.json"
+        app:lottie_loop="true"
+        app:lottie_speed="2"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationCharacter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationCharacterBorder"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationCharacterBorder"
+        app:lottie_fileName="warrior_animation2.json"
+        app:lottie_loop="true"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -28,7 +184,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addButton"
@@ -52,6 +208,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:visibility="invisible"
+        tools:visibility="gone"
         android:text="@string/tap_the_add_button_to_create_a_character"
         app:layout_constraintEnd_toEndOf="@+id/textViewNoCharacters"
         app:layout_constraintStart_toStartOf="@+id/textViewNoCharacters"
