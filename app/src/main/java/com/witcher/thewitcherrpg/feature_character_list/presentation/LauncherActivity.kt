@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.FloatRange
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -23,6 +26,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.about_section.AboutActivity
 import com.witcher.thewitcherrpg.databinding.ActivityLauncherBinding
@@ -55,7 +60,7 @@ class LauncherActivity : AppCompatActivity() {
         recyclerView = binding.recyclerView
         addButton = binding.addButton
 
-        addButton.setOnClickListener() {
+        addButton.setOnClickListener {
             mCharListViewModel.setInAddMode(!mCharListViewModel.inAddMode.value)
         }
 
@@ -123,9 +128,17 @@ class LauncherActivity : AppCompatActivity() {
                     if (darkModeIsEnabled) {
                         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_night_mode)
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+                        binding.lottieAnimationMagicBorder.setAnimation("border_animation.json")
+                        binding.lottieAnimationCharacterBorder.setAnimation("border_animation.json")
+                        binding.lottieAnimationEquipmentBorder.setAnimation("border_animation.json")
                     } else {
                         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_day_mode)
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+                        binding.lottieAnimationMagicBorder.setAnimation("border_animation_blue.json")
+                        binding.lottieAnimationCharacterBorder.setAnimation("border_animation_blue.json")
+                        binding.lottieAnimationEquipmentBorder.setAnimation("border_animation_blue.json")
                     }
                 }
             }
@@ -194,18 +207,50 @@ class LauncherActivity : AppCompatActivity() {
 
     private fun inAddMode(mode: Boolean){
         if (mode){
-            binding.lottieAnimationMagicBorder.visibility = View.VISIBLE
-            binding.lottieAnimationMagic.visibility = View.VISIBLE
+
+            binding.lottieAnimationMagicBorder.alpha = 0F
+            binding.lottieAnimationMagicBorder.animate()
+                .withStartAction {
+                    binding.lottieAnimationMagicBorder.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
+            binding.lottieAnimationMagic.alpha = 0F
+            binding.lottieAnimationMagic.animate()
+                .withStartAction {
+                    binding.lottieAnimationMagic.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
+
             binding.lottieAnimationMagic.playAnimation()
             binding.lottieAnimationMagicBorder.playAnimation()
 
-            binding.lottieAnimationEquipmentBorder.visibility = View.VISIBLE
-            binding.lottieAnimationEquipment.visibility = View.VISIBLE
+            binding.lottieAnimationEquipmentBorder.alpha = 0F
+            binding.lottieAnimationEquipmentBorder.animate()
+                .withStartAction {
+                    binding.lottieAnimationEquipmentBorder.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
+            binding.lottieAnimationEquipment.alpha = 0F
+            binding.lottieAnimationEquipment.animate()
+                .withStartAction {
+                    binding.lottieAnimationEquipment.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
             binding.lottieAnimationEquipment.playAnimation()
             binding.lottieAnimationEquipmentBorder.playAnimation()
 
-            binding.lottieAnimationCharacterBorder.visibility = View.VISIBLE
-            binding.lottieAnimationCharacter.visibility = View.VISIBLE
+            binding.lottieAnimationCharacterBorder.alpha = 0F
+            binding.lottieAnimationCharacterBorder.animate()
+                .withStartAction {
+                    binding.lottieAnimationCharacterBorder.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
+            binding.lottieAnimationCharacter.alpha = 0F
+            binding.lottieAnimationCharacter.animate()
+                .withStartAction {
+                    binding.lottieAnimationCharacter.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
             binding.lottieAnimationCharacter.playAnimation()
             binding.lottieAnimationCharacterBorder.playAnimation()
 
@@ -220,17 +265,34 @@ class LauncherActivity : AppCompatActivity() {
             binding.lottieAnimationCharacter.bringToFront()
             binding.lottieAnimationCharacterBorder.bringToFront()
 
-            binding.textViewNewCharacter.visibility = View.VISIBLE
+            binding.textViewNewCharacter.alpha = 0F
+            binding.textViewNewCharacter.animate()
+                .withStartAction {
+                    binding.textViewNewCharacter.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
             binding.textViewNewCharacter.bringToFront()
-            binding.textViewNewMagic.visibility = View.VISIBLE
+            binding.textViewNewMagic.alpha = 0F
+            binding.textViewNewMagic.animate()
+                .withStartAction {
+                    binding.textViewNewMagic.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
             binding.textViewNewMagic.bringToFront()
-            binding.textViewNewEquipment.visibility = View.VISIBLE
+            binding.textViewNewEquipment.alpha = 0F
+            binding.textViewNewEquipment.animate()
+                .withStartAction {
+                    binding.textViewNewEquipment.visibility = View.VISIBLE
+                }
+                .alpha(1F).duration = 300
             binding.textViewNewEquipment.bringToFront()
             binding.recyclerView.isEnabled = false
 
             binding.addButton.animate().rotation(135F)
 
+
         } else {
+
             binding.lottieAnimationMagicBorder.visibility = View.GONE
             binding.lottieAnimationMagic.visibility = View.GONE
             binding.lottieAnimationMagic.pauseAnimation()
@@ -257,7 +319,7 @@ class LauncherActivity : AppCompatActivity() {
         }
     }
 
-    fun goToCharCreation(){
+    private fun goToCharCreation(){
         val intent = Intent(this, CharCreationActivity::class.java)
         this.startActivity(intent)
     }

@@ -156,23 +156,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonDefiningSkill" />
 
-        <Button
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/buttonDefiningSkill"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:autoSizeTextType="uniform"
-            android:background="@drawable/outline_bkg"
-            android:text='@{MainViewModel.definingSkill}'
-            android:textColor="?colorAccent"
-            app:layout_constraintWidth_percent="0.8"
             app:layout_constraintBottom_toTopOf="@+id/arrow1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etIPLayout"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.9"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="14dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="border_animation_multicolor.json"
+                app:lottie_loop="true"
+                app:lottie_speed="0.3" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="38dp"
+                android:layout_marginBottom="8dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:text="@{MainViewModel.definingSkill}"
+                android:textColor="?colorAccent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/firstSkillTitle"

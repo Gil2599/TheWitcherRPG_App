@@ -89,9 +89,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.16"
         app:layout_constraintTop_toTopOf="@+id/lottieAnimationEquipmentBorder"
-        app:lottie_fileName="border_animation_multicolor.json"
+        app:lottie_fileName="border_animation.json"
         app:lottie_loop="true"
-        app:lottie_speed="2"
         tools:visibility="visible" />
 
     <com.airbnb.lottie.LottieAnimationView
@@ -105,7 +104,7 @@
         app:layout_constraintHeight_percent="0.13"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationMagicBorder"
         app:layout_constraintTop_toTopOf="@+id/lottieAnimationMagicBorder"
-        app:lottie_fileName="fire_animation.json"
+        app:lottie_fileName="fire_animation_multicolor.json"
         app:lottie_loop="true"
         tools:visibility="visible" />
 
@@ -123,9 +122,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.62"
-        app:lottie_fileName="border_animation_multicolor.json"
+        app:lottie_fileName="border_animation.json"
         app:lottie_loop="true"
-        app:lottie_speed="2"
         tools:visibility="visible" />
 
     <com.airbnb.lottie.LottieAnimationView
@@ -156,9 +154,8 @@
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationMagicBorder"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationEquipmentBorder"
-        app:lottie_fileName="border_animation_multicolor.json"
+        app:lottie_fileName="border_animation.json"
         app:lottie_loop="true"
-        app:lottie_speed="2"
         tools:visibility="visible" />
 
     <com.airbnb.lottie.LottieAnimationView

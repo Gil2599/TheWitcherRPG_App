@@ -176,7 +176,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         bind.staminaText.text = HtmlCompat.fromHtml(charSta, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.vigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        bind.castSpellbutton.setOnClickListener{
+        bind.castSpellbutton.setOnClickListener {
             if (item.staminaCost != null) {
                 if (item.staminaCost!! > mainCharacterViewModel.sta.value){
                     Snackbar.make(binding.root, "Not enough stamina to cast ${item.name}.",

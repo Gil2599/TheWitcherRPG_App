@@ -183,7 +183,6 @@ class ProfessionSkillTree : Fragment() {
         binding.buttonDefiningSkill.setOnClickListener{
             showDialogSkillInfo(getDefSkillInfo(), mainCharacterViewModel.definingSkill.value)
         }
-
         binding.buttonHelp.setOnClickListener{
             showDialogDisclaimer()
         }
@@ -343,7 +342,7 @@ class ProfessionSkillTree : Fragment() {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
                 launch {
                     mainCharacterViewModel.professionSkillA1.collectLatest { value ->
-                        if (value >= 5){
+                        if (value >= 5) {
                             binding.linearLayoutA2.setOnClickListener {
                                 focusedTextViews[0]?.visibility = View.INVISIBLE
                                 focusedTextViews[1]?.visibility = View.INVISIBLE
@@ -368,7 +367,7 @@ class ProfessionSkillTree : Fragment() {
                                 )
                             }
                         }
-                        else{
+                        else {
                             binding.linearLayoutA2.setOnClickListener(null)
                             binding.linearLayoutA2.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillA2.setTextColor(disabled)
@@ -382,7 +381,7 @@ class ProfessionSkillTree : Fragment() {
                 }
                 launch {
                     mainCharacterViewModel.professionSkillA2.collectLatest { value ->
-                        if (value >= 5){
+                        if (value >= 5) {
                             binding.linearLayoutA3.setOnClickListener {
                                 focusedTextViews[0]?.visibility = View.INVISIBLE
                                 focusedTextViews[1]?.visibility = View.INVISIBLE
@@ -407,7 +406,7 @@ class ProfessionSkillTree : Fragment() {
                                 )
                             }
                         }
-                        else{
+                        else {
                             binding.linearLayoutA3.setOnClickListener(null)
                             binding.linearLayoutA3.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillA3.setTextColor(disabled)
@@ -485,7 +484,7 @@ class ProfessionSkillTree : Fragment() {
                                 )
                             }
                         }
-                        else{
+                        else {
                             binding.linearLayoutB3.setOnClickListener(null)
                             binding.linearLayoutB3.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillB3.setTextColor(disabled)
@@ -493,7 +492,8 @@ class ProfessionSkillTree : Fragment() {
                             binding.arrow9.addValueCallback(KeyPath("**"),
                                 LottieProperty.COLOR_FILTER
                             ) { null }
-                            binding.arrow9.playAnimation()                          }
+                            binding.arrow9.playAnimation()
+                        }
                     }
                 }
                 launch {
@@ -523,7 +523,7 @@ class ProfessionSkillTree : Fragment() {
                                 )
                             }
                         }
-                        else{
+                        else {
                             binding.linearLayoutC2.setOnClickListener(null)
                             binding.linearLayoutC2.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillC2.setTextColor(disabled)
@@ -560,8 +560,9 @@ class ProfessionSkillTree : Fragment() {
                                     resources.getColor(R.color.red),
                                     PorterDuff.Mode.SRC_ATOP
                                 )
-                            }                          }
-                        else{
+                            }
+                        }
+                        else {
                             binding.linearLayoutC3.setOnClickListener(null)
                             binding.linearLayoutC3.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillC3.setTextColor(disabled)
@@ -569,7 +570,8 @@ class ProfessionSkillTree : Fragment() {
                             binding.arrow7.addValueCallback(KeyPath("**"),
                                 LottieProperty.COLOR_FILTER
                             ) { null }
-                            binding.arrow7.playAnimation()                        }
+                            binding.arrow7.playAnimation()
+                        }
                     }
                 }
             }
