@@ -22,7 +22,7 @@ import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogAddSpellBinding
 import com.witcher.thewitcherrpg.databinding.FragmentMagicAddBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicHeader
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ListHeader
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.MagicViewPagerAdapter
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.CharacterMagicListAdapter
@@ -102,57 +102,57 @@ class MagicAddFragment : Fragment() {
 
         when (magicType) {
             MagicViewPagerAdapter.FragmentName.SPELLS -> {
-                newItemList.add(MagicHeader("Novice Spells"))
+                newItemList.add(ListHeader("Novice Spells"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_spells_list_data))
 
-                newItemList.add(MagicHeader("Journeyman Spells"))
+                newItemList.add(ListHeader("Journeyman Spells"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_spells_list_data))
 
-                newItemList.add(MagicHeader("Master Spells"))
+                newItemList.add(ListHeader("Master Spells"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_spells_list_data))
 
             }
             MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
-                newItemList.add(MagicHeader("Novice Druid Invocations"))
+                newItemList.add(ListHeader("Novice Druid Invocations"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_druidInvo_list_data))
 
-                newItemList.add(MagicHeader("Journeyman Druid Invocations"))
+                newItemList.add(ListHeader("Journeyman Druid Invocations"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_druidInvo_list_data))
 
-                newItemList.add(MagicHeader("Master Druid Invocations"))
+                newItemList.add(ListHeader("Master Druid Invocations"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_druidInvo_data))
 
-                newItemList.add(MagicHeader("Novice Preacher Invocations"))
+                newItemList.add(ListHeader("Novice Preacher Invocations"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_preacherInvo_list_data))
 
-                newItemList.add(MagicHeader("Journeyman Preacher Invocations"))
+                newItemList.add(ListHeader("Journeyman Preacher Invocations"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_preacherInvo_list_data))
 
-                newItemList.add(MagicHeader("Master Preacher Invocations"))
+                newItemList.add(ListHeader("Master Preacher Invocations"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_preacherInvo_list_data))
 
-                newItemList.add(MagicHeader("Arch Priest Invocations"))
+                newItemList.add(ListHeader("Arch Priest Invocations"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.archPriestInvo_list_data))
             }
             MagicViewPagerAdapter.FragmentName.RITUALS -> {
-                newItemList.add(MagicHeader("Novice Rituals"))
+                newItemList.add(ListHeader("Novice Rituals"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_rituals_list_data))
 
-                newItemList.add(MagicHeader("Journeyman Rituals"))
+                newItemList.add(ListHeader("Journeyman Rituals"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_rituals_list_data))
 
-                newItemList.add(MagicHeader("Master Rituals"))
+                newItemList.add(ListHeader("Master Rituals"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_rituals_list_data))
             }
             MagicViewPagerAdapter.FragmentName.HEXES -> {
-                newItemList.add(MagicHeader("Hexes"))
+                newItemList.add(ListHeader("Hexes"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.hexes_list_data))
             }
             MagicViewPagerAdapter.FragmentName.SIGNS -> {
-                newItemList.add(MagicHeader("Basic Signs"))
+                newItemList.add(ListHeader("Basic Signs"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.basic_signs_list_data))
 
-                newItemList.add(MagicHeader("Alternate Signs"))
+                newItemList.add(ListHeader("Alternate Signs"))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.alternate_signs_list_data))
             }
         }
@@ -241,19 +241,19 @@ class MagicAddFragment : Fragment() {
         when (magicType) {
             MagicViewPagerAdapter.FragmentName.SPELLS -> {
                 if (magicList.any { it.type == MagicType.NOVICE_SPELL }) {
-                    tempItemList.add(MagicHeader("Novice Spells"))
+                    tempItemList.add(ListHeader("Novice Spells"))
                 }
                 for (item in magicList) {
 
                     if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_SPELL) {
-                        tempItemList.add(MagicHeader("Journeyman Spells"))
+                        tempItemList.add(ListHeader("Journeyman Spells"))
                         tempItemList.add(item)
                         journeymanHeaderAdded = true
                         continue
                     }
 
                     if (!masterHeaderAdded && item.type == MagicType.MASTER_SPELL) {
-                        tempItemList.add(MagicHeader("Master Spells"))
+                        tempItemList.add(ListHeader("Master Spells"))
                         tempItemList.add(item)
                         masterHeaderAdded = true
                         continue
@@ -264,47 +264,47 @@ class MagicAddFragment : Fragment() {
             }
             MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
                 if (magicList.any { it.type == MagicType.NOVICE_DRUID_INVOCATION }) {
-                    tempItemList.add(MagicHeader("Novice Druid Invocations"))
+                    tempItemList.add(ListHeader("Novice Druid Invocations"))
                 }
                 for (item in magicList) {
 
                     if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_DRUID_INVOCATION) {
-                        tempItemList.add(MagicHeader("Journeyman Druid Invocations"))
+                        tempItemList.add(ListHeader("Journeyman Druid Invocations"))
                         tempItemList.add(item)
                         journeymanHeaderAdded = true
                         continue
                     }
 
                     if (!masterHeaderAdded && item.type == MagicType.MASTER_DRUID_INVOCATION) {
-                        tempItemList.add(MagicHeader("Master Druid Invocations"))
+                        tempItemList.add(ListHeader("Master Druid Invocations"))
                         tempItemList.add(item)
                         masterHeaderAdded = true
                         continue
                     }
 
                     if (!novicePreacherHeaderAdded && item.type == MagicType.NOVICE_PREACHER_INVOCATION) {
-                        tempItemList.add(MagicHeader("Novice Preacher Invocations"))
+                        tempItemList.add(ListHeader("Novice Preacher Invocations"))
                         tempItemList.add(item)
                         novicePreacherHeaderAdded = true
                         continue
                     }
 
                     if (!journeyPreacherHeaderAdded && item.type == MagicType.JOURNEYMAN_PREACHER_INVOCATION) {
-                        tempItemList.add(MagicHeader("Journeyman Preacher Invocations"))
+                        tempItemList.add(ListHeader("Journeyman Preacher Invocations"))
                         tempItemList.add(item)
                         journeyPreacherHeaderAdded = true
                         continue
                     }
 
                     if (!masterPreacherHeaderAdded && item.type == MagicType.MASTER_PREACHER_INVOCATION) {
-                        tempItemList.add(MagicHeader("Master Preacher Invocations"))
+                        tempItemList.add(ListHeader("Master Preacher Invocations"))
                         tempItemList.add(item)
                         masterPreacherHeaderAdded = true
                         continue
                     }
 
                     if (!archPriestHeaderAdded && item.type == MagicType.ARCH_PRIEST_INVOCATION) {
-                        tempItemList.add(MagicHeader("Arch Priest Invocations"))
+                        tempItemList.add(ListHeader("Arch Priest Invocations"))
                         tempItemList.add(item)
                         archPriestHeaderAdded = true
                         continue
@@ -315,19 +315,19 @@ class MagicAddFragment : Fragment() {
             }
             MagicViewPagerAdapter.FragmentName.RITUALS -> {
                 if (magicList.any { it.type == MagicType.NOVICE_RITUAL }) {
-                    tempItemList.add(MagicHeader("Novice Rituals"))
+                    tempItemList.add(ListHeader("Novice Rituals"))
                 }
                 for (item in magicList) {
 
                     if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_RITUAL) {
-                        tempItemList.add(MagicHeader("Journeyman Rituals"))
+                        tempItemList.add(ListHeader("Journeyman Rituals"))
                         tempItemList.add(item)
                         journeymanHeaderAdded = true
                         continue
                     }
 
                     if (!masterHeaderAdded && item.type == MagicType.MASTER_RITUAL) {
-                        tempItemList.add(MagicHeader("Master Rituals"))
+                        tempItemList.add(ListHeader("Master Rituals"))
                         tempItemList.add(item)
                         masterHeaderAdded = true
                         continue
@@ -336,17 +336,17 @@ class MagicAddFragment : Fragment() {
                 }
             }
             MagicViewPagerAdapter.FragmentName.HEXES -> {
-                tempItemList.add(MagicHeader("Hexes"))
+                tempItemList.add(ListHeader("Hexes"))
                 tempItemList.addAll(magicList)
             }
             MagicViewPagerAdapter.FragmentName.SIGNS -> {
                 if (magicList.any { it.type == MagicType.BASIC_SIGN }) {
-                    tempItemList.add(MagicHeader("Basic Signs"))
+                    tempItemList.add(ListHeader("Basic Signs"))
                 }
                 for (item in magicList) {
 
                     if (!journeymanHeaderAdded && item.type == MagicType.ALTERNATE_SIGN) {
-                        tempItemList.add(MagicHeader("Alternate Signs"))
+                        tempItemList.add(ListHeader("Alternate Signs"))
                         tempItemList.add(item)
                         journeymanHeaderAdded = true
                         continue

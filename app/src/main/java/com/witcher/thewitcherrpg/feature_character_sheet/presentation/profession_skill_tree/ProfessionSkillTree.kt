@@ -20,7 +20,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
-import com.airbnb.lottie.value.SimpleLottieValueCallback
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
@@ -183,6 +182,7 @@ class ProfessionSkillTree : Fragment() {
         binding.buttonDefiningSkill.setOnClickListener{
             showDialogSkillInfo(getDefSkillInfo(), mainCharacterViewModel.definingSkill.value)
         }
+
         binding.buttonHelp.setOnClickListener{
             showDialogDisclaimer()
         }

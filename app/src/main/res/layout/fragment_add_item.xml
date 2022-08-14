@@ -21,11 +21,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintWidth_percent="0.9"
         android:hint="@string/select_item_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customTitle"
+        app:layout_constraintWidth_percent="0.9"
         app:startIconDrawable="@drawable/ic_skills_icon">
 
         <AutoCompleteTextView
@@ -39,248 +39,16 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView5"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/equipment_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
+        android:layoutAnimation="@anim/rv_layout_animation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-        <LinearLayout
-            android:id="@+id/rvLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textViewLight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/light"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutLight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvLightEquipment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/medium"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvMediumEquipment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewHeavy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/heavy"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutHeavy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvHeavyEquipment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewBludgeons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/heavy"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutBludgeons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvBludgeons"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewPoleArms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/heavy"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutPoleArms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvPoleArms"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewStaves"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/heavy"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutStaves"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvStaves"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewThrownWeapons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/heavy"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutThrownWeapons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvThrownWeapons"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewBows"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/heavy"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutBows"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvBows"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textViewCrossbows"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/heavy"
-                android:textColor="?colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutCrossbows"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNovice">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCrossbows"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

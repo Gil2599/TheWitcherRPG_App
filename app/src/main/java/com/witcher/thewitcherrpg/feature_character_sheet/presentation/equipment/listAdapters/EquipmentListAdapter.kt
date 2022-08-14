@@ -69,7 +69,6 @@ class EquipmentListAdapter(
 
                     rowLayout.setOnClickListener {
                         itemClickString(armorList[position])
-
                     }
                 }
             }

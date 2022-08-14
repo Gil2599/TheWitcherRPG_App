@@ -16,7 +16,7 @@ import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogCharSpellBinding
 import com.witcher.thewitcherrpg.databinding.FragmentCharMagicNewBinding
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicHeader
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ListHeader
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.MagicViewPagerAdapter
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter.CharacterMagicListAdapter
@@ -54,91 +54,91 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         when (magicType){
             MagicViewPagerAdapter.FragmentName.SPELLS -> {
                 if (mainCharacterViewModel.noviceSpellList.value.size > 0){
-                    itemList.add(MagicHeader("Novice Spells"))
+                    itemList.add(ListHeader("Novice Spells"))
                     itemList.addAll(mainCharacterViewModel.noviceSpellList.value)
                 }
                 if (mainCharacterViewModel.journeymanSpellList.value.size > 0){
-                    itemList.add(MagicHeader("Journeyman Spells"))
+                    itemList.add(ListHeader("Journeyman Spells"))
                     itemList.addAll(mainCharacterViewModel.journeymanSpellList.value)
                 }
                 if (mainCharacterViewModel.masterSpellList.value.size > 0){
-                    itemList.add(MagicHeader("Master Spells"))
+                    itemList.add(ListHeader("Master Spells"))
                     itemList.addAll(mainCharacterViewModel.masterSpellList.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Spells Added"))
+                    itemList.add(ListHeader("No Spells Added"))
                 }
             }
             MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
                 if (mainCharacterViewModel.noviceDruidInvocations.value.size > 0){
-                    itemList.add(MagicHeader("Novice Druid Invocations"))
+                    itemList.add(ListHeader("Novice Druid Invocations"))
                     itemList.addAll(mainCharacterViewModel.noviceDruidInvocations.value)
                 }
                 if (mainCharacterViewModel.journeymanDruidInvocations.value.size > 0){
-                    itemList.add(MagicHeader("Journeyman Druid Invocations"))
+                    itemList.add(ListHeader("Journeyman Druid Invocations"))
                     itemList.addAll(mainCharacterViewModel.journeymanDruidInvocations.value)
                 }
                 if (mainCharacterViewModel.masterDruidInvocations.value.size > 0){
-                    itemList.add(MagicHeader("Master Druid Invocations"))
+                    itemList.add(ListHeader("Master Druid Invocations"))
                     itemList.addAll(mainCharacterViewModel.masterDruidInvocations.value)
                 }
                 if (mainCharacterViewModel.novicePreacherInvocations.value.size > 0){
-                    itemList.add(MagicHeader("Novice Preacher Invocations"))
+                    itemList.add(ListHeader("Novice Preacher Invocations"))
                     itemList.addAll(mainCharacterViewModel.novicePreacherInvocations.value)
                 }
                 if (mainCharacterViewModel.journeymanPreacherInvocations.value.size > 0){
-                    itemList.add(MagicHeader("Journeyman Preacher Invocations"))
+                    itemList.add(ListHeader("Journeyman Preacher Invocations"))
                     itemList.addAll(mainCharacterViewModel.journeymanPreacherInvocations.value)
                 }
                 if (mainCharacterViewModel.masterPreacherInvocations.value.size > 0){
-                    itemList.add(MagicHeader("Master Preacher Invocations"))
+                    itemList.add(ListHeader("Master Preacher Invocations"))
                     itemList.addAll(mainCharacterViewModel.masterPreacherInvocations.value)
                 }
                 if (mainCharacterViewModel.archPriestInvocations.value.size > 0){
-                    itemList.add(MagicHeader("Arch Priest Invocations"))
+                    itemList.add(ListHeader("Arch Priest Invocations"))
                     itemList.addAll(mainCharacterViewModel.archPriestInvocations.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Invocations Added"))
+                    itemList.add(ListHeader("No Invocations Added"))
                 }
             }
             MagicViewPagerAdapter.FragmentName.RITUALS -> {
                 if (mainCharacterViewModel.noviceRitualList.value.size > 0){
-                    itemList.add(MagicHeader("Novice Rituals"))
+                    itemList.add(ListHeader("Novice Rituals"))
                     itemList.addAll(mainCharacterViewModel.noviceRitualList.value)
                 }
                 if (mainCharacterViewModel.journeymanRitualList.value.size > 0){
-                    itemList.add(MagicHeader("Journeyman Rituals"))
+                    itemList.add(ListHeader("Journeyman Rituals"))
                     itemList.addAll(mainCharacterViewModel.journeymanRitualList.value)
                 }
                 if (mainCharacterViewModel.masterRitualList.value.size > 0){
-                    itemList.add(MagicHeader("Master Rituals"))
+                    itemList.add(ListHeader("Master Rituals"))
                     itemList.addAll(mainCharacterViewModel.masterRitualList.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Rituals Added"))
+                    itemList.add(ListHeader("No Rituals Added"))
                 }
             }
             MagicViewPagerAdapter.FragmentName.HEXES -> {
                 if (mainCharacterViewModel.hexesList.value.size > 0){
-                    itemList.add(MagicHeader("Hexes"))
+                    itemList.add(ListHeader("Hexes"))
                     itemList.addAll(mainCharacterViewModel.hexesList.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Hexes Added"))
+                    itemList.add(ListHeader("No Hexes Added"))
                 }
             }
             MagicViewPagerAdapter.FragmentName.SIGNS -> {
                 if (mainCharacterViewModel.basicSigns.value.size > 0){
-                    itemList.add(MagicHeader("Basic Signs"))
+                    itemList.add(ListHeader("Basic Signs"))
                     itemList.addAll(mainCharacterViewModel.basicSigns.value)
                 }
                 if (mainCharacterViewModel.alternateSigns.value.size > 0){
-                    itemList.add(MagicHeader("Alternate Signs"))
+                    itemList.add(ListHeader("Alternate Signs"))
                     itemList.addAll(mainCharacterViewModel.alternateSigns.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(MagicHeader("No Signs Added"))
+                    itemList.add(ListHeader("No Signs Added"))
                 }
             }
         }

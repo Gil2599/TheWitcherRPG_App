@@ -1,13 +1,12 @@
 package com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.witcher.thewitcherrpg.databinding.MagicHeaderBinding
 import com.witcher.thewitcherrpg.databinding.SpellRowBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicHeader
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ListHeader
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 
 class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
@@ -80,7 +79,7 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
     }
 
     inner class HeaderViewHolder(private val binding: MagicHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: MagicHeader) {
+        fun bind(item: ListHeader) {
             with(binding){
                 headerText.text = item.header
             }
@@ -103,7 +102,7 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
             }
             is HeaderViewHolder -> {
                 currentItem = itemList[position]
-                holder.bind(currentItem as MagicHeader)
+                holder.bind(currentItem as ListHeader)
             }
         }
     }
@@ -114,7 +113,7 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
 
     override fun getItemViewType(position: Int): Int {
         return when(itemList[position]){
-            is MagicHeader -> TYPE_HEADER
+            is ListHeader -> TYPE_HEADER
             is MagicItem -> TYPE_SPELL
             else -> TYPE_UNKNOWN
         }

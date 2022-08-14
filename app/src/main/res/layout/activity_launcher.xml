@@ -137,7 +137,7 @@
         app:layout_constraintHeight_percent="0.13"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationEquipmentBorder"
         app:layout_constraintTop_toTopOf="@+id/lottieAnimationEquipmentBorder"
-        app:lottie_fileName="swords_animation.json"
+        app:lottie_fileName="bow_animation.json"
         app:lottie_loop="true"
         tools:visibility="visible" />
 
@@ -156,19 +156,22 @@
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationEquipmentBorder"
         app:lottie_fileName="border_animation.json"
         app:lottie_loop="true"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        app:lottie_speed="2"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationCharacter"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="-16dp"
+        android:layout_marginTop="16dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationCharacterBorder"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationCharacterBorder"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationCharacterBorder"
-        app:lottie_fileName="warrior_animation2.json"
+        app:layout_constraintTop_toTopOf="@+id/lottieAnimationCharacterBorder"
+        app:layout_constraintWidth_percent="0.55"
+        app:lottie_fileName="viking_animation.json"
         app:lottie_loop="true"
         tools:visibility="visible" />
 

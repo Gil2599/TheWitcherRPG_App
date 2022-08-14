@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.witcher.thewitcherrpg.R
@@ -22,21 +23,21 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.WeaponIte
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.ArmorSetListAdapter
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ListHeader
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentNewListAdapter
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 class AddItemFragment : Fragment() {
     private var _binding: FragmentAddItemBinding? = null
     private val binding get() = _binding!!
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
-
-    private lateinit var lightAdapter: EquipmentListAdapter
-    private lateinit var mediumAdapter: EquipmentListAdapter
-    private lateinit var heavyAdapter: EquipmentListAdapter
+    private var itemList = arrayListOf<Any>()
+    private var darkModeEnabled by Delegates.notNull<Boolean>()
+    private lateinit var equipmentAdapter: EquipmentNewListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,10 +54,36 @@ class AddItemFragment : Fragment() {
         }
         callback.isEnabled = true
 
+        lifecycleScope.launch {
+            launch {
+                mainCharacterViewModel.isDarkModeEnabled.collect { value ->
+                    darkModeEnabled = value
+                }
+            }
+        }
+
+        equipmentAdapter = EquipmentNewListAdapter ({ equipment ->
+            when (equipment) {
+                is EquipmentItem -> {
+                    showArmorDialog(equipment)
+                }
+                is ArmorSet -> {
+                    showArmorSetDialog(equipment)
+                }
+                is WeaponItem -> {
+                    showWeaponDialog(equipment)
+                }
+            }
+        }, darkModeEnabled)
+
         binding.customTitle.setTitle("New Item")
         binding.customTitle.setTitleSize(20F)
 
-        listAdaptersInit()
+        binding.equipmentRv.adapter = equipmentAdapter
+        binding.equipmentRv.layoutManager = LinearLayoutManager(requireContext())
+
+        listAdaptersInit(ItemType.WEAPON)
+        setAdapterData()
 
         binding.autoCompleteTextViewItemType.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, position, _ ->
@@ -64,230 +91,133 @@ class AddItemFragment : Fragment() {
                     TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.equipmentCategories)
                 types?.get(position)?.let { item ->
 
-                    if (item == "Weapon") {
-                        listAdaptersInit(true)
-                    }
-
-                    if (item == "Head Armor") {
-                        listAdaptersInit(false)
-                        lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_light_armor_data))
-                        mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_medium_armor_data))
-                        heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.head_heavy_armor_data))
-                    }
-                    if (item == "Chest Armor") {
-                        listAdaptersInit(false)
-                        lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_light_armor_data))
-                        mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_medium_armor_data))
-                        heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.chest_heavy_armor_data))
-                    }
-                    if (item == "Leg Armor") {
-                        listAdaptersInit(false)
-                        lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_light_armor_data))
-                        mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_medium_armor_data))
-                        heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.legs_heavy_armor_data))
-                    }
-                    if (item == "Shield/Accessory") {
-                        listAdaptersInit(weapons = false, accessories = true)
-                        lightAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_light_data))
-                        mediumAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
-                        heavyAdapter.setData(mainCharacterViewModel.getEquipmentList(R.array.shields_heavy_data))
-                    }
-                    if (item == "Armor Set") {
-                        listAdaptersInit(weapons = false, armorSet = true)
-                    }
-                    if (item == "Miscellaneous") {
-                        showCustomItemDialog()
+                    when (item) {
+                        "Weapon" -> {
+                            listAdaptersInit(ItemType.WEAPON)
+                            setAdapterData()
+                        }
+                        "Head Armor" -> {
+                            listAdaptersInit(ItemType.HEAD_ARMOR)
+                            setAdapterData()
+                        }
+                        "Chest Armor" -> {
+                            listAdaptersInit(ItemType.CHEST_ARMOR)
+                            setAdapterData()
+                        }
+                        "Leg Armor" -> {
+                            listAdaptersInit(ItemType.LEG_ARMOR)
+                            setAdapterData()
+                        }
+                        "Shield/Accessory" -> {
+                            listAdaptersInit(ItemType.SHIELD_ACCESSORY)
+                            setAdapterData()
+                        }
+                        "Armor Set" -> {
+                            listAdaptersInit(ItemType.ARMOR_SET)
+                            setAdapterData()
+                        }
+                        "Miscellaneous" -> showCustomItemDialog()
                     }
                 }
             }
 
-        binding.rvLightEquipment.visibility = View.GONE
-        binding.rvMediumEquipment.visibility = View.GONE
-        binding.rvHeavyEquipment.visibility = View.GONE
-        binding.rvBludgeons.visibility = View.GONE
-        binding.rvPoleArms.visibility = View.GONE
-        binding.rvStaves.visibility = View.GONE
-        binding.rvThrownWeapons.visibility = View.GONE
-        binding.rvBows.visibility = View.GONE
-        binding.rvCrossbows.visibility = View.GONE
-        binding.textViewLight.visibility = View.GONE
-        binding.textViewMedium.visibility = View.GONE
-        binding.textViewHeavy.visibility = View.GONE
-        binding.textViewBludgeons.visibility = View.GONE
-        binding.textViewPoleArms.visibility = View.GONE
-        binding.textViewStaves.visibility = View.GONE
-        binding.textViewThrownWeapons.visibility = View.GONE
-        binding.textViewBows.visibility = View.GONE
-        binding.textViewCrossbows.visibility = View.GONE
-
-        binding.autoCompleteTextViewItemType.showDropDown()
+        //binding.autoCompleteTextViewItemType.showDropDown()
 
         return view
     }
 
-    private fun listAdaptersInit() {
+    private fun listAdaptersInit(itemType: ItemType) {
+        val newItemList = arrayListOf<Any>()
 
-        binding.rvLightEquipment.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvLightEquipment.isNestedScrollingEnabled = false
+        when (itemType) {
+            ItemType.WEAPON -> {
+                newItemList.add(ListHeader("Swords"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.swords_data))
 
-        binding.rvMediumEquipment.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvMediumEquipment.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Small Blades"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.small_blades_data))
 
-        binding.rvHeavyEquipment.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvHeavyEquipment.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Axes"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.axes_data))
 
-        binding.rvBludgeons.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvBludgeons.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Bludgeons"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.bludgeons_data))
 
-        binding.rvPoleArms.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvPoleArms.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Pole Arms"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.pole_arms_data))
 
-        binding.rvStaves.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvStaves.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Staves"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.staves_data))
 
-        binding.rvThrownWeapons.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvThrownWeapons.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Thrown Weapons"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.thrown_weapons_data))
 
-        binding.rvBows.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvBows.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Bows"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.bows_data))
 
-        binding.rvCrossbows.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvCrossbows.isNestedScrollingEnabled = false
+                newItemList.add(ListHeader("Crossbows"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.crossbows_data))
+            }
+            ItemType.HEAD_ARMOR -> {
+                newItemList.add(ListHeader("Light"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.head_light_armor_data))
+
+                newItemList.add(ListHeader("Medium"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.head_medium_armor_data))
+
+                newItemList.add(ListHeader("Heavy"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.head_heavy_armor_data))
+            }
+            ItemType.CHEST_ARMOR -> {
+                newItemList.add(ListHeader("Light"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.chest_light_armor_data))
+
+                newItemList.add(ListHeader("Medium"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.chest_medium_armor_data))
+
+                newItemList.add(ListHeader("Heavy"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.chest_heavy_armor_data))
+            }
+            ItemType.LEG_ARMOR -> {
+                newItemList.add(ListHeader("Light"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.legs_light_armor_data))
+
+                newItemList.add(ListHeader("Medium"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.legs_medium_armor_data))
+
+                newItemList.add(ListHeader("Heavy"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.legs_heavy_armor_data))
+            }
+            ItemType.SHIELD_ACCESSORY -> {
+                newItemList.add(ListHeader("Light"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.shields_light_data))
+
+                newItemList.add(ListHeader("Medium"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
+
+                newItemList.add(ListHeader("Heavy"))
+                newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.shields_heavy_data))
+
+                newItemList.add(ListHeader("Amulets"))
+                newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.amulets_data))
+            }
+            ItemType.ARMOR_SET -> {
+                newItemList.add(ListHeader("Light"))
+                newItemList.addAll(mainCharacterViewModel.getArmorSetList(R.array.armor_set_light_data))
+
+                newItemList.add(ListHeader("Medium"))
+                newItemList.addAll(mainCharacterViewModel.getArmorSetList(R.array.armor_set_medium_data))
+
+                newItemList.add(ListHeader("Heavy"))
+                newItemList.addAll(mainCharacterViewModel.getArmorSetList(R.array.armor_set_heavy_data))
+            }
+        }
+        itemList = newItemList
     }
 
-    private fun listAdaptersInit(weapons: Boolean, armorSet: Boolean = false, accessories: Boolean = false) {
-
-        if (weapons) {
-            val swordsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            swordsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.swords_data))
-            binding.rvLightEquipment.adapter = swordsAdapter
-            binding.textViewLight.text = "Swords"
-
-            val smallBladesAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            smallBladesAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.small_blades_data))
-            binding.rvMediumEquipment.adapter = smallBladesAdapter
-            binding.textViewMedium.text = "Small Blades"
-
-
-            val axesAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            axesAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.axes_data))
-            binding.rvHeavyEquipment.adapter = axesAdapter
-            binding.textViewHeavy.text = "Axes"
-
-            val bludgeonsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            bludgeonsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.bludgeons_data))
-            binding.rvBludgeons.adapter = bludgeonsAdapter
-            binding.textViewBludgeons.text = "Bludgeons"
-
-            val poleArmsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            poleArmsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.pole_arms_data))
-            binding.rvPoleArms.adapter = poleArmsAdapter
-            binding.textViewPoleArms.text = "Pole Arms"
-
-            val stavesAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            stavesAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.staves_data))
-            binding.rvStaves.adapter = stavesAdapter
-            binding.textViewStaves.text = "Staves"
-
-            val thrownWeaponsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            thrownWeaponsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.thrown_weapons_data))
-            binding.rvThrownWeapons.adapter = thrownWeaponsAdapter
-            binding.textViewThrownWeapons.text = "Thrown Weapons"
-
-            val bowsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            bowsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.bows_data))
-            binding.rvBows.adapter = bowsAdapter
-            binding.textViewBows.text = "Bows"
-
-            val crossbowsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            crossbowsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.crossbows_data))
-            binding.rvCrossbows.adapter = crossbowsAdapter
-            binding.textViewCrossbows.text = "Crossbows"
-
-            binding.rvLightEquipment.visibility = View.VISIBLE
-            binding.rvMediumEquipment.visibility = View.VISIBLE
-            binding.rvHeavyEquipment.visibility = View.VISIBLE
-            binding.rvBludgeons.visibility = View.VISIBLE
-            binding.rvPoleArms.visibility = View.VISIBLE
-            binding.rvStaves.visibility = View.VISIBLE
-            binding.rvThrownWeapons.visibility = View.VISIBLE
-            binding.rvBows.visibility = View.VISIBLE
-            binding.rvCrossbows.visibility = View.VISIBLE
-            binding.textViewLight.visibility = View.VISIBLE
-            binding.textViewMedium.visibility = View.VISIBLE
-            binding.textViewHeavy.visibility = View.VISIBLE
-            binding.textViewBludgeons.visibility = View.VISIBLE
-            binding.textViewPoleArms.visibility = View.VISIBLE
-            binding.textViewStaves.visibility = View.VISIBLE
-            binding.textViewThrownWeapons.visibility = View.VISIBLE
-            binding.textViewBows.visibility = View.VISIBLE
-            binding.textViewCrossbows.visibility = View.VISIBLE
-
-        } else {
-            if (!armorSet) {
-                lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-                binding.rvLightEquipment.adapter = lightAdapter
-
-                mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-                binding.rvMediumEquipment.adapter = mediumAdapter
-
-                heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-                binding.rvHeavyEquipment.adapter = heavyAdapter
-
-                if (accessories){
-                    val bludgeonsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-                    bludgeonsAdapter.setData(mainCharacterViewModel.getWeaponList(R.array.amulets_data))
-                    binding.rvBludgeons.adapter = bludgeonsAdapter
-                    binding.textViewBludgeons.text = "Amulets"
-                    binding.rvBludgeons.visibility = View.VISIBLE
-                    binding.textViewBludgeons.visibility = View.VISIBLE
-                }
-                else{
-                    binding.rvBludgeons.visibility = View.GONE
-                    binding.textViewBludgeons.visibility = View.GONE
-                }
-
-            } else {
-                val lightArmorSetAdapter = ArmorSetListAdapter {
-                    item -> showArmorSetDialog(item)
-                }
-                lightArmorSetAdapter.setData(mainCharacterViewModel.getArmorSetList(R.array.armor_set_light_data))
-                binding.rvLightEquipment.adapter = lightArmorSetAdapter
-
-                val mediumArmorSetAdapter = ArmorSetListAdapter {
-                    item -> showArmorSetDialog(item)
-                }
-                mediumArmorSetAdapter.setData(mainCharacterViewModel.getArmorSetList(R.array.armor_set_medium_data))
-                binding.rvMediumEquipment.adapter = mediumArmorSetAdapter
-
-                val heavyArmorSetAdapter = ArmorSetListAdapter {
-                    item -> showArmorSetDialog(item)
-                }
-                heavyArmorSetAdapter.setData(mainCharacterViewModel.getArmorSetList(R.array.armor_set_heavy_data))
-                binding.rvHeavyEquipment.adapter = heavyArmorSetAdapter
-            }
-
-            binding.textViewLight.text = "Light"
-            binding.textViewMedium.text = "Medium"
-            binding.textViewHeavy.text = "Heavy"
-            binding.rvLightEquipment.visibility = View.VISIBLE
-            binding.rvMediumEquipment.visibility = View.VISIBLE
-            binding.rvHeavyEquipment.visibility = View.VISIBLE
-
-            binding.rvPoleArms.visibility = View.GONE
-            binding.rvStaves.visibility = View.GONE
-            binding.rvThrownWeapons.visibility = View.GONE
-            binding.rvBows.visibility = View.GONE
-            binding.rvCrossbows.visibility = View.GONE
-            binding.textViewLight.visibility = View.VISIBLE
-            binding.textViewMedium.visibility = View.VISIBLE
-            binding.textViewHeavy.visibility = View.VISIBLE
-            binding.textViewPoleArms.visibility = View.GONE
-            binding.textViewStaves.visibility = View.GONE
-            binding.textViewThrownWeapons.visibility = View.GONE
-            binding.textViewBows.visibility = View.GONE
-            binding.textViewCrossbows.visibility = View.GONE
-        }
+    private fun setAdapterData() {
+        equipmentAdapter.setData(itemList)
+        binding.equipmentRv.scheduleLayoutAnimation()
     }
 
     private fun showArmorDialog(armorItem: EquipmentItem) {
@@ -359,8 +289,7 @@ class AddItemFragment : Fragment() {
                 Snackbar.LENGTH_SHORT,
             ).show()
             dialog.dismiss()
-            if (binding.autoCompleteTextViewItemType.text.toString() != "Shield/Accessory")
-                listAdaptersInit(true)
+
         }
 
         bind.buttonBuy.setOnClickListener {
@@ -512,5 +441,14 @@ class AddItemFragment : Fragment() {
         dialog.setContentView(bind.root)
 
         dialog.show()
+    }
+
+    enum class ItemType {
+        HEAD_ARMOR,
+        CHEST_ARMOR,
+        LEG_ARMOR,
+        WEAPON,
+        SHIELD_ACCESSORY,
+        ARMOR_SET
     }
 }
