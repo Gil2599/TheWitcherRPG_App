@@ -31,6 +31,7 @@ import com.witcher.thewitcherrpg.feature_character_sheet.presentation.profession
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
 import com.google.android.material.snackbar.Snackbar
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsExpandableFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Skills -> {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsFragment(), "Skills")
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, SkillsExpandableFragment(), "Skills")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Stats -> {

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="MainViewModel"
+            type="com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/improvement_points"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="@+id/etIPLayout"
+            app:layout_constraintEnd_toStartOf="@+id/etIPLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etIPLayout"
+            app:layout_constraintVertical_bias="0.52" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etIPLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonHelp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textIP"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etIP"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:clickable="true"
+                android:inputType="number"
+                android:maxLength="5"
+                android:text="@{`` + MainViewModel.ip}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/buttonHelp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_outline_info_24"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/etIPLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etIPLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Intelligence +10"
+                        android:textSize="40sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/expandableIntView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="gone">
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/etNotoriety"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            app:myTag="DefiningSkill"
+                            app:skillValue="@{MainViewModel.definingSkillValue}" />
+
+                        <TextView
+                            android:id="@+id/textViewInt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/outline_bkg"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="@{`Intelligence Skills +` + (MainViewModel.intelligence + MainViewModel.intelligenceModifier)}"
+                            android:textAllCaps="true"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textStyle="bold|italic" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/etPracticedParanoia"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            app:myTag="DefiningSkill"
+                            app:skillValue="@{MainViewModel.definingSkillValue}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/etMagicTraining"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            app:myTag="DefiningSkill"
+                            app:skillValue="@{MainViewModel.definingSkillValue}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/etWitcherTraining"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            app:myTag="DefiningSkill"
+                            app:skillValue="@{MainViewModel.definingSkillValue}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/etWellTraveled"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            app:myTag="DefiningSkill"
+                            app:skillValue="@{MainViewModel.definingSkillValue}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/etIntolerance"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            app:myTag="DefiningSkill"
+                            app:skillValue="@{MainViewModel.definingSkillValue}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText1"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.awarenessModifier}"
+                            app:myTag="Awareness"
+                            app:skillValue="@{MainViewModel.awareness}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText2"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.businessModifier}"
+                            app:myTag="Business"
+                            app:skillValue="@{MainViewModel.business}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText3"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.deductionModifier}"
+                            app:myTag="Deduction"
+                            app:skillValue="@{MainViewModel.deduction}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText4"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.educationModifier}"
+                            app:myTag="Education"
+                            app:skillValue="@{MainViewModel.education}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText5"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.commonSpeechModifier}"
+                            app:myTag="Common Speech"
+                            app:skillValue="@{MainViewModel.commonSpeech}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText6"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.elderSpeechModifier}"
+                            app:myTag="Elder Speech"
+                            app:skillValue="@{MainViewModel.elderSpeech}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText7"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.dwarvenModifier}"
+                            app:myTag="Dwarven"
+                            app:skillValue="@{MainViewModel.dwarven}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText8"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.monsterLoreModifier}"
+                            app:myTag="Monster Lore"
+                            app:skillValue="@{MainViewModel.monsterLore}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText9"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.socialEtiquetteModifier}"
+                            app:myTag="Social Etiquette"
+                            app:skillValue="@{MainViewModel.socialEtiquette}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText10"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.streetwiseModifier}"
+                            app:myTag="Streetwise"
+                            app:skillValue="@{MainViewModel.streetwise}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText11"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.tacticsModifier}"
+                            app:myTag="Tactics"
+                            app:skillValue="@{MainViewModel.tactics}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText12"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.teachingModifier}"
+                            app:myTag="Teaching"
+                            app:skillValue="@{MainViewModel.teaching}" />
+
+                        <com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.CustomSkillRow
+                            android:id="@+id/editText13"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:modifier="@{MainViewModel.wildernessSurvivalModifier}"
+                            app:myTag="Wilderness Survival"
+                            app:skillValue="@{MainViewModel.wildernessSurvival}" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TESTING"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/expandableIntView" />
+
+                </LinearLayout>
+
+                <ExpandableListView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+
+                </ExpandableListView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
