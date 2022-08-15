@@ -318,6 +318,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:hint="@string/equipment_notes"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
@@ -335,9 +336,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNotes"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:lines="4"
                     android:maxLength="150"
                     android:maxLines="4"
                     android:text="@={equipmentItem.equipmentNote}" />

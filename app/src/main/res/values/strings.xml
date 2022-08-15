@@ -110,4 +110,8 @@
     <string name="new_character">New Character</string>
     <string name="custom_magic">Custom Magic</string>
     <string name="custom_equipment">Custom Equipment</string>
+    <string name="weight">Weight</string>
+    <string name="cost">Cost</string>
+    <string name="description">Description</string>
+    <string name="amount">Amount</string>
 </resources>

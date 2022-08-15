@@ -25,8 +25,7 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.Weapo
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet
 import com.google.android.material.snackbar.Snackbar
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ListHeader
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentNewListAdapter
-import kotlinx.coroutines.flow.collect
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
 import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
@@ -37,7 +36,7 @@ class AddItemFragment : Fragment() {
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
     private var itemList = arrayListOf<Any>()
     private var darkModeEnabled by Delegates.notNull<Boolean>()
-    private lateinit var equipmentAdapter: EquipmentNewListAdapter
+    private lateinit var equipmentAdapter: EquipmentListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +61,7 @@ class AddItemFragment : Fragment() {
             }
         }
 
-        equipmentAdapter = EquipmentNewListAdapter ({ equipment ->
+        equipmentAdapter = EquipmentListAdapter ({ equipment ->
             when (equipment) {
                 is EquipmentItem -> {
                     showArmorDialog(equipment)
@@ -82,9 +81,10 @@ class AddItemFragment : Fragment() {
         binding.equipmentRv.adapter = equipmentAdapter
         binding.equipmentRv.layoutManager = LinearLayoutManager(requireContext())
 
-        listAdaptersInit(ItemType.WEAPON)
+        listAdaptersInit(ItemType.HEAD_ARMOR)
         setAdapterData()
 
+        binding.autoCompleteTextViewItemType.setText("Head Armor")
         binding.autoCompleteTextViewItemType.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 val types =
@@ -211,6 +211,7 @@ class AddItemFragment : Fragment() {
                 newItemList.add(ListHeader("Heavy"))
                 newItemList.addAll(mainCharacterViewModel.getArmorSetList(R.array.armor_set_heavy_data))
             }
+            else -> {}
         }
         itemList = newItemList
     }
@@ -355,8 +356,9 @@ class AddItemFragment : Fragment() {
                     quantity = bind.etQuantity.text.toString().toInt(),
                     weight = bind.etWeight.text.toString().toFloat(),
                     cost = bind.etCost.text.toString().toInt(),
-                    effect = bind.etDescription.text.toString(),
-                    equipmentType = EquipmentTypes.MISC_CUSTOM
+                    effect = "",
+                    equipmentType = EquipmentTypes.MISC_CUSTOM,
+                    equipmentNote = bind.etDescription.text.toString()
                 )
                 mainCharacterViewModel.addEquipmentItem(customItem)
                 Snackbar.make(
@@ -449,6 +451,7 @@ class AddItemFragment : Fragment() {
         LEG_ARMOR,
         WEAPON,
         SHIELD_ACCESSORY,
-        ARMOR_SET
+        ARMOR_SET,
+        CUSTOM_ITEM
     }
 }
