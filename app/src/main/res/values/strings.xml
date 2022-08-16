@@ -114,4 +114,6 @@
     <string name="cost">Cost</string>
     <string name="description">Description</string>
     <string name="amount">Amount</string>
+    <string name="intelligence_skills">Intelligence Skills - </string>
+    <string name="reflex_skills">Reflex Skills - </string>
 </resources>

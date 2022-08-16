@@ -1,31 +1,39 @@
 package com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills
 
+import android.animation.LayoutTransition
 import android.app.Dialog
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.Typeface
 import android.os.Bundle
-import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
+import com.google.android.material.snackbar.Snackbar
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
-import com.witcher.thewitcherrpg.databinding.FragmentSkillsBinding
-import com.google.android.material.snackbar.Snackbar
 import com.witcher.thewitcherrpg.databinding.FragmentSkillsExpandableBinding
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 class SkillsExpandableFragment : Fragment() {
     private var _binding: FragmentSkillsExpandableBinding? = null
@@ -48,15 +56,8 @@ class SkillsExpandableFragment : Fragment() {
 
         onSkillsInit()
 
-
-        binding.textView2.setOnClickListener {
-            if (binding.expandableIntView.visibility == View.GONE) {
-                onExpandCollapseSkill(binding.expandableIntView, true)
-                binding.expandableIntView.visibility = View.VISIBLE
-            } else {
-                onExpandCollapseSkill(binding.expandableIntView, false)
-                //binding.expandableIntView.visibility = View.GONE
-            }
+        if (!mainCharacterViewModel.inCharacterCreation.value) {
+            setOnSkillClickListeners()
         }
 
         binding.etIP.setRawInputType(0)
@@ -73,14 +74,13 @@ class SkillsExpandableFragment : Fragment() {
             showDialogDisclaimer()
         }
 
-//        binding.buttonPlus.setOnClickListener {
-//            increaseButton()
-//        }
-//
-//        binding.buttonMinus.setOnClickListener {
-//            decreaseButton()
-//        }
+        binding.buttonPlus.setOnClickListener {
+            increaseButton()
+        }
 
+        binding.buttonMinus.setOnClickListener {
+            decreaseButton()
+        }
 
         lifecycleScope.launch {
             mainCharacterViewModel.skillsInfoMode.collect { infoIsEnabled ->
@@ -89,23 +89,201 @@ class SkillsExpandableFragment : Fragment() {
                 }
             }
         }
+        lifecycleScope.launch {
+            mainCharacterViewModel.isDarkModeEnabled.collect { isDarkMode ->
+                setupLottieAnimations(isDarkMode)
+            }
+        }
 
 
         return view
     }
 
-    private fun onExpandCollapseSkill(view: View, expand: Boolean){
-        if (expand) {
-            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down)
-            animation.reset()
-            view.clearAnimation()
-            view.startAnimation(animation)
-        } else {
-            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-            animation.reset()
-            view.clearAnimation()
-            view.startAnimation(animation)
+    private fun setupLottieAnimations(isDarkMode: Boolean){
+        if (isDarkMode) {
+            binding.lottieAnimationViewInt.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    resources.getColor(R.color.white),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
+            binding.lottieAnimationViewRef.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    resources.getColor(R.color.white),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
+            binding.lottieAnimationViewDex.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    resources.getColor(R.color.white),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
+            binding.lottieAnimationViewBody.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    resources.getColor(R.color.white),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
+            binding.lottieAnimationViewEmpathy.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    resources.getColor(R.color.white),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
+            binding.lottieAnimationViewCraft.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    resources.getColor(R.color.white),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
+            binding.lottieAnimationViewWill.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    resources.getColor(R.color.white),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
         }
+    }
+
+    private fun setOnSkillClickListeners(){
+        binding.constraintLayoutInt.setOnClickListener {
+            if (binding.expandableIntView.visibility == View.GONE) {
+                binding.lottieAnimationViewInt.setMinAndMaxFrame(10, 50)
+                binding.lottieAnimationViewInt.speed = 3F
+                binding.lottieAnimationViewInt.playAnimation()
+                binding.expandableIntView.visibility = View.VISIBLE
+                notifyTransition()
+            } else {
+                binding.lottieAnimationViewInt.setMinAndMaxFrame(50, 90)
+                binding.lottieAnimationViewInt.speed = 2.5F
+                binding.lottieAnimationViewInt.playAnimation()
+                notifyTransition()
+                binding.expandableIntView.visibility = View.GONE
+            }
+        }
+        binding.constraintLayoutRef.setOnClickListener {
+            if (binding.expandableRefView.visibility == View.GONE) {
+                binding.lottieAnimationViewRef.setMinAndMaxFrame(10, 50)
+                binding.lottieAnimationViewRef.speed = 3F
+                binding.lottieAnimationViewRef.playAnimation()
+                binding.expandableRefView.visibility = View.VISIBLE
+                notifyTransition()
+            } else {
+                binding.lottieAnimationViewRef.setMinAndMaxFrame(50, 90)
+                binding.lottieAnimationViewRef.speed = 2.5F
+                binding.lottieAnimationViewRef.playAnimation()
+                notifyTransition()
+                binding.expandableRefView.visibility = View.GONE
+            }
+        }
+        binding.constraintLayoutDex.setOnClickListener {
+            if (binding.expandableDexView.visibility == View.GONE) {
+                binding.lottieAnimationViewDex.setMinAndMaxFrame(10, 50)
+                binding.lottieAnimationViewDex.speed = 3F
+                binding.lottieAnimationViewDex.playAnimation()
+                binding.expandableDexView.visibility = View.VISIBLE
+                notifyTransition()
+            } else {
+                binding.lottieAnimationViewDex.setMinAndMaxFrame(50, 90)
+                binding.lottieAnimationViewDex.speed = 2.5F
+                binding.lottieAnimationViewDex.playAnimation()
+                notifyTransition()
+                binding.expandableDexView.visibility = View.GONE
+            }
+        }
+        binding.constraintLayoutBody.setOnClickListener {
+            if (binding.expandableBodyView.visibility == View.GONE) {
+                binding.lottieAnimationViewBody.setMinAndMaxFrame(10, 50)
+                binding.lottieAnimationViewBody.speed = 3F
+                binding.lottieAnimationViewBody.playAnimation()
+                binding.expandableBodyView.visibility = View.VISIBLE
+                notifyTransition()
+            } else {
+                binding.lottieAnimationViewBody.setMinAndMaxFrame(50, 90)
+                binding.lottieAnimationViewBody.speed = 2.5F
+                binding.lottieAnimationViewBody.playAnimation()
+                notifyTransition()
+                binding.expandableBodyView.visibility = View.GONE
+            }
+        }
+        binding.constraintLayoutEmpathy.setOnClickListener {
+            if (binding.expandableEmpathyView.visibility == View.GONE) {
+                binding.lottieAnimationViewEmpathy.setMinAndMaxFrame(10, 50)
+                binding.lottieAnimationViewEmpathy.speed = 3F
+                binding.lottieAnimationViewEmpathy.playAnimation()
+                binding.expandableEmpathyView.visibility = View.VISIBLE
+                notifyTransition()
+            } else {
+                binding.lottieAnimationViewEmpathy.setMinAndMaxFrame(50, 90)
+                binding.lottieAnimationViewEmpathy.speed = 2.5F
+                binding.lottieAnimationViewEmpathy.playAnimation()
+                notifyTransition()
+                notifyTransition()
+                binding.expandableEmpathyView.visibility = View.GONE
+            }
+        }
+        binding.constraintLayoutCraft.setOnClickListener {
+            if (binding.expandableCraftView.visibility == View.GONE) {
+                binding.lottieAnimationViewCraft.setMinAndMaxFrame(10, 50)
+                binding.lottieAnimationViewCraft.speed = 3F
+                binding.lottieAnimationViewCraft.playAnimation()
+                binding.expandableCraftView.visibility = View.VISIBLE
+                notifyTransition()
+            } else {
+                binding.lottieAnimationViewCraft.setMinAndMaxFrame(50, 90)
+                binding.lottieAnimationViewCraft.speed = 2.5F
+                binding.lottieAnimationViewCraft.playAnimation()
+                notifyTransition()
+                binding.expandableCraftView.visibility = View.GONE
+            }
+        }
+        binding.constraintLayoutWill.setOnClickListener {
+            if (binding.expandableWillView.visibility == View.GONE) {
+                binding.lottieAnimationViewWill.setMinAndMaxFrame(10, 50)
+                binding.lottieAnimationViewWill.speed = 3F
+                binding.lottieAnimationViewWill.playAnimation()
+                binding.expandableWillView.visibility = View.VISIBLE
+                notifyTransition()
+            } else {
+                binding.lottieAnimationViewWill.setMinAndMaxFrame(50, 90)
+                binding.lottieAnimationViewWill.speed = 2.5F
+                binding.lottieAnimationViewWill.playAnimation()
+                notifyTransition()
+                binding.expandableWillView.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun notifyTransition(){
+        binding.constraintLayoutInt.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.constraintLayoutRef.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.constraintLayoutDex.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.constraintLayoutBody.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.constraintLayoutEmpathy.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.constraintLayoutCraft.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.constraintLayoutWill.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
     }
 
     private fun onSkillsInit() {
@@ -151,122 +329,122 @@ class SkillsExpandableFragment : Fragment() {
         if (inCharCreation) allEditTexts.add(binding.editText13)
         binding.editText13.setSkillText("Wilderness Survival:")
 
-//        if (inCharCreation) allEditTexts.add(binding.editText14)
-//        binding.editText14.setSkillText("Brawling:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText15)
-//        binding.editText15.setSkillText("Dodge/Escape:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText16)
-//        binding.editText16.setSkillText("Melee:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText17)
-//        binding.editText17.setSkillText("Riding:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText18)
-//        binding.editText18.setSkillText("Sailing:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText19)
-//        binding.editText19.setSkillText("Small Blades:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText20)
-//        binding.editText20.setSkillText("Staff/Spear:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText21)
-//        binding.editText21.setSkillText("Swordsmanship:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText22)
-//        binding.editText22.setSkillText("Archery:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText23)
-//        binding.editText23.setSkillText("Athletics:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText24)
-//        binding.editText24.setSkillText("Crossbow:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText25)
-//        binding.editText25.setSkillText("Sleight of Hand:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText26)
-//        binding.editText26.setSkillText("Stealth:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText27)
-//        binding.editText27.setSkillText("Physique:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText28)
-//        binding.editText28.setSkillText("Endurance:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText29)
-//        binding.editText29.setSkillText("Charisma:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText30)
-//        binding.editText30.setSkillText("Deceit:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText31)
-//        binding.editText31.setSkillText("Fine Arts:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText32)
-//        binding.editText32.setSkillText("Gambling:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText33)
-//        binding.editText33.setSkillText("Grooming and Style:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText34)
-//        binding.editText34.setSkillText("Human Perception:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText35)
-//        binding.editText35.setSkillText("Leadership:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText36)
-//        binding.editText36.setSkillText("Persuasion:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText37)
-//        binding.editText37.setSkillText("Performance:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText38)
-//        binding.editText38.setSkillText("Seduction:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText39)
-//        binding.editText39.setSkillText("Alchemy:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText40)
-//        binding.editText40.setSkillText("Crafting:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText41)
-//        binding.editText41.setSkillText("Disguise:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText42)
-//        binding.editText42.setSkillText("First Aid:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText43)
-//        binding.editText43.setSkillText("Forgery:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText44)
-//        binding.editText44.setSkillText("Pick Lock:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText45)
-//        binding.editText45.setSkillText("Trap Crafting:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText46)
-//        binding.editText46.setSkillText("Courage:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText47)
-//        binding.editText47.setSkillText("Hex Weaving:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText48)
-//        binding.editText48.setSkillText("Intimidation:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText49)
-//        binding.editText49.setSkillText("Spell Casting:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText50)
-//        binding.editText50.setSkillText("Resist Magic:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText51)
-//        binding.editText51.setSkillText("Resist Coercion:")
-//
-//        if (inCharCreation) allEditTexts.add(binding.editText52)
-//        binding.editText52.setSkillText("Ritual Crafting:")
+        if (inCharCreation) allEditTexts.add(binding.editText14)
+        binding.editText14.setSkillText("Brawling:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText15)
+        binding.editText15.setSkillText("Dodge/Escape:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText16)
+        binding.editText16.setSkillText("Melee:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText17)
+        binding.editText17.setSkillText("Riding:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText18)
+        binding.editText18.setSkillText("Sailing:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText19)
+        binding.editText19.setSkillText("Small Blades:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText20)
+        binding.editText20.setSkillText("Staff/Spear:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText21)
+        binding.editText21.setSkillText("Swordsmanship:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText22)
+        binding.editText22.setSkillText("Archery:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText23)
+        binding.editText23.setSkillText("Athletics:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText24)
+        binding.editText24.setSkillText("Crossbow:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText25)
+        binding.editText25.setSkillText("Sleight of Hand:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText26)
+        binding.editText26.setSkillText("Stealth:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText27)
+        binding.editText27.setSkillText("Physique:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText28)
+        binding.editText28.setSkillText("Endurance:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText29)
+        binding.editText29.setSkillText("Charisma:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText30)
+        binding.editText30.setSkillText("Deceit:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText31)
+        binding.editText31.setSkillText("Fine Arts:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText32)
+        binding.editText32.setSkillText("Gambling:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText33)
+        binding.editText33.setSkillText("Grooming and Style:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText34)
+        binding.editText34.setSkillText("Human Perception:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText35)
+        binding.editText35.setSkillText("Leadership:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText36)
+        binding.editText36.setSkillText("Persuasion:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText37)
+        binding.editText37.setSkillText("Performance:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText38)
+        binding.editText38.setSkillText("Seduction:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText39)
+        binding.editText39.setSkillText("Alchemy:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText40)
+        binding.editText40.setSkillText("Crafting:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText41)
+        binding.editText41.setSkillText("Disguise:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText42)
+        binding.editText42.setSkillText("First Aid:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText43)
+        binding.editText43.setSkillText("Forgery:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText44)
+        binding.editText44.setSkillText("Pick Lock:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText45)
+        binding.editText45.setSkillText("Trap Crafting:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText46)
+        binding.editText46.setSkillText("Courage:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText47)
+        binding.editText47.setSkillText("Hex Weaving:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText48)
+        binding.editText48.setSkillText("Intimidation:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText49)
+        binding.editText49.setSkillText("Spell Casting:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText50)
+        binding.editText50.setSkillText("Resist Magic:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText51)
+        binding.editText51.setSkillText("Resist Coercion:")
+
+        if (inCharCreation) allEditTexts.add(binding.editText52)
+        binding.editText52.setSkillText("Ritual Crafting:")
 
         if (inCharCreation) {
             val indexArray = mainCharacterViewModel.getProfessionIndices()
@@ -277,41 +455,41 @@ class SkillsExpandableFragment : Fragment() {
         }
 
         when (mainCharacterViewModel.profession.value){
-//            Constants.Professions.BARD -> {
-//                binding.etBusking.visibility = View.VISIBLE
-//                binding.etBusking.setSkillText("Busking:")
-//                binding.etBusking.setDefSkillColor()
-//            }
+            Constants.Professions.BARD -> {
+                binding.etBusking.visibility = View.VISIBLE
+                binding.etBusking.setSkillText("Busking:")
+                binding.etBusking.setDefSkillColor()
+            }
             Constants.Professions.CRIMINAL -> {
                 binding.etPracticedParanoia.visibility = View.VISIBLE
                 binding.etPracticedParanoia.setSkillText("Practiced Paranoia:")
                 binding.etPracticedParanoia.setDefSkillColor()
             }
-//            Constants.Professions.CRAFTSMAN -> {
-//                binding.etPatchJob.visibility = View.VISIBLE
-//                binding.etPatchJob.setSkillText("Patch Job:")
-//                binding.etPatchJob.setDefSkillColor()
-//            }
-//            Constants.Professions.DOCTOR -> {
-//                binding.etHealingHands.visibility = View.VISIBLE
-//                binding.etHealingHands.setSkillText("Healing Hands:")
-//                binding.etHealingHands.setDefSkillColor()
-//            }
+            Constants.Professions.CRAFTSMAN -> {
+                binding.etPatchJob.visibility = View.VISIBLE
+                binding.etPatchJob.setSkillText("Patch Job:")
+                binding.etPatchJob.setDefSkillColor()
+            }
+            Constants.Professions.DOCTOR -> {
+                binding.etHealingHands.visibility = View.VISIBLE
+                binding.etHealingHands.setSkillText("Healing Hands:")
+                binding.etHealingHands.setDefSkillColor()
+            }
             Constants.Professions.MAGE -> {
                 binding.etMagicTraining.visibility = View.VISIBLE
                 binding.etMagicTraining.setSkillText("Magic Training:")
                 binding.etMagicTraining.setDefSkillColor()
             }
-//            Constants.Professions.MAN_AT_ARMS -> {
-//                binding.etToughAsNails.visibility = View.VISIBLE
-//                binding.etToughAsNails.setSkillText("Tough As Nails:")
-//                binding.etToughAsNails.setDefSkillColor()
-//            }
-//            Constants.Professions.PRIEST -> {
-//                binding.etInitiateOfTheGods.visibility = View.VISIBLE
-//                binding.etInitiateOfTheGods.setSkillText("Initiate of The Gods:")
-//                binding.etInitiateOfTheGods.setDefSkillColor()
-//            }
+            Constants.Professions.MAN_AT_ARMS -> {
+                binding.etToughAsNails.visibility = View.VISIBLE
+                binding.etToughAsNails.setSkillText("Tough As Nails:")
+                binding.etToughAsNails.setDefSkillColor()
+            }
+            Constants.Professions.PRIEST -> {
+                binding.etInitiateOfTheGods.visibility = View.VISIBLE
+                binding.etInitiateOfTheGods.setSkillText("Initiate of The Gods:")
+                binding.etInitiateOfTheGods.setDefSkillColor()
+            }
             Constants.Professions.WITCHER -> {
                 binding.etWitcherTraining.visibility = View.VISIBLE
                 binding.etWitcherTraining.setSkillText("Witcher Training:")
@@ -332,7 +510,15 @@ class SkillsExpandableFragment : Fragment() {
                 binding.etIntolerance.setSkillText("Intolerance:")
                 binding.etIntolerance.setDefSkillColor()
             }
-            else -> {}
+        }
+        if (inCharCreation) {
+            binding.expandableIntView.visibility = View.VISIBLE
+            binding.expandableRefView.visibility = View.VISIBLE
+            binding.expandableDexView.visibility = View.VISIBLE
+            binding.expandableBodyView.visibility = View.VISIBLE
+            binding.expandableEmpathyView.visibility = View.VISIBLE
+            binding.expandableCraftView.visibility = View.VISIBLE
+            binding.expandableWillView.visibility = View.VISIBLE
         }
     }
 
@@ -392,45 +578,45 @@ class SkillsExpandableFragment : Fragment() {
             "Tactics" -> return binding.editText11
             "Teaching" -> return binding.editText12
             "Wilderness Survival" -> return binding.editText13
-//            "Brawling" -> return binding.editText14
-//            "Dodge/Escape" -> return binding.editText15
-//            "Melee" -> return binding.editText16
-//            "Riding" -> return binding.editText17
-//            "Sailing" -> return binding.editText18
-//            "Small Blades" -> return binding.editText19
-//            "Staff/Spear" -> return binding.editText20
-//            "Swordsmanship" -> return binding.editText21
-//            "Archery" -> return binding.editText22
-//            "Athletics" -> return binding.editText23
-//            "Crossbow" -> return binding.editText24
-//            "Sleight of Hand" -> return binding.editText25
-//            "Stealth" -> return binding.editText26
-//            "Physique" -> return binding.editText27
-//            "Endurance" -> return binding.editText28
-//            "Charisma" -> return binding.editText29
-//            "Deceit" -> return binding.editText30
-//            "Fine Arts" -> return binding.editText31
-//            "Gambling" -> return binding.editText32
-//            "Grooming and Style" -> return binding.editText33
-//            "Human Perception" -> return binding.editText34
-//            "Leadership" -> return binding.editText35
-//            "Persuasion" -> return binding.editText36
-//            "Performance" -> return binding.editText37
-//            "Seduction" -> return binding.editText38
-//            "Alchemy" -> return binding.editText39
-//            "Crafting" -> return binding.editText40
-//            "Disguise" -> return binding.editText41
-//            "First Aid" -> return binding.editText42
-//            "Forgery" -> return binding.editText43
-//            "Pick Lock" -> return binding.editText44
-//            "Trap Crafting" -> return binding.editText45
-//            "Courage" -> return binding.editText46
-//            "Hex Weaving" -> return binding.editText47
-//            "Intimidation" -> return binding.editText48
-//            "Spell Casting" -> return binding.editText49
-//            "Resist Magic" -> return binding.editText50
-//            "Resist Coercion" -> return binding.editText51
-//            "Ritual Crafting" -> return binding.editText52
+            "Brawling" -> return binding.editText14
+            "Dodge/Escape" -> return binding.editText15
+            "Melee" -> return binding.editText16
+            "Riding" -> return binding.editText17
+            "Sailing" -> return binding.editText18
+            "Small Blades" -> return binding.editText19
+            "Staff/Spear" -> return binding.editText20
+            "Swordsmanship" -> return binding.editText21
+            "Archery" -> return binding.editText22
+            "Athletics" -> return binding.editText23
+            "Crossbow" -> return binding.editText24
+            "Sleight of Hand" -> return binding.editText25
+            "Stealth" -> return binding.editText26
+            "Physique" -> return binding.editText27
+            "Endurance" -> return binding.editText28
+            "Charisma" -> return binding.editText29
+            "Deceit" -> return binding.editText30
+            "Fine Arts" -> return binding.editText31
+            "Gambling" -> return binding.editText32
+            "Grooming and Style" -> return binding.editText33
+            "Human Perception" -> return binding.editText34
+            "Leadership" -> return binding.editText35
+            "Persuasion" -> return binding.editText36
+            "Performance" -> return binding.editText37
+            "Seduction" -> return binding.editText38
+            "Alchemy" -> return binding.editText39
+            "Crafting" -> return binding.editText40
+            "Disguise" -> return binding.editText41
+            "First Aid" -> return binding.editText42
+            "Forgery" -> return binding.editText43
+            "Pick Lock" -> return binding.editText44
+            "Trap Crafting" -> return binding.editText45
+            "Courage" -> return binding.editText46
+            "Hex Weaving" -> return binding.editText47
+            "Intimidation" -> return binding.editText48
+            "Spell Casting" -> return binding.editText49
+            "Resist Magic" -> return binding.editText50
+            "Resist Coercion" -> return binding.editText51
+            "Ritual Crafting" -> return binding.editText52
         }
         return binding.editText1
     }
