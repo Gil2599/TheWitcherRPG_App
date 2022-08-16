@@ -28,12 +28,10 @@ import com.witcher.thewitcherrpg.feature_character_sheet.presentation.character_
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.EquipmentParentFragment
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.MagicParentFragment
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.profession_skill_tree.ProfessionSkillTree
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.stats.StatsFragment
 import com.google.android.material.snackbar.Snackbar
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsExpandableFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File

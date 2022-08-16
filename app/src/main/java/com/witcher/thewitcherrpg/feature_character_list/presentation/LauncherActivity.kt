@@ -323,4 +323,9 @@ class LauncherActivity : AppCompatActivity() {
         val intent = Intent(this, CharCreationActivity::class.java)
         this.startActivity(intent)
     }
+
+    override fun onResume() {
+        super.onResume()
+        mCharListViewModel.setInAddMode(false)
+    }
 }
