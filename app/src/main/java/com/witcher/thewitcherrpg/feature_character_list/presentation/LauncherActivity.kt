@@ -1,46 +1,33 @@
 package com.witcher.thewitcherrpg.feature_character_list.presentation
 
-import android.Manifest
 import android.app.Dialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.FloatRange
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat
-import androidx.core.net.toFile
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieProperty
-import com.airbnb.lottie.model.KeyPath
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.about_section.AboutActivity
+import com.witcher.thewitcherrpg.core.domain.model.Character
 import com.witcher.thewitcherrpg.databinding.ActivityLauncherBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.witcher.thewitcherrpg.core.domain.model.Character
+import com.witcher.thewitcherrpg.feature_custom_attributes.presentation.CustomAttributeActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.io.File
 
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
@@ -73,6 +60,18 @@ class LauncherActivity : AppCompatActivity() {
         }
         binding.textViewNewCharacter.setOnClickListener {
             goToCharCreation()
+        }
+        binding.lottieAnimationMagicBorder.setOnClickListener {
+            goToCustomMagic()
+        }
+        binding.textViewNewMagic.setOnClickListener {
+            goToCustomMagic()
+        }
+        binding.lottieAnimationEquipmentBorder.setOnClickListener {
+            goToCustomEquipment()
+        }
+        binding.textViewNewEquipment.setOnClickListener {
+            goToCustomEquipment()
         }
 
         val adapter = ListAdapter(this)
@@ -323,6 +322,21 @@ class LauncherActivity : AppCompatActivity() {
         val intent = Intent(this, CharCreationActivity::class.java)
         this.startActivity(intent)
     }
+
+    private fun goToCustomMagic(){
+        val intent = Intent(this, CustomAttributeActivity::class.java)
+        intent.putExtra("isDark", darkMode)
+        intent.putExtra("isMagic", true)
+        this.startActivity(intent)
+    }
+
+    private fun goToCustomEquipment(){
+        val intent = Intent(this, CustomAttributeActivity::class.java)
+        intent.putExtra("isDark", darkMode)
+        intent.putExtra("isMagic", false)
+        this.startActivity(intent)
+    }
+
 
     override fun onResume() {
         super.onResume()
