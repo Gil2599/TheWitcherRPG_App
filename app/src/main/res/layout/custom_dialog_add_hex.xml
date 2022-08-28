@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="50dp"
@@ -83,29 +84,45 @@
 
         <Button
             android:id="@+id/addSpellbutton"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
             android:background="@drawable/button_bkg"
-            android:text="@string/learn_hex"
+            android:text="@string/learn_spell"
             android:textColor="?colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/removeSpellButton"/>
+
+        <Button
+            android:id="@+id/removeSpellButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/button_bkg"
+            android:text="@string/delete"
+            android:textColor="?colorAccent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addSpellbutton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/add_spell_cancel_button" />
 
         <Button
             android:id="@+id/add_spell_cancel_button"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_bkg"
             android:text="@string/cancel"
             android:textColor="?colorAccent"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/addSpellbutton"
-            app:layout_constraintEnd_toStartOf="@+id/addSpellbutton"
+            app:layout_constraintEnd_toStartOf="@+id/removeSpellButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/addSpellbutton"
-            app:layout_constraintWidth_percent="0.35" />
+            app:layout_constraintTop_toTopOf="@+id/addSpellbutton"/>
 
         <TextView
             android:id="@+id/add_sta_cost_text"

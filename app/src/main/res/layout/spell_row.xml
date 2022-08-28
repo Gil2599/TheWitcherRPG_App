@@ -12,24 +12,24 @@
     <TextView
         android:id="@+id/spell_name_text"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.7"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Placeholder Name"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sta_cost_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.074" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintWidth_percent="0.7" />
 
     <TextView
         android:id="@+id/sta_cost_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp"
         android:text="Stamina Cost: 5"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/spell_name_text"
         app:layout_constraintTop_toBottomOf="@+id/spell_name_text" />
 
@@ -52,4 +52,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/spell_name_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spell_name_text" />
+
+    <TextView
+        android:id="@+id/textViewCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/custom"
+        android:textColor="@color/green"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/range_text"
+        app:layout_constraintStart_toStartOf="@+id/sta_cost_text"
+        app:layout_constraintTop_toBottomOf="@+id/sta_cost_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

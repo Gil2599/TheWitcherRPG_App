@@ -1,6 +1,7 @@
 package com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.witcher.thewitcherrpg.databinding.MagicHeaderBinding
@@ -75,6 +76,8 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
                     }
                 }
             }
+            if (item.isCustom) binding.textViewCustom.visibility = View.VISIBLE
+            else binding.textViewCustom.visibility = View.GONE
         }
     }
 

@@ -1,6 +1,6 @@
-package com.witcher.thewitcherrpg.core.data.repository
+package com.witcher.thewitcherrpg.core.data.characterData.repository
 
-import com.witcher.thewitcherrpg.core.data.data_source.CharacterDao
+import com.witcher.thewitcherrpg.core.data.characterData.data_source.CharacterDao
 import com.witcher.thewitcherrpg.core.domain.model.Character
 import com.witcher.thewitcherrpg.core.domain.repository.CharacterRepository
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.witcher.thewitcherrpg.core.data.data_source
+package com.witcher.thewitcherrpg.core.data.characterData.data_source
 
 import androidx.room.*
 import com.witcher.thewitcherrpg.core.domain.model.Character

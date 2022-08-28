@@ -34,7 +34,7 @@
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />
         <argument
-            android:name="magicType"
+            android:name="magicGeneralType"
             app:argType="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.MagicViewPagerAdapter$FragmentName" />
     </fragment>
 </navigation>

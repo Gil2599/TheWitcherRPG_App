@@ -29,7 +29,7 @@
     <string name="total_weight">Total Weight</string>
     <string name="cost_per_item">Cost Per Item</string>
     <string name="item_description">Item Description</string>
-    <string name="learn_spell">Learn Spell</string>
+    <string name="learn_spell">Learn</string>
     <string name="learn_hex">Learn Hex</string>
     <string name="event_title">Event Title</string>
     <string name="event_description">Event Description</string>
@@ -117,4 +117,6 @@
     <string name="intelligence_skills">Intelligence Skills - </string>
     <string name="reflex_skills">Reflex Skills - </string>
     <string name="title_activity_custom_attribute">CustomAttributeActivity</string>
+    <string name="custom">Custom</string>
+    <string name="delete">Delete</string>
 </resources>

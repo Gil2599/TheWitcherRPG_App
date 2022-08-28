@@ -2,35 +2,25 @@ package com.witcher.thewitcherrpg.feature_custom_attributes.presentation
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.BaselineShift
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.unit.toSize
-import com.witcher.thewitcherrpg.R
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.witcher.thewitcherrpg.core.Resource
 
 class CustomMagicComposableFragment {
 
@@ -39,17 +29,63 @@ class CustomMagicComposableFragment {
     @Composable
     fun SetCustomMagicContent() {
         val activity = (LocalContext.current as? Activity)
+        val customAttributeViewModel: CustomAttributeViewModel = viewModel()
+
+        var magicName by remember {
+            mutableStateOf("")
+        }
         var typeSelection by remember {
-            mutableStateOf(MagicType.SPELL)
+            mutableStateOf(MagicGeneralType.SPELL)
         }
         var levelSelection by remember {
             mutableStateOf(MagicLevel.NOVICE)
+        }
+        var duration by remember {
+            mutableStateOf("")
+        }
+        var staCost by remember {
+            mutableStateOf(0F)
+        }
+        var isVariable by remember {
+            mutableStateOf(false)
+        }
+        var range by remember {
+            mutableStateOf(0F)
+        }
+        var difficulty by remember {
+            mutableStateOf(0F)
+        }
+        var isVariableDiff by remember {
+            mutableStateOf(false)
+        }
+        var isSelf by remember {
+            mutableStateOf(false)
+        }
+        var defenseOrPrepTime by remember {
+            mutableStateOf("")
+        }
+        var effect by remember {
+            mutableStateOf("")
+        }
+        var componentsOrReqToLift by remember {
+            mutableStateOf("")
+        }
+        var element by remember {
+            mutableStateOf(Element.AIR)
+        }
+        val scrollState = rememberScrollState()
+
+        customAttributeViewModel.addMagicState.observe(LocalLifecycleOwner.current) {
+            if (customAttributeViewModel.addMagicState.value is Resource.Success) {
+                Toast.makeText(activity, "Magic Added Successfully!", Toast.LENGTH_SHORT).show()
+                activity?.finish()
+            }
         }
 
         Scaffold(topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Custom Magic")
+                    Text(text = "Add New Attribute")
                 },
                 backgroundColor = MaterialTheme.colors.primaryVariant,
                 navigationIcon = {
@@ -63,357 +99,221 @@ class CustomMagicComposableFragment {
             )
         }
         ) {
-            Column(
-                modifier = Modifier
-                    .padding(15.dp)
-                    .fillMaxHeight(),
-                verticalArrangement = Arrangement.SpaceEvenly
-            )
-            {
+            Column {
                 CustomTitle(title = "Custom Magic")
-                CustomTextFieldName()
-                DropDownMenuType(
-                    updateSelection = { newSelection ->
-                        typeSelection = newSelection
+
+                Column(
+                    modifier = Modifier
+                        .padding(top = 15.dp, end = 15.dp, start = 15.dp)
+                        .verticalScroll(scrollState)
+                        .weight(1f, fill = true),
+                    verticalArrangement = Arrangement.SpaceAround
+                ) {
+                    CustomTextField(value = magicName, updateValue = {
+                        magicName = it
+                    }, label = "Magic Name", maxLines = 2)
+                    CustomDropDownMenu(
+                        updateSelection = { newSelection ->
+                            typeSelection =
+                                customAttributeViewModel.getMagicTypeFromSelection(newSelection)!!
+                        },
+                        options = customAttributeViewModel.optionsMagicGeneralTypeMap.keys.toList(),
+                        label = "Magic Type"
+                    )
+                    CustomDropDownMenu(
+                        selection = customAttributeViewModel.getMagicLevelSelection(
+                            typeSelection,
+                            levelSelection
+                        ),
+                        updateSelection = { newSelection ->
+                            levelSelection =
+                                customAttributeViewModel.getMagicLevelFromSelection(newSelection)!!
+                        },
+                        options = customAttributeViewModel.getMagicLevelOptions(typeSelection),
+                        label = if (typeSelection == MagicGeneralType.HEX) "Danger Level" else "Magic Level",
+                    )
+                    AnimatedVisibility(visible = (typeSelection == MagicGeneralType.SPELL || typeSelection == MagicGeneralType.SIGN)) {
+                        CustomDropDownMenu(
+                            updateSelection = { newSelection ->
+                                element =
+                                    customAttributeViewModel.getElementFromSelection(newSelection)!!
+                            },
+                            options = customAttributeViewModel.optionsElementsMap.keys.toList(),
+                            label = "Element"
+                        )
                     }
-                )
-                DropDownMenuLevel(
-                    selection = typeSelection,
-                    updateSelection = { newSelection ->
-                        levelSelection = newSelection
-                    })
-                STACostSliderCard()
+
+                    AnimatedVisibility(visible = (typeSelection != MagicGeneralType.HEX)) {
+                        CustomTextField(
+                            value = defenseOrPrepTime,
+                            updateValue = {
+                                defenseOrPrepTime = it
+                            },
+                            label = if (typeSelection != MagicGeneralType.RITUAL) "Defense" else "Preparation Time"
+                        )
+                    }
+
+                    AnimatedVisibility(visible = (typeSelection != MagicGeneralType.HEX)) {
+                        CustomTextField(value = duration, updateValue = {
+                            duration = it
+                        }, label = "Duration")
+                    }
+
+                    AnimatedVisibility(visible = true) {
+                        STACostSliderCard(mainValue = staCost, updateMainValue = { newCost ->
+                            staCost = newCost
+                        }, isChecked = isVariable, updateIsChecked = { newValue ->
+                            isVariable = newValue
+                        },
+                            initialText = "Stamina Cost: ",
+                            variableText = "Variable:",
+                            noDisable = false
+                        )
+                    }
+
+                    AnimatedVisibility(visible = (typeSelection != MagicGeneralType.RITUAL && typeSelection != MagicGeneralType.HEX)) {
+                        STACostSliderCard(mainValue = range, updateMainValue = { newCost ->
+                            range = newCost
+                        }, isChecked = isSelf, updateIsChecked = { newValue ->
+                            isSelf = newValue
+                        },
+                            initialText = "Range: ",
+                            variableText = "Self:",
+                            noDisable = true
+                        )
+                    }
+                    AnimatedVisibility(visible = (typeSelection == MagicGeneralType.RITUAL)) {
+                        STACostSliderCard(mainValue = difficulty, updateMainValue = { newCost ->
+                            difficulty = newCost
+                        }, isChecked = isVariableDiff, updateIsChecked = { newValue ->
+                            isVariableDiff = newValue
+                        },
+                            initialText = "Difficulty: ",
+                            variableText = "Variable:",
+                            noDisable = false
+                        )
+                    }
+                    AnimatedVisibility(visible = (typeSelection == MagicGeneralType.RITUAL || typeSelection == MagicGeneralType.HEX)) {
+                        CustomTextField(
+                            value = componentsOrReqToLift, updateValue = { newValue ->
+                                componentsOrReqToLift = newValue
+                            },
+                            label = if (typeSelection == MagicGeneralType.RITUAL) "Components" else "Requirement To Lift",
+                            maxLines = 50
+                        )
+                    }
+                    CustomTextField(value = effect, updateValue = { newEffect ->
+                        effect = newEffect
+                    }, label = "Effect", maxLines = 50)
+
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 15.dp, end = 15.dp, start = 15.dp, top = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Button("Cancel",
+                        onClick = {
+                            activity?.finish()
+                        }
+                    )
+                    Button(
+                        "Save",
+                        onClick = {
+                            if (
+                                !customAttributeViewModel.isMagicValid(
+                                    type = typeSelection,
+                                    magicLevel = levelSelection,
+                                    name = magicName,
+                                    staminaCost = staCost.toInt(),
+                                    description = effect,
+                                    range = range.toInt().toString(),
+                                    duration = duration,
+                                    defenseOrPrepTime = defenseOrPrepTime,
+                                    element = element,
+                                    difficulty = difficulty.toInt(),
+                                    componentsOrReqToLift = componentsOrReqToLift,
+                                    isSelfRange = isSelf,
+                                    isVariableDiff = isVariableDiff,
+                                    isVariableSta = isVariable
+                                )
+                            ) {
+                                Toast.makeText(activity, "Please fill out necessary fields", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-fun CustomTitle(title: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(20.dp)
-            .padding(horizontal = 15.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        Image(
-            painterResource(id = R.drawable.ic_title_sword),
-            contentDescription = "left sword",
-            modifier = Modifier
-                .rotate(180F)
-                .weight(1F),
-            contentScale = ContentScale.FillBounds,
-            colorFilter = ColorFilter.tint(color = MaterialTheme.colors.primary)
-        )
-        Text(
-            text = title,
-            modifier = Modifier.padding(horizontal = 15.dp),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colors.onPrimary
-        )
-        Image(
-            painterResource(id = R.drawable.ic_title_sword),
-            contentDescription = "right sword",
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier.weight(1F),
-            colorFilter = ColorFilter.tint(color = MaterialTheme.colors.primary)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CustomTextFieldName() {
-
-    val focusManager: FocusManager = LocalFocusManager.current
-    var text by remember {
-        mutableStateOf("")
-    }
-    val focusRequester = remember {
-        FocusRequester()
-    }
-    OutlinedTextField(
-        textStyle = LocalTextStyle.current.copy(baselineShift = BaselineShift(-0.3F)),
-        value = text,
-        onValueChange = { newText ->
-            text = newText
-        },
-        label = { Text(text = "Magic Name", Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp)) },
-        leadingIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Filled.Person,
-                    contentDescription = "Person Icon"
-                )
-            }
-        },
-        trailingIcon = {
-            IconButton(onClick = {
-                focusManager.clearFocus()
-            }) {
-                Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = "Person Icon"
-                )
-            }
-        },
-        modifier = Modifier
-            .focusRequester(focusRequester)
-            .fillMaxWidth(),
-        maxLines = 2
-    )
-
-}
-
-//@Preview(showBackground = true)
-@Composable
-fun DropDownMenuType(
-    updateSelection: (MagicType) -> Unit,
-    modifier: Modifier = Modifier
+fun STACostSliderCard(
+    mainValue: Float,
+    isChecked: Boolean,
+    updateMainValue: (Float) -> Unit,
+    updateIsChecked: (Boolean) -> Unit,
+    initialText: String,
+    variableText: String,
+    noDisable: Boolean
 ) {
+    var enabled by rememberSaveable { mutableStateOf(true) }
 
-    var expanded by remember { mutableStateOf(false) }
-    val suggestions = listOf("Spell", "Invocation", "Ritual", "Hex", "Sign")
-    var selectedText by remember { mutableStateOf("") }
-    val focusManager: FocusManager = LocalFocusManager.current
-
-    val focusRequester = remember {
-        FocusRequester()
-    }
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
-
-    val icon = if (expanded)
-        Icons.Filled.KeyboardArrowUp
-    else {
-        focusManager.clearFocus()
-        Icons.Filled.KeyboardArrowDown
-    }
-
-    Column(
-        modifier = modifier.then(Modifier
-            .clickable { focusManager.clearFocus(true) })
-    ) {
-        OutlinedTextField(
-            textStyle = LocalTextStyle.current.copy(baselineShift = BaselineShift(-0.3F)),
-            value = selectedText,
-            onValueChange = { selectedText = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .onGloballyPositioned { coordinates ->
-                    //This value is used to assign to the DropDown the same width
-                    textfieldSize = coordinates.size.toSize()
-                }
-                .focusRequester(focusRequester)
-                .onFocusChanged { focusState ->
-                    when {
-                        focusState.isFocused -> expanded = true
-                        focusState.hasFocus -> expanded = true
-                    }
-                },
-            label = { Text("Magic Type", Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp)) },
-            leadingIcon = {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_magic_icon),
-                    contentDescription = null
-                )
-            },
-            trailingIcon = {
-                Icon(icon, "contentDescription",
-                    Modifier.clickable { expanded = !expanded })
-            },
-            readOnly = true
-        )
-        DropdownMenu(
-            expanded = (expanded),
-            onDismissRequest = { expanded = false },
-            modifier = Modifier
-                .width(with(LocalDensity.current) { textfieldSize.width.toDp() })
-        ) {
-            suggestions.forEach { label ->
-                DropdownMenuItem(onClick = {
-                    selectedText = label
-                    expanded = false
-                    focusManager.clearFocus()
-                    when (selectedText) {
-                        "Spell" -> updateSelection(MagicType.SPELL)
-                        "Invocation" -> updateSelection(MagicType.INVOCATION)
-                        "Ritual" -> updateSelection(MagicType.RITUAL)
-                        "Hex" -> updateSelection(MagicType.HEX)
-                        "Sign" -> updateSelection(MagicType.SIGN)
-                    }
-                }) {
-                    Text(text = label)
-                }
-            }
+    enabled = if (isChecked) {
+        if (!noDisable) {
+            updateMainValue(0F)
+            !isChecked
+        } else {
+            true
+        }
+    } else {
+        if (!noDisable) {
+            !isChecked
+        } else {
+            true
         }
     }
-}
-
-@Composable
-fun DropDownMenuLevel(
-    selection: MagicType, updateSelection: (MagicLevel) -> Unit,
-    modifier: Modifier = Modifier
-) {
-
-    var expanded by remember { mutableStateOf(false) }
-    val suggestionsSpells = listOf("Novice", "Journeyman", "Master")
-    val suggestionsInvocations = listOf(
-        "Novice Druid",
-        "Journeyman Druid",
-        "Master Druid",
-        "Novice Preacher",
-        "Journeyman Preacher",
-        "Master Preacher",
-        "Arch Priest"
-    )
-    val suggestionsSigns = listOf("Basic", "Alternate")
-    var selectedText by remember { mutableStateOf("") }
-    val focusManager: FocusManager = LocalFocusManager.current
-
-    val focusRequester = remember {
-        FocusRequester()
-    }
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
-
-    val icon = if (expanded)
-        Icons.Filled.KeyboardArrowUp
-    else {
-        focusManager.clearFocus()
-        Icons.Filled.KeyboardArrowDown
-    }
-
-    Column(
-        modifier = modifier.then(Modifier
-            .clickable { focusManager.clearFocus(true) })
-    ) {
-        OutlinedTextField(
-            textStyle = LocalTextStyle.current.copy(baselineShift = BaselineShift(-0.4F)),
-            value =
-            when (selection) {
-                MagicType.SPELL, MagicType.RITUAL -> {
-                    if (!suggestionsSpells.contains(selectedText)) suggestionsSpells[0] else selectedText
-                }
-                MagicType.INVOCATION -> {
-                    if (!suggestionsInvocations.contains(selectedText)) suggestionsInvocations[0] else selectedText
-                }
-                MagicType.SIGN -> {
-                    if (!suggestionsSigns.contains(selectedText)) suggestionsSigns[0] else selectedText
-                }
-                else -> {
-                    " "
-                }
-            },
-            onValueChange = { selectedText = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .onGloballyPositioned { coordinates ->
-                    //This value is used to assign to the DropDown the same width
-                    textfieldSize = coordinates.size.toSize()
-                }
-                .focusRequester(focusRequester)
-                .onFocusChanged { focusState ->
-                    when {
-                        focusState.isFocused -> expanded = true
-                        focusState.hasFocus -> expanded = true
-                    }
-                },
-            label = { Text("Magic Level", Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp)) },
-            leadingIcon = {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_magic_icon),
-                    contentDescription = null
-                )
-            },
-            trailingIcon = {
-                Icon(icon, "contentDescription",
-                    Modifier.clickable { expanded = !expanded })
-            },
-            readOnly = true
-        )
-        DropdownMenu(
-            expanded = (expanded),
-            onDismissRequest = { expanded = false },
-            modifier = Modifier
-                .width(with(LocalDensity.current) { textfieldSize.width.toDp() })
-        ) {
-            when (selection) {
-                MagicType.SPELL, MagicType.RITUAL -> {
-                    suggestionsSpells.forEach { label ->
-                        DropdownMenuItem(onClick = {
-                            selectedText = label
-                            expanded = false
-                            focusManager.clearFocus()
-                            when (selectedText) {
-                                "Novice" -> updateSelection(MagicLevel.NOVICE)
-                                "Journeyman" -> updateSelection(MagicLevel.JOURNEYMAN)
-                                "Master" -> updateSelection(MagicLevel.MASTER)
-                            }
-                        }) {
-                            Text(text = label)
-                        }
-                    }
-                }
-                MagicType.INVOCATION -> {
-                    suggestionsInvocations.forEach { label ->
-                        DropdownMenuItem(onClick = {
-                            selectedText = label
-                            expanded = false
-                            focusManager.clearFocus()
-                            when (selectedText) {
-
-                            }
-                        }) {
-                            Text(text = label)
-                        }
-                    }
-                }
-                MagicType.SIGN -> {
-                    suggestionsSigns.forEach { label ->
-                        DropdownMenuItem(onClick = {
-                            selectedText = label
-                            expanded = false
-                            focusManager.clearFocus()
-                            when (selectedText) {
-
-                            }
-                        }) {
-                            Text(text = label)
-                        }
-                    }
-                }
-                MagicType.HEX -> {
-
-                }
-            }
-        }
-    }
-
-}
-
-@Composable
-fun STACostSliderCard() {
-    var mySelection by rememberSaveable { mutableStateOf(0F) }
 
     Column {
-        Text(text = "Stamina Cost: " + mySelection.toInt().toString())
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text(
+                text = initialText + mainValue.toInt().toString(),
+                modifier = Modifier.padding(top = 16.dp)
+            )
+            Row {
+                Text(text = variableText, modifier = Modifier.padding(top = 16.dp))
+                Checkbox(checked = isChecked, onCheckedChange = {
+                    updateIsChecked(it)
+                }, colors = CheckboxDefaults.colors(checkedColor = MaterialTheme.colors.primary))
+            }
+        }
         Slider(
             modifier = Modifier.fillMaxWidth(),
-            value = mySelection,
-            onValueChange = { mySelection = it },
+            value = mainValue,
+            onValueChange = { updateMainValue(it) },
             steps = 20,
-            valueRange = 0F..30F
+            valueRange = 0F..30F,
+            enabled = enabled
         )
     }
 }
 
-enum class MagicType {
+enum class MagicGeneralType {
     SPELL,
     INVOCATION,
     RITUAL,
     HEX,
     SIGN
+}
+
+enum class Element {
+    AIR,
+    EARTH,
+    FIRE,
+    WATER,
+    MIXED_ELEMENT
 }
 
 enum class MagicLevel {
@@ -426,5 +326,25 @@ enum class MagicLevel {
     NOVICE_PREACHER,
     JOURNEYMAN_PREACHER,
     MASTER_PREACHER,
-    ARCH_PRIEST
+    ARCH_PRIEST,
+    LOW,
+    MEDIUM,
+    HIGH,
+    BASIC,
+    ALTERNATE
+}
+
+@Composable
+fun Button(
+    label: String = "Save",
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        border = BorderStroke(1.dp, MaterialTheme.colors.primary),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Transparent),
+        shape = RoundedCornerShape(15.dp)
+    ) {
+        Text(text = label, color = MaterialTheme.colors.onPrimary, fontSize = 16.sp)
+    }
 }

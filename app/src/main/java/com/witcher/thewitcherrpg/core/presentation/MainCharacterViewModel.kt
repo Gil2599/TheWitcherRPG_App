@@ -12,6 +12,7 @@ import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
 import com.witcher.thewitcherrpg.core.domain.model.Character
+import com.witcher.thewitcherrpg.core.domain.model.CustomMagic
 import com.witcher.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharacterState
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
@@ -28,14 +29,17 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipm
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetCustomMagicUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.profession_tree.OnProfessionSkillChangeUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
+import com.witcher.thewitcherrpg.feature_custom_attributes.domain.DeleteCustomMagicUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.io.File
 import javax.inject.Inject
 import kotlin.math.absoluteValue
@@ -61,7 +65,9 @@ class MainCharacterViewModel @Inject constructor(
     private val getArmorSetListUseCase: GetArmorSetListUseCase,
     private val getArmorFromArmorSetUseCase: GetArmorFromArmorSetUseCase,
     private val dataStore: DataStoreRepository,
-    private val characterToFileUseCase: CharacterToFileUseCase
+    private val characterToFileUseCase: CharacterToFileUseCase,
+    private val getCustomMagicUseCase: GetCustomMagicUseCase,
+    private val deleteCustomMagicUseCase: DeleteCustomMagicUseCase
 ) : ViewModel() {
 
     val isDarkModeEnabled = dataStore.readDarkMode
@@ -699,6 +705,9 @@ class MainCharacterViewModel @Inject constructor(
     fun setInCharCreation(inCharacterCreation: Boolean) {
         _inCharacterCreation.value = inCharacterCreation
     }
+
+    private var _customMagicList = MutableStateFlow(listOf<MagicItem>())
+    val customMagicList = _customMagicList.asStateFlow()
 
     fun addCharacter() {
 
@@ -3059,6 +3068,7 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun getMagicList(source: Int): ArrayList<MagicItem> {
+        //getCustomMagic()
         return getMagicListUseCase(source)
     }
 
@@ -3181,22 +3191,22 @@ class MainCharacterViewModel @Inject constructor(
         calculateCurrentEncumbrance()
     }
 
-    private fun calculateCurrentEncumbrance(){
+    private fun calculateCurrentEncumbrance() {
         var currentEncumbrance = 0F
 
-        for (item in _headEquipment.value){
+        for (item in _headEquipment.value) {
             currentEncumbrance += item.weight
         }
-        for (item in _chestEquipment.value){
+        for (item in _chestEquipment.value) {
             currentEncumbrance += item.weight
         }
-        for (item in _legEquipment.value){
+        for (item in _legEquipment.value) {
             currentEncumbrance += item.weight
         }
-        for (item in _weaponEquipment.value){
+        for (item in _weaponEquipment.value) {
             currentEncumbrance += item.weight
         }
-        for (item in _miscEquipment.value){
+        for (item in _miscEquipment.value) {
             currentEncumbrance += item.weight
         }
         currentEncumbrance += _equippedHead.value?.weight ?: 0F
@@ -3403,11 +3413,11 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun equipWeapon(item: WeaponItem) {
-        if (item.type == WeaponTypes.AMULET){
-            if (_equippedSecondHandWeapon.value != null){
+        if (item.type == WeaponTypes.AMULET) {
+            if (_equippedSecondHandWeapon.value != null) {
                 unEquipWeapon(_equippedSecondHandWeapon.value!!)
             }
-            if (_equippedSecondHandShield.value != null){
+            if (_equippedSecondHandShield.value != null) {
                 _accessoryEquipment.value.add(_equippedSecondHandShield.value!!)
                 _equippedSecondHandShield.value = null
             }
@@ -3546,7 +3556,7 @@ class MainCharacterViewModel @Inject constructor(
 
     fun getCharacterFile(): File? {
         var file: File? = null
-        characterToFileUseCase.invoke(fromViewModelToCharacter()).onEach {result ->
+        characterToFileUseCase.invoke(fromViewModelToCharacter()).onEach { result ->
             file = if (result is Resource.Success) {
                 result.data
             } else {
@@ -3554,5 +3564,20 @@ class MainCharacterViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
         return file
+    }
+
+    fun fetchCustomMagic() {
+        getCustomMagicUseCase().onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _customMagicList.value = result.data?.map { it.magicItem }!!
+                }
+                else -> {}
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun deleteCustomMagic(magicItem: MagicItem){
+        deleteCustomMagicUseCase(CustomMagic(magicItem)).launchIn(viewModelScope)
     }
 }
