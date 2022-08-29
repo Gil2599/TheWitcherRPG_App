@@ -544,6 +544,7 @@ class SkillsExpandableFragment : Fragment() {
                 }
             }
         }
+        mainCharacterViewModel.checkSaveAvailable()
     }
 
     private fun decreaseButton() {
@@ -561,6 +562,7 @@ class SkillsExpandableFragment : Fragment() {
                 )
             }
         }
+        mainCharacterViewModel.checkSaveAvailable()
     }
 
     private fun getCustomRow(tag: String): CustomSkillRow {

@@ -570,6 +570,7 @@ class StatsFragment : Fragment() {
                 mainCharacterViewModel.onStatModifierChange(stat, true)
             }
         }
+        mainCharacterViewModel.checkSaveAvailable()
     }
 
     private fun decreaseButton() {
@@ -582,6 +583,7 @@ class StatsFragment : Fragment() {
                 mainCharacterViewModel.onStatModifierChange(stat, false)
             }
         }
+        mainCharacterViewModel.checkSaveAvailable()
     }
 
     override fun onPause() {

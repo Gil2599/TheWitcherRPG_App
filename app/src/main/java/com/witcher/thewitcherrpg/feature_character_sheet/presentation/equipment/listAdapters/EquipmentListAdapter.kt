@@ -14,7 +14,7 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.Weapo
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.*
 
 
-class EquipmentListAdapter(val itemClick: (Equipment) -> Unit, val isDarkMode: Boolean) :
+class EquipmentListAdapter(val itemClick: (Equipment) -> Unit, isDarkMode: Boolean) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList = emptyList<Any>()

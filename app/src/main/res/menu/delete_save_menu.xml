@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/returnHome"
+        android:id="@+id/save_available"
         app:showAsAction="ifRoom"
-        android:title=""
-        android:icon="@drawable/ic_outline_home_24">
+        android:title="Save"
+        app:actionLayout="@layout/save_available_animation">
 
     </item>
 

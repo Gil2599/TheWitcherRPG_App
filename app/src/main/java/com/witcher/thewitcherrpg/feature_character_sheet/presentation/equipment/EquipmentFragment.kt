@@ -311,6 +311,7 @@ class EquipmentFragment : Fragment() {
                         armorItem.equipmentType
                     ).toString()
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewPlus.setOnClickListener {
@@ -319,6 +320,7 @@ class EquipmentFragment : Fragment() {
                     increase = true,
                     armorItem.equipmentType
                 ).toString()
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewPlusLSP.setOnClickListener {
@@ -340,6 +342,7 @@ class EquipmentFragment : Fragment() {
                         ).toString()
                     else -> {}
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewMinusLSP.setOnClickListener {
@@ -363,6 +366,7 @@ class EquipmentFragment : Fragment() {
                         else -> {}
                     }
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewPlusRSP.setOnClickListener {
@@ -384,6 +388,7 @@ class EquipmentFragment : Fragment() {
                         ).toString()
                     else -> {}
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewMinusRSP.setOnClickListener {
@@ -407,6 +412,7 @@ class EquipmentFragment : Fragment() {
                         else -> {}
                     }
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             dialog.setContentView(bind.root)

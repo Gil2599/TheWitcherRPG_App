@@ -261,6 +261,7 @@ class AddItemFragment : Fragment() {
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
+            mainCharacterViewModel.checkSaveAvailable()
             dialog.dismiss()
 
         }
@@ -319,7 +320,7 @@ class AddItemFragment : Fragment() {
                     textViewEN.visibility = View.GONE
                 }
             }
-            dialog.dismiss()
+            mainCharacterViewModel.checkSaveAvailable()
             dialog.dismiss()
         }
 

@@ -1,5 +1,7 @@
 package com.witcher.thewitcherrpg.feature_custom_attributes.presentation
 
+import android.graphics.drawable.AdaptiveIconDrawable
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,6 +25,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
@@ -117,6 +120,8 @@ fun CustomDropDownMenu(
     updateSelection: (String) -> Unit,
     options: List<String>,
     label: String = "",
+    leadingIcon: ImageVector? = null,
+    leadingIconDrawable: Int? = null,
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -158,10 +163,18 @@ fun CustomDropDownMenu(
                 },
             label = { Text(label, Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp)) },
             leadingIcon = {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_magic_icon),
-                    contentDescription = null
-                )
+                if (leadingIcon != null) {
+                    Icon(
+                        leadingIcon,
+                        contentDescription = null
+                    )
+                }
+                if (leadingIconDrawable != null){
+                    Icon(
+                        painter = painterResource(id = leadingIconDrawable),
+                        contentDescription = null
+                    )
+                }
             },
             trailingIcon = {
                 Icon(icon, "contentDescription",
@@ -195,7 +208,9 @@ fun CustomTextField(
     value: String,
     updateValue: (String) -> Unit,
     label: String,
-    maxLines: Int = 1
+    maxLines: Int = 1,
+    leadingIcon: ImageVector? = null,
+    leadingIconDrawable: Int? = null,
 ) {
 
     val focusManager: FocusManager = LocalFocusManager.current
@@ -210,10 +225,16 @@ fun CustomTextField(
         },
         label = { Text(text = label, Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp)) },
         leadingIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            if (leadingIcon != null) {
                 Icon(
-                    imageVector = Icons.Filled.Person,
-                    contentDescription = "Person Icon"
+                    leadingIcon,
+                    contentDescription = null
+                )
+            }
+            if (leadingIconDrawable != null){
+                Icon(
+                    painter = painterResource(id = leadingIconDrawable),
+                    contentDescription = null
                 )
             }
         },

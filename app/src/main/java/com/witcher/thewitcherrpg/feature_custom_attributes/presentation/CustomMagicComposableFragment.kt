@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Resource
 
 class CustomMagicComposableFragment {
@@ -111,14 +112,15 @@ class CustomMagicComposableFragment {
                 ) {
                     CustomTextField(value = magicName, updateValue = {
                         magicName = it
-                    }, label = "Magic Name", maxLines = 2)
+                    }, label = "Magic Name", maxLines = 2, leadingIconDrawable = R.drawable.ic_magic_icon)
                     CustomDropDownMenu(
                         updateSelection = { newSelection ->
                             typeSelection =
                                 customAttributeViewModel.getMagicTypeFromSelection(newSelection)!!
                         },
                         options = customAttributeViewModel.optionsMagicGeneralTypeMap.keys.toList(),
-                        label = "Magic Type"
+                        label = "Magic Type",
+                        leadingIconDrawable = R.drawable.ic_magic_icon
                     )
                     CustomDropDownMenu(
                         selection = customAttributeViewModel.getMagicLevelSelection(
@@ -131,6 +133,7 @@ class CustomMagicComposableFragment {
                         },
                         options = customAttributeViewModel.getMagicLevelOptions(typeSelection),
                         label = if (typeSelection == MagicGeneralType.HEX) "Danger Level" else "Magic Level",
+                        leadingIconDrawable = R.drawable.ic_bolt
                     )
                     AnimatedVisibility(visible = (typeSelection == MagicGeneralType.SPELL || typeSelection == MagicGeneralType.SIGN)) {
                         CustomDropDownMenu(
@@ -139,7 +142,8 @@ class CustomMagicComposableFragment {
                                     customAttributeViewModel.getElementFromSelection(newSelection)!!
                             },
                             options = customAttributeViewModel.optionsElementsMap.keys.toList(),
-                            label = "Element"
+                            label = "Element",
+                            leadingIconDrawable = R.drawable.ic_atom
                         )
                     }
 
@@ -149,14 +153,18 @@ class CustomMagicComposableFragment {
                             updateValue = {
                                 defenseOrPrepTime = it
                             },
-                            label = if (typeSelection != MagicGeneralType.RITUAL) "Defense" else "Preparation Time"
+                            label = if (typeSelection != MagicGeneralType.RITUAL) "Defense" else "Preparation Time",
+                            leadingIconDrawable = if (typeSelection != MagicGeneralType.RITUAL) R.drawable.ic_shield else R.drawable.ic_hourglass
                         )
                     }
 
                     AnimatedVisibility(visible = (typeSelection != MagicGeneralType.HEX)) {
                         CustomTextField(value = duration, updateValue = {
                             duration = it
-                        }, label = "Duration")
+                        },
+                            label = "Duration",
+                            leadingIconDrawable = R.drawable.ic_duration
+                        )
                     }
 
                     AnimatedVisibility(visible = true) {
@@ -199,12 +207,13 @@ class CustomMagicComposableFragment {
                                 componentsOrReqToLift = newValue
                             },
                             label = if (typeSelection == MagicGeneralType.RITUAL) "Components" else "Requirement To Lift",
-                            maxLines = 50
+                            maxLines = 50,
+                            leadingIconDrawable = if (typeSelection != MagicGeneralType.RITUAL) R.drawable.ic_hex_icon else R.drawable.ic_cauldron
                         )
                     }
                     CustomTextField(value = effect, updateValue = { newEffect ->
                         effect = newEffect
-                    }, label = "Effect", maxLines = 50)
+                    }, label = "Effect", maxLines = 50, leadingIconDrawable = R.drawable.ic_magic_wand)
 
                 }
                 Row(

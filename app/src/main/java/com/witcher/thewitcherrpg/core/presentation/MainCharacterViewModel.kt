@@ -3,8 +3,10 @@ package com.witcher.thewitcherrpg.core.presentation
 //import android.util.Log
 import android.net.Uri
 import android.util.Log
+import android.view.View
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -37,10 +39,12 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.
 import com.witcher.thewitcherrpg.feature_custom_attributes.domain.DeleteCustomMagicUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.io.File
+import java.lang.Exception
 import javax.inject.Inject
 import kotlin.math.absoluteValue
 
@@ -74,6 +78,24 @@ class MainCharacterViewModel @Inject constructor(
 
     private var _id = MutableStateFlow(70)
     val id = _id.asStateFlow()
+
+//    val saveAvailable: Flow<Boolean> = flow {
+//
+//        while (true) {
+//            try {
+//                if (checkIfDataChanged()) {
+//                    emit(true)
+//                } else {
+//                    emit(false)
+//                }
+//            } catch (ex: Exception) {
+//            }
+//            delay(1000)
+//        }
+//    }
+
+    val _saveAvailable = MutableLiveData(false)
+    //val saveAvailable: LiveData<Int> = _saveAvailable
 
     //ViewModel States
     private val _inCharacterCreation = mutableStateOf(false)
@@ -898,7 +920,7 @@ class MainCharacterViewModel @Inject constructor(
     private fun fromViewModelToCharacter(): Character {
         return Character(
             id = _id.value,
-            imagePath = _image.value!!,
+            imagePath = _image.value,
             name = name.value!!,
             iP = _ip.value,
             race = _race.value,
@@ -1117,6 +1139,7 @@ class MainCharacterViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     _addState.value = CharacterState(success = true)
+                    _saveAvailable.value = false
                 }
                 is Resource.Error -> {
                     _addState.value = CharacterState(
@@ -1403,12 +1426,10 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun saveImageToInternalStorage(uri: Uri) {
-        //Log.d("test", "In method")
         saveImageUseCase(uri, _id.value).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _image.value = result.data!!
-                    //Log.d("test", result.data)
                 }
                 is Resource.Error -> {
                     _image.value = ""
@@ -1432,6 +1453,7 @@ class MainCharacterViewModel @Inject constructor(
 
     fun setGender(gender: String) {
         _gender.value = gender
+        _saveAvailable.value = checkIfDataChanged()
     }
 
     fun setProfession(profession: String) {
@@ -1595,6 +1617,7 @@ class MainCharacterViewModel @Inject constructor(
     fun addLifeEvent(lifeEvent: LifeEvent) {
         _lifeEvents.value.add(lifeEvent)
         _lifeEvents.value = ArrayList(_lifeEvents.value.sortedWith(compareBy { it.age }))
+        _saveAvailable.value = checkIfDataChanged()
     }
 
     fun updateLifeEvent(updatedEvent: LifeEvent) {
@@ -1608,11 +1631,13 @@ class MainCharacterViewModel @Inject constructor(
             _lifeEvents.value.remove(eventToRemove)
             addLifeEvent(updatedEvent)
         }
+        _saveAvailable.value = checkIfDataChanged()
     }
 
     fun removeLifeEvent(lifeEvent: LifeEvent) {
         _lifeEvents.value.remove(lifeEvent)
         _lifeEvents.value = ArrayList(_lifeEvents.value.sortedWith(compareBy { it.age }))
+        _saveAvailable.value = checkIfDataChanged()
     }
 
     fun onSkillChange(skill: String, increase: Boolean): Resource<Pair<Int, Int>>? {
@@ -2826,12 +2851,14 @@ class MainCharacterViewModel @Inject constructor(
                 else _sta.value = _sta.value.plus(_rec.value)
             }
         }
+        checkSaveAvailable()
     }
 
     fun onSaveEdit(name: String, age: String, gender: String) {
         this.name.value = name
         this.age.value = age
         _gender.value = gender
+        checkSaveAvailable()
     }
 
     fun onProfessionSkillChange(skill: Int, increase: Boolean) {
@@ -2966,10 +2993,10 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
         }
+        checkSaveAvailable()
     }
 
     fun addMagicItem(item: MagicItem) {
-
         when (item.type) {
             MagicType.NOVICE_SPELL -> if (item !in _noviceSpellList.value) _noviceSpellList.value.add(
                 item
@@ -3016,6 +3043,7 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
         }
+        checkSaveAvailable()
     }
 
     fun removeMagicItem(item: MagicItem) {
@@ -3065,6 +3093,7 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
         }
+        checkSaveAvailable()
     }
 
     fun getMagicList(source: Int): ArrayList<MagicItem> {
@@ -3115,6 +3144,7 @@ class MainCharacterViewModel @Inject constructor(
             if (increase) _hp.value += value
             else _hp.value -= value
         }
+        checkSaveAvailable()
     }
 
     fun onStaminaChange(value: Int? = null, increase: Boolean) {
@@ -3139,6 +3169,7 @@ class MainCharacterViewModel @Inject constructor(
             }
             _maxSTAWithModifier.value = _maxSta.value + _staModifier.value
         }
+        checkSaveAvailable()
     }
 
     private fun onEncumbranceChange(increase: Boolean) {
@@ -3149,6 +3180,7 @@ class MainCharacterViewModel @Inject constructor(
             val encBonus = _body.value * 10
             _enc.value = _enc.value - (((_body.value + 1) * 10)) + encBonus
         }
+        checkSaveAvailable()
     }
 
     fun onCrownsChange(value: Int) {
@@ -3157,6 +3189,7 @@ class MainCharacterViewModel @Inject constructor(
                 _crowns.value = _crowns.value.plus(value)
             } else _crowns.value = 0
         } else _crowns.value = _crowns.value.plus(value)
+        checkSaveAvailable()
     }
 
     fun onIpChange(value: Int) {
@@ -3165,6 +3198,7 @@ class MainCharacterViewModel @Inject constructor(
                 _ip.value = _ip.value.plus(value)
             } else _ip.value = 0
         } else _ip.value = _ip.value.plus(value)
+        checkSaveAvailable()
     }
 
     fun getEquipmentList(source: Int): ArrayList<EquipmentItem> {
@@ -3189,6 +3223,7 @@ class MainCharacterViewModel @Inject constructor(
             else -> {}
         }
         calculateCurrentEncumbrance()
+        checkSaveAvailable()
     }
 
     private fun calculateCurrentEncumbrance() {
@@ -3224,14 +3259,16 @@ class MainCharacterViewModel @Inject constructor(
         for (armor in armorArray) {
             addEquipmentItem(armor)
         }
+        checkSaveAvailable()
     }
 
     fun buyArmorSet(armorSet: ArmorSet): Boolean {
-        if (armorSet.cost > _crowns.value) {
-            return false
+        return if (armorSet.cost > _crowns.value) {
+            false
         } else {
             addArmorSet(armorSet)
-            return true
+            checkSaveAvailable()
+            true
         }
     }
 
@@ -3253,6 +3290,7 @@ class MainCharacterViewModel @Inject constructor(
             else -> {}
         }
         calculateCurrentEncumbrance()
+        checkSaveAvailable()
     }
 
     fun equipItem(item: EquipmentItem) {
@@ -3328,6 +3366,7 @@ class MainCharacterViewModel @Inject constructor(
             }
             else -> {}
         }
+        checkSaveAvailable()
     }
 
     fun unEquipItem(item: EquipmentItem) {
@@ -3354,6 +3393,7 @@ class MainCharacterViewModel @Inject constructor(
             }
             else -> {}
         }
+        checkSaveAvailable()
     }
 
     fun onItemSPChange(item: EquipmentItem, increase: Boolean, armorType: EquipmentTypes?): Int {
@@ -3405,11 +3445,13 @@ class MainCharacterViewModel @Inject constructor(
     fun addWeaponItem(item: WeaponItem) {
         _weaponEquipment.value.add(item)
         calculateCurrentEncumbrance()
+        checkSaveAvailable()
     }
 
     fun removeWeapon(item: WeaponItem) {
         _weaponEquipment.value.remove(item)
         calculateCurrentEncumbrance()
+        checkSaveAvailable()
     }
 
     fun equipWeapon(item: WeaponItem) {
@@ -3464,6 +3506,7 @@ class MainCharacterViewModel @Inject constructor(
             }
         }
         _focus.value += item.focus
+        checkSaveAvailable()
     }
 
     fun unEquipWeapon(item: WeaponItem) {
@@ -3481,6 +3524,7 @@ class MainCharacterViewModel @Inject constructor(
                 _equippedSecondHandWeapon.value = null
             }
         }
+        checkSaveAvailable()
     }
 
     fun onReliabilityChange(item: WeaponItem, increase: Boolean) {
@@ -3489,6 +3533,7 @@ class MainCharacterViewModel @Inject constructor(
             if (item.currentReliability > 0) item.currentReliability =
                 item.currentReliability.minus(1)
         }
+        checkSaveAvailable()
     }
 
     fun getArmorSetList(source: Int): ArrayList<ArmorSet> {
@@ -3518,6 +3563,7 @@ class MainCharacterViewModel @Inject constructor(
     fun addCampaignNote(campaignNote: CampaignNote) {
         _campaignNotes.value.add(campaignNote)
         _campaignNotes.value = ArrayList(_campaignNotes.value.sortedWith(compareBy { it.date }))
+        checkSaveAvailable()
     }
 
     fun updateCampaignNote(campaignNote: CampaignNote) {
@@ -3532,10 +3578,12 @@ class MainCharacterViewModel @Inject constructor(
             campaignNote.date = noteToRemove.date
             addCampaignNote(campaignNote)
         }
+        checkSaveAvailable()
     }
 
     fun removeCampaignNote(campaignNote: CampaignNote) {
         _campaignNotes.value.remove(campaignNote)
+        checkSaveAvailable()
     }
 
     fun saveCharInfoMode(mode: Boolean) = viewModelScope.launch(Dispatchers.IO) {
@@ -3579,5 +3627,9 @@ class MainCharacterViewModel @Inject constructor(
 
     fun deleteCustomMagic(magicItem: MagicItem){
         deleteCustomMagicUseCase(CustomMagic(magicItem)).launchIn(viewModelScope)
+    }
+
+    fun checkSaveAvailable(){
+        _saveAvailable.value = checkIfDataChanged()
     }
 }
