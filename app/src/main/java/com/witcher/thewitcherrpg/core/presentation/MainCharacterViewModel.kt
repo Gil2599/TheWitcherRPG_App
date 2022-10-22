@@ -1,6 +1,7 @@
 package com.witcher.thewitcherrpg.core.presentation
 
 //import android.util.Log
+import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.State
@@ -1425,8 +1426,8 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun saveImageToInternalStorage(uri: Uri) {
-        saveImageUseCase(uri, _id.value).onEach { result ->
+    fun saveImageToInternalStorage(bitmap: Bitmap) {
+        saveImageUseCase(bitmap, _id.value).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _image.value = result.data!!

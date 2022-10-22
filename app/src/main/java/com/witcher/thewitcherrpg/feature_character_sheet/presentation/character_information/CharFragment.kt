@@ -2,24 +2,25 @@ package com.witcher.thewitcherrpg.feature_character_sheet.presentation.character
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.test.core.app.ActivityScenario.launch
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
@@ -28,7 +29,6 @@ import com.witcher.thewitcherrpg.feature_character_sheet.presentation.character_
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
@@ -39,31 +39,14 @@ class CharFragment : Fragment() {
     private var _binding: FragmentCharBinding? = null
     private val binding get() = _binding!!
     private lateinit var tabAdapter: ViewPagerAdapter
-
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
-
-    @SuppressLint("NewApi")
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
-            uri: Uri? -> binding.imageView.setImageURI(uri)
-        try {
-            if (uri != null) {
-                mainCharacterViewModel.saveImageToInternalStorage(uri)
-            }
-            (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
-        }
-        catch (e: NullPointerException){
-            Snackbar.make(binding.root, "Action Cancelled",
-                Snackbar.LENGTH_SHORT
-            ).show()
-        }
-    }
 
     private val requestPermission =
         registerForActivityResult(RequestPermission()) { isGranted ->
             // Do something if permission granted
             if (isGranted) {
                 Log.i("DEBUG", "permission granted")
-                getContent.launch("image/*")
+                openGallery()
             } else {
                 Log.i("DEBUG", "permission denied")
                 Snackbar.make(binding.root, "Permission required to set image.",
@@ -136,6 +119,65 @@ class CharFragment : Fragment() {
 
         return view
 
+    }
+
+    private fun openGallery() {
+        val galIntent = Intent(Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
+        cropLauncher.launch(Intent.createChooser(galIntent,
+            "Select Image From Gallery "))
+    }
+
+    private var cropLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            if (data != null) {
+                val uri = result.data!!.data!!
+                cropImages(uri)
+            }
+        }
+    }
+
+    private var setImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            if (result.data != null) {
+                val bundle = result.data!!.extras
+                val bitmap = bundle!!.getParcelable<Bitmap>("data")
+                (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+
+                try {
+                    if (bitmap != null) {
+                        mainCharacterViewModel.saveImageToInternalStorage(bitmap)
+                    }
+                }
+                catch (e: NullPointerException){
+                    Snackbar.make(binding.root, "Action Cancelled",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+                binding.imageView.setImageBitmap(bitmap)
+            }
+        }
+    }
+
+    private fun cropImages(uri: Uri){
+        try {
+            val cropIntent = Intent("com.android.camera.action.CROP")
+            cropIntent.setDataAndType(uri,"image/*")
+            cropIntent.putExtra("crop",true)
+            cropIntent.putExtra("outputX",180)
+            cropIntent.putExtra("outputY",180)
+            cropIntent.putExtra("aspectX",1)
+            cropIntent.putExtra("aspectY",1)
+            cropIntent.putExtra("scaleUpIfNeeded",true)
+            cropIntent.putExtra("return-data",true)
+            cropIntent.putExtra("circleCrop", " ")
+            setImageLauncher.launch(cropIntent)
+
+        } catch (e: ActivityNotFoundException) {
+            e.printStackTrace()
+        }
     }
 
     override fun onDestroyView() {
