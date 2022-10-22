@@ -22,7 +22,7 @@ class SaveImageUseCase @Inject constructor(
     private val application: Application
 ) {
 
-    operator fun invoke(uri: Uri, id: Int): Flow<Resource<String>> = flow {
+    operator fun invoke(bitmap: Bitmap, id: Int): Flow<Resource<String>> = flow {
         val cw = ContextWrapper(application.applicationContext)
         val directory: File = cw.getDir("imageDir", Context.MODE_PRIVATE)
 
@@ -34,7 +34,7 @@ class SaveImageUseCase @Inject constructor(
             fos = FileOutputStream(myPath)
 
             // Use the compress method on the BitMap object to write image to the OutputStream
-            getContent(uri)?.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
             emit(Resource.Success(myPath.absolutePath))
 
         } catch (e: Exception) {
