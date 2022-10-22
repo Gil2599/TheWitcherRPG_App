@@ -1,21 +1,18 @@
 package com.witcher.thewitcherrpg.core.data.customAttributesData.data_source
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.witcher.thewitcherrpg.core.domain.model.CustomEquipment
-import com.witcher.thewitcherrpg.core.domain.model.CustomMagic
-import com.witcher.thewitcherrpg.core.domain.model.MyTypeEquipmentConverters
-import com.witcher.thewitcherrpg.core.domain.model.MyTypeMagicConverters
+import androidx.room.*
+import com.witcher.thewitcherrpg.core.domain.model.*
 
 @Database(
-    entities = [CustomEquipment::class, CustomMagic::class],
+    entities = [CustomEquipment::class, CustomWeapon::class, CustomMagic::class],
     version = 1,
-    exportSchema = false
+    exportSchema = true,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2)
+    ]
 )
-@TypeConverters(MyTypeMagicConverters::class, MyTypeEquipmentConverters::class)
+@TypeConverters(MyTypeMagicConverters::class, MyTypeWeaponConverters::class, MyTypeEquipmentConverters::class)
 
 abstract class CustomAttributesDatabase: RoomDatabase() {
 

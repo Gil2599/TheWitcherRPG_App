@@ -8,6 +8,7 @@ import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
@@ -15,6 +16,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
@@ -27,6 +32,7 @@ import com.airbnb.lottie.model.KeyPath
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
 import com.witcher.thewitcherrpg.R
+import com.witcher.thewitcherrpg.core.presentation.CustomEditStatDialog
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.ActivityMainBinding
 import com.witcher.thewitcherrpg.databinding.NavHeaderBinding
@@ -54,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     private var characterId: Int = -1
     private var saveAvailableMenuItem: MenuItem? = null
     private val mainCharacterViewModel: MainCharacterViewModel by viewModels()
+    private var isDarkMode: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +140,8 @@ class MainActivity : AppCompatActivity() {
         navHeaderBinding.mainViewModel = mainCharacterViewModel
         navHeaderBinding.lifecycleOwner = this
 
+
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
@@ -166,6 +175,7 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             navHeaderBinding.lottieAnimationView.setAnimation("border_animation_blue.json")
                         }
+                        isDarkMode = darkModeIsEnabled
                     }
                 }
             }
@@ -256,20 +266,19 @@ class MainActivity : AppCompatActivity() {
         saveAvailableMenuItem!!.isVisible = mainCharacterViewModel._saveAvailable.value!!
         val saveAvailableView = (saveAvailableMenuItem as MenuItem).actionView
 
-        val puleAnimation: LottieAnimationView = saveAvailableView.findViewById(R.id.pulse_animation)
+        saveAvailableView?.findViewById<LottieAnimationView?>(R.id.pulse_animation)
+            ?.addValueCallback(
+                KeyPath("**"),
+                LottieProperty.COLOR_FILTER
+            ) {
+                PorterDuffColorFilter(
+                    MaterialColors.getColor(this, R.attr.colorPrimary, Color.BLACK),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
 
-        puleAnimation.addValueCallback(
-            KeyPath("**"),
-            LottieProperty.COLOR_FILTER
-        ) {
-            PorterDuffColorFilter(
-                MaterialColors.getColor(this, R.attr.colorPrimary, Color.BLACK),
-                PorterDuff.Mode.SRC_ATOP
-            )
-        }
 
-
-        saveAvailableView.setOnClickListener {
+        saveAvailableView?.setOnClickListener {
             mainCharacterViewModel.saveCharacter()
         }
 
@@ -315,6 +324,37 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mainCharacterViewModel._saveAvailable.removeObservers(this)
+    }
+
+    fun showEditStatDialog(label: String, currentValue: String, onPlus: (Int) -> Unit, onMinus: (Int) -> Unit) {
+        binding.dialogCompose.setContent {
+            var value by remember {
+                mutableStateOf("")
+            }
+
+            CustomEditStatDialog(
+                isDarkMode = isDarkMode,
+                dialogState = true,
+                label = label,
+                currentValue = currentValue,
+                editValue = value,
+                updateValue = {
+                    value = it
+                },
+                onPlus = {
+                    onPlus(it)
+                    binding.dialogCompose.setContent {}
+                },
+                onMinus = {
+                    onMinus(it)
+                    binding.dialogCompose.setContent {}
+                },
+                onDismissRequest = {
+                    mainCharacterViewModel._editStatMode.value = false
+                    binding.dialogCompose.setContent {}
+                }
+            )
+        }
     }
 
 }

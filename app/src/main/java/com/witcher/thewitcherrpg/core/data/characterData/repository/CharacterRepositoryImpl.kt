@@ -29,5 +29,4 @@ class CharacterRepositoryImpl @Inject constructor(
     override suspend fun updateChar(character: Character){
         charDao.updateChar(character)
     }
-
 }

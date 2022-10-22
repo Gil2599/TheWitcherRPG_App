@@ -1,17 +1,17 @@
 package com.witcher.thewitcherrpg.core.data.characterData.data_source
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.witcher.thewitcherrpg.core.domain.model.Character
 import com.witcher.thewitcherrpg.core.domain.model.MyTypeConverters
 
 @Database(
     entities = [Character::class],
     version = 1,
-    exportSchema = false
+    exportSchema = true,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2)
+    ]
 )
 @TypeConverters(MyTypeConverters::class)
 

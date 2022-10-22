@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.witcher.thewitcherrpg.core.Constants
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.*
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
@@ -15,30 +14,30 @@ import kotlinx.parcelize.RawValue
 @Entity(tableName = "custom_equipment")
 data class CustomEquipment(
     @PrimaryKey
-    val equipment: @RawValue Equipment
+    val equipment: @RawValue EquipmentItem
 ) : Parcelable
 
 class MyTypeEquipmentConverters {
 
     @TypeConverter
-    fun fromStringToItem(item: String?): Equipment?{
-        val itemType =object : TypeToken<Equipment>(){}.type
+    fun fromStringToItem(item: String?): EquipmentItem?{
+        val itemType =object : TypeToken<EquipmentItem>(){}.type
         return Gson().fromJson(item, itemType)
     }
 
     @TypeConverter
-    fun fromItem(item: Equipment?): String{
+    fun fromItem(item: EquipmentItem?): String{
         return Gson().toJson(item)
     }
 
     @TypeConverter
-    fun fromItemArrayListToJson(list: ArrayList<Equipment?>): String{
+    fun fromItemArrayListToJson(list: ArrayList<EquipmentItem?>): String{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun fromJsonToItemArrayList(list: String): ArrayList<Equipment>{
-        val itemType =object : TypeToken<ArrayList<Equipment>>(){}.type
+    fun fromJsonToItemArrayList(list: String): ArrayList<EquipmentItem>{
+        val itemType =object : TypeToken<ArrayList<EquipmentItem>>(){}.type
         return Gson().fromJson(list, itemType)
     }
 }

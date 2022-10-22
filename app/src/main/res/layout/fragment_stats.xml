@@ -68,8 +68,8 @@
 
         <ImageView
             android:id="@+id/buttonHelp"
-            android:layout_width="27dp"
-            android:layout_height="27dp"
+            android:layout_width="17dp"
+            android:layout_height="19dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/ic_outline_info_24"
             android:clickable="true"

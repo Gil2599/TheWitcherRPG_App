@@ -2,6 +2,7 @@ package com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -67,7 +68,7 @@ class EquipmentListAdapter(val itemClick: (Equipment) -> Unit, isDarkMode: Boole
 
                 }
             }
-
+            binding.textViewCustom.visibility = if (item.isCustom) View.VISIBLE else View.GONE
         }
     }
 
@@ -119,7 +120,6 @@ class EquipmentListAdapter(val itemClick: (Equipment) -> Unit, isDarkMode: Boole
 
                     rowLayout.setOnClickListener {
                         itemClick(item)
-
                     }
                 }
             } else {
@@ -137,6 +137,7 @@ class EquipmentListAdapter(val itemClick: (Equipment) -> Unit, isDarkMode: Boole
                     }
                 }
             }
+            binding.textViewCustom.visibility = if (item.isCustom) View.VISIBLE else View.GONE
         }
 
         fun bind(item: ArmorSet) {
@@ -175,6 +176,7 @@ class EquipmentListAdapter(val itemClick: (Equipment) -> Unit, isDarkMode: Boole
 
                 }
             }
+            binding.textViewCustom.visibility = if (item.isCustom) View.VISIBLE else View.GONE
         }
     }
 

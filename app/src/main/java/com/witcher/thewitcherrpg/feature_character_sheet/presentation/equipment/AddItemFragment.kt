@@ -26,6 +26,8 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ArmorSet
 import com.google.android.material.snackbar.Snackbar
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.ListHeader
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
+import com.witcher.thewitcherrpg.feature_custom_attributes.presentation.EquipmentType
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
@@ -37,6 +39,7 @@ class AddItemFragment : Fragment() {
     private var itemList = arrayListOf<Any>()
     private var darkModeEnabled by Delegates.notNull<Boolean>()
     private lateinit var equipmentAdapter: EquipmentListAdapter
+    private var currentSelection: ItemType = ItemType.HEAD_ARMOR
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,11 +63,53 @@ class AddItemFragment : Fragment() {
                 }
             }
         }
+        lifecycleScope.launch {
+            launch {
+                mainCharacterViewModel.customEquipmentList.collect {
+                    if (this@AddItemFragment::equipmentAdapter.isInitialized) {
+                        listAdaptersInit(currentSelection)
+                        setAdapterData()
+                    }
+                }
+            }
+        }
+        lifecycleScope.launch {
+            launch {
+                mainCharacterViewModel.customWeaponList.collect {
+                    if (this@AddItemFragment::equipmentAdapter.isInitialized) {
+                        listAdaptersInit(currentSelection)
+                        setAdapterData()
+                    }
+                }
+            }
+        }
 
         equipmentAdapter = EquipmentListAdapter ({ equipment ->
             when (equipment) {
                 is EquipmentItem -> {
-                    showArmorDialog(equipment)
+                    when (equipment.equipmentType) {
+                        EquipmentTypes.LIGHT_ARMOR_SET, EquipmentTypes.MEDIUM_ARMOR_SET, EquipmentTypes.HEAVY_ARMOR_SET ->
+                            showArmorSetDialog(
+                                ArmorSet(
+                                    equipment.name,
+                                    equipment.stoppingPower,
+                                    arrayListOf("head", "chest", "legs"),
+                                    equipment.availability,
+                                    equipment.armorEnhancement,
+                                    arrayListOf(equipment.effect),
+                                    equipment.encumbranceValue,
+                                    equipment.weight,
+                                    equipment.cost,
+                                    equipment.equipmentType,
+                                    equipment.isRelic,
+                                    isCustom = true
+                                ),
+                                equipment
+                            )
+                        else -> {
+                            showArmorDialog(equipment)
+                        }
+                    }
                 }
                 is ArmorSet -> {
                     showArmorSetDialog(equipment)
@@ -95,26 +140,32 @@ class AddItemFragment : Fragment() {
                         "Weapon" -> {
                             listAdaptersInit(ItemType.WEAPON)
                             setAdapterData()
+                            currentSelection = ItemType.WEAPON
                         }
                         "Head Armor" -> {
                             listAdaptersInit(ItemType.HEAD_ARMOR)
                             setAdapterData()
+                            currentSelection = ItemType.HEAD_ARMOR
                         }
                         "Chest Armor" -> {
                             listAdaptersInit(ItemType.CHEST_ARMOR)
                             setAdapterData()
+                            currentSelection = ItemType.CHEST_ARMOR
                         }
                         "Leg Armor" -> {
                             listAdaptersInit(ItemType.LEG_ARMOR)
                             setAdapterData()
+                            currentSelection = ItemType.LEG_ARMOR
                         }
                         "Shield/Accessory" -> {
                             listAdaptersInit(ItemType.SHIELD_ACCESSORY)
                             setAdapterData()
+                            currentSelection = ItemType.SHIELD_ACCESSORY
                         }
                         "Armor Set" -> {
                             listAdaptersInit(ItemType.ARMOR_SET)
                             setAdapterData()
+                            currentSelection = ItemType.ARMOR_SET
                         }
                         "Miscellaneous" -> showCustomItemDialog()
                     }
@@ -133,83 +184,110 @@ class AddItemFragment : Fragment() {
             ItemType.WEAPON -> {
                 newItemList.add(ListHeader("Swords"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.swords_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.SWORD })
 
                 newItemList.add(ListHeader("Small Blades"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.small_blades_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.SMALL_BLADE })
 
                 newItemList.add(ListHeader("Axes"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.axes_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.AXE })
+
 
                 newItemList.add(ListHeader("Bludgeons"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.bludgeons_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.BLUDGEON })
+
 
                 newItemList.add(ListHeader("Pole Arms"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.pole_arms_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.POLE_ARM })
 
                 newItemList.add(ListHeader("Staves"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.staves_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.STAFF })
 
                 newItemList.add(ListHeader("Thrown Weapons"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.thrown_weapons_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.THROWN_WEAPON })
 
                 newItemList.add(ListHeader("Bows"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.bows_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.BOW })
 
                 newItemList.add(ListHeader("Crossbows"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.crossbows_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.CROSSBOW })
             }
             ItemType.HEAD_ARMOR -> {
                 newItemList.add(ListHeader("Light"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.head_light_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.LIGHT_HEAD })
 
                 newItemList.add(ListHeader("Medium"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.head_medium_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.MEDIUM_HEAD })
 
                 newItemList.add(ListHeader("Heavy"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.head_heavy_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.HEAVY_HEAD })
             }
             ItemType.CHEST_ARMOR -> {
                 newItemList.add(ListHeader("Light"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.chest_light_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.LIGHT_CHEST })
 
                 newItemList.add(ListHeader("Medium"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.chest_medium_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.MEDIUM_CHEST })
 
                 newItemList.add(ListHeader("Heavy"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.chest_heavy_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.HEAVY_CHEST })
             }
             ItemType.LEG_ARMOR -> {
                 newItemList.add(ListHeader("Light"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.legs_light_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.LIGHT_LEGS })
 
                 newItemList.add(ListHeader("Medium"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.legs_medium_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.MEDIUM_LEGS })
 
                 newItemList.add(ListHeader("Heavy"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.legs_heavy_armor_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.HEAVY_LEGS })
             }
             ItemType.SHIELD_ACCESSORY -> {
                 newItemList.add(ListHeader("Light"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.shields_light_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.LIGHT_SHIELD })
 
                 newItemList.add(ListHeader("Medium"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.shields_medium_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.MEDIUM_SHIELD })
 
                 newItemList.add(ListHeader("Heavy"))
                 newItemList.addAll(mainCharacterViewModel.getEquipmentList(R.array.shields_heavy_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.HEAVY_SHIELD })
 
                 newItemList.add(ListHeader("Amulets"))
                 newItemList.addAll(mainCharacterViewModel.getWeaponList(R.array.amulets_data))
+                newItemList.addAll(mainCharacterViewModel.customWeaponList.value.filter { it.type == WeaponTypes.AMULET })
             }
             ItemType.ARMOR_SET -> {
                 newItemList.add(ListHeader("Light"))
                 newItemList.addAll(mainCharacterViewModel.getArmorSetList(R.array.armor_set_light_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.LIGHT_ARMOR_SET })
 
                 newItemList.add(ListHeader("Medium"))
                 newItemList.addAll(mainCharacterViewModel.getArmorSetList(R.array.armor_set_medium_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.MEDIUM_ARMOR_SET })
 
                 newItemList.add(ListHeader("Heavy"))
                 newItemList.addAll(mainCharacterViewModel.getArmorSetList(R.array.armor_set_heavy_data))
+                newItemList.addAll(mainCharacterViewModel.customEquipmentList.value.filter { it.equipmentType == EquipmentTypes.HEAVY_ARMOR_SET })
             }
             else -> {}
         }
@@ -237,8 +315,16 @@ class AddItemFragment : Fragment() {
             dialog.dismiss()
         }
 
-        bind.buttonAdd.setOnClickListener {
+        bind.buttonDelete.setOnClickListener {
+            mainCharacterViewModel.deleteCustomEquipment(armorItem)
+            Snackbar.make(
+                binding.root, "${armorItem.name} Deleted",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            dialog.dismiss()
+        }
 
+        bind.buttonAdd.setOnClickListener {
             mainCharacterViewModel.addEquipmentItem(armorItem)
             Snackbar.make(
                 binding.root, "Item added to ${mainCharacterViewModel.name.value}",
@@ -249,7 +335,6 @@ class AddItemFragment : Fragment() {
         }
 
         bind.buttonBuy.setOnClickListener {
-
             if (mainCharacterViewModel.buyItem(armorItem)) {
                 Snackbar.make(
                     binding.root, "${armorItem.name} purchased.",
@@ -263,7 +348,6 @@ class AddItemFragment : Fragment() {
             }
             mainCharacterViewModel.checkSaveAvailable()
             dialog.dismiss()
-
         }
 
         dialog.setContentView(bind.root)
@@ -294,8 +378,16 @@ class AddItemFragment : Fragment() {
 
         }
 
-        bind.buttonBuy.setOnClickListener {
+        bind.buttonDelete.setOnClickListener {
+            mainCharacterViewModel.deleteCustomWeapon(weaponItem)
+            Snackbar.make(
+                binding.root, "${weaponItem.name} Deleted",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            dialog.dismiss()
+        }
 
+        bind.buttonBuy.setOnClickListener {
             if (mainCharacterViewModel.buyWeapon(weaponItem)) {
                 Snackbar.make(
                     binding.root, "${weaponItem.name} purchased.",
@@ -397,7 +489,7 @@ class AddItemFragment : Fragment() {
         }
     }
 
-    private fun showArmorSetDialog(armorItem: ArmorSet) {
+    private fun showArmorSetDialog(armorItem: ArmorSet, customEquipment: EquipmentItem? = null) {
         val dialog = Dialog(requireContext())
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
@@ -439,6 +531,17 @@ class AddItemFragment : Fragment() {
             }
             dialog.dismiss()
 
+        }
+
+        bind.buttonDelete.setOnClickListener {
+            if (customEquipment != null) {
+                mainCharacterViewModel.deleteCustomEquipment(customEquipment)
+            }
+            Snackbar.make(
+                binding.root, "${armorItem.name} Deleted",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            dialog.dismiss()
         }
 
         dialog.setContentView(bind.root)

@@ -31,7 +31,8 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                                 else -> {
                                     EquipmentTypes.LIGHT_HEAD
                                 }
-                            }
+                            },
+                            isCustom = armorSet.isCustom
                         )
                     )
                 }
@@ -53,7 +54,8 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                                 else -> {
                                     EquipmentTypes.LIGHT_CHEST
                                 }
-                            }
+                            },
+                            isCustom = armorSet.isCustom
                         )
                     )
                 }
@@ -75,7 +77,8 @@ class GetArmorFromArmorSetUseCase @Inject constructor() {
                                 else -> {
                                     EquipmentTypes.LIGHT_LEGS
                                 }
-                            }
+                            },
+                            isCustom = armorSet.isCustom
                         )
                     )
                 }

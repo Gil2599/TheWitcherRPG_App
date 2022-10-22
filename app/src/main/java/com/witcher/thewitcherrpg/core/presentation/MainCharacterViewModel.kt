@@ -3,10 +3,8 @@ package com.witcher.thewitcherrpg.core.presentation
 //import android.util.Log
 import android.net.Uri
 import android.util.Log
-import android.view.View
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +12,9 @@ import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
 import com.witcher.thewitcherrpg.core.domain.model.Character
+import com.witcher.thewitcherrpg.core.domain.model.CustomEquipment
 import com.witcher.thewitcherrpg.core.domain.model.CustomMagic
+import com.witcher.thewitcherrpg.core.domain.model.CustomWeapon
 import com.witcher.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharacterState
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
@@ -26,25 +26,21 @@ import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.Delete
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.GetCharacterUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.SaveCharacterUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.character_information.*
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorFromArmorSetUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetArmorSetListUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetEquipmentListUseCase
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.GetWeaponListUseCase
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.equipment.*
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.CastMagicUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetCustomMagicUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.magic.GetMagicListUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.profession_tree.OnProfessionSkillChangeUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.skills.OnSkillChangeUseCase
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.stats.OnStatChangeUseCase
+import com.witcher.thewitcherrpg.feature_custom_attributes.domain.DeleteCustomEquipmentUseCase
 import com.witcher.thewitcherrpg.feature_custom_attributes.domain.DeleteCustomMagicUseCase
+import com.witcher.thewitcherrpg.feature_custom_attributes.domain.DeleteCustomWeaponUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.io.File
-import java.lang.Exception
 import javax.inject.Inject
 import kotlin.math.absoluteValue
 
@@ -71,28 +67,23 @@ class MainCharacterViewModel @Inject constructor(
     private val dataStore: DataStoreRepository,
     private val characterToFileUseCase: CharacterToFileUseCase,
     private val getCustomMagicUseCase: GetCustomMagicUseCase,
-    private val deleteCustomMagicUseCase: DeleteCustomMagicUseCase
+    private val deleteCustomMagicUseCase: DeleteCustomMagicUseCase,
+    private val getCustomWeaponsUseCase: GetCustomWeaponsUseCase,
+    private val getCustomEquipmentUseCase: GetCustomEquipmentUseCase,
+    private val deleteCustomWeaponUseCase: DeleteCustomWeaponUseCase,
+    private val deleteCustomEquipmentUseCase: DeleteCustomEquipmentUseCase,
 ) : ViewModel() {
+
+    init {
+        fetchCustomWeapons()
+        fetchCustomMagic()
+        fetchCustomEquipment()
+    }
 
     val isDarkModeEnabled = dataStore.readDarkMode
 
     private var _id = MutableStateFlow(70)
     val id = _id.asStateFlow()
-
-//    val saveAvailable: Flow<Boolean> = flow {
-//
-//        while (true) {
-//            try {
-//                if (checkIfDataChanged()) {
-//                    emit(true)
-//                } else {
-//                    emit(false)
-//                }
-//            } catch (ex: Exception) {
-//            }
-//            delay(1000)
-//        }
-//    }
 
     val _saveAvailable = MutableLiveData(false)
     //val saveAvailable: LiveData<Int> = _saveAvailable
@@ -109,6 +100,9 @@ class MainCharacterViewModel @Inject constructor(
 
     private val _deleteState = MutableStateFlow(CharacterState())
     val deleteState = _deleteState.asStateFlow()
+
+    val _editStatMode = MutableStateFlow(false)
+    val editStatMode = _editStatMode.asStateFlow()
 
     val charInfoMode = dataStore.readCharInfoMode
     val statsInfoMode = dataStore.readStatsInfoMode
@@ -730,6 +724,12 @@ class MainCharacterViewModel @Inject constructor(
 
     private var _customMagicList = MutableStateFlow(listOf<MagicItem>())
     val customMagicList = _customMagicList.asStateFlow()
+
+    private var _customWeaponList = MutableStateFlow(listOf<WeaponItem>())
+    val customWeaponList = _customWeaponList.asStateFlow()
+
+    private var _customEquipmentList = MutableStateFlow(listOf<EquipmentItem>())
+    val customEquipmentList = _customEquipmentList.asStateFlow()
 
     fun addCharacter() {
 
@@ -3172,6 +3172,24 @@ class MainCharacterViewModel @Inject constructor(
         checkSaveAvailable()
     }
 
+    fun onFocusChange(value: Int) {
+        if (value < 0) {
+            if (value.absoluteValue < _focus.value) {
+                _focus.value = _focus.value.plus(value)
+            } else _focus.value = 0
+        } else _focus.value = _focus.value.plus(value)
+        checkSaveAvailable()
+    }
+
+    fun onVigorChange(value: Int) {
+        if (value < 0) {
+            if (value.absoluteValue < _vigor.value) {
+                _vigor.value = _vigor.value.plus(value)
+            } else _vigor.value = 0
+        } else _vigor.value = _vigor.value.plus(value)
+        checkSaveAvailable()
+    }
+
     private fun onEncumbranceChange(increase: Boolean) {
         if (increase) {
             val encBonus = _body.value * 10
@@ -3614,7 +3632,7 @@ class MainCharacterViewModel @Inject constructor(
         return file
     }
 
-    fun fetchCustomMagic() {
+    private fun fetchCustomMagic() {
         getCustomMagicUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
@@ -3625,8 +3643,38 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    private fun fetchCustomWeapons() {
+        getCustomWeaponsUseCase().onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _customWeaponList.value = result.data?.map { it.equipment }!!
+                }
+                else -> {}
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun fetchCustomEquipment() {
+        getCustomEquipmentUseCase().onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _customEquipmentList.value = result.data?.map { it.equipment }!!
+                }
+                else -> {}
+            }
+        }.launchIn(viewModelScope)
+    }
+
     fun deleteCustomMagic(magicItem: MagicItem){
         deleteCustomMagicUseCase(CustomMagic(magicItem)).launchIn(viewModelScope)
+    }
+
+    fun deleteCustomWeapon(weaponItem: WeaponItem){
+        deleteCustomWeaponUseCase(CustomWeapon(weaponItem)).launchIn(viewModelScope)
+    }
+
+    fun deleteCustomEquipment(equipmentItem: EquipmentItem){
+        deleteCustomEquipmentUseCase(CustomEquipment(equipmentItem)).launchIn(viewModelScope)
     }
 
     fun checkSaveAvailable(){

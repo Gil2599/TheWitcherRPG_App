@@ -4,24 +4,24 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Resource
+import com.witcher.thewitcherrpg.core.presentation.Button
 
 class CustomMagicComposableFragment {
 
@@ -112,7 +112,7 @@ class CustomMagicComposableFragment {
                 ) {
                     CustomTextField(value = magicName, updateValue = {
                         magicName = it
-                    }, label = "Magic Name", maxLines = 2, leadingIconDrawable = R.drawable.ic_magic_icon)
+                    }, label = "Magic Name", maxLines = 2, leadingIconDrawable = R.drawable.ic_magic_icon, inputType = KeyboardType.Text)
                     CustomDropDownMenu(
                         updateSelection = { newSelection ->
                             typeSelection =
@@ -222,13 +222,14 @@ class CustomMagicComposableFragment {
                         .padding(bottom = 15.dp, end = 15.dp, start = 15.dp, top = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Button("Cancel",
+                    Button(
+                        label = "Cancel",
                         onClick = {
                             activity?.finish()
                         }
                     )
                     Button(
-                        "Save",
+                        label = "Save",
                         onClick = {
                             if (
                                 !customAttributeViewModel.isMagicValid(
@@ -302,7 +303,6 @@ fun STACostSliderCard(
             modifier = Modifier.fillMaxWidth(),
             value = mainValue,
             onValueChange = { updateMainValue(it) },
-            steps = 20,
             valueRange = 0F..30F,
             enabled = enabled
         )
@@ -341,19 +341,4 @@ enum class MagicLevel {
     HIGH,
     BASIC,
     ALTERNATE
-}
-
-@Composable
-fun Button(
-    label: String = "Save",
-    onClick: () -> Unit
-) {
-    Button(
-        onClick = onClick,
-        border = BorderStroke(1.dp, MaterialTheme.colors.primary),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Transparent),
-        shape = RoundedCornerShape(15.dp)
-    ) {
-        Text(text = label, color = MaterialTheme.colors.onPrimary, fontSize = 16.sp)
-    }
 }

@@ -1,27 +1,28 @@
 package com.witcher.thewitcherrpg.core.domain.repository
 
-import com.witcher.thewitcherrpg.core.domain.model.Character
 import com.witcher.thewitcherrpg.core.domain.model.CustomEquipment
 import com.witcher.thewitcherrpg.core.domain.model.CustomMagic
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.Equipment
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
+import com.witcher.thewitcherrpg.core.domain.model.CustomWeapon
 import kotlinx.coroutines.flow.Flow
 
 interface CustomAttributesRepository {
 
     fun getMagic(): Flow<List<CustomMagic>>
 
-    fun getEquipment(): Flow<List<Equipment>>
+    fun getWeapon(): Flow<List<CustomWeapon>>
+
+    suspend fun getEquipment(): Flow<List<CustomEquipment>>
 
     suspend fun addMagic(magic: CustomMagic)
+
+    suspend fun addWeapon(equipment: CustomWeapon)
 
     suspend fun addEquipment(equipment: CustomEquipment)
 
     suspend fun deleteMagic(magic: CustomMagic)
 
-    //fun getCharacterById(id: Int): Flow<Character>
+    suspend fun deleteWeapon(weapon: CustomWeapon)
 
-    //suspend fun deleteChar(character: Character)
+    suspend fun deleteEquipment(equipment: CustomEquipment)
 
-    //suspend fun updateChar(character: Character)
 }

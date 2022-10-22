@@ -6,9 +6,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -24,6 +28,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -33,6 +38,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -50,7 +57,6 @@ private var isDarkMode = true
 
 @AndroidEntryPoint
 class CustomAttributeActivity : ComponentActivity() {
-    private val viewModel: CustomAttributeViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isDarkMode = intent.extras?.getBoolean("isDark") ?: true
@@ -211,6 +217,8 @@ fun CustomTextField(
     maxLines: Int = 1,
     leadingIcon: ImageVector? = null,
     leadingIconDrawable: Int? = null,
+    inputType: KeyboardType = KeyboardType.Text,
+    singleLine: Boolean = false
 ) {
 
     val focusManager: FocusManager = LocalFocusManager.current
@@ -251,8 +259,11 @@ fun CustomTextField(
         modifier = Modifier
             .focusRequester(focusRequester)
             .fillMaxWidth(),
-        maxLines = maxLines
+        maxLines = maxLines,
+        keyboardOptions = KeyboardOptions(keyboardType = inputType, imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions(
+          onDone = {focusManager.clearFocus()}
+        ),
+        singleLine = singleLine
     )
-
 }
-

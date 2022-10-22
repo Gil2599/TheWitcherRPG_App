@@ -16,6 +16,7 @@ import com.witcher.thewitcherrpg.databinding.FragmentCharMagicBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.MagicViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity
 
 class CharMagicFragment : Fragment() {
     private var _binding: FragmentCharMagicBinding? = null
@@ -92,6 +93,43 @@ class CharMagicFragment : Fragment() {
         binding.addRitualButton.visibility = View.GONE
         binding.addHexButton.visibility = View.GONE
         binding.addSignButton.visibility = View.GONE
+
+        binding.textViewStamina.setOnClickListener {
+            (requireActivity() as MainActivity).showEditStatDialog(
+                label = "Current Stamina",
+                onPlus = {
+                    mainCharacterViewModel.onStaminaChange(it, increase = true)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onStaminaChange(-it, increase = false)
+                },
+                currentValue = mainCharacterViewModel.sta.value.toString()
+            )
+        }
+        binding.textViewFocus.setOnClickListener {
+            (requireActivity() as MainActivity).showEditStatDialog(
+                label = "Current Focus",
+                onPlus = {
+                    mainCharacterViewModel.onFocusChange(it)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onFocusChange(-it)
+                },
+                currentValue = mainCharacterViewModel.focus.value.toString()
+            )
+        }
+        binding.textViewVigor.setOnClickListener {
+            (requireActivity() as MainActivity).showEditStatDialog(
+                label = "Current Vigor",
+                onPlus = {
+                    mainCharacterViewModel.onVigorChange(it)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onVigorChange(-it)
+                },
+                currentValue = mainCharacterViewModel.vigor.value.toString()
+            )
+        }
 
         return view
     }

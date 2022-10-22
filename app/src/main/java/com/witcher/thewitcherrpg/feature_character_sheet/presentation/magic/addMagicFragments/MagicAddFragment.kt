@@ -78,7 +78,6 @@ class MagicAddFragment : Fragment() {
             }
         }
 
-        mainCharacterViewModel.fetchCustomMagic()
         listAdaptersInit()
         setAdapterData()
 

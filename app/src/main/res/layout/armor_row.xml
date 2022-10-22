@@ -15,11 +15,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.074"
         tools:text="Placeholder Name" />
 
     <TextView
@@ -28,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cost_text"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -49,5 +46,18 @@
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Cost: 1500" />
+
+    <TextView
+        android:id="@+id/textViewCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/custom"
+        android:textColor="@color/green"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cost_text"
+        app:layout_constraintStart_toStartOf="@+id/stopping_power_text"
+        app:layout_constraintTop_toBottomOf="@+id/stopping_power_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

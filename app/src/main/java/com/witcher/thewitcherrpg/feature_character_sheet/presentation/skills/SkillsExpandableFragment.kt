@@ -6,15 +6,9 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.Typeface
 import android.os.Bundle
-import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -27,11 +21,9 @@ import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.witcher.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.witcher.thewitcherrpg.databinding.FragmentSkillsExpandableBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity
 import kotlinx.coroutines.launch
 
 
@@ -624,36 +616,16 @@ class SkillsExpandableFragment : Fragment() {
     }
 
     private fun showDialogIP() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        val bind: CustomDialogEditStatsBinding =
-            CustomDialogEditStatsBinding.inflate(layoutInflater)
-        dialog.setContentView(bind.root)
-
-        bind.textViewCurrent.text = getString(R.string.current_ip)
-
-        bind.textView.text = mainCharacterViewModel.ip.value.toString()
-
-        bind.editText.requestFocus()
-
-        bind.buttonPlus.setOnClickListener {
-            val value =
-                if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
-            mainCharacterViewModel.onIpChange(value)
-            dialog.dismiss()
-        }
-
-        bind.buttonMinus.setOnClickListener {
-            val value =
-                if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
-            mainCharacterViewModel.onIpChange(-value)
-            dialog.dismiss()
-        }
-        dialog.show()
+        (requireActivity() as MainActivity).showEditStatDialog(
+            label = "Current IP",
+            onPlus = {
+                mainCharacterViewModel.onIpChange(it)
+            },
+            onMinus = {
+                mainCharacterViewModel.onIpChange(-it)
+            },
+            currentValue = mainCharacterViewModel.ip.value.toString()
+        )
     }
 
     private fun showDialogDisclaimer() {
