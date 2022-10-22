@@ -13,7 +13,8 @@
         <action
             android:id="@+id/action_charCreation_firstFrag_to_charCreation_secFrag"
             app:destination="@id/charCreation_secFrag"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/charCreation_secFrag"
@@ -22,10 +23,14 @@
         tools:layout="@layout/fragment_char_creation_sec" >
         <action
             android:id="@+id/action_charCreation_secFrag_to_charCreation_thirdFrag2"
-            app:destination="@id/charCreation_thirdFrag" />
+            app:destination="@id/charCreation_thirdFrag"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_charCreation_secFrag_to_charCreation_firstFrag"
-            app:destination="@id/charCreation_firstFrag" />
+            app:destination="@id/charCreation_firstFrag"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/charCreation_thirdFrag"
@@ -34,6 +39,8 @@
         tools:layout="@layout/fragment_char_creation_third" >
         <action
             android:id="@+id/action_charCreation_thirdFrag_to_charCreation_secFrag"
-            app:destination="@id/charCreation_secFrag" />
+            app:destination="@id/charCreation_secFrag"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
     </fragment>
 </navigation>

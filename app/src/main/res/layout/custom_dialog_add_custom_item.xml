@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/dialog_bkg">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -17,13 +17,14 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Item Name"
+            android:layout_marginTop="16dp"
+            android:hint="@string/item_name"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
-            app:boxStrokeWidth="1dp"
 
+            app:boxStrokeWidth="1dp"
             app:boxStrokeWidthFocused="1dp"
             app:layout_constraintBottom_toTopOf="@+id/etWeightLayout"
             app:layout_constraintEnd_toStartOf="@+id/etQuantityLayout"
@@ -49,7 +50,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Quantity"
+            android:hint="@string/amount"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
@@ -60,8 +61,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/etNameLayout"
             app:layout_constraintTop_toTopOf="@+id/etNameLayout"
-            app:layout_constraintWidth_percent="0.35"
-            tools:ignore="HardcodedText">
+            app:layout_constraintWidth_percent="0.35">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etQuantity"
@@ -77,20 +77,19 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Total Weight"
+            android:layout_marginTop="16dp"
+            android:hint="@string/weight"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxStrokeWidth="1dp"
-
             app:boxStrokeWidthFocused="1dp"
             app:layout_constraintBottom_toTopOf="@+id/etDescriptionLayout"
             app:layout_constraintEnd_toStartOf="@+id/etCostLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/etNameLayout"
-            app:layout_constraintTop_toBottomOf="@+id/etNameLayout"
-            tools:ignore="HardcodedText">
+            app:layout_constraintTop_toBottomOf="@+id/etNameLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etWeight"
@@ -108,7 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:hint="Cost Per Item"
+            android:hint="@string/cost"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
@@ -119,8 +118,7 @@
             app:layout_constraintEnd_toEndOf="@+id/etQuantityLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/etWeightLayout"
-            app:layout_constraintTop_toTopOf="@+id/etWeightLayout"
-            tools:ignore="HardcodedText">
+            app:layout_constraintTop_toTopOf="@+id/etWeightLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCost"
@@ -136,8 +134,9 @@
             android:id="@+id/etDescriptionLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:hint="Item Description"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/description"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
@@ -146,19 +145,16 @@
             app:boxStrokeWidthFocused="1dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
             app:layout_constraintEnd_toEndOf="@+id/etQuantityLayout"
-            app:layout_constraintHeight_percent="0.4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/etNameLayout"
-            app:layout_constraintTop_toBottomOf="@+id/etWeightLayout"
-            tools:ignore="HardcodedText">
+            app:layout_constraintTop_toBottomOf="@+id/etWeightLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="top|start"
-                android:inputType="textMultiLine"
-                android:maxLength="280" />
+                android:inputType="textMultiLine"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -177,7 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:background="@drawable/button_bkg"
-            android:text="ADD"
+            android:text="@string/add"
             android:textColor="?colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/buttonCancel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -189,8 +185,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/button_bkg"
-            android:text="CANCEL"
+            android:text="@string/cancel"
             android:textColor="?colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

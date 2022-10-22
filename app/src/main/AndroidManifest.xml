@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.witcher.thewitcherrpg">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE">
-
-    </uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:name="com.witcher.thewitcherrpg.TheWitcherTRPGApp"
@@ -17,25 +15,30 @@
         android:theme="@style/Theme.WitcherDD"
         tools:node="merge">
         <activity
+            android:name="com.witcher.thewitcherrpg.feature_custom_attributes.presentation.CustomAttributeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_custom_attribute"
+            android:theme="@style/Theme.WitcherDD" />
+        <activity
             android:name="com.witcher.thewitcherrpg.about_section.AboutActivity"
-            android:parentActivityName="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
+            android:exported="false"
             android:label="About Application"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:parentActivityName="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.witcher.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity"
             android:exported="true"
             android:label="Create Character"
-            android:screenOrientation="portrait"
             android:parentActivityName="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing"
             tools:node="merge" />
         <activity
             android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity"
             android:exported="true"
             android:label="Character Sheet"
-            android:screenOrientation="portrait"
             android:parentActivityName="com.witcher.thewitcherrpg.feature_character_list.presentation.LauncherActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             tools:node="merge" />
         <activity
@@ -46,33 +49,36 @@
             tools:node="merge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="file"
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
                     android:mimeType="*/*"
-                    android:pathPattern=".*\\.wch"/>
-                <data android:scheme="content"
                     android:pathPattern=".*\\.wch"
-                    android:mimeType="application/octet-stream" />
+                    android:scheme="file" />
+                <data
+                    android:mimeType="application/octet-stream"
+                    android:pathPattern=".*\\.wch"
+                    android:scheme="content" />
                 <!-- <data android:host="*"/> -->
             </intent-filter>
-
         </activity>
-        
+
         <provider
-            android:authorities="com.witcher.thewitcherrpg"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.witcher.thewitcherrpg"
+            android:enabled="true"
             android:exported="false"
-            android:grantUriPermissions="true"
-            android:enabled="true">
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 

@@ -19,5 +19,6 @@ data class MagicItem(
     var preparation: String? = null,
     var components: String? = null,
     var requirementToLift: String? = null,
-    var danger: String? = null
+    var danger: String? = null,
+    var isCustom: Boolean = false
 ) : Parcelable, Serializable

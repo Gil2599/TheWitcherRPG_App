@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments.*
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.characterMagicFragments.CharacterMagicFragment
 
 class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle)  {
 
@@ -16,11 +16,11 @@ class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : Fragmen
 
     override fun createFragment(position: Int): Fragment {
         return when (fragmentList[position]) {
-            FragmentName.SPELLS -> CharSpellsFragment()
-            FragmentName.INVOCATIONS -> CharInvocationsFragment()
-            FragmentName.RITUALS -> CharRitualsFragment()
-            FragmentName.HEXES -> CharHexesFragment()
-            FragmentName.SIGNS -> CharSignsFragment()
+            FragmentName.SPELLS -> CharacterMagicFragment(FragmentName.SPELLS)
+            FragmentName.INVOCATIONS -> CharacterMagicFragment(FragmentName.INVOCATIONS)
+            FragmentName.RITUALS -> CharacterMagicFragment(FragmentName.RITUALS)
+            FragmentName.HEXES -> CharacterMagicFragment(FragmentName.HEXES)
+            FragmentName.SIGNS -> CharacterMagicFragment(FragmentName.SIGNS)
         }
     }
 

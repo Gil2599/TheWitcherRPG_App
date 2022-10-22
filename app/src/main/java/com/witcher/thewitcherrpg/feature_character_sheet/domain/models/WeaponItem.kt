@@ -26,5 +26,6 @@ data class WeaponItem(
     var focus: Int = 0,
     var equipmentNote: String = "",
     var isRelic: Boolean = false,
-    var uniqueID: UUID = UUID.randomUUID()
-) : Parcelable, Serializable
+    var uniqueID: UUID = UUID.randomUUID(),
+    var isCustom: Boolean = false
+) : Parcelable, Serializable, Equipment()

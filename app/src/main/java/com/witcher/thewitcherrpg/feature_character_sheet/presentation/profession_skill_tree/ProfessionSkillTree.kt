@@ -2,13 +2,14 @@ package com.witcher.thewitcherrpg.feature_character_sheet.presentation.professio
 
 import android.app.Dialog
 import android.content.res.ColorStateList
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -16,15 +17,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
-import com.witcher.thewitcherrpg.databinding.CustomDialogEditStatsBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.witcher.thewitcherrpg.databinding.FragmentProfessionSkillTreeBinding
-import kotlinx.coroutines.flow.collect
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 class ProfessionSkillTree : Fragment() {
     private var _binding: FragmentProfessionSkillTreeBinding? = null
@@ -145,6 +148,34 @@ class ProfessionSkillTree : Fragment() {
 
     //Set up all view logic relating to the skill tree and click listeners
     private fun onInit(){
+
+        binding.arrow1.addValueCallback(
+            KeyPath("**"),
+            LottieProperty.COLOR_FILTER
+        ) {
+            PorterDuffColorFilter(
+                resources.getColor(R.color.purple),
+                PorterDuff.Mode.SRC_ATOP
+            )
+        }
+        binding.arrow2.addValueCallback(
+            KeyPath("**"),
+            LottieProperty.COLOR_FILTER
+        ) {
+            PorterDuffColorFilter(
+                resources.getColor(R.color.green),
+                PorterDuff.Mode.SRC_ATOP
+            )
+        }
+        binding.arrow3.addValueCallback(
+            KeyPath("**"),
+            LottieProperty.COLOR_FILTER
+        ) {
+            PorterDuffColorFilter(
+                resources.getColor(R.color.red),
+                PorterDuff.Mode.SRC_ATOP
+            )
+        }
 
         //Create Dialog for Defining Skill above tree
         binding.buttonDefiningSkill.setOnClickListener{
@@ -310,7 +341,7 @@ class ProfessionSkillTree : Fragment() {
                 // Repeat when the lifecycle is STARTED, cancel when PAUSED
                 launch {
                     mainCharacterViewModel.professionSkillA1.collectLatest { value ->
-                        if (value >= 5){
+                        if (value >= 5) {
                             binding.linearLayoutA2.setOnClickListener {
                                 focusedTextViews[0]?.visibility = View.INVISIBLE
                                 focusedTextViews[1]?.visibility = View.INVISIBLE
@@ -324,20 +355,32 @@ class ProfessionSkillTree : Fragment() {
                             binding.linearLayoutA2.backgroundTintList = ColorStateList.valueOf(purple)
                             binding.SkillA2.setTextColor(purple)
                             binding.textViewSkillA2.setTextColor(purple)
-                            binding.arrow4.imageTintList = ColorStateList.valueOf(purple)
+                            binding.arrow4.pauseAnimation()
+                            binding.arrow4.addValueCallback(
+                                KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) {
+                                PorterDuffColorFilter(
+                                    resources.getColor(R.color.purple),
+                                    PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
                         }
-                        else{
+                        else {
                             binding.linearLayoutA2.setOnClickListener(null)
                             binding.linearLayoutA2.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillA2.setTextColor(disabled)
                             binding.textViewSkillA2.setTextColor(disabled)
-                            binding.arrow4.imageTintList = ColorStateList.valueOf(disabled)
+                            binding.arrow4.addValueCallback(KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) { null }
+                            binding.arrow4.playAnimation()
                         }
                     }
                 }
                 launch {
                     mainCharacterViewModel.professionSkillA2.collectLatest { value ->
-                        if (value >= 5){
+                        if (value >= 5) {
                             binding.linearLayoutA3.setOnClickListener {
                                 focusedTextViews[0]?.visibility = View.INVISIBLE
                                 focusedTextViews[1]?.visibility = View.INVISIBLE
@@ -351,14 +394,26 @@ class ProfessionSkillTree : Fragment() {
                             binding.linearLayoutA3.backgroundTintList = ColorStateList.valueOf(purple)
                             binding.SkillA3.setTextColor(purple)
                             binding.textViewSkillA3.setTextColor(purple)
-                            binding.arrow5.imageTintList = ColorStateList.valueOf(purple)
+                            binding.arrow5.pauseAnimation()
+                            binding.arrow5.addValueCallback(
+                                KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) {
+                                PorterDuffColorFilter(
+                                    resources.getColor(R.color.purple),
+                                    PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
                         }
-                        else{
+                        else {
                             binding.linearLayoutA3.setOnClickListener(null)
                             binding.linearLayoutA3.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillA3.setTextColor(disabled)
                             binding.textViewSkillA3.setTextColor(disabled)
-                            binding.arrow5.imageTintList = ColorStateList.valueOf(disabled)
+                            binding.arrow5.addValueCallback(KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) { null }
+                            binding.arrow5.playAnimation()
                         }
                     }
                 }
@@ -378,14 +433,26 @@ class ProfessionSkillTree : Fragment() {
                             binding.linearLayoutB2.backgroundTintList = ColorStateList.valueOf(green)
                             binding.SkillB2.setTextColor(green)
                             binding.textViewSkillB2.setTextColor(green)
-                            binding.arrow6.imageTintList = ColorStateList.valueOf(green)
+                            binding.arrow6.pauseAnimation()
+                            binding.arrow6.addValueCallback(
+                                KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) {
+                                PorterDuffColorFilter(
+                                    resources.getColor(R.color.green),
+                                    PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
                         }
                         else{
                             binding.linearLayoutB2.setOnClickListener(null)
                             binding.linearLayoutB2.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillB2.setTextColor(disabled)
                             binding.textViewSkillB2.setTextColor(disabled)
-                            binding.arrow6.imageTintList = ColorStateList.valueOf(disabled)
+                            binding.arrow6.addValueCallback(KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) { null }
+                            binding.arrow6.playAnimation()
                         }
                     }
                 }
@@ -405,14 +472,26 @@ class ProfessionSkillTree : Fragment() {
                             binding.linearLayoutB3.backgroundTintList = ColorStateList.valueOf(green)
                             binding.SkillB3.setTextColor(green)
                             binding.textViewSkillB3.setTextColor(green)
-                            binding.arrow9.imageTintList = ColorStateList.valueOf(green)
+                            binding.arrow9.pauseAnimation()
+                            binding.arrow9.addValueCallback(
+                                KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) {
+                                PorterDuffColorFilter(
+                                    resources.getColor(R.color.green),
+                                    PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
                         }
-                        else{
+                        else {
                             binding.linearLayoutB3.setOnClickListener(null)
                             binding.linearLayoutB3.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillB3.setTextColor(disabled)
                             binding.textViewSkillB3.setTextColor(disabled)
-                            binding.arrow9.imageTintList = ColorStateList.valueOf(disabled)
+                            binding.arrow9.addValueCallback(KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) { null }
+                            binding.arrow9.playAnimation()
                         }
                     }
                 }
@@ -432,14 +511,26 @@ class ProfessionSkillTree : Fragment() {
                             binding.linearLayoutC2.backgroundTintList = ColorStateList.valueOf(red)
                             binding.SkillC2.setTextColor(red)
                             binding.textViewSkillC2.setTextColor(red)
-                            binding.arrow8.imageTintList = ColorStateList.valueOf(red)
+                            binding.arrow8.pauseAnimation()
+                            binding.arrow8.addValueCallback(
+                                KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) {
+                                PorterDuffColorFilter(
+                                    resources.getColor(R.color.red),
+                                    PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
                         }
-                        else{
+                        else {
                             binding.linearLayoutC2.setOnClickListener(null)
                             binding.linearLayoutC2.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillC2.setTextColor(disabled)
                             binding.textViewSkillC2.setTextColor(disabled)
-                            binding.arrow8.imageTintList = ColorStateList.valueOf(disabled)
+                            binding.arrow8.addValueCallback(KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) { null }
+                            binding.arrow8.playAnimation()
                         }
                     }
                 }
@@ -459,14 +550,26 @@ class ProfessionSkillTree : Fragment() {
                             binding.linearLayoutC3.backgroundTintList = ColorStateList.valueOf(red)
                             binding.SkillC3.setTextColor(red)
                             binding.textViewSkillC3.setTextColor(red)
-                            binding.arrow7.imageTintList = ColorStateList.valueOf(red)
+                            binding.arrow7.pauseAnimation()
+                            binding.arrow7.addValueCallback(
+                                KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) {
+                                PorterDuffColorFilter(
+                                    resources.getColor(R.color.red),
+                                    PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
                         }
-                        else{
+                        else {
                             binding.linearLayoutC3.setOnClickListener(null)
                             binding.linearLayoutC3.backgroundTintList = ColorStateList.valueOf(disabled)
                             binding.SkillC3.setTextColor(disabled)
                             binding.textViewSkillC3.setTextColor(disabled)
-                            binding.arrow7.imageTintList = ColorStateList.valueOf(disabled)
+                            binding.arrow7.addValueCallback(KeyPath("**"),
+                                LottieProperty.COLOR_FILTER
+                            ) { null }
+                            binding.arrow7.playAnimation()
                         }
                     }
                 }
@@ -497,36 +600,16 @@ class ProfessionSkillTree : Fragment() {
     }
 
     private fun showDialogIP() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        val bind: CustomDialogEditStatsBinding =
-            CustomDialogEditStatsBinding.inflate(layoutInflater)
-        dialog.setContentView(bind.root)
-
-        bind.textViewCurrent.text = getString(R.string.current_ip)
-
-        bind.textView.text = mainCharacterViewModel.ip.value.toString()
-
-        bind.editText.requestFocus()
-
-        bind.buttonPlus.setOnClickListener {
-            val value =
-                if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
-            mainCharacterViewModel.onIpChange(value)
-            dialog.dismiss()
-        }
-
-        bind.buttonMinus.setOnClickListener {
-            val value =
-                if (bind.editText.text.isEmpty()) 0 else bind.editText.text.toString().toInt()
-            mainCharacterViewModel.onIpChange(-value)
-            dialog.dismiss()
-        }
-        dialog.show()
+        (requireActivity() as MainActivity).showEditStatDialog(
+            label = "Current IP",
+            onPlus = {
+                mainCharacterViewModel.onIpChange(it)
+            },
+            onMinus = {
+                mainCharacterViewModel.onIpChange(-it)
+            },
+            currentValue = mainCharacterViewModel.ip.value.toString()
+        )
     }
 
     private fun showDialogSkillInfo(text: String, title: String) {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="equipmentItem"
             type="com.witcher.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem" />
@@ -33,6 +34,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/buttonDelete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_outline_delete_24"
+                android:clickable="true"
+                android:visibility="@{equipmentItem.isCustom || armorSetItem.isCustom ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customTitle" />
 
             <TextView
                 android:id="@+id/textViewSP"
@@ -103,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/button_bkg"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textColor="?colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewCost"
@@ -115,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/button_bkg"
-                android:text="Add"
+                android:text="@string/add"
                 android:textColor="?colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/buttonBuy"
@@ -126,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_bkg"
-                android:text="Buy"
+                android:text="@string/buy"
                 android:textColor="?colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"

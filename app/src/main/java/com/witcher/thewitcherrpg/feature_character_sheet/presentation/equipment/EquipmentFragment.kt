@@ -311,6 +311,7 @@ class EquipmentFragment : Fragment() {
                         armorItem.equipmentType
                     ).toString()
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewPlus.setOnClickListener {
@@ -319,6 +320,7 @@ class EquipmentFragment : Fragment() {
                     increase = true,
                     armorItem.equipmentType
                 ).toString()
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewPlusLSP.setOnClickListener {
@@ -338,7 +340,9 @@ class EquipmentFragment : Fragment() {
                             increase = true,
                             EquipmentTypes.LARM
                         ).toString()
+                    else -> {}
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewMinusLSP.setOnClickListener {
@@ -359,8 +363,10 @@ class EquipmentFragment : Fragment() {
                                 increase = false,
                                 EquipmentTypes.LARM
                             ).toString()
+                        else -> {}
                     }
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewPlusRSP.setOnClickListener {
@@ -380,7 +386,9 @@ class EquipmentFragment : Fragment() {
                             increase = true,
                             EquipmentTypes.RARM
                         ).toString()
+                    else -> {}
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             bind.imageViewMinusRSP.setOnClickListener {
@@ -401,8 +409,10 @@ class EquipmentFragment : Fragment() {
                                 increase = false,
                                 EquipmentTypes.RARM
                             ).toString()
+                        else -> {}
                     }
                 }
+                mainCharacterViewModel.checkSaveAvailable()
             }
 
             dialog.setContentView(bind.root)

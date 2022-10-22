@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
@@ -14,6 +16,7 @@ import com.witcher.thewitcherrpg.databinding.FragmentCharMagicBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.MagicViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity
 
 class CharMagicFragment : Fragment() {
     private var _binding: FragmentCharMagicBinding? = null
@@ -50,28 +53,31 @@ class CharMagicFragment : Fragment() {
         }
         //If Mage, go to add spells fragment, otherwise (Priest) go to add invocations fragment
         binding.addSpellButton.setOnClickListener {
-            if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE)
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_charMagicFragment_to_spellAddFragment)
-            else Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_invocationAddFragment)
+            if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE) {
+                val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.SPELLS)
+                findNavController().navigate(action)
+            }
+            else {
+                val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.INVOCATIONS)
+                findNavController().navigate(action)
+            }
         }
         //Go to add signs fragment
         binding.addSignButton.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_signsAddFragment)
+            val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.SIGNS)
+            findNavController().navigate(action)
         }
 
         //Go to add rituals fragment
         binding.addRitualButton.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_ritualAddFragment)
+            val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.RITUALS)
+            findNavController().navigate(action)
         }
 
         //Go to add hexes fragment
         binding.addHexButton.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_charMagicFragment_to_hexesAddFragment)
+            val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.HEXES)
+            findNavController().navigate(action)
         }
 
         //Initial animations
@@ -87,6 +93,43 @@ class CharMagicFragment : Fragment() {
         binding.addRitualButton.visibility = View.GONE
         binding.addHexButton.visibility = View.GONE
         binding.addSignButton.visibility = View.GONE
+
+        binding.textViewStamina.setOnClickListener {
+            (requireActivity() as MainActivity).showEditStatDialog(
+                label = "Current Stamina",
+                onPlus = {
+                    mainCharacterViewModel.onStaminaChange(it, increase = true)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onStaminaChange(-it, increase = false)
+                },
+                currentValue = mainCharacterViewModel.sta.value.toString()
+            )
+        }
+        binding.textViewFocus.setOnClickListener {
+            (requireActivity() as MainActivity).showEditStatDialog(
+                label = "Current Focus",
+                onPlus = {
+                    mainCharacterViewModel.onFocusChange(it)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onFocusChange(-it)
+                },
+                currentValue = mainCharacterViewModel.focus.value.toString()
+            )
+        }
+        binding.textViewVigor.setOnClickListener {
+            (requireActivity() as MainActivity).showEditStatDialog(
+                label = "Current Vigor",
+                onPlus = {
+                    mainCharacterViewModel.onVigorChange(it)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onVigorChange(-it)
+                },
+                currentValue = mainCharacterViewModel.vigor.value.toString()
+            )
+        }
 
         return view
     }
@@ -211,6 +254,7 @@ class CharMagicFragment : Fragment() {
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
             }
 
+            else -> {}
         }
         if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE) tabsLayout.getTabAt(
             0

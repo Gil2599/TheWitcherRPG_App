@@ -19,6 +19,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.03"
@@ -69,22 +70,22 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Spells" />
+                android:text="@string/spells" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Rituals" />
+                android:text="@string/rituals" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Hexes" />
+                android:text="@string/hexes" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Signs" />
+                android:text="@string/signs" />
 
 
         </com.google.android.material.tabs.TabLayout>
@@ -112,7 +113,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.93"
             app:srcCompat="@drawable/ic_baseline_add_24"
-            android:contentDescription="Add new character">
+            android:contentDescription="@string/add_new_character">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
@@ -148,6 +149,23 @@
             app:tint="?colorOnPrimaryContainer">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+        <!--
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/addSpellButton"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/addSpellButton"
+            app:layout_constraintStart_toStartOf="@+id/addSpellButton"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="fire_animation.json"
+            android:backgroundTint="?colorOnPrimary"
+            android:background="@drawable/ripple_bkg"
+            android:clickable="true"
+            app:lottie_loop="true" />
+            -->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addHexButton"

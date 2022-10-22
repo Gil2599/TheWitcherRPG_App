@@ -1,6 +1,5 @@
 package com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,12 +19,13 @@ import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogCharArmorBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogCharWeaponBinding
 import com.witcher.thewitcherrpg.databinding.FragmentInventoryBinding
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
+import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.*
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.EquipmentListAdapter
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.equipment.listAdapters.WeaponListAdapter
+import kotlinx.coroutines.launch
+import java.lang.Exception
+import kotlin.properties.Delegates
 
 
 class InventoryFragment : Fragment() {
@@ -34,10 +35,9 @@ class InventoryFragment : Fragment() {
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
     private val selectionArg: InventoryFragmentArgs by navArgs()
 
-    private lateinit var lightAdapter: EquipmentListAdapter
-    private lateinit var mediumAdapter: EquipmentListAdapter
-    private lateinit var heavyAdapter: EquipmentListAdapter
-    private var amulets = arrayListOf<WeaponItem>()
+    private var darkModeEnabled by Delegates.notNull<Boolean>()
+    private lateinit var equipmentAdapter: EquipmentListAdapter
+    private var itemList = arrayListOf<Any>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,11 +57,33 @@ class InventoryFragment : Fragment() {
         binding.customTitle.setTitle("Inventory")
         binding.customTitle.setTitleSize(20F)
 
+        lifecycleScope.launch {
+            launch {
+                mainCharacterViewModel.isDarkModeEnabled.collect { value ->
+                    darkModeEnabled = value
+                }
+            }
+        }
+
+        equipmentAdapter = EquipmentListAdapter ({ equipment ->
+            when (equipment) {
+                is EquipmentItem -> {
+                    showArmorDialog(equipment)
+                }
+                is WeaponItem -> {
+                    showWeaponDialog(equipment)
+                }
+            }
+        }, darkModeEnabled)
+        binding.inventoryRv.adapter = equipmentAdapter
+        binding.inventoryRv.layoutManager = LinearLayoutManager(requireContext())
+
         binding.autoCompleteTextViewItemType.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, _, _ ->
-                updateRVs(binding.autoCompleteTextViewItemType.text.toString())
+                //updateRVs(binding.autoCompleteTextViewItemType.text.toString())
+                updateListData()
             }
-        listAdaptersSetup()
+        listAdaptersInit(AddItemFragment.ItemType.HEAD_ARMOR)
 
         var selection = "Head Armor"
         when (selectionArg.spinnerSelection) {
@@ -72,256 +94,224 @@ class InventoryFragment : Fragment() {
         }
 
         binding.autoCompleteTextViewItemType.setText(selection, false)
-        updateRVs(binding.autoCompleteTextViewItemType.text.toString())
-
+        updateListData()
 
         return view
     }
 
-    private fun listAdaptersSetup() {
+    private fun listAdaptersInit(itemType: AddItemFragment.ItemType) {
+        val newItemList = arrayListOf<Equipment>()
 
-        binding.rvLightEquipment.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvLightEquipment.isNestedScrollingEnabled = false
-
-        binding.rvMediumEquipment.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvMediumEquipment.isNestedScrollingEnabled = false
-
-        binding.rvHeavyEquipment.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvHeavyEquipment.isNestedScrollingEnabled = false
-
-        binding.rvBludgeons.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvBludgeons.isNestedScrollingEnabled = false
-
-        binding.rvPoleArms.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvPoleArms.isNestedScrollingEnabled = false
-
-        binding.rvStaves.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvStaves.isNestedScrollingEnabled = false
-
-        binding.rvThrownWeapons.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvThrownWeapons.isNestedScrollingEnabled = false
-
-        binding.rvBows.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvBows.isNestedScrollingEnabled = false
-
-        binding.rvCrossbows.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvCrossbows.isNestedScrollingEnabled = false
+        when (itemType) {
+            AddItemFragment.ItemType.WEAPON -> {
+                newItemList.addAll(mainCharacterViewModel.weaponEquipment.value)
+            }
+            AddItemFragment.ItemType.HEAD_ARMOR -> {
+                newItemList.addAll(mainCharacterViewModel.headEquipment.value)
+            }
+            AddItemFragment.ItemType.CHEST_ARMOR -> {
+                newItemList.addAll(mainCharacterViewModel.chestEquipment.value)
+            }
+            AddItemFragment.ItemType.LEG_ARMOR -> {
+                newItemList.addAll(mainCharacterViewModel.legEquipment.value)
+            }
+            AddItemFragment.ItemType.SHIELD_ACCESSORY -> {
+                newItemList.addAll(mainCharacterViewModel.accessoryEquipment.value)
+                newItemList.addAll(mainCharacterViewModel.weaponEquipment.value.filter { it.type == WeaponTypes.AMULET })
+            }
+            AddItemFragment.ItemType.CUSTOM_ITEM -> {
+                newItemList.addAll(mainCharacterViewModel.miscEquipment.value)
+            }
+            else -> {}
+        }
+        addHeadersToList(newItemList)
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun listAdaptersInit(weapons: Boolean, customItem: Boolean = false, accessories: Boolean = false) {
-        if (weapons) {
-            val swords = arrayListOf<WeaponItem>()
-            val smallBlades = arrayListOf<WeaponItem>()
-            val axes = arrayListOf<WeaponItem>()
-            val bludgeons = arrayListOf<WeaponItem>()
-            val poleArms = arrayListOf<WeaponItem>()
-            val staves = arrayListOf<WeaponItem>()
-            val thrownWeapons = arrayListOf<WeaponItem>()
-            val bows = arrayListOf<WeaponItem>()
-            val crossbows = arrayListOf<WeaponItem>()
-
-            for (item in mainCharacterViewModel.weaponEquipment.value) {
-                when (item.type) {
-                    WeaponTypes.SWORD -> swords.add(item)
-                    WeaponTypes.SMALL_BLADE -> smallBlades.add(item)
-                    WeaponTypes.AXE -> axes.add(item)
-                    WeaponTypes.BLUDGEON -> bludgeons.add(item)
-                    WeaponTypes.POLE_ARM -> poleArms.add(item)
-                    WeaponTypes.STAFF -> staves.add(item)
-                    WeaponTypes.THROWN_WEAPON -> thrownWeapons.add(item)
-                    WeaponTypes.BOW -> bows.add(item)
-                    WeaponTypes.CROSSBOW -> crossbows.add(item)
-                }
+    private fun updateListData(){
+        when (binding.autoCompleteTextViewItemType.text.toString()) {
+            "Head Armor" -> {
+                listAdaptersInit(AddItemFragment.ItemType.HEAD_ARMOR)
             }
-
-            val swordsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            swordsAdapter.setData(swords)
-            binding.rvLightEquipment.adapter = swordsAdapter
-            binding.textViewLight.text = "Swords"
-
-            val smallBladesAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            smallBladesAdapter.setData(smallBlades)
-            binding.rvMediumEquipment.adapter = smallBladesAdapter
-            binding.textViewMedium.text = "Small Blades"
-
-
-            val axesAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            axesAdapter.setData(axes)
-            binding.rvHeavyEquipment.adapter = axesAdapter
-            binding.textViewHeavy.text = "Axes"
-
-            val bludgeonsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            bludgeonsAdapter.setData(bludgeons)
-            binding.rvBludgeons.adapter = bludgeonsAdapter
-            binding.textViewBludgeons.text = "Bludgeons"
-
-            val poleArmsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            poleArmsAdapter.setData(poleArms)
-            binding.rvPoleArms.adapter = poleArmsAdapter
-            binding.textViewPoleArms.text = "Pole Arms"
-
-            val stavesAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            stavesAdapter.setData(staves)
-            binding.rvStaves.adapter = stavesAdapter
-            binding.textViewStaves.text = "Staves"
-
-            val thrownWeaponsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            thrownWeaponsAdapter.setData(thrownWeapons)
-            binding.rvThrownWeapons.adapter = thrownWeaponsAdapter
-            binding.textViewThrownWeapons.text = "Thrown Weapons"
-
-            val bowsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            bowsAdapter.setData(bows)
-            binding.rvBows.adapter = bowsAdapter
-            binding.textViewBows.text = "Bows"
-
-            val crossbowsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-            crossbowsAdapter.setData(crossbows)
-            binding.rvCrossbows.adapter = crossbowsAdapter
-            binding.textViewCrossbows.text = "Crossbows"
-
-            if (bludgeons.isNotEmpty()) {
-                binding.rvBludgeons.visibility = View.VISIBLE
-                binding.textViewBludgeons.visibility = View.VISIBLE
-            } else {
-                binding.rvBludgeons.visibility = View.GONE
-                binding.textViewBludgeons.visibility = View.GONE
+            "Chest Armor" -> {
+                listAdaptersInit(AddItemFragment.ItemType.CHEST_ARMOR)
             }
-            if (poleArms.isNotEmpty()) {
-                binding.rvPoleArms.visibility = View.VISIBLE
-                binding.textViewPoleArms.visibility = View.VISIBLE
-            } else {
-                binding.rvPoleArms.visibility = View.GONE
-                binding.textViewPoleArms.visibility = View.GONE
+            "Leg Armor" -> {
+                listAdaptersInit(AddItemFragment.ItemType.LEG_ARMOR)
             }
-            if (staves.isNotEmpty()) {
-                binding.rvStaves.visibility = View.VISIBLE
-                binding.textViewStaves.visibility = View.VISIBLE
-            } else {
-                binding.rvStaves.visibility = View.GONE
-                binding.textViewStaves.visibility = View.GONE
+            "Weapon" -> {
+                listAdaptersInit(AddItemFragment.ItemType.WEAPON)
             }
-            if (thrownWeapons.isNotEmpty()) {
-                binding.rvThrownWeapons.visibility = View.VISIBLE
-                binding.textViewThrownWeapons.visibility = View.VISIBLE
-            } else {
-                binding.rvThrownWeapons.visibility = View.GONE
-                binding.textViewThrownWeapons.visibility = View.GONE
+            "Shield/Accessory" -> {
+                listAdaptersInit(AddItemFragment.ItemType.SHIELD_ACCESSORY)
             }
-            if (bows.isNotEmpty()) {
-                binding.rvBows.visibility = View.VISIBLE
-                binding.textViewBows.visibility = View.VISIBLE
-            } else {
-                binding.rvBows.visibility = View.GONE
-                binding.textViewBows.visibility = View.GONE
+            "Miscellaneous" -> {
+                listAdaptersInit(AddItemFragment.ItemType.CUSTOM_ITEM)
             }
-            if (crossbows.isNotEmpty()) {
-                binding.rvCrossbows.visibility = View.VISIBLE
-                binding.textViewCrossbows.visibility = View.VISIBLE
-            } else {
-                binding.rvCrossbows.visibility = View.GONE
-                binding.textViewCrossbows.visibility = View.GONE
-            }
-            if (swords.isNotEmpty()) {
-                binding.rvLightEquipment.visibility = View.VISIBLE
-                binding.textViewLight.visibility = View.VISIBLE
-            } else {
-                binding.rvLightEquipment.visibility = View.GONE
-                binding.textViewLight.visibility = View.GONE
-            }
-            if (smallBlades.isNotEmpty()) {
-                binding.rvMediumEquipment.visibility = View.VISIBLE
-                binding.textViewMedium.visibility = View.VISIBLE
-            } else {
-                binding.rvMediumEquipment.visibility = View.GONE
-                binding.textViewMedium.visibility = View.GONE
-            }
-            if (axes.isNotEmpty()) {
-                binding.rvHeavyEquipment.visibility = View.VISIBLE
-                binding.textViewHeavy.visibility = View.VISIBLE
-            } else {
-                binding.rvHeavyEquipment.visibility = View.GONE
-                binding.textViewHeavy.visibility = View.GONE
-            }
-
-            if (swords.size == 0 &&
-                smallBlades.size == 0 &&
-                axes.size == 0 &&
-                bludgeons.size == 0 &&
-                poleArms.size == 0 &&
-                staves.size == 0 &&
-                thrownWeapons.size == 0 &&
-                bows.size == 0 &&
-                crossbows.size == 0) {
-                binding.textViewNoEquipment.text = "No " + binding.autoCompleteTextViewItemType.text + " Equipment"
-                binding.textViewNoEquipment.visibility = View.VISIBLE
-                binding.textViewAddEquipment.visibility = View.VISIBLE
-            } else {
-                binding.textViewNoEquipment.visibility = View.INVISIBLE
-                binding.textViewAddEquipment.visibility = View.INVISIBLE
-            }
-
-        } else {
-            if (!customItem) {
-                lightAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-                binding.rvLightEquipment.adapter = lightAdapter
-
-                mediumAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-                binding.rvMediumEquipment.adapter = mediumAdapter
-
-                heavyAdapter = EquipmentListAdapter { item -> showArmorDialog(item) }
-                binding.rvHeavyEquipment.adapter = heavyAdapter
-
-                binding.textViewLight.text = "Light"
-                binding.textViewMedium.text = "Medium"
-                binding.textViewHeavy.text = "Heavy"
-                binding.textViewHeavy.visibility = View.VISIBLE
-                binding.rvMediumEquipment.visibility = View.VISIBLE
-                binding.rvHeavyEquipment.visibility = View.VISIBLE
-
-                if (accessories){
-                    val bludgeonsAdapter = WeaponListAdapter { item -> showWeaponDialog(item) }
-                    for (item in mainCharacterViewModel.weaponEquipment.value)
-                        if (item.type == WeaponTypes.AMULET)
-                            amulets.add(item)
-                    bludgeonsAdapter.setData(amulets)
-                    binding.rvBludgeons.adapter = bludgeonsAdapter
-                    binding.textViewBludgeons.text = "Amulets"
-                    if (amulets.isNotEmpty()) {
-                        binding.textViewNoEquipment.visibility = View.INVISIBLE
-                        binding.textViewAddEquipment.visibility = View.INVISIBLE
-                        binding.rvBludgeons.visibility = View.VISIBLE
-                        binding.textViewBludgeons.visibility = View.VISIBLE
-                    } else {
-                        binding.rvBludgeons.visibility = View.INVISIBLE
-                        binding.textViewBludgeons.visibility = View.INVISIBLE
-                    }
-                }
-                else{
-                    binding.rvBludgeons.visibility = View.GONE
-                    binding.textViewBludgeons.visibility = View.GONE
-                }
-
-            } else {
-                binding.textViewLight.text = "Custom Items"
-                binding.textViewLight.visibility = View.VISIBLE
-                binding.textViewMedium.visibility = View.GONE
-                binding.textViewHeavy.visibility = View.GONE
-            }
-
-            binding.rvLightEquipment.visibility = View.VISIBLE
-            binding.rvPoleArms.visibility = View.GONE
-            binding.rvStaves.visibility = View.GONE
-            binding.rvThrownWeapons.visibility = View.GONE
-            binding.rvBows.visibility = View.GONE
-            binding.rvCrossbows.visibility = View.GONE
-            binding.textViewPoleArms.visibility = View.GONE
-            binding.textViewStaves.visibility = View.GONE
-            binding.textViewThrownWeapons.visibility = View.GONE
-            binding.textViewBows.visibility = View.GONE
-            binding.textViewCrossbows.visibility = View.GONE
         }
+    }
+
+    private fun addHeadersToList(equipmentList: ArrayList<Equipment>) {
+        val tempItemList = arrayListOf<Any>()
+        var smallBladesHeaderAdded = false
+        var swordsHeaderAdded = false
+        var axesHeaderAdded = false
+        var bludgeonsHeaderAdded = false
+        var poleArmsHeaderAdded = false
+        var stavesHeaderAdded = false
+        var thrownWeaponsHeaderAdded = false
+        var bowsHeaderAdded = false
+        var lightHeaderAdded = false
+        var mediumHeaderAdded = false
+        var heavyHeaderAdded = false
+        var crossbowsHeaderAdded = false
+        var amuletHeaderAdded = false
+        var customHeaderAdded = false
+
+        if (equipmentList.size > 0) {
+            binding.textViewNoEquipment.visibility = View.GONE
+            binding.textViewAddEquipment.visibility = View.GONE
+            if (equipmentList[0] is EquipmentItem) {
+                try {
+                    (equipmentList as ArrayList<EquipmentItem>).sortBy { it.equipmentType }
+                } catch (e: Exception) {}
+            } else if (equipmentList[0] is WeaponItem) {
+                (equipmentList as ArrayList<WeaponItem>).sortBy { it.type }
+            }
+        } else {
+            binding.textViewNoEquipment.visibility = View.VISIBLE
+            binding.textViewAddEquipment.visibility = View.VISIBLE
+        }
+
+        for (item in equipmentList) {
+            when (item) {
+                is WeaponItem -> {
+                    if (item.type == WeaponTypes.SWORD){
+                        if (!swordsHeaderAdded) {
+                            tempItemList.add(ListHeader("Swords"))
+                            swordsHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.SMALL_BLADE){
+                        if (!smallBladesHeaderAdded) {
+                            tempItemList.add(ListHeader("Small Blades"))
+                            smallBladesHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.AXE){
+                        if (!axesHeaderAdded) {
+                            tempItemList.add(ListHeader("Axes"))
+                            axesHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.BLUDGEON){
+                        if (!bludgeonsHeaderAdded) {
+                            tempItemList.add(ListHeader("Bludgeons"))
+                            bludgeonsHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.POLE_ARM){
+                        if (!poleArmsHeaderAdded) {
+                            tempItemList.add(ListHeader("Pole Arms"))
+                            poleArmsHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.STAFF){
+                        if (!stavesHeaderAdded) {
+                            tempItemList.add(ListHeader("Staves"))
+                            stavesHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.THROWN_WEAPON){
+                        if (!thrownWeaponsHeaderAdded) {
+                            tempItemList.add(ListHeader("Thrown Weapons"))
+                            thrownWeaponsHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.BOW){
+                        if (!bowsHeaderAdded) {
+                            tempItemList.add(ListHeader("Bows"))
+                            bowsHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.CROSSBOW){
+                        if (!crossbowsHeaderAdded) {
+                            tempItemList.add(ListHeader("Crossbows"))
+                            crossbowsHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    if (item.type == WeaponTypes.AMULET){
+                        if (!amuletHeaderAdded) {
+                            tempItemList.add(ListHeader("Amulets"))
+                            amuletHeaderAdded = true
+                        }
+                        tempItemList.add(item)
+                        continue
+                    }
+                    //tempItemList.add(item)
+                }
+                is EquipmentItem -> {
+                    if (!lightHeaderAdded && (item.equipmentType == EquipmentTypes.LIGHT_HEAD ||
+                                item.equipmentType == EquipmentTypes.LIGHT_CHEST ||
+                                item.equipmentType == EquipmentTypes.LIGHT_LEGS ||
+                                item.equipmentType == EquipmentTypes.LIGHT_SHIELD)) {
+                        tempItemList.add(ListHeader("Light"))
+                        tempItemList.add(item)
+                        lightHeaderAdded = true
+                        continue
+                    }
+                    if (!mediumHeaderAdded && (item.equipmentType == EquipmentTypes.MEDIUM_HEAD ||
+                                item.equipmentType == EquipmentTypes.MEDIUM_CHEST ||
+                                item.equipmentType == EquipmentTypes.MEDIUM_LEGS ||
+                                item.equipmentType == EquipmentTypes.MEDIUM_SHIELD)) {
+                        tempItemList.add(ListHeader("Medium"))
+                        tempItemList.add(item)
+                        mediumHeaderAdded = true
+                        continue
+                    }
+                    if (!heavyHeaderAdded && (item.equipmentType == EquipmentTypes.HEAVY_HEAD ||
+                                item.equipmentType == EquipmentTypes.HEAVY_CHEST ||
+                                item.equipmentType == EquipmentTypes.HEAVY_LEGS ||
+                                item.equipmentType == EquipmentTypes.HEAVY_SHIELD)) {
+                        tempItemList.add(ListHeader("Heavy"))
+                        tempItemList.add(item)
+                        heavyHeaderAdded = true
+                        continue
+                    }
+                    if (!customHeaderAdded && (item.equipmentType == EquipmentTypes.MISC_CUSTOM)) {
+                        tempItemList.add(ListHeader("Miscellaneous Items"))
+                        tempItemList.add(item)
+                        customHeaderAdded = true
+                        continue
+                    }
+                    tempItemList.add(item)
+                }
+            }
+        }
+        itemList = tempItemList
+        setAdapterData()
+    }
+
+    private fun setAdapterData() {
+        equipmentAdapter.setData(itemList)
+        binding.inventoryRv.scheduleLayoutAnimation()
     }
 
     private fun showArmorDialog(item: EquipmentItem) {
@@ -393,7 +383,7 @@ class InventoryFragment : Fragment() {
         bind.buttonRemove.setOnClickListener {
             mainCharacterViewModel.removeEquipment(item)
             dialog.dismiss()
-            updateRVs(binding.autoCompleteTextViewItemType.text.toString())
+            updateListData()
         }
 
         bind.buttonEquipUnequip.setOnClickListener {
@@ -448,7 +438,7 @@ class InventoryFragment : Fragment() {
 
         bind.buttonRemove.setOnClickListener {
             mainCharacterViewModel.removeWeapon(weaponItem)
-            updateRVs(binding.autoCompleteTextViewItemType.text.toString())
+            updateListData()
             dialog.dismiss()
         }
 
@@ -485,100 +475,6 @@ class InventoryFragment : Fragment() {
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.autoCompleteTextViewItemType.setAdapter(adapter)
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun updateRVs(position: String) {
-        val lightArmorList = arrayListOf<EquipmentItem>()
-        val mediumArmorList = arrayListOf<EquipmentItem>()
-        val heavyArmorList = arrayListOf<EquipmentItem>()
-        amulets = arrayListOf()
-
-        if (position == "Weapon") {
-            listAdaptersInit(true)
-            return
-        }
-
-        when (position) {
-            "Head Armor" -> {
-                for (item in mainCharacterViewModel.headEquipment.value) {
-                    when (item.equipmentType) {
-                        EquipmentTypes.LIGHT_HEAD -> lightArmorList.add(item)
-                        EquipmentTypes.MEDIUM_HEAD -> mediumArmorList.add(item)
-                        EquipmentTypes.HEAVY_HEAD -> heavyArmorList.add(item)
-                    }
-                }
-                listAdaptersInit(false)
-                lightAdapter.setData(lightArmorList)
-                mediumAdapter.setData(mediumArmorList)
-                heavyAdapter.setData(heavyArmorList)
-            }
-
-            "Chest Armor" -> {
-                listAdaptersInit(false)
-                for (item in mainCharacterViewModel.chestEquipment.value) {
-                    when (item.equipmentType) {
-                        EquipmentTypes.LIGHT_CHEST -> lightArmorList.add(item)
-                        EquipmentTypes.MEDIUM_CHEST -> mediumArmorList.add(item)
-                        EquipmentTypes.HEAVY_CHEST -> heavyArmorList.add(item)
-                    }
-                }
-                lightAdapter.setData(lightArmorList)
-                mediumAdapter.setData(mediumArmorList)
-                heavyAdapter.setData(heavyArmorList)
-            }
-
-            "Leg Armor" -> {
-                listAdaptersInit(false)
-                for (item in mainCharacterViewModel.legEquipment.value) {
-                    when (item.equipmentType) {
-                        EquipmentTypes.LIGHT_LEGS -> lightArmorList.add(item)
-                        EquipmentTypes.MEDIUM_LEGS -> mediumArmorList.add(item)
-                        EquipmentTypes.HEAVY_LEGS -> heavyArmorList.add(item)
-                    }
-                }
-                lightAdapter.setData(lightArmorList)
-                mediumAdapter.setData(mediumArmorList)
-                heavyAdapter.setData(heavyArmorList)
-            }
-
-            "Shield/Accessory" -> {
-                listAdaptersInit(false, accessories = true)
-                for (item in mainCharacterViewModel.accessoryEquipment.value) {
-                    when (item.equipmentType) {
-                        EquipmentTypes.LIGHT_SHIELD -> lightArmorList.add(item)
-                        EquipmentTypes.MEDIUM_SHIELD -> mediumArmorList.add(item)
-                        EquipmentTypes.HEAVY_SHIELD -> heavyArmorList.add(item)
-                    }
-                }
-                lightAdapter.setData(lightArmorList)
-                mediumAdapter.setData(mediumArmorList)
-                heavyAdapter.setData(heavyArmorList)
-            }
-            "Miscellaneous" -> {
-                listAdaptersInit(false)
-                for (item in mainCharacterViewModel.miscEquipment.value) {
-                    lightArmorList.add(item)
-                }
-                listAdaptersInit(weapons = false, customItem = true)
-                lightAdapter.setData(lightArmorList)
-            }
-        }
-        if (lightArmorList.size == 0) binding.textViewLight.visibility = View.INVISIBLE
-        else binding.textViewLight.visibility = View.VISIBLE
-        if (mediumArmorList.size == 0) binding.textViewMedium.visibility = View.INVISIBLE
-        else binding.textViewMedium.visibility = View.VISIBLE
-        if (heavyArmorList.size == 0) binding.textViewHeavy.visibility = View.INVISIBLE
-        else binding.textViewHeavy.visibility = View.VISIBLE
-
-        if (lightArmorList.size == 0 && mediumArmorList.size == 0 && heavyArmorList.size == 0 && amulets.size == 0) {
-            binding.textViewNoEquipment.text = "No " + binding.autoCompleteTextViewItemType.text + " Equipment"
-            binding.textViewNoEquipment.visibility = View.VISIBLE
-            binding.textViewAddEquipment.visibility = View.VISIBLE
-        } else {
-            binding.textViewNoEquipment.visibility = View.INVISIBLE
-            binding.textViewAddEquipment.visibility = View.INVISIBLE
         }
     }
 }

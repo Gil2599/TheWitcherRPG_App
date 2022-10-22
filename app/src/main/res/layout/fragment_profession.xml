@@ -95,7 +95,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Skills"
+                    android:text="@string/skills"
                     android:textSize="20sp" />
 
                 <TextView
@@ -106,7 +106,7 @@
                     android:background="@drawable/outline_bkg"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Gear (Pick 5)"
+                    android:text="@string/gear_pick_5"
                     android:textSize="20sp" />
             </TableRow>
 
@@ -299,14 +299,6 @@
                     android:layout_weight="1"
                     android:gravity="center" />
             </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </TableLayout>
 
 

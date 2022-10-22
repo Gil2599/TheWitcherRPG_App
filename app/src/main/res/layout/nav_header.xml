@@ -11,20 +11,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="8dp"
-            app:cardCornerRadius="10dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="300dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="3dp"
             app:cardPreventCornerOverlap="false"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
+            app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
+            app:layout_constraintTop_toTopOf="@+id/lottieAnimationView">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -44,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@{mainViewModel.name}"
             android:textColor="?textFillColor"
@@ -77,6 +95,7 @@
             android:id="@+id/textViewCrowns"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text='@{"Crowns: " + mainViewModel.crowns}'
             android:textColor="?textFillColor"
             app:layout_constraintBottom_toBottomOf="@+id/cardView"

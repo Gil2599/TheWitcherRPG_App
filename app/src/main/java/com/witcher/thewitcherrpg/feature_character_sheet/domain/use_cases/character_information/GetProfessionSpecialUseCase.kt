@@ -47,6 +47,7 @@ class GetProfessionSpecialUseCase @Inject constructor() {
                         return pair[1]
                     }
                 }
+                else -> {}
             }
         }
         return ""

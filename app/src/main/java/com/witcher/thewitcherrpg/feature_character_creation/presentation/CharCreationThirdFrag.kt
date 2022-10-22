@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.databinding.FragmentCharCreationThirdBinding
-import com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsFragment
+import com.witcher.thewitcherrpg.feature_character_sheet.presentation.skills.SkillsExpandableFragment
 
 class CharCreationThirdFrag : Fragment() {
     private var _binding: FragmentCharCreationThirdBinding? = null
     private val binding get() = _binding!!
 
-    private val fragment = SkillsFragment()
+    private val fragment = SkillsExpandableFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
