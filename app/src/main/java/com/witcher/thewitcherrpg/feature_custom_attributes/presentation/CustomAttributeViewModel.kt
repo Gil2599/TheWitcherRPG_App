@@ -260,7 +260,14 @@ class CustomAttributeViewModel @Inject constructor(
                 if (componentsOrReqToLift.isBlank()) return false
             }
         }
-        val rangeFinal = if (isSelfRange && range == "0") "Self" else "Self or " + range + "m"
+
+        val rangeFinal = if (isSelfRange && range == "0") {
+            "Self"
+        } else if (isSelfRange && range != "0") {
+            "Self or " + range + "m"
+        } else {
+            range + "m"
+        }
         val difficultyFinal = if (isVariableDiff) null else difficulty
         val staminaFinal = if (isVariableSta) null else staminaCost
 
