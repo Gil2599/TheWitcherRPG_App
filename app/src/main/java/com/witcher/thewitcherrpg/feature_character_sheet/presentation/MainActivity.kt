@@ -293,7 +293,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //If no callbacks are set by fragments, ask user if they would like to save character or cancel
-        if (mainCharacterViewModel.checkIfDataChanged()) {
+        if (mainCharacterViewModel.checkIfDataChanged() || mainCharacterViewModel._saveAvailable.value == true) {
             val builder = AlertDialog.Builder(this)
             builder.setPositiveButton("Yes") { _, _ ->
                 saveCharacter()
