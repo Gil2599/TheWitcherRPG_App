@@ -113,6 +113,12 @@ class MainCharacterViewModel @Inject constructor(
     private val _image = MutableStateFlow("")
     val image = _image.asStateFlow()
 
+    private val _imageBitmap = MutableStateFlow<Bitmap?>(null)
+    val imageBitmap = _imageBitmap.asStateFlow()
+
+    private val _tempImage = MutableStateFlow("")
+    val tempImage = _tempImage.asStateFlow()
+
     val name = MutableLiveData("")
 
     val age = MutableLiveData("")
@@ -1134,6 +1140,7 @@ class MainCharacterViewModel @Inject constructor(
     }
 
     fun saveCharacter() {
+        saveImageToInternalStorage()
         saveCharacterUseCase(
             fromViewModelToCharacter()
         ).onEach { result ->
@@ -1426,19 +1433,25 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun saveImageToInternalStorage(bitmap: Bitmap) {
-        saveImageUseCase(bitmap, _id.value).onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    _image.value = result.data!!
+    fun setCharacterImage(bitmap: Bitmap) {
+        _imageBitmap.value = bitmap
+        _saveAvailable.value = true
+    }
+
+    private fun saveImageToInternalStorage() {
+        _imageBitmap.value?.let {
+            saveImageUseCase(it, _id.value).onEach { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        _image.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        _image.value = ""
+                    }
+                    is Resource.Loading -> TODO()
                 }
-                is Resource.Error -> {
-                    _image.value = ""
-                    //Log.d("test", "Image not saved")
-                }
-                is Resource.Loading -> TODO()
-            }
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }
     }
 
     fun setRace(race: String) {

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.witcher.thewitcherrpg.R
+import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.domain.model.Character
 import com.witcher.thewitcherrpg.databinding.CustomRowBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity
@@ -30,6 +32,22 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
                 professionText.text = character.profession.toString()
                 IPText.text = ip
                 textRace.text = character.race
+
+                professionIcon.setImageResource(
+                    when (character.profession) {
+                    Constants.Professions.BARD -> R.drawable.ic_lute
+                    Constants.Professions.CRIMINAL -> R.drawable.ic_handcuff
+                    Constants.Professions.CRAFTSMAN -> R.drawable.ic_blacksmith
+                    Constants.Professions.DOCTOR -> R.drawable.ic_first_aid_kit
+                    Constants.Professions.MAGE -> R.drawable.ic_magic_icon
+                    Constants.Professions.MAN_AT_ARMS -> R.drawable.ic_skills_icon
+                    Constants.Professions.PRIEST -> R.drawable.ic_quran
+                    Constants.Professions.WITCHER -> R.drawable.ic_thewitchericon
+                    Constants.Professions.MERCHANT -> R.drawable.ic_money_bag
+                    Constants.Professions.NOBLE -> R.drawable.ic_crown
+                    Constants.Professions.PEASANT -> R.drawable.ic_shovel_and_rake
+                    }
+                )
 
                 if (character.imagePath.isNotEmpty()) {
                     if (loadImageFromStorage(character.imagePath, imageView)) {

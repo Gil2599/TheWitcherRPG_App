@@ -49,8 +49,10 @@ class CharFragment : Fragment() {
                 openGallery()
             } else {
                 Log.i("DEBUG", "permission denied")
-                Snackbar.make(binding.root, "Permission required to set image.",
-                    Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    binding.root, "Permission required to set image.",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -78,7 +80,7 @@ class CharFragment : Fragment() {
         binding.mainViewModel = mainCharacterViewModel
 
         //Check whether permission is granted to access internal storage to set character image
-        binding.imageView.setOnClickListener{
+        binding.imageView.setOnClickListener {
             requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
 
@@ -89,11 +91,11 @@ class CharFragment : Fragment() {
         tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, numTabs)
 
         val viewPager = binding.viewPager
-        viewPager.apply{adapter = tabAdapter}
+        viewPager.apply { adapter = tabAdapter }
 
         val tabs: TabLayout = binding.CharacterTabs
 
-        TabLayoutMediator(tabs, viewPager,true) {tab, position ->
+        TabLayoutMediator(tabs, viewPager, true) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
 
@@ -108,7 +110,23 @@ class CharFragment : Fragment() {
             launch {
                 mainCharacterViewModel.image.collect { newImage ->
                     if (loadImageFromStorage(newImage))
-                        (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
+                        (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(
+                            0,
+                            0,
+                            0,
+                            0
+                        )
+                }
+            }
+            launch {
+                mainCharacterViewModel.imageBitmap.collect { newImage ->
+                    (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(
+                        0,
+                        0,
+                        0,
+                        0
+                    )
+                    binding.imageView.setImageBitmap(newImage)
                 }
             }
         }
@@ -118,60 +136,63 @@ class CharFragment : Fragment() {
         }
 
         return view
-
     }
 
     private fun openGallery() {
-        val galIntent = Intent(Intent.ACTION_PICK,
+        val galIntent = Intent(
+            Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
-        cropLauncher.launch(Intent.createChooser(galIntent,
-            "Select Image From Gallery "))
+        cropLauncher.launch(
+            Intent.createChooser(
+                galIntent,
+                "Select Image From Gallery "
+            )
+        )
     }
 
-    private var cropLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            if (data != null) {
-                val uri = result.data!!.data!!
-                cropImages(uri)
+    private var cropLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                if (data != null) {
+                    val uri = result.data!!.data!!
+                    cropImages(uri)
+                }
             }
         }
-    }
 
-    private var setImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            if (result.data != null) {
-                val bundle = result.data!!.extras
-                val bitmap = bundle!!.getParcelable<Bitmap>("data")
-                (binding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(0,0,0,0)
-
-                try {
-                    if (bitmap != null) {
-                        mainCharacterViewModel.saveImageToInternalStorage(bitmap)
+    private var setImageLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (result.data != null) {
+                    try {
+                        val bundle = result.data!!.extras
+                        val bitmap = bundle!!.getParcelable<Bitmap>("data")
+                        if (bitmap != null) {
+                            mainCharacterViewModel.setCharacterImage(bitmap)
+                        }
+                    } catch (e: Exception) {
+                        Snackbar.make(
+                            binding.root, "Action Cancelled",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                     }
                 }
-                catch (e: NullPointerException){
-                    Snackbar.make(binding.root, "Action Cancelled",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-                binding.imageView.setImageBitmap(bitmap)
             }
         }
-    }
 
-    private fun cropImages(uri: Uri){
+    private fun cropImages(uri: Uri) {
         try {
             val cropIntent = Intent("com.android.camera.action.CROP")
-            cropIntent.setDataAndType(uri,"image/*")
-            cropIntent.putExtra("crop",true)
-            cropIntent.putExtra("outputX",180)
-            cropIntent.putExtra("outputY",180)
-            cropIntent.putExtra("aspectX",1)
-            cropIntent.putExtra("aspectY",1)
-            cropIntent.putExtra("scaleUpIfNeeded",true)
-            cropIntent.putExtra("return-data",true)
+            cropIntent.setDataAndType(uri, "image/*")
+            cropIntent.putExtra("crop", true)
+            cropIntent.putExtra("outputX", 180)
+            cropIntent.putExtra("outputY", 180)
+            cropIntent.putExtra("aspectX", 1)
+            cropIntent.putExtra("aspectY", 1)
+            cropIntent.putExtra("scaleUpIfNeeded", true)
+            cropIntent.putExtra("return-data", true)
             cropIntent.putExtra("circleCrop", " ")
             setImageLauncher.launch(cropIntent)
 
@@ -218,4 +239,5 @@ class CharFragment : Fragment() {
         }
         dialog.show()
     }
+
 }
