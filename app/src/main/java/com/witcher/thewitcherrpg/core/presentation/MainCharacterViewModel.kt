@@ -2,6 +2,7 @@ package com.witcher.thewitcherrpg.core.presentation
 
 //import android.util.Log
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.State
@@ -42,6 +43,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileNotFoundException
 import javax.inject.Inject
 import kotlin.math.absoluteValue
 
@@ -1426,11 +1429,23 @@ class MainCharacterViewModel @Inject constructor(
                     _miscEquipment.value = characterData.miscEquipment
 
                     _campaignNotes.value = characterData.campaignNotes
+                    _imageBitmap.value = loadImageFromStorage(_image.value)
                 }
                 is Resource.Error -> Log.e("Error", "An unexpected error has occurred.")
                 else -> {}
             }
         }.launchIn(viewModelScope)
+    }
+
+    private fun loadImageFromStorage(path: String): Bitmap? {
+        return try {
+            val f = File(path)
+            val b = BitmapFactory.decodeStream(FileInputStream(f))
+            b
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+            null
+        }
     }
 
     fun setCharacterImage(bitmap: Bitmap) {

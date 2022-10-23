@@ -158,14 +158,14 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 launch {
-                    mainCharacterViewModel.image.collect { newImage ->
-                        if (loadImageFromStorage(newImage, navHeaderBinding.imageView))
-                            (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(
-                                0,
-                                0,
-                                0,
-                                0
-                            )
+                    mainCharacterViewModel.imageBitmap.collect { newImage ->
+                        (navHeaderBinding.imageView.layoutParams as ViewGroup.MarginLayoutParams).setMargins(
+                            0,
+                            0,
+                            0,
+                            0
+                        )
+                        navHeaderBinding.imageView.setImageBitmap(newImage)
                     }
                 }
                 launch {
@@ -307,18 +307,6 @@ class MainActivity : AppCompatActivity() {
             builder.setMessage("All unsaved changes will be lost.")
             builder.create().show()
         } else finish()
-    }
-
-    private fun loadImageFromStorage(path: String, img: ImageView): Boolean {
-        return try {
-            val f = File(path)
-            val b = BitmapFactory.decodeStream(FileInputStream(f))
-            img.setImageBitmap(b)
-            true
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-            false
-        }
     }
 
     override fun onDestroy() {
