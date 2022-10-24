@@ -10,10 +10,12 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\School PC\\Desktop\\The Witcher TRPG Key\\keystore.jks')
-            storePassword 'Kiko2599!'
-            keyAlias 'key0'
-            keyPassword 'Kiko2599!'
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
         }
     }
     compileSdk 33
@@ -28,8 +30,8 @@ android {
         applicationId "com.witcher.thewitcherrpg"
         minSdk 26
         targetSdk 32
-        versionCode 1
-        versionName "1.1"
+        versionCode 6
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -60,6 +62,12 @@ android {
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
         }
     }
 }

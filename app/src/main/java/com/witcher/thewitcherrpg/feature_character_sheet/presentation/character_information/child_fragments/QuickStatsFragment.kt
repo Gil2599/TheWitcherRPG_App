@@ -59,7 +59,7 @@ class QuickStatsFragment : Fragment() {
         }
         binding.buttonCROWNS.setOnClickListener {
             (requireActivity() as MainActivity).showEditStatDialog(
-                label = "Current Stamina",
+                label = "Current Crowns",
                 onPlus = {
                     mainCharacterViewModel.onCrownsChange(it)
                 },
