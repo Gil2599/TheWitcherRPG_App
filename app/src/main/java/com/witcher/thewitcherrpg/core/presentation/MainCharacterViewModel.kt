@@ -1437,7 +1437,7 @@ class MainCharacterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun loadImageFromStorage(path: String): Bitmap? {
+    fun loadImageFromStorage(path: String): Bitmap? {
         return try {
             val f = File(path)
             val b = BitmapFactory.decodeStream(FileInputStream(f))

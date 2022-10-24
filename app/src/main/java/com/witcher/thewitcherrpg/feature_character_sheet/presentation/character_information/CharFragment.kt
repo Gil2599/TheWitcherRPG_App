@@ -21,6 +21,9 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageView
+import com.canhub.cropper.options
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
@@ -33,6 +36,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
+import kotlin.contracts.contract
 
 
 class CharFragment : Fragment() {
@@ -46,7 +50,14 @@ class CharFragment : Fragment() {
             // Do something if permission granted
             if (isGranted) {
                 Log.i("DEBUG", "permission granted")
-                openGallery()
+                cropLauncher.launch(
+                    options {
+                        setImageSource(includeGallery = true, includeCamera = false)
+                        setGuidelines(CropImageView.Guidelines.ON)
+                        setAspectRatio(aspectRatioX = 1, aspectRatioY = 1)
+                        setCropShape(CropImageView.CropShape.OVAL)
+                    }
+                )
             } else {
                 Log.i("DEBUG", "permission denied")
                 Snackbar.make(
@@ -127,68 +138,21 @@ class CharFragment : Fragment() {
         return view
     }
 
-    private fun openGallery() {
-        val galIntent = Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        )
-        cropLauncher.launch(
-            Intent.createChooser(
-                galIntent,
-                "Select Image From Gallery "
-            )
-        )
-    }
-
     private var cropLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                if (data != null) {
-                    val uri = result.data!!.data!!
-                    cropImages(uri)
+        registerForActivityResult(CropImageContract()) { result ->
+            if (result.isSuccessful) {
+                //val uriContent = result.uriContent
+                val uriFilePath = result.getUriFilePath(requireContext())
+                if (uriFilePath != null) {
+                    mainCharacterViewModel.loadImageFromStorage(uriFilePath)
+                        ?.let { mainCharacterViewModel.setCharacterImage(it) }
                 }
+
+            } else {
+                // An error occurred.
+                val exception = result.error
             }
         }
-
-    private var setImageLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                if (result.data != null) {
-                    try {
-                        val bundle = result.data!!.extras
-                        val bitmap = bundle!!.getParcelable<Bitmap>("data")
-                        if (bitmap != null) {
-                            mainCharacterViewModel.setCharacterImage(bitmap)
-                        }
-                    } catch (e: Exception) {
-                        Snackbar.make(
-                            binding.root, "Action Cancelled",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        }
-
-    private fun cropImages(uri: Uri) {
-        try {
-            val cropIntent = Intent("com.android.camera.action.CROP")
-            cropIntent.setDataAndType(uri, "image/*")
-            cropIntent.putExtra("crop", true)
-            cropIntent.putExtra("outputX", 180)
-            cropIntent.putExtra("outputY", 180)
-            cropIntent.putExtra("aspectX", 1)
-            cropIntent.putExtra("aspectY", 1)
-            cropIntent.putExtra("scaleUpIfNeeded", true)
-            cropIntent.putExtra("return-data", true)
-            cropIntent.putExtra("circleCrop", " ")
-            setImageLauncher.launch(cropIntent)
-
-        } catch (e: ActivityNotFoundException) {
-            e.printStackTrace()
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
