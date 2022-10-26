@@ -31,6 +31,7 @@ import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
+import com.witcher.thewitcherrpg.BuildConfig
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.presentation.CustomEditStatDialog
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
@@ -219,7 +220,7 @@ class MainActivity : AppCompatActivity() {
                 intentShare.type = "application/cha"
                 intentShare.putExtra(
                     Intent.EXTRA_STREAM,
-                    FileProvider.getUriForFile(this, "com.witcher.thewitcherrpg", file)
+                    FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".contentprovider", file)
                 )
 
                 startActivity(Intent.createChooser(intentShare, "Share character..."))

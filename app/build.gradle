@@ -30,7 +30,7 @@ android {
         applicationId "com.witcher.thewitcherrpg"
         minSdk 26
         targetSdk 32
-        versionCode 8
+        versionCode 9
         versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
