@@ -2,6 +2,7 @@ package com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.chara
 
 import android.app.Application
 import android.content.ContextWrapper
+import android.util.Log
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.domain.model.Character
 import kotlinx.coroutines.flow.Flow
@@ -34,12 +35,16 @@ class CharacterToFileUseCase @Inject constructor(
         }
     }
 
-    @Throws(IOException::class, ClassNotFoundException::class)
     fun readObjectFromFile(inputStream: InputStream): Character? {
         var result: Character? = null
-        ObjectInputStream(inputStream).use { ois ->
-            result = ois.readObject() as Character
+        try {
+            ObjectInputStream(inputStream).use { ois ->
+                result = ois.readObject() as Character
+            }
+        } catch (e: Exception) {
+            Log.e(this.toString(), e.toString())
         }
+
         return result
     }
 }

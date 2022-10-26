@@ -11,4 +11,8 @@ data class CampaignNote(
     var description: String,
     var date: String,
     val uniqueID: UUID = UUID.randomUUID()
-) : Parcelable, Serializable
+) : Parcelable, Serializable {
+    companion object {
+        private const val serialVersionUID: Long = 0L
+    }
+}

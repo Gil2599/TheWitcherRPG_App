@@ -28,4 +28,8 @@ data class EquipmentItem(
     var isRelic: Boolean = false,
     var uniqueID: UUID = UUID.randomUUID(),
     var isCustom: Boolean = false
-) : Parcelable, Serializable, Equipment()
+) : Parcelable, Serializable, Equipment() {
+    companion object {
+        private const val serialVersionUID: Long = 0L
+    }
+}

@@ -65,8 +65,8 @@ class CharacterListViewModel @Inject constructor(
     }
 
     fun addSharedCharacter(character: Character) {
-        if (character in characterList.value){
-            character.name = character.name + " (Copy)"
+        if (character in characterList.value || character.id in characterList.value.map { it.id }) {
+            character.name = character.name + " * "
             character.id = characterList.value.last().id + 1
         }
         characterCreationUseCases.addCharacterUseCase.invoke(character).onEach { result ->

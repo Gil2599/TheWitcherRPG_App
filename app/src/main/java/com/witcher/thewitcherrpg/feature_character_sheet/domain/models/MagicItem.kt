@@ -21,4 +21,8 @@ data class MagicItem(
     var requirementToLift: String? = null,
     var danger: String? = null,
     var isCustom: Boolean = false
-) : Parcelable, Serializable
+) : Parcelable, Serializable {
+    companion object {
+        private const val serialVersionUID: Long = 0L
+    }
+}

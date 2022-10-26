@@ -22,4 +22,8 @@ data class ArmorSet(
     var isRelic: Boolean = false,
     val uniqueID: UUID = UUID.randomUUID(),
     val isCustom: Boolean = false
-) : Parcelable, Serializable, Equipment()
+) : Parcelable, Serializable, Equipment() {
+    companion object {
+        private const val serialVersionUID: Long = 0L
+    }
+}

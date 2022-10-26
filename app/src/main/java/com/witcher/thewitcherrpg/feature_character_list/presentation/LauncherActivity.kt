@@ -195,7 +195,6 @@ class LauncherActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setPositiveButton("Yes"){_, _ ->
             mCharListViewModel.addSharedCharacter(character)
-
             Toast.makeText(this, "Character Added!", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No"){_, _ -> }

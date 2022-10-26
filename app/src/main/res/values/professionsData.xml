@@ -296,10 +296,10 @@
             Bloodhound (INT),Booby Trap (CRA),Tactical Awareness (INT),
             Fury (WILL),Zweihand (BODY),Shrug It Off (BODY)</item>
 
-        <item>Initiate of the Gods (EMP):The Preacher,The Druid,The Fanatic,
-            Divine Power,Divine Authority (EMP),Precognition (WILL),
-            Nature Attunement,Read Nature (INT),Animal Compact (WILL),
-            Blood Rituals (WILL),Fervor (EMP),Word of God (EMP)</item>
+        <item>Initiate of the Gods (EMP):The Preacher,The Warrior,The Empath,
+            Divine Power,Prayer (WILL),Precognition (WILL),
+            Divine Strike (BODY),Fear (WILL),Kreve\'s Protection,
+            The Golden Rule,Priest Charming,Word of God (EMP)</item>
 
         <item>Witcher Training (INT):The Spellsword,The Mutant,The Slayer,
             Meditation,Magical Source,Heliotrope (WILL),
@@ -1010,15 +1010,12 @@
             Nature Attunement. The Vigor
             thresholds are not separate.</item>
 
-        <item>Divine Authority (EMP):Peasants and the common
-            folk of the world see Priests as
-            agents of the gods’ will. A Priest
-            can add their Divine Authority to their Leadership rolls if
-            they are in an area where their
-            religion is worshipped. Even
-            when outside such areas of
-            worship a Priest adds half this
-            value, due to their presence.</item>
+        <item>Prayer (WILL):You may perform any of the following
+        prayers twice per day.
+        \n\n 1. Prayer of Courage - +2 to Courage for 24h (14DC)
+        \n\n2. Prayer of Fortune - +3 to Luck for 24h (16DC)
+        \n\n3. Prayer of Misfortune - Target cannot use Luck for 24h (18DC)
+        \n\n4. Spare the Dying - Instantly stabilize the target (20DC)</item>
 
         <item>Precognition (WILL):At the will of the GM, a Priest
             can be overcome by visions of
@@ -1030,58 +1027,30 @@
             Such visions are composed of
             symbolism and metaphors.</item>
 
-        <item>Nature Attunement:A Priest can become more in
-            tune with nature, gaining 1
-            point of Vigor threshold per
-            skill level in Nature Attunement. This brings your Vigor
-            threshold to a total of 12 at level 10. Nature Attunement can
-            be trained like other skills and
-            stacks with Divine Power. The
-            Vigor thresholds are not separate.</item>
+        <item>Divine Strike (BODY):Receive a -2 penalty
+            for an attack roll. If the attack lands, roll
+            against the target\`s BODYx3 to inflict stagger.</item>
 
-        <item>Read Nature (INT):When in a purely
-            natural environment a druid can roll Read
-            Nature at a DC set by the GM.
-            On a success, the druid reads
-            the signs around them to learn
-            everything that passed through
-            that area and what they did in
-            the area. Read Nature renders
-            a very localized picture and
-            cannot track things.</item>
+        <item>Fear (WILL):Roll against a target\`s courage.
+            If successful, the target is now afraid of you
+            and cannot willingly move any closer. The target
+            also gains disadvantage on any attacks
+            it makes against you if they are affected.
+            The target may make another courage check at the end
+            of their next turn at the DC set by your initial roll.</item>
 
-        <item>Animal Compact (WILL):Druid adds
-            Animal Compact to any Wilderness
-            Survival rolls they make to handle
-            animals. A Druid can also make
-            a compact with an animal. By
-            taking a full round and rolling
-            Animal Compact, they make
-            one Beast or animal their ally
-            for a number of hours equal to
-            their Animal Compact value.
-            Monsters are unaffected.</item>
+        <item>Kreve\'s Protection:For every point in
+            this skill, you gain 10 points of temporary HP.
+            You may touch a target and give them a maximum of 25 temporary HP
+            for a given day. Temporary hit points
+            are lost at the end of the day.</item>
 
-        <item>Blood Rituals (WILL):A Priest casting a ritual can
-            make a Blood Ritual check
-            against the casting DC of the
-            ritual. If they succeed, they can
-            cast the ritual without required
-            alchemical substances by sacrificing
-            5 HP in blood per missing
-            alchemical substance. This
-            blood can come from others,
-            but must be spilled at the time
-            of the ritual.</item>
+        <item>The Golden Rule:You may ask a target for forgiveness
+            for any grievances they may have against you. The severity
+            of the grievance determines the DC set by the GM.</item>
 
-        <item>Fervor (EMP):A Priest can roll Fervor against
-            a target’s current INTx3. On
-            success, the rallying power of
-            the Priest’s words grants 1d6
-            temporary health for every
-            point rolled over the DC (maximum 5). This lasts for as many
-            rounds as their Fervor x2 and
-            only works once per target per day.</item>
+        <item>Priest Charming:For every 2 points in this skill,
+            you gain +1 to any charisma check.</item>
 
         <item>Word of God (EMP):A Priest can roll Word of God
             to convince people that they

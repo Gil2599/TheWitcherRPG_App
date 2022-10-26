@@ -30,7 +30,7 @@ android {
         applicationId "com.witcher.thewitcherrpg"
         minSdk 26
         targetSdk 32
-        versionCode 6
+        versionCode 8
         versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -68,6 +68,17 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+            manifestPlaceholders = [
+                    appIcon: "@mipmap/ic_launcher",
+                    appIconRound: "@mipmap/ic_launcher_round"
+            ]
+        }
+        debug {
+            applicationIdSuffix '.debug'
+            manifestPlaceholders = [
+                    appIcon: "@mipmap/ic_launcher_debug",
+                    appIconRound: "@mipmap/ic_launcher_debug_round"
+            ]
         }
     }
 }

@@ -279,7 +279,7 @@ class CustomAttributeViewModel @Inject constructor(
             range = rangeFinal,
             duration = duration,
             defense = defenseOrPrepTime,
-            element = optionsElementsMap.filterValues { it == element }.keys.first(),
+            element = if (type == MagicGeneralType.INVOCATION) "" else optionsElementsMap.filterValues { it == element }.keys.first(),
             difficulty = difficultyFinal,
             preparation = defenseOrPrepTime,
             components = componentsOrReqToLift,

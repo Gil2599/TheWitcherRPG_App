@@ -11,4 +11,8 @@ data class LifeEvent(
     var description: String,
     var age: Int,
     val uniqueID: UUID = UUID.randomUUID()
-) : Parcelable, Serializable
+) : Parcelable, Serializable {
+    companion object {
+        private const val serialVersionUID: Long = 0L
+    }
+}

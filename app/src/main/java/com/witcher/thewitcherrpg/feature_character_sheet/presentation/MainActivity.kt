@@ -84,37 +84,49 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val fragmentManager = supportFragmentManager
 
-        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharFragment())
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, CharFragment(), "CharacterInfo")
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
 
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.Character -> {
+                    val characterFragment = supportFragmentManager.findFragmentByTag("CharacterInfo")
+                    if (characterFragment == null)
                     fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerView3, CharFragment(), "CharacterInfo")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Skills -> {
+                    val skillsFragment = supportFragmentManager.findFragmentByTag("Skills")
+                    if (skillsFragment == null)
                     fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerView3, SkillsExpandableFragment(), "Skills")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Stats -> {
+                    val statsFragment = supportFragmentManager.findFragmentByTag("Stats")
+                    if (statsFragment == null)
                     fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerView3, StatsFragment(), "Stats")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.ProfessionSkillTree -> {
+                    val skillTreeFragment = supportFragmentManager.findFragmentByTag("SkillTree")
+                    if (skillTreeFragment == null)
                     fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerView3, ProfessionSkillTree(), "SkillTree")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Magic -> {
+                    val magicFragment = supportFragmentManager.findFragmentByTag("Magic")
+                    if (magicFragment == null)
                     fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerView3, MagicParentFragment(), "Magic")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Equipment -> {
+                    val equipmentFragment = supportFragmentManager.findFragmentByTag("Equipment")
+                    if (equipmentFragment == null)
                     fragmentManager.beginTransaction().replace(
                         R.id.fragmentContainerView3,
                         EquipmentParentFragment(),
@@ -123,6 +135,8 @@ class MainActivity : AppCompatActivity() {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
                 }
                 R.id.Campaign_Notes -> {
+                    val notesFragment = supportFragmentManager.findFragmentByTag("Campaign_Notes")
+                    if (notesFragment == null)
                     fragmentManager.beginTransaction().replace(
                         R.id.fragmentContainerView3,
                         CampaignNotesFragment(),
@@ -291,9 +305,13 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
             return
         }
-
-        //If no callbacks are set by fragments, ask user if they would like to save character or cancel
-        if (mainCharacterViewModel.checkIfDataChanged() || mainCharacterViewModel._saveAvailable.value == true) {
+        val characterFragment = supportFragmentManager.findFragmentByTag("CharacterInfo")
+        if (characterFragment == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView3, CharFragment(), "CharacterInfo")
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
+        }
+        else if (mainCharacterViewModel.checkIfDataChanged() || mainCharacterViewModel._saveAvailable.value == true) {
             val builder = AlertDialog.Builder(this)
             builder.setPositiveButton("Yes") { _, _ ->
                 saveCharacter()

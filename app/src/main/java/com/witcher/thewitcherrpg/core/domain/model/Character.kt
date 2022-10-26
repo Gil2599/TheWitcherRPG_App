@@ -248,7 +248,11 @@ data class Character(
     var campaignNotes: ArrayList<CampaignNote> = arrayListOf()
 
 
-): Parcelable, Serializable
+): Parcelable, Serializable  {
+    companion object {
+        private const val serialVersionUID: Long = 0L
+    }
+}
 
 class MyTypeConverters {
 
