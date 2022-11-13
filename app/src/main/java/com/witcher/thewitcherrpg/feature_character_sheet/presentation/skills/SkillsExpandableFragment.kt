@@ -23,6 +23,7 @@ import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.witcher.thewitcherrpg.databinding.FragmentSkillsExpandableBinding
+import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharCreationActivity
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.MainActivity
 import kotlinx.coroutines.launch
 
@@ -616,16 +617,29 @@ class SkillsExpandableFragment : Fragment() {
     }
 
     private fun showDialogIP() {
-        (requireActivity() as MainActivity).showEditStatDialog(
-            label = "Current IP",
-            onPlus = {
-                mainCharacterViewModel.onIpChange(it)
-            },
-            onMinus = {
-                mainCharacterViewModel.onIpChange(-it)
-            },
-            currentValue = mainCharacterViewModel.ip.value.toString()
-        )
+        if (requireActivity() is MainActivity) {
+            (requireActivity() as MainActivity).showEditStatDialog(
+                label = "Current IP",
+                onPlus = {
+                    mainCharacterViewModel.onIpChange(it)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onIpChange(-it)
+                },
+                currentValue = mainCharacterViewModel.ip.value.toString()
+            )
+        } else if (requireActivity() is CharCreationActivity) {
+            (requireActivity() as CharCreationActivity).showEditStatDialog(
+                label = "Current IP",
+                onPlus = {
+                    mainCharacterViewModel.onIpChange(it)
+                },
+                onMinus = {
+                    mainCharacterViewModel.onIpChange(-it)
+                },
+                currentValue = mainCharacterViewModel.ip.value.toString()
+            )
+        }
     }
 
     private fun showDialogDisclaimer() {

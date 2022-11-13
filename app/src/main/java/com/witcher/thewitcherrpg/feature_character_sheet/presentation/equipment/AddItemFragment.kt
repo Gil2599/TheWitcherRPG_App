@@ -37,7 +37,7 @@ class AddItemFragment : Fragment() {
 
     private val mainCharacterViewModel: MainCharacterViewModel by activityViewModels()
     private var itemList = arrayListOf<Any>()
-    private var darkModeEnabled by Delegates.notNull<Boolean>()
+    private var darkModeEnabled = false
     private lateinit var equipmentAdapter: EquipmentListAdapter
     private var currentSelection: ItemType = ItemType.HEAD_ARMOR
 
