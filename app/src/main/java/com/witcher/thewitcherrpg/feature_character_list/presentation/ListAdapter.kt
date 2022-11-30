@@ -42,6 +42,7 @@ class ListAdapter(con: Context): RecyclerView.Adapter<ListAdapter.CharViewHolder
                     Constants.Professions.MAGE -> R.drawable.ic_magic_icon
                     Constants.Professions.MAN_AT_ARMS -> R.drawable.ic_skills_icon
                     Constants.Professions.PRIEST -> R.drawable.ic_quran
+                    Constants.Professions.DRUID -> R.drawable.ic_quran
                     Constants.Professions.WITCHER -> R.drawable.ic_thewitchericon
                     Constants.Professions.MERCHANT -> R.drawable.ic_money_bag
                     Constants.Professions.NOBLE -> R.drawable.ic_crown

@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="disclaimer">
+        The Witcher Tabletop RPG의 규칙과 메커니즘은
+        전통적인 던전 앤 드래곤. 이 응용 프로그램은 사용하기 위한 도구 역할을 합니다.
+        The Witcher Tabletop RPG Core Rulebook과 함께 규칙 및 메커니즘 세트를 따릅니다.
+        그것으로. The Witcher Tabletop RPG 핵심 규칙서 사용
+        이 응용 프로그램에는 모든 항목이 포함되어 있지 않으므로 강력히 권장합니다.
+        게임 방법을 배우는 데 필요한 정보. \n\n이것은 비공식 애플리케이션이며
+        CD PROJEKT RED 또는 R. Talsorian Games에서 승인/보증합니다. 이 응용 프로그램은
+        라이센스 제품. 나는 전체에 사용된 정보, 아이콘 또는 이미지에 대한 소유권을 주장하지 않습니다.
+        앱. 사용된 모든 정보, 아이콘 및/또는 이미지의 저작권 및/또는 상표는
+        해당 소유자에게.
+    </string>
+
+    <string name="about">
+        The Witcher TRPG Companion 앱을 다운로드해주셔서 감사합니다. 이 응용 프로그램은 플레이하는 동안 캐릭터 생성 및 롤 플레잉 속도를 높이기 위한 것입니다.
+        더 위쳐 테이블톱 RPG. 캐릭터 정보, 스킬, 능력치, 직업 스킬,
+        마법, 장비, 추가 노트.\n\n나는 응용 프로그램의 유일한 기여자이므로,
+        복잡성과 개발 시간을 줄이기 위해 일부 주요 기능이 구현되지 않았습니다. 일부의
+        제작, 갑옷/무기 강화 및 돌연변이가 포함됩니다. 나는 다음과 같은 대안을 구현했습니다.
+        커스텀 아이템, 장비 노트, 스탯/스킬 수정자는 상기 기능과 유사한 기능을 갖습니다.
+        \n\n응용 프로그램이나 내용에 대한 피드백이나 우려 사항이 있으면 주저하지 마십시오.
+        당신이 가질 수 있는 제안과 함께 리뷰를 남길 수 있습니다.
+    </string>
+
+    <string name="attributions">
+        프리픽:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Freepik의 아이콘</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">SmashIcons의 아이콘</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Adrianne Camero의 애플리케이션 아이콘</a></string>
+
+    <string name="characterInformation_info">
+        캐릭터 정보창입니다. 여기에서 다음과 같은 일반적인 통계에 액세스할 수 있습니다.
+        현재 건강, 체력 및 왕관으로. 당신은 또한 캐릭터 이미지를 추가할 수 있습니다, 당신에 대한 정보에 액세스
+        직업, 캐릭터 개인 정보 편집, 배경 이벤트 추가. 탐색하려면
+        애플리케이션의 나머지 부분에서 화면 왼쪽 상단에 있는 탐색 창 아이콘을 누릅니다.
+    </string>
+
+    <string name="characterSkills_info">
+        캐릭터 스킬 부분입니다. 기술
+        0에서 10 사이의 포인트를 가질 수 있습니다.
+        절대 10점을 넘을 수 없습니다. 정의 기술은 주황색 텍스트로 표시됩니다.
+        인종 수정자와 같은 보너스는
+        스킬 10 이상. 처음 만들 때
+        캐릭터의 스킬 상한은 6입니다. 스킬 포인트를 높이려면,
+        해당 스킬의 현재 레벨이 향상에서 차감됩니다.
+        총점. 스킬 수정자를 편집하려면 스킬을 클릭하고
+        수정자 표시가 스킬 레벨 옆에 나타납니다. 수정자는
+        총 개선 포인트를 줄이지 마십시오. 일반적으로 인종 특전, 아이템,
+        장비, 부상 또는 소모품.
+    </string>
+
+    <string name="characterStats_info">
+        통계 부분입니다. 통계
+        캡은 10이지만 돌연변이 및 인종
+        특성은 위의 통계를 높일 수 있습니다.
+        이 모자. 표시되는 숫자에는 원시 통계가 포함됩니다.
+        값과 수정자. 통계의 수정자를 편집하려면 통계를 클릭하고 누르고 있으면 됩니다.
+        수정자가 표시됩니다. 수정자는
+        총 개선 포인트를 줄이지 마십시오. 일반적으로 인종 특전, 아이템,
+        장비, 부상 또는 소모품.
+    </string>
+
+    <string-array name="races_array">
+        <item>인간</item>
+        <item>난쟁이</item>
+        <item>꼬마 요정</item>
+        <item>위쳐</item>
+        <item>하플링</item>
+        <item>금언</item>
+        <item>브란</item>
+        <item>나는 굴렀다</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>남성</item>
+        <item>여성</item>
+        <item>논바이너리</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>음유 시인</item>
+        <item>범인</item>
+        <item>장인</item>
+        <item>의사</item>
+        <item>마술사</item>
+        <item>중장 병</item>
+        <item>성직자</item>
+        <item>드루이드</item>
+        <item>위쳐</item>
+        <item>상인</item>
+        <item>고귀한</item>
+        <item>농부</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>동일한</item>
+        <item>용인</item>
+        <item>두려워</item>
+        <item>싫어</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>기본</item>
+        <item>AZ ↓</item>
+        <item>AZ ↑</item>
+        <item>요소</item>
+        <item>범위</item>
+        <item>STA 비용</item>
+    </string-array>
+</resources>

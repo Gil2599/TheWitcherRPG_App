@@ -129,6 +129,7 @@ class ProfessionSkillTree : Fragment() {
             Constants.Professions.MAN_AT_ARMS -> resources.getStringArray(R.array.man_at_arms_skills_info)
             Constants.Professions.MERCHANT -> resources.getStringArray(R.array.merchant_skills_info)
             Constants.Professions.PRIEST -> resources.getStringArray(R.array.priest_skills_info)
+            Constants.Professions.DRUID -> resources.getStringArray(R.array.druid_skills_info)
             Constants.Professions.WITCHER -> resources.getStringArray(R.array.witcher_skills_info)
             Constants.Professions.NOBLE -> resources.getStringArray(R.array.noble_skills_info)
             Constants.Professions.PEASANT -> resources.getStringArray(R.array.peasant_skills_info)

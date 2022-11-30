@@ -8,8 +8,6 @@
     <string name="HP"><u><b>HP</b></u></string>
     <string name="Stamina"><u><b>STAMINA</b></u></string>
     <string name="Crowns"><u><b>CROWNS</b></u></string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_characters">No Characters</string>
     <string name="add_new_character">Add new character</string>
     <string name="tap_the_add_button_to_create_a_character">Tap the Add button to create a character.</string>

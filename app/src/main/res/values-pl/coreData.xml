@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="disclaimer">
+        Należy pamiętać, że zasady i mechanika gry Wiedźmin Tabletop RPG różnią się od
+        tradycyjne Dungeons and Dragons. Ta aplikacja służy jako narzędzie przeznaczone do użycia
+        wraz z podstawowymi zasadami gry Wiedźmin Tabletop RPG i jest zgodny z ustalonymi zasadami i mechaniką
+        przez to. Korzystanie z Podstawowej instrukcji gry Wiedźmin Tabletop RPG
+        jest zdecydowanie zalecane, ponieważ ta aplikacja nie zawiera wszystkich
+        informacje niezbędne do nauki gry. \n\nTo jest nieoficjalna aplikacja i nie jest
+        zatwierdzone/poparte przez CD PROJEKT RED lub R. Talsorian Games. Ta aplikacja nie jest
+        licencjonowany produkt. Nie rości sobie prawa własności do żadnych informacji, ikon ani obrazów użytych w całym tekście
+        Aplikacja. Prawa autorskie i/lub znaki towarowe wszelkich użytych informacji, ikon i/lub obrazów należą
+        ich odpowiednim właścicielom.
+    </string>
+
+    <string name="about">
+        Dziękujemy za pobranie aplikacji Wiedźmin TRPG Companion. Ta aplikacja ma na celu przyspieszenie tworzenia postaci i odgrywania ról podczas gry
+        Wiedźmińska stołowa gra RPG. Będziesz mógł edytować informacje o swojej postaci, umiejętności, statystyki, umiejętności profesji,
+        magię, sprzęt i dodawać notatki.\n\nPonieważ jestem jedynym współtwórcą aplikacji,
+        niektóre kluczowe funkcje nie zostały zaimplementowane w celu zmniejszenia złożoności i czasu programowania. Niektóre z nich
+        obejmują rzemiosło, ulepszenia zbroi/broni i mutacje. Zaimplementowałem alternatywy, takie jak
+        niestandardowe przedmioty, notatki dotyczące wyposażenia i modyfikatory statystyk/umiejętności, aby miały podobną funkcjonalność jak wspomniane funkcje.
+        \n\nJeśli masz jakieś uwagi lub wątpliwości dotyczące aplikacji lub jej zawartości, nie wahaj się
+        aby zostawić recenzję z wszelkimi sugestiami.
+    </string>
+
+    <string name="attributions">
+        Freepik:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Ikony autorstwa Freepik</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">Ikony autorstwa SmashIcons</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Ikona aplikacji autorstwa Adrianne Camero</a></string>
+
+    <string name="characterInformation_info">
+        To jest sekcja informacji o postaciach. Tutaj będziesz mieć dostęp do typowych statystyk, takich jak
+        jak twoje obecne zdrowie, wytrzymałość i korony. Możesz także dodać obraz postaci, uzyskać dostęp do informacji o swoim
+        zawód, edytować dane osobowe postaci i dodawać wydarzenia w tle. Aby poruszać się po
+        pozostałej części aplikacji, stuknij ikonę szuflady nawigacji w lewym górnym rogu ekranu.
+    </string>
+
+    <string name="characterSkills_info">
+        To jest sekcja umiejętności postaci. Umiejętności
+        może zawierać od 0 do 10 punktów
+        i nigdy nie może przekroczyć 10 punktów. Umiejętności definiujące są oznaczone pomarańczowym tekstem.
+        Premie, takie jak modyfikatory rasowe, mogą podnieść a
+        umiejętności powyżej 10. Kiedy po raz pierwszy tworzysz
+        postaci, limit twoich umiejętności wynosi 6. Aby zwiększyć punkt umiejętności,
+        obecny poziom tej umiejętności zostanie odjęty od twojego ulepszenia
+        suma punktów. Aby edytować modyfikator umiejętności, kliknij i przytrzymaj umiejętność, aż
+        wskaźnik modyfikatora pojawia się obok poziomu umiejętności. Pamiętaj o modyfikatorach
+        nie zmniejszają sumy punktów ulepszeń i są zwykle uzyskiwane z cech rasowych, przedmiotów,
+        sprzęt, urazy lub materiały eksploatacyjne.
+    </string>
+
+    <string name="characterStats_info">
+        To jest sekcja statystyk. Statystyka
+        Czapka to jednak 10, Mutacje i Rasa
+        cechy mogą podnieść statystyki powyżej
+        ta czapka. Wyświetlane liczby obejmują surowe statystyki
+        wartość plus wszelkie modyfikatory. Aby edytować modyfikator statystyki, kliknij i przytrzymaj statystykę do
+        pokazany jest modyfikator. Pamiętaj o modyfikatorach
+        nie zmniejszają sumy punktów ulepszeń i są zwykle uzyskiwane z cech rasowych, przedmiotów,
+        sprzęt, urazy lub materiały eksploatacyjne.
+    </string>
+
+    <string-array name="races_array">
+        <item>Człowiek</item>
+        <item>Krasnolud</item>
+        <item>Elf</item>
+        <item>Wiedźmin</item>
+        <item>Niziołek</item>
+        <item>Gnom</item>
+        <item>vran</item>
+        <item>przewróciłem się</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Męski</item>
+        <item>Kobieta</item>
+        <item>Niebinarne</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>Bard</item>
+        <item>Kryminalista</item>
+        <item>Rzemieślnik</item>
+        <item>Lekarz</item>
+        <item>Mag</item>
+        <item>Człowiek z bronią</item>
+        <item>Kapłan</item>
+        <item>druid</item>
+        <item>Wiedźmin</item>
+        <item>Kupiec</item>
+        <item>szlachetny</item>
+        <item>Chłop</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>Równy</item>
+        <item>tolerowane</item>
+        <item>Przestraszony</item>
+        <item>Znienawidzony</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>Domyślna</item>
+        <item>AZ ↓</item>
+        <item>AZ ↑</item>
+        <item>Element</item>
+        <item>Zasięg</item>
+        <item>Koszt STA</item>
+    </string-array>
+</resources>

@@ -21,6 +21,7 @@ class GetProfessionSkillsIndicesUseCase @Inject constructor() {
             Constants.Professions.MAGE -> "Mage"
             Constants.Professions.MAN_AT_ARMS -> "Man At Arms"
             Constants.Professions.PRIEST -> "Priest"
+            Constants.Professions.DRUID -> "Druid"
             Constants.Professions.WITCHER -> "Witcher"
             Constants.Professions.MERCHANT -> "Merchant"
             Constants.Professions.NOBLE -> "Noble"

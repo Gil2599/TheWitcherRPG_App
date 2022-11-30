@@ -9,9 +9,9 @@ import com.witcher.thewitcherrpg.core.domain.model.MyTypeConverters
     entities = [Character::class],
     version = 1,
     exportSchema = true,
-    autoMigrations = [
-        AutoMigration(from = 1, to = 2)
-    ]
+//    autoMigrations = [
+//        AutoMigration(from = 1, to = 2)
+//    ]
 )
 @TypeConverters(MyTypeConverters::class)
 

@@ -140,9 +140,9 @@ class CharCreationFirstFrag : Fragment() {
 
         binding.autoCompleteTextViewProfession.onItemClickListener =
             OnItemClickListener { _, _, position, _ ->
-                val races =
+                val professions =
                     TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.prof_array)
-                races?.get(position)?.let {
+                professions?.get(position)?.let {
                     mainCharacterViewModel.setProfession(it)
 
                     if (it == "Witcher") {

@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="disclaimer">
+        The Witcher Tabletop RPG\ のルールとメカニズムは、
+        伝統的なダンジョンズ＆ドラゴンズ。このアプリケーションは、使用するためのツールとして機能します
+        The Witcher Tabletop RPG Core Rulebook と並んで、ルールとメカニクス セットに従います。
+        それによります。ウィッチャー テーブルトップ RPG コア ルールブックの使用
+        このアプリケーションにはすべてが含まれているわけではないため、強くお勧めします。
+        遊び方を学ぶために必要な情報。 \n\nこれは非公式のアプリケーションであり、
+        CD PROJEKT RED または R. Talsian Games によって承認/承認されています。このアプリケーションは
+        ライセンス製品。全体で使用されている情報、アイコン、または画像の所有権を主張しません
+        アプリ。使用されている情報、アイコン、および/または画像の著作権および/または商標は帰属します
+        それぞれの所有者に。
+    </string>
+
+    <string name="about">
+        ウィッチャー TRPG コンパニオン アプリをダウンロードしていただきありがとうございます。このアプリケーションは、プレイ中のキャラクター作成とロールプレイングをスピードアップすることを目的としています
+        ウィッチャー テーブルトップ RPG。キャラクター情報、スキル、ステータス、職業スキル、
+        魔法、装備、メモを追加します。\n\n私はアプリケーションへの唯一の貢献者であるため、
+        複雑さと開発時間を削減するために、いくつかの重要な機能は実装されていません。そのうちのいくつか
+        クラフト、鎧/武器の強化、突然変異が含まれます。次のような代替手段を実装しました
+        カスタム アイテム、装備メモ、およびステータス/スキル モディファイアが、前述の機能と同様の機能を持つようにします。
+        \n\nアプリケーションまたはその内容に関してフィードバックや懸念がある場合は、遠慮なくご連絡ください
+        あなたが持っているかもしれない提案でレビューを残してください。
+    </string>
+
+    <string name="attributions">
+        フリーピック:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Freepik のアイコン</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">SmashIcons のアイコン</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Adrianne Cameroによるアプリケーションアイコン</a></string>
+
+    <string name="characterInformation_info">
+        キャラクター情報コーナーです。ここでは、次のような一般的な統計にアクセスできます。
+        あなたの現在のヘルス、スタミナ、クラウンとして。キャラクター画像を追加したり、あなたに関する情報にアクセスしたりすることもできます
+        職業、キャラクターの個人情報の編集、背景イベントの追加。ナビゲートするには
+        アプリケーションの残りの部分は、画面の左上にあるナビゲーション ドロワー アイコンをタップします。
+    </string>
+
+    <string name="characterSkills_info">
+        キャラクタースキル編です。スキル
+        0 ～ 10 のポイントを含めることができます
+        10ポイントを超えることはありません。定義スキルはオレンジ色のテキストで示されます。
+        種族修飾子のようなボーナスは、
+        スキル10以上。
+        キャラクターのスキル上限は6です。スキルポイントを上げるには、
+        そのスキルの現在のレベルがあなたの改善から差し引かれます
+        ポイント合計。スキルの修飾子を編集するには、スキルをクリックしたままにします。
+        モディファイヤ インジケータは、スキル レベルの横に表示されます。修飾子に注意してください
+        あなたの改善点の合計を減らさず、通常は種族特典、アイテム、
+        機器、怪我、または消耗品。
+    </string>
+
+    <string name="characterStats_info">
+        これは統計セクションです。統計
+        上限は 10 ですが、突然変異と人種
+        特性は上記の統計を上げることができます
+        このキャップ。表示される数値には生の統計が含まれます
+        値と修飾子。ステータスのモディファイアを編集するには、ステータスをクリックして、
+        修飾子が表示されます。修飾子に注意してください
+        あなたの改善点の合計を減らさず、通常は種族特典、アイテム、
+        機器、怪我、または消耗品。
+    </string>
+
+    <string-array name="races_array">
+        <item>人間</item>
+        <item>ドワーフ</item>
+        <item>妖精</item>
+        <item>ウィッチャー</item>
+        <item>ハーフリング</item>
+        <item>ノーム</item>
+        <item>ブラン</item>
+        <item>転びました</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>男</item>
+        <item>女性</item>
+        <item>非バイナリ</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>吟遊詩人</item>
+        <item>犯罪的</item>
+        <item>職人</item>
+        <item>医者</item>
+        <item>メイジ</item>
+        <item>マン・アット・アームズ</item>
+        <item>祭司</item>
+        <item>ドルイド</item>
+        <item>ウィッチャー</item>
+        <item>商人</item>
+        <item>ノーブル</item>
+        <item>農民</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>同等</item>
+        <item>許容</item>
+        <item>恐れられた</item>
+        <item>嫌われた</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>デフォルト</item>
+        <item>A～Z ↓</item>
+        <item>アルファベット↑</item>
+        <item>エレメント</item>
+        <item>範囲</item>
+        <item>STA コスト</item>
+    </string-array>
+</resources>

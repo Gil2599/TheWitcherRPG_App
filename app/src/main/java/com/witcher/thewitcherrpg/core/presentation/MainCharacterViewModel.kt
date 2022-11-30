@@ -748,6 +748,7 @@ class MainCharacterViewModel @Inject constructor(
         when (_profession.value) {
             Constants.Professions.MAGE -> startingVigor = 5
             Constants.Professions.PRIEST -> startingVigor = 2
+            Constants.Professions.DRUID -> startingVigor = 2
             Constants.Professions.WITCHER -> startingVigor = 2
             else -> {}
         }
@@ -1502,6 +1503,7 @@ class MainCharacterViewModel @Inject constructor(
             "Mage" -> Constants.Professions.MAGE
             "Man At Arms" -> Constants.Professions.MAN_AT_ARMS
             "Priest" -> Constants.Professions.PRIEST
+            "Druid" -> Constants.Professions.DRUID
             "Witcher" -> Constants.Professions.WITCHER
             "Merchant" -> Constants.Professions.MERCHANT
             "Noble" -> Constants.Professions.NOBLE

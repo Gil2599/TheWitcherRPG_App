@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="disclaimer">
+        Veuillez noter que les règles et les mécanismes de The Witcher Tabletop RPG diffèrent de
+        Donjons et Dragons traditionnels. Cette application sert d\'outil destiné à être utilisé
+        aux côtés de The Witcher Tabletop RPG Core Rulebook et suit les règles et les mécanismes définis
+        par cela. Utilisation du livre de règles de base du RPG de table The Witcher
+        est fortement recommandé car cette application ne contient pas tous les
+        informations nécessaires pour apprendre à jouer. \n\nCeci est une application non officielle et n\'est pas
+        approuvé/approuvé par CD PROJEKT RED ou R. Talsorian Games. Cette application n\'est pas une
+        produit sous licence. Je ne revendique pas la propriété des informations, icônes ou images utilisées tout au long de
+        l\'application. Les droits d\'auteur et/ou marques de commerce de toute information, icône et/ou image utilisée appartiennent
+        à leurs propriétaires respectifs.
+    </string>
+
+    <string name="about">
+        Merci d\'avoir téléchargé l\'application The Witcher TRPG Companion. Cette application est destinée à accélérer la création de personnages et le jeu de rôle tout en jouant
+        Le RPG de table Witcher. Vous pourrez modifier les informations de votre personnage, ses compétences, ses statistiques, ses compétences professionnelles,
+        magie, équipement et ajout de notes.\n\nÉtant donné que je suis le seul contributeur à l\'application,
+        certaines fonctionnalités clés n\'ont pas été implémentées pour réduire la complexité et le temps de développement. Dont certaines
+        incluent l\'artisanat, les améliorations d\'armure / d\'arme et les mutations. J\'ai mis en place des alternatives telles que
+        les objets personnalisés, les notes d\'équipement et les modificateurs de statistiques / compétences pour avoir une fonctionnalité similaire à ces fonctionnalités.
+        \n\nSi vous avez des commentaires ou des préoccupations concernant l\'application ou son contenu, n\'hésitez pas
+        pour laisser un avis avec toutes les suggestions que vous pourriez avoir.
+    </string>
+
+    <string name="attributions"><![CDATA[
+        Freepik :
+    ]]></string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Icônes par Freepik</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">Icônes par SmashIcons</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Icône de l\'application par Adrianne Camero</a></string>
+
+    <string name="characterInformation_info">
+        Il s\'agit de la section d\'informations sur les personnages. Ici, vous pourrez accéder à des statistiques communes telles que
+        comme votre santé actuelle, votre endurance et vos couronnes. Vous pouvez également ajouter une image de personnage, accéder aux informations concernant votre
+        profession, modifier les informations personnelles du personnage et ajouter des événements d\'arrière-plan. Pour naviguer dans le
+        reste de l\'application, appuyez sur l\'icône du tiroir de navigation en haut à gauche de l\'écran.
+    </string>
+
+    <string name="characterSkills_info">
+        Ceci est la section des compétences des personnages. Compétences
+        peut contenir entre 0 et 10 points
+        et ne peut jamais dépasser 10 points. Les compétences de définition sont indiquées par le texte orange.
+        Les bonus comme les modificateurs raciaux peuvent augmenter un
+        compétence supérieure à 10. Lorsque vous faites votre premier
+        personnage, vos compétences plafonnent à 6. Pour augmenter un point de compétence,
+        le niveau actuel de cette compétence sera soustrait de votre amélioration
+        total de points. Pour modifier le modificateur d\'une compétence, cliquez et maintenez sur la compétence jusqu\'à ce que
+        l\'indicateur de modificateur apparaît à côté du niveau de compétence. Gardez à l\'esprit que les modificateurs
+        ne réduisent pas votre total de points d\'amélioration et sont généralement obtenus à partir d\'avantages raciaux, d\'objets,
+        l\'équipement, les blessures ou les consommables.
+    </string>
+
+    <string name="characterStats_info">
+        Ceci est la section des statistiques. La statistique
+        Le plafond est de 10, cependant, les mutations et les races
+        les traits peuvent augmenter les statistiques ci-dessus
+        ce bonnet. Les chiffres affichés incluent votre statistique brute
+        valeur plus tous les modificateurs. Pour modifier le modificateur d\'une statistique, cliquez et maintenez une statistique jusqu\'à ce que
+        le modificateur est affiché. Gardez à l\'esprit que les modificateurs
+        ne réduisent pas votre total de points d\'amélioration et sont généralement obtenus à partir d\'avantages raciaux, d\'objets,
+        l\'équipement, les blessures ou les consommables.
+    </string>
+
+    <string-array name="races_array">
+        <item>Humain</item>
+        <item>Nain</item>
+        <item>Elfe</item>
+        <item>Sorceleur</item>
+        <item>Halfelin</item>
+        <item>Gnome</item>
+        <item>vran</item>
+        <item>j\'ai roulé</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Homme</item>
+        <item>Femelle</item>
+        <item>Non binaire</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>Barde</item>
+        <item>Criminel</item>
+        <item>Artisan</item>
+        <item>Docteur</item>
+        <item>mage</item>
+        <item>Homme d\'armes</item>
+        <item>Prêtre</item>
+        <item>Druide</item>
+        <item>Sorceleur</item>
+        <item>Marchand</item>
+        <item>noble</item>
+        <item>Paysan</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>Égal</item>
+        <item>Toléré</item>
+        <item>Craignait</item>
+        <item>Détesté</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>Défaut</item>
+        <item>A-Z ↓</item>
+        <item>A-Z ↑</item>
+        <item>Élément</item>
+        <item>Intervalle</item>
+        <item>Coût STA</item>
+    </string-array>
+</resources>

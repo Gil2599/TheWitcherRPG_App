@@ -8,9 +8,9 @@ import com.witcher.thewitcherrpg.core.domain.model.*
     entities = [CustomEquipment::class, CustomWeapon::class, CustomMagic::class],
     version = 1,
     exportSchema = true,
-    autoMigrations = [
-        AutoMigration(from = 1, to = 2)
-    ]
+//    autoMigrations = [
+//        AutoMigration(from = 1, to = 2)
+//    ]
 )
 @TypeConverters(MyTypeMagicConverters::class, MyTypeWeaponConverters::class, MyTypeEquipmentConverters::class)
 

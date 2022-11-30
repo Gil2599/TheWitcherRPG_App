@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="disclaimer">
+        Tieni presente che le regole e le meccaniche di The Witcher Tabletop RPG differiscono da
+        tradizionale Dungeons and Dragons. Questa applicazione funge da strumento pensato per essere utilizzato
+        insieme a The Witcher Tabletop RPG Core Rulebook e segue le regole e le meccaniche impostate
+        da esso. Uso del regolamento di base del gioco di ruolo da tavolo di The Witcher
+        è fortemente raccomandato in quanto questa applicazione non contiene tutti i file
+        informazioni necessarie per imparare a giocare. \n\nQuesta è un\'applicazione non ufficiale e non lo è
+        approvato/approvato da CD PROJEKT RED o R. Talsorian Games. Questa applicazione non è un
+        prodotto concesso in licenza. Non rivendico la proprietà di alcuna informazione, icona o immagine utilizzata in tutto
+        l\'applicazione. I diritti d\'autore e/o i marchi di qualsiasi informazione, icona e/o immagine utilizzata appartengono
+        ai rispettivi proprietari.
+    </string>
+
+    <string name="about">
+        Grazie per aver scaricato la Companion App di The Witcher TRPG. Questa applicazione ha lo scopo di velocizzare la creazione del personaggio e il gioco di ruolo durante il gioco
+        Il gioco di ruolo da tavolo The Witcher. Sarai in grado di modificare le informazioni, le abilità, le statistiche, le abilità professionali del tuo personaggio,
+        magia, equipaggiamento e aggiungere note.\n\nPoiché sono l\'unico collaboratore dell\'applicazione,
+        alcune funzionalità chiave non sono state implementate per ridurre la complessità e i tempi di sviluppo. Alcuni dei quali
+        includono creazione, miglioramenti di armature/armi e mutazioni. Ho implementato alternative come
+        oggetti personalizzati, note sull\'equipaggiamento e modificatori di statistiche/abilità per avere una funzionalità simile a tali funzionalità.
+        \n\nSe hai commenti o dubbi riguardanti l\'applicazione o il suo contenuto, non esitare
+        per lasciare una recensione con tutti i suggerimenti che potresti avere.
+    </string>
+
+    <string name="attributions">
+        Freepik:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Icone di Freepik</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">Icone di SmashIcons</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Icona dell\'applicazione di Adrianne Camero</a></string>
+
+    <string name="characterInformation_info">
+        Questa è la sezione delle informazioni sul personaggio. Qui sarai in grado di accedere a statistiche comuni come
+        salute, resistenza e corone attuali. Puoi anche aggiungere un\'immagine del personaggio, accedere alle informazioni relative al tuo
+        professione, modificare le informazioni personali del personaggio e aggiungere eventi in background. Per navigare attraverso il
+        resto dell\'applicazione, toccare l\'icona del cassetto di navigazione in alto a sinistra dello schermo.
+    </string>
+
+    <string name="characterSkills_info">
+        Questa è la sezione delle abilità del personaggio. Abilità
+        possono contenere da 0 a 10 punti
+        e non può mai superare i 10 punti. Le abilità che definiscono sono indicate dal testo arancione.
+        I bonus come i modificatori razziali possono aumentare a
+        abilità superiore a 10. Quando crei per la prima volta il tuo
+        personaggio, il tuo limite di abilità è 6. Per aumentare un punto abilità,
+        il livello attuale di quell\'abilità verrà sottratto dal tuo miglioramento
+        punti totali. Per modificare il modificatore di un\'abilità, fai clic e tieni premuto sull\'abilità finché
+        l\'indicatore del modificatore appare accanto al livello di abilità. Tieni presente che i modificatori
+        non riducono i tuoi punti di miglioramento totali e di solito sono ottenuti da vantaggi razziali, oggetti,
+        attrezzature, lesioni o materiali di consumo.
+    </string>
+
+    <string name="characterStats_info">
+        Questa è la sezione delle statistiche. La statistica
+        Cap è 10, invece, Mutazioni e Razza
+        i tratti possono aumentare le statistiche sopra
+        questo berretto. I numeri visualizzati includono la tua statistica grezza
+        valore più eventuali modificatori. Per modificare il modificatore di una statistica, fai clic e tieni premuta una statistica finché
+        viene visualizzato il modificatore. Tieni presente che i modificatori
+        non riducono i tuoi punti di miglioramento totali e di solito sono ottenuti da vantaggi razziali, oggetti,
+        attrezzature, lesioni o materiali di consumo.
+    </string>
+
+    <string-array name="races_array">
+        <item>Umano</item>
+        <item>Nano</item>
+        <item>Elfo</item>
+        <item>Stregone</item>
+        <item>Halfling</item>
+        <item>Gnomo</item>
+        <item>vran</item>
+        <item>Mi sono ribaltato</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Maschio</item>
+        <item>Femmina</item>
+        <item>Non binario</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>Bardo</item>
+        <item>Penale</item>
+        <item>Artigiano</item>
+        <item>Medico</item>
+        <item>Mago</item>
+        <item>Uomo d\'armi</item>
+        <item>Sacerdote</item>
+        <item>druido</item>
+        <item>Stregone</item>
+        <item>Mercante</item>
+        <item>Nobile</item>
+        <item>Contadino</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>Pari</item>
+        <item>Tollerato</item>
+        <item>Temuto</item>
+        <item>Odiato</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>Predefinito</item>
+        <item>A-Z ↓</item>
+        <item>A-Z ↑</item>
+        <item>Elemento</item>
+        <item>Gamma</item>
+        <item>STA Costo</item>
+    </string-array>
+</resources>
