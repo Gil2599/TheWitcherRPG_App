@@ -43,7 +43,8 @@ class CharMagicFragment : Fragment() {
             (binding.addSpellButton.parent as ViewGroup).removeView(binding.addSpellButton)
             (binding.addRitualButton.parent as ViewGroup).removeView(binding.addRitualButton)
             (binding.addHexButton.parent as ViewGroup).removeView(binding.addHexButton)
-        } else if (mainCharacterViewModel.profession.value == Constants.Professions.PRIEST) {
+        } else if (mainCharacterViewModel.profession.value == Constants.Professions.PRIEST ||
+            mainCharacterViewModel.profession.value == Constants.Professions.DRUID ) {
             binding.addSpellButton.setImageResource(R.drawable.ic_celtic_knot_icon)
         }
 
@@ -57,8 +58,11 @@ class CharMagicFragment : Fragment() {
                 val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.SPELLS)
                 findNavController().navigate(action)
             }
-            else {
-                val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.INVOCATIONS)
+            else if(mainCharacterViewModel.profession.value == Constants.Professions.DRUID)  {
+                val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS)
+                findNavController().navigate(action)
+            } else {
+                val action = CharMagicFragmentDirections.actionCharMagicFragmentToMagicAddFragment(MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS)
                 findNavController().navigate(action)
             }
         }
@@ -226,11 +230,11 @@ class CharMagicFragment : Fragment() {
         val tabsLayout: TabLayout = binding.MagicTabs
         TabLayoutMediator(tabsLayout, viewPager, true) { tab, position ->
             tab.text = when (tabAdapter.fragmentList[position]) {
-                MagicViewPagerAdapter.FragmentName.SPELLS -> "Spells"
-                MagicViewPagerAdapter.FragmentName.INVOCATIONS -> "Invocations"
-                MagicViewPagerAdapter.FragmentName.RITUALS -> "Rituals"
-                MagicViewPagerAdapter.FragmentName.HEXES -> "Hexes"
-                MagicViewPagerAdapter.FragmentName.SIGNS -> "Signs"
+                MagicViewPagerAdapter.FragmentName.SPELLS -> resources.getString(R.string.spells)
+                MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS, MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS -> resources.getString(R.string.invocations)
+                MagicViewPagerAdapter.FragmentName.RITUALS -> resources.getString(R.string.rituals)
+                MagicViewPagerAdapter.FragmentName.HEXES -> resources.getString(R.string.hexes)
+                MagicViewPagerAdapter.FragmentName.SIGNS -> resources.getString(R.string.signs)
             }
         }.attach()
 
@@ -248,7 +252,13 @@ class CharMagicFragment : Fragment() {
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
             }
             Constants.Professions.PRIEST -> {
-                tabAdapter.add(MagicViewPagerAdapter.FragmentName.INVOCATIONS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.RITUALS)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.HEXES)
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
+            }
+            Constants.Professions.DRUID -> {
+                tabAdapter.add(MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.RITUALS)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.HEXES)
                 tabAdapter.add(MagicViewPagerAdapter.FragmentName.SIGNS)
@@ -259,7 +269,7 @@ class CharMagicFragment : Fragment() {
         if (mainCharacterViewModel.profession.value == Constants.Professions.MAGE) tabsLayout.getTabAt(
             0
         )?.setIcon(R.drawable.ic_magic_icon)
-        else if (mainCharacterViewModel.profession.value == Constants.Professions.PRIEST) tabsLayout.getTabAt(
+        else if (mainCharacterViewModel.profession.value == Constants.Professions.PRIEST || mainCharacterViewModel.profession.value == Constants.Professions.DRUID) tabsLayout.getTabAt(
             0
         )?.setIcon(R.drawable.ic_celtic_knot_icon)
 
@@ -270,7 +280,7 @@ class CharMagicFragment : Fragment() {
 
     override fun onStart() {
         when (mainCharacterViewModel.profession.value) {
-            Constants.Professions.MAGE, Constants.Professions.WITCHER, Constants.Professions.PRIEST -> super.onStart()
+            Constants.Professions.MAGE, Constants.Professions.WITCHER, Constants.Professions.PRIEST, Constants.Professions.DRUID -> super.onStart()
 
             else -> Navigation.findNavController(requireView())
                 .navigate(R.id.action_charMagicFragment_to_noMagicFragment)

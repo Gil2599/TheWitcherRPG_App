@@ -117,73 +117,74 @@ class MagicAddFragment : Fragment() {
 
         when (magicType) {
             MagicViewPagerAdapter.FragmentName.SPELLS -> {
-                newItemList.add(ListHeader("Novice Spells"))
+                newItemList.add(ListHeader(resources.getString(R.string.novice_spells)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_spells_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.NOVICE_SPELL))
 
-                newItemList.add(ListHeader("Journeyman Spells"))
+                newItemList.add(ListHeader(resources.getString(R.string.journeyman_spells)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_spells_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.JOURNEYMAN_SPELL))
 
 
-                newItemList.add(ListHeader("Master Spells"))
+                newItemList.add(ListHeader(resources.getString(R.string.master_spells)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_spells_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.MASTER_SPELL))
 
             }
-            MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
-                newItemList.add(ListHeader("Novice Druid Invocations"))
+            MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS -> {
+                newItemList.add(ListHeader(resources.getString(R.string.novice_druid_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_druidInvo_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.NOVICE_DRUID_INVOCATION))
 
-                newItemList.add(ListHeader("Journeyman Druid Invocations"))
+                newItemList.add(ListHeader(resources.getString(R.string.journeyman_druid_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_druidInvo_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.JOURNEYMAN_DRUID_INVOCATION))
 
-                newItemList.add(ListHeader("Master Druid Invocations"))
+                newItemList.add(ListHeader(resources.getString(R.string.master_druid_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_druidInvo_data))
                 newItemList.addAll(getCustomMagic(MagicType.MASTER_DRUID_INVOCATION))
+            }
+            MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS -> {
+                newItemList.add(ListHeader(resources.getString(R.string.novice_priest_invocations)))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_priestInvo_list_data))
+                newItemList.addAll(getCustomMagic(MagicType.NOVICE_PRIEST_INVOCATION))
 
-                newItemList.add(ListHeader("Novice Preacher Invocations"))
-                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_preacherInvo_list_data))
-                newItemList.addAll(getCustomMagic(MagicType.NOVICE_PREACHER_INVOCATION))
+                newItemList.add(ListHeader(resources.getString(R.string.journeyman_priest_invocations)))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_priestInvo_list_data))
+                newItemList.addAll(getCustomMagic(MagicType.JOURNEYMAN_PRIEST_INVOCATION))
 
-                newItemList.add(ListHeader("Journeyman Preacher Invocations"))
-                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_preacherInvo_list_data))
-                newItemList.addAll(getCustomMagic(MagicType.JOURNEYMAN_PREACHER_INVOCATION))
+                newItemList.add(ListHeader(resources.getString(R.string.master_priest_invocations)))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_priestInvo_list_data))
+                newItemList.addAll(getCustomMagic(MagicType.MASTER_PRIEST_INVOCATION))
 
-                newItemList.add(ListHeader("Master Preacher Invocations"))
-                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_preacherInvo_list_data))
-                newItemList.addAll(getCustomMagic(MagicType.MASTER_PREACHER_INVOCATION))
-
-                newItemList.add(ListHeader("Arch Priest Invocations"))
+                newItemList.add(ListHeader(resources.getString(R.string.arch_priest_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.archPriestInvo_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.ARCH_PRIEST_INVOCATION))
             }
             MagicViewPagerAdapter.FragmentName.RITUALS -> {
-                newItemList.add(ListHeader("Novice Rituals"))
+                newItemList.add(ListHeader(resources.getString(R.string.novice_rituals)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_rituals_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.NOVICE_RITUAL))
 
-                newItemList.add(ListHeader("Journeyman Rituals"))
+                newItemList.add(ListHeader(resources.getString(R.string.journeyman_rituals)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_rituals_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.JOURNEYMAN_RITUAL))
 
-                newItemList.add(ListHeader("Master Rituals"))
+                newItemList.add(ListHeader(resources.getString(R.string.master_rituals)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_rituals_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.MASTER_RITUAL))
             }
             MagicViewPagerAdapter.FragmentName.HEXES -> {
-                newItemList.add(ListHeader("Hexes"))
+                newItemList.add(ListHeader(resources.getString(R.string.hexes)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.hexes_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.HEX))
             }
             MagicViewPagerAdapter.FragmentName.SIGNS -> {
-                newItemList.add(ListHeader("Basic Signs"))
+                newItemList.add(ListHeader(resources.getString(R.string.basic_signs)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.basic_signs_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.BASIC_SIGN))
 
-                newItemList.add(ListHeader("Alternate Signs"))
+                newItemList.add(ListHeader(resources.getString(R.string.alternate_signs)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.alternate_signs_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.ALTERNATE_SIGN))
             }
@@ -276,19 +277,19 @@ class MagicAddFragment : Fragment() {
         when (magicType) {
             MagicViewPagerAdapter.FragmentName.SPELLS -> {
                 if (magicList.any { it.type == MagicType.NOVICE_SPELL }) {
-                    tempItemList.add(ListHeader("Novice Spells"))
+                    tempItemList.add(ListHeader(resources.getString(R.string.novice_spells)))
                 }
                 for (item in magicList) {
 
                     if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_SPELL) {
-                        tempItemList.add(ListHeader("Journeyman Spells"))
+                        tempItemList.add(ListHeader(resources.getString(R.string.journeyman_spells)))
                         tempItemList.add(item)
                         journeymanHeaderAdded = true
                         continue
                     }
 
                     if (!masterHeaderAdded && item.type == MagicType.MASTER_SPELL) {
-                        tempItemList.add(ListHeader("Master Spells"))
+                        tempItemList.add(ListHeader(resources.getString(R.string.master_spells)))
                         tempItemList.add(item)
                         masterHeaderAdded = true
                         continue
@@ -297,49 +298,27 @@ class MagicAddFragment : Fragment() {
                     tempItemList.add(item)
                 }
             }
-            MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
-                if (magicList.any { it.type == MagicType.NOVICE_DRUID_INVOCATION }) {
-                    tempItemList.add(ListHeader("Novice Druid Invocations"))
+            MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS -> {
+                if (magicList.any { it.type == MagicType.NOVICE_PRIEST_INVOCATION }) {
+                    tempItemList.add(ListHeader(resources.getString(R.string.novice_priest_invocations)))
                 }
                 for (item in magicList) {
-
-                    if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_DRUID_INVOCATION) {
-                        tempItemList.add(ListHeader("Journeyman Druid Invocations"))
-                        tempItemList.add(item)
-                        journeymanHeaderAdded = true
-                        continue
-                    }
-
-                    if (!masterHeaderAdded && item.type == MagicType.MASTER_DRUID_INVOCATION) {
-                        tempItemList.add(ListHeader("Master Druid Invocations"))
-                        tempItemList.add(item)
-                        masterHeaderAdded = true
-                        continue
-                    }
-
-                    if (!novicePreacherHeaderAdded && item.type == MagicType.NOVICE_PREACHER_INVOCATION) {
-                        tempItemList.add(ListHeader("Novice Preacher Invocations"))
-                        tempItemList.add(item)
-                        novicePreacherHeaderAdded = true
-                        continue
-                    }
-
-                    if (!journeyPreacherHeaderAdded && item.type == MagicType.JOURNEYMAN_PREACHER_INVOCATION) {
-                        tempItemList.add(ListHeader("Journeyman Preacher Invocations"))
+                    if (!journeyPreacherHeaderAdded && item.type == MagicType.JOURNEYMAN_PRIEST_INVOCATION) {
+                        tempItemList.add(ListHeader(resources.getString(R.string.journeyman_priest_invocations)))
                         tempItemList.add(item)
                         journeyPreacherHeaderAdded = true
                         continue
                     }
 
-                    if (!masterPreacherHeaderAdded && item.type == MagicType.MASTER_PREACHER_INVOCATION) {
-                        tempItemList.add(ListHeader("Master Preacher Invocations"))
+                    if (!masterPreacherHeaderAdded && item.type == MagicType.MASTER_PRIEST_INVOCATION) {
+                        tempItemList.add(ListHeader(resources.getString(R.string.master_priest_invocations)))
                         tempItemList.add(item)
                         masterPreacherHeaderAdded = true
                         continue
                     }
 
                     if (!archPriestHeaderAdded && item.type == MagicType.ARCH_PRIEST_INVOCATION) {
-                        tempItemList.add(ListHeader("Arch Priest Invocations"))
+                        tempItemList.add(ListHeader(resources.getString(R.string.arch_priest_invocations)))
                         tempItemList.add(item)
                         archPriestHeaderAdded = true
                         continue
@@ -348,21 +327,42 @@ class MagicAddFragment : Fragment() {
                     tempItemList.add(item)
                 }
             }
+            MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS -> {
+                if (magicList.any { it.type == MagicType.NOVICE_PRIEST_INVOCATION }) {
+                    tempItemList.add(ListHeader(resources.getString(R.string.novice_druid_invocations)))
+                }
+                for (item in magicList) {
+                    if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_DRUID_INVOCATION) {
+                        tempItemList.add(ListHeader(resources.getString(R.string.journeyman_druid_invocations)))
+                        tempItemList.add(item)
+                        journeymanHeaderAdded = true
+                        continue
+                    }
+
+                    if (!masterHeaderAdded && item.type == MagicType.MASTER_DRUID_INVOCATION) {
+                        tempItemList.add(ListHeader(resources.getString(R.string.master_druid_invocations)))
+                        tempItemList.add(item)
+                        masterHeaderAdded = true
+                        continue
+                    }
+                    tempItemList.add(item)
+                }
+            }
             MagicViewPagerAdapter.FragmentName.RITUALS -> {
                 if (magicList.any { it.type == MagicType.NOVICE_RITUAL }) {
-                    tempItemList.add(ListHeader("Novice Rituals"))
+                    tempItemList.add(ListHeader(resources.getString(R.string.novice_rituals)))
                 }
                 for (item in magicList) {
 
                     if (!journeymanHeaderAdded && item.type == MagicType.JOURNEYMAN_RITUAL) {
-                        tempItemList.add(ListHeader("Journeyman Rituals"))
+                        tempItemList.add(ListHeader(resources.getString(R.string.journeyman_rituals)))
                         tempItemList.add(item)
                         journeymanHeaderAdded = true
                         continue
                     }
 
                     if (!masterHeaderAdded && item.type == MagicType.MASTER_RITUAL) {
-                        tempItemList.add(ListHeader("Master Rituals"))
+                        tempItemList.add(ListHeader(resources.getString(R.string.master_rituals)))
                         tempItemList.add(item)
                         masterHeaderAdded = true
                         continue
@@ -371,17 +371,17 @@ class MagicAddFragment : Fragment() {
                 }
             }
             MagicViewPagerAdapter.FragmentName.HEXES -> {
-                tempItemList.add(ListHeader("Hexes"))
+                tempItemList.add(ListHeader(resources.getString(R.string.hexes)))
                 tempItemList.addAll(magicList)
             }
             MagicViewPagerAdapter.FragmentName.SIGNS -> {
                 if (magicList.any { it.type == MagicType.BASIC_SIGN }) {
-                    tempItemList.add(ListHeader("Basic Signs"))
+                    tempItemList.add(ListHeader(resources.getString(R.string.basic_signs)))
                 }
                 for (item in magicList) {
 
                     if (!journeymanHeaderAdded && item.type == MagicType.ALTERNATE_SIGN) {
-                        tempItemList.add(ListHeader("Alternate Signs"))
+                        tempItemList.add(ListHeader(resources.getString(R.string.alternate_signs)))
                         tempItemList.add(item)
                         journeymanHeaderAdded = true
                         continue
@@ -404,11 +404,11 @@ class MagicAddFragment : Fragment() {
         val bind: CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + "STA Cost: " + "</b>" + item.staminaCost
-        val effect = "<b>" + "Effect: " + "</b>" + item.description
-        val range = "<b>" + "Range: " + "</b>" + item.range
-        val duration = "<b>" + "Duration: " + "</b>" + item.duration
-        val defense = "<b>" + "Defense: " + "</b>" + item.defense
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + item.staminaCost
+        val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
+        val range = "<b>" + resources.getString(R.string.range) + ": " + "</b>" + item.range
+        val duration = "<b>" + resources.getString(R.string.duration) + ": " + "</b>" + item.duration
+        val defense = "<b>" + resources.getString(R.string.defense) + ": " + "</b>" + item.defense
         val element = item.element
 
         bind.customTitle.setTitle(item.name)
@@ -427,7 +427,7 @@ class MagicAddFragment : Fragment() {
         bind.removeSpellButton.setOnClickListener {
             mainCharacterViewModel.deleteCustomMagic(item)
             Snackbar.make(
-                binding.root, "${item.name} Deleted",
+                binding.root, "${item.name} ${resources.getString(R.string.deleted)}",
                 Snackbar.LENGTH_SHORT
             ).show()
             dialog.dismiss()
@@ -438,7 +438,7 @@ class MagicAddFragment : Fragment() {
 
             mainCharacterViewModel.addMagicItem(item)
             Snackbar.make(
-                binding.root, "${item.name} added to ${mainCharacterViewModel.name.value}",
+                binding.root, "${item.name} ${resources.getString(R.string.added_to)} ${mainCharacterViewModel.name.value}",
                 Snackbar.LENGTH_SHORT
             ).show()
             dialog.dismiss()
@@ -460,10 +460,10 @@ class MagicAddFragment : Fragment() {
         val bind : CustomDialogAddHexBinding = CustomDialogAddHexBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
-        val effect = "<b>" + "Effect: " + "</b>" + item.description
-        val danger = "<b>" + "Danger: " + "</b>" + item.danger
-        val lift = "<b>" + "Requirement To Lift: " + "</b>" + item.requirementToLift
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
+        val danger = "<b>" + resources.getString(R.string.danger) + ": " + "</b>" + item.danger
+        val lift = "<b>" + resources.getString(R.string.req_to_lift) + ": " + "</b>" + item.requirementToLift
 
         bind.customTitle.setTitle(item.name)
         bind.customTitle.setTitleSize(18F)
@@ -480,7 +480,7 @@ class MagicAddFragment : Fragment() {
         bind.removeSpellButton.setOnClickListener {
             mainCharacterViewModel.deleteCustomMagic(item)
             Snackbar.make(
-                binding.root, "${item.name} Deleted",
+                binding.root, "${item.name} ${resources.getString(R.string.deleted)}",
                 Snackbar.LENGTH_SHORT
             ).show()
             dialog.dismiss()
@@ -490,7 +490,7 @@ class MagicAddFragment : Fragment() {
         bind.addSpellbutton.setOnClickListener{
             mainCharacterViewModel.addMagicItem(item)
             Snackbar.make(
-                binding.root, "${item.name} added to ${mainCharacterViewModel.name.value}",
+                binding.root, "${item.name} ${resources.getString(R.string.added_to)} ${mainCharacterViewModel.name.value}",
                 Snackbar.LENGTH_SHORT
             ).show()
             dialog.dismiss()
@@ -512,12 +512,12 @@ class MagicAddFragment : Fragment() {
         val bind: CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
-        val effect = "<b>" + "Effect: " + "</b>" + item.description
-        val preparation = "<b>" + "Preparation Time: " + "</b>" + item.preparation
-        val difficulty = "<b>" + "Difficulty: " + "</b>" + if (item.difficulty == null) "Variable" else item.difficulty
-        val duration = "<b>" + "Duration: " + "</b>" + item.duration
-        val components = "<b>" + "Components: " + "</b>" + item.components
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
+        val preparation = "<b>" + resources.getString(R.string.prep_time) + ": " + "</b>" + item.preparation
+        val difficulty = "<b>" + resources.getString(R.string.difficulty) + ": " + "</b>" + if (item.difficulty == null) resources.getString(R.string.variable) else item.difficulty
+        val duration = "<b>" + resources.getString(R.string.duration) + ": " + "</b>" + item.duration
+        val components = "<b>" + resources.getString(R.string.components) + ": " + "</b>" + item.components
 
         bind.customTitle.setTitle(item.name)
         bind.customTitle.setTitleSize(18F)
@@ -537,7 +537,7 @@ class MagicAddFragment : Fragment() {
         bind.removeSpellButton.setOnClickListener {
             mainCharacterViewModel.deleteCustomMagic(item)
             Snackbar.make(
-                binding.root, "${item.name} Deleted",
+                binding.root, "${item.name} ${resources.getString(R.string.deleted)}",
                 Snackbar.LENGTH_SHORT
             ).show()
             dialog.dismiss()
@@ -547,7 +547,7 @@ class MagicAddFragment : Fragment() {
         bind.addSpellbutton.setOnClickListener{
             mainCharacterViewModel.addMagicItem(item)
             Snackbar.make(
-                binding.root, "${item.name} added to ${mainCharacterViewModel.name.value}",
+                binding.root, "${item.name} ${resources.getString(R.string.added_to)} ${mainCharacterViewModel.name.value}",
                 Snackbar.LENGTH_SHORT
             ).show()
             dialog.dismiss()
@@ -566,7 +566,7 @@ class MagicAddFragment : Fragment() {
         while (iterator.hasNext()) {
             val item = iterator.next()
             when (magicType) {
-                MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
+                MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS, MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS -> {
                     if (item == "Element") {
                         iterator.remove()
                     }

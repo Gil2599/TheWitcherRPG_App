@@ -38,10 +38,17 @@
     <string name="equipment_notes">Equipment Notes</string>
     <string name="equip">Equip</string>
     <string name="cast">Cast</string>
-    <string name="sta_cost">STA Cost</string>
+    <string name="sta_cost">Stamina Cost</string>
+    <string name="effect">Effect</string>
     <string name="range">Range</string>
     <string name="duration">Duration</string>
     <string name="defense">Defense</string>
+    <string name="danger">Danger</string>
+    <string name="req_to_lift">Requirement to lift</string>
+    <string name="variable">Variable</string>
+    <string name="prep_time">Preparation Time</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="components">Components</string>
     <string name="current_reliability">Current Reliability:</string>
     <string name="current_hp">CURRENT HP</string>
     <string name="_0">0</string>
@@ -67,10 +74,11 @@
     <string name="novice_druid_invocations">Novice Druid Invocations</string>
     <string name="journeyman_druid_invocations">Journeyman Druid Invocations</string>
     <string name="master_druid_invocations">Master Druid Invocations</string>
-    <string name="novice_preacher_invocations">Novice Preacher Invocations</string>
-    <string name="journeyman_preacher_invocations">Journeyman Preacher Invocations</string>
-    <string name="master_preacher_invocations">Master Preacher Invocations</string>
+    <string name="novice_priest_invocations">Novice Priest Invocations</string>
+    <string name="journeyman_priest_invocations">Journeyman Priest Invocations</string>
+    <string name="master_priest_invocations">Master Priest Invocations</string>
     <string name="arch_priest_invocations">Arch Priest Invocations</string>
+    <string name="invocations">Invocations</string>
     <string name="spells">Spells</string>
     <string name="rituals">Rituals</string>
     <string name="signs">Signs</string>
@@ -117,4 +125,6 @@
     <string name="title_activity_custom_attribute">CustomAttributeActivity</string>
     <string name="custom">Custom</string>
     <string name="delete">Delete</string>
+    <string name="deleted">Deleted</string>
+    <string name="added_to">added to</string>
 </resources>

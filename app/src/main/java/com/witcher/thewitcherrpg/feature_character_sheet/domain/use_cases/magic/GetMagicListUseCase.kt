@@ -60,17 +60,17 @@ class GetMagicListUseCase @Inject constructor() {
                 magicStringArray,
                 MagicType.MASTER_DRUID_INVOCATION
             )
-            R.array.novice_preacherInvo_list_data -> getInvocationListInfo(
+            R.array.novice_priestInvo_list_data -> getInvocationListInfo(
                 magicStringArray,
-                MagicType.NOVICE_PREACHER_INVOCATION
+                MagicType.NOVICE_PRIEST_INVOCATION
             )
-            R.array.journeyman_preacherInvo_list_data -> getInvocationListInfo(
+            R.array.journeyman_priestInvo_list_data -> getInvocationListInfo(
                 magicStringArray,
-                MagicType.JOURNEYMAN_PREACHER_INVOCATION
+                MagicType.JOURNEYMAN_PRIEST_INVOCATION
             )
-            R.array.master_preacherInvo_list_data -> getInvocationListInfo(
+            R.array.master_priestInvo_list_data -> getInvocationListInfo(
                 magicStringArray,
-                MagicType.MASTER_PREACHER_INVOCATION
+                MagicType.MASTER_PRIEST_INVOCATION
             )
             R.array.archPriestInvo_list_data -> getInvocationListInfo(
                 magicStringArray,

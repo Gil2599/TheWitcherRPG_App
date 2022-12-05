@@ -3,7 +3,6 @@ package com.witcher.thewitcherrpg.core.presentation
 //import android.util.Log
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -2902,7 +2901,7 @@ class MainCharacterViewModel @Inject constructor(
 
         when (skill) {
             1 -> {
-                val initialVigor = _vigor.value - _professionSkillA1.value
+                var initialVigor = _vigor.value - _professionSkillA1.value
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillA1.value,
                     _ip.value,
@@ -2913,8 +2912,9 @@ class MainCharacterViewModel @Inject constructor(
                     _professionSkillA1.value = pair.second
                     _ip.value = pair.first
 
-                    if (_profession.value == Constants.Professions.PRIEST) {
-                        _vigor.value = initialVigor + _professionSkillA1.value
+                    if (_profession.value == Constants.Professions.DRUID) {
+                        if (_professionSkillA1.value == 9 && !increase) initialVigor -= 4
+                        _vigor.value = if (_professionSkillA1.value <= 9) initialVigor + _professionSkillA1.value else initialVigor + _professionSkillA1.value + 4
                     }
                 }
             }
@@ -2948,7 +2948,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             4 -> {
-                val initialVigor = _vigor.value - _professionSkillB1.value
+                var initialVigor = _vigor.value - _professionSkillB1.value
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillB1.value,
                     _ip.value,
@@ -2960,7 +2960,8 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value = pair.first
 
                     if (_profession.value == Constants.Professions.PRIEST) {
-                        _vigor.value = initialVigor + _professionSkillB1.value
+                        if (_professionSkillB1.value == 9 && !increase) initialVigor -= 4
+                        _vigor.value = if (_professionSkillB1.value <= 9) initialVigor + _professionSkillB1.value else initialVigor + _professionSkillB1.value + 4
                     }
                 }
             }
@@ -3067,13 +3068,13 @@ class MainCharacterViewModel @Inject constructor(
             MagicType.MASTER_DRUID_INVOCATION -> if (item !in _masterDruidInvocations.value) _masterDruidInvocations.value.add(
                 item
             )
-            MagicType.NOVICE_PREACHER_INVOCATION -> if (item !in _novicePreacherInvocations.value) _novicePreacherInvocations.value.add(
+            MagicType.NOVICE_PRIEST_INVOCATION -> if (item !in _novicePreacherInvocations.value) _novicePreacherInvocations.value.add(
                 item
             )
-            MagicType.JOURNEYMAN_PREACHER_INVOCATION -> if (item !in _journeymanPreacherInvocations.value) _journeymanPreacherInvocations.value.add(
+            MagicType.JOURNEYMAN_PRIEST_INVOCATION -> if (item !in _journeymanPreacherInvocations.value) _journeymanPreacherInvocations.value.add(
                 item
             )
-            MagicType.MASTER_PREACHER_INVOCATION -> if (item !in _masterPreacherInvocations.value) _masterPreacherInvocations.value.add(
+            MagicType.MASTER_PRIEST_INVOCATION -> if (item !in _masterPreacherInvocations.value) _masterPreacherInvocations.value.add(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> if (item !in _archPriestInvocations.value) _archPriestInvocations.value.add(
@@ -3117,13 +3118,13 @@ class MainCharacterViewModel @Inject constructor(
             MagicType.MASTER_DRUID_INVOCATION -> _masterDruidInvocations.value.remove(
                 item
             )
-            MagicType.NOVICE_PREACHER_INVOCATION -> _novicePreacherInvocations.value.remove(
+            MagicType.NOVICE_PRIEST_INVOCATION -> _novicePreacherInvocations.value.remove(
                 item
             )
-            MagicType.JOURNEYMAN_PREACHER_INVOCATION -> _journeymanPreacherInvocations.value.remove(
+            MagicType.JOURNEYMAN_PRIEST_INVOCATION -> _journeymanPreacherInvocations.value.remove(
                 item
             )
-            MagicType.MASTER_PREACHER_INVOCATION -> _masterPreacherInvocations.value.remove(
+            MagicType.MASTER_PRIEST_INVOCATION -> _masterPreacherInvocations.value.remove(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> _archPriestInvocations.value.remove(
@@ -3686,7 +3687,7 @@ class MainCharacterViewModel @Inject constructor(
         getCustomWeaponsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _customWeaponList.value = result.data?.map { it.equipment }!!
+                    result.data?.map { it.equipment }?.let { _customWeaponList.value = it }
                 }
                 else -> {}
             }

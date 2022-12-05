@@ -1,0 +1,72 @@
+<resources>
+    <string-array name="testing">
+
+        <item>Ira de la naturaleza:14:La ira de la naturaleza te permite convocar al
+        tremendo poder del mundo natural para causar
+        estragos en tus enemigos. Dependiendo del terreno,
+        Wrath of Nature crea un efecto diferente centrado en ti con un radio de 60 m.&lt;br /&gt;&lt;br /&gt;
+
+        Campos- en cada turno, puede pasar una acción de ronda completa para aterrizar
+        un tornado de cuerda dentro de los 10 m de usted o dirigir un tornado de cuerda simple dentro
+        la zona de la tormenta. Un tornado de cuerda cubre un área cúbica de 4 m y cuando
+        dirigido por usted puede moverse 10 m por turno. Si pasa por encima o choca con los objetivos
+        esos objetivos deben hacer pruebas de Atletismo contra tu prueba de Lanzamiento de Hechizos.
+        Si fallan, reciben 4d6 de daño en el torso y son derribados 10 m.
+        en una dirección decidida por el GM.&lt;br /&gt;&lt;br /&gt;
+
+        Montañas- cada turno puedes pasar una acción de ronda completa para invocar
+        por un relámpago que golpea un objetivo. El objetivo debe
+        haz una prueba de Esquivar/Escape o Atletismo contra tu Lanzamiento de Hechizos
+        comprobar o recibir 6d6 de daño en el torso y tener un 50% de posibilidades de ser
+        encendido en llamas.&lt;br /&gt;&lt;br /&gt;
+
+        Subterráneo- en cada turno puedes pasar una acción de ronda completa
+        convocar una estalagmita o estalactita para que estalle violentamente de la piedra
+        y apuñalar a un solo objetivo. El objetivo de este ataque debe realizar una Esquiva/Escape,
+        atletismo, o prueba de bloqueo contra tu prueba de lanzamiento de hechizos o recibes 5d6 de daño.
+        Cada estalagmita o estalactita convocada permanece hasta que se destruye y cuenta como
+        una pieza de cubierta de 2 m en cubos con 20 SP.&lt;br /&gt;&lt;br /&gt;
+
+        Bosque- cada turno puedes pasar una acción de ronda completa para invocar
+        una maraña de raíces del suelo para tomar uno de los siguientes
+        acciones o dar un solo comando a cada maraña de raíces existente
+        has convocado. Estas raíces son inmóviles pero tienen el Largo Alcance
+        Efecto y se puede usar para agarrar, hacer tropezar, desarmar, ahogar o fijar un
+        objetivo. Tienen una base de Brawling de 16 a menos que tu Lanzamiento de Hechizos
+        la base sería mayor.&lt;br /&gt;&lt;br /&gt;
+
+        Pantano- cada turno puedes pasar una acción de ronda completa para invocar un radio de 6 m
+        área de gas de pantano que brota del suelo. Cualquiera atrapado en el gas
+        debes hacer una prueba de Aguante contra tu prueba de Lanzamiento de Hechizos o sufrir
+        de la condición de Enfermedad. Este gas permanece hasta que finaliza la invocación.
+        Además, si hay una llama expuesta en el área de este gas,
+        explota, causando que cada criatura en el gas sufra 5d6 de daño en el torso
+        y tienen un 75 % de posibilidades de incendiarse.&lt;br /&gt;&lt;br /&gt;
+
+        Shore- cada turno puedes pasar una acción de ronda completa para convocar a un
+        poderosa tromba de agua del cuerpo de agua cercano para derribar
+        objetivos con agua a presión. Dos chorros de agua salen del pico
+        hacia uno o dos objetivos dentro de los 20 m. Estos objetivos deben hacer
+        Pruebas de esquivar/escapar o atletismo contra tu prueba de lanzamiento de hechizos
+        o recibir 3d6 de daño y ser derribado 6 m.&lt;br /&gt;&lt;br /&gt;
+
+        Desierto- en cada turno puedes pasar una acción de ronda completa para patear
+        una ráfaga de arena ardiente en un área de 6 m de radio. Cualquier criatura dentro
+        esta área debe hacer una prueba de Esquivar/Evadir o Atletismo contra su
+        Verifique el lanzamiento de hechizos o quede cegado durante 5 rondas y prende fuego.&lt;br /&gt;&lt;br /&gt;
+
+        Tundra- cada turno puedes pasar una acción de ronda completa para invocar
+        un torbellino de magia de nieve y agua alrededor de un solo objetivo para encerrar
+        ellos en hielo. El objetivo debe hacer una Esquiva/Evasión, Atletismo o
+        Resiste la prueba de Magia versus tu prueba de Lanzamiento de Hechizos o queda encerrado
+        en hielo sólido. Este hielo inmoviliza al objetivo y evita que
+        tomando acciones Para salir de este hielo, el objetivo debe hacer un
+        Control físico DC-16. Alternativamente, si alguien reparte 10 puntos de
+        daño al hielo o 5 puntos de daño por fuego al hielo, permite
+        la persona para liberarse. Cualquier daño más allá de los 10 puntos (o 5 puntos)
+        necesaria para romper el hielo se reparte al torso del objetivo.
+
+        :60m:Activo (6 STA):Variable</item>
+    </string-array>
+
+</resources>

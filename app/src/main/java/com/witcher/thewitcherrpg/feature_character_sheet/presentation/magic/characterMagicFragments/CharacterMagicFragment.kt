@@ -78,19 +78,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
                     itemList.add(ListHeader("No Spells Added"))
                 }
             }
-            MagicViewPagerAdapter.FragmentName.INVOCATIONS -> {
-                if (mainCharacterViewModel.noviceDruidInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Novice Druid Invocations"))
-                    itemList.addAll(mainCharacterViewModel.noviceDruidInvocations.value)
-                }
-                if (mainCharacterViewModel.journeymanDruidInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Journeyman Druid Invocations"))
-                    itemList.addAll(mainCharacterViewModel.journeymanDruidInvocations.value)
-                }
-                if (mainCharacterViewModel.masterDruidInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Master Druid Invocations"))
-                    itemList.addAll(mainCharacterViewModel.masterDruidInvocations.value)
-                }
+            MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS -> {
                 if (mainCharacterViewModel.novicePreacherInvocations.value.size > 0) {
                     itemList.add(ListHeader("Novice Preacher Invocations"))
                     itemList.addAll(mainCharacterViewModel.novicePreacherInvocations.value)
@@ -106,6 +94,23 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
                 if (mainCharacterViewModel.archPriestInvocations.value.size > 0) {
                     itemList.add(ListHeader("Arch Priest Invocations"))
                     itemList.addAll(mainCharacterViewModel.archPriestInvocations.value)
+                }
+                if (itemList.isEmpty()) {
+                    itemList.add(ListHeader("No Invocations Added"))
+                }
+            }
+            MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS -> {
+                if (mainCharacterViewModel.noviceDruidInvocations.value.size > 0) {
+                    itemList.add(ListHeader("Novice Druid Invocations"))
+                    itemList.addAll(mainCharacterViewModel.noviceDruidInvocations.value)
+                }
+                if (mainCharacterViewModel.journeymanDruidInvocations.value.size > 0) {
+                    itemList.add(ListHeader("Journeyman Druid Invocations"))
+                    itemList.addAll(mainCharacterViewModel.journeymanDruidInvocations.value)
+                }
+                if (mainCharacterViewModel.masterDruidInvocations.value.size > 0) {
+                    itemList.add(ListHeader("Master Druid Invocations"))
+                    itemList.addAll(mainCharacterViewModel.masterDruidInvocations.value)
                 }
                 if (itemList.isEmpty()) {
                     itemList.add(ListHeader("No Invocations Added"))

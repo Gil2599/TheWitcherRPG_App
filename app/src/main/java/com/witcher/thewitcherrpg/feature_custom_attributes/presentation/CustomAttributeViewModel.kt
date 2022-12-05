@@ -11,7 +11,6 @@ import com.witcher.thewitcherrpg.core.domain.model.CustomWeapon
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.Equipment
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
@@ -176,9 +175,9 @@ class CustomAttributeViewModel @Inject constructor(
                     MagicLevel.NOVICE_DRUID -> MagicType.NOVICE_DRUID_INVOCATION
                     MagicLevel.JOURNEYMAN_DRUID -> MagicType.JOURNEYMAN_DRUID_INVOCATION
                     MagicLevel.MASTER_DRUID -> MagicType.MASTER_DRUID_INVOCATION
-                    MagicLevel.NOVICE_PREACHER -> MagicType.NOVICE_PREACHER_INVOCATION
-                    MagicLevel.JOURNEYMAN_PREACHER -> MagicType.JOURNEYMAN_PREACHER_INVOCATION
-                    MagicLevel.MASTER_PREACHER -> MagicType.MASTER_PREACHER_INVOCATION
+                    MagicLevel.NOVICE_PREACHER -> MagicType.NOVICE_PRIEST_INVOCATION
+                    MagicLevel.JOURNEYMAN_PREACHER -> MagicType.JOURNEYMAN_PRIEST_INVOCATION
+                    MagicLevel.MASTER_PREACHER -> MagicType.MASTER_PRIEST_INVOCATION
                     MagicLevel.ARCH_PRIEST -> MagicType.ARCH_PRIEST_INVOCATION
                     else -> {
                         MagicType.NOVICE_DRUID_INVOCATION

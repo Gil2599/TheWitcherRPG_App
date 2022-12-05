@@ -18,6 +18,9 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
 
     inner class SpellViewHolder(private val binding: SpellRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MagicItem) {
+            if (item.type == null) {
+                item.type = MagicType.NOVICE_PRIEST_INVOCATION
+            }
             when (item.type) {
                 MagicType.NOVICE_SPELL,
                 MagicType.JOURNEYMAN_SPELL,
@@ -27,9 +30,9 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
                 MagicType.NOVICE_DRUID_INVOCATION,
                 MagicType.JOURNEYMAN_DRUID_INVOCATION,
                 MagicType.MASTER_DRUID_INVOCATION,
-                MagicType.NOVICE_PREACHER_INVOCATION,
-                MagicType.JOURNEYMAN_PREACHER_INVOCATION,
-                MagicType.MASTER_PREACHER_INVOCATION,
+                MagicType.NOVICE_PRIEST_INVOCATION,
+                MagicType.JOURNEYMAN_PRIEST_INVOCATION,
+                MagicType.MASTER_PRIEST_INVOCATION,
                 MagicType.ARCH_PRIEST_INVOCATION -> {
                     val staCost =
                         "STA Cost: " + if (item.staminaCost != null) item.staminaCost.toString() else "Variable"
