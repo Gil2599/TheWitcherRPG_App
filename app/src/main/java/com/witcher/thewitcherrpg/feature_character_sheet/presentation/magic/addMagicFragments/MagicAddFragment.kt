@@ -143,19 +143,23 @@ class MagicAddFragment : Fragment() {
                 newItemList.add(ListHeader(resources.getString(R.string.master_druid_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_druidInvo_data))
                 newItemList.addAll(getCustomMagic(MagicType.MASTER_DRUID_INVOCATION))
+
+                newItemList.add(ListHeader(resources.getString(R.string.hierophant_flaminika_druid_invocations)))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.hierophant_flaminika_priestInvo_list_data))
+                newItemList.addAll(getCustomMagic(MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION))
             }
             MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS -> {
                 newItemList.add(ListHeader(resources.getString(R.string.novice_priest_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.novice_priestInvo_list_data))
-                newItemList.addAll(getCustomMagic(MagicType.NOVICE_PRIEST_INVOCATION))
+                newItemList.addAll(getCustomMagic(MagicType.NOVICE_PREACHER_INVOCATION))
 
                 newItemList.add(ListHeader(resources.getString(R.string.journeyman_priest_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.journeyman_priestInvo_list_data))
-                newItemList.addAll(getCustomMagic(MagicType.JOURNEYMAN_PRIEST_INVOCATION))
+                newItemList.addAll(getCustomMagic(MagicType.JOURNEYMAN_PREACHER_INVOCATION))
 
                 newItemList.add(ListHeader(resources.getString(R.string.master_priest_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.master_priestInvo_list_data))
-                newItemList.addAll(getCustomMagic(MagicType.MASTER_PRIEST_INVOCATION))
+                newItemList.addAll(getCustomMagic(MagicType.MASTER_PREACHER_INVOCATION))
 
                 newItemList.add(ListHeader(resources.getString(R.string.arch_priest_invocations)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.archPriestInvo_list_data))
@@ -299,18 +303,18 @@ class MagicAddFragment : Fragment() {
                 }
             }
             MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS -> {
-                if (magicList.any { it.type == MagicType.NOVICE_PRIEST_INVOCATION }) {
+                if (magicList.any { it.type == MagicType.NOVICE_PREACHER_INVOCATION }) {
                     tempItemList.add(ListHeader(resources.getString(R.string.novice_priest_invocations)))
                 }
                 for (item in magicList) {
-                    if (!journeyPreacherHeaderAdded && item.type == MagicType.JOURNEYMAN_PRIEST_INVOCATION) {
+                    if (!journeyPreacherHeaderAdded && item.type == MagicType.JOURNEYMAN_PREACHER_INVOCATION) {
                         tempItemList.add(ListHeader(resources.getString(R.string.journeyman_priest_invocations)))
                         tempItemList.add(item)
                         journeyPreacherHeaderAdded = true
                         continue
                     }
 
-                    if (!masterPreacherHeaderAdded && item.type == MagicType.MASTER_PRIEST_INVOCATION) {
+                    if (!masterPreacherHeaderAdded && item.type == MagicType.MASTER_PREACHER_INVOCATION) {
                         tempItemList.add(ListHeader(resources.getString(R.string.master_priest_invocations)))
                         tempItemList.add(item)
                         masterPreacherHeaderAdded = true
@@ -328,7 +332,7 @@ class MagicAddFragment : Fragment() {
                 }
             }
             MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS -> {
-                if (magicList.any { it.type == MagicType.NOVICE_PRIEST_INVOCATION }) {
+                if (magicList.any { it.type == MagicType.NOVICE_PREACHER_INVOCATION }) {
                     tempItemList.add(ListHeader(resources.getString(R.string.novice_druid_invocations)))
                 }
                 for (item in magicList) {
@@ -343,6 +347,13 @@ class MagicAddFragment : Fragment() {
                         tempItemList.add(ListHeader(resources.getString(R.string.master_druid_invocations)))
                         tempItemList.add(item)
                         masterHeaderAdded = true
+                        continue
+                    }
+
+                    if (!archPriestHeaderAdded && item.type == MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION) {
+                        tempItemList.add(ListHeader(resources.getString(R.string.hierophant_flaminika_druid_invocations)))
+                        tempItemList.add(item)
+                        archPriestHeaderAdded = true
                         continue
                     }
                     tempItemList.add(item)

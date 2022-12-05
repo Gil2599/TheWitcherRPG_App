@@ -175,9 +175,10 @@ class CustomAttributeViewModel @Inject constructor(
                     MagicLevel.NOVICE_DRUID -> MagicType.NOVICE_DRUID_INVOCATION
                     MagicLevel.JOURNEYMAN_DRUID -> MagicType.JOURNEYMAN_DRUID_INVOCATION
                     MagicLevel.MASTER_DRUID -> MagicType.MASTER_DRUID_INVOCATION
-                    MagicLevel.NOVICE_PREACHER -> MagicType.NOVICE_PRIEST_INVOCATION
-                    MagicLevel.JOURNEYMAN_PREACHER -> MagicType.JOURNEYMAN_PRIEST_INVOCATION
-                    MagicLevel.MASTER_PREACHER -> MagicType.MASTER_PRIEST_INVOCATION
+                    MagicLevel.HIEROPHANT_FLAMINIKA_DRUID -> MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION
+                    MagicLevel.NOVICE_PREACHER -> MagicType.NOVICE_PREACHER_INVOCATION
+                    MagicLevel.JOURNEYMAN_PREACHER -> MagicType.JOURNEYMAN_PREACHER_INVOCATION
+                    MagicLevel.MASTER_PREACHER -> MagicType.MASTER_PREACHER_INVOCATION
                     MagicLevel.ARCH_PRIEST -> MagicType.ARCH_PRIEST_INVOCATION
                     else -> {
                         MagicType.NOVICE_DRUID_INVOCATION

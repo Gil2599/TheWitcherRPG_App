@@ -1,6 +1,7 @@
 package com.witcher.thewitcherrpg.core.domain.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
@@ -223,6 +224,9 @@ data class Character(
     var masterPreacherInvocations: ArrayList<MagicItem> = arrayListOf(),
 
     var archPriestInvocations: ArrayList<MagicItem> = arrayListOf(),
+
+    @ColumnInfo(name = "height", defaultValue = "[]")
+    var hierophantFlaminikaDruidInvocations: ArrayList<MagicItem> = arrayListOf(),
 
     //Equipment
     var headEquipment: ArrayList<EquipmentItem> = arrayListOf(),

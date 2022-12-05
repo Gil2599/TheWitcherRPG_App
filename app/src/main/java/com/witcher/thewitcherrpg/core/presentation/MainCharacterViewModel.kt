@@ -654,6 +654,9 @@ class MainCharacterViewModel @Inject constructor(
     private var _masterDruidInvocations = MutableStateFlow(arrayListOf<MagicItem>())
     val masterDruidInvocations = _masterDruidInvocations.asStateFlow()
 
+    private var _hierophantFlaminikaDruidInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val hierophantFlaminikaDruidInvocations = _hierophantFlaminikaDruidInvocations.asStateFlow()
+
     private var _novicePreacherInvocations = MutableStateFlow(arrayListOf<MagicItem>())
     val novicePreacherInvocations = _novicePreacherInvocations.asStateFlow()
 
@@ -1124,6 +1127,7 @@ class MainCharacterViewModel @Inject constructor(
                 journeymanPreacherInvocations = _journeymanPreacherInvocations.value,
                 masterPreacherInvocations = _masterPreacherInvocations.value,
                 archPriestInvocations = _archPriestInvocations.value,
+                hierophantFlaminikaDruidInvocations = _hierophantFlaminikaDruidInvocations.value,
 
                 headEquipment = _headEquipment.value,
                 equippedHead = _equippedHead.value,
@@ -1402,6 +1406,7 @@ class MainCharacterViewModel @Inject constructor(
                     _masterPreacherInvocations.value = characterData.masterPreacherInvocations
 
                     _archPriestInvocations.value = characterData.archPriestInvocations
+                    _hierophantFlaminikaDruidInvocations.value = characterData.hierophantFlaminikaDruidInvocations
 
                     //Signs
                     _basicSigns.value = characterData.basicSigns
@@ -3068,13 +3073,16 @@ class MainCharacterViewModel @Inject constructor(
             MagicType.MASTER_DRUID_INVOCATION -> if (item !in _masterDruidInvocations.value) _masterDruidInvocations.value.add(
                 item
             )
-            MagicType.NOVICE_PRIEST_INVOCATION -> if (item !in _novicePreacherInvocations.value) _novicePreacherInvocations.value.add(
+            MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION -> _hierophantFlaminikaDruidInvocations.value.remove(
                 item
             )
-            MagicType.JOURNEYMAN_PRIEST_INVOCATION -> if (item !in _journeymanPreacherInvocations.value) _journeymanPreacherInvocations.value.add(
+            MagicType.NOVICE_PREACHER_INVOCATION -> if (item !in _novicePreacherInvocations.value) _novicePreacherInvocations.value.add(
                 item
             )
-            MagicType.MASTER_PRIEST_INVOCATION -> if (item !in _masterPreacherInvocations.value) _masterPreacherInvocations.value.add(
+            MagicType.JOURNEYMAN_PREACHER_INVOCATION -> if (item !in _journeymanPreacherInvocations.value) _journeymanPreacherInvocations.value.add(
+                item
+            )
+            MagicType.MASTER_PREACHER_INVOCATION -> if (item !in _masterPreacherInvocations.value) _masterPreacherInvocations.value.add(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> if (item !in _archPriestInvocations.value) _archPriestInvocations.value.add(
@@ -3118,13 +3126,16 @@ class MainCharacterViewModel @Inject constructor(
             MagicType.MASTER_DRUID_INVOCATION -> _masterDruidInvocations.value.remove(
                 item
             )
-            MagicType.NOVICE_PRIEST_INVOCATION -> _novicePreacherInvocations.value.remove(
+            MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION -> _hierophantFlaminikaDruidInvocations.value.remove(
                 item
             )
-            MagicType.JOURNEYMAN_PRIEST_INVOCATION -> _journeymanPreacherInvocations.value.remove(
+            MagicType.NOVICE_PREACHER_INVOCATION -> _novicePreacherInvocations.value.remove(
                 item
             )
-            MagicType.MASTER_PRIEST_INVOCATION -> _masterPreacherInvocations.value.remove(
+            MagicType.JOURNEYMAN_PREACHER_INVOCATION -> _journeymanPreacherInvocations.value.remove(
+                item
+            )
+            MagicType.MASTER_PREACHER_INVOCATION -> _masterPreacherInvocations.value.remove(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> _archPriestInvocations.value.remove(
