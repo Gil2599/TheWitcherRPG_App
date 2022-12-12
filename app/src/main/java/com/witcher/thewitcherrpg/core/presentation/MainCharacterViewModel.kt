@@ -634,6 +634,17 @@ class MainCharacterViewModel @Inject constructor(
     private var _focus = MutableStateFlow(0)
     val focus = _focus.asStateFlow()
 
+    private var _magicalGiftsEnabled = false
+    val magicalGiftsEnabled
+        get() = _magicalGiftsEnabled
+
+    //Gifts
+    private var _minorGifts = MutableStateFlow(arrayListOf<MagicItem>())
+    val minorGifts = _minorGifts.asStateFlow()
+
+    private var _majorGifts = MutableStateFlow(arrayListOf<MagicItem>())
+    val majorGifts = _majorGifts.asStateFlow()
+
     //Mages
     private var _noviceSpellList = MutableStateFlow(arrayListOf<MagicItem>())
     val noviceSpellList = _noviceSpellList.asStateFlow()
@@ -754,6 +765,7 @@ class MainCharacterViewModel @Inject constructor(
             Constants.Professions.WITCHER -> startingVigor = 2
             else -> {}
         }
+        if (_magicalGiftsEnabled) startingVigor = 2
 
         characterCreationUseCases.addCharacterUseCase(
             Character(
@@ -765,6 +777,7 @@ class MainCharacterViewModel @Inject constructor(
                 gender = _gender.value,
                 age = age.value.toString().toInt(),
                 profession = _profession.value,
+                magicalGifts = if (_magicalGiftsEnabled) 1 else 0,
                 definingSkill = _definingSkill.value,
                 definingSkillInfo = _definingSkillInfo.value,
                 racePerks = _racePerks.value,
@@ -941,6 +954,7 @@ class MainCharacterViewModel @Inject constructor(
                 gender = _gender.value,
                 age = age.value.toString().toInt(),
                 profession = _profession.value,
+                magicalGifts = if (_magicalGiftsEnabled) 1 else 0,
                 definingSkill = _definingSkill.value,
                 definingSkillInfo = _definingSkillInfo.value,
                 racePerks = _racePerks.value,
@@ -1111,6 +1125,8 @@ class MainCharacterViewModel @Inject constructor(
 
                 vigor = _vigor.value,
                 focus = _focus.value,
+                minorGifts = _minorGifts.value,
+                majorGifts = _majorGifts.value,
                 basicSigns = _basicSigns.value,
                 alternateSigns = _alternateSigns.value,
                 noviceRituals = _noviceRitualList.value,
@@ -1211,6 +1227,7 @@ class MainCharacterViewModel @Inject constructor(
                     _gender.value = characterData.gender
                     age.value = characterData.age.toString()
                     _profession.value = characterData.profession
+                    _magicalGiftsEnabled = characterData.magicalGifts != 0
                     _definingSkill.value = characterData.definingSkill
                     _definingSkillInfo.value = characterData.definingSkillInfo
                     _racePerks.value = characterData.racePerks
@@ -1390,6 +1407,10 @@ class MainCharacterViewModel @Inject constructor(
                     _vigor.value = characterData.vigor
                     _focus.value = characterData.focus
 
+                    //Magical Gifts
+                    _minorGifts.value = characterData.minorGifts!!
+                    _majorGifts.value = characterData.majorGifts
+
                     //Mages
                     _noviceSpellList.value = characterData.noviceSpells
                     _journeymanSpellList.value = characterData.journeymanSpells
@@ -1494,6 +1515,11 @@ class MainCharacterViewModel @Inject constructor(
     fun setGender(gender: String) {
         _gender.value = gender
         _saveAvailable.value = checkIfDataChanged()
+    }
+
+    fun setMagicalGiftsEnabled(value: Boolean) {
+        _magicalGiftsEnabled = value
+        checkSaveAvailable()
     }
 
     fun setProfession(profession: String) {
@@ -2895,10 +2921,11 @@ class MainCharacterViewModel @Inject constructor(
         checkSaveAvailable()
     }
 
-    fun onSaveEdit(name: String, age: String, gender: String) {
+    fun onSaveEdit(name: String, age: String, gender: String, enableMagicalGifts: Boolean) {
         this.name.value = name
         this.age.value = age
         _gender.value = gender
+        _magicalGiftsEnabled = enableMagicalGifts
         checkSaveAvailable()
     }
 
@@ -3073,7 +3100,7 @@ class MainCharacterViewModel @Inject constructor(
             MagicType.MASTER_DRUID_INVOCATION -> if (item !in _masterDruidInvocations.value) _masterDruidInvocations.value.add(
                 item
             )
-            MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION -> _hierophantFlaminikaDruidInvocations.value.remove(
+            MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION -> _hierophantFlaminikaDruidInvocations.value.add(
                 item
             )
             MagicType.NOVICE_PREACHER_INVOCATION -> if (item !in _novicePreacherInvocations.value) _novicePreacherInvocations.value.add(
@@ -3086,6 +3113,12 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> if (item !in _archPriestInvocations.value) _archPriestInvocations.value.add(
+                item
+            )
+            MagicType.MINOR_GIFT -> if (item !in _minorGifts.value) _minorGifts.value.add(
+                item
+            )
+            MagicType.MAJOR_GIFT -> if (item !in _majorGifts.value) _majorGifts.value.add(
                 item
             )
         }
@@ -3139,6 +3172,12 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> _archPriestInvocations.value.remove(
+                item
+            )
+            MagicType.MINOR_GIFT -> _minorGifts.value.remove(
+                item
+            )
+            MagicType.MAJOR_GIFT -> _majorGifts.value.remove(
                 item
             )
         }
@@ -3687,7 +3726,7 @@ class MainCharacterViewModel @Inject constructor(
         getCustomMagicUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _customMagicList.value = result.data?.map { it.magicItem }!!
+                    result.data?.map { it.magicItem }?.let { _customMagicList.value = it }
                 }
                 else -> {}
             }
@@ -3709,7 +3748,7 @@ class MainCharacterViewModel @Inject constructor(
         getCustomEquipmentUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _customEquipmentList.value = result.data?.map { it.equipment }!!
+                    result.data?.map { it.equipment }?.let { _customEquipmentList.value = it }
                 }
                 else -> {}
             }

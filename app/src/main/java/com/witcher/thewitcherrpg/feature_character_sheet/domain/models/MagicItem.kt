@@ -20,7 +20,9 @@ data class MagicItem(
     var components: String? = null,
     var requirementToLift: String? = null,
     var danger: String? = null,
-    var isCustom: Boolean = false
+    var sideEffect: String? = null,
+    var isCustom: Boolean = false,
+    var isTomesOfChaosDLC: Boolean = false
 ) : Parcelable, Serializable {
     companion object {
         private const val serialVersionUID: Long = 0L

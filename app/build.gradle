@@ -29,7 +29,7 @@ android {
     defaultConfig {
         applicationId "com.witcher.thewitcherrpg"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 10
         versionName "2.0"
 

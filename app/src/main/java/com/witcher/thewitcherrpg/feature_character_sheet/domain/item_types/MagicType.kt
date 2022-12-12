@@ -17,5 +17,7 @@ enum class MagicType {
     MASTER_RITUAL,
     HEX,
     BASIC_SIGN,
-    ALTERNATE_SIGN
+    ALTERNATE_SIGN,
+    MINOR_GIFT,
+    MAJOR_GIFT
 }

@@ -45,6 +45,7 @@ class MagicAddFragment : Fragment() {
         when (magic.type) {
             MagicType.HEX -> showHexDialog(magic)
             MagicType.NOVICE_RITUAL, MagicType.JOURNEYMAN_RITUAL, MagicType.MASTER_RITUAL -> showRitualDialog(magic)
+            MagicType.MINOR_GIFT, MagicType.MAJOR_GIFT -> showMagicalGiftDialog(magic)
             else -> {showSpellDialog(magic)}
         }
     }
@@ -191,6 +192,15 @@ class MagicAddFragment : Fragment() {
                 newItemList.add(ListHeader(resources.getString(R.string.alternate_signs)))
                 newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.alternate_signs_list_data))
                 newItemList.addAll(getCustomMagic(MagicType.ALTERNATE_SIGN))
+            }
+            MagicViewPagerAdapter.FragmentName.MAGICAL_GIFTS -> {
+                newItemList.add(ListHeader(resources.getString(R.string.minor_gifts)))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.minor_gifts_list_data))
+                newItemList.addAll(getCustomMagic(MagicType.MINOR_GIFT))
+
+                newItemList.add(ListHeader(resources.getString(R.string.major_gifts)))
+                newItemList.addAll(mainCharacterViewModel.getMagicList(R.array.major_gifts_list_data))
+                newItemList.addAll(getCustomMagic(MagicType.MAJOR_GIFT))
             }
         }
         if (newItemList != itemList){
@@ -401,6 +411,22 @@ class MagicAddFragment : Fragment() {
                     tempItemList.add(item)
                 }
             }
+            MagicViewPagerAdapter.FragmentName.MAGICAL_GIFTS -> {
+                if (magicList.any { it.type == MagicType.MINOR_GIFT }) {
+                    tempItemList.add(ListHeader(resources.getString(R.string.minor_gifts)))
+                }
+                for (item in magicList) {
+
+                    if (!journeymanHeaderAdded && item.type == MagicType.MAJOR_GIFT) {
+                        tempItemList.add(ListHeader(resources.getString(R.string.major_gifts)))
+                        tempItemList.add(item)
+                        journeymanHeaderAdded = true
+                        continue
+                    }
+
+                    tempItemList.add(item)
+                }
+            }
         }
         itemList = tempItemList
         setAdapterData()
@@ -566,6 +592,58 @@ class MagicAddFragment : Fragment() {
         bind.addSpellCancelButton.setOnClickListener{
             dialog.dismiss()
         }
+        dialog.show()
+    }
+
+    private fun showMagicalGiftDialog(item: MagicItem) {
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind : CustomDialogAddHexBinding = CustomDialogAddHexBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
+        val danger = "<b>" + resources.getString(R.string.spell_casting_dc) + ": " + "</b>" + item.danger
+        val lift = "<b>" + resources.getString(R.string.side_effect) + ": " + "</b>" + item.requirementToLift
+
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
+        bind.addStaCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addEffectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addEffectText.typeface = Typeface.DEFAULT
+        bind.addLiftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.addLiftText.typeface = Typeface.DEFAULT
+        bind.addDangerText.text = HtmlCompat.fromHtml(danger, HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+        if(item.isCustom) bind.removeSpellButton.visibility = View.VISIBLE
+        else bind.removeSpellButton.visibility = View.GONE
+
+        bind.removeSpellButton.setOnClickListener {
+            mainCharacterViewModel.deleteCustomMagic(item)
+            Snackbar.make(
+                binding.root, "${item.name} ${resources.getString(R.string.deleted)}",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            dialog.dismiss()
+        }
+
+        //Check spell level to add it to correct character spell list
+        bind.addSpellbutton.setOnClickListener{
+            mainCharacterViewModel.addMagicItem(item)
+            Snackbar.make(
+                binding.root, "${item.name} ${resources.getString(R.string.added_to)} ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            dialog.dismiss()
+        }
+
+        bind.addSpellCancelButton.setOnClickListener(){
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
 

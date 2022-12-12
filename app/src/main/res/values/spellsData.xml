@@ -15,11 +15,40 @@
             range.
             :10m:Active (2 STA):None:Mixed Element</item>
 
+        <item>Alchemical Recovery:3:Alchemical Recovery
+            allows you to revitalize the potency of a
+            spent substance. Upon casting this spell,
+            you can choose an alchemical crafting project
+            that has failed and recover one of its Alchemical
+            Substances. This spell cannot be cast on the
+            same failed project more than once but can be
+            used alongside the standard Recovery step.
+            :2m:Immediate:None:Mixed Element:toc</item>
+
+        <item>Blemish:5:Blemish allows you to create
+            a small but noticeable illusion on a target
+            that they are unaware of which makes them
+            off-putting or unattractive. Upon casting
+            this spell, the target suffers a -3 to Seduction,
+            Charisma, and Leadership checks. If the target
+            is alerted to the illusory blemish, they become
+            aware of it. A target that looks in a mirror or
+            reflective surface, can make a DC-16 Awareness
+            check to notice it as well.
+            :4m:1d6 Hours:Resist Magic:Mixed Element:toc</item>
+
         <item>Blinding Dust:3:Blinding Dust allows you to
             shoot a magical dust into the eyes
             of a target that blinds them for the
             duration of the spell.
             :4m:1d10:Dodge or Block:Mixed Element</item>
+
+        <item>Detect Ley Line:2:Detect Ley Line allows you
+            to locate the closest Ley Line by sending out
+            a magical pulse. Upon casting this spell, your
+            hand points in the direction of the closest Ley
+            Line and you can feel which element it is connected to.
+            :1 Mile:Immediate:None:Mixed Element:toc</item>
 
         <item>Dispel:Variable:Dispel allows you to end a
             spell/ritual/hex within the range
@@ -35,6 +64,17 @@
             their casting roll.
             :10m:Immediate:Spell Casting:Mixed Element</item>
 
+        <item>Fergus\' Demise:4:No one knows who created
+            this spell but it was made infamous by its
+            use on Emperor Fergus var Emreis. after he
+            was dethroned. Fergus\' Demise allows you to
+            summon a cluster of magical needles that act
+            on your command, to torture a target within
+            range. For the duration of this spell, you
+            are able to make a Spell Casting check instead
+            of an Intimidation check to interrogate your target.
+            :2m:1 Hour:None:Mixed Element:toc</item>
+
         <item>Glamour:5:Glamour allows you to cast
             an illusion around yourself that
             makes you look stunning. This
@@ -42,11 +82,54 @@
             Charisma, and Leadership.
             :Self:1d6 Hours:None:Mixed Element</item>
 
+        <item>Hold Tongue:5:Hold Tongue allows
+            you to magically glue a target\'s lips and paralyze their
+            tongue, rendering the them unable to speak.
+            While affected by this spell, the target cannot
+            open their mouth and can only emit muffled sounds.
+            If a Mage, Priest, or Druid with a Spell Casting
+            skill value below 7 is affected by this spell,
+            they cannot cast magic. At the end of every round,
+            the target can attempt another Resist Magic
+            check against a new Spell Casting check to end the effect.
+            :10m:10 Minutes:Resist Magic:Mixed Element:toc</item>
+
         <item>Magic Compass:3:Magic Compass allows
             you to instantly determine the direction to a place you have been
             before. Alternately, the spell tells
             which direction is north.
             :Self:1d6 Hours:None:Mixed Element</item>
+
+        <item>Magic Screen:3:Magic Screen allows you to
+            create a very specific illusion over a 2m cubed
+            area to hide or alter items. Upon casting this
+            spell, you can hide or change the appearance
+            of items within the area. This change can only
+            be visual and remains until dispelled or until
+            any items are removed from that 2m cubed area. When
+            a target comes within 4m of the Magic Screen they
+            can make a Resist Magic check to see through the Illusion.
+            :4m:Immediate:Resist Magic:Mixed Element:toc</item>
+
+        <item>Reopen Portal:6:Reopen Portal allows you to find
+            the trace of an existing portal and reopen that
+            connection temporarily. Upon casting this spell,
+            you can choose either a Permanent Portal which is
+            currently closed or the trace of a Standing Portal
+            which was cast within the last 30 seconds and roll
+            a Spell Casting check. If the chosen portal is a
+            Permanent Portal, the DC to reopen it is 16. If
+            the chosen portal is a Standing Portal, the DC is 20.
+            :2m:1 Round:None:Mixed Element:toc</item>
+
+        <item>Savolla\'s Method:5:An evolution of ancient techniques,
+            Savolla\'s Method breaks down the tissue and mucous
+            membranes of a corpse and makes it easier to find and
+            extract mutagenic compounds. Upon casting this spell,
+            the Mutagen within a corpse separates itself and emits
+            a slight glow allowing it to be extracted with a DC-14
+            Alchemy or Witcher Training Check.
+            :2m:Immediate:None:Mixed Element:toc</item>
 
         <item>Summon Staff:2:Summon Staff allows you
             dematerialize your staff and transport
@@ -78,6 +161,14 @@
             but not larger plants such as trees.
             :4m:Immediate:None:Earth</item>
 
+        <item>Cryfhau:4:Cryfhau allows you to permanently
+            increase the density of a single 2m cubed area
+            of cover. Upon casting this spell, you immediately
+            raise the cover\'s SP by 5. This can raise the SP
+            higher than its original total. Cryfhau cannot
+            be cast multiple times on the same area.
+            :2m:Immediate:None:Earth:toc</item>
+
         <item>Diagnostic Spell:3:Diagnostic Spell allows you
             to quickly assess a person’s health
             and determine how many Health
@@ -85,6 +176,12 @@
             wounds they have, and if they are
             sick or poisoned.
             :5m:Immediate:None:Earth</item>
+
+        <item>Earthen Pillar:4:Earthen Pillar allows you
+            raise a 2m cubed pillar from earthen ground.
+            This pillar counts as cover with 10 SP and
+            remains until destroyed.
+            :10m:Immediate:None:Earth:toc</item>
 
         <item>Earthen Spike:5:Earthen Spike creates an
             angled stalagmite to stab up into
@@ -115,6 +212,23 @@
             this spell can be used repeatedly to heal a critical wound.
             :2m:1d10 Rounds:None:Earth</item>
 
+        <item>Sharpen Senses:2:Sharpen Senses allows you
+            to heighten the sensitivity of your sight,
+            smell, and hearing. Upon casting this spell,
+            you immediately gain the benefits of Night
+            Vision and Scent Tracking and have a +2 to
+            Awareness checks. However, if you are subjected
+            to a bright light or a very loud noise,
+            you suffer Staggered condition.
+            :Self:30 Minutes:None:Earth:toc</item>
+
+        <item>Soften Earth:2:Soften Earth allows you to
+            soften a 6m cubed area of earth into a muddy
+            morass or change sand into quicksand. The area
+            of the spell becomes difficult to maneuver
+            within and imposes a -2 to Dodge/Escape and Athletics checks.
+            :10m:2d10 Rounds:None:Earth:toc</item>
+
         <item>Talfryn\'s Prison:3:Talfryn\'s Prison is named
             for Talfryn of Nazair, a treacherous knight who was trapped for
             three days in the garden of the
@@ -144,6 +258,16 @@
             pocket has a 1m radius for the duration of the spell.
             :12m:2d10 Rounds:None:Air</item>
 
+        <item>Bronwyn\'s Bow:2:Developed by Bronwyn Deadeye
+            to bombard the Nilfgaardian Navy, this spell allows
+            you to summon a powerful current of air to propel
+            a thrown weapon great distances. Upon casting this
+            spell, you can make an attack with any Thrown Weapon,
+            handheld Ranged Weapon Ammunition (Arrows or Bolts),
+            or Bomb against a target using your Spell Casting base.
+            If throwing an arrow or bolt, you deal 4d6 damage.
+            :50m:Immediate:Dodge or Block:Air:toc</item>
+
         <item>Bronwyn\'s Gust:2:Bronwyn\'s Gust is named
             after the Skellige mage and raider,
             Bronwyn Deadeye. The spell
@@ -156,11 +280,40 @@
             take ramming damage.
             :2m:Immediate:Dodge:Air</item>
 
+        <item>Dust Coating:3:Dust Coating allows you to whip
+            up dust from the local area into a 10m cubed
+            cloud which reveals any invisible creatures for
+            one round. Choose one target within this area to
+            adhere the dust to. If the target fails to defend,
+            you cover them in a coating of dust which negates
+            the benefits of invisibility.
+            :20m:Active (2 STA):Dodge:Air:toc</item>
+
         <item>Freshen Air:2:Freshen Air allows you to
             clear a 4m radius area (centered
             around you) of any smoke, poison,
             or any other tainted air for the duration of the spell.
             :2m Radius:Active (2 STA):None:Air</item>
+
+        <item>Light Feet:2:Light Feet allows you to accelerate
+            your movement by carrying yourself along on a
+            gust of wind. Upon casting this spell, you raise
+            your Speed Statistic by 5, your Run Derived Statistic
+            by 15, and your Leap Derived Statistic by 3.
+            :Self:Active (2 STA):None:Air:toc</item>
+
+        <item>Magnify Odor:5:Magnify Odor allows you to intensify
+            an existing scent until it encompasses a 6m cubed area.
+            A creature who starts their turn in this area or enters
+            it must make an Endurance check against your Spell
+            Casting check or be overwhelmed by the odor and Nauseated
+            for 1 Minute. Additionally, anyone who enters the area is
+            permeated by the scent for 1 week along with their
+            possessions granting anyone with Scent Tracking a +2 to
+            track them. Any creature with Scent Tracking loses that
+            ability while affected by this spell. This scent lasts
+            for the duration of the spell or until entirely submerged in water.
+            :10m:1 Week:None:Air:toc</item>
 
         <item>Urien\'s Shelter:3:Urien\'s Shelter, created by
             the nautical air magician Urien of
@@ -214,6 +367,14 @@
             permanent scar.
             :8m:Immediate:None:Fire</item>
 
+        <item>Breath of Fire:4:An imperfect attempt by the
+            sorcerer Afan of Gulet to re-create the breath
+            of a true dragon, Breath of Fire allows you to
+            exhale a stream of magical fire onto a target.
+            If the target fails their defense, they take 3d6
+            damage and have a 100% chance of being lit on fire.
+            :4m:Immediate:Dodge or Block:Fire:toc</item>
+
         <item>Cadfan\'s Grasp:4:Cadfan\'s Grasp, named for
             the magician and smith Cadfan of
             Ebbing, allows you to super-heat
@@ -224,6 +385,25 @@
             to give +2d6 damage and a 50%
             chance to ignite a target.
             :8m:1d6 Rounds:None:Fire</item>
+
+        <item>Coating of Fire:3:Coating of Fire allows
+            you to subtly permeate a single object with
+            fire magic to make it highly flammable. For
+            the duration of the spell, the object will burst
+            into flame immediately if exposed to any open
+            flame. If cast on a creature any effect that
+            would have a chance to light them on fire
+            automatically does.
+            :2m:1 Hour:Dodge:Fire:toc</item>
+
+        <item>Harmless Fire:3:Harmless Fire allows you to manipulate
+            the heat and power of a fire to make it temporarily safe.
+            Upon casting this spell, choose an area of fire no larger
+            than 2m cubed and that fire becomes harmless to anyone
+            touching it. The fire will not spread or otherwise damage
+            anything it is touching. If you are on fire and under the
+            effect of this spell you can still take damage from fire-based attacks.
+            :8m:10 Minutes:None:Fire:toc</item>
 
         <item>Magic Flare:2:Magic Flare creates a bright
             flash above you. Everyone within
@@ -248,6 +428,17 @@
             in the area on fire.
             :8m:Immediate:Dodge:Fire</item>
 
+        <item>Vahila\'s Smoke:3:Created by the feared Etolian
+            assassin Vahila, this spell transforms a wisp of
+            smoke into a choking veil. Upon casting this spell,
+            you can engulf a single target\'s head in thick smoke.
+            If this target fails to defend they are immersed in
+            smoke and considered Blinded and Suffocating. Each turn,
+            the target can spend their action to attempt another
+            defense check against a new Spell Casting check to
+            end the effect.
+            :10m:Active (2 STA):Dodge:Fire:toc</item>
+
         <item>Wave of Fire:4:Wave of Fire shoots a 3m
             cone of fire in one direction that
             does 2d6 damage to anyone who
@@ -255,6 +446,13 @@
             has a 50% chance of igniting a
             target.
             :3m Cone:Immediate:Dodge or Block:Fire</item>
+
+        <item>Aurora\'s Breath:5:Developed by the famed
+            Water Mage, Aurora Henson, to explore submerged
+            ruins off the coast of the Continent, Aurora\'s
+            Breath allows you to breath water as well as air
+            through skillful manipulation of water magic.
+            :Self:30 Minutes:None:Water:toc</item>
 
         <item>Carys\' Hail:3:Named for its creator
             Carys of Cintra, this spell hurls
@@ -330,9 +528,58 @@
             the target cannot to be manipulated or moved.
             :8m:1d10 Rounds:Dodge:Water</item>
 
+        <item>Slip Stream:5:Slip Stream allows you to
+            propel yourself through the water in a
+            current of your own creation. While swimming,
+            your Speed Statistic is changed to 12 and you
+            do not suffer the normal penalties for
+            attacking and defending underwater.
+            :Self:10 Minutes:None:Water:toc</item>
+
+        <item>Water Jet:5:Water Jet creates a controlled
+            geyser from a source of water to strike a
+            target with your choice of slashing, piercing,
+            or bludgeoning damage. If the target fails to
+            defend, they take 4d6 damage and are knocked Prone.
+            :Self:10 Minutes:None:Water:toc</item>
+
+        <item>Web of Ice:5:Web of Ice allows you to create a
+            delicate structure of ice on a surface which is
+            linked to a duplicate that you possess. The moment
+            a creature interacts with the surface it is placed
+            on, the structure and its duplicate break. Alternatively,
+            breaking the duplicate melts the original structure.
+            The ice can be spotted with a DC-18 Awareness check.
+            :2m:1 Day:None:Water:toc</item>
+
     </string-array>
 
     <string-array name="journeyman_spells_list_data">
+
+        <item>Cloak:16:Cloak allow you to render yourself and anything
+            you are carrying invisible. This grants you a +10 to Stealth
+            and a +5 to Attack and Defense. Even if a creature makes
+            their Awareness check to spot you, you still gain a +3
+            to Attack and Defense. Yrden or a Moondust Bomb can
+            render you partially visible, reducing your Stealth
+            bonus to +5 and your Attack and Defense bonus to +3.
+            If you are hit by an attack while invisible, this spell ends immediately.
+            :Self:Active (2 STA):None:Mixed Element:toc</item>
+
+        <item>Disrupt Focus:15:Disrupt Focus allows you to temporarily
+            disturb the magical pathways in an item with the Focus
+            effect. Upon casting this spell, a single item with
+            the Focus effect ceases to act as a focus for the duration of the spell.
+            :10m:10 Minutes:None:Mixed Element:toc</item>
+
+        <item>Dormyn\'s Chamber:18:Dormyn\'s Chamber allows
+            you to imprison a single target within a translucent
+            magical bubble. The chamber has 40 Hit Points and
+            remains stationary where it was cast. The creature
+            within the chamber cannot target or be targeted by
+            anything outside. Additionally, sound does not
+            pass through the chamber\'s walls.
+            :10m:Active (8 STA):Dodge:Mixed Element:toc</item>
 
         <item>Eilhart\'s Technique:12:Named for its creator Philippa
             Eilhart, this gruesome spell allows you
@@ -344,6 +591,16 @@
             reduced by 1 permanently.
             :3m:Immediate:Resist Magic:Mixed Element</item>
 
+        <item>Empower:12:Empower allows you to weave additional
+            magic into your spell casting to create a dangerous convergence
+            of chaos. The next spell you cast gains one of the following benefits
+            of your choice- the percentage chance of any effects caused by the
+            spell raise to 100%, the roll to cast the spell is made at a +2
+            bonus, or an already damaging spell deals an additional 2d6
+            damage. However, if you roll a 1 when making the Spell Casting
+            check you automatically suffer from a Magical Fumble as though you had rolled a 10.
+            :Self:1 Minute:None:Mixed Element:toc</item>
+
         <item>Illusion:8:Illusion allows you to create
             any visual illusion you want within
             20m of yourself. Anyone who fails the
@@ -351,6 +608,17 @@
             and believes it. The illusion cannot be
             touched, smelled, or heard, however.
             :20m:Active (4 STA):Resist Magic:Mixed Element</item>
+
+        <item>Spectral Tether:8:Spectral Tether allows you to
+            weave a tether of magic around a target which binds
+            it to it\'s physical form. While affected by this
+            spell, a target cannot become incorporeal or invisible
+            and cannot teleport by any means. Additionally, as
+            long as the spell is in effect, the target cannot move
+            more than 10m away from you. Each turn, the target can
+            spend their action to attempt another Resist Magic
+            check against a new Spell Casting check to end the effect.
+            :10m:Active (4 STA):Resist Magic:Mixed Element:toc</item>
 
         <item>Teleportation:10:Teleportation allows you to
             teleport to a known location instantaneously.
@@ -365,6 +633,45 @@
             miles away.
             :N/A:Immediate:None:Mixed Element</item>
 
+        <item>Trap Portal:12:Trap Portal allows you to place a
+            magical trap inside a portal which redirects the
+            portal\'s end point. Upon casting the spell, you
+            learn the portal\'s end point and can choose a
+            location within 1 mile of that point to be the
+            new end point. This trap makes a notable change
+            to the portal which requires a DC-16 Magic Training
+            check or a DC-20 Education check to spot. Anyone
+            with at least 1 point in Magic Training automatically
+            gets to roll a Magic Training check upon seeing the
+            portal to try and spot the trap. Immediately after
+            a creature passes through the portal, the trap is
+            dispelled but evidence that the portal was trapped
+            remains for 1 month.
+            :4m:1 Month:None:Mixed Element:toc</item>
+
+        <item>Bekker\'s Rockslide:13:Bekker\'s Rockslide allows
+            you to rip a large stone from beneath the ground
+            and drop it on a target. Upon casting this spell,
+            the target must roll a Reposition roll against your
+            Spell Casting check. If they fail, the target takes
+            6d6 damage to the torso with a 100% chance of Knock-Down.
+            As the rock makes impact, it explosively shatters
+            covering a 6m radius. Anyone in that area must make a
+            DC-16 Athletics check or be Knocked-Down and take
+            4d6 damage to the torso.
+            :10m:Immediate:Dodge (Reposition):Earth:toc</item>
+
+        <item>Elgan\'s Bastion:14:Created by the famed magician
+            Elgan of Verden, Elgan\'s Bastion uses trace amounts
+            of metal in stone to magnetically lift a shield of
+            rocks around you to defend yourself from physical
+            attacks and damage. This shield of rocks counts as a
+            Cover with 30 SP and entirely surrounds you. While
+            surrounded, your SPEED Statistic cannot be higher
+            than 2 and you cannot do anything on your turn but
+            take a single Movement Action.
+            :Self:Active (4 STA):None:Earth:toc</item>
+
         <item>Elgan\'s Theory:10:Elgan\'s Theory was discovered
             by Elgan of Verden who travelled to
             the heart of Mahakam and worked for
@@ -377,6 +684,17 @@
             someone\'s weapons or armor counts against
             their ENC.
             :8m:2d10 Rounds:None:Earth</item>
+
+        <item>Javed\'s Swarm:10:Javed\'s Swarm allows you to
+            control a great number of insects from the environment.
+            Upon casting this spell, a swarm of controlled insects
+            crawls out from nearby crevices and forms a horde
+            with a SPD Statistic of 7 which can engulf a single
+            target by making an attack at a Base 14. This attack
+            deals 1d6 damage to the target\'s torso, ignores all
+            worn armor, and has a 100% chance of poisoning.
+            The Horde has 15 Hit Points and a Dodge base of 14.
+            :6m:10 Minutes:None:Earth:toc</item>
 
         <item>Rhwystr Graig:15:Rhwystr Graig allows you to
             create a 2m by 3m rock wall with 30
@@ -412,6 +730,22 @@
             target decreases by 1d6.
             :25m:Immediate:Dodge:Air</item>
 
+        <item>Ball Lightning:14:Favored by mages who commonly
+            fight agile targets, Ball Lightning summons
+            an orb of magical lightning which flies through
+            the air at your command. Upon casting this spell,
+            you can direct the ball lightning at a single target
+            who must make a defense check against your Spell
+            Casting check. If they fail, the target takes 3d6
+            damage to the torso and suffers the Concussion
+            Critical Injury Effect for 10 Minutes. If the
+            target successfully defends, the Ball Lightning
+            remains in the area. On subsequent turns you can
+            use your action to make a new attack against a
+            target with a new Spell Casting check. Once the
+            ball lightning hits a target it dissipates.
+            :20m:5 Rounds:Dodge:Air:toc</item>
+
         <item>Gwynt Troelli:12:Gwynt Troelli creates a
             barrier of wind around you that
             blocks ranged attacks and projectiles.
@@ -421,6 +755,17 @@
             8m away in a random direction.
             :10m Radius:Active (4 STA):None:Air</item>
 
+        <item>Invisible Ribbon:15:With a whisper, Invisible
+            Ribbon allows you to focus a gust of wind into a
+            sharp, invisible blade that whistles through the
+            air. Upon casting this spell, a single target must
+            make a Defense check against your Spell Casting
+            check. If they fail, the target takes 3d6 damage.
+            The ribbon is invisible and thus even after
+            attacking, anyone in the area must make a DC-20
+            Perception check to determine where the attack came from.
+            :10m:Immediate:Dodge or Block:Air:toc</item>
+
         <item>Suffocate:14: Suffocates a target for 1d10
             damage per turn. The suffocation
             ends if the caster is struck with a
@@ -428,6 +773,33 @@
             spell. While suffocating, a target is
             treated as staggered.
             :10m:Active (4 STA):Resist Magic:Air</item>
+
+        <item>Touch of Lightning:8:Touch of Lightning allows you to
+            imbue a stationary metal object with a powerful charge
+            of electricity. Upon casting this spell, the object becomes
+            an electrical trap which will deal 1d6 damage to the
+            first body location that touches it. This spell can be
+            charged by spending extra rounds focusing on it during
+            the casting. For each round that you continue to hold the
+            object and pay its active cost the trap deals an extra 1D6
+            of damage (maximum 8D6 total). If the object is moved before
+            it is touched by a body location it loses all charges.
+            Additionally, 24 hours after the spell is cast the object
+            loses all charges. It requires a DC-20 Perception check
+            to determine an object has been affected by this spell.
+            :2m:Active (5 STA):None:Air:toc</item>
+
+        <item>Cinder Door:12:Cinder Door allows you to funnel
+            fire magic. into a flammable structure. to safely
+            and silently consume it from within. Upon casting
+            this spell, up to a 2m cubed section of the cover
+            you touch takes 4d6 ablation damage. This spell
+            can be maintained by spending extra rounds focusing
+            on it during the casting. For each. round that you
+            continue to maintain the spell and pay its active
+            cost the cover takes 4d6 ablation damage. When
+            this area of cover no longer has any SP, it crumbles away.
+            :2m:Active (3 STA):None:Fire:toc</item>
 
         <item>Demetia\'s Crest Surge:12:Demetia\'s Crest
             Surge allows you to create a shield of pure
@@ -453,6 +825,18 @@
             the spell’s range.
             :10m Radius:Active (4 STA):Dodge:Fire</item>
 
+        <item>Mage\'s Forge:12:Mage\'s Forge allows
+            you to create a magical fire that can be used
+            to purify metal. When ingots of metal are placed
+            within this fire. their impurities are burned.
+            away making them easier to recover after a failed
+            crafting attempt. During the Recovery Step any
+            purified ingots used are automatically recovered.
+            Additionally, the fire created acts as a Tinker\'s
+            Forge for the purposes of crafting, but cannot be
+            used on Dimeritium.
+            :2m:1 Day:None:Fire:toc</item>
+
         <item>Seirff Haul:10:Seirff Haul creates a
             number of serpents from fire magic
             that swarm over a target. The target
@@ -464,6 +848,15 @@
             by 1 point as the serpents tighten.
             :10m:2d10:Dodge:Fire</item>
 
+        <item>Smith\'s Touch:10:Smith\'s Touch focuses fire magic
+            into metal allowing you to manipulate it with your
+            bare hands. While this spell is active, you are able
+            to bend, shape, and manipulate metal as if it were clay.
+            Additionally, by taking an action to make a Brawling attack,
+            you can deal 3d6 ablation damage to armor or reliability
+            damage to a weapon. This spell cannot be used on Dimeritium.
+            :2m:Active (10 STA):None:Fire:toc</item>
+
         <item>Anialwch:8:Anialwch allows you to
             suck some of the liquid from a target\'s
             body, damaging and exhausting them. The
@@ -474,6 +867,12 @@
             4d6 as well.
             :10m:Immediate:Resist Magic:Water</item>
 
+        <item>Invaerne:14:Invaerne allows you to create a
+            howling snowy gale in an area with a 30m radius.
+            This area has Snow and Ice conditions. If cast in
+            a cold environment, the duration of this spell is increased to one week.
+            :50m:1 Hour:None:Water:toc</item>
+
         <item>Merigold\'s Hailstorm:15:Named for its creator Triss
             Merigold, ex-advisor of King
             Foltest of Temeria, Merigold\'s
@@ -483,6 +882,28 @@
             a DC equal to your Spell Casting check each round or take 2d6
             damage to a body part.
             :30m Radius:Active (4 STA):Dodge:Water</item>
+
+        <item>Rusting:14:Rusting allows you to emit a spray
+            of chemically reactive water which rapidly oxidizes
+            metal objects. If using this spell on a target\'s
+            armor, all their worn armor takes 2d6 ablation
+            damage and wearing any of it imposes a -2 to their
+            Reflex, Dexterity, and Speed Statistics. If using
+            this spell on a target\'s weapon, the weapon takes
+            2d6 reliability damage and imposes a -2 to attacks
+            made with it. If this spell is blocked by a shield,
+            the shield takes 2d6 Reliability damage. The rust
+            created by this spell can be removed from 10 items
+            by taking an hour to make a DC-14 Crafting check.
+            :4m:Permanent:Dodge or Block:Water:toc</item>
+
+        <item>Essence of Potion:12:Essence of Potion allows
+            you to take a single dose of any Decoction, Potion,
+            or Elixir that has not yet been affected by this
+            spell and magically transfer some of its properties
+            into a unit of Essence of Water, transforming
+            it into a copy of that item.
+            :2m:Permanent:None:Water:toc</item>
 
         <item>Waves of the Naglfar:10:Created by a mage who
             claimed to have witnessed the ride
@@ -497,6 +918,19 @@
     </string-array>
 
     <string-array name="master_spells_list_data">
+
+        <item>Bekker\'s Dark Mirror:25:Bekker\'s Dark Mirror allows
+            you to trap a creature\'s reflection in a reflective
+            surface near them, draining their strength. Upon
+            casting this spell, you can choose two of the target\'s
+            Statistics and reduce them each by 1d6. This reduction
+            affects Derived Statistics. Once drained, this Statistic
+            remains lowered for the duration of the spell or until
+            the mirrored surface containing the reflection is
+            completely destroyed. The affected target casts no
+            reflection until the spell ends. A creature without
+            a reflection cannot be affected by Bekker\'s Dark Mirror.
+            :10m:1 Month:Resist Magic:Mixed Element:toc</item>
 
         <item>Mental Command:25:Mental Command allows
             you to plant an order in the mind
@@ -523,6 +957,40 @@
             Teleportation.
             :N/A:Active (6 STA):None:Mixed Element</item>
 
+        <item>Steal Spell:20:Steal Spell allows you to take
+            control of another mage\'s spell and re-designate
+            its target. When another mage casts a Non-Master
+            level spell you can immediately force the mage to
+            make a contested Spell Casting check against you.
+            If you succeed at this check, you change the target
+            of the spell to anyone within range of the original
+            caster or yourself if the spell had a range of self.
+            If the spell requires an attack check, use your
+            Spell Casting check from the contested check. If
+            the spell you steal is active, you remain in
+            control of the spell but must pay its active cost.
+            :10m:Immediate:None:Mixed Element:toc</item>
+
+        <item>Crystal Stasis:25:Crystal Stasis allows you to
+            cause crystals to grow up around a target and
+            encase them entirely, placing them into an unaging,
+            coma-like state. These crystals grow rapidly but
+            not instantaneous and the spell must be maintained
+            as per an Active Spell over three rounds. On the
+            target\'s next turn, their body becomes sluggish
+            and stiff, imposing a 3 to attack and defense
+            and a -3 to their SPD. On their second turn,
+            their body begins to be consumed by crystal
+            and they additionally cannot move from where
+            they stand. On their third turn, the target is
+            entirely entombed in a pillar of crystal rendering
+            them unconscious. If the mage is forced to stop
+            maintaining this spell before the third round,
+            the spell ends and the effects are reversed.
+            Otherwise, the only way to reverse the effects
+            are the use of the Dispel spell.
+            :6m:Active (6 STA):Resist Magic or Dodge:Earth:toc</item>
+
         <item>Polymorphism:22:Polymorphism allows you
             to take the shape of a serpent, a
             cat, a bird, or a dog. While in this
@@ -533,6 +1001,18 @@
             the spell again to change back to
             your human form.
             :Self:Until Re-Cast:None:Earth</item>
+
+        <item>Shape Earth:25:Shape Earth allows you to create
+            a single structure composed of materials present
+            at the site such as wood, stone, or earth that fills
+            a 20m cubed cube. This structure can be whatever
+            you wish, provided that it is simple in nature for
+            example, a tremendous wall, a statue, or a fortification
+            with a few rooms and simple furnishings. The structure
+            will build itself over the next 10 minutes and will
+            vary in SP from a wooden wall with 5 SP to a stone wall
+            with 30 SP. This is determined by the GM.
+            :6m:Permanent:None:Earth:toc</item>
 
         <item>Transmutation:25:Transmutation allows you
             to change the properties of a mineral or
@@ -557,6 +1037,34 @@
             Zephyr.
             :2m Radius:Active (6 STA):Dodge:Air</item>
 
+        <item>Gwyntog:24:Gwyntog allows you to create a localized
+            windstorm with up to a 40m radius. While this spell
+            is in effect, gale force winds whip around the area making
+            flight impossible and movement extremely difficult.
+            Immediately, any flying creature is knocked out of
+            the air and suffers damage as per normal. Ranged
+            attacks made will fail to hit their intended target
+            and land wherever the GM decides. Finally, any creature
+            in the area must make an Athletics check DC-20 or be
+            unable to take a Movement or Run Action during their turn.
+            :100m:Active (6 STA):None:Air:toc</item>
+
+        <item>Hand of the Tempest:25:Summoning the full force of gales,
+            you exert a tremendous force on a target which can manifest
+            in one of 3 ways. With a powerful updraft you can send a target
+            who fails a Reposition check or object of 1000kg or lighter
+            flying 14m into the air. The target begins to fall at the end
+            of their next turn. Upon hitting the ground, the target and
+            anything it hits takes 7d6 bludgeoning damage to the torso and
+            are knocked prone. Alternatively, with a powerful gust you
+            can flood a 14m cone with powerful wind. Anyone in this area
+            who fails a Reposition check or could not escape the area
+            of the spell with their reposition is knocked back 14m and
+            takes ramming damage if they hit anything as they fly.
+            Finally, you can manipulate an object up to 1000kg as
+            though you were holding it in your hand.
+            :20m:Immediate:None:Air:toc</item>
+
         <item>Lightning Storm:25:Lightning Storm allows you
             to create a lightning storm. Lightning strikes randomly around the
             area. Anyone (except you) in the
@@ -567,6 +1075,33 @@
             to the torso and have a 75% chance
             to be ignited.
             :20m Radius:Active (6 STA):Dodge:Air</item>
+
+        <item>Blaze of the Korath:24:Blaze of the Korath allows
+            you to create a sweltering aura with up to a 40m
+            radius which eats away at creatures\' STA. Upon
+            casting this spell, each creature in the area
+            lowers their current STA by 2d6. Additionally,
+            while in the area, creatures are incapable
+            of taking the Recovery Action. If a creature
+            is in the area at the start of its turn or
+            enters the area on its turn, they lower their
+            current STA by 2d6. If a target is reduced
+            to 0 points of STA by this spell, they fall
+            unconscious until they recover at least
+            20 points of STA and make a successful Stun save.
+            :100m:Active (4 STA):None:Fire:toc</item>
+
+        <item>Living Fire:25:Living Fire allows you to summon
+            a small amount of life into a fire. While not as
+            sentient or powerful as a Fire Elemental, this
+            living fire is capable of taking a turn, at your
+            Initiative. The Living Fire has a Speed Statistic
+            of 5, is considered Incorporeal, and can cast
+            Aenye, Wave of Fire, and Flaming Vortex, with a
+            Spell Casting Base of 16 and infinite STA.
+            The Living Fire cannot take extra actions
+            and is destroyed if the fire is put out.
+            :10m:10 Minutes:None:Fire:toc</item>
 
         <item>Melgar\'s Fire:25:This spell is well
             known for sowing chaos on the fields of the Pontar
@@ -590,6 +1125,27 @@
             sun’s rays can’t penetrate. By the light of the moon or on overcast days, it
             does half damage.
             :20m:2d6 Rounds:Dodge or Block:Fire</item>
+
+        <item>Ainfra\'s Extraction:22:Created by the famed Ainfra
+            of Mag Turga, Ainfra\'s Extraction allows you to
+            desiccate a target and then utilize their water for
+            your own means. Upon casting this spell, a target
+            that fails to defend lowers their current STA by 8d6
+            and the caster may immediately cast Rhewi,
+            Ice Slick, or Water Jet at no STA cost.
+            :8m:Immediate:Resist Magic:Water:toc</item>
+
+        <item>Deluge of Ys:24:Deluge of Ys allows you to summon
+            a 20m cubed cube of water which floods out in all
+            directions. Anyone caught in the area takes 5d6
+            damage to the torso and must make a DC-24 Physique
+            check or be knocked prone as water batters them.
+            If cast in an open area, the water will flood outwards
+            within the same turn it was cast. If cast in an
+            enclosed space, the water fills the space,
+            breaking any non-reinforced barriers and
+            leaves the area entirely submerged.
+            :40m:Immediate:None:Water:toc</item>
 
         <item>Part Water:25:Part Water allows you to create an open area in a body of water, up
             to 10m by 100m by 10m. Fish, monsters, and other creatures in the water

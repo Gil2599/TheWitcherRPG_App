@@ -41,6 +41,20 @@ class CharacterToFileUseCase @Inject constructor(
             ObjectInputStream(inputStream).use { ois ->
                 result = ois.readObject() as Character
             }
+
+            if (result?.hierophantFlaminikaDruidInvocations == null) {
+                result?.hierophantFlaminikaDruidInvocations = arrayListOf()
+            }
+            if (result?.magicalGifts == null) {
+                result?.magicalGifts = 0
+            }
+            if (result?.minorGifts == null) {
+                result?.minorGifts = arrayListOf()
+            }
+            if (result?.majorGifts == null) {
+                result?.majorGifts = arrayListOf()
+            }
+
         } catch (e: Exception) {
             Log.e(this.toString(), e.toString())
         }

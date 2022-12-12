@@ -35,7 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/add_sta_cost_text"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_sta_cost_text" />
 
@@ -53,7 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="200dp"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_danger_text">
 
@@ -72,6 +78,8 @@
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toTopOf="@+id/addSpellbutton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="200dp"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollView4">
 
@@ -93,7 +101,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/removeSpellButton"/>
+            app:layout_constraintStart_toEndOf="@+id/removeSpellButton"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
         <Button
             android:id="@+id/removeSpellButton"
@@ -130,6 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/add_danger_text"
             app:layout_constraintStart_toStartOf="@+id/customTitle"
             app:layout_constraintTop_toBottomOf="@+id/customTitle" />
 

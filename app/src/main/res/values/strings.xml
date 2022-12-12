@@ -32,6 +32,7 @@
     <string name="event_title">Event Title</string>
     <string name="event_description">Event Description</string>
     <string name="remove">Remove</string>
+    <string name="enableMagicalGiftsButton">Enable Magical Gifts</string>
     <string name="current_sp">Current SP:</string>
     <string name="left_arm_sp">Left Arm SP:</string>
     <string name="right_arm_sp">Right Arm SP:</string>
@@ -41,10 +42,12 @@
     <string name="sta_cost">Stamina Cost</string>
     <string name="effect">Effect</string>
     <string name="range">Range</string>
+    <string name="spell_casting_dc">Spell Casting DC</string>
     <string name="duration">Duration</string>
     <string name="defense">Defense</string>
     <string name="danger">Danger</string>
     <string name="req_to_lift">Requirement to lift</string>
+    <string name="side_effect">Side Effect</string>
     <string name="variable">Variable</string>
     <string name="prep_time">Preparation Time</string>
     <string name="difficulty">Difficulty</string>
@@ -70,7 +73,9 @@
     <string name="next">NEXT</string>
     <string name="back">BACK</string>
     <string name="finish">Finish</string>
+    <string name="tomes_of_chaos_dlc">Tomes Of Chaos</string>
     <string name="hexes">Hexes</string>
+    <string name="no_hexes">No Hexes Added</string>
     <string name="novice_druid_invocations">Novice Druid Invocations</string>
     <string name="journeyman_druid_invocations">Journeyman Druid Invocations</string>
     <string name="master_druid_invocations">Master Druid Invocations</string>
@@ -80,17 +85,26 @@
     <string name="master_priest_invocations">Master Priest Invocations</string>
     <string name="arch_priest_invocations">Arch Priest Invocations</string>
     <string name="invocations">Invocations</string>
+    <string name="priest_invocations">Priest Invocations</string>
+    <string name="druid_invocations">Druid Invocations</string>
+    <string name="no_invocations">No Invocations Added</string>
     <string name="spells">Spells</string>
     <string name="rituals">Rituals</string>
     <string name="signs">Signs</string>
     <string name="novice_rituals">Novice Rituals</string>
     <string name="journeyman_rituals">Journeyman Rituals</string>
     <string name="master_rituals">Master Rituals</string>
+    <string name="no_rituals">No Rituals Added</string>
     <string name="basic_signs">Basic Signs</string>
     <string name="alternate_signs">Alternate Signs</string>
+    <string name="minor_gifts">Minor Gifts</string>
+    <string name="major_gifts">Major Gifts</string>
+    <string name="no_gifts">No Magical Gifts Added</string>
+    <string name="no_signs">No Signs Added</string>
     <string name="novice_spells">Novice Spells</string>
     <string name="journeyman_spells">Journeyman Spells</string>
     <string name="master_spells">Master Spells</string>
+    <string name="no_spells">No Spells Added</string>
     <string name="add_event">Add Event</string>
     <string name="add_equipment">Add Equipment</string>
     <string name="inventory">Inventory</string>
@@ -128,4 +142,5 @@
     <string name="delete">Delete</string>
     <string name="deleted">Deleted</string>
     <string name="added_to">added to</string>
+    <string name="magical_gifts">Magical Gifts</string>
 </resources>

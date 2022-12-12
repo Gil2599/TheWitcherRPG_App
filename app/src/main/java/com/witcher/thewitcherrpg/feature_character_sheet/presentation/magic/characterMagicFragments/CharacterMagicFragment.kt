@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
+import com.witcher.thewitcherrpg.databinding.CustomDialogAddHexBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogCharHexBinding
 import com.witcher.thewitcherrpg.databinding.CustomDialogCharSpellBinding
 import com.witcher.thewitcherrpg.databinding.FragmentCharMagicNewBinding
@@ -48,6 +50,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
             when (magic.type) {
                 MagicType.HEX -> showHexDialog(magic)
                 MagicType.NOVICE_RITUAL, MagicType.JOURNEYMAN_RITUAL, MagicType.MASTER_RITUAL -> showRitualDialog(magic)
+                MagicType.MINOR_GIFT, MagicType.MAJOR_GIFT -> showMagicalGiftDialog(magic)
                 else -> {showSpellDialog(magic)}
             }
         }
@@ -63,96 +66,113 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         when (magicType) {
             MagicViewPagerAdapter.FragmentName.SPELLS -> {
                 if (mainCharacterViewModel.noviceSpellList.value.size > 0) {
-                    itemList.add(ListHeader("Novice Spells"))
+                    itemList.add(ListHeader(resources.getString(R.string.novice_spells)))
                     itemList.addAll(mainCharacterViewModel.noviceSpellList.value)
                 }
                 if (mainCharacterViewModel.journeymanSpellList.value.size > 0) {
-                    itemList.add(ListHeader("Journeyman Spells"))
+                    itemList.add(ListHeader(resources.getString(R.string.journeyman_spells)))
                     itemList.addAll(mainCharacterViewModel.journeymanSpellList.value)
                 }
                 if (mainCharacterViewModel.masterSpellList.value.size > 0) {
-                    itemList.add(ListHeader("Master Spells"))
+                    itemList.add(ListHeader(resources.getString(R.string.master_spells)))
                     itemList.addAll(mainCharacterViewModel.masterSpellList.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(ListHeader("No Spells Added"))
+                    itemList.add(ListHeader(resources.getString(R.string.no_spells)))
                 }
             }
             MagicViewPagerAdapter.FragmentName.PRIEST_INVOCATIONS -> {
                 if (mainCharacterViewModel.novicePreacherInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Novice Preacher Invocations"))
+                    itemList.add(ListHeader(resources.getString(R.string.novice_priest_invocations)))
                     itemList.addAll(mainCharacterViewModel.novicePreacherInvocations.value)
                 }
                 if (mainCharacterViewModel.journeymanPreacherInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Journeyman Preacher Invocations"))
+                    itemList.add(ListHeader(resources.getString(R.string.journeyman_priest_invocations)))
                     itemList.addAll(mainCharacterViewModel.journeymanPreacherInvocations.value)
                 }
                 if (mainCharacterViewModel.masterPreacherInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Master Preacher Invocations"))
+                    itemList.add(ListHeader(resources.getString(R.string.master_priest_invocations)))
                     itemList.addAll(mainCharacterViewModel.masterPreacherInvocations.value)
                 }
                 if (mainCharacterViewModel.archPriestInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Arch Priest Invocations"))
+                    itemList.add(ListHeader(resources.getString(R.string.arch_priest_invocations)))
                     itemList.addAll(mainCharacterViewModel.archPriestInvocations.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(ListHeader("No Invocations Added"))
+                    itemList.add(ListHeader(resources.getString(R.string.no_invocations)))
                 }
             }
             MagicViewPagerAdapter.FragmentName.DRUID_INVOCATIONS -> {
                 if (mainCharacterViewModel.noviceDruidInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Novice Druid Invocations"))
+                    itemList.add(ListHeader(resources.getString(R.string.novice_druid_invocations)))
                     itemList.addAll(mainCharacterViewModel.noviceDruidInvocations.value)
                 }
                 if (mainCharacterViewModel.journeymanDruidInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Journeyman Druid Invocations"))
+                    itemList.add(ListHeader(resources.getString(R.string.journeyman_druid_invocations)))
                     itemList.addAll(mainCharacterViewModel.journeymanDruidInvocations.value)
                 }
                 if (mainCharacterViewModel.masterDruidInvocations.value.size > 0) {
-                    itemList.add(ListHeader("Master Druid Invocations"))
+                    itemList.add(ListHeader(resources.getString(R.string.master_druid_invocations)))
                     itemList.addAll(mainCharacterViewModel.masterDruidInvocations.value)
                 }
+                if (mainCharacterViewModel.hierophantFlaminikaDruidInvocations.value.size > 0) {
+                    itemList.add(ListHeader(resources.getString(R.string.hierophant_flaminika_druid_invocations)))
+                    itemList.addAll(mainCharacterViewModel.hierophantFlaminikaDruidInvocations.value)
+                }
                 if (itemList.isEmpty()) {
-                    itemList.add(ListHeader("No Invocations Added"))
+                    itemList.add(ListHeader(resources.getString(R.string.no_invocations)))
                 }
             }
             MagicViewPagerAdapter.FragmentName.RITUALS -> {
                 if (mainCharacterViewModel.noviceRitualList.value.size > 0) {
-                    itemList.add(ListHeader("Novice Rituals"))
+                    itemList.add(ListHeader(resources.getString(R.string.novice_rituals)))
                     itemList.addAll(mainCharacterViewModel.noviceRitualList.value)
                 }
                 if (mainCharacterViewModel.journeymanRitualList.value.size > 0) {
-                    itemList.add(ListHeader("Journeyman Rituals"))
+                    itemList.add(ListHeader(resources.getString(R.string.journeyman_rituals)))
                     itemList.addAll(mainCharacterViewModel.journeymanRitualList.value)
                 }
                 if (mainCharacterViewModel.masterRitualList.value.size > 0) {
-                    itemList.add(ListHeader("Master Rituals"))
+                    itemList.add(ListHeader(resources.getString(R.string.master_rituals)))
                     itemList.addAll(mainCharacterViewModel.masterRitualList.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(ListHeader("No Rituals Added"))
+                    itemList.add(ListHeader(resources.getString(R.string.no_rituals)))
                 }
             }
             MagicViewPagerAdapter.FragmentName.HEXES -> {
                 if (mainCharacterViewModel.hexesList.value.size > 0) {
-                    itemList.add(ListHeader("Hexes"))
+                    itemList.add(ListHeader(resources.getString(R.string.hexes)))
                     itemList.addAll(mainCharacterViewModel.hexesList.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(ListHeader("No Hexes Added"))
+                    itemList.add(ListHeader(resources.getString(R.string.no_hexes)))
                 }
             }
             MagicViewPagerAdapter.FragmentName.SIGNS -> {
                 if (mainCharacterViewModel.basicSigns.value.size > 0) {
-                    itemList.add(ListHeader("Basic Signs"))
+                    itemList.add(ListHeader(resources.getString(R.string.basic_signs)))
                     itemList.addAll(mainCharacterViewModel.basicSigns.value)
                 }
                 if (mainCharacterViewModel.alternateSigns.value.size > 0) {
-                    itemList.add(ListHeader("Alternate Signs"))
+                    itemList.add(ListHeader(resources.getString(R.string.alternate_signs)))
                     itemList.addAll(mainCharacterViewModel.alternateSigns.value)
                 }
                 if (itemList.isEmpty()) {
-                    itemList.add(ListHeader("No Signs Added"))
+                    itemList.add(ListHeader(resources.getString(R.string.no_signs)))
+                }
+            }
+            MagicViewPagerAdapter.FragmentName.MAGICAL_GIFTS -> {
+                if (mainCharacterViewModel.minorGifts.value.size > 0) {
+                    itemList.add(ListHeader(resources.getString(R.string.minor_gifts)))
+                    itemList.addAll(mainCharacterViewModel.minorGifts.value)
+                }
+                if (mainCharacterViewModel.majorGifts.value.size > 0) {
+                    itemList.add(ListHeader(resources.getString(R.string.major_gifts)))
+                    itemList.addAll(mainCharacterViewModel.majorGifts.value)
+                }
+                if (itemList.isEmpty()) {
+                    itemList.add(ListHeader(resources.getString(R.string.no_gifts)))
                 }
             }
         }
@@ -259,9 +279,8 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         bind.effectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
         bind.effectText.typeface = Typeface.DEFAULT
         bind.liftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.liftText.typeface = Typeface.DEFAULT
         bind.dangerText.text = HtmlCompat.fromHtml(danger, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        bind.spellStaminaText.text = HtmlCompat.fromHtml(charSta, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        bind.spellVigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener{
             if (item.staminaCost != null) {
@@ -363,6 +382,69 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
             dialog.dismiss()
         }
 
+        dialog.show()
+    }
+
+    private fun showMagicalGiftDialog(item: MagicItem) {
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val bind : CustomDialogCharHexBinding = CustomDialogCharHexBinding.inflate(layoutInflater)
+        dialog.setContentView(bind.root)
+
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
+        val danger = "<b>" + resources.getString(R.string.spell_casting_dc) + ": " + "</b>" + item.danger
+        val lift = "<b>" + resources.getString(R.string.side_effect) + ": " + "</b>" + item.requirementToLift
+        val charSta = "<b>" + "STA: " + "</b>" + mainCharacterViewModel.sta.value.toString()
+        val vigor = mainCharacterViewModel.vigor.value
+
+        bind.customTitle.setTitle(item.name)
+        bind.customTitle.setTitleSize(18F)
+        bind.staCostText.text = HtmlCompat.fromHtml(staCost, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.effectText.text = HtmlCompat.fromHtml(effect, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.effectText.typeface = Typeface.DEFAULT
+        bind.liftText.text = HtmlCompat.fromHtml(lift, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.liftText.typeface = Typeface.DEFAULT
+        bind.dangerText.text = HtmlCompat.fromHtml(danger, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.spellStaminaText.text = HtmlCompat.fromHtml(charSta, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        bind.spellVigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+        bind.castSpellbutton.setOnClickListener{
+            if (item.staminaCost != null) {
+                if (item.staminaCost!! > mainCharacterViewModel.sta.value){
+                    Snackbar.make(binding.root, "Not enough stamina to cast ${item.name}.",
+                        Snackbar.LENGTH_SHORT).show()
+                }
+                else {
+                    when (val result = mainCharacterViewModel.onCastMagic(item)){
+                        is Resource.Error -> showCastSpellDialog(item, result.data!!)
+                        is Resource.Success -> {
+                            Snackbar.make(binding.root, "${item.name} has been casted.",
+                                Snackbar.LENGTH_SHORT).show()
+                        }
+                        else -> {}
+                    }
+                }
+            }
+            else{
+                Snackbar.make(binding.root, "Variable stamina cost: Adjust stamina accordingly.",
+                    Snackbar.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+        bind.cancelButton.setOnClickListener(){
+            dialog.dismiss()
+        }
+        bind.removebutton.setOnClickListener(){
+            mainCharacterViewModel.removeMagicItem(item)
+            listAdaptersInit()
+            Snackbar.make(binding.root, "${item.name} removed from ${mainCharacterViewModel.name.value}",
+                Snackbar.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
         dialog.show()
     }
 

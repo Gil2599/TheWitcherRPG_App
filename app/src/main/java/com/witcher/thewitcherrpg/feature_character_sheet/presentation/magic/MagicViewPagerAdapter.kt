@@ -22,6 +22,7 @@ class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : Fragmen
             FragmentName.RITUALS -> CharacterMagicFragment(FragmentName.RITUALS)
             FragmentName.HEXES -> CharacterMagicFragment(FragmentName.HEXES)
             FragmentName.SIGNS -> CharacterMagicFragment(FragmentName.SIGNS)
+            FragmentName.MAGICAL_GIFTS -> CharacterMagicFragment(FragmentName.MAGICAL_GIFTS)
         }
     }
 
@@ -61,7 +62,7 @@ class MagicViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : Fragmen
         DRUID_INVOCATIONS,
         RITUALS,
         HEXES,
-        SIGNS
+        SIGNS,
+        MAGICAL_GIFTS,
     }
-
 }

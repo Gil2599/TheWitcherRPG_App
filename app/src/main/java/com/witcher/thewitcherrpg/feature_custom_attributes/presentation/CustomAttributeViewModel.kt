@@ -49,6 +49,7 @@ class CustomAttributeViewModel @Inject constructor(
         "Novice Druid" to MagicLevel.NOVICE_DRUID,
         "Journeyman Druid" to MagicLevel.JOURNEYMAN_DRUID,
         "Master Druid" to MagicLevel.MASTER_DRUID,
+        "Hierophant Flaminika Druid" to MagicLevel.HIEROPHANT_FLAMINIKA_DRUID,
         "Novice Preacher" to MagicLevel.NOVICE_PREACHER,
         "Journeyman Preacher" to MagicLevel.JOURNEYMAN_PREACHER,
         "Master Preacher" to MagicLevel.MASTER_PREACHER,
