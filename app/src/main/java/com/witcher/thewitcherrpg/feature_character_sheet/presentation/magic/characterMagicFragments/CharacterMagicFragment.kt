@@ -191,7 +191,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         dialog.setContentView(bind.root)
 
         val staCost =
-            "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
+            "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost <= 0) "Variable" else item.staminaCost
         val effect = "<b>" + "Effect: " + "</b>" + item.description
         val range = "<b>" + "Range: " + "</b>" + item.range
         val duration = "<b>" + "Duration: " + "</b>" + item.duration
@@ -214,8 +214,8 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
             HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener {
-            if (item.staminaCost != null) {
-                if (item.staminaCost!! > mainCharacterViewModel.sta.value) {
+            if (item.staminaCost >= 0) {
+                if (item.staminaCost > mainCharacterViewModel.sta.value) {
                     Snackbar.make(
                         binding.root, "Not enough stamina to cast ${item.name}.",
                         Snackbar.LENGTH_SHORT
@@ -266,7 +266,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         val bind : CustomDialogCharHexBinding = CustomDialogCharHexBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost == null) "Variable" else item.staminaCost
+        val staCost = "<b>" + "STA Cost: " + "</b>" + if (item.staminaCost <= 0) "Variable" else item.staminaCost
         val effect = "<b>" + "Effect: " + "</b>" + item.description
         val danger = "<b>" + "Danger: " + "</b>" + item.danger
         val lift = "<b>" + "Requirement To Lift: " + "</b>" + item.requirementToLift
@@ -283,8 +283,8 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         bind.dangerText.text = HtmlCompat.fromHtml(danger, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener{
-            if (item.staminaCost != null) {
-                if (item.staminaCost!! > mainCharacterViewModel.sta.value){
+            if (item.staminaCost >= 0) {
+                if (item.staminaCost > mainCharacterViewModel.sta.value){
                     Snackbar.make(binding.root, "Not enough stamina to cast ${item.name}.",
                         Snackbar.LENGTH_SHORT).show()
                 }
@@ -330,7 +330,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         val staCost = "<b>" + "STA Cost: " + "</b>" + item.staminaCost
         val effect = "<b>" + "Effect: " + "</b>" + item.description
         val preparation = "<b>" + "Preparation Time: " + "</b>" + item.preparation
-        val difficulty = "<b>" + "Difficulty: " + "</b>" + if (item.difficulty == null) "Variable" else item.difficulty
+        val difficulty = "<b>" + "Difficulty: " + "</b>" + if (item.difficulty <= 0) "Variable" else item.difficulty
         val duration = "<b>" + "Duration: " + "</b>" + item.duration
         val components = "<b>" + "Components: " + "</b>" + item.components
         val charSta = "<b>" + "STA: " + "</b>" + mainCharacterViewModel.sta.value.toString()
@@ -349,8 +349,8 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         bind.vigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener{
-            if (item.staminaCost != null) {
-                if (item.staminaCost!! > mainCharacterViewModel.sta.value){
+            if (item.staminaCost >= 0) {
+                if (item.staminaCost > mainCharacterViewModel.sta.value){
                     Snackbar.make(binding.root, "Not enough stamina to cast ${item.name}.",
                         Snackbar.LENGTH_SHORT).show()
                 }
@@ -394,7 +394,7 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         val bind : CustomDialogCharHexBinding = CustomDialogCharHexBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost <= 0) resources.getString(R.string.variable) else item.staminaCost
         val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
         val danger = "<b>" + resources.getString(R.string.spell_casting_dc) + ": " + "</b>" + item.danger
         val lift = "<b>" + resources.getString(R.string.side_effect) + ": " + "</b>" + item.requirementToLift
@@ -413,8 +413,8 @@ class CharacterMagicFragment(private val magicType: MagicViewPagerAdapter.Fragme
         bind.spellVigorText.text = HtmlCompat.fromHtml("<b>Vigor: </b>$vigor", HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         bind.castSpellbutton.setOnClickListener{
-            if (item.staminaCost != null) {
-                if (item.staminaCost!! > mainCharacterViewModel.sta.value){
+            if (item.staminaCost >= 0) {
+                if (item.staminaCost > mainCharacterViewModel.sta.value){
                     Snackbar.make(binding.root, "Not enough stamina to cast ${item.name}.",
                         Snackbar.LENGTH_SHORT).show()
                 }

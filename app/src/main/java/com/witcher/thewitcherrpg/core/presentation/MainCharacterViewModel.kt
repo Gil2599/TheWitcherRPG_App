@@ -9,6 +9,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
@@ -16,6 +19,7 @@ import com.witcher.thewitcherrpg.core.domain.model.Character
 import com.witcher.thewitcherrpg.core.domain.model.CustomEquipment
 import com.witcher.thewitcherrpg.core.domain.model.CustomMagic
 import com.witcher.thewitcherrpg.core.domain.model.CustomWeapon
+import com.witcher.thewitcherrpg.core.firebase.FirebaseEvents
 import com.witcher.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharacterState
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
@@ -76,6 +80,7 @@ class MainCharacterViewModel @Inject constructor(
     private val deleteCustomWeaponUseCase: DeleteCustomWeaponUseCase,
     private val deleteCustomEquipmentUseCase: DeleteCustomEquipmentUseCase,
 ) : ViewModel() {
+    private val firebaseAnalytics = Firebase.analytics
 
     init {
         fetchCustomWeapons()
@@ -929,11 +934,19 @@ class MainCharacterViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     _addState.value = CharacterState(success = true)
+                    firebaseAnalytics.logEvent(FirebaseEvents.NEW_CHARACTER_CREATED.name) {
+                        param("profession", _profession.value.toString())
+                        param("race", _race.value)
+                        param("magical_gifts_enabled", _magicalGiftsEnabled.toString())
+                    }
                 }
                 is Resource.Error -> {
                     _addState.value = CharacterState(
                         error = result.message ?: "An unexpected error occurred"
                     )
+                    firebaseAnalytics.logEvent(FirebaseEvents.NEW_CHARACTER_CREATE_ERROR.name) {
+                        param("create_error", result.message ?: "An unexpected error occurred")
+                    }
                 }
                 is Resource.Loading -> {
                     _addState.value = CharacterState(isLoading = true)
@@ -1176,11 +1189,15 @@ class MainCharacterViewModel @Inject constructor(
                     is Resource.Success -> {
                         _addState.value = CharacterState(success = true)
                         _saveAvailable.value = false
+                        firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_SAVED.name, null)
                     }
                     is Resource.Error -> {
                         _addState.value = CharacterState(
                             error = result.message ?: "An unexpected error occurred"
                         )
+                        firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_SAVE_ERROR.name) {
+                            param("save_error", result.message ?: "An unexpected error occurred")
+                        }
                     }
                     is Resource.Loading -> {
                         _addState.value = CharacterState(isLoading = true)
@@ -1201,11 +1218,15 @@ class MainCharacterViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     _deleteState.value = CharacterState(success = true)
+                    firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_DELETED.name, null)
                 }
                 is Resource.Error -> {
                     _deleteState.value = CharacterState(
                         error = result.message ?: "An unexpected error occurred"
                     )
+                    firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_DELETE_ERROR.name) {
+                        param("character_delete_error", result.message ?: "An unexpected error occurred")
+                    }
                 }
                 is Resource.Loading -> {
                     _deleteState.value = CharacterState(isLoading = true)

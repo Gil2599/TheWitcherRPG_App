@@ -1,10 +1,8 @@
 package com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.spellListAdapter
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.res.stringResource
 import androidx.recyclerview.widget.RecyclerView
 import com.witcher.thewitcherrpg.R
 import com.witcher.thewitcherrpg.TheWitcherTRPGApp
@@ -22,9 +20,6 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
 
     inner class SpellViewHolder(private val binding: SpellRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MagicItem) {
-            if (item.type == null) {
-                item.type = MagicType.NOVICE_PREACHER_INVOCATION
-            }
             when (item.type) {
                 MagicType.NOVICE_SPELL,
                 MagicType.JOURNEYMAN_SPELL,
@@ -40,7 +35,7 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
                 MagicType.MASTER_PREACHER_INVOCATION,
                 MagicType.ARCH_PRIEST_INVOCATION -> {
                     val staCost =
-                        "STA Cost: " + if (item.staminaCost != null) item.staminaCost.toString() else "Variable"
+                        "STA Cost: " + if (item.staminaCost >= 0) item.staminaCost.toString() else "Variable"
                     val range = "Range: " + item.range
 
                     with(binding) {
@@ -57,9 +52,9 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
                 MagicType.JOURNEYMAN_RITUAL,
                 MagicType.MASTER_RITUAL -> {
                     val staCost =
-                        "STA Cost: " + if (item.staminaCost != null) item.staminaCost.toString() else "Variable"
+                        "STA Cost: " + if (item.staminaCost >= 0) item.staminaCost.toString() else "Variable"
                     val difficulty =
-                        "Difficulty: " + if (item.difficulty != null) item.difficulty.toString() else "Variable"
+                        "Difficulty: " + if (item.difficulty >= 0) item.difficulty.toString() else "Variable"
 
                     with(binding) {
                         spellNameText.text = item.name

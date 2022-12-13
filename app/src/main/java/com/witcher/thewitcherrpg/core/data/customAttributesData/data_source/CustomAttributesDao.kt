@@ -27,8 +27,8 @@ interface CustomAttributesDao {
     @Query("SELECT * FROM custom_equipment")
     fun readAllEquipment(): Flow<List<CustomEquipment>>
 
-    @Delete
-    suspend fun deleteMagic(magic: CustomMagic)
+    @Query("DELETE FROM custom_magic WHERE ',' || replace(replace(replace(magicItem, '{', ''), '}', ''), ' ', '') || ',' like '%,\"name\":\"' || :magicName ||'\",%'")
+    suspend fun deleteMagic(magicName: String)
 
     @Delete
     suspend fun deleteWeapon(weapon: CustomWeapon)

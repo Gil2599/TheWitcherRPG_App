@@ -19,7 +19,7 @@ interface CustomAttributesRepository {
 
     suspend fun addEquipment(equipment: CustomEquipment)
 
-    suspend fun deleteMagic(magic: CustomMagic)
+    suspend fun deleteMagic(magicName: String)
 
     suspend fun deleteWeapon(weapon: CustomWeapon)
 

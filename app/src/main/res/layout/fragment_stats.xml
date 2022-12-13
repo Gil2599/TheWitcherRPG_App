@@ -68,8 +68,8 @@
 
         <ImageView
             android:id="@+id/buttonHelp"
-            android:layout_width="17dp"
-            android:layout_height="19dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/ic_outline_info_24"
             android:clickable="true"
@@ -89,7 +89,7 @@
             app:layout_constraintWidth_percent="0.007" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonPlus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -97,7 +97,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/button_bkg"
-            android:backgroundTint="?colorPrimary"
             android:text="+"
             android:textColor="?colorAccent"
             android:textSize="25sp"
@@ -105,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="@id/TopConstraintLayout"
             app:layout_constraintStart_toEndOf="@+id/buttonMinus" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonMinus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

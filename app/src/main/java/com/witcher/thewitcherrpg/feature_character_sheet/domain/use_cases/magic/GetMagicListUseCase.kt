@@ -118,7 +118,7 @@ class GetMagicListUseCase @Inject constructor() {
                     try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     range = range,
@@ -158,14 +158,14 @@ class GetMagicListUseCase @Inject constructor() {
                     staminaCost = try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     preparation = preparation,
                     difficulty = try {
                         difficulty.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     duration = duration,
                     components = components,
@@ -200,7 +200,7 @@ class GetMagicListUseCase @Inject constructor() {
                     staminaCost = try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     danger = danger,
@@ -237,7 +237,7 @@ class GetMagicListUseCase @Inject constructor() {
                     try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     range = range,

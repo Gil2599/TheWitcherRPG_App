@@ -441,7 +441,7 @@ class MagicAddFragment : Fragment() {
         val bind: CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + item.staminaCost
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost <= 0) resources.getString(R.string.variable) else item.staminaCost
         val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
         val range = "<b>" + resources.getString(R.string.range) + ": " + "</b>" + item.range
         val duration = "<b>" + resources.getString(R.string.duration) + ": " + "</b>" + item.duration
@@ -497,7 +497,7 @@ class MagicAddFragment : Fragment() {
         val bind : CustomDialogAddHexBinding = CustomDialogAddHexBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost <= 0) resources.getString(R.string.variable) else item.staminaCost
         val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
         val danger = "<b>" + resources.getString(R.string.danger) + ": " + "</b>" + item.danger
         val lift = "<b>" + resources.getString(R.string.req_to_lift) + ": " + "</b>" + item.requirementToLift
@@ -549,10 +549,10 @@ class MagicAddFragment : Fragment() {
         val bind: CustomDialogAddSpellBinding = CustomDialogAddSpellBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost <= 0) resources.getString(R.string.variable) else item.staminaCost
         val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
         val preparation = "<b>" + resources.getString(R.string.prep_time) + ": " + "</b>" + item.preparation
-        val difficulty = "<b>" + resources.getString(R.string.difficulty) + ": " + "</b>" + if (item.difficulty == null) resources.getString(R.string.variable) else item.difficulty
+        val difficulty = "<b>" + resources.getString(R.string.difficulty) + ": " + "</b>" + if (item.difficulty <= 0) resources.getString(R.string.variable) else item.difficulty
         val duration = "<b>" + resources.getString(R.string.duration) + ": " + "</b>" + item.duration
         val components = "<b>" + resources.getString(R.string.components) + ": " + "</b>" + item.components
 
@@ -604,7 +604,7 @@ class MagicAddFragment : Fragment() {
         val bind : CustomDialogAddHexBinding = CustomDialogAddHexBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost == null) resources.getString(R.string.variable) else item.staminaCost
+        val staCost = "<b>" + resources.getString(R.string.sta_cost) + ": " + "</b>" + if (item.staminaCost <= 0) resources.getString(R.string.variable) else item.staminaCost
         val effect = "<b>" + resources.getString(R.string.effect) + ": " + "</b>" + item.description
         val danger = "<b>" + resources.getString(R.string.spell_casting_dc) + ": " + "</b>" + item.danger
         val lift = "<b>" + resources.getString(R.string.side_effect) + ": " + "</b>" + item.requirementToLift

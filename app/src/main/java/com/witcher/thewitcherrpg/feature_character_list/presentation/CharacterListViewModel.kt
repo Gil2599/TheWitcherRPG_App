@@ -1,11 +1,14 @@
 package com.witcher.thewitcherrpg.feature_character_list.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
 import com.witcher.thewitcherrpg.core.domain.model.Character
+import com.witcher.thewitcherrpg.core.firebase.FirebaseEvents
 import com.witcher.thewitcherrpg.feature_character_creation.domain.use_cases.CharacterCreationUseCases
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharacterState
 import com.witcher.thewitcherrpg.feature_character_list.domain.use_cases.GetCharacterListUseCase
@@ -17,7 +20,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.io.File
 import java.io.InputStream
 import javax.inject.Inject
 
@@ -73,11 +75,15 @@ class CharacterListViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     CharacterState(success = true)
+                    Firebase.analytics.logEvent(FirebaseEvents.NEW_CHARACTER_ADDED.name, null)
                 }
                 is Resource.Error -> {
                     CharacterState(
                         error = result.message ?: "An unexpected error occurred"
                     )
+                    Firebase.analytics.logEvent(FirebaseEvents.CHARACTER_ADD_ERROR.name) {
+                        param("add_error", result.message ?: "Unknown Error")
+                    }
                 }
                 is Resource.Loading -> {
                     CharacterState(isLoading = true)
