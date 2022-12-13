@@ -96,7 +96,7 @@
                 android:textSize="15sp" />
         </ScrollView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/castSpellbutton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.3" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cancel_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
             app:layout_constraintTop_toTopOf="@+id/castSpellbutton"
             app:layout_constraintWidth_percent="0.3" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/removebutton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

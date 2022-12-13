@@ -93,7 +93,7 @@
                 android:textSize="15sp" />
         </ScrollView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addSpellbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/removeSpellButton" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/removeSpellButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
             app:layout_constraintEnd_toStartOf="@+id/addSpellbutton"
             app:layout_constraintStart_toEndOf="@+id/add_spell_cancel_button" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_spell_cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

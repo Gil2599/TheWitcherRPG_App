@@ -108,7 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewWeight"
                 tools:text='@{equipmentItem != null ? "Cost: " + equipmentItem.cost : "Cost: " + armorSetItem.cost}' />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 app:layout_constraintStart_toStartOf="@+id/textViewCost"
                 app:layout_constraintTop_toBottomOf="@+id/etNotesLayout" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonRemove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/buttonEquipUnequip"
                 app:layout_constraintTop_toTopOf="@+id/buttonEquipUnequip" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonEquipUnequip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
