@@ -10,6 +10,7 @@ object Constants {
         MAGE,
         MAN_AT_ARMS,
         PRIEST,
+        DRUID,
         WITCHER,
         MERCHANT,
         NOBLE,

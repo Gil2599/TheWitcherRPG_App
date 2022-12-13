@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="disclaimer">
+        Observe que as regras e a mecânica do RPG de mesa The Witcher diferem de
+        tradicionais Dungeons and Dragons. Esta aplicação serve como uma ferramenta destinada a ser utilizada
+        ao lado do livro de regras do RPG de mesa do The Witcher e segue as regras e a mecânica definidas
+        por isso. Uso do livro de regras básico do RPG de mesa The Witcher
+        é fortemente recomendado, pois este aplicativo não contém todos os
+        informações necessárias para aprender a jogar. \n\nEste é um aplicativo não oficial e não é
+        aprovado/endossado pela CD PROJEKT RED ou R. Talsorian Games. Este aplicativo não é um
+        produto licenciado. Não reivindico a propriedade de nenhuma informação, ícone ou imagem usada ao longo
+        a aplicação. Direitos autorais e/ou marcas registradas de qualquer informação, ícones e/ou imagens usadas pertencem
+        aos seus respectivos donos.
+    </string>
+
+    <string name="about">
+        Obrigado por baixar o aplicativo The Witcher TRPG Companion. Este aplicativo destina-se a acelerar a criação de personagens e a interpretação durante o jogo
+        RPG de Mesa The Witcher. Você poderá editar as informações do seu personagem, habilidades, estatísticas, habilidades profissionais,
+        magia, equipamentos e adicionar notas.\n\nComo sou o único colaborador do aplicativo,
+        alguns recursos principais não foram implementados para reduzir a complexidade e o tempo de desenvolvimento. Alguns dos quais
+        incluem criação, aprimoramentos de armaduras/armas e mutações. Eu implementei alternativas como
+        itens personalizados, notas de equipamento e modificadores de estatísticas/habilidades para ter uma funcionalidade semelhante aos referidos recursos.
+        \n\nSe você tiver algum comentário ou preocupação sobre o aplicativo ou seu conteúdo, não hesite
+        para deixar um comentário com quaisquer sugestões que você possa ter.
+    </string>
+
+    <string name="attributions">
+        Freepik:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Ícones por Freepik</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">Ícones por SmashIcons</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Ícone de aplicativo por Adrianne Camero</a></string>
+
+    <string name="characterInformation_info">
+        Esta é a seção de informações do personagem. Aqui você poderá acessar estatísticas comuns, como
+        sua saúde, resistência e coroas atuais. Você também pode adicionar uma imagem de personagem, acessar informações sobre seu
+        profissão, editar informações pessoais do personagem e adicionar eventos de fundo. Para navegar pelo
+        restante do aplicativo, toque no ícone da gaveta de navegação no canto superior esquerdo da tela.
+    </string>
+
+    <string name="characterSkills_info">
+        Esta é a seção de habilidades do personagem. Habilidades
+        pode ter entre 0 e 10 pontos neles
+        e nunca pode ultrapassar 10 pontos. Habilidades definidoras são indicadas pelo texto laranja.
+        Bônus como modificadores raciais podem aumentar
+        habilidade acima de 10. Ao fazer sua primeira
+        personagem, suas habilidades limitam-se a 6. Para aumentar um ponto de habilidade,
+        o nível atual dessa habilidade será subtraído de sua melhoria
+        ponto total. Para editar o modificador de uma habilidade, clique e segure na habilidade até
+        o indicador do modificador aparece ao lado do nível da habilidade. Lembre-se de que os modificadores
+        não reduzem seu total de pontos de melhoria e geralmente são obtidos de vantagens raciais, itens,
+        equipamentos, lesões ou consumíveis.
+    </string>
+
+    <string name="characterStats_info">
+        Esta é a seção de estatísticas. A Estatística
+        Cap é 10, no entanto, Mutações e Racial
+        características podem aumentar as estatísticas acima
+        este boné. Os números exibidos incluem sua estatística bruta
+        valor mais quaisquer modificadores. Para editar o modificador de uma estatística, clique e segure uma estatística até
+        o modificador é mostrado. Lembre-se de que os modificadores
+        não reduzem seu total de pontos de melhoria e geralmente são obtidos de vantagens raciais, itens,
+        equipamentos, lesões ou consumíveis.
+    </string>
+
+    <string-array name="races_array">
+        <item>Humano</item>
+        <item>Anão</item>
+        <item>Duende</item>
+        <item>bruxo</item>
+        <item>Halfling</item>
+        <item>Gnomo</item>
+        <item>Vran</item>
+        <item>eu rolei</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Macho</item>
+        <item>Fêmea</item>
+        <item>Não-binário</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>Bardo</item>
+        <item>Criminoso</item>
+        <item>Artesão</item>
+        <item>Médico</item>
+        <item>Mago</item>
+        <item>homem de armas</item>
+        <item>Padre</item>
+        <item>druida</item>
+        <item>bruxo</item>
+        <item>Comerciante</item>
+        <item>Nobre</item>
+        <item>Camponês</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>Igual</item>
+        <item>tolerado</item>
+        <item>Temido</item>
+        <item>odiado</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>Predefinição</item>
+        <item>A-Z ↓</item>
+        <item>A-Z ↑</item>
+        <item>Elemento</item>
+        <item>Variar</item>
+        <item>Custo STA</item>
+    </string-array>
+</resources>

@@ -23,11 +23,36 @@
             to all tasks. As well as this -1 the target takes a -5 to
             Seduction once in the bedroom.
             :Low:The subject must gather a unit
-            of scleroderm, fool’s parsely, and bryonia. The subject
+            of scleroderm, fool\'s parsely, and bryonia. The subject
             must light a campfire and bundle up the herbs. With
             everything prepared the subject must light the herbs
             and crumble the burning ashes onto the afflicted area
             while reciting a series of magic words.</item>
+
+        <item>Curse of Temperance:4:The Curse of Temperance sours
+            the subject\'s stomach to alcohol and exacerbates the
+            effects of drunkenness. If the subject consumes anything
+            that would cause them to become intoxicated, they
+            immediately suffer the Intoxication and Nausea
+            effects as their head spins and their stomach churns violently.
+            :Low:The subject must gather 40 Crowns worth of alcohol
+            and find a bucket. They must then fill the bucket with
+            the alcohol and dunk their head. Their head must remain
+            submerged until they suffer the Suffocation effect.
+            Upon pulling their head from the bucket the hex will be broken.:toc</item>
+
+        <item>The Odious Hex:4:The Odious Hex weaves around a subject
+            and makes them repellent. While hexed, the subject always
+            counts as one level lower on the Social Standing table
+            unless they were already Hated. This affects people
+            of the subject\'s own race.
+            :Low:The subject must construct an effigy of
+            themselves from a unit each of Han Fiber,
+            Barley, and Fool\'s Parsley. They must then
+            insult the effigy as if they were insulting
+            themselves until they can no longer think of
+            insults. Finally, the subject must burn the
+            effigy to free themselves of the hex.:toc</item>
 
         <item>The Devil\'s Luck:8:The Devil’s Luck
             plagues the subject with bouts
@@ -58,6 +83,32 @@
             and place the glowing ore under their head. If the
             subject is able to sleep through the night they will be
             freed of the hex.</item>
+
+        <item>The Evil Eye:8:Casting The Evil Eye upon a subject
+            weaves a web of misfortune around them which
+            threatens their every move. Whenever the subject
+            rolls a Fumble, they must roll twice and take
+            the worse outcome. Additionally, the GM is
+            encouraged to choose the subject whenever
+            they would be randomly determining the target of a threat.
+            :Medium:The subject must acquire a unit of coral from
+            the Great Sea (50 Crowns) and fashion it into an
+            amulet with a DC-14 Fine Arts check. The amulet
+            must be worn during the entirety of a full moon
+            and will shatter at the sunrise, freeing you of the Hex.:toc</item>
+
+        <item>Unending Need:8:Unending Need causes the subject\'s
+            body to be consumed by sloth and gluttony, requiring
+            more sleep and food to function properly. The subject
+            must get 10 hours of uninterrupted sleep each night
+            or take the -3 penalty on rolls for Sleep-Deprivation.
+            Additionally, the subject must eat 5 meals a day
+            or halve their total STA for the next day.
+            :Medium:The subject must fast for 3 full days and
+            3 nights drinking only water and sleeping with sweets
+            underneath their pillow. If the subject is able to
+            perform this fast and not touch the sweets beneath
+            their pillow the hex breaks on the morning of the fourth day.:toc</item>
 
         <item>The Pesta\'s Kiss:12:The Pesta’s Kiss breaks
             down the subject’s ability to fight illness and
@@ -97,6 +148,50 @@
             fire. When the fire has burned out the subject must
             remove the bones of the animal and wear them on their
             person for a full day.</item>
+
+        <item>Bones of Glass:12:Bones of Glass magically hollows the
+            bones of the subject, making them prone to splintering.
+            When the subject would suffer the Cracked Ribs Critical
+            Wound, they instead suffer the Broken Ribs Critical Wound.
+            When they would suffer the Fractured Arm/Leg Critical
+            Wounds they instead suffer the Compound Arm/Leg Fracture
+            Critical Wounds. When they would suffer the Minor Head
+            Wound Critical Wound, they instead suffer the Skull
+            Fracture Critical Wound. Additionally, rolls made to
+            stabilize or treat these critical wounds are
+            made at a -3 penalty.
+            :High:The subject must acquire a war horse, a troll liver,
+            meat from a wolf, 3 units of balisse leaves, and a bottle
+            of spirits. Upon gathering these things, the subject must
+            bleed the war horse, collecting some of the blood in a pot
+            and add the liver, meat, and leaves to form a foul stew
+            which takes 3 hours to cook. The subject must then consume
+            the entire pot of stew within 1 hour and follow it by
+            chugging the bottle of spirits. When they finish the
+            bottle, the hex will have been lifted.:toc</item>
+
+        <item>Hex of Forgetfulness:12:The Hex of Forgetfulness submerges
+            the subjects mind in a thick soup of magical obscurement
+            making it difficult for them to retain knowledge and memories.
+            The subject can no longer gain I.P. via being taught or study
+            and practice, can no longer teach someone, and can no longer
+            learn new magic. Additionally, once per day, the GM can call
+            upon the subject to make a Resist Magic roll at a DC-20 or
+            forget a fact, memory, recipe, spell, invocation, ritual,
+            hex, or sign of the GM\'s choice until the Hex is removed.
+            :High:The subject must shave their head of all hair and
+            then prepare a paste of 2 units of essence of water
+            and 2 units of river clay. The subject must then
+            inscribe specific sigils on their scalp with the
+            clay and hold a unit of optima matter under their
+            tongue. They must wait silently for a full day and
+            night for the clay to dry. When the clay is removed
+            from the scalp and the optima matter is removed from
+            their mouth, the optima matter will be ashen gray and
+            the hex will have been removed, returning anything forgotten.
+            The optima matter used is permanently grayed and acts as a
+            Focus (2) that can only be used for Hexes, Goetia, and
+            Necromancy.:toc</item>
 
     </string-array>
 

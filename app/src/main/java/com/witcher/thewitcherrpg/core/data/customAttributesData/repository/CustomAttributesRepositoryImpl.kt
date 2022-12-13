@@ -36,8 +36,8 @@ class CustomAttributesRepositoryImpl @Inject constructor(
         return customAttributesDao.addEquipment(equipment)
     }
 
-    override suspend fun deleteMagic(magic: CustomMagic) {
-        return customAttributesDao.deleteMagic(magic)
+    override suspend fun deleteMagic(magicName: String) {
+        return customAttributesDao.deleteMagic(magicName)
     }
 
     override suspend fun deleteWeapon(weapon: CustomWeapon) {

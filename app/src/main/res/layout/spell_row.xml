@@ -58,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/custom"
-        android:textColor="@color/green"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/range_text"

@@ -24,6 +24,7 @@ import com.witcher.thewitcherrpg.core.presentation.MainCharacterViewModel
 import com.witcher.thewitcherrpg.databinding.CustomDialogHelpInfoBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.presentation.character_information.CharFragment
 import com.google.android.material.snackbar.Snackbar
+import com.witcher.thewitcherrpg.core.Constants
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -86,7 +87,8 @@ class CharCreationFirstFrag : Fragment() {
                 mainCharacterViewModel.onSaveEdit(
                     name = binding.etCharName.text.toString(),
                     age = binding.etCharAge.text.toString(),
-                    gender = binding.autoCompleteTextViewGender.text.toString()
+                    gender = binding.autoCompleteTextViewGender.text.toString(),
+                    enableMagicalGifts = binding.magicalGiftsCheckBox.isChecked
                 )
                 Toast.makeText(requireContext(), "Character Updated", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.beginTransaction()
@@ -112,6 +114,13 @@ class CharCreationFirstFrag : Fragment() {
                 mainCharacterViewModel.profession.value.toString(),
                 false
             )
+            binding.magicalGiftsCheckBox.isChecked = mainCharacterViewModel.magicalGiftsEnabled
+
+            when (mainCharacterViewModel.profession.value) {
+                Constants.Professions.MAGE, Constants.Professions.DRUID,
+                Constants.Professions.PRIEST, Constants.Professions.WITCHER -> {}
+                else -> binding.magicalGiftsCheckBox.isEnabled = true
+            }
 
             binding.autoCompleteTextViewRace.isEnabled = false
             binding.textInputLayout.isEnabled = false
@@ -140,9 +149,9 @@ class CharCreationFirstFrag : Fragment() {
 
         binding.autoCompleteTextViewProfession.onItemClickListener =
             OnItemClickListener { _, _, position, _ ->
-                val races =
+                val professions =
                     TheWitcherTRPGApp.getContext()?.resources?.getStringArray(R.array.prof_array)
-                races?.get(position)?.let {
+                professions?.get(position)?.let {
                     mainCharacterViewModel.setProfession(it)
 
                     if (it == "Witcher") {
@@ -154,6 +163,14 @@ class CharCreationFirstFrag : Fragment() {
                         mainCharacterViewModel.setRace("Human")
                         race = "Human"
                     }
+                    when (it) {
+                        "Priest", "Mage", "Druid", "Witcher" -> {
+                            binding.magicalGiftsCheckBox.isEnabled = false
+                            binding.magicalGiftsCheckBox.isChecked = false
+                        }
+                        else -> binding.magicalGiftsCheckBox.isEnabled = true
+                    }
+
                     professionString = it
                 }
             }
@@ -229,10 +246,13 @@ class CharCreationFirstFrag : Fragment() {
                             binding.autoCompleteTextViewProfession.setText(it, false)
                             mainCharacterViewModel.setProfession(it)
                             professionString = it
+                            binding.magicalGiftsCheckBox.isEnabled = false
+                            binding.magicalGiftsCheckBox.isChecked = false
                         } else if (binding.autoCompleteTextViewProfession.text.toString() == "Witcher") {
                             binding.autoCompleteTextViewProfession.setText("Bard", false)
                             mainCharacterViewModel.setProfession("Bard")
                             professionString = "Bard"
+                            binding.magicalGiftsCheckBox.isEnabled = true
                         }
                     }
                 }

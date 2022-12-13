@@ -1,0 +1,116 @@
+<resources>
+
+    <string name="disclaimer">
+        Tenga en cuenta que las reglas y la mecánica de The Witcher Tabletop RPG difieren de
+        Calabozos y Dragones tradicionales. Esta aplicación sirve como una herramienta destinada a ser utilizada
+        junto con The Witcher Tabletop RPG Core Rulebook y sigue el conjunto de reglas y mecánicas
+        por esto. Uso del reglamento básico de The Witcher Tabletop RPG
+        se recomienda encarecidamente ya que esta aplicación no contiene todos los
+        información necesaria para aprender a jugar. \n\nEsta es una aplicación no oficial y no es
+        aprobado/respaldado por CD PROJEKT RED o R. Talsorian Games. Esta aplicación no es un
+        producto con licencia. No reclamo la propiedad de ninguna información, iconos o imágenes utilizadas en todo
+        la aplicación. Los derechos de autor y/o marcas registradas de cualquier información, íconos y/o imágenes utilizadas pertenecen
+        a sus respectivos dueños.
+    </string>
+
+    <string name="about">
+        Gracias por descargar la aplicación The Witcher TRPG Companion. Esta aplicación es una pasión/aprendizaje.
+        proyecto y está destinado a acelerar la creación de personajes y el juego de roles mientras juegas
+        El juego de rol de mesa Witcher. Podrás editar la información de tu personaje, habilidades, estadísticas, habilidades de profesión,
+        magia, equipo y agregar notas.\n\nDado que soy el único colaborador de la aplicación,
+        algunas funciones clave no se han implementado para reducir la complejidad y el tiempo de desarrollo. Algunos de los cuales
+        incluyen fabricación, mejoras de armaduras/armas y mutaciones. He implementado alternativas como
+        elementos personalizados, notas de equipo y modificadores de estadísticas/habilidades para tener una funcionalidad similar a dichas funciones.
+        \n\nSi tiene algún comentario o inquietud con respecto a la aplicación o su contenido, no dude en
+        para dejar un comentario con cualquier sugerencia que pueda tener.
+    </string>
+
+    <string name="attributions">
+        Freepik:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Iconos de Freepik</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">Iconos de SmashIcons</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Ícono de la aplicación por Adrianne Camero</a></string>
+
+    <string name="characterInformation_info">
+        Esta es la sección de información del personaje. Aquí podrá acceder a estadísticas comunes como
+        su salud actual, resistencia y coronas. También puede agregar una imagen de personaje, acceder a información sobre su
+        profesión, edite la información personal del personaje y agregue eventos de fondo. Para navegar a través de la
+        resto de la aplicación, toque el ícono del cajón de navegación en la parte superior izquierda de la pantalla.
+    </string>
+
+    <string name="characterSkills_info">
+        Esta es la sección de habilidades del personaje. Habilidades
+        pueden tener entre 0 y 10 puntos en ellos
+        y nunca puede superar los 10 puntos. Las habilidades definitorias se indican con el texto naranja.
+        Las bonificaciones como los modificadores raciales pueden aumentar un
+        habilidad por encima de 10. Al hacer por primera vez su
+        personaje, tu límite de habilidades es 6. Para aumentar un punto de habilidad,
+        el nivel actual de esa habilidad se restará de tu mejora
+        total de puntos. Para editar el modificador de una habilidad, haga clic y mantenga presionada la habilidad hasta que
+        el indicador de modificador aparece junto al nivel de habilidad. Tenga en cuenta que los modificadores
+        no reducen el total de sus puntos de mejora y generalmente se obtienen de ventajas raciales, artículos,
+        equipos, lesiones o consumibles.
+    </string>
+
+    <string name="characterStats_info">
+        Esta es la sección de estadísticas. la estadística
+        Cap es 10, sin embargo, Mutaciones y Racial
+        los rasgos pueden elevar las estadísticas por encima
+        esta gorra Los números que se muestran incluyen su estadística en bruto
+        valor más cualquier modificador. Para editar el modificador de una estadística, haga clic y mantenga presionada una estadística hasta que
+        se muestra el modificador. Tenga en cuenta que los modificadores
+        no reducen el total de sus puntos de mejora y generalmente se obtienen de ventajas raciales, artículos,
+        equipos, lesiones o consumibles.
+    </string>
+
+    <string-array name="races_array">
+        <item>Humano</item>
+        <item>Enano</item>
+        <item>Duende</item>
+        <item>brujo</item>
+        <item>Mediano</item>
+        <item>Gnomo</item>
+        <item>vran</item>
+        <item>me di la vuelta</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>no binario</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>Bardo</item>
+        <item>Delincuente</item>
+        <item>Artesano</item>
+        <item>Médico</item>
+        <item>mago</item>
+        <item>Hombre de armas</item>
+        <item>Sacerdote</item>
+        <item>Druida</item>
+        <item>brujo</item>
+        <item>Comerciante</item>
+        <item>Noble</item>
+        <item>Campesino</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>Igual</item>
+        <item>tolerado</item>
+        <item>temido</item>
+        <item>Odiado</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>Defecto</item>
+        <item>A-Z ↓</item>
+        <item>A-Z ↑</item>
+        <item>Elemento</item>
+        <item>Rango</item>
+        <item>Costo de STA</item>
+    </string-array>
+</resources>

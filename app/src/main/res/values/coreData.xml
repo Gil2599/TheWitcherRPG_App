@@ -15,8 +15,7 @@
     </string>
 
     <string name="about">
-        Thank you for downloading The Witcher TRPG Companion App. This application is a passion/learning
-        project and it is meant to speed up character creation and role-playing while playing
+        Thank you for downloading The Witcher TRPG Companion App. This application is meant to speed up character creation and role-playing while playing
         The Witcher Tabletop RPG. You will be able to edit your character information, skills, stats, profession skills,
         magic, equipment, and add notes.\n\nSince I am the sole contributor to the application,
         some key features have not been implemented to reduce complexity and development time. Some of which
@@ -92,6 +91,7 @@
         <item>Mage</item>
         <item>Man At Arms</item>
         <item>Priest</item>
+        <item>Druid</item>
         <item>Witcher</item>
         <item>Merchant</item>
         <item>Noble</item>

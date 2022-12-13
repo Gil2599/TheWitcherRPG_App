@@ -31,6 +31,14 @@
             the Spell Casting roll exceeds the animal’s WILLx3.
             :Self or 5m:1d6 Hours:Creature\'s WILLx3</item>
 
+        <item>Herbalism:2:Herbalism allows you to create an elixir
+            using ancient druidic practices instead of traditional
+            alchemy. As long as all the ingredients for the elixir
+            are plants, you can roll a Spell Casting check instead
+            of an Alchemy check when creating the Elixir or in the
+            Recovery step.
+            :2m:Immediate:None:toc</item>
+
         <item>Nature\'s Gift:Variable:Nature\'s Gift grows a small
             cluster of edible plants in soil of
             any kind. These plants are enough
@@ -48,6 +56,17 @@
             versions of themselves.
             :Self:Active (1 STA):None</item>
 
+        <item>Sigil of Bounty:1:Widely used by druids who advise
+            rural communities, Sigil of Bounty imbues an
+            aspect of nature with vigor to cause one of three
+            effects. If cast on spoiled food or drink, this invocation
+            causes them to become fresh and delicious again.
+            If cast on a forageable plant, the plant will produce
+            twice the units of forageable material. Finally, if cast
+            on soil, any plant grown in the soil will grow to twice
+            its typical size in half the time.
+            :2m:1 Year:None:toc</item>
+
         <item>Sigil of the Hidden:2:Drawing the Sigil of the
             Hidden covers a 3m area in
             branches, foliage, and other natural
@@ -60,9 +79,60 @@
             of damage to it.
             :Self:Until Dispelled:None</item>
 
+        <item>Voice of the Counselor:3:Voice of the Counselor
+            allows you to imbue your words with inspiration.
+            For the duration of this invocation, you can either
+            make your voice boom loud enough to be heard from
+            far away or whisper in the ear of one person within
+            range. Additionally, you gain a +4 to Leadership checks.
+            :10m:10 Minutes:None:toc</item>
+
+        <item>Web of Roots:2:Web of Roots allows you to take control
+            of the roots of a nearby tree to grapple a target. Upon
+            casting this invocation on a tree, you can use its roots
+            to grapple, trip, or disarm a target within 10m of the
+            tree who fails a Defense check against your Spell Casting
+            check. Each round that you maintain this invocation you
+            can either maintain your grapple or attempt one of the
+            other options on a target within 10m of the tree. A grappled
+            target can escape by succeeding a Dodge/Escape check against
+            a new Spell Casting check or by dealing 15 points of damage to the roots.
+            :10m:Active (1 STA):None:toc</item>
+
+        <item>Word of Summoning:Variable:Speaking the Word of Summoning
+            calls out to a nearby wild animal which arrives within
+            1d6 rounds. When the animal arrives, it is friendly to you
+            and will help you as long as you don\'t betray or abuse it.
+            If you spend 2 STA casting Word of Summoning you can summon
+            a small animal (Bird, Serpent, Cat, etc.). If you spend 5
+            STA you can summon a medium animal (Wolves, Panthers, Boars, etc.).
+            If you spend 10 STA you can summon a large animal
+            (Bear, Ox, Horse, etc.). Word of Summoning can only be cast
+            once in an area per day. When this invocation ends, the
+            animal becomes neutral to you.
+            :N/A:10 Minutes:None:toc</item>
+
     </string-array>
 
     <string-array name="journeyman_druidInvo_list_data">
+
+        <item>Bigelow\'s Befoulment:Variable:Bigelow\'s
+            Befoulment taints all food or drink you desire
+            within a 2m cubed area with harmful bacteria. If
+            you spend 5 STA casting this invocation, anyone
+            who consumes the affected food or drink suffers
+            the Disease condition within the next hour. While
+            affected by the Disease condition, a target takes
+            a -2 to all actions, lowers their maximum STA by one
+            quarter, and must make DC-14 Endurance checks at the
+            discretion of the Game Master or suffer the Nausea condition. The
+            Disease condition can only be removed by having a
+            Doctor roll a DC-15 Healing Hands check on the
+            affected character and then that character
+            getting a full night\'s rest. If you spend 10
+            STA casting this invocation, the affected targets
+            also suffer the Poison condition.
+            :4m:Permanent:None:toc</item>
 
         <item>Blessing of Healing:5:Blessing of Healing
             jumpstarts a target\'s healing, allowing
@@ -71,6 +141,15 @@
             times to heal a critical wound.
             :2m:Active (3 STA):None</item>
 
+        <item>Blood of the Mountain:6:Calling upon the wellspring
+            of power deep within the earth, Blood of the Mountain
+            empowers a target with tremendous strength.
+            The target\'s melee attacks cannot be parried and deal
+            double ablation damage to weapons, shields, and armor.
+            Additionally, the target is immune to any effect that
+            would knock them off their feet.
+            :6m:10 Minutes:None:toc</item>
+
         <item>Primal Reservoir:6:Primal Reservoir allows
             you to tap into the primal power
             of a target and awaken it. It grants
@@ -78,6 +157,19 @@
             -2 to INT for the duration of the
             spell.
             :5m:2d6 Rounds:Resist Magic</item>
+
+        <item>Sigil of the Hunt:5:Drawing the Sigil of the Hunt
+            on a target allows you to change how animals and monsters
+            perceive them. Upon casting this Invocation, you can mark
+            up to 6 targets as either "safe" or "prey". A target marked
+            "safe" does not disturb animals and any beast they encounter
+            is initially friendly; and any monster they encounter
+            will initially be neutral. A target marked "prey" is perceived
+            as prey by all predatory animals or monsters. These creatures
+            will attack the target on sight. Both "Prey" and "Safe"
+            marks appear almost identical but with a DC-16 Education
+            check, you can tell the difference.
+            :2m:1 Day:Resist Magic:toc</item>
 
         <item>Threads of Life:4:Threads of Life allows you
             to see the life energy binding every
@@ -89,6 +181,47 @@
     </string-array>
 
     <string-array name="master_druidInvo_data">
+
+        <item>Druidic Totem:14:Druidic Totem allows you to sacrifice
+            your staff of oak and mistletoe to create a magical totem
+            which connects you to the natural world. After casting this
+            Invocation, you must sacrifice the focus created by the Rite
+            of Oak and Mistletoe by planting it in the ground. The staff
+            grows into a 2m tall totem with 20 Hit Points, reminiscent of
+            the local flora. While within 1-Mile of this totem, you are
+            always counted as having a focus with a value of 4, all animals
+            are considered friendly to you and your allies, and you gain
+            an additional benefit based on the location where you placed
+            the totem. You can only have one totem active at a time and
+            creating a new totem transforms the old totem into a non-magical
+            plant.&lt;br /&gt;&lt;br /&gt;
+
+            Fields- You have a Speed Statistic of 12. &lt;br /&gt;&lt;br /&gt;
+
+            Mountains- You have Resistance to Bludgeoning,
+            Slashing and Piercing damage.&lt;br /&gt;&lt;br /&gt;
+
+            Underground- You have Superior Night Vision and
+            gain a +4 to Stealth checks.&lt;br /&gt;&lt;br /&gt;
+
+            Forest- If you consume fruit grown within the area of your totem,
+            you gain a Regeneration value of 3 for 1 Hour.&lt;br /&gt;&lt;br /&gt;
+
+            Swamp- You are immune to the Poison and Disease conditions.&lt;br /&gt;&lt;br /&gt;
+
+            Shore- You can breath underwater and have no penalties
+            for fighting or maneuvering in water.&lt;br /&gt;&lt;br /&gt;
+
+            Desert- You are immune to the Extreme Heat condition
+            and you can always find a source of water. Once per day,
+            when you consume water collected within the area of
+            your totem, you regain all lost STA.&lt;br /&gt;&lt;br /&gt;
+
+            Tundra- You are immune to the Snow and Ice conditions,
+            you cannot be lit on fire or frozen, and you
+            gain resistance to fire and ice damage.
+
+            :2m:Immediate:None:toc</item>
 
         <item>Shape Nature:12:Shape Nature allows you to create a golem
             from a small nearby tree. The golem serves you for
@@ -107,9 +240,139 @@
             Storm spell).
             :50m:Active (5 STA):None</item>
 
+        <item>Wrath of Nature:14:Wrath of Nature allows you to summon the
+            tremendous power of the natural world to wreak
+            havoc on your enemies. Depending on the terrain,
+            Wrath of Nature creates a different effect centered on you with a 60m radius.&lt;br /&gt;&lt;br /&gt;
+
+            Fields- Every turn you can spend a full round action to either touch down
+            a rope tornado within 10m of you or direct a single rope tornado within
+            the area of the storm. A rope tornado covers a 4m cubed area and when
+            directed by you can move 10m per turn. If it runs over or into targets
+            those targets must make Athletics checks against your Spell Casting check.
+            If they fail, they take 4d6 damage to the torso and are knocked back 10m
+            in a direction decided by the GM.&lt;br /&gt;&lt;br /&gt;
+
+            Mountains- Every turn you can spend a full round action to summon
+            down a bolt of lightning which strikes a target. The target must
+            make a Dodge/Escape or Athletics check against your Spell Casting
+            check or take 6d6 damage to the torso and have a 50% chance of being
+            lit on fire.&lt;br /&gt;&lt;br /&gt;
+
+            Underground- Every turn you can spend a full round action
+            to summon a stalagmite or stalactite to violently erupt from the stone
+            and stab a single target. The target of this attack must make a Dodge/Escape,
+            Athletics, or Block check against your Spell Casting check or take 5d6 damage.
+            Each summoned stalagmite or stalactite remains until destroyed and counts as
+            a 2m cubed piece of cover with 20 SP.&lt;br /&gt;&lt;br /&gt;
+
+            Forest- Every turn you can spend a full round action to either summon
+            up a tangle of roots from the ground to take one of the following
+            actions or give a single command to each existing tangle of roots
+            you have summoned. These roots are immobile but have the Long Reach
+            Effect and can be used to Grapple, Trip, Disarm, Choke, or Pin a
+            target. They have a Brawling base of 16 unless your Spell Casting
+            base would be higher.&lt;br /&gt;&lt;br /&gt;
+
+            Swamp- Every turn you can spend a full round action to summon a 6m radius
+            area of swamp gas that erupts from the ground. Anyone caught in the gas
+            must make an Endurance check against your Spell Casting check or suffer
+            from the Disease condition. This gas remains until the invocation ends.
+            Additionally, if an exposed flame is present in the area of this gas, it
+            explodes, causing every creature in the gas to take 5d6 damage to the torso
+            and have a 75% chance of catching on fire.&lt;br /&gt;&lt;br /&gt;
+
+            Shore- Every turn you can spend a full round action to summon a
+            powerful waterspout out of the nearby body of water to knock down
+            targets with pressurized water. Two jets of water emit from the spout
+            towards one or two targets within 20m. These target\'s must make
+            Dodge/Escape or Athletics checks against your Spell Casting check
+            or take 3d6 damage and be knocked back 6m.&lt;br /&gt;&lt;br /&gt;
+
+            Desert- Every turn you can spend a full round action to kick up
+            a gust of burning sand in a 6m radius area. Any creatures within
+            this area must make a Dodge/Escape or Athletics check versus your
+            Spell Casting check or be blinded for 5 rounds and be lit on fire.&lt;br /&gt;&lt;br /&gt;
+
+            Tundra- Every turn you can spend a full round action to summon up
+            a whirl of snow and water magic around a single target to encase
+            them in ice. The target must make a Dodge/Escape, Athletics, or
+            Resist Magic check versus your Spell Casting check or be encased
+            in solid ice. This ice immobilizes the target and keeps them from
+            taking actions. To break out of this ice, the target must make a
+            DC-16 Physique check. Alternatively, if someone deals 10 points of
+            damage to the ice or 5 points of fire damage to the ice, it allows
+            the person to break free. Any damage beyond the 10 points (or 5 points)
+            required to break the ice is dealt to the target\'s torso.
+
+            :60m:Active (6 STA):Variable:toc</item>
+
     </string-array>
 
-    <string-array name="novice_preacherInvo_list_data">
+    <string-array name="hierophant_flaminika_priestInvo_list_data">
+
+        <item>Shade of Bleobheris (Bleobheris):16:Shade of Bleobheris calls
+            upon the great oak to calm the hearts of man and beast.
+            Upon casting this invocation, all animals become docile
+            and all affected combatants are removed from initiative and
+            cannot take hostile actions for 1 day. Additionally, the
+            essence of Bleobheris temporarily suppresses the prejudices
+            of all affected creatures, negating any penalties from Social
+            Standing or monstrous heritage. On each of its turns, a target
+            affected by this invocation can use its action to attempt a
+            Resist Magic check against a new Spell Casting check to end
+            this effect. If the target is attacked this spell no longer
+            affects them.
+            :50m Radius:1 Day:Resist Magic:toc</item>
+
+        <item>Winds of the Taiga (Gwyn Carn):16:Winds of the Taiga summons
+            the winter winds of the Far North to create a blizzard that
+            shelters you and your allies. The area of the invocation
+            is immersed in a blizzard that blinds anyone in it and
+            creates Snow and Ice conditions. Any number of people
+            you choose are not blinded by the blizzard, are immune
+            to the Snow and Ice conditions, and their attacks
+            have an additional 50% chance of freezing.
+            :1 Mile Radius:1 Hour:None:toc</item>
+
+        <item>Sanctuary of the Black Grove (Caed Myrkvid):16:Sanctuary
+            of the Black Grove allows you to attune yourself and as
+            many allies as you wish to the trees within a 1 Mile radius.
+            While this invocation is active, you can touch a tree and
+            look simultaneously through all the trees within 1 mile
+            of you. You are able to parse this information and focus
+            on specific views if you want. Additionally, you and any
+            allies you designate can pass through any tree within this
+            area and come out of any another tree within the area.
+            Your allies cannot see through the trees but are able
+            to designate where they want to go.
+            :1 Mile Radius:1 Hour:Dodge:toc</item>
+
+        <item>Well of Knowledge (Gedyneith):16:Well of Knowledge causes
+            a tree you touch to grow an integrated basin of fluorescing
+            water blessed by nature. The next 20 people to drink from
+            this basin are affected immediately. For one day after consuming
+            the water of the basin, a creature gains a +4 to Initiative
+            and Awareness, becomes immune to the Stagger, Stun, and Hallucination
+            conditions, and can see through any illusions. If the creature
+            had a Vigor Threshold of one or more before consuming the
+            water, they raise their Vigor Threshold by 4 but suffer a -4
+            to Resist Magic. After the invocation ends, the tree shifts
+            back to normal leaving only an etched sigil unique to the
+            druid. A creature cannot benefit from this invocation more
+            than once a week.
+            :2m:1 Day:None:toc</item>
+
+
+    </string-array>
+
+    <string-array name="novice_priestInvo_list_data">
+
+        <item>Blessed Weapon:2:Blessed Weapon creates a glowing
+            rune on a melee weapon you touch which magically
+            lightens and balances the weapon. For the duration
+            of the invocation, the weapon has the Balanced Effect.
+            :2m:30 Minutes:None:toc</item>
 
         <item>Blessing of Fortune:1:The Blessing of Fortune
             gives the target LUCK points equal
@@ -123,12 +386,50 @@
             invocation.
             :5m:1d10 Rounds:None</item>
 
+        <item>Divine Inspiration:2:Common among inquisitors
+            and artists alike, Divine Inspiration allows
+            you to bless a target with insight. Upon casting
+            this invocation, you grant a +2 bonus to a single
+            skill. The target of this invocation must have at
+            least a Skill value of 1 in the skill affected
+            before the invocation is cast. A character can
+            only benefit from this invocation once per day.
+            :8m:10 Minutes:None:toc</item>
+
+        <item>Duplicitous Darkness:2:Duplicitous Darkness
+            shrouds your target\'s mind in a veil of false thoughts.
+            Your target gains a +2 to Deceit checks, cannot be
+            forced to tell the truth by magic, and cannot be mentally
+            spied on with Telepathy. Anyone attempting to probe the
+            target with magic is unaware that this invocation has
+            been cast unless they make a DC-20 Awareness check.
+            :2m:1 Hour:None:toc</item>
+
+        <item>Light of Penance:3:Developed by the beloved Incandescent
+            Anika var Myricks in the heart of Nilfgaard, Light
+            of Penance summons the power of your deity to punish
+            a target, draining them of their will to resist.
+            Upon casting this invocation, the target lowers
+            their current STA by 2d6. If the target has a Vigor
+            Threshold of 1 or higher, they lower their current
+            STA by an additional 2d6 as well.
+            :6m:Immediate:Resist Magic:toc</item>
+
         <item>Holy Light:1:Holy Light lights up an area
             as though the caster was carrying
             a torch. The light gives off no heat
             and cannot be used to ignite other
             objects like a torch can.
             :Self:3d10 Rounds:None</item>
+
+        <item>Presence of the Divine:3:Presence of the Divine
+            allows you to summon the aspect of your deity to
+            make your bearing more imposing. Upon casting this
+            invocation, you can make your voice boom loud enough
+            to be heard from far away and you gain a +4 to
+            Intimidation checks. Alternatively, this invocation
+            can be cast on up to 6 targets to make them immune to fear effects.
+            :10m:10 Minutes:None:toc</item>
 
         <item>Vaults of Knowledge:3:Vaults of Knowledge
             allows you to reach back into your
@@ -152,7 +453,26 @@
 
     </string-array>
 
-    <string-array name="journeyman_preacherInvo_list_data">
+    <string-array name="journeyman_priestInvo_list_data">
+
+        <item>Blessing of Abundance:6:Blessing of Abundance
+            imbues you with divine providence, making you more
+            likely to benefit from found goods. The first time
+            you or your GM rolls to determine how much loot you
+            gain, the roll is made twice and the higher value
+            is taken. This applies to an entire loot source,
+            meaning that if you loot a dead monster, you would
+            roll each loot item twice and take the higher value.
+            :Self:1 Day:None:toc</item>
+
+        <item>Brand of Withering:6:Favored by death cultists of
+            all creeds, Brand of Withering marks a target
+            with a symbol of creeping decay that arrests their
+            ability to heal. Upon casting this invocation, a
+            target who failed to defend can no longer benefit from any
+            effect that would allow them to recover Hit Points,
+            including natural healing.
+            :8m:1 Week:Resist Magic:toc</item>
 
         <item>Cleansing Fire:6:Cleansing Fire ignites one
             target, doing 3d6 damage and setting them on fire.
@@ -172,9 +492,21 @@
             fail, they must answer any question truthfully.
             :5m:Active (2 STA):Resist Magic</item>
 
+        <item>Seek the Seekers:6:Seek the Seekers creates a
+            magical ward around you that warns you of divination
+            such as Hydromancy, or Pyromancy. If you or anyone
+            within 10m of you is the target of divination. you
+            are alerted as soon as it is cast and are shown
+            the face of the diviner. Anyone who tries to spy
+            on you with divination must make a DC-20 Education
+            or Magic Training check to realize they have been
+            caught. However, if they succeed this check, you
+            are made aware that they know you caught them.
+            :Self:1 Day:None:toc</item>
+
     </string-array>
 
-    <string-array name="master_preacherInvo_list_data">
+    <string-array name="master_priestInvo_list_data">
 
         <item>Divine Portal:12:Divine Portal creates a standing portal for a
             brief instant. The portal lasts for just one round and
@@ -189,9 +521,46 @@
             The GM sets your DC based on the secrecy of the information.
             :50m:Active (5 STA):None</item>
 
+        <item>Quill of the Divine:Variable:Quill of the Divine allows
+            you to reach into a target\'s mind and alter their memories.
+            By spending 14 STA you can lock away the memories of a
+            target who fails to defend against this invocation giving
+            them severe retrograde amnesia. By spending 16 STA you can
+            implant memories of your own creation into a target who
+            fails to defend. Unless the target has had their memories
+            locked away with this spell, they gain a +5 to resist
+            the implantation of these new memories.
+            :2m:Permanent:Resist Magic:toc</item>
+
+        <item>Sagitta Aurea:14:Sagitta Aurea summons the divine
+            power of your deity to form a spear of golden light.
+            Upon casting this invocation, a target must make a Defense
+            check against your Spell Casting check. If they fail,
+            the target takes 7d6 damage. Sagitta Aurea can travel in
+            a straight line through targets with each target making
+            a Defense check. If a target is possessed by a demon,
+            the demon takes the damage as well and is forced out of
+            their body. Additionally, any demon damaged by this
+            invocation cannot use any of its abilities for the next round.
+            :20m:Immediate:Dodge:toc</item>
+
     </string-array>
 
     <string-array name="archPriestInvo_list_data">
+
+        <item>Blessed Herd (Epona):16:With power granted to you by Epona,
+            you summon up to 10 wild horses and empower them with magic.
+            These horses appear within the next hour. A horse empowered
+            by this invocation can either be empowered with swiftness
+            or strength. If enchanted with swiftness, the horse summoned
+            is a Horse with a Speed Statistic of 24 and an Athletics
+            Skill Base of 20. If enchanted with strength, the horse
+            summoned is a Warhorse with a Control modifier of +2 and a natural
+            armor value of 20 which can\'t be layered with barding. While
+            riding these mounts, creatures you choose get a +5 to their
+            riding checks. You can only have up to ten horses summoned
+            with this invocation at a time.
+            :N/A:1 Week:None:toc</item>
 
         <item>Blessing of Death:16:Summoning the power of the Lion-Headed
             Spider, you cut the ties of life holding a target to this
@@ -202,6 +571,28 @@
             recover their previous number of Health Points.
             :10m:Immediate:Resist Magic</item>
 
+        <item>Blood of the Berserker (Svalblod):16:Channeling the power of
+            Svalblod, you transform your body into a towering great bear.
+            While in this form, any items on your person meld into your form
+            and you gain access to all the abilities of the Great Bear
+            but loose access to your Profession abilities and magic.
+            Your Statistic and Skill values change to those a great
+            bear with the exception of any values that would be higher
+            than those of a Great Bear. When you end the effects of this
+            invocation, any damage or Critical wound you took as a Great
+            Bear are transferred to your natural body. However, if the
+            damage sustained as a Great Bear would be enough to kill you
+            normally you are instead reduced to 1 Hit Point. Similarly,
+            when you cast this invocation, any damage or critical wounds
+            you already had are applied to your Great Bear form.
+            :Self:1 Day:None:toc</item>
+
+        <item>Champion of The River (Veyopatis):16:With the power of Veyopatis
+            you anoint with river water a target as your champion and suffuse
+            them with magical strength. As long as this invocation is active,
+            your champion has Resistance to all damage sources and gains a +5 to all rolls.
+            :10m:Active (5 STA):None:toc</item>
+
         <item>Eternal Judgement:16:Using the power granted to you by the Eternal
             Fire, you cause a target to burst into a bright white
             fire, tinged with red. The fire does double the normal
@@ -210,6 +601,15 @@
             for 3 rounds. Anything that touches this magical fire
             ignites with normal fire and can be put out in one full round.
             :10m:Until Put Out:Resist Magic</item>
+
+        <item>Feast of Plenty (Dana Meadbh):16:Calling upon the power
+            of the Lady of the Valley, you bless a feast gathered entirely
+            from the local area and large enough to feed at least 20.
+            Upon eating from this feast, a creature gains 6d6 Hit Points,
+            immediately treats all critical wounds; and removes the
+            Poison and Disease conditions. This invocation can affect
+            as many people as the feast can feed.
+            :2m:Immediate:None:toc</item>
 
         <item>Freya\' Bravery:16:Calling upon the power of the goddess Freya,
             you summon her spirit into your body, creating a
@@ -246,6 +646,45 @@
             also impose penalties or grant bonuses to the roll of
             anyone within 10m.
             :Self/10m:1 Hour:None</item>
+
+        <item>Miracle of Lebioda (Lebioda):16:Calling upon the power of
+            the Prophet Lebioda you command the body of a target to heal
+            itself. Immediately upon casting this invocation, a living
+            target entirely heals one critical wound or removes the
+            lingering penalty from a past critical wound. The wound is
+            treated as though it had never been inflicted even if this
+            means regrowing limbs, eyes, etc.
+            :2m:Immediate:None:toc</item>
+
+        <item>Omens of the Future (Nehaleni):16:You allow Nehaleni
+            to fill your mind with thousands of glimpses of possible
+            futures which you cannot immediately decipher. Roll 1d10
+            until you get 3 outcomes that are not 1 or 10 and record
+            these numbers. For the duration of this invocation, if a
+            target within 20m of you rolls one of these values on
+            1d10 you are immediately able to recognize this outcome,
+            allowing you to, without taking an action, intervene in
+            some minor way and force that target to instead roll a fumble.
+            :Self:1 Day:None:toc</item>
+
+        <item>Retribution of the Raven (Morrigan):16:With power granted
+            to you by Morrigan, the Lady of Ravens, you block the connection
+            to the elemental planes, nullifying magic. Within the area
+            of this invocation, all magical effects, such as runes, glyphs,
+            focuses, curses, trophies, relics, magical items, etc. are rendered
+            inert. As long as this invocation is active, only those you
+            choose or those who successfully defended against this invocation
+            can cast magic of any form. This invocation cannot be dispelled.
+            :20m:Active (5 STA):Resist Magic:toc</item>
+
+        <item>Silverlight (Lilvani):16:Summoning the power of the Moon Goddess
+            Lilvani you anoint up to 5 people with the a blessing of moonlight
+            which shelters them in their darkest hour. For the duration of this
+            invocation, affected characters take no penalties from being within
+            their Wound Threshold or in Death State and the first time they
+            would be reduced to below 1 Hit Point they are instead reduced
+            to 1 Hit Point.
+            :2m:Until next sunrise:None:toc</item>
 
         <item>White Flame:16: Summoning the power of the Great Sun, you
             create a bright aura of White Fire which lights the surrounding

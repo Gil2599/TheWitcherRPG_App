@@ -13,6 +13,14 @@ class GetMagicListUseCase @Inject constructor() {
         val magicStringArray = TheWitcherTRPGApp.getContext()!!.resources!!.getStringArray(source)
 
         return when (source) {
+            R.array.minor_gifts_list_data -> getMagicalGiftListInfo(
+                magicStringArray,
+                MagicType.MINOR_GIFT
+            )
+            R.array.major_gifts_list_data -> getMagicalGiftListInfo(
+                magicStringArray,
+                MagicType.MAJOR_GIFT
+            )
             R.array.novice_spells_list_data -> getSpellListInfo(
                 magicStringArray,
                 MagicType.NOVICE_SPELL
@@ -60,15 +68,19 @@ class GetMagicListUseCase @Inject constructor() {
                 magicStringArray,
                 MagicType.MASTER_DRUID_INVOCATION
             )
-            R.array.novice_preacherInvo_list_data -> getInvocationListInfo(
+            R.array.hierophant_flaminika_priestInvo_list_data -> getInvocationListInfo(
+                magicStringArray,
+                MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION
+            )
+            R.array.novice_priestInvo_list_data -> getInvocationListInfo(
                 magicStringArray,
                 MagicType.NOVICE_PREACHER_INVOCATION
             )
-            R.array.journeyman_preacherInvo_list_data -> getInvocationListInfo(
+            R.array.journeyman_priestInvo_list_data -> getInvocationListInfo(
                 magicStringArray,
                 MagicType.JOURNEYMAN_PREACHER_INVOCATION
             )
-            R.array.master_preacherInvo_list_data -> getInvocationListInfo(
+            R.array.master_priestInvo_list_data -> getInvocationListInfo(
                 magicStringArray,
                 MagicType.MASTER_PREACHER_INVOCATION
             )
@@ -93,6 +105,11 @@ class GetMagicListUseCase @Inject constructor() {
             val duration = pair[4]
             val defense = pair[5]
             val element = pair[6]
+            var tomesOfChaosDlc = false
+
+            if (pair.size > 7) {
+                tomesOfChaosDlc = true
+            }
 
             magicArray.add(
                 MagicItem(
@@ -101,13 +118,14 @@ class GetMagicListUseCase @Inject constructor() {
                     try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     range = range,
                     duration = duration,
                     defense = defense,
-                    element = element
+                    element = element,
+                    isTomesOfChaosDLC = tomesOfChaosDlc
                 )
             )
         }
@@ -127,6 +145,11 @@ class GetMagicListUseCase @Inject constructor() {
             val difficulty = pair[4]
             val duration = pair[5]
             val components = pair[6]
+            var tomesOfChaosDlc = false
+
+            if (pair.size > 7) {
+                tomesOfChaosDlc = true
+            }
 
             magicArray.add(
                 MagicItem(
@@ -135,17 +158,18 @@ class GetMagicListUseCase @Inject constructor() {
                     staminaCost = try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     preparation = preparation,
                     difficulty = try {
                         difficulty.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     duration = duration,
-                    components = components
+                    components = components,
+                    isTomesOfChaosDLC = tomesOfChaosDlc
                 )
             )
         }
@@ -163,6 +187,11 @@ class GetMagicListUseCase @Inject constructor() {
             val description = pair[2]
             val danger = pair[3]
             val lift = pair[4]
+            var tomesOfChaosDlc = false
+
+            if (pair.size > 5) {
+                tomesOfChaosDlc = true
+            }
 
             magicArray.add(
                 MagicItem(
@@ -171,11 +200,12 @@ class GetMagicListUseCase @Inject constructor() {
                     staminaCost = try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     danger = danger,
-                    requirementToLift = lift
+                    requirementToLift = lift,
+                    isTomesOfChaosDLC = tomesOfChaosDlc
                 )
             )
         }
@@ -194,6 +224,11 @@ class GetMagicListUseCase @Inject constructor() {
             val range = pair[3]
             val duration = pair[4]
             val defense = pair[5]
+            var tomesOfChaosDlc = false
+
+            if (pair.size > 6) {
+                tomesOfChaosDlc = true
+            }
 
             magicArray.add(
                 MagicItem(
@@ -202,12 +237,43 @@ class GetMagicListUseCase @Inject constructor() {
                     try {
                         staCost.toInt()
                     } catch (ex: NumberFormatException) {
-                        null
+                        -1
                     },
                     description = description,
                     range = range,
                     duration = duration,
-                    defense = defense
+                    defense = defense,
+                    isTomesOfChaosDLC = tomesOfChaosDlc
+                )
+            )
+        }
+        return magicArray
+    }
+
+    private fun getMagicalGiftListInfo(itemList: Array<String>, type: MagicType): ArrayList<MagicItem> {
+
+        val magicArray: ArrayList<MagicItem> = arrayListOf()
+
+        for (tag in itemList) {
+            val pair = tag.split(":").toTypedArray()
+            val spellName = pair[0]
+            val staCost = pair[1]
+            val description = pair[2]
+            val sideEffect = pair[3]
+            val spellCastingDc = pair[4]
+
+            magicArray.add(
+                MagicItem(
+                    type = type,
+                    name = spellName,
+                    staminaCost = try {
+                        staCost.toInt()
+                    } catch (ex: NumberFormatException) {
+                        0
+                    },
+                    description = description,
+                    requirementToLift = sideEffect,
+                    range = spellCastingDc
                 )
             )
         }

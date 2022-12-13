@@ -31,4 +31,23 @@
         app:layout_constraintBottom_toTopOf="@+id/textView54"
         app:layout_constraintEnd_toEndOf="@+id/textView54"
         app:layout_constraintStart_toStartOf="@+id/textView54" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/enableMagicalGiftsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/enableMagicalGiftsButton"
+        android:text="@string/enableMagicalGiftsButton"
+        android:textColor="?textFillColor"
+        app:backgroundTint="?colorOnPrimary"
+        app:icon="@drawable/ic_magical_gift"
+        app:iconTint="?textFillColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView54"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView54"
+        app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

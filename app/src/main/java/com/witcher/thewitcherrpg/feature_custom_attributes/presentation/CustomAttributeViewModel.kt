@@ -1,17 +1,21 @@
 package com.witcher.thewitcherrpg.feature_custom_attributes.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.domain.model.CustomEquipment
 import com.witcher.thewitcherrpg.core.domain.model.CustomMagic
 import com.witcher.thewitcherrpg.core.domain.model.CustomWeapon
+import com.witcher.thewitcherrpg.core.firebase.FirebaseEvents
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.WeaponTypes
-import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.Equipment
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.EquipmentItem
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.MagicItem
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.models.WeaponItem
@@ -29,6 +33,7 @@ class CustomAttributeViewModel @Inject constructor(
     private val addCustomWeaponUseCase: AddCustomWeaponUseCase,
     private val addCustomEquipmentUseCase: AddCustomEquipmentUseCase
 ) : ViewModel() {
+    private val firebaseAnalytics = Firebase.analytics
 
     val optionsMagicGeneralTypeMap = mapOf(
         "Spell" to MagicGeneralType.SPELL,
@@ -50,6 +55,7 @@ class CustomAttributeViewModel @Inject constructor(
         "Novice Druid" to MagicLevel.NOVICE_DRUID,
         "Journeyman Druid" to MagicLevel.JOURNEYMAN_DRUID,
         "Master Druid" to MagicLevel.MASTER_DRUID,
+        "Hierophant Flaminika Druid" to MagicLevel.HIEROPHANT_FLAMINIKA_DRUID,
         "Novice Preacher" to MagicLevel.NOVICE_PREACHER,
         "Journeyman Preacher" to MagicLevel.JOURNEYMAN_PREACHER,
         "Master Preacher" to MagicLevel.MASTER_PREACHER,
@@ -176,6 +182,7 @@ class CustomAttributeViewModel @Inject constructor(
                     MagicLevel.NOVICE_DRUID -> MagicType.NOVICE_DRUID_INVOCATION
                     MagicLevel.JOURNEYMAN_DRUID -> MagicType.JOURNEYMAN_DRUID_INVOCATION
                     MagicLevel.MASTER_DRUID -> MagicType.MASTER_DRUID_INVOCATION
+                    MagicLevel.HIEROPHANT_FLAMINIKA_DRUID -> MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION
                     MagicLevel.NOVICE_PREACHER -> MagicType.NOVICE_PREACHER_INVOCATION
                     MagicLevel.JOURNEYMAN_PREACHER -> MagicType.JOURNEYMAN_PREACHER_INVOCATION
                     MagicLevel.MASTER_PREACHER -> MagicType.MASTER_PREACHER_INVOCATION
@@ -268,8 +275,8 @@ class CustomAttributeViewModel @Inject constructor(
         } else {
             range + "m"
         }
-        val difficultyFinal = if (isVariableDiff) null else difficulty
-        val staminaFinal = if (isVariableSta) null else staminaCost
+        val difficultyFinal = if (isVariableDiff) -1 else difficulty
+        val staminaFinal = if (isVariableSta) -1 else staminaCost
 
         val magicItem = MagicItem(
             type = getMagicType(type, magicLevel),
@@ -368,6 +375,9 @@ class CustomAttributeViewModel @Inject constructor(
             return true
 
         } catch (ex: Exception) {
+            firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_WEAPON_INVALID.name) {
+                param("add_error", ex.message ?: "Unknown Error")
+            }
             return false
         }
     }
@@ -455,7 +465,10 @@ class CustomAttributeViewModel @Inject constructor(
             )
             addCustomEquipment(equipmentItem)
             return true
-        } catch (ex: Exception){
+        } catch (ex: Exception) {
+            firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_EQUIPMENT_INVALID.name) {
+                param("add_error", ex.message ?: "Unknown Error")
+            }
             return false
         }
     }
@@ -472,9 +485,19 @@ class CustomAttributeViewModel @Inject constructor(
     private fun addCustomMagic(customMagic: MagicItem) {
         addCustomMagicUseCase(CustomMagic(customMagic)).onEach { result ->
             when (result) {
-                is Resource.Success -> _addMagicState.value = Resource.Success(true)
-                is Resource.Error -> _addMagicState.value =
-                    result.message?.let { Resource.Error(it) }
+                is Resource.Success -> {
+                    _addMagicState.value = Resource.Success(true)
+                    firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_MAGIC_ADDED.name){
+                        param("type", customMagic.type.toString())
+                    }
+                }
+                is Resource.Error -> {
+                    _addMagicState.value =
+                        result.message?.let { Resource.Error(it) }
+                    firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_MAGIC_ADD_ERROR.name){
+                        param("add_error", result.message ?: "Unknown Error")
+                    }
+                }
                 else -> {}
             }
         }.launchIn(viewModelScope)
@@ -483,9 +506,19 @@ class CustomAttributeViewModel @Inject constructor(
     private fun addCustomWeapon(customWeapon: WeaponItem) {
         addCustomWeaponUseCase(CustomWeapon(customWeapon)).onEach { result ->
             when (result) {
-                is Resource.Success -> _addEquipmentState.value = Resource.Success(true)
-                is Resource.Error -> _addEquipmentState.value =
-                    result.message?.let { Resource.Error(it) }
+                is Resource.Success -> {
+                    _addEquipmentState.value = Resource.Success(true)
+                    firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_WEAPON_ADDED.name) {
+                        param("equipment_type", customWeapon.type.toString())
+                    }
+                }
+                is Resource.Error -> {
+                    _addEquipmentState.value =
+                        result.message?.let { Resource.Error(it) }
+                    firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_WEAPON_ADD_ERROR.name) {
+                        param("add_error", result.message ?: "Unknown Error")
+                    }
+                }
                 else -> {}
             }
         }.launchIn(viewModelScope)
@@ -494,9 +527,19 @@ class CustomAttributeViewModel @Inject constructor(
     private fun addCustomEquipment(customEquipment: EquipmentItem) {
         addCustomEquipmentUseCase(CustomEquipment(customEquipment)).onEach { result ->
             when (result) {
-                is Resource.Success -> _addEquipmentState.value = Resource.Success(true)
-                is Resource.Error -> _addEquipmentState.value =
-                    result.message?.let { Resource.Error(it) }
+                is Resource.Success -> {
+                    _addEquipmentState.value = Resource.Success(true)
+                    firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_EQUIPMENT_ADDED.name) {
+                        param("equipment_type", customEquipment.equipmentType.toString())
+                    }
+                }
+                is Resource.Error -> {
+                    _addEquipmentState.value =
+                        result.message?.let { Resource.Error(it) }
+                    firebaseAnalytics.logEvent(FirebaseEvents.CUSTOM_EQUIPMENT_ADD_ERROR.name) {
+                        param("add_error", result.message ?: "Unknown Error")
+                    }
+                }
                 else -> {}
             }
         }.launchIn(viewModelScope)

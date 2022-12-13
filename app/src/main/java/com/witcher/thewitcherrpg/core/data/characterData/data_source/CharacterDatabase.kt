@@ -7,10 +7,10 @@ import com.witcher.thewitcherrpg.core.domain.model.MyTypeConverters
 
 @Database(
     entities = [Character::class],
-    version = 1,
+    version = 2,
     exportSchema = true,
     autoMigrations = [
-        AutoMigration(from = 1, to = 2)
+        AutoMigration(from = 1, to = 2),
     ]
 )
 @TypeConverters(MyTypeConverters::class)

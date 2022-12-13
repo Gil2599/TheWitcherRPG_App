@@ -3,8 +3,12 @@ package com.witcher.thewitcherrpg.feature_character_sheet.domain.use_cases.chara
 import android.app.Application
 import android.content.ContextWrapper
 import android.util.Log
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.domain.model.Character
+import com.witcher.thewitcherrpg.core.firebase.FirebaseEvents
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.*
@@ -41,8 +45,24 @@ class CharacterToFileUseCase @Inject constructor(
             ObjectInputStream(inputStream).use { ois ->
                 result = ois.readObject() as Character
             }
+
+            if (result?.hierophantFlaminikaDruidInvocations == null) {
+                result?.hierophantFlaminikaDruidInvocations = arrayListOf()
+            }
+            if (result?.magicalGifts == null) {
+                result?.magicalGifts = 0
+            }
+            if (result?.minorGifts == null) {
+                result?.minorGifts = arrayListOf()
+            }
+            if (result?.majorGifts == null) {
+                result?.majorGifts = arrayListOf()
+            }
+
         } catch (e: Exception) {
-            Log.e(this.toString(), e.toString())
+            Firebase.analytics.logEvent(FirebaseEvents.CHARACTER_ADD_ERROR.name) {
+                param("add_error", e.message ?: "Unknown Error")
+            }
         }
 
         return result

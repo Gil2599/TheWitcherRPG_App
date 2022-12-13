@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="minor_gifts_list_data">
+
+        <item>Calm Animals:1:As an action, you can calm a Beast that
+            does not have a Medium or Hard Threat Rating. After this
+            effect, the Beast considers you and your allies friendly
+            and will not attack unless provoked.:
+            Beasts of Threat Rating Medium or Hard are enraged
+            by your presence and if possible, will prioritize
+            attacking you over other targets.
+            :N/A</item>
+
+        <item>Fear Aura:1:As an action, you are able to emit an aura of
+            palpable fear. Everyone within 4m of you must make a DC-12
+            Resist Magic check or be frightened and take a -2 to any
+            action made against you for 24 hours.:
+            You count as one level lower on the Social Standing Chart
+            (Minimum Hated) and members of your own race now treat you
+            as Tolerated instead of Equal.
+            :N/A</item>
+
+        <item>Fleet of Foot:1:As an action, you can double the
+            range of your LEAP for 1 Round.:
+            When you are knocked back, you travel an additional 4m,
+            raising the possible damage taken from hitting an object.
+            :N/A</item>
+
+        <item>Green Thumb:1:As an action, you can grow a small plant
+            from seed to maturity. This allows you to grow herbs and
+            alchemical plants but not larger plants such as trees.:
+            Any alchemical concoction you create with a plant-derived
+            substance as one of its ingredients gives you the poisoned
+            condition as well as the intended effect when you use it.
+            :N/A</item>
+
+        <item>Minuscule Illusion:1:As an action, you are able to create an
+            illusion within 4m that fills a 1m cubed space. This illusion
+            must be simple and is only visual.:
+            You take a -3 penalty to determining whether an illusion is real or not.
+            :N/A</item>
+
+        <item>Pigment:1:As an action, you can make a mark with your hand
+            on a surface that has a color you desire that can optionally
+            glow, should you desire. The glowing mark raises the light
+            level by 1 for 4m all around it (Maximum Daylight). Once
+            you have made a mark you can take an another action as
+            long as you are within 4m to make the mark emit a flash
+            of Glaring Light for one round after which it disappears.:
+            When someone within 10m of you suffers a magic fumble effect,
+            you suffer the effect as well. If you suffer a magical
+            fumble you do not suffer a second effect.
+            :N/A</item>
+
+    </string-array>
+
+    <string-array name="major_gifts_list_data">
+
+        <item>Aerokinesis:2:As a full round action, you can manipulate
+            up to 5 ENC of material at a range of 8m as if you were holding it.:
+            Whenever you are knocked prone or knocked back you are also
+            reduced to 10 STA unless you were currently at or below 10 STA.
+            :9</item>
+
+        <item>Cryokinesis:2:As a full round action, you can freeze
+            up to 2 square meters of liquid or a single target within 8m.:
+            Whenever you have a chance of being frozen, you are no matter what.
+            Additionally, instead of the standard Frozen condition you reduce your SPD by 6 and REF by 4.
+            :9</item>
+
+        <item>Detect Poison:2:As a full round action, you can smell a substance
+            to detect whether it has been poisoned.:
+            Whenever you would gain the Intoxicated or Poisoned conditions,
+            you are additionally Nauseated for the duration of those conditions.
+            :9</item>
+
+        <item>Fortify:2:As a full round action, you can increase the Reliability
+            or SP of an item you can touch by 1. An item can only benefit from Fortify once.:
+            If you come within 4m of any amount of dimeritium you lose all
+            Vigor Threshold and must make an Endurance roll at a -3 against
+            the Dimeritium Effect Table.
+            :9</item>
+
+        <item>Geokinesis:2:As a full round action, you can create a tremor
+            with a 8m radius centered on yourself. Anyone within this
+            area must make a DC-14 Athletics check or fall prone and be staggered.:
+            If you would suffer the Staggered condition you are instead Stunned for 1 round.
+            :9</item>
+
+        <item>Pyrokinesis:2:As a full round action, you can light a fire
+            or put out a fire. You can light one object or target within
+            8m on fire. You cannot target yourself with this ability.:
+            Whenever you have a chance of being caught on fire you are caught on fire no matter what.
+            :9</item>
+
+        <item>See Aura:2:As a full round action, you can see the aura
+            of all targets within 8m of you. This aura tells you
+            what the Vigor Threshold of each target is.:
+            You give off a tangible tingle that alerts anyone who
+            touches you to your magical capability. This will make
+            many people assume you are a mage. Because of this your
+            Social Standing is considered to be that of a mage.
+            :9</item>
+
+        <item>Weapon Honing:2:As a full round action, you can add
+            a 25% Bleed chance to a weapon that deals Piercing or Slashing damage.:
+            Whenever you have a chance of bleeding, you bleed
+            no matter what.
+            :9</item>
+
+    </string-array>
+
+</resources>

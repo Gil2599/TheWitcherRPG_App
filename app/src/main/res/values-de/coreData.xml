@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="disclaimer">
+        Bitte beachten Sie, dass sich die Regeln und Mechanismen von The Witcher Tabletop RPG von denen unterscheiden
+        traditionelle Dungeons and Dragons. Diese Anwendung dient als Werkzeug, das verwendet werden soll
+        neben dem The Witcher Tabletop RPG Core Rulebook und folgt den festgelegten Regeln und Mechaniken
+        dadurch. Verwendung des The Witcher Tabletop RPG Core Rulebook
+        wird dringend empfohlen, da diese Anwendung nicht alle enthält
+        Informationen, die zum Erlernen des Spielens erforderlich sind. \n\nDies ist eine inoffizielle Anwendung und ist es nicht
+        genehmigt/unterstützt von CD PROJEKT RED oder R. Talsorian Games. Diese Anwendung ist keine
+        lizenziertes Produkt. Ich beanspruche kein Eigentum an Informationen, Symbolen oder Bildern, die durchgehend verwendet werden
+        die App. Urheberrechte und/oder Warenzeichen aller verwendeten Informationen, Symbole und/oder Bilder gehören
+        an ihre jeweiligen Besitzer.
+    </string>
+
+    <string name="about">
+        Vielen Dank, dass Sie die The Witcher TRPG Begleit-App heruntergeladen haben. Diese Anwendung soll die Charaktererstellung und das Rollenspiel beim Spielen beschleunigen
+        The Witcher Tabletop-Rollenspiel. Sie können Ihre Charakterinformationen, Fähigkeiten, Statistiken, Berufsfähigkeiten,
+        Magie, Ausrüstung und füge Notizen hinzu.\n\nDa ich der einzige Mitwirkende an der Anwendung bin,
+        Einige Schlüsselfunktionen wurden nicht implementiert, um die Komplexität und Entwicklungszeit zu reduzieren. Manche, von denen
+        Dazu gehören Handwerk, Rüstungs-/Waffenverbesserungen und Mutationen. Ich habe Alternativen wie implementiert
+        benutzerdefinierte Gegenstände, Ausrüstungsnotizen und Statistik-/Fähigkeitsmodifikatoren, um eine ähnliche Funktionalität wie die genannten Merkmale zu haben.
+        \n\nWenn Sie Feedback oder Bedenken bezüglich der Anwendung oder ihres Inhalts haben, zögern Sie nicht
+        um eine Bewertung mit eventuellen Vorschlägen zu hinterlassen.
+    </string>
+
+    <string name="attributions">
+        Freepik:
+    </string>
+
+    <string name="freepik"><a href="https://www.freepik.com">Symbole von Freepik</a></string>
+    <string name="smashIcons"><a href="https://smashicons.com/">Symbole von SmashIcons</a></string>
+    <string name="talsorianLink"><a href="https://talsorianstore.com/collections/the-witcher-trpg">https://talsorianstore.com/collections/the-witcher-trpg</a></string>
+    <string name="adrianneLink"><a href="https://www.instagram.com/theprincessofthecrystal/">Anwendungssymbol von Adrianne Camero</a></string>
+
+    <string name="characterInformation_info">
+        Dies ist der Abschnitt mit den Charakterinformationen. Hier können Sie auf allgemeine Statistiken wie z
+        wie Ihre aktuelle Gesundheit, Ausdauer und Kronen. Sie können auch ein Zeichenbild hinzufügen und auf Informationen zu Ihrem zugreifen
+        Beruf, bearbeiten Sie die persönlichen Informationen der Charaktere und fügen Sie Hintergrundereignisse hinzu. Um durch die zu navigieren
+        Tippen Sie im Rest der Anwendung auf das Symbol für die Navigationsleiste oben links auf dem Bildschirm.
+    </string>
+
+    <string name="characterSkills_info">
+        Dies ist der Bereich Charakterfähigkeiten. Fähigkeiten
+        können zwischen 0 und 10 Punkte enthalten
+        und kann nie höher als 10 Punkte gehen. Definierende Fähigkeiten werden durch den orangefarbenen Text angezeigt.
+        Boni wie Rassenmodifikatoren können a erhöhen
+        Fähigkeit über 10. Wenn Sie zum ersten Mal Ihre machen
+        Charakter, Ihre Fertigkeiten sind auf 6 begrenzt. Um einen Fertigkeitspunkt zu erhöhen,
+        Die aktuelle Stufe dieser Fertigkeit wird von Ihrer Verbesserung abgezogen
+        Gesamtpunktzahl. Um den Modifikator einer Fertigkeit zu bearbeiten, klicken Sie auf die Fertigkeit und halten Sie sie gedrückt, bis
+        Der Modifikator-Indikator erscheint neben dem Fertigkeitslevel. Denken Sie daran, dass Modifikatoren
+        verringern nicht Ihre Gesamtverbesserungspunkte und werden normalerweise durch rassische Vergünstigungen, Gegenstände,
+        Ausrüstung, Verletzungen oder Verbrauchsmaterialien.
+    </string>
+
+    <string name="characterStats_info">
+        Dies ist der Statistikbereich. Die Statistik
+        Obergrenze ist jedoch 10, Mutationen und Rassen
+        Eigenschaften können die Statistik oben erhöhen
+        diese Kappe. Die angezeigten Zahlen beinhalten Ihre Rohdaten
+        Wert plus alle Modifikatoren. Um den Modifikator einer Statistik zu bearbeiten, klicken und halten Sie eine Statistik bis
+        Der Modifikator wird angezeigt. Denken Sie daran, dass Modifikatoren
+        verringern nicht Ihre Gesamtverbesserungspunkte und werden normalerweise durch rassische Vergünstigungen, Gegenstände,
+        Ausrüstung, Verletzungen oder Verbrauchsmaterialien.
+    </string>
+
+    <string-array name="races_array">
+        <item>Menschlich</item>
+        <item>Zwerg</item>
+        <item>Elf</item>
+        <item>Hexer</item>
+        <item>Halbling</item>
+        <item>Gnom</item>
+        <item>vran</item>
+        <item>Ich habe mich umgedreht</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Männlich</item>
+        <item>Weiblich</item>
+        <item>Nicht-binär</item>
+    </string-array>
+
+    <string-array name="prof_array">
+        <item>Barde</item>
+        <item>Kriminell</item>
+        <item>Handwerker</item>
+        <item>Arzt</item>
+        <item>Magier</item>
+        <item>Mann an den Waffen</item>
+        <item>Priester</item>
+        <item>Druide</item>
+        <item>Hexer</item>
+        <item>Händler</item>
+        <item>Edel</item>
+        <item>Bauer</item>
+    </string-array>
+
+    <string-array name="standings_array">
+        <item>Gleich</item>
+        <item>Toleriert</item>
+        <item>Gefürchtet</item>
+        <item>Gehasst</item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>Standard</item>
+        <item>A-Z ↓</item>
+        <item>A-Z ↑</item>
+        <item>Element</item>
+        <item>Bereich</item>
+        <item>STA-Kosten</item>
+    </string-array>
+</resources>

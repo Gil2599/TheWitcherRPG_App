@@ -3,13 +3,15 @@ package com.witcher.thewitcherrpg.core.presentation
 //import android.util.Log
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.witcher.thewitcherrpg.core.Constants
 import com.witcher.thewitcherrpg.core.Resource
 import com.witcher.thewitcherrpg.core.dataStoreRepository.DataStoreRepository
@@ -17,6 +19,7 @@ import com.witcher.thewitcherrpg.core.domain.model.Character
 import com.witcher.thewitcherrpg.core.domain.model.CustomEquipment
 import com.witcher.thewitcherrpg.core.domain.model.CustomMagic
 import com.witcher.thewitcherrpg.core.domain.model.CustomWeapon
+import com.witcher.thewitcherrpg.core.firebase.FirebaseEvents
 import com.witcher.thewitcherrpg.feature_character_creation.domain.use_cases.*
 import com.witcher.thewitcherrpg.feature_character_creation.presentation.CharacterState
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.EquipmentTypes
@@ -77,6 +80,7 @@ class MainCharacterViewModel @Inject constructor(
     private val deleteCustomWeaponUseCase: DeleteCustomWeaponUseCase,
     private val deleteCustomEquipmentUseCase: DeleteCustomEquipmentUseCase,
 ) : ViewModel() {
+    private val firebaseAnalytics = Firebase.analytics
 
     init {
         fetchCustomWeapons()
@@ -635,6 +639,17 @@ class MainCharacterViewModel @Inject constructor(
     private var _focus = MutableStateFlow(0)
     val focus = _focus.asStateFlow()
 
+    private var _magicalGiftsEnabled = false
+    val magicalGiftsEnabled
+        get() = _magicalGiftsEnabled
+
+    //Gifts
+    private var _minorGifts = MutableStateFlow(arrayListOf<MagicItem>())
+    val minorGifts = _minorGifts.asStateFlow()
+
+    private var _majorGifts = MutableStateFlow(arrayListOf<MagicItem>())
+    val majorGifts = _majorGifts.asStateFlow()
+
     //Mages
     private var _noviceSpellList = MutableStateFlow(arrayListOf<MagicItem>())
     val noviceSpellList = _noviceSpellList.asStateFlow()
@@ -654,6 +669,9 @@ class MainCharacterViewModel @Inject constructor(
 
     private var _masterDruidInvocations = MutableStateFlow(arrayListOf<MagicItem>())
     val masterDruidInvocations = _masterDruidInvocations.asStateFlow()
+
+    private var _hierophantFlaminikaDruidInvocations = MutableStateFlow(arrayListOf<MagicItem>())
+    val hierophantFlaminikaDruidInvocations = _hierophantFlaminikaDruidInvocations.asStateFlow()
 
     private var _novicePreacherInvocations = MutableStateFlow(arrayListOf<MagicItem>())
     val novicePreacherInvocations = _novicePreacherInvocations.asStateFlow()
@@ -748,9 +766,11 @@ class MainCharacterViewModel @Inject constructor(
         when (_profession.value) {
             Constants.Professions.MAGE -> startingVigor = 5
             Constants.Professions.PRIEST -> startingVigor = 2
+            Constants.Professions.DRUID -> startingVigor = 2
             Constants.Professions.WITCHER -> startingVigor = 2
             else -> {}
         }
+        if (_magicalGiftsEnabled) startingVigor = 2
 
         characterCreationUseCases.addCharacterUseCase(
             Character(
@@ -762,6 +782,7 @@ class MainCharacterViewModel @Inject constructor(
                 gender = _gender.value,
                 age = age.value.toString().toInt(),
                 profession = _profession.value,
+                magicalGifts = if (_magicalGiftsEnabled) 1 else 0,
                 definingSkill = _definingSkill.value,
                 definingSkillInfo = _definingSkillInfo.value,
                 racePerks = _racePerks.value,
@@ -913,11 +934,19 @@ class MainCharacterViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     _addState.value = CharacterState(success = true)
+                    firebaseAnalytics.logEvent(FirebaseEvents.NEW_CHARACTER_CREATED.name) {
+                        param("profession", _profession.value.toString())
+                        param("race", _race.value)
+                        param("magical_gifts_enabled", _magicalGiftsEnabled.toString())
+                    }
                 }
                 is Resource.Error -> {
                     _addState.value = CharacterState(
                         error = result.message ?: "An unexpected error occurred"
                     )
+                    firebaseAnalytics.logEvent(FirebaseEvents.NEW_CHARACTER_CREATE_ERROR.name) {
+                        param("create_error", result.message ?: "An unexpected error occurred")
+                    }
                 }
                 is Resource.Loading -> {
                     _addState.value = CharacterState(isLoading = true)
@@ -938,6 +967,7 @@ class MainCharacterViewModel @Inject constructor(
                 gender = _gender.value,
                 age = age.value.toString().toInt(),
                 profession = _profession.value,
+                magicalGifts = if (_magicalGiftsEnabled) 1 else 0,
                 definingSkill = _definingSkill.value,
                 definingSkillInfo = _definingSkillInfo.value,
                 racePerks = _racePerks.value,
@@ -1108,6 +1138,8 @@ class MainCharacterViewModel @Inject constructor(
 
                 vigor = _vigor.value,
                 focus = _focus.value,
+                minorGifts = _minorGifts.value,
+                majorGifts = _majorGifts.value,
                 basicSigns = _basicSigns.value,
                 alternateSigns = _alternateSigns.value,
                 noviceRituals = _noviceRitualList.value,
@@ -1124,6 +1156,7 @@ class MainCharacterViewModel @Inject constructor(
                 journeymanPreacherInvocations = _journeymanPreacherInvocations.value,
                 masterPreacherInvocations = _masterPreacherInvocations.value,
                 archPriestInvocations = _archPriestInvocations.value,
+                hierophantFlaminikaDruidInvocations = _hierophantFlaminikaDruidInvocations.value,
 
                 headEquipment = _headEquipment.value,
                 equippedHead = _equippedHead.value,
@@ -1156,11 +1189,15 @@ class MainCharacterViewModel @Inject constructor(
                     is Resource.Success -> {
                         _addState.value = CharacterState(success = true)
                         _saveAvailable.value = false
+                        firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_SAVED.name, null)
                     }
                     is Resource.Error -> {
                         _addState.value = CharacterState(
                             error = result.message ?: "An unexpected error occurred"
                         )
+                        firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_SAVE_ERROR.name) {
+                            param("save_error", result.message ?: "An unexpected error occurred")
+                        }
                     }
                     is Resource.Loading -> {
                         _addState.value = CharacterState(isLoading = true)
@@ -1181,11 +1218,15 @@ class MainCharacterViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     _deleteState.value = CharacterState(success = true)
+                    firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_DELETED.name, null)
                 }
                 is Resource.Error -> {
                     _deleteState.value = CharacterState(
                         error = result.message ?: "An unexpected error occurred"
                     )
+                    firebaseAnalytics.logEvent(FirebaseEvents.CHARACTER_DELETE_ERROR.name) {
+                        param("character_delete_error", result.message ?: "An unexpected error occurred")
+                    }
                 }
                 is Resource.Loading -> {
                     _deleteState.value = CharacterState(isLoading = true)
@@ -1207,6 +1248,7 @@ class MainCharacterViewModel @Inject constructor(
                     _gender.value = characterData.gender
                     age.value = characterData.age.toString()
                     _profession.value = characterData.profession
+                    _magicalGiftsEnabled = characterData.magicalGifts != 0
                     _definingSkill.value = characterData.definingSkill
                     _definingSkillInfo.value = characterData.definingSkillInfo
                     _racePerks.value = characterData.racePerks
@@ -1386,6 +1428,10 @@ class MainCharacterViewModel @Inject constructor(
                     _vigor.value = characterData.vigor
                     _focus.value = characterData.focus
 
+                    //Magical Gifts
+                    _minorGifts.value = characterData.minorGifts!!
+                    _majorGifts.value = characterData.majorGifts
+
                     //Mages
                     _noviceSpellList.value = characterData.noviceSpells
                     _journeymanSpellList.value = characterData.journeymanSpells
@@ -1402,6 +1448,7 @@ class MainCharacterViewModel @Inject constructor(
                     _masterPreacherInvocations.value = characterData.masterPreacherInvocations
 
                     _archPriestInvocations.value = characterData.archPriestInvocations
+                    _hierophantFlaminikaDruidInvocations.value = characterData.hierophantFlaminikaDruidInvocations
 
                     //Signs
                     _basicSigns.value = characterData.basicSigns
@@ -1491,6 +1538,11 @@ class MainCharacterViewModel @Inject constructor(
         _saveAvailable.value = checkIfDataChanged()
     }
 
+    fun setMagicalGiftsEnabled(value: Boolean) {
+        _magicalGiftsEnabled = value
+        checkSaveAvailable()
+    }
+
     fun setProfession(profession: String) {
 
         _profession.value = when (profession) {
@@ -1502,6 +1554,7 @@ class MainCharacterViewModel @Inject constructor(
             "Mage" -> Constants.Professions.MAGE
             "Man At Arms" -> Constants.Professions.MAN_AT_ARMS
             "Priest" -> Constants.Professions.PRIEST
+            "Druid" -> Constants.Professions.DRUID
             "Witcher" -> Constants.Professions.WITCHER
             "Merchant" -> Constants.Professions.MERCHANT
             "Noble" -> Constants.Professions.NOBLE
@@ -2889,10 +2942,11 @@ class MainCharacterViewModel @Inject constructor(
         checkSaveAvailable()
     }
 
-    fun onSaveEdit(name: String, age: String, gender: String) {
+    fun onSaveEdit(name: String, age: String, gender: String, enableMagicalGifts: Boolean) {
         this.name.value = name
         this.age.value = age
         _gender.value = gender
+        _magicalGiftsEnabled = enableMagicalGifts
         checkSaveAvailable()
     }
 
@@ -2900,7 +2954,7 @@ class MainCharacterViewModel @Inject constructor(
 
         when (skill) {
             1 -> {
-                val initialVigor = _vigor.value - _professionSkillA1.value
+                var initialVigor = _vigor.value - _professionSkillA1.value
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillA1.value,
                     _ip.value,
@@ -2911,8 +2965,9 @@ class MainCharacterViewModel @Inject constructor(
                     _professionSkillA1.value = pair.second
                     _ip.value = pair.first
 
-                    if (_profession.value == Constants.Professions.PRIEST) {
-                        _vigor.value = initialVigor + _professionSkillA1.value
+                    if (_profession.value == Constants.Professions.DRUID) {
+                        if (_professionSkillA1.value == 9 && !increase) initialVigor -= 4
+                        _vigor.value = if (_professionSkillA1.value <= 9) initialVigor + _professionSkillA1.value else initialVigor + _professionSkillA1.value + 4
                     }
                 }
             }
@@ -2946,7 +3001,7 @@ class MainCharacterViewModel @Inject constructor(
                 }
             }
             4 -> {
-                val initialVigor = _vigor.value - _professionSkillB1.value
+                var initialVigor = _vigor.value - _professionSkillB1.value
                 val pair = onProfessionSkillChangeUseCase(
                     _professionSkillB1.value,
                     _ip.value,
@@ -2958,7 +3013,8 @@ class MainCharacterViewModel @Inject constructor(
                     _ip.value = pair.first
 
                     if (_profession.value == Constants.Professions.PRIEST) {
-                        _vigor.value = initialVigor + _professionSkillB1.value
+                        if (_professionSkillB1.value == 9 && !increase) initialVigor -= 4
+                        _vigor.value = if (_professionSkillB1.value <= 9) initialVigor + _professionSkillB1.value else initialVigor + _professionSkillB1.value + 4
                     }
                 }
             }
@@ -3065,6 +3121,9 @@ class MainCharacterViewModel @Inject constructor(
             MagicType.MASTER_DRUID_INVOCATION -> if (item !in _masterDruidInvocations.value) _masterDruidInvocations.value.add(
                 item
             )
+            MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION -> _hierophantFlaminikaDruidInvocations.value.add(
+                item
+            )
             MagicType.NOVICE_PREACHER_INVOCATION -> if (item !in _novicePreacherInvocations.value) _novicePreacherInvocations.value.add(
                 item
             )
@@ -3075,6 +3134,12 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> if (item !in _archPriestInvocations.value) _archPriestInvocations.value.add(
+                item
+            )
+            MagicType.MINOR_GIFT -> if (item !in _minorGifts.value) _minorGifts.value.add(
+                item
+            )
+            MagicType.MAJOR_GIFT -> if (item !in _majorGifts.value) _majorGifts.value.add(
                 item
             )
         }
@@ -3115,6 +3180,9 @@ class MainCharacterViewModel @Inject constructor(
             MagicType.MASTER_DRUID_INVOCATION -> _masterDruidInvocations.value.remove(
                 item
             )
+            MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION -> _hierophantFlaminikaDruidInvocations.value.remove(
+                item
+            )
             MagicType.NOVICE_PREACHER_INVOCATION -> _novicePreacherInvocations.value.remove(
                 item
             )
@@ -3125,6 +3193,12 @@ class MainCharacterViewModel @Inject constructor(
                 item
             )
             MagicType.ARCH_PRIEST_INVOCATION -> _archPriestInvocations.value.remove(
+                item
+            )
+            MagicType.MINOR_GIFT -> _minorGifts.value.remove(
+                item
+            )
+            MagicType.MAJOR_GIFT -> _majorGifts.value.remove(
                 item
             )
         }
@@ -3673,7 +3747,7 @@ class MainCharacterViewModel @Inject constructor(
         getCustomMagicUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _customMagicList.value = result.data?.map { it.magicItem }!!
+                    result.data?.map { it.magicItem }?.let { _customMagicList.value = it }
                 }
                 else -> {}
             }
@@ -3684,7 +3758,7 @@ class MainCharacterViewModel @Inject constructor(
         getCustomWeaponsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _customWeaponList.value = result.data?.map { it.equipment }!!
+                    result.data?.map { it.equipment }?.let { _customWeaponList.value = it }
                 }
                 else -> {}
             }
@@ -3695,7 +3769,7 @@ class MainCharacterViewModel @Inject constructor(
         getCustomEquipmentUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _customEquipmentList.value = result.data?.map { it.equipment }!!
+                    result.data?.map { it.equipment }?.let { _customEquipmentList.value = it }
                 }
                 else -> {}
             }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "50669499321",
+    "project_id": "the-witcher-trpg-companion-app",
+    "storage_bucket": "the-witcher-trpg-companion-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50669499321:android:964eebf2c4f305ec937c68",
+        "android_client_info": {
+          "package_name": "com.witcher.thewitcherrpg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50669499321-sqp3gso331fbrujgou2daq6ildlvo2v9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2BFmP7rfqthtrlvztWpZrKcZYgjruCZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50669499321-sqp3gso331fbrujgou2daq6ildlvo2v9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

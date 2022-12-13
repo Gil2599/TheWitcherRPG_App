@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.witcher.thewitcherrpg.R
+import com.witcher.thewitcherrpg.TheWitcherTRPGApp
 import com.witcher.thewitcherrpg.databinding.MagicHeaderBinding
 import com.witcher.thewitcherrpg.databinding.SpellRowBinding
 import com.witcher.thewitcherrpg.feature_character_sheet.domain.item_types.MagicType
@@ -27,12 +29,13 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
                 MagicType.NOVICE_DRUID_INVOCATION,
                 MagicType.JOURNEYMAN_DRUID_INVOCATION,
                 MagicType.MASTER_DRUID_INVOCATION,
+                MagicType.HIEROPHANT_FLAMINIKA_DRUID_INVOCATION,
                 MagicType.NOVICE_PREACHER_INVOCATION,
                 MagicType.JOURNEYMAN_PREACHER_INVOCATION,
                 MagicType.MASTER_PREACHER_INVOCATION,
                 MagicType.ARCH_PRIEST_INVOCATION -> {
                     val staCost =
-                        "STA Cost: " + if (item.staminaCost != null) item.staminaCost.toString() else "Variable"
+                        "STA Cost: " + if (item.staminaCost >= 0) item.staminaCost.toString() else "Variable"
                     val range = "Range: " + item.range
 
                     with(binding) {
@@ -49,9 +52,9 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
                 MagicType.JOURNEYMAN_RITUAL,
                 MagicType.MASTER_RITUAL -> {
                     val staCost =
-                        "STA Cost: " + if (item.staminaCost != null) item.staminaCost.toString() else "Variable"
+                        "STA Cost: " + if (item.staminaCost >= 0) item.staminaCost.toString() else "Variable"
                     val difficulty =
-                        "Difficulty: " + if (item.difficulty != null) item.difficulty.toString() else "Variable"
+                        "Difficulty: " + if (item.difficulty >= 0) item.difficulty.toString() else "Variable"
 
                     with(binding) {
                         spellNameText.text = item.name
@@ -75,8 +78,34 @@ class CharacterMagicListAdapter(val itemClick: (MagicItem) -> Unit) :
                         }
                     }
                 }
+                MagicType.MINOR_GIFT, MagicType.MAJOR_GIFT -> {
+                    val staCost = "STA Cost: " + item.staminaCost
+                    val spellCastingDc = "Spell Casting DC: " + item.range
+
+                    with(binding) {
+                        spellNameText.text = item.name
+                        staCostText.text = staCost
+                        rangeText.text = spellCastingDc
+                        rowLayout.setOnClickListener() {
+                            itemClick(itemList[position] as MagicItem)
+                        }
+                    }
+                }
             }
-            if (item.isCustom) binding.textViewCustom.visibility = View.VISIBLE
+            if (item.isCustom) {
+                TheWitcherTRPGApp.getContext()?.resources?.getColor(R.color.green)
+                    ?.let { binding.textViewCustom.setTextColor(it) }
+                binding.textViewCustom.visibility = View.VISIBLE
+                binding.textViewCustom.text = TheWitcherTRPGApp.getContext()?.resources?.getString(R.string.custom)
+                    ?: ""
+            }
+            else if (item.isTomesOfChaosDLC) {
+                TheWitcherTRPGApp.getContext()?.resources?.getColor(R.color.red)
+                    ?.let { binding.textViewCustom.setTextColor(it) }
+                binding.textViewCustom.visibility = View.VISIBLE
+                binding.textViewCustom.text = TheWitcherTRPGApp.getContext()?.resources?.getString(R.string.tomes_of_chaos_dlc)
+                    ?: ""
+            }
             else binding.textViewCustom.visibility = View.GONE
         }
     }

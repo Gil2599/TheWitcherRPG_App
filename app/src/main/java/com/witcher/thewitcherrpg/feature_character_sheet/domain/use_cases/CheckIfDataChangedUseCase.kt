@@ -13,7 +13,6 @@ class CheckIfDataChangedUseCase @Inject constructor(
     private val repository: CharacterRepository
 ) {
     operator fun invoke(id: Int, viewModelCharacter: Character): Boolean {
-
         var dataChanged = false
             runBlocking {
                 try {

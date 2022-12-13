@@ -22,7 +22,11 @@
         android:id="@+id/noMagicFragment"
         android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.NoMagicFragment"
         android:label="fragment_no_magic"
-        tools:layout="@layout/fragment_no_magic" />
+        tools:layout="@layout/fragment_no_magic" >
+        <action
+            android:id="@+id/action_noMagicFragment_to_charMagicFragment"
+            app:destination="@id/charMagicFragment" />
+    </fragment>
     <fragment
         android:id="@+id/magicAddFragment"
         android:name="com.witcher.thewitcherrpg.feature_character_sheet.presentation.magic.addMagicFragments.MagicAddFragment"

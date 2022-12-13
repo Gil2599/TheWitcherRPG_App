@@ -43,6 +43,7 @@
         <item>Mage:Magic Training (INT)</item>
         <item>Man At Arms:Tough As Nails (BODY)</item>
         <item>Priest:Initiate of the Gods (EMP)</item>
+        <item>Druid:Rite of Oak and Mistletoe (INT)</item>
         <item>Witcher:Witcher Training (INT)</item>
         <item>Merchant:Well Traveled (INT)</item>
         <item>Noble:Notoriety</item>
@@ -63,6 +64,8 @@
         <item>Man At Arms:Any 5 Combat Skills,Courage,Dodge/Escape,Intimidation,Physique,
         Wilderness Survival</item>
         <item>Priest:Charisma,Courage,First Aid,Hex Weaving,Human Perception,Leadership,
+        Ritual Crafting,Spell Casting,Teaching,Staff/Spear</item>
+        <item>Druid:Awareness,Endurance,First Aid,Hex Weaving,Monster Lore,Persuasion,
         Ritual Crafting,Spell Casting,Teaching,Wilderness Survival</item>
         <item>Witcher:Alchemy,Athletics,Awareness,Deduction,Dodge/Escape,
         Ride,Spell Casting,Stealth,Swordsmanship,Wilderness Survival</item>
@@ -89,6 +92,8 @@
         Kord,Satchel,Spear,Steel buckler,Throwing knives x5</item>
         <item>Priest:100 crowns of components,Alchemy set,Clotting powder x5,Dagger,Holy symbol,Hourglass,
         Numbing herbs x5,Staff,Sterilizing fluid x5,Surgeon\'s kit</item>
+        <item>Druid:100 crowns of components,Bedroll,Belt Pouch,Candles x5,Cold Weather Clothing,Druid\'s Sickle,
+        Numbing herbs x3,Staff,Smelling Salts x5,Pipe and Tobacco</item>
         <item>Witcher:Alchemy set,Double woven gambeson,Hand crossbow,Horse,Throwing knives x5</item>
         <item>Merchant:Crossbow and bols x20,Dagger,Journal,Large tent,Merchant\'s tools,Writing kit</item>
         <item>Noble:Esboda,Fashionable clothing,Horse,Invisible ink,Jewelry,Journal with a lock,
@@ -194,6 +199,28 @@
             mind that Initiate of the Gods does not work
             with members of other faiths.</item>
 
+        <item>Rite of Oak and Mistletoe (INT):A Druid learns very quickly
+            how to harvest magically potent plants and turn them into a
+            powerful focus for their magic which connects them to the land
+            around them. A Druid can take a day and make a Rite of Oak and
+            Mistletoe roll against a DC specific to the area in which they
+            find themselves to harvest the necessary ingredients. If successful,
+            the Druid creates a Staff which works only for the Druid. This
+            staff functions exactly as a Staff (Witcher Core Rule Book, pg. 74)
+            but its Focus value rises as they improve their Rite of Oak and Mistletoe
+            value. The Focus value begins at 1 at level 1 and raises by 1 every 2
+            levels to a maximum of 4 at level 7. At level 9, the Staff gains the
+            Greater Focus Effect. Additionally, while the Druid is carrying their staff, they
+            gain the following benefits based on their Rite of Oak and Mistletoe value.
+            At level 2, the Druid ignores all environmental penalties in overgrown
+            or swampy terrain. At level 4, the Druid ignores the penalties for snow and
+            ice conditions. At level 6, the Druid ignores the penalties for extreme heat
+            conditions. At Level 8, the Druid ignores all penalties from being
+            underwater. At Level 10, the Druid can roll to create a new staff by
+            taking a full round action rather than 1 day. The DCs to create a staff
+            are 14 when in a forest, 16 when in swampy areas, 18 when in mountainous
+            regions, and 20 when at sea.</item>
+
         <item>Witcher Training (INT):Most of a Witcher’s early life is spent within
             the walls of their keep, studying huge, dusty
             tomes and going through hellish combat
@@ -258,7 +285,8 @@
         <item>Man At Arms:45,14,47,26,12,10,13,15,18,19,20,21,22,23</item>
         <item>Merchant:1,28,3,31,33,4,5,6,35,50,18,9</item>
         <item>Merchant:1,28,3,31,33,4,5,6,35,50,18,9</item>
-        <item>Priest:28,45,41,46,33,34,51,48,11,12</item>
+        <item>Priest:28,45,41,46,33,34,51,48,11,19</item>
+        <item>Druid:0,27,41,46,7,35,51,48,11,12</item>
         <item>Witcher:38,22,0,2,14,16,48,25,20,12</item>
         <item>Noble:0,29,3,32,33,34,16,8,10,13,14,15,18,19,20,21,22,23</item>
         <item>Peasant:22,13,45,39,27,41,31,26,18,12</item>
@@ -272,9 +300,9 @@
             Poison The Well (EMP),Needling (EMP),Et Tu Brute (EMP)</item>
 
         <item>Practiced Paranoia (INT):The Thief,The Gang Boss,The Assassin,
-            Case The Area (INT),Weak Spot (EMP),Careful Aim (DEX),
-            Mental Key (INT),Marked Man (WILL),Eye Gouge (DEX),
-            Go To Ground (INT),Rally (WILL),Assassin Strike (DEX)</item>
+            Case The Area (INT),Mental Key (INT),Go To Ground (INT),
+            Weak Spot (EMP),Marked Man (WILL),Rally (WILL),
+            Careful Aim (DEX),Eye Gouge (DEX),Assassin Strike (DEX)</item>
 
         <item>Patch Job (CRA):The Forge Master,The Alchemist,The Improviser,
             Extensive Catalogue (INT),Journeyman (CRA),Master Crafting (CRA),
@@ -296,10 +324,15 @@
             Bloodhound (INT),Booby Trap (CRA),Tactical Awareness (INT),
             Fury (WILL),Zweihand (BODY),Shrug It Off (BODY)</item>
 
-        <item>Initiate of the Gods (EMP):The Preacher,The Warrior,The Empath,
-            Divine Power,Prayer (WILL),Precognition (WILL),
-            Divine Strike (BODY),Fear (WILL),Kreve\'s Protection,
-            The Golden Rule,Priest Charming,Word of God (EMP)</item>
+        <item>Initiate of the Gods (EMP):The Cultist,The Preacher,The Fanatic,
+            Mystagogue (EMP),Cult Mystery (WILL),Blessings (WILL),
+            Divine Power,Divine Authority (EMP),Precognition (WILL),
+            Blood Rituals (WILL),Fervor (EMP),Word of God (EMP)</item>
+
+        <item>Rite of Oak and Mistletoe (INT):Initiate,Mystic Sage,Militant,
+            Nature Attunement,Read Nature (INT),Animal Compact (WILL),
+            Lore Keeper,Blood and Bones (WILL),Bestial Form,
+            Beast Healer (CRA),Sacred Grove (WILL),Grove Guardian (WILL)</item>
 
         <item>Witcher Training (INT):The Spellsword,The Mutant,The Slayer,
             Meditation,Magical Source,Heliotrope (WILL),
@@ -317,9 +350,9 @@
             Resolute,Chevalier (EMP),Armored Buffer (REF)</item>
 
         <item>Intolerance (WILL):The Farmer,The Cook,The Laborer,
-        Harvest Time,Animal Whisper (EMP),Farm Wisdom (CRA),
-        Butchery (CRA),Cure All (CRA),Ma\’s Stew (CRA),
-        Ditch Digger,Grog (CRA),Bite The Ear (BODY)</item>
+            Harvest Time,Animal Whisper (EMP),Farm Wisdom (CRA),
+            Butchery (CRA),Cure All (CRA),Ma\’s Stew (CRA),
+            Ditch Digger,Grog (CRA),Bite The Ear (BODY)</item>
 
 
     </string-array>
@@ -432,7 +465,7 @@
             in their head at all times. When
             a Craftsman has memorized
             as many diagrams as they can,
-            they may roll Extensive Catalogue at DC:15 to memorize
+            they may roll Extensive Catalogue at DC-15 to memorize
             one more. There is no limit, but
             every 10 diagrams they have
             memorized adds 1 to the DC.</item>
@@ -460,7 +493,7 @@
             in their head at all times. When
             a Craftsman has memorized
             as many formulae as they can,
-            they may roll Mental Pharmacy at DC:15 to memorize one
+            they may roll Mental Pharmacy at DC-15 to memorize one
             more. There is no limit, but
             every 10 formulae they have
             memorized adds 1 to the DC.</item>
@@ -816,7 +849,7 @@
             the penalty by up to half their
             Extreme Range value. They
             can also make an Extreme
-            Range roll (DC:16) to attack
+            Range roll (DC-16) to attack
             targets within 3 times the range
             of their weapon at a -10 which
             can be modified by Extreme
@@ -1003,19 +1036,21 @@
         <item>Divine Power:A Priest can become more in
             tune with their god, gaining 1
             point of Vigor threshold per
-            skill level in Divine Power. This brings your
-            Vigor threshold to a total of 12 at level 10.
+            skill level in Divine Power up to level 9.
+            At the 10th level in Divine Power, you raise your
+            Vigor Threshold by 5 bringing it to a total of 16.
             Divine Power can be trained
-            like other skills and stacks with
-            Nature Attunement. The Vigor
-            thresholds are not separate.</item>
+            like other skill.</item>
 
-        <item>Prayer (WILL):You may perform any of the following
-        prayers twice per day.
-        \n\n 1. Prayer of Courage - +2 to Courage for 24h (14DC)
-        \n\n2. Prayer of Fortune - +3 to Luck for 24h (16DC)
-        \n\n3. Prayer of Misfortune - Target cannot use Luck for 24h (18DC)
-        \n\n4. Spare the Dying - Instantly stabilize the target (20DC)</item>
+        <item>Divine Authority (EMP):Peasants and the common
+            folk of the world see Priests as
+            agents of the gods’ will. A Priest
+            can add their Divine Authority to their Leadership rolls if
+            they are in an area where their
+            religion is worshipped. Even
+            when outside such areas of
+            worship a Priest adds half this
+            value, due to their presence.</item>
 
         <item>Precognition (WILL):At the will of the GM, a Priest
             can be overcome by visions of
@@ -1027,30 +1062,44 @@
             Such visions are composed of
             symbolism and metaphors.</item>
 
-        <item>Divine Strike (BODY):Receive a -2 penalty
-            for an attack roll. If the attack lands, roll
-            against the target\`s BODYx3 to inflict stagger.</item>
+        <item>Mystagogue (EMP):When in a settlement, a Priest
+            can spend a day and roll Mystagogue at a DC based
+            on the settlement to build a shrine to their deity that
+            attracts people and converts them to their religion.
+            The GM determines how many people join. Additionally, while
+            within 20m of this shrine, the Priest can use shrine as a Focus
+            with a value of 3.</item>
 
-        <item>Fear (WILL):Roll against a target\`s courage.
-            If successful, the target is now afraid of you
-            and cannot willingly move any closer. The target
-            also gains disadvantage on any attacks
-            it makes against you if they are affected.
-            The target may make another courage check at the end
-            of their next turn at the DC set by your initial roll.</item>
+        <item>Cult Mystery (WILL):At higher levels, a Priest is shown the inner
+            workings of their religion and are privy to some of its secrets.
+            The Priest\'s cult mystery depends on the type of religion they follow.
+            Refer to the Cult Mystery table to know which one.</item>
 
-        <item>Kreve\'s Protection:For every point in
-            this skill, you gain 10 points of temporary HP.
-            You may touch a target and give them a maximum of 25 temporary HP
-            for a given day. Temporary hit points
-            are lost at the end of the day.</item>
+        <item>Blessings (WILL):A Priest can bless a group of people through a 1-hour ceremony.
+            At the end of the ceremony, they roll Blessings at a DC-16. For one day afterward,
+            a number of people equal to the Priest\'s Blessings level gain bonuses
+            as per the blessings table.</item>
 
-        <item>The Golden Rule:You may ask a target for forgiveness
-            for any grievances they may have against you. The severity
-            of the grievance determines the DC set by the GM.</item>
+        <item>Blood Rituals (WILL):A Priest casting a ritual can
+            make a Blood Ritual check
+            against the casting DC of the
+            ritual. If they succeed, they can
+            cast the ritual without required
+            alchemical substances by sacrificing
+            5 HP in blood per missing
+            alchemical substance. This
+            blood can come from others,
+            but must be spilled at the time
+            of the ritual.</item>
 
-        <item>Priest Charming:For every 2 points in this skill,
-            you gain +1 to any charisma check.</item>
+        <item>Fervor (EMP):A Priest can roll Fervor against
+            a target’s current INTx3. On
+            success, the rallying power of
+            the Priest’s words grants 1d6
+            temporary health for every
+            point rolled over the DC (maximum 5). This lasts for as many
+            rounds as their Fervor x2 and
+            only works once per target per day.</item>
 
         <item>Word of God (EMP):A Priest can roll Word of God
             to convince people that they
@@ -1062,6 +1111,78 @@
             many apostles as their Word
             of God value. In combat, use
             bandit stats for apostles without stats.</item>
+
+    </string-array>
+
+    <string-array name="druid_skills_info">
+
+        <item>Nature Attunement:A Druid can become more in tune with nature,
+            gaining 1 point of Vigor threshold per level in Nature Attunement
+            up to level 9. At the 10th level in Nature Attunement, the Druid\'s
+            Vigor Threshold rises by 5 to a total of 16. Nature Attunement can
+            be trained like any other skill.</item>
+
+        <item>Read Nature (INT):When in a purely natural environment,
+            a Druid can roll Read Nature at a DC set by the GM. On a
+            success, the Druid reads the signs around them to learn
+            everything that passed through that area within the last
+            week and what each creature did in the area. Read Nature
+            renders a very localized picture and cannot track things
+            but gives a very detailed description of what happened in
+            the area.</item>
+
+        <item>Animal Compact (WILL):A Druid adds their Animal Compact
+            value to any Wilderness Survival rolls they make to handle
+            animals. The Druid can also make a compact with an animal.
+            By taking a full round and rolling an Animal Compact check
+            at a DC set by the GM, they can make one Beast or animal
+            their ally for a number of hours equal to their Animal
+            Compact value. Monsters are unaffected.</item>
+
+        <item>Lore Keeper:Part of the initiation into a Circle is
+            to memorize a plethora of topics that can come in
+            handy to the Druid. They can roll their Lore Keeper
+            Ability in place of any Wilderness Survival, Monster
+            Lore, Human Perception, or Education checks.</item>
+
+        <item>Blood and Bones (WILL):By casting bones in a bowl filled with
+            blood drawn from a person, the Druid can alter the fate of that
+            person. The Druid rolls Blood and Bones against a DC-10 + the
+            target\'s WILL. On a success, the target can add half the Druid\'s
+            Blood and Bones value to one check made before the next sunrise.
+            On a failure, the target cannot benefit from this ability for 1 week.
+            A single target can only benefit from this ability once per session.</item>
+
+        <item>Bestial Form:Unlocking ancient rituals allows the Druid to
+            incorporate animal aspects into their body, transforming into
+            a hybrid form without taking an action. For each 2 levels the
+            Druid has in Bestial Form, they can add a new animalistic aspect
+            to their hybrid form. Additionally, while in their hybrid form,
+            the Druid can speak with animals of a type they have incorporated,
+            and become Feared and Hated by non-druids.</item>
+
+        <item>Beast Healer (CRA):Working often with animals in defense of
+            nature, a Druid can tend to grievous wounds in their beastly
+            companions. A Druid can roll Beast Healer to treat Critical
+            Wounds inflicted on Beasts. This roll works exactly like the
+            Doctor\'s Healing Hands ability.</item>
+
+        <item>Sacred Grove (WILL):A Druid can turn an area of nature into
+            a sacred grove. This takes 1 hour, and covers an area with a
+            20m radius. The Druid takes the value of their Sacred Grove check
+            and uses those points to add protections to their sacred grove.
+            The Druid and anyone they specify are immune to these protections.
+            This grove lasts for 3 months and the Druid can maintain a number
+            of groves equal to their Sacred Grove value.</item>
+
+        <item>Grove Guardian (WILL):By using an ancient ritual, the Druid can
+            empower an animal or beast. By taking one full round and rolling Grove
+            Guardian against a DC-10 + the creature\'s BODY, the creature
+            grows to twice its size, its BODY increases by 5, and gains a +5
+            bonus to damage. This bonus affects the creatures Derived Statistics
+            as well. The creature also becomes highly aggressive to enemies of the
+            Druid. This lasts for 24 hours and during that time the druid\'s Vigor
+            threshold is reduced by 5.</item>
 
     </string-array>
 
@@ -1114,7 +1235,7 @@
             that poisoned you. When the
             poison wears off, the Frenzy
             ends. You can attempt to end
-            Frenzy early with a DC:15 Endurance roll.</item>
+            Frenzy early with a DC-15 Endurance roll.</item>
 
         <item>Transmutation (BODY):When taking decoctions a
             Witcher can roll Transmutation at DC-18. A success allows

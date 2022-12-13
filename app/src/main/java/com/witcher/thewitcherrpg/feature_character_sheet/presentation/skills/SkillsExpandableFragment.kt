@@ -483,6 +483,11 @@ class SkillsExpandableFragment : Fragment() {
                 binding.etInitiateOfTheGods.setSkillText("Initiate of The Gods:")
                 binding.etInitiateOfTheGods.setDefSkillColor()
             }
+            Constants.Professions.DRUID -> {
+                binding.etRiteOfOakAndMistletoe.visibility = View.VISIBLE
+                binding.etRiteOfOakAndMistletoe.setSkillText("Rite of Oak and Mistletoe:")
+                binding.etRiteOfOakAndMistletoe.setDefSkillColor()
+            }
             Constants.Professions.WITCHER -> {
                 binding.etWitcherTraining.visibility = View.VISIBLE
                 binding.etWitcherTraining.setSkillText("Witcher Training:")

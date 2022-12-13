@@ -6,6 +6,7 @@
         <item name="colorPrimary">#003FFF</item>
         <item name="colorPrimaryVariant">@color/gray_400</item>
         <item name="colorOnPrimary">#B6B6B6</item>
+        <item name="buttonTint">#D6D6D6</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/darkBlue</item>
         <item name="colorSecondaryVariant">@color/gray_600</item>

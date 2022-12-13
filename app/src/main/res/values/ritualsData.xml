@@ -18,6 +18,17 @@
         (x1), Mistletoe (x2), Crow’s Eye
         (x1), Balisse Leaves (x1)</item>
 
+        <item>Create Crystal Skull:5:By infusing an existing
+            animal skull from a cat, dog, bird, or serpent
+            with fifth essence you create a crystal skull
+            which can be used to form a single animal of
+            that type as per the Crystal Skull on pg.119.
+            If the animal created by a Crystal Skull dies,
+            the Crystal Skull can be recharged by performing
+            this ritual again using only 2 units of Fifth
+            Essence and the inactive skull.
+        :10 Rounds:14:Immediate:Animal Skull, Fifth Essence (x5):toc</item>
+
         <item>Hydromancy:5:Hydromancy allows you
             to stare into a small body of water
             and glimpse an event that happened within the last two days
@@ -36,6 +47,16 @@
             Essence (x2), White Myrtle Petals
             (x2), Pearl (x2), Lunar Shards (x1),
             Berbercane Fruit (x1)</item>
+
+        <item>Imbue Trophy:3:By properly preparing and taxidermizing
+            the remains of a monster, this ritual allows you to make
+            use of a monster\'s alien physiology to channel magical
+            effects. Upon performing this ritual, a single non-enchanted
+            trophy you possess becomes a permanent magical trophy
+            that grants the benefits listed on pg.124 to
+            anyone who carries the trophy who also helped kill the monster.
+        :10 Rounds:12:Immediate:Monster Trophy, Fifth Essence (x1),
+            Infused Dust (x1), Tanning Herbs (x10), Ogre Wax (x1), Ester Grease (x2):toc</item>
 
         <item>Magical Message:3:Magical Message records a
             message of up to 5 minutes into a
@@ -137,9 +158,76 @@
             known Continent.
             :5 Rounds:None:1 Hour:A Telecommunicator</item>
 
+        <item>Tyromancy:2:By magically aging or melting cheese and
+            watching closely its qualities, Tyromancy allows you to
+            divine whether a course of action will have a positive
+            or negative outcome. When the ritual is performed, the
+            GM privately rolls 1d6 and either adds or subtracts it
+            from 13 to determine the DC of the ritual. If the cheese
+            used is of standard quality or lower (10 Crowns per Unit)
+            the d6 is added to 13. If the cheese used is of high
+            quality (30 Crowns per Unit) the d6 is subtracted. You
+            then make a Ritual Crafting check against this DC. After
+            the check, you may ask the GM whether a course of action
+            will have a positive or negative outcome. If your check
+            was successful, the GM must answer truthfully. If the
+            outcome of the action would be both positive and negative,
+            the answer is whichever would be more immediate. If you
+            fail, the GM will give you a false answer based on the
+            private roll of their d6. If the number was odd the false
+            answer is negative, if the number was even, the false
+            answer is positive.
+        :5 Rounds:13 +/- 1d6:Immediate:Cheese (x2):toc</item>
+
+        <item>Wagerer\'s Pendant:6:By binding a shard of etched
+            glass in a pendant of wolfsbane, beast bones,
+            and leather strips, you can create a locus of
+            dark magic. This pendant absorbs the chaos
+            which forms hexes and temporarily stores it.
+            While a person wears it, they are freed from
+            the effects of all hexes. If the pendant is
+            removed at any point, all of the effects return.
+            Additionally, if the person fails to rid
+            themselves of all of the hexes by the end of
+            this ritual\'s duration, the pendant breaks and
+            releases a torrent of dark magic. Should this
+            occur, the person wearing the pendant and
+            anyone within 2m of them are immediately afflicted
+            by a number of hexes chosen by the GM.
+        :10 Rounds:14:1 Week:Glass (x2), Beast Bones (x1),
+            Wolfsbane (x2), Leather (x2), Chalk (x2),
+            Etching Acid (x5), Ashes (x2):toc</item>
+
     </string-array>
 
     <string-array name="journeyman_rituals_list_data">
+
+        <item>Animate Armor:14:By assembling a full suit of
+            armor with a golem heart at its core and infusing
+            the heart with magic you can animate the suit
+            of armor as a loyal servant. Upon performing this
+            ritual, the suit of armor you used becomes animate
+            and uses the living armor stat block (pg. 204)
+            except for its armor Stopping Power which is
+            equal to the armor you used. The living armor
+            is not a sapient creature and is eternally
+            loyal to its creator. It will perform any
+            task given by its creator to the letter.
+        :10 Rounds:18:Permanent:Head Armor (x1), Torso Armor
+            (x1), Leg Armor (x1), Fifth Essence (x3),
+            Infused Dust (x3), Golem Heart (x1):toc</item>
+
+        <item>Beacon of the Unnatural:12:By constructing a grim
+            totem containing a fifth essence infused mutagen
+            you create a beacon for monsters. Upon performing
+            this ritual, the Beacon of the Unnatural calls
+            to any monsters within 1 mile to come and build
+            a new nest at the location. The scent given off
+            by the Beacon grows stronger over time, expanding
+            the range of its draw by a mile every year. The
+            Beacon is 2m tall and has 20 Hit Points.
+        :15 Rounds:18:Until Destroyed:Hardened Timber (x4),
+            A Mutagen, Rope, Beast Bones (x5), Fifth Essence (x1):toc</item>
 
     <item>Consecrate:12:Consecrate creates a magic circle which temporarily repels
         monsters. This circle can be up to
@@ -159,6 +247,17 @@
         monsters vulnerable to meteorite.
         :10 Rounds:18:Until Dispelled:Fifth Essence (x5),
         Infused Dust (x2), Chalk (x4), Silver or Meteorite (x5)</item>
+
+        <item>Fog of the Past:10:By arranging a circle of candles,
+            creating a pyramidal sculpture of glass with a lunar
+            shard in its center, and filling it with essence of
+            wraith you create a magical projector which summons
+            up a vision of the past. Upon performing this ritual,
+            the projector shows the most emotionally resonant
+            moment to have ever occurred in the area. This moment
+            can be up to 5 minutes long and plays on repeat
+            until the end of the ritual.
+        :10 Rounds:18:20 Minutes:Glass (x5), Lunar Shard (x1), Candles (x5), Essence of Wraith (x2):toc</item>
 
         <item>Magic Barrier:10:Magic Barrier creates a
             circular barrier of pure force that
@@ -181,6 +280,25 @@
             can teleport in or out.
             :10 Rounds:18:Active (2 STA):Fifth Essence (x5),
             Infused Dust (x2), Chalk (x4) </item>
+
+        <item>Magical Guestbook:8:By weaving symbols in chalk
+            and coal on an archway or door frame and placing
+            a small fifth-essence-infused clay icon on the top
+            of the entryway you create an invisible curtain.
+            This magical curtain records the faces of anyone who
+            passes through and alerts you telepathically if
+            anyone you designated when you cast the ritual pass
+            through it. The curtain keeps the recordings of the
+            faces until the ritual ends, after which they
+            are stored in the clay icon which can be viewed
+            by someone with a Vigor Threshold of 1 or higher.
+            These recordings remain as long as the icon
+            remains intact. While the ritual is active, you
+            can access the records at any time telepathically
+            while within 100m. You must also be within
+            100m for the Magical Guestbook to alert you
+            to a designated person entering.
+        :10 Rounds:16:1 Day:Chalk (x2), Coal (x2), River Clay (x1), Fifth Essence (x1):toc</item>
 
         <item>Oneiromancy:8:Oneiromancy grants the
             caster a dream which unveils secrets and events of the past and
@@ -233,6 +351,32 @@
             :10 Rounds:18:Until Reversed:Perfect Gemstone
             (x1), Fifth Essence (x5), Infused
             Dust (x2), River Clay (x4)</item>
+
+        <item>Create Place of Power:18:By carving complex sigils
+            on a standing stone erected at the confluence of two
+            ley lines of the same element you create a Place of
+            Power. This Place of Power remains indefinitely.
+            If you fumble when performing this ritual your
+            fumble outcome always results in a 10 and all
+            of the stone used for the ritual explodes as if
+            it were a bomb (doing 7d6 damage) with a 6m radius.
+        :20 Rounds:20:Permanent:Stone (x40), Runewright\'s Tools:toc</item>
+
+        <item>Enchant Amulet:Variable:By inlaying a common amulet
+            with gemstones etched with magic glyphs you create an
+            enchanted amulet that stores the knowledge of casting
+            certain spells. When creating a magic amulet, a
+            character must spend the required STA for each spell
+            cast. If a spell has an active duration, the caster
+            must also spend enough STA to sustain it for 4 rounds.
+            When creating an amulet, the caster may not use a
+            magical focus. Every spell to be imbued in the amulet
+            must be cast quickly in succession, without taking
+            any other action in-between, otherwise the
+            Crafting process fails.
+        :15 Rounds:18:Permanent:Simple Amulet (x1), Perfect
+            Gemstone (1 Per Spell/Invocation),
+            Fifth Essence (x2), Runewright\'s Tools:toc</item>
 
         <item>Golem Crafting:15:Golem Crafting creates a
             golem that serves the caster until it

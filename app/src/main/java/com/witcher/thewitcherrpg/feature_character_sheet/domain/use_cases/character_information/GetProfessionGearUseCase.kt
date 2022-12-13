@@ -87,6 +87,15 @@ class GetProfessionGearUseCase @Inject constructor() {
                         return skills
                     }
                 }
+                Constants.Professions.DRUID -> {
+                    if (pair[0] == "Druid") {
+                        val gearList = pair[1].split(",").toTypedArray()
+                        for (gear in gearList) {
+                            skills.add(gear)
+                        }
+                        return skills
+                    }
+                }
                 Constants.Professions.WITCHER -> {
                     if (pair[0] == "Witcher") {
                         val gearList = pair[1].split(",").toTypedArray()

@@ -1,0 +1,1280 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "68bcf873c5ad6b8a19b92d41a65667df",
+    "entities": [
+      {
+        "tableName": "character_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `imagePath` TEXT NOT NULL, `name` TEXT NOT NULL, `iP` INTEGER NOT NULL, `race` TEXT NOT NULL, `gender` TEXT NOT NULL, `age` INTEGER NOT NULL, `profession` TEXT NOT NULL, `definingSkill` TEXT NOT NULL, `racePerks` TEXT NOT NULL, `definingSkillInfo` TEXT NOT NULL, `crowns` INTEGER NOT NULL, `clothing` TEXT NOT NULL, `hairStyle` TEXT NOT NULL, `personality` TEXT NOT NULL, `affectations` TEXT NOT NULL, `valuedPerson` TEXT NOT NULL, `values` TEXT NOT NULL, `feelingsOnPeople` TEXT NOT NULL, `socialStanding` TEXT NOT NULL, `reputation` TEXT NOT NULL, `lifeEvents` TEXT NOT NULL, `professionSkillA1` INTEGER NOT NULL, `professionSkillA2` INTEGER NOT NULL, `professionSkillA3` INTEGER NOT NULL, `professionSkillB1` INTEGER NOT NULL, `professionSkillB2` INTEGER NOT NULL, `professionSkillB3` INTEGER NOT NULL, `professionSkillC1` INTEGER NOT NULL, `professionSkillC2` INTEGER NOT NULL, `professionSkillC3` INTEGER NOT NULL, `intelligence` INTEGER NOT NULL, `intelligenceModifier` INTEGER NOT NULL, `reflex` INTEGER NOT NULL, `reflexModifier` INTEGER NOT NULL, `dexterity` INTEGER NOT NULL, `dexterityModifier` INTEGER NOT NULL, `body` INTEGER NOT NULL, `bodyModifier` INTEGER NOT NULL, `speed` INTEGER NOT NULL, `speedModifier` INTEGER NOT NULL, `empathy` INTEGER NOT NULL, `empathyModifier` INTEGER NOT NULL, `craftsmanship` INTEGER NOT NULL, `craftsmanshipModifier` INTEGER NOT NULL, `will` INTEGER NOT NULL, `willModifier` INTEGER NOT NULL, `luck` INTEGER NOT NULL, `luckModifier` INTEGER NOT NULL, `stun` INTEGER NOT NULL, `stunModifier` INTEGER NOT NULL, `run` INTEGER NOT NULL, `runModifier` INTEGER NOT NULL, `leap` INTEGER NOT NULL, `leapModifier` INTEGER NOT NULL, `MaxHP` INTEGER NOT NULL, `hpModifier` INTEGER NOT NULL, `hp` INTEGER NOT NULL, `MaxStamina` INTEGER NOT NULL, `staModifier` INTEGER NOT NULL, `stamina` INTEGER NOT NULL, `encumbrance` INTEGER NOT NULL, `encumbranceModifier` INTEGER NOT NULL, `currentEncumbrance` REAL NOT NULL, `recovery` INTEGER NOT NULL, `recoveryModifier` INTEGER NOT NULL, `punch` TEXT NOT NULL, `kick` TEXT NOT NULL, `definingSkillValue` INTEGER NOT NULL, `awareness` INTEGER NOT NULL, `awarenessModifier` INTEGER NOT NULL, `business` INTEGER NOT NULL, `businessModifier` INTEGER NOT NULL, `deduction` INTEGER NOT NULL, `deductionModifier` INTEGER NOT NULL, `education` INTEGER NOT NULL, `educationModifier` INTEGER NOT NULL, `commonSpeech` INTEGER NOT NULL, `commonSpeechModifier` INTEGER NOT NULL, `elderSpeech` INTEGER NOT NULL, `elderSpeechModifier` INTEGER NOT NULL, `dwarven` INTEGER NOT NULL, `dwarvenModifier` INTEGER NOT NULL, `monsterLore` INTEGER NOT NULL, `monsterLoreModifier` INTEGER NOT NULL, `socialEtiquette` INTEGER NOT NULL, `socialEtiquetteModifier` INTEGER NOT NULL, `streetwise` INTEGER NOT NULL, `streetwiseModifier` INTEGER NOT NULL, `tactics` INTEGER NOT NULL, `tacticsModifier` INTEGER NOT NULL, `teaching` INTEGER NOT NULL, `teachingModifier` INTEGER NOT NULL, `wildernessSurvival` INTEGER NOT NULL, `wildernessSurvivalModifier` INTEGER NOT NULL, `brawling` INTEGER NOT NULL, `brawlingModifier` INTEGER NOT NULL, `dodgeEscape` INTEGER NOT NULL, `dodgeEscapeModifier` INTEGER NOT NULL, `melee` INTEGER NOT NULL, `meleeModifier` INTEGER NOT NULL, `riding` INTEGER NOT NULL, `ridingModifier` INTEGER NOT NULL, `sailing` INTEGER NOT NULL, `sailingModifier` INTEGER NOT NULL, `smallBlades` INTEGER NOT NULL, `smallBladesModifier` INTEGER NOT NULL, `staffSpear` INTEGER NOT NULL, `staffSpearModifier` INTEGER NOT NULL, `swordsmanship` INTEGER NOT NULL, `swordsmanshipModifier` INTEGER NOT NULL, `archery` INTEGER NOT NULL, `archeryModifier` INTEGER NOT NULL, `athletics` INTEGER NOT NULL, `athleticsModifier` INTEGER NOT NULL, `crossbow` INTEGER NOT NULL, `crossbowModifier` INTEGER NOT NULL, `sleightOfHand` INTEGER NOT NULL, `sleightOfHandModifier` INTEGER NOT NULL, `stealth` INTEGER NOT NULL, `stealthModifier` INTEGER NOT NULL, `physique` INTEGER NOT NULL, `physiqueModifier` INTEGER NOT NULL, `endurance` INTEGER NOT NULL, `enduranceModifier` INTEGER NOT NULL, `charisma` INTEGER NOT NULL, `charismaModifier` INTEGER NOT NULL, `deceit` INTEGER NOT NULL, `deceitModifier` INTEGER NOT NULL, `fineArts` INTEGER NOT NULL, `fineArtsModifier` INTEGER NOT NULL, `gambling` INTEGER NOT NULL, `gamblingModifier` INTEGER NOT NULL, `groomingAndStyle` INTEGER NOT NULL, `groomingAndStyleModifier` INTEGER NOT NULL, `humanPerception` INTEGER NOT NULL, `humanPerceptionModifier` INTEGER NOT NULL, `leadership` INTEGER NOT NULL, `leadershipModifier` INTEGER NOT NULL, `persuasion` INTEGER NOT NULL, `persuasionModifier` INTEGER NOT NULL, `performance` INTEGER NOT NULL, `performanceModifier` INTEGER NOT NULL, `seduction` INTEGER NOT NULL, `seductionModifier` INTEGER NOT NULL, `alchemy` INTEGER NOT NULL, `alchemyModifier` INTEGER NOT NULL, `crafting` INTEGER NOT NULL, `craftingModifier` INTEGER NOT NULL, `disguise` INTEGER NOT NULL, `disguiseModifier` INTEGER NOT NULL, `firstAid` INTEGER NOT NULL, `firstAidModifier` INTEGER NOT NULL, `forgery` INTEGER NOT NULL, `forgeryModifier` INTEGER NOT NULL, `pickLock` INTEGER NOT NULL, `pickLockModifier` INTEGER NOT NULL, `trapCrafting` INTEGER NOT NULL, `trapCraftingModifier` INTEGER NOT NULL, `courage` INTEGER NOT NULL, `courageModifier` INTEGER NOT NULL, `hexWeaving` INTEGER NOT NULL, `hexWeavingModifier` INTEGER NOT NULL, `intimidation` INTEGER NOT NULL, `intimidationModifier` INTEGER NOT NULL, `spellCasting` INTEGER NOT NULL, `spellCastingModifier` INTEGER NOT NULL, `resistMagic` INTEGER NOT NULL, `resistMagicModifier` INTEGER NOT NULL, `resistCoercion` INTEGER NOT NULL, `resistCoercionModifier` INTEGER NOT NULL, `ritualCrafting` INTEGER NOT NULL, `ritualCraftingModifier` INTEGER NOT NULL, `vigor` INTEGER NOT NULL, `focus` INTEGER NOT NULL, `magical_gifts_enabled` INTEGER NOT NULL DEFAULT 0, `minor_gifts` TEXT NOT NULL DEFAULT '[]', `major_gifts` TEXT NOT NULL DEFAULT '[]', `basicSigns` TEXT NOT NULL, `alternateSigns` TEXT NOT NULL, `noviceRituals` TEXT NOT NULL, `journeymanRituals` TEXT NOT NULL, `masterRituals` TEXT NOT NULL, `hexes` TEXT NOT NULL, `noviceSpells` TEXT NOT NULL, `journeymanSpells` TEXT NOT NULL, `masterSpells` TEXT NOT NULL, `noviceDruidInvocations` TEXT NOT NULL, `journeymanDruidInvocations` TEXT NOT NULL, `masterDruidInvocations` TEXT NOT NULL, `novicePreacherInvocations` TEXT NOT NULL, `journeymanPreacherInvocations` TEXT NOT NULL, `masterPreacherInvocations` TEXT NOT NULL, `archPriestInvocations` TEXT NOT NULL, `arch_druid` TEXT NOT NULL DEFAULT '[]', `headEquipment` TEXT NOT NULL, `equippedHead` TEXT, `chestEquipment` TEXT NOT NULL, `equippedChest` TEXT, `legEquipment` TEXT NOT NULL, `equippedLegs` TEXT, `accessoryEquipment` TEXT NOT NULL, `equippedSecondHandShield` TEXT, `equippedSecondHandWeapon` TEXT, `miscEquipment` TEXT NOT NULL, `weaponEquipment` TEXT NOT NULL, `equippedWeapon` TEXT, `campaignNotes` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imagePath",
+            "columnName": "imagePath",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iP",
+            "columnName": "iP",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "race",
+            "columnName": "race",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "age",
+            "columnName": "age",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profession",
+            "columnName": "profession",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "definingSkill",
+            "columnName": "definingSkill",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "racePerks",
+            "columnName": "racePerks",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "definingSkillInfo",
+            "columnName": "definingSkillInfo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "crowns",
+            "columnName": "crowns",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clothing",
+            "columnName": "clothing",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hairStyle",
+            "columnName": "hairStyle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personality",
+            "columnName": "personality",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "affectations",
+            "columnName": "affectations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valuedPerson",
+            "columnName": "valuedPerson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "values",
+            "columnName": "values",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "feelingsOnPeople",
+            "columnName": "feelingsOnPeople",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "socialStanding",
+            "columnName": "socialStanding",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reputation",
+            "columnName": "reputation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lifeEvents",
+            "columnName": "lifeEvents",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillA1",
+            "columnName": "professionSkillA1",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillA2",
+            "columnName": "professionSkillA2",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillA3",
+            "columnName": "professionSkillA3",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillB1",
+            "columnName": "professionSkillB1",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillB2",
+            "columnName": "professionSkillB2",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillB3",
+            "columnName": "professionSkillB3",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillC1",
+            "columnName": "professionSkillC1",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillC2",
+            "columnName": "professionSkillC2",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "professionSkillC3",
+            "columnName": "professionSkillC3",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "intelligence",
+            "columnName": "intelligence",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "intelligenceModifier",
+            "columnName": "intelligenceModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reflex",
+            "columnName": "reflex",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reflexModifier",
+            "columnName": "reflexModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dexterity",
+            "columnName": "dexterity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dexterityModifier",
+            "columnName": "dexterityModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "body",
+            "columnName": "body",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bodyModifier",
+            "columnName": "bodyModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "speed",
+            "columnName": "speed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "speedModifier",
+            "columnName": "speedModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "empathy",
+            "columnName": "empathy",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "empathyModifier",
+            "columnName": "empathyModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "craftsmanship",
+            "columnName": "craftsmanship",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "craftsmanshipModifier",
+            "columnName": "craftsmanshipModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "will",
+            "columnName": "will",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "willModifier",
+            "columnName": "willModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "luck",
+            "columnName": "luck",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "luckModifier",
+            "columnName": "luckModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stun",
+            "columnName": "stun",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stunModifier",
+            "columnName": "stunModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "run",
+            "columnName": "run",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "runModifier",
+            "columnName": "runModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "leap",
+            "columnName": "leap",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "leapModifier",
+            "columnName": "leapModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "MaxHP",
+            "columnName": "MaxHP",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hpModifier",
+            "columnName": "hpModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hp",
+            "columnName": "hp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "MaxStamina",
+            "columnName": "MaxStamina",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "staModifier",
+            "columnName": "staModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stamina",
+            "columnName": "stamina",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "encumbrance",
+            "columnName": "encumbrance",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "encumbranceModifier",
+            "columnName": "encumbranceModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentEncumbrance",
+            "columnName": "currentEncumbrance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recovery",
+            "columnName": "recovery",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recoveryModifier",
+            "columnName": "recoveryModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "punch",
+            "columnName": "punch",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kick",
+            "columnName": "kick",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "definingSkillValue",
+            "columnName": "definingSkillValue",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "awareness",
+            "columnName": "awareness",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "awarenessModifier",
+            "columnName": "awarenessModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "business",
+            "columnName": "business",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessModifier",
+            "columnName": "businessModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deduction",
+            "columnName": "deduction",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deductionModifier",
+            "columnName": "deductionModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "education",
+            "columnName": "education",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "educationModifier",
+            "columnName": "educationModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commonSpeech",
+            "columnName": "commonSpeech",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commonSpeechModifier",
+            "columnName": "commonSpeechModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "elderSpeech",
+            "columnName": "elderSpeech",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "elderSpeechModifier",
+            "columnName": "elderSpeechModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dwarven",
+            "columnName": "dwarven",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dwarvenModifier",
+            "columnName": "dwarvenModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "monsterLore",
+            "columnName": "monsterLore",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "monsterLoreModifier",
+            "columnName": "monsterLoreModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "socialEtiquette",
+            "columnName": "socialEtiquette",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "socialEtiquetteModifier",
+            "columnName": "socialEtiquetteModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streetwise",
+            "columnName": "streetwise",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streetwiseModifier",
+            "columnName": "streetwiseModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tactics",
+            "columnName": "tactics",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tacticsModifier",
+            "columnName": "tacticsModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teaching",
+            "columnName": "teaching",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teachingModifier",
+            "columnName": "teachingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wildernessSurvival",
+            "columnName": "wildernessSurvival",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wildernessSurvivalModifier",
+            "columnName": "wildernessSurvivalModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "brawling",
+            "columnName": "brawling",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "brawlingModifier",
+            "columnName": "brawlingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dodgeEscape",
+            "columnName": "dodgeEscape",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dodgeEscapeModifier",
+            "columnName": "dodgeEscapeModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "melee",
+            "columnName": "melee",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "meleeModifier",
+            "columnName": "meleeModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "riding",
+            "columnName": "riding",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ridingModifier",
+            "columnName": "ridingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sailing",
+            "columnName": "sailing",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sailingModifier",
+            "columnName": "sailingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "smallBlades",
+            "columnName": "smallBlades",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "smallBladesModifier",
+            "columnName": "smallBladesModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "staffSpear",
+            "columnName": "staffSpear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "staffSpearModifier",
+            "columnName": "staffSpearModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "swordsmanship",
+            "columnName": "swordsmanship",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "swordsmanshipModifier",
+            "columnName": "swordsmanshipModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "archery",
+            "columnName": "archery",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "archeryModifier",
+            "columnName": "archeryModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "athletics",
+            "columnName": "athletics",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "athleticsModifier",
+            "columnName": "athleticsModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "crossbow",
+            "columnName": "crossbow",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "crossbowModifier",
+            "columnName": "crossbowModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sleightOfHand",
+            "columnName": "sleightOfHand",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sleightOfHandModifier",
+            "columnName": "sleightOfHandModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stealth",
+            "columnName": "stealth",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stealthModifier",
+            "columnName": "stealthModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "physique",
+            "columnName": "physique",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "physiqueModifier",
+            "columnName": "physiqueModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endurance",
+            "columnName": "endurance",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enduranceModifier",
+            "columnName": "enduranceModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "charisma",
+            "columnName": "charisma",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "charismaModifier",
+            "columnName": "charismaModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deceit",
+            "columnName": "deceit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deceitModifier",
+            "columnName": "deceitModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fineArts",
+            "columnName": "fineArts",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fineArtsModifier",
+            "columnName": "fineArtsModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gambling",
+            "columnName": "gambling",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gamblingModifier",
+            "columnName": "gamblingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "groomingAndStyle",
+            "columnName": "groomingAndStyle",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "groomingAndStyleModifier",
+            "columnName": "groomingAndStyleModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "humanPerception",
+            "columnName": "humanPerception",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "humanPerceptionModifier",
+            "columnName": "humanPerceptionModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "leadership",
+            "columnName": "leadership",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "leadershipModifier",
+            "columnName": "leadershipModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "persuasion",
+            "columnName": "persuasion",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "persuasionModifier",
+            "columnName": "persuasionModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "performance",
+            "columnName": "performance",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "performanceModifier",
+            "columnName": "performanceModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seduction",
+            "columnName": "seduction",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seductionModifier",
+            "columnName": "seductionModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alchemy",
+            "columnName": "alchemy",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alchemyModifier",
+            "columnName": "alchemyModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "crafting",
+            "columnName": "crafting",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "craftingModifier",
+            "columnName": "craftingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "disguise",
+            "columnName": "disguise",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "disguiseModifier",
+            "columnName": "disguiseModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstAid",
+            "columnName": "firstAid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstAidModifier",
+            "columnName": "firstAidModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "forgery",
+            "columnName": "forgery",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "forgeryModifier",
+            "columnName": "forgeryModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pickLock",
+            "columnName": "pickLock",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pickLockModifier",
+            "columnName": "pickLockModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trapCrafting",
+            "columnName": "trapCrafting",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trapCraftingModifier",
+            "columnName": "trapCraftingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "courage",
+            "columnName": "courage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "courageModifier",
+            "columnName": "courageModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hexWeaving",
+            "columnName": "hexWeaving",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hexWeavingModifier",
+            "columnName": "hexWeavingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "intimidation",
+            "columnName": "intimidation",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "intimidationModifier",
+            "columnName": "intimidationModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spellCasting",
+            "columnName": "spellCasting",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spellCastingModifier",
+            "columnName": "spellCastingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resistMagic",
+            "columnName": "resistMagic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resistMagicModifier",
+            "columnName": "resistMagicModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resistCoercion",
+            "columnName": "resistCoercion",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resistCoercionModifier",
+            "columnName": "resistCoercionModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ritualCrafting",
+            "columnName": "ritualCrafting",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ritualCraftingModifier",
+            "columnName": "ritualCraftingModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vigor",
+            "columnName": "vigor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "focus",
+            "columnName": "focus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magicalGifts",
+            "columnName": "magical_gifts_enabled",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "minorGifts",
+            "columnName": "minor_gifts",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'[]'"
+          },
+          {
+            "fieldPath": "majorGifts",
+            "columnName": "major_gifts",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'[]'"
+          },
+          {
+            "fieldPath": "basicSigns",
+            "columnName": "basicSigns",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alternateSigns",
+            "columnName": "alternateSigns",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noviceRituals",
+            "columnName": "noviceRituals",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "journeymanRituals",
+            "columnName": "journeymanRituals",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "masterRituals",
+            "columnName": "masterRituals",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hexes",
+            "columnName": "hexes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noviceSpells",
+            "columnName": "noviceSpells",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "journeymanSpells",
+            "columnName": "journeymanSpells",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "masterSpells",
+            "columnName": "masterSpells",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noviceDruidInvocations",
+            "columnName": "noviceDruidInvocations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "journeymanDruidInvocations",
+            "columnName": "journeymanDruidInvocations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "masterDruidInvocations",
+            "columnName": "masterDruidInvocations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "novicePreacherInvocations",
+            "columnName": "novicePreacherInvocations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "journeymanPreacherInvocations",
+            "columnName": "journeymanPreacherInvocations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "masterPreacherInvocations",
+            "columnName": "masterPreacherInvocations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "archPriestInvocations",
+            "columnName": "archPriestInvocations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hierophantFlaminikaDruidInvocations",
+            "columnName": "arch_druid",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'[]'"
+          },
+          {
+            "fieldPath": "headEquipment",
+            "columnName": "headEquipment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equippedHead",
+            "columnName": "equippedHead",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "chestEquipment",
+            "columnName": "chestEquipment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equippedChest",
+            "columnName": "equippedChest",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "legEquipment",
+            "columnName": "legEquipment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equippedLegs",
+            "columnName": "equippedLegs",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "accessoryEquipment",
+            "columnName": "accessoryEquipment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equippedSecondHandShield",
+            "columnName": "equippedSecondHandShield",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "equippedSecondHandWeapon",
+            "columnName": "equippedSecondHandWeapon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "miscEquipment",
+            "columnName": "miscEquipment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weaponEquipment",
+            "columnName": "weaponEquipment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equippedWeapon",
+            "columnName": "equippedWeapon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "campaignNotes",
+            "columnName": "campaignNotes",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '68bcf873c5ad6b8a19b92d41a65667df')"
+    ]
+  }
+}

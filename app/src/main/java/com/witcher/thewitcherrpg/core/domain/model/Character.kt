@@ -1,6 +1,7 @@
 package com.witcher.thewitcherrpg.core.domain.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
@@ -199,6 +200,15 @@ data class Character(
     var vigor: Int = 0,
     var focus: Int = 0,
 
+    @ColumnInfo(name = "magical_gifts_enabled", defaultValue = "0")
+    var magicalGifts: Int = 0,
+
+    @ColumnInfo(name = "minor_gifts", defaultValue = "[]")
+    var minorGifts: ArrayList<MagicItem> = arrayListOf(),
+
+    @ColumnInfo(name = "major_gifts", defaultValue = "[]")
+    var majorGifts: ArrayList<MagicItem> = arrayListOf(),
+
     var basicSigns: ArrayList<MagicItem> = arrayListOf(),
     var alternateSigns: ArrayList<MagicItem> = arrayListOf(),
 
@@ -223,6 +233,9 @@ data class Character(
     var masterPreacherInvocations: ArrayList<MagicItem> = arrayListOf(),
 
     var archPriestInvocations: ArrayList<MagicItem> = arrayListOf(),
+
+    @ColumnInfo(name = "arch_druid", defaultValue = "[]")
+    var hierophantFlaminikaDruidInvocations: ArrayList<MagicItem> = arrayListOf(),
 
     //Equipment
     var headEquipment: ArrayList<EquipmentItem> = arrayListOf(),

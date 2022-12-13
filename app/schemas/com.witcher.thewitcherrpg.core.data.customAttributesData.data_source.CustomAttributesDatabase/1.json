@@ -1,0 +1,74 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "c53a4365010408d4108fc4ba3d5aaf3d",
+    "entities": [
+      {
+        "tableName": "custom_equipment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`equipment` TEXT NOT NULL, PRIMARY KEY(`equipment`))",
+        "fields": [
+          {
+            "fieldPath": "equipment",
+            "columnName": "equipment",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "equipment"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "custom_weapon",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`equipment` TEXT NOT NULL, PRIMARY KEY(`equipment`))",
+        "fields": [
+          {
+            "fieldPath": "equipment",
+            "columnName": "equipment",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "equipment"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "custom_magic",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`magicItem` TEXT NOT NULL, PRIMARY KEY(`magicItem`))",
+        "fields": [
+          {
+            "fieldPath": "magicItem",
+            "columnName": "magicItem",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "magicItem"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c53a4365010408d4108fc4ba3d5aaf3d')"
+    ]
+  }
+}
